@@ -1,0 +1,86 @@
+{% comment %}
+  JavaScript used in lesson and workshop pages.
+{% endcomment %}
+<script src="{{ relative_root_path }}/assets/js/jquery.min.js"></script>
+<script src="{{ relative_root_path }}/assets/js/bootstrap.bundle.min.js"></script>
+<script src="{{ relative_root_path }}/assets/js/lesson.js"></script>
+
+<script>
+let userClickedTabId = null;
+document.querySelectorAll('.os-tabs .nav-link[data-os]').forEach(trigger => {
+    trigger.addEventListener('mousedown', function () {
+        userClickedTabId = this.dataset.bsTarget;
+    });
+
+    trigger.addEventListener('shown.bs.tab', function () {
+        const os = this.dataset.os;
+        localStorage.os = os;
+
+        // Sync other tab groups
+        document.querySelectorAll('.os-tabs .nav-link[data-os="' + os + '"]').forEach(el => {
+            if (el !== this) {
+                bootstrap.Tab.getOrCreateInstance(el).show();
+            }
+        });
+
+        // Scroll to the tab the user actually clicked, not the one that was automatically activated in another tab group
+        if (userClickedTabId && this.dataset.bsTarget === userClickedTabId) {
+            const navEl = document.querySelector('.os-tabs .nav-link[data-bs-target="' + userClickedTabId + '"]');
+            const scrollTarget = navEl.closest('.card') ?? navEl.closest('.card-header') ?? navEl;
+            setTimeout(() => {
+                scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 50);
+            userClickedTabId = null;
+        }
+    });
+});
+
+// Restore saved preference on page load
+if (typeof Storage !== 'undefined') {
+    const savedOs = localStorage.os && localStorage.os !== 'undefined'
+        ? localStorage.os
+        : 'windows';
+
+    localStorage.os = savedOs;
+
+    const trigger = document.querySelector('.os-tabs .nav-link[data-os="' + savedOs + '"]');
+    if (trigger) {
+        bootstrap.Tab.getOrCreateInstance(trigger).show();
+    }
+}
+
+  // hide alerts when site is rendered on carpentries.github.io
+$(document).ready(function() {
+  if (location.href.startsWith("https://carpentries.github.io/workshop-template/")) {
+    // hide alert if they aren't also an info class
+    $("div.alert").not(".info").hide();
+  }
+});
+</script>
+
+{% if page.math %}
+<script src="{{ relative_root_path }}/assets/js/katex.min.js"></script>
+<script>
+options={
+  delimiters: [
+    {left: "$$", right: "$$", display: true},
+    {left: "$", right: "$", display: false},
+    {left: "\\(", right: "\\)", display: false},
+    {left: "\\[", right: "\\]", display: true}
+  ],
+  output: "mathml"
+}
+</script>
+<script src="{{ relative_root_path }}/assets/js/katex-auto-render.min.js" onload="renderMathInElement(document.body, options)"></script>
+{% endif %}
+
+{%- comment -%}
+AnchorJS: A JavaScript utility for adding deep anchor links
+https://github.com/bryanbraun/anchorjs
+https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js
+{%- endcomment -%}
+
+<script src="{{ relative_root_path }}/assets/js/anchor.min.js"></script>
+<script>
+    anchors.add();
+</script>

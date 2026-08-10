@@ -1,0 +1,79 @@
+name: Workshop Website
+on:
+  push:
+    branches:
+      - gh-pages
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  build-website:
+    if: ${{ !endsWith(github.repository, '/styles') }}
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.0'
+          bundler-cache: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5.1.0
+        with:
+          python-version: '3.x'
+
+      - name: Install GitHub Pages, Bundler, and kramdown gems
+        run: |
+          gem install github-pages bundler kramdown kramdown-parser-gfm
+
+      - name: Install Python modules
+        run: |
+          python3 -m pip install --upgrade pip setuptools wheel pyyaml==5.3.1 requests
+
+      - name: Checkout the lesson
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Render the markdown and confirm that the site can be built
+        run: make site
+
+      - name: Checkout github pages
+        if: ${{ github.event_name == 'push' && steps.check-rmd.outputs.count != 0 && github.ref != 'refs/heads/gh-pages'}}
+        uses: actions/checkout@v7
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Validate workshop website
+        # https://github.com/carpentries/styles/issues/551 is no longer relevant as styles shouldn't be used for
+        # lessons but only workshop templates. So, always run the workshop checks now.
+        run: make workshop-check
+        if: always()
+
+      - name: Commit and Push
+        if: ${{ github.event_name == 'push' && steps.check-rmd.outputs.count != 0 && github.ref != 'refs/heads/gh-pages'}}
+        run: |
+          # clean up gh-pages
+          cd gh-pages
+          git rm -rf .           # remove all previous files
+          git restore --staged . # remove things from the stage
+          cd ..
+          # copy everything into gh-pages site
+          cp -r `ls -A | grep -v 'gh-pages' | grep -v '.git' | grep -v '.bundle/' | grep -v '_site'` gh-pages
+          # move into gh-pages, add, commit, and push
+          cd gh-pages
+          # setup git
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add -A .
+          git commit --allow-empty -m "[Github Actions] render website (via ${{ github.sha }})"
+          git push origin gh-pages
+          # return
+          cd ..
