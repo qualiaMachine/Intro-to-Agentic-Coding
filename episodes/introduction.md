@@ -1,114 +1,104 @@
 ---
-title: "Using Markdown"
-teaching: 10 # teaching time in minutes
-exercises: 2 # exercise time in minutes
+title: "What Does 'Agentic' Mean?"
+teaching: 10
+exercises: 0
 ---
 
-:::::::::::::::::::::::::::::::::::::: questions 
+:::::::::::::::::::::::::::::::::::::: questions
 
-- How do you write a lesson using Markdown and `{sandpaper}`?
+- What distinguishes an agentic coding tool from autocomplete or a chat assistant?
+- What does the current tooling landscape look like, and how should I choose?
+- Is more autonomy automatically better?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Explain how to use markdown with The Carpentries Workbench
-- Demonstrate how to include pieces of code, figures, and nested challenge blocks
+- Define agentic coding and contrast it with chat-based and autocomplete-based AI assistance.
+- Map the major tools onto a spectrum of autonomy, from chat to IDE agents to fully asynchronous agents.
+- Explain why this lesson focuses on principles rather than any single tool.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Introduction
+## From autocomplete to agents
 
-This is a lesson created via The Carpentries Workbench. It is written in
-[Pandoc-flavored Markdown](https://pandoc.org/MANUAL.html) for static files and
-[R Markdown][r-markdown] for dynamic files that can render code into output. 
-Please refer to the [Introduction to The Carpentries 
-Workbench](https://carpentries.github.io/sandpaper-docs/) for full documentation.
+Traditional AI code assistants (early GitHub Copilot, ChatGPT in a browser tab) work in a
+simple loop: you ask, they suggest, you accept or reject. You are the middleware — you
+paste context in, you copy code out, you run everything yourself.
 
-What you need to know is that there are three sections required for a valid
-Carpentries lesson:
+Agentic coding tools go further. They can:
 
- 1. `questions` are displayed at the beginning of the episode to prime the
-    learner for the content.
- 2. `objectives` are the learning objectives for an episode displayed with
-    the questions.
- 3. `keypoints` are displayed at the end of the episode to reinforce the
-    objectives.
+- **Read and navigate your entire codebase** — not just the snippet you pasted.
+- **Execute shell commands and run tests** — they see the actual output, not your summary of it.
+- **Edit multiple files in a single pass.**
+- **Iterate on their own output** — hit an error, read it, fix the code, re-run.
+- **Operate semi-autonomously over multi-step tasks** — "add this feature, write tests,
+  open a PR" as one request.
 
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
+This is powerful. It also means these tools have real access to your system — your files,
+your shell, your credentials if you leave them lying around — and the potential to do
+real damage if not managed carefully. That tension between capability and control is the
+subject of this whole lesson.
 
-Inline instructor notes can help inform instructors of timing challenges
-associated with the lessons. They appear in the "Instructor View"
+## The landscape at a glance
 
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+The space is crowded and moving fast. As of early 2026, the tools you are most likely to
+encounter:
 
-::::::::::::::::::::::::::::::::::::: challenge 
+| Tool             | Interface                       | Notable traits                                                        |
+|------------------|---------------------------------|-----------------------------------------------------------------------|
+| Claude Code      | CLI, desktop app, IDE extensions, web | Anthropic's own agent harness; explicit permission model; `CLAUDE.md` project config |
+| GitHub Copilot   | VS Code/IDEs, GitHub.com        | Multi-model (Claude, GPT, Gemini); free paid tier for students/teachers; async cloud coding agent |
+| Cursor           | Custom IDE                      | Polished IDE experience, fast inline edits                            |
+| Windsurf         | Custom IDE                      | Low-friction agentic workflow, free tier                              |
+| OpenCode         | CLI                             | Open source; works with several free models — a good bring-your-own-agent option |
+| Amazon Q / Gemini Code Assist / GitLab Duo | IDE + cloud consoles | Deep integration with their respective platforms |
 
-## Challenge 1: Can you do it?
+Don't memorize this table — it will be out of date within months. What is stable is the
+**spectrum of autonomy** these tools occupy:
 
-What is the output of this command?
-
-```r
-paste("This", "new", "lesson", "looks", "good")
-```
-
-:::::::::::::::::::::::: solution 
-
-## Output
- 
-```output
-[1] "This new lesson looks good"
-```
-
-:::::::::::::::::::::::::::::::::
-
-
-## Challenge 2: how do you nest solutions within challenge blocks?
-
-:::::::::::::::::::::::: solution 
-
-You can add a line with at least three colons and a `solution` tag.
-
-:::::::::::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-## Figures
-
-You can use standard markdown for static figures with the following syntax:
-
-`![optional caption that appears below the figure](figure url){alt='alt text for
-accessibility purposes'}`
-
-![You belong in The Carpentries!](https://raw.githubusercontent.com/carpentries/logo/master/Badge_Carpentries.svg){alt='Blue Carpentries hex person logo with no text.'}
+1. **Chat** (claude.ai, ChatGPT): no system access. You do all the manual work, but
+   there is zero risk of the tool running a bad command. Often the *lowest-friction*
+   option for brainstorming precisely because nothing needs approval.
+2. **Interactive agent** (Claude Code, Copilot agent mode, Cursor): the agent works in
+   your repository with your permissions, and you approve or review as it goes.
+3. **Asynchronous agent** (Copilot cloud coding agent, Claude Code on the web, assigning
+   an issue to `@claude`): you hand off a task, the agent works in a cloud sandbox, and
+   you review a finished pull request.
 
 ::::::::::::::::::::::::::::::::::::: callout
 
-Callout sections can highlight information.
+## More autonomy is not automatically better
 
-They are sometimes used to emphasise particularly important points
-but are also used in some lessons to present "asides": 
-content that is not central to the narrative of the lesson,
-e.g. by providing the answer to a commonly-asked question.
+The same task — "add a utility function, write tests, open a PR" — can be done at any
+point on this spectrum. Moving right means less friction *during* the work and more
+review burden *after* it. The right choice depends on the task:
 
-::::::::::::::::::::::::::::::::::::::::::::::::
+- Sensitive work or unfamiliar codebase → interactive agent, guardrails on. The
+  interruptions are a feature.
+- Quick question, brainstorming, explaining an error → chat is hard to beat.
+- Well-scoped, clearly described task in a repo with good tests and CI → async agent
+  works well, because the specification and the tests carry your intent for you.
 
-
-## Math
-
-One of our episodes contains $\LaTeX$ equations when describing how to create
-dynamic reports with {knitr}, so we now use mathjax to describe this:
-
-`$\alpha = \dfrac{1}{(1 - \beta)^2}$` becomes: $\alpha = \dfrac{1}{(1 - \beta)^2}$
-
-Cool, right?
-
-::::::::::::::::::::::::::::::::::::: keypoints 
-
-- Use `.md` files for episodes when you want static content
-- Use `.Rmd` files for episodes when you need to generate output
-- Run `sandpaper::check_lesson()` to identify any issues with your lesson
-- Run `sandpaper::build_lesson()` to preview your lesson locally
+Notice the pattern: **the more autonomy you grant, the more of your judgment has to be
+encoded in advance** — in the prompt, in project context files, and in tests. That's the
+thread we pull on for the rest of this lesson.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-[r-markdown]: https://rmarkdown.rstudio.com/
+## Why principles, not one tool
+
+Tonight's demonstrations use Claude Code because its design makes the trade-offs visible:
+it asks permission before acting, it has an explicit project-context mechanism, and it
+reports its own token costs. But every practice in this lesson — scoping, secrets
+hygiene, specification, verification, cost awareness — applies unchanged to whichever
+tool you or your lab ends up using. The tools will churn; the discipline won't.
+
+::::::::::::::::::::::::::::::::::::: keypoints
+
+- Agentic tools read your repo, run commands, edit files, and iterate on their own output — they are collaborators with real system access, not autocomplete.
+- Tools occupy a spectrum of autonomy: chat → interactive agent → asynchronous agent.
+- More autonomy shifts your effort from approving actions to specifying intent up front and reviewing results afterward.
+- Learn the principles; the specific tools will keep changing.
+
+::::::::::::::::::::::::::::::::::::::::::::::::

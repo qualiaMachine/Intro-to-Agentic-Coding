@@ -15,16 +15,16 @@
 carpentry: 'incubator'
 
 # Alt-text description of the lesson.
-carpentry_description: 'Lesson Description'
+carpentry_description: 'Introduction to Agentic Coding'
 
 # Overall title for pages.
-title: 'Lesson Title' # FIXME
+title: 'Introduction to Agentic Coding'
 
 # Date the lesson was created (YYYY-MM-DD, this is empty by default)
-created: ~ # FIXME
+created: '2026-08-10'
 
 # Comma-separated list of keywords for the lesson
-keywords: 'software, data, lesson, The Carpentries' # FIXME
+keywords: 'software, lesson, The Carpentries, AI, LLM, agentic coding, Claude Code, GitHub Copilot, data science, verification'
 
 # Life cycle stage of the lesson
 # refer to <https://docs.carpentries.org/resources/curriculum/lesson-life-cycle.html> for details
@@ -35,13 +35,13 @@ life_cycle: 'pre-alpha' # FIXME
 license: 'CC-BY 4.0'
 
 # Link to the source repository for this lesson
-source: 'https://github.com/carpentries/workbench-template-md' # FIXME
+source: 'https://github.com/qualiaMachine/Intro-to-Agentic-Coding'
 
 # Default branch of your lesson
 branch: 'main'
 
 # Who to contact if there are any issues
-contact: 'team@carpentries.org' # FIXME
+contact: 'endemann@wisc.edu'
 
 # Navigation ------------------------------------------------
 #
@@ -66,17 +66,28 @@ contact: 'team@carpentries.org' # FIXME
 # - another-learner.md
 
 # Order of episodes in your lesson
-episodes: 
+episodes:
 - introduction.md
+- safety-and-security.md
+- trust.md
+- recon.md
+- specification.md
+- verification-and-review.md
+- cost-context-energy.md
+- research-and-outlook.md
 
 # Information for Learners
-learners: 
+learners:
+- setup.md
+- reference.md
 
 # Information for Instructors
-instructors: 
+instructors:
+- instructor-notes.md
 
 # Learner Profiles
-profiles: 
+profiles:
+- learner-profiles.md
 
 # Customisation ---------------------------------------------
 #

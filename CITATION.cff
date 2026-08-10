@@ -1,11 +1,9 @@
-# This template CITATION.cff file was generated with cffinit.
-# Visit https://bit.ly/cffinit to replace its contents
-# with information about your lesson.
-# Remember to update this file periodically, 
+# This CITATION.cff file describes how to cite this lesson.
+# Remember to update this file periodically,
 # ensuring that the author list and other fields remain accurate.
 
 cff-version: 1.2.0
-title: FIXME
+title: Introduction to Agentic Coding
 message: >-
   Please cite this lesson using the information in this file
   when you refer to it in publications, and/or if you
@@ -13,10 +11,23 @@ message: >-
   training material.
 type: dataset
 authors:
-  - given-names: FIXME
-    family-names: FIXME
+  - given-names: Chris
+    family-names: Endemann
+    email: endemann@wisc.edu
+  - given-names: Tracy
+    family-names: Reuter
+  - given-names: Tejvir
+    family-names: Mann
+  - given-names: Zain
+    family-names: Waseem
 abstract: >-
-  FIXME Replace this with a short abstract describing the
-  lesson, e.g. its target audience and main intended
-  learning objectives.
+  A Carpentries-style lesson on working effectively and
+  safely with AI coding agents as a researcher. Covers the
+  agentic tooling landscape, security and credential
+  hygiene, supply-chain and provider trust, repository
+  reconnaissance, specification and feature-driven
+  development, verification and review of agent-generated
+  analyses, and cost, context, and energy management.
+  Developed from the "Agentic Coding Best Practices"
+  workshop at the UW-Madison ML Marathon.
 license: CC-BY-4.0
