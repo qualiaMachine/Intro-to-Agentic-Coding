@@ -117,6 +117,10 @@ Remember: your code and prompts are sent to the model provider's servers for inf
 Don't run an agent on a machine where restricted data is stored — anything in the
 workspace can end up in a prompt.
 
+Policies tell you what *you* may send to a provider. The next episode turns the
+question around: how much should you trust the provider — and the packages and models
+your agent pulls in along the way?
+
 ::::::::::::::::::::::::::::::::::::: callout
 
 ## On individual/consumer AI plans, check your training settings

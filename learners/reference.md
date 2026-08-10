@@ -48,6 +48,21 @@ modified. The safest first contact with any repository.
 : An attack in which content the agent reads (a README, issue, data file) contains
 instructions crafted to hijack the agent's behavior.
 
+**Safetensors**
+: A weights-only serialization format for model files that, unlike pickle-based
+formats, cannot execute code when loaded. Prefer it when downloading models.
+
+**Slopsquatting**
+: Registering a malicious package under a name that LLMs habitually hallucinate, so
+that agents (or people following AI suggestions) install it. Cousin of typosquatting
+(lookalike names) and dependency confusion (shadowing an internal package name on a
+public registry).
+
+**Supply-chain attack**
+: Compromising software by attacking something it depends on — a package, a build
+pipeline, a model file, or the agent tooling itself — rather than the software
+directly.
+
 **Skill**
 : A reusable, on-demand instruction package for an agent (e.g., a deployment checklist
 or a lab's analysis conventions) that loads only when relevant.
