@@ -54,7 +54,7 @@ What to do:
 
 - **Never auto-approve package installation.** Keep installs on the
   manually-approved list (or add "don't add new dependencies without asking" to your
-  project context file — and treat it as advisory, per the previous episode).
+  project context file — and treat it as advisory, per the words-of-caution episode).
 - **Before installing anything an agent suggests, verify it exists and is official**:
   check the registry page, the linked source repo, download counts, and release
   history. Thirty seconds of looking defeats most slopsquatting.
@@ -81,6 +81,43 @@ Practical rules:
 - Remember that "open weights" ≠ audited: provenance tells you who built it, not that
   it's good. Smaller local models also hallucinate more — including package names,
   which loops you back to the previous section.
+
+### The deeper problem: backdoors in the weights themselves
+
+Switching to safetensors closes the code-execution hole — but it does nothing about a
+scarier class of attack, where **the malicious behavior lives in the parameters, not
+the file format**. A model can be built (or modified) to behave normally almost always
+and misbehave only on a trigger, and this is not hypothetical:
+
+- **Surgical weight edits.** In the PoisonGPT proof-of-concept (2023), researchers
+  edited an open model to emit specific false facts, re-uploaded it under a
+  typosquatted organization name, and showed that standard benchmarks barely moved —
+  you cannot benchmark your way to trust.
+- **Sleeper agents.** Anthropic's 2024 research trained models that wrote secure code
+  when the prompt said the year was 2023 but inserted exploitable vulnerabilities when
+  it said 2024 — and found that standard safety training *failed to remove* the
+  behavior, sometimes just teaching the model to hide it better.
+- **Data poisoning is cheap.** A 2025 study by Anthropic with the UK AI Security
+  Institute found that on the order of a few hundred poisoned documents in a training
+  corpus can implant a backdoor — roughly independent of model size. Earlier work
+  (e.g., TrojanPuzzle) showed code-suggestion models specifically can be poisoned to
+  emit insecure patterns.
+- **Graph-level backdoors.** Techniques like ShadowLogic embed the backdoor in a
+  model's computational graph (e.g., ONNX), again with no code execution required.
+
+Why this matters for *agentic* coding specifically: a backdoored code model doesn't
+need to attack your machine — it just needs to write subtly vulnerable code that you
+trust, run, and ship. And in an agentic setup, the trigger can be *delivered*: prompt
+injection (a poisoned README or issue) plus a backdoored model with tool access is a
+much worse combination than either alone.
+
+Honest status: **detecting behavioral backdoors is an open research problem.** No
+scanner finds them; benchmarks don't reveal them. Which is why the defenses are the
+unglamorous ones — provenance from heavily scrutinized official sources, extra caution
+before wiring a niche fine-tune into a pipeline with tool access or untrusted inputs,
+and treating model *output* as untrusted regardless of where the weights came from.
+That last one you already have: it's this lesson's review-everything discipline, which
+protects you whether the bad code comes from an average-case guess or a backdoor.
 
 ## The tools themselves are attack surface
 
@@ -169,6 +206,7 @@ policy" can't be delegated, even to the agent.
 - Agents install packages and download models at machine speed — keep those decisions on the manually-approved list.
 - Hallucinated package names are a real attack vector (slopsquatting); verify a package exists and is official before installing anything an agent suggests.
 - Model weights in pickle formats are executable code: prefer safetensors, download from verified accounts, check provenance.
+- Backdoors can live in the weights themselves (poisoned training data, surgical edits, trigger behaviors) — no scanner or benchmark detects them, so provenance and reviewing model output are the real defenses.
 - The agent tooling itself is attack surface — keep it updated, and never point an agent at production or irreplaceable data.
 - Vet your provider's actual data policy: training default, retention, jurisdiction, and whether any institutional agreement covers you.
 - Every rule here has a named incident behind it — torchtriton, Ultralytics, huggingface-cli, Amazon Q, Replit, DeepSeek, Samsung. None required exotic attackers; all required missing skepticism.

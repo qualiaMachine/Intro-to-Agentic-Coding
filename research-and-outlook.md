@@ -1,7 +1,7 @@
 ---
 title: "What the Research Shows, and Where This Leaves Us"
 teaching: 12
-exercises: 0
+exercises: 5
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions
@@ -47,21 +47,50 @@ amplified.
 
 ## Is programming dead?
 
-Programming has survived its own death many times: assembly gave way to compilers,
-manual memory management to garbage collection, servers to the cloud. Each time, the
-work moved up a level of abstraction and the discipline adapted.
+Programming has survived its own death many times: assembly gave way to compilers and
+then to languages like Python, manual memory management to garbage collection, servers
+to the cloud. Each time, the work moved up a level of abstraction and the discipline
+adapted. Nobody writing pandas today feels diminished for not managing registers.
 
-Agentic coding is another abstraction — **but the first non-deterministic one.** A
-compiler translates your intent the same way every time; you never audit its output. An
-agent interprets your intent probabilistically, filling gaps with the average case. The
-same prompt can yield different code on different days. That is *why* this lesson's
-discipline differs from what came before: you don't review a compiler's output, but you
-absolutely review an agent's — because the abstraction itself can be plausibly,
-silently wrong.
+Agentic coding is the same move again — **but the first non-deterministic abstraction.**
+Every previous layer was a deterministic translation: one request, one outcome. Compile
+the same C twice and you get the same program, which is why nobody audits compiler
+output. An agent breaks that contract: **one request leads to many possible outcomes.**
+It interprets your intent probabilistically, filling every unstated gap with the
+average case, and the same prompt can yield different code on different days.
 
-So: not dead. But the job shifts from writing every line toward specifying intent,
+We correct for that non-determinism with the two practices this lesson keeps returning
+to: **good prompting** (specification narrows the space of outcomes — the whole point
+of the underspecification episode) and **a review process** (verification catches the
+outcomes that specification didn't prevent). Never assume the AI will work 100% of the
+time — not because the tools are bad, but because "usually right, occasionally
+plausibly wrong" is what a probabilistic abstraction *is*. Design your workflow for
+that, and it's just another layer; assume perfection, and it's a trap.
+
+So: not dead. The job shifts from writing every line toward specifying intent,
 designing verification, and exercising judgment — which, conveniently, were always the
-hard parts of research computing.
+hard parts of research computing. And that is also why **there is still no escaping
+good data science practice**: exploring your data, knowing your features and
+distributions, and knowing what your models actually tell you were never typing tasks
+that an agent could absorb. They are the judgment the whole workflow now leans on.
+
+## Pass it on
+
+One more habit worth building: when you use AI to teach yourself something, **write it
+up and give it away**. If it took you a hundred chats to get a working pattern out of
+an AI assistant — and the raw AI answer was only 80% correct until you fixed it — that
+struggle has value beyond you. Turn it into a blog post, an annotated notebook, a
+how-to guide, or a lesson contribution, so the next person starts from your verified
+100% instead of re-running your hundred chats.
+
+This is the community-scale version of the energy argument from the last episode: the
+compute you spent gets amortized across every reader instead of being re-spent by each
+of them. It's also a natural fit with the documentation episode — the write-up you
+leave for your future self is often two edits away from being useful to a stranger.
+If you're at UW–Madison, the [ML+X Nexus](https://uw-madison-datascience.github.io/ML-X-Nexus/)
+exists precisely for this (guides, notebooks, workshop materials, and blog posts from
+the community — including the guides this lesson draws on); elsewhere, your lab blog,
+The Carpentries Incubator, or a well-documented public repo all serve the same purpose.
 
 ## Where this goes next
 
@@ -93,7 +122,8 @@ Before your next project work session, commit to:
 
 - Agentic tools amplify expertise; verification skill, not typing speed, is the bottleneck — and perceived speedups can be illusory, so measure.
 - How novices build supervisory expertise in an agentic world is an open and serious question.
-- Agentic coding is another abstraction layer — the first non-deterministic one, which is exactly why review is non-negotiable.
-- The job shifts toward specifying intent, designing verification, and exercising judgment: the parts that were always hard.
+- Agentic coding is another abstraction layer — but the first non-deterministic one: one request, many possible outcomes. Good prompting narrows the outcomes; review catches the rest; never assume 100%.
+- The job shifts toward specifying intent, designing verification, and exercising judgment: the parts that were always hard — and there is still no escaping good data science practice.
+- When AI teaches you something the hard way, write it up (blog, notebook, lesson) so the next person starts from your verified version instead of re-spending the chats.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::

@@ -27,6 +27,11 @@ accumulated history, so late messages cost far more than early ones.
 start that gives the agent persistent knowledge about a project: structure, conventions,
 commands, safety rules. Advisory, not enforced.
 
+**Data poisoning**
+: Inserting crafted examples into a model's training data to implant hidden behaviors.
+Research suggests a few hundred poisoned documents can suffice, roughly independent of
+model size.
+
 **Data leakage**
 : Any path by which information from outside the training data (typically from the test
 set or the future) influences model training or evaluation. Produces inflated scores
@@ -35,6 +40,12 @@ from code that runs cleanly.
 **Feature-driven development**
 : Delegating work to an agent one well-scoped, verifiable feature at a time, rather than
 project-sized requests — keeping diffs small enough to genuinely review.
+
+**Model backdoor (trojaned model)**
+: A model engineered — via poisoned training data, fine-tuning, or surgical weight
+edits — to behave normally except on a trigger input (e.g., emitting vulnerable code
+when a condition is met). Lives in the parameters, so file-format defenses like
+safetensors don't help and no scanner or benchmark reliably detects it.
 
 **MCP (Model Context Protocol)**
 : An open protocol for connecting agents to external tools and data sources (databases,
