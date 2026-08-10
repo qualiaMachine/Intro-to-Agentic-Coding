@@ -1,7 +1,7 @@
 ---
 title: "Words of Caution: Safety, Security, and Policy"
 teaching: 12
-exercises: 0
+exercises: 5
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions
@@ -146,9 +146,43 @@ Remember: your code and prompts are sent to the model provider's servers for inf
 Don't run an agent on a machine where restricted data is stored — anything in the
 workspace can end up in a prompt.
 
-Policies tell you what *you* may send to a provider. The next episode turns the
-question around: how much should you trust the provider — and the packages and models
-your agent pulls in along the way?
+Policies tell you what *you* may send to a provider. Later in the lesson, the trust
+episode turns the question around: how much should you trust the provider — and the
+packages and models your agent pulls in along the way?
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+## Exercise: Sweep your workspace (5 minutes)
+
+Before you grant any agent access to your machine, see what it would find. From a
+project directory you actually use:
+
+```bash
+git status                              # clean working tree?
+cat .gitignore | grep -E "env|pem|key|credential"   # secrets patterns ignored?
+grep -rn --include="*.py" --include="*.json" --include="*.env" \
+  -iE "api[_-]?key|secret|password|token" . | head
+ls -a ~ | grep -iE "env|credential|token"           # loose files in your home dir?
+```
+
+1. Did anything turn up in plaintext? Would an agent scanning "context" see it?
+2. Is your `.gitignore` covering secret-shaped files *before* they're ever created?
+3. If you found a real credential that was ever committed: it lives in git history —
+   rotating it is the fix, deleting the file is not.
+
+:::::::::::::::::::::::: solution
+
+## What people typically find
+
+Almost everyone finds something: a forgotten `.env`, a token pasted into a notebook
+cell, an old `credentials.json` from a tutorial. That's the point of running this
+*before* the agent does. Move real secrets into a manager or keyring, rotate anything
+that was ever committed, and add the ignore patterns now — the cheapest security work
+you'll do all year.
+
+:::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: callout
 
