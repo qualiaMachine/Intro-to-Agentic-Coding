@@ -32,6 +32,35 @@ Agents also *automatically scan for context*. That is their job: to read your pr
 and figure out what's relevant. A credentials file sitting in your working directory is,
 from the agent's point of view, just more context.
 
+## Default to surfaces that never touch your machine
+
+Before tuning permissions and sandboxes, ask a simpler question: does the agent need to
+run on your machine at all? Several access routes keep execution entirely off your
+laptop, by construction:
+
+- **Claude Code on the web** ([claude.ai/code](https://claude.ai/code)): your GitHub
+  repo is cloned into a fresh, ephemeral cloud VM. The agent cannot reach your local
+  filesystem, SSH keys, or credentials, and the VM is destroyed when the task ends.
+- **GitHub Copilot's web surfaces** ([github.com/copilot](https://github.com/copilot)
+  and the cloud coding agent at
+  [github.com/copilot/agents](https://github.com/copilot/agents), or assigning an issue
+  to Copilot): a browser tab has no local access, and delegated tasks run in GitHub's
+  cloud sandbox, pushing to their own branch for your review.
+- **Desktop apps — but only in cloud modes.** Desktop apps are not automatically safe:
+  a "local repository" session runs on your machine with your user account's full
+  access. Check where a session executes, and prefer modes that work against a cloud
+  repo or hand off to a cloud agent, so the app is just a window onto remote execution.
+
+A useful hierarchy when local exposure is the concern: **cloud agent (nothing runs
+locally) → agent in a dev container or cloud workspace (contained local access) → bare
+local agent (full user access — rely on the rest of this episode).**
+
+Two honest caveats. First, this isolation protects *your machine*, not *your data*:
+whatever is in the repo still goes to the provider, so the data-policy rules below
+apply on every route. Second, cloud surfaces trade away some interactivity — for deep,
+conversational work on a local checkout you may still choose a local agent, which is
+what the remaining defenses are for.
+
 ## Secrets never touch disk
 
 The single most effective protection: **a secret that isn't on disk can't be read,
@@ -135,6 +164,7 @@ and make a deliberate choice.
 ::::::::::::::::::::::::::::::::::::: keypoints
 
 - Agents run with your permissions and scan your workspace for context — assume anything on disk in plaintext can be read.
+- Default to surfaces that never run on your machine (web UIs, cloud coding agents); local execution is a choice you make deliberately, with the defenses below in place.
 - The only secret an agent can't leak is one that isn't there: use a secrets manager or keyring and inject at runtime.
 - Permissions, sandboxing, and deny rules are valuable layers, not guarantees; prompt injection is a real attack surface.
 - Clean git state, branches, and small frequent commits make agent mistakes cheap to undo.
