@@ -6,9 +6,16 @@
 # swc: Software Carpentry
 # dc: Data Carpentry
 # lc: Library Carpentry
-# cp: Carpentries (e.g., instructor training)
+# cp: Carpentries (to use for instructor training for instance)
 # incubator: The Carpentries Incubator
+# 
+# This option supports custom types so lessons can be branded
+# and themed with your own logo and alt-text (see `carpentry_description`)
+# See https://carpentries.github.io/sandpaper-docs/editing.html#adding-a-custom-logo
 carpentry: 'incubator'
+
+# Alt-text description of the lesson.
+carpentry_description: 'Introduction to Agentic Coding'
 
 # Overall title for pages.
 title: 'Introduction to Agentic Coding'
@@ -20,10 +27,11 @@ created: '2026-08-10'
 keywords: 'software, lesson, The Carpentries, AI, LLM, agentic coding, Claude Code, GitHub Copilot, data science, verification'
 
 # Life cycle stage of the lesson
+# refer to <https://docs.carpentries.org/resources/curriculum/lesson-life-cycle.html> for details
 # possible values: pre-alpha, alpha, beta, stable
-life_cycle: 'pre-alpha'
+life_cycle: 'pre-alpha' # FIXME
 
-# License of the lesson materials (recommended CC-BY 4.0)
+# License of the lesson
 license: 'CC-BY 4.0'
 
 # Link to the source repository for this lesson
@@ -61,10 +69,11 @@ contact: 'endemann@wisc.edu'
 episodes:
 - introduction.md
 - safety-and-security.md
-- trust.md
 - recon.md
 - specification.md
 - verification-and-review.md
+- documentation.md
+- trust.md
 - cost-context-energy.md
 - research-and-outlook.md
 
@@ -87,6 +96,3 @@ profiles:
 # sandpaper and varnish versions) should live
 
 
-url: 'https://qualiamachine.github.io/Intro-to-Agentic-Coding'
-analytics: carpentries
-lang: en
