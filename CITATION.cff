@@ -18,8 +18,6 @@ authors:
     family-names: Reuter
   - given-names: Tejvir
     family-names: Mann
-  - given-names: Zain
-    family-names: Waseem
 abstract: >-
   A Carpentries-style lesson on working effectively and
   safely with AI coding agents as a researcher. Covers the

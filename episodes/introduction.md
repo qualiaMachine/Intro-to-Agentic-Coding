@@ -1,7 +1,7 @@
 ---
 title: "What Does 'Agentic' Mean?"
 teaching: 10
-exercises: 0
+exercises: 4
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions
@@ -83,6 +83,34 @@ review burden *after* it. The right choice depends on the task:
 Notice the pattern: **the more autonomy you grant, the more of your judgment has to be
 encoded in advance** — in the prompt, in project context files, and in tests. That's the
 thread we pull on for the rest of this lesson.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+## Exercise: Map your own workflow (4 minutes)
+
+Think about the last time you used AI for anything code-related (pasting an error into
+a chatbot counts).
+
+1. Where does that use sit on the autonomy spectrum — chat, interactive agent, or
+   async agent?
+2. Name one task in your current research where you'd *want* more autonomy from an AI
+   tool, and one where you absolutely wouldn't. What's different about them?
+
+Compare with a neighbor.
+
+:::::::::::::::::::::::: solution
+
+## Typical patterns
+
+Most researchers cluster at the chat end — and the tasks people refuse to delegate are
+almost always the ones where they'd struggle to *check* the result (their core
+analysis) rather than the ones that are hardest to do. That instinct is sound, and
+it's the central theme of this lesson: how much autonomy you can grant is set by how
+well you can verify.
+
+:::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 

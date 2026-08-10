@@ -1,7 +1,7 @@
 ---
 title: "Words of Caution: Safety, Security, and Policy"
 teaching: 12
-exercises: 0
+exercises: 5
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions
@@ -31,6 +31,35 @@ files, your notes — anything you can. This is not unique to any one tool; it i
 Agents also *automatically scan for context*. That is their job: to read your project
 and figure out what's relevant. A credentials file sitting in your working directory is,
 from the agent's point of view, just more context.
+
+## Default to surfaces that never touch your machine
+
+Before tuning permissions and sandboxes, ask a simpler question: does the agent need to
+run on your machine at all? Several access routes keep execution entirely off your
+laptop, by construction:
+
+- **Claude Code on the web** ([claude.ai/code](https://claude.ai/code)): your GitHub
+  repo is cloned into a fresh, ephemeral cloud VM. The agent cannot reach your local
+  filesystem, SSH keys, or credentials, and the VM is destroyed when the task ends.
+- **GitHub Copilot's web surfaces** ([github.com/copilot](https://github.com/copilot)
+  and the cloud coding agent at
+  [github.com/copilot/agents](https://github.com/copilot/agents), or assigning an issue
+  to Copilot): a browser tab has no local access, and delegated tasks run in GitHub's
+  cloud sandbox, pushing to their own branch for your review.
+- **Desktop apps — but only in cloud modes.** Desktop apps are not automatically safe:
+  a "local repository" session runs on your machine with your user account's full
+  access. Check where a session executes, and prefer modes that work against a cloud
+  repo or hand off to a cloud agent, so the app is just a window onto remote execution.
+
+A useful hierarchy when local exposure is the concern: **cloud agent (nothing runs
+locally) → agent in a dev container or cloud workspace (contained local access) → bare
+local agent (full user access — rely on the rest of this episode).**
+
+Two honest caveats. First, this isolation protects *your machine*, not *your data*:
+whatever is in the repo still goes to the provider, so the data-policy rules below
+apply on every route. Second, cloud surfaces trade away some interactivity — for deep,
+conversational work on a local checkout you may still choose a local agent, which is
+what the remaining defenses are for.
 
 ## Secrets never touch disk
 
@@ -117,9 +146,43 @@ Remember: your code and prompts are sent to the model provider's servers for inf
 Don't run an agent on a machine where restricted data is stored — anything in the
 workspace can end up in a prompt.
 
-Policies tell you what *you* may send to a provider. The next episode turns the
-question around: how much should you trust the provider — and the packages and models
-your agent pulls in along the way?
+Policies tell you what *you* may send to a provider. Later in the lesson, the trust
+episode turns the question around: how much should you trust the provider — and the
+packages and models your agent pulls in along the way?
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+## Exercise: Sweep your workspace (5 minutes)
+
+Before you grant any agent access to your machine, see what it would find. From a
+project directory you actually use:
+
+```bash
+git status                              # clean working tree?
+cat .gitignore | grep -E "env|pem|key|credential"   # secrets patterns ignored?
+grep -rn --include="*.py" --include="*.json" --include="*.env" \
+  -iE "api[_-]?key|secret|password|token" . | head
+ls -a ~ | grep -iE "env|credential|token"           # loose files in your home dir?
+```
+
+1. Did anything turn up in plaintext? Would an agent scanning "context" see it?
+2. Is your `.gitignore` covering secret-shaped files *before* they're ever created?
+3. If you found a real credential that was ever committed: it lives in git history —
+   rotating it is the fix, deleting the file is not.
+
+:::::::::::::::::::::::: solution
+
+## What people typically find
+
+Almost everyone finds something: a forgotten `.env`, a token pasted into a notebook
+cell, an old `credentials.json` from a tutorial. That's the point of running this
+*before* the agent does. Move real secrets into a manager or keyring, rotate anything
+that was ever committed, and add the ignore patterns now — the cheapest security work
+you'll do all year.
+
+:::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: callout
 
@@ -135,6 +198,7 @@ and make a deliberate choice.
 ::::::::::::::::::::::::::::::::::::: keypoints
 
 - Agents run with your permissions and scan your workspace for context — assume anything on disk in plaintext can be read.
+- Default to surfaces that never run on your machine (web UIs, cloud coding agents); local execution is a choice you make deliberately, with the defenses below in place.
 - The only secret an agent can't leak is one that isn't there: use a secrets manager or keyring and inject at runtime.
 - Permissions, sandboxing, and deny rules are valuable layers, not guarantees; prompt injection is a real attack surface.
 - Clean git state, branches, and small frequent commits make agent mistakes cheap to undo.

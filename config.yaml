@@ -69,10 +69,11 @@ contact: 'endemann@wisc.edu'
 episodes:
 - introduction.md
 - safety-and-security.md
-- trust.md
 - recon.md
 - specification.md
 - verification-and-review.md
+- documentation.md
+- trust.md
 - cost-context-energy.md
 - research-and-outlook.md
 

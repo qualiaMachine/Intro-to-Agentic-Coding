@@ -70,6 +70,29 @@ training. This isn't an argument against the tools (the productivity per unit of
 energy may well beat the alternative); it's an argument for intentionality. Don't let
 an agent spin in loops that a well-scoped prompt would have avoided.
 
+## Code generation is the green pattern
+
+There's a sharper way to frame this than "use less AI": **compare AI-for-code-generation
+against the alternative way people use AI.** The wasteful pattern isn't agentic coding —
+it's reaching for a frontier assistant for *every single question*: eyeballing data by
+pasting it into chat, re-asking the model to convert units, check a threshold, or
+reformat a file, day after day. Every one of those queries is another inference pass
+through a model with on the order of a trillion parameters — to do work a for-loop
+could do.
+
+Code generation inverts that. Spend the model's compute **once** to produce a good
+script, and that script then runs deterministically at a completely negligible fraction
+of the energy — forever. Need to validate 10,000 rows every morning? Asking the model
+to "look them over" daily burns inference every day and gives you a non-reproducible
+answer; asking it once to *write the validation script* gives you a versioned,
+reviewable, testable artifact that runs in milliseconds on a CPU. Generate once, run
+many: the AI's energy cost amortizes toward zero per use, and you get reproducibility —
+the thing chat answers never have — as a free side effect.
+
+The rule of thumb: **use the model to build tools, not to be the tool.** If you find
+yourself asking an AI the same kind of question repeatedly, that's a script asking to
+be written.
+
 ::::::::::::::::::::::::::::::::::::: challenge
 
 ## Exercise 4: What did tonight cost? (6 minutes)
@@ -101,5 +124,6 @@ cheapest token is the one a clearer sentence made unnecessary.
 - `/clear` between tasks, `/compact` within long ones, `/cost` to stay aware — and interrupt early when the agent drifts.
 - One agentic session ≈ 41 Wh; a heavy day ≈ one dishwasher run. Individually modest, collectively significant.
 - Specific prompts in clean context are better, cheaper, and greener — the same discipline pays three times.
+- Use the model to build tools, not to be the tool: code you generate once runs at negligible energy forever, while asking the assistant the same question daily re-spends inference every time.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::

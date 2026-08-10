@@ -115,6 +115,30 @@ The more trustworthy your test suite and checks, the more autonomy you can safel
 This is the exchange rate at the center of agentic coding: **autonomy is purchased with
 verification.**
 
+## Tests are cheap now — write more of them
+
+Here's the flip side, and it's good news: the same tool that makes it easy to generate
+questionable analyses makes it *dramatically* cheaper to build the verification that
+catches them. Test suites used to be rationed because writing them was tedious; that
+constraint is gone. Use the agent to validate, validate, validate:
+
+- **Ask for tests alongside every feature** — edge cases, failure modes, the inputs
+  you know are weird ("write tests covering empty input, all-NaN columns, and a
+  single-row DataFrame").
+- **Ask for data-validation tests** on your actual dataset: expected columns and
+  dtypes, value ranges, uniqueness of IDs, row counts across merges — the executable
+  version of "know your data."
+- **Ask it to probe its own work**: "what inputs would break this function? Write
+  tests for them."
+
+One trap to avoid: an agent asked to "add tests" for existing code will often write
+tests that simply *assert whatever the code currently does* — enshrining bugs rather
+than catching them. That's why Exercise 3 had you write the contract first. The
+division of labor that works: **you decide what must be true** (the properties, the
+invariants, the known answers); **the agent does the tedious part** (fixtures,
+parametrization, the fifteen edge-case variants). Review tests with the same care as
+implementations — they are the specification everything else gets checked against.
+
 ## How much verification is enough?
 
 Scale it to the stakes:
@@ -181,6 +205,7 @@ specification.
 - Faster iteration means faster results *and* faster misleading — clean runs and great scores are not evidence of correctness.
 - Leakage is the canonical agentic failure: plausible, silent, and flattering. Split first; fit preprocessing on training data only; be suspicious of good news.
 - Make verification executable — tests, printed checks, baselines — because autonomy is purchased with verification.
+- Agents make tests cheap: ask for them with every feature and for your data's properties. You define what must be true; the agent writes the tedious parts; you review tests like implementations.
 - Choose your verification tier (throwaway / working / load-bearing) explicitly, before you start.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
