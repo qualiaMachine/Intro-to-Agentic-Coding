@@ -23,13 +23,22 @@ material asynchronously; the workshop schedule below maps blocks to episodes.
 | 1:03 | 5 | Break | — |
 | 1:08 | 20 | Verification and review; leakage worked example | Episode 6 |
 | 1:28 | 10 | Exercise 3: test as contract | Episode 6 |
-| 1:38 | 8 | What the research shows | Episode 8 |
-| 1:46 | 6 | Cost + energy; Exercise 4 (`/cost`, napkin math) | Episode 7 |
-| 1:52 | 8 | Close: is programming dead?; three things before the sprint | Episode 8 |
+| 1:38 | 8 | What the research shows | Episode 9 |
+| 1:46 | 6 | Cost + energy; Exercise 4 (`/cost`, napkin math) | Episode 8 |
+| 1:52 | 8 | Close: is programming dead?; three things before the sprint | Episode 9 |
 
 Note the live schedule runs research-findings *before* the cost block; the written
 episodes order cost before research/outlook because it reads better asynchronously.
 Either order works.
+
+**Episode 7 (Documentation) in the 2-hour format:** like the trust episode, this has
+no dedicated live slot — it exists in full for asynchronous study. In the workshop,
+land its two headline ideas inside the verification block or the close: (1) agents
+make documentation cheap, so ask for docstrings/README updates/narrated notebooks with
+every task, and (2) documentation is context the agent reads back later, so it
+compounds — and "explain this code" doubles as a verification pass. Its 5-minute
+document-and-cross-examine exercise makes a good at-home assignment alongside the
+trust episode's provider-vetting exercise.
 
 **Episode 3 (Trust) in the 2-hour format:** there is no dedicated slot for the trust
 episode in the live schedule — it exists in full for asynchronous study. In the
