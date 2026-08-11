@@ -51,8 +51,11 @@ pip install pandas scikit-learn pytest
 
 If the machine you're on stores restricted data (FERPA, HIPAA/PHI, CUI,
 export-controlled, unpublished sensitive research, or anything under a data-use
-agreement), **do not install or run any agentic tool on it — sandboxes and containers
-included.** Use a different machine, or a browser-only web route against a repo with
+agreement), **do not install or run any agentic tool on it — even inside a dev
+container.** The container requirement below protects a *clean* machine from the
+agent; it is not a license to run agents next to restricted data, where one
+mis-mounted folder exposes everything and institutional policy bars unvetted tools
+regardless. Use a different machine, or a browser-only web route against a repo with
 no restricted data in it. The words-of-caution episode explains why.
 
 :::::::::::::::::::::::::::::::::::::::::::::::
