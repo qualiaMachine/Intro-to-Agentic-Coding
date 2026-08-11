@@ -124,10 +124,10 @@ Version control is what makes agent mistakes cheap instead of catastrophic:
   changes and your changes get tangled together.
 - **Always work on a branch.** Never let an agent commit directly to `main`.
 - **Commit small and often.** Each commit is a save point you can revert to.
-- **Review and test before committing** — or, if you let the agent commit freely as it
-  works, review the full diff at the PR stage. Either workflow is fine; what's
-  non-negotiable is that *someone* (you, a colleague, or CI) reads the code before it
-  lands on `main`.
+- **Someone reads the code before it lands on `main`** — you, a colleague, or CI.
+  Whether you review each change as it happens or the full diff at the pull request
+  is a real choice with trade-offs (the common-workflows episode compares the two);
+  the review happening at all is the non-negotiable part.
 
 ## Institutional data policies apply — fully
 
