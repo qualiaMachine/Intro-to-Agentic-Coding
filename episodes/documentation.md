@@ -48,7 +48,7 @@ Make it a habit to ask for documentation as part of every task, or as a cleanup 
 ## Documentation is context — it compounds
 
 Here is what makes this more than good hygiene: **everything you document becomes
-context the agent reads back in later sessions.** Remember the codebase-exploration episode — agents
+context the agent reads back in later sessions.** Remember the planning episode — agents
 recover *what* and *how* from code, but not *why*, *for whom*, or *what the data
 means*. Documentation is precisely where the "why" gets written down:
 

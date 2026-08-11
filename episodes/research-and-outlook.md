@@ -92,14 +92,6 @@ exists precisely for this (guides, notebooks, workshop materials, and blog posts
 the community — including the guides this lesson draws on); elsewhere, your lab blog,
 The Carpentries Incubator, or a well-documented public repo all serve the same purpose.
 
-## Where this goes next
-
-Two extension points worth knowing exist, even if you don't touch them this week:
-**skills** (reusable, on-demand workflow instructions for the agent — a `/deploy`
-checklist, your lab's analysis conventions) and **MCP servers** (connecting agents to
-external systems: databases, lab notebooks, project trackers). The same principles
-govern them: minimum access, maximum clarity, human judgment on what matters.
-
 ::::::::::::::::::::::::::::::::::::: challenge
 
 ## Three things before your next sprint
