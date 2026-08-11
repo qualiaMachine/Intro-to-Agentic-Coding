@@ -144,8 +144,29 @@ specifically (adapt to your own institution):
   *before* the session, not after.
 
 Remember: your code and prompts are sent to the model provider's servers for inference.
-Don't run an agent on a machine where restricted data is stored — anything in the
-workspace can end up in a prompt.
+
+::::::::::::::::::::::::::::::::::::: callout
+
+## No agents on machines that hold restricted data
+
+To be explicit: **running an agent locally on any machine that stores restricted data
+is not recommended at this time — full stop.** Permission settings, deny rules, and
+sandboxes don't change this: local agents scan for context, anything on the machine
+can end up in a prompt, and "the agent shouldn't have looked there" is not a control
+your compliance office will accept.
+
+If you must work on a repository from such a machine, the acceptable routes are the
+ones with **no local access by construction**: a web UI where the agent operates only
+on a cloud-hosted copy of the repo (Claude Code on the web, Copilot's cloud coding
+agent). The browser is just a window — execution and file access stay in the provider's
+sandbox, and your machine's contents are unreachable. Note the repo itself must still
+be free of restricted data, since its contents do go to the provider.
+
+Until your institution establishes vetted secure routes (formal data agreements,
+approved configurations), the operating rule is simple: **agents and restricted data
+live on separate machines.**
+
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 Policies tell you what *you* may send to a provider. Later in the lesson, the trust
 episode turns the question around: how much should you trust the provider — and the
