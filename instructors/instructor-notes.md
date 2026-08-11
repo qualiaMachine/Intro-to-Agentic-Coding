@@ -16,7 +16,7 @@ material asynchronously; the workshop schedule below maps blocks to episodes.
 | 0:00 | 10 | Arrival/food; helpers confirm everyone's agent access works | — |
 | 0:10 | 5 | What "agentic" means; tooling landscape | Episode 1 |
 | 0:15 | 12 | Words of caution: security, secrets, policies, trust | Episodes 2–3 |
-| 0:27 | 8 | Exercise 1: recon (plan mode, read-only) | Episode 4 |
+| 0:27 | 8 | Exercise 1: first look at a repo (plan mode, read-only) | Episode 4 |
 | 0:35 | 8 | Debrief: what it couldn't infer; context files; autonomy comparison | Episode 4 |
 | 0:43 | 10 | Underspecification & feature-driven development | Episode 5 |
 | 0:53 | 10 | Exercise 2: bad vs. better prompt | Episode 5 |

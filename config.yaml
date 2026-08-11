@@ -70,7 +70,7 @@ episodes:
 - introduction.md
 - safety-and-security.md
 - trust.md
-- recon.md
+- exploring-a-codebase.md
 - specification.md
 - verification-and-review.md
 - documentation.md

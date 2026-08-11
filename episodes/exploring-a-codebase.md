@@ -1,5 +1,5 @@
 ---
-title: "Reconnaissance: Read Before You Write"
+title: "Exploring a Codebase with an Agent"
 teaching: 8
 exercises: 16
 ---
@@ -35,7 +35,7 @@ or auditing a repo before you build on it.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Exercise 1: Recon (8 minutes)
+## Exercise 1: First look (8 minutes)
 
 Point your agent at the practice repository (see [setup](../learners/setup.md)) — or any
 real project you have handy — in plan/read-only mode, and prompt:
@@ -99,10 +99,10 @@ safety-critical rules with hooks or deny rules.
 
 ## The same task at three autonomy levels
 
-Recall the autonomy spectrum from episode 1. This recon task makes it concrete:
+Recall the autonomy spectrum from episode 1. This read-the-repo task makes it concrete:
 
 - **Chat**: you would paste selected files into a browser tab and ask. Fast, safe, but
-  the summary only covers what you chose to paste — *you* did the recon.
+  the summary only covers what you chose to paste — *you* did the exploring.
 - **Interactive agent**: what you just did. The agent explores everything, and you can
   interrogate it.
 - **Async agent**: you could file an issue ("document this repo") and get a PR back.

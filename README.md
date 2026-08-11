@@ -21,7 +21,7 @@ Mann, Chris Endemann, and Zain Waseem, and expands it into a self-study resource
 1. What Does "Agentic" Mean?
 2. Words of Caution: Safety, Security, and Policy
 3. Trust: Packages, Models, and Providers
-4. Reconnaissance: Read Before You Write
+4. Exploring a Codebase with an Agent
 5. Underspecification and Feature-Driven Development
 6. Verification and Review: No Escaping Good Data Science
 7. Documentation: Notes to Your Future Self (and Your Agent)
