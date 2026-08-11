@@ -22,6 +22,21 @@ exercises: 4
 
 ## From autocomplete to agents
 
+::::::::::::::::::::::::::::::::::::: callout
+
+## "Agentic" is an overloaded term
+
+"Agent" now gets attached to almost anything with a chat box, so let's pin the word
+down. Computer science has long used it precisely: an agent is a system that **takes
+actions** in an environment and observes the results, in pursuit of a goal. That
+original meaning is the one that matters here. An assistant or chatbot produces text
+and *you* act on it; an agentic tool acts for itself — editing files, running
+commands, reading the output, deciding what to do next. The litmus test for any tool
+wearing the label: *does it act, or does it only advise?* In agentic coding, action
+is everywhere — which is both the point and, as this lesson explores, the risk.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 Traditional AI code assistants (early GitHub Copilot, ChatGPT in a browser tab) work in a
 simple loop: you ask, they suggest, you accept or reject. You are the middleware — you
 paste context in, you copy code out, you run everything yourself.
