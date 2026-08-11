@@ -22,7 +22,7 @@ exercises: 5
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 Everything in this lesson so far assumes the things you install and the services you
-call are what they claim to be. That assumption deserves the same paranoia as your
+call are what they claim to be. That assumption deserves the same scrutiny as your
 data. Agentic coding raises the stakes in a specific way: **the agent installs
 packages, downloads models, and ships your code to a provider on your behalf** — so
 decisions you used to make one at a time now happen at machine speed, in bulk, unless
@@ -139,7 +139,7 @@ if applied), install extensions only from official marketplaces, and **never poi
 agent at production systems or irreplaceable data** — dev/prod separation and backups
 are not optional just because the collaborator types quickly.
 
-## Vet your provider like a paranoid person
+## Vet your provider like you'd vet a data source
 
 Whichever provider you choose — Anthropic, GitHub/Microsoft, Google, a startup, a
 model router — you are shipping your code and prompts to them. Before you commit,

@@ -22,6 +22,21 @@ exercises: 4
 
 ## From autocomplete to agents
 
+::::::::::::::::::::::::::::::::::::: callout
+
+## "Agentic" is an overloaded term
+
+"Agent" now gets attached to almost anything with a chat box, so let's pin the word
+down. Computer science has long used it precisely: an agent is a system that **takes
+actions** in an environment and observes the results, in pursuit of a goal. That
+original meaning is the one that matters here. An assistant or chatbot produces text
+and *you* act on it; an agentic tool acts for itself — editing files, running
+commands, reading the output, deciding what to do next. The litmus test for any tool
+wearing the label: *does it act, or does it only advise?* In agentic coding, action
+is everywhere — which is both the point and, as this lesson explores, the risk.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 Traditional AI code assistants (early GitHub Copilot, ChatGPT in a browser tab) work in a
 simple loop: you ask, they suggest, you accept or reject. You are the middleware — you
 paste context in, you copy code out, you run everything yourself.
@@ -53,6 +68,23 @@ encounter:
 | Windsurf         | Custom IDE                      | Low-friction agentic workflow, free tier                              |
 | OpenCode         | CLI                             | Open source; works with several free models — a good bring-your-own-agent option |
 | Amazon Q / Gemini Code Assist / GitLab Duo | IDE + cloud consoles | Deep integration with their respective platforms |
+
+### Open source: increasingly a real option
+
+Most of the table above is commercial services, but that's no longer the whole
+picture. Open-weight models (Llama, Qwen, DeepSeek, Mistral, and others) have become
+genuinely capable at coding, and open-source agent harnesses like OpenCode can drive
+them — including **fully locally** via runtimes like Ollama, where your code never
+leaves your machine. No subscription plus maximal data privacy makes this an
+increasingly credible route for research groups, and it's improving every month.
+
+The trade-offs to know: frontier commercial models still lead on long, multi-step
+agentic work; smaller local models hallucinate more (including inventing package
+names, which matters more than you'd think); and local inference needs real hardware.
+And "open" brings its own trust questions — model weights are downloads from the
+internet, and both the *files* and the *behavior* of a model can be tampered with. We
+cover those risks and their mitigations (provenance, safe formats, reviewing output)
+in the [trust episode](trust.md).
 
 Don't memorize this table — it will be out of date within months. What is stable is the
 **spectrum of autonomy** these tools occupy:
@@ -114,13 +146,29 @@ well you can verify.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+::::::::::::::::::::::::::::::::::::: callout
+
+## Using GitLab instead of GitHub?
+
+Everything interactive in this lesson is host-agnostic — an agent on a local checkout
+does ordinary git, so GitHub, GitLab (self-hosted included), and Bitbucket work
+identically. Only the **async tier** is GitHub-centric today (assigning issues to
+agents, cloud sandboxes); GitLab offers CI/CD integrations instead, less turnkey. One
+caution: self-hosted GitLab doesn't change where inference happens — code still goes
+to the model provider, so the data-policy rules still apply.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 ## Why principles, not one tool
 
-Tonight's demonstrations use Claude Code because its design makes the trade-offs visible:
-it asks permission before acting, it has an explicit project-context mechanism, and it
-reports its own token costs. But every practice in this lesson — scoping, secrets
-hygiene, specification, verification, cost awareness — applies unchanged to whichever
-tool you or your lab ends up using. The tools will churn; the discipline won't.
+Every practice in this lesson — scoping, secrets hygiene, specification, verification,
+documentation, cost awareness — applies unchanged to whichever tool you or your lab
+ends up using, so the main text stays tool-agnostic. Where the mechanics differ (a
+command name, a mode toggle, a settings page), episodes give the equivalents for the
+two tools workshop participants most commonly have: **Claude Code** and **GitHub
+Copilot**. Use whichever you set up (the [setup page](../learners/setup.md) lists
+options, including free routes), and translate freely if you brought something else —
+the concepts map one-to-one. The tools will churn; the discipline won't.
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 

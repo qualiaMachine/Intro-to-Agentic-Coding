@@ -34,18 +34,39 @@ this:
   file contents, command output, all of it. The 50th message in a session costs far
   more than the 1st.
 
-The tools give you levers — in Claude Code:
+The levers are the same everywhere; only the names differ:
+
+:::::::::::::::: spoiler
+
+### Claude Code
 
 - `/clear` — reset context between unrelated tasks. Cheapest single habit.
 - `/compact` — summarize a long conversation, keeping what matters.
-- `/cost` — see what the current session has consumed.
-- Course-correct early: if the agent is heading the wrong way, interrupt now rather
-  than letting it generate output you'll pay to carry in context for the rest of the
-  session.
+- `/cost` — see what the current session has consumed; `/context` shows what's
+  filling the window.
+- <kbd>Esc</kbd> — interrupt an agent that's heading the wrong way.
 
-Other tools have equivalents (Copilot meters "premium requests"/credits with a usage
-dashboard). The principle is identical: **a tight, specific prompt in a clean context
-is simultaneously higher-quality, cheaper, and — as we'll see — greener.**
+::::::::::::::::::::::::
+
+:::::::::::::::: spoiler
+
+### GitHub Copilot
+
+- **New chat** between unrelated tasks — the `/clear` equivalent; keep each chat
+  scoped to one task.
+- For a long thread, carry a short summary of key decisions into a fresh chat rather
+  than letting the thread grow.
+- Check credit/premium-request usage on your
+  [Copilot settings page](https://github.com/settings/copilot); model choice changes
+  the burn rate.
+- The **stop button** interrupts an agent-mode session mid-flight.
+
+::::::::::::::::::::::::
+
+Whichever tool: course-correct early — an agent heading the wrong way generates output
+you then pay to carry in context for the rest of the session. The principle is
+identical everywhere: **a tight, specific prompt in a clean context is simultaneously
+higher-quality, cheaper, and — as we'll see — greener.**
 
 ## Energy: the dishwasher comparison
 

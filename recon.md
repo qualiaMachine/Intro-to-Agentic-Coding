@@ -23,9 +23,10 @@ exercises: 16
 ## Explore first, then plan, then code
 
 The most common agentic failure mode is letting the agent write code before either of
-you understands the project. Most tools have a read-only or "plan" mode (in Claude Code,
-toggle with <kbd>Shift</kbd>+<kbd>Tab</kbd>) in which the agent reads files and answers
-questions **without making any changes**.
+you understands the project. Most tools have a read-only mode in which the agent reads
+files and answers questions **without making any changes** — in Claude Code it's *plan
+mode* (toggle with <kbd>Shift</kbd>+<kbd>Tab</kbd>); in GitHub Copilot it's *Ask* mode
+(the mode dropdown in the chat panel).
 
 This is the safest possible first contact with an agent: it can't edit anything, so you
 can hand it a whole repository and simply ask what it sees. It's also genuinely useful —
