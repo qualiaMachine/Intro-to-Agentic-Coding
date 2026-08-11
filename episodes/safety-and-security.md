@@ -168,9 +168,9 @@ live on separate machines.**
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-Policies tell you what *you* may send to a provider. Later in the lesson, the trust
-episode turns the question around: how much should you trust the provider — and the
-packages and models your agent pulls in along the way?
+Policies tell you what *you* may send to a provider. The next episode turns the
+question around: how much should you trust the provider — and the packages and models
+your agent pulls in along the way?
 
 ::::::::::::::::::::::::::::::::::::: challenge
 

@@ -114,6 +114,16 @@ The rule of thumb: **use the model to build tools, not to be the tool.** If you 
 yourself asking an AI the same kind of question repeatedly, that's a script asking to
 be written.
 
+One more thing nobody will do for you: **providers optimize for customer spend, not
+for efficiency.** If you've selected a frontier model, the dumbest question you ask
+gets routed through that largest model — even though a trivial gating mechanism could
+have answered it with a tiny model at a small fraction of the energy (and cost). No
+such gate exists on the provider's side, because they have no incentive to build one.
+So the routing falls to you: keep a small, cheap model as your default for mechanical
+work (renames, formatting, simple lookups) and reach for the frontier model
+deliberately, when the task actually needs the reasoning. Same discipline, third
+payoff: quality where it matters, money and energy saved where it doesn't.
+
 ::::::::::::::::::::::::::::::::::::: challenge
 
 ## Exercise 4: What did tonight cost? (6 minutes)

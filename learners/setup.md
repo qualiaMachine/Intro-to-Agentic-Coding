@@ -86,6 +86,6 @@ tool not covered by an institutional agreement. UW–Madison folks: see
 
 ## Practice repository
 
-Exercise 1 (recon) works best on a repository that is real but unfamiliar to you. Your
+Exercise 1 (the read-only repo exploration) works best on a repository that is real but unfamiliar to you. Your
 instructors may provide one; otherwise, pick a small-to-medium public research
 repository from your field, or a labmate's project (with permission).

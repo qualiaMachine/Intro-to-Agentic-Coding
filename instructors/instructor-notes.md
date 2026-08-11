@@ -15,23 +15,23 @@ material asynchronously; the workshop schedule below maps blocks to episodes.
 |------|-----|-------|---------|
 | 0:00 | 10 | Arrival/food; helpers confirm everyone's agent access works | — |
 | 0:10 | 5 | What "agentic" means; tooling landscape | Episode 1 |
-| 0:15 | 12 | Words of caution: security, secrets, policies, trust | Episodes 2 & 7 |
-| 0:27 | 8 | Exercise 1: recon (plan mode, read-only) | Episode 3 |
-| 0:35 | 8 | Debrief: what it couldn't infer; context files; autonomy comparison | Episode 3 |
-| 0:43 | 10 | Underspecification & feature-driven development | Episode 4 |
-| 0:53 | 10 | Exercise 2: bad vs. better prompt | Episode 4 |
+| 0:15 | 12 | Words of caution: security, secrets, policies, trust | Episodes 2–3 |
+| 0:27 | 8 | Exercise 1: first look at a repo (plan mode, read-only) | Episode 4 |
+| 0:35 | 8 | Debrief: what it couldn't infer; context files; autonomy comparison | Episode 4 |
+| 0:43 | 10 | Underspecification & feature-driven development | Episode 5 |
+| 0:53 | 10 | Exercise 2: bad vs. better prompt | Episode 5 |
 | 1:03 | 5 | Break | — |
-| 1:08 | 20 | Verification and review; leakage worked example | Episode 5 |
-| 1:28 | 10 | Exercise 3: test as contract | Episode 5 |
-| 1:38 | 8 | What the research shows | Episode 9 |
-| 1:46 | 6 | Cost + energy; Exercise 4 (`/cost`, napkin math) | Episode 8 |
-| 1:52 | 8 | Close: is programming dead?; three things before the sprint | Episode 9 |
+| 1:08 | 20 | Verification and review; leakage worked example | Episode 6 |
+| 1:28 | 10 | Exercise 3: test as contract | Episode 6 |
+| 1:38 | 8 | What the research shows | Episode 10 |
+| 1:46 | 6 | Cost + energy; Exercise 4 (`/cost`, napkin math) | Episode 9 |
+| 1:52 | 8 | Close: is programming dead?; three things before the sprint | Episode 10 |
 
 Note the live schedule runs research-findings *before* the cost block; the written
 episodes order cost before research/outlook because it reads better asynchronously.
 Either order works.
 
-**Episode 6 (Documentation) in the 2-hour format:** like the trust episode, this has
+**Episode 7 (Documentation) in the 2-hour format:** like the trust episode, this has
 no dedicated live slot — it exists in full for asynchronous study. In the workshop,
 land its two headline ideas inside the verification block or the close: (1) agents
 make documentation cheap, so ask for docstrings/README updates/narrated notebooks with
@@ -40,7 +40,13 @@ compounds — and "explain this code" doubles as a verification pass. Its 5-minu
 document-and-cross-examine exercise makes a good at-home assignment alongside the
 trust episode's provider-vetting exercise.
 
-**Episode 7 (Trust) in the 2-hour format:** there is no dedicated slot for the trust
+**Episode 8 (Common Workflows) in the 2-hour format:** async-only material. If time
+allows, its highest-value live moment is naming the two review postures (agent commits
+freely, PR is the review gate vs. review every change) during the verification block
+or close, and noting that the choice should be deliberate and written into the project
+context file.
+
+**Episode 3 (Trust) in the 2-hour format:** there is no dedicated slot for the trust
 episode in the live schedule — it exists in full for asynchronous study. In the
 workshop, compress it into the words-of-caution block: name two or three of the real
 incidents (the Replit production-database deletion and the hallucinated

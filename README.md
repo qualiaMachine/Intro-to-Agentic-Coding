@@ -20,13 +20,14 @@ Mann, Chris Endemann, and Zain Waseem, and expands it into a self-study resource
 
 1. What Does "Agentic" Mean?
 2. Words of Caution: Safety, Security, and Policy
-3. Reconnaissance: Read Before You Write
-4. Underspecification and Feature-Driven Development
-5. Verification and Review: No Escaping Good Data Science
-6. Documentation: Notes to Your Future Self (and Your Agent)
-7. Trust: Packages, Models, and Providers
-8. Cost, Context, and Energy
-9. What the Research Shows, and Where This Leaves Us
+3. Trust: Packages, Models, and Providers
+4. Early Project Planning
+5. Underspecification and Feature-Driven Development
+6. Verification and Review: No Escaping Good Data Science
+7. Documentation: Notes to Your Future Self (and Your Agent)
+8. Common Workflows
+9. Cost, Context, and Energy
+10. What the Research Shows, and Where This Leaves Us
 
 ## Building the lesson locally
 
