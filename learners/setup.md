@@ -45,6 +45,23 @@ pip install pandas scikit-learn pytest
 
 ## Choose an agentic coding tool
 
+::::::::::::::::::::::::::::::::::::::: caution
+
+## Do NOT install agentic tools on machines holding sensitive or restricted data
+
+**Before installing anything below, check the machine you're on.** If it stores
+sensitive or restricted data — student records (FERPA), health data (HIPAA/PHI),
+unpublished sensitive research, CUI, export-controlled data, or anything under a
+data-use agreement — **do not install or run any agentic coding tool on it.** Agents
+scan their surroundings for context, and no permission setting, sandbox, or dev
+container makes that acceptable to a compliance office.
+
+Use a different machine, or use a web-only route (nothing installed, nothing local —
+see below) from a browser, against a repository that itself contains no restricted
+data. The words-of-caution episode covers the full reasoning.
+
+:::::::::::::::::::::::::::::::::::::::::::::::
+
 Any of the tools below works for every exercise. If your workshop provides cloud
 credits or a specific tool, use that; otherwise pick whichever you can access.
 
