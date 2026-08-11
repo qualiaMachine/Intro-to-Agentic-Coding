@@ -13,7 +13,7 @@ Mann, Chris Endemann, and Zain Waseem, and expands it into a self-study resource
 - **Feature-driven development** — well-scoped, verifiable tasks over project-sized prompts.
 - **No escaping good data science** — explore your data, know your distributions, know
   what your models are telling you; code that runs clean and scores great can still be wrong.
-- **Verify like a paranoid person** — faster iteration means faster results *and* faster
+- **Assume nothing; verify everything** — faster iteration means faster results *and* faster
   misleading.
 
 ## Episodes

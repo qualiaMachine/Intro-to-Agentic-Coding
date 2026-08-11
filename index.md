@@ -21,7 +21,7 @@ Four ideas run through the whole lesson:
 2. **Work feature by feature, not project by project.** Agents excel at well-scoped,
    well-specified tasks. Underspecified prompts don't produce random code — they produce
    *plausible average-case* code, and your data is rarely the average case.
-3. **Verify like a paranoid person.** There is no escaping good data science practice.
+3. **Assume nothing; verify everything.** There is no escaping good data science practice.
    You still need to explore your data, find the outliers, know your features and their
    distributions, and know what your models are actually telling you. Code that runs
    clean and scores great can still be wrong.
