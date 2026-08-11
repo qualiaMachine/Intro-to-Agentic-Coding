@@ -114,13 +114,29 @@ well you can verify.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+::::::::::::::::::::::::::::::::::::: callout
+
+## Using GitLab instead of GitHub?
+
+Everything interactive in this lesson is host-agnostic — an agent on a local checkout
+does ordinary git, so GitHub, GitLab (self-hosted included), and Bitbucket work
+identically. Only the **async tier** is GitHub-centric today (assigning issues to
+agents, cloud sandboxes); GitLab offers CI/CD integrations instead, less turnkey. One
+caution: self-hosted GitLab doesn't change where inference happens — code still goes
+to the model provider, so the data-policy rules still apply.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 ## Why principles, not one tool
 
-Tonight's demonstrations use Claude Code because its design makes the trade-offs visible:
-it asks permission before acting, it has an explicit project-context mechanism, and it
-reports its own token costs. But every practice in this lesson — scoping, secrets
-hygiene, specification, verification, cost awareness — applies unchanged to whichever
-tool you or your lab ends up using. The tools will churn; the discipline won't.
+Every practice in this lesson — scoping, secrets hygiene, specification, verification,
+documentation, cost awareness — applies unchanged to whichever tool you or your lab
+ends up using, so the main text stays tool-agnostic. Where the mechanics differ (a
+command name, a mode toggle, a settings page), episodes give the equivalents for the
+two tools workshop participants most commonly have: **Claude Code** and **GitHub
+Copilot**. Use whichever you set up (the [setup page](../learners/setup.md) lists
+options, including free routes), and translate freely if you brought something else —
+the concepts map one-to-one. The tools will churn; the discipline won't.
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 

@@ -104,8 +104,8 @@ cancer = datasets.load_breast_cancer()
 
 1. Give your agent a deliberately **bad** prompt, e.g. "analyze this data" or "build a
    model."
-2. In a fresh session (`/clear` first — you'll see why in the cost episode), give a
-   **better** prompt. Specify the target and features, the split, the model family, the
+2. In a fresh session (`/clear` in Claude Code, a new chat in Copilot — you'll see why
+   in the cost episode), give a **better** prompt. Specify the target and features, the split, the model family, the
    metric, and at least one verification step, e.g.:
 
    > Using the already-loaded `cancer` dataset, build a train/test split (80/20,

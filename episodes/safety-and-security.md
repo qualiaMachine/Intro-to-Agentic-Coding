@@ -99,10 +99,11 @@ public repo without leaking anything.
 
 ## Layers, not guarantees
 
-Modern agents ship real protections — Claude Code asks permission before writes and
+Modern agents ship real protections. Claude Code asks permission before writes and
 shell commands, supports deny rules for sensitive paths, and has an OS-level sandbox
-that restricts filesystem and network access. Configure them. But understand what they
-are:
+that restricts filesystem and network access; Copilot's agent mode asks before running
+terminal commands and can be run inside a dev container or Codespace for isolation.
+Configure whatever your tool provides. But understand what these layers are:
 
 - Deny rules can be subtly mis-written, and an allowed command (like `cat`) can read a
   file that a read-rule covers.

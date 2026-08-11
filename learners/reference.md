@@ -86,16 +86,17 @@ must satisfy, turning specification into verification.
 : Leaving decisions unstated in a request. The agent resolves each gap with the most
 statistically typical ("average case") choice, which is rarely your case.
 
-## Command quick reference (Claude Code)
+## Tool equivalents quick reference
 
-| Command | Purpose |
-|---------|---------|
-| `/clear` | Reset context between unrelated tasks |
-| `/compact` | Summarize the conversation to reclaim context |
-| `/cost` | Show token usage for the session |
-| `/context` | Show what is consuming the context window |
-| <kbd>Shift</kbd>+<kbd>Tab</kbd> | Toggle plan (read-only) mode |
-| <kbd>Esc</kbd> | Interrupt the agent mid-action |
+| Task | Claude Code | GitHub Copilot |
+|------|-------------|----------------|
+| Read-only exploration | Plan mode (<kbd>Shift</kbd>+<kbd>Tab</kbd>) | Ask mode (chat mode dropdown) |
+| Reset context between tasks | `/clear` | New chat |
+| Tame a long conversation | `/compact` | Carry a summary into a fresh chat |
+| See usage/cost | `/cost` (and `/context`) | [Copilot settings](https://github.com/settings/copilot) usage |
+| Interrupt the agent | <kbd>Esc</kbd> | Stop button |
+| Project context file | `CLAUDE.md` | `.github/copilot-instructions.md` |
+| Async agent | Claude Code on the web; `@claude` on GitHub | Cloud coding agent; assign issue to Copilot |
 
 ## Further reading
 
