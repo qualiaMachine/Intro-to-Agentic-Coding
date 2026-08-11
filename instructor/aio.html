@@ -649,7 +649,7 @@ What’s different about them?</li>
   Typical patterns
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Most researchers cluster at the chat end — and the tasks people
 refuse to delegate are almost always the ones where they’d struggle to
@@ -888,11 +888,11 @@ directly to <code>main</code>.</li>
 <strong>Commit small and often.</strong> Each commit is a save point
 you can revert to.</li>
 <li>
-<strong>Review and test before committing</strong> — or, if you let
-the agent commit freely as it works, review the full diff at the PR
-stage. Either workflow is fine; what’s non-negotiable is that
-<em>someone</em> (you, a colleague, or CI) reads the code before it
-lands on <code>main</code>.</li>
+<strong>Someone reads the code before it lands on
+<code>main</code></strong> — you, a colleague, or CI. Whether you review
+each change as it happens or the full diff at the pull request is a real
+choice with trade-offs (the common-workflows episode compares the two);
+the review happening at all is the non-negotiable part.</li>
 </ul></section><section><h2 class="section-heading" id="institutional-data-policies-apply-fully">Institutional data policies apply — fully<a class="anchor" aria-label="anchor" href="#institutional-data-policies-apply-fully"></a>
 </h2>
 <hr class="half-width">
@@ -983,7 +983,7 @@ git history — rotating it is the fix, deleting the file is not.</li>
   What people typically find
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Almost everyone finds something: a forgotten <code>.env</code>, a
 token pasted into a notebook cell, an old <code>credentials.json</code>
@@ -1318,7 +1318,7 @@ contract?</li>
   What people typically find
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Almost everyone discovers at least one surprise: a training toggle
 they’d never seen, a retention clause tied to the feedback button, or
@@ -1464,7 +1464,7 @@ load-bearing vs. abandoned)?</li>
   Debrief
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Typical pattern: the agent is excellent at <em>what</em> and
 <em>how</em> — structure, dependencies, data flow, what each module
@@ -1513,8 +1513,8 @@ agent:</p>
 injected into every session, so everything in it competes for the
 model’s attention with the actual task. If a linter can enforce a rule
 deterministically, use the linter and save the context budget. And
-remember from the last episode: context files are advisory — back
-safety-critical rules with hooks or deny rules.</p>
+remember from the words-of-caution episode: context files are advisory —
+back safety-critical rules with hooks or deny rules.</p>
 </section><section><h2 class="section-heading" id="entry-point-2-a-blank-page">Entry point 2: a blank page<a class="anchor" aria-label="anchor" href="#entry-point-2-a-blank-page"></a>
 </h2>
 <hr class="half-width">
@@ -1800,7 +1800,7 @@ the data before modeling?</p></li>
   What people typically observe
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The bad prompt usually yields <em>something impressive-looking</em> —
 often a full modeling pipeline with choices you never made: an arbitrary
@@ -2814,7 +2814,7 @@ accumulated conversation — file contents, command output, all of it. The
   Claude Code
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <ul>
 <li>
@@ -2842,7 +2842,7 @@ way.</li>
   GitHub Copilot
   </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
 <div class="accordion-body">
 <ul>
 <li>
@@ -2975,7 +2975,7 @@ the most? Was it a vague prompt that triggered a loop?</li>
   Typical findings
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Most workshop sessions land in the low single-digit Wh — a few
 percent of a dishwasher run. The interesting result is usually #3: one
