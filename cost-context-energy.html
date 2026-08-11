@@ -348,7 +348,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Cost, Context, and Energy</h1>
-        <p>Last updated on 2026-08-10 |
+        <p>Last updated on 2026-08-11 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/cost-context-energy.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -403,7 +403,17 @@ failure as in the specification episode — vagueness costs quality
 <strong>Context accumulation.</strong> Every new message resends the
 accumulated conversation — file contents, command output, all of it. The
 50th message in a session costs far more than the 1st.</li>
-</ul><p>The tools give you levers — in Claude Code:</p>
+</ul><p>The levers are the same everywhere; only the names differ:</p>
+<div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
+  <h3 class="accordion-header" id="headingSpoiler1">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
+  Claude Code
+  </h3>
+</button>
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div class="accordion-body">
 <ul><li>
 <code>/clear</code> — reset context between unrelated tasks.
 Cheapest single habit.</li>
@@ -411,14 +421,43 @@ Cheapest single habit.</li>
 <code>/compact</code> — summarize a long conversation, keeping what
 matters.</li>
 <li>
-<code>/cost</code> — see what the current session has consumed.</li>
-<li>Course-correct early: if the agent is heading the wrong way,
-interrupt now rather than letting it generate output you’ll pay to carry
-in context for the rest of the session.</li>
-</ul><p>Other tools have equivalents (Copilot meters “premium
-requests”/credits with a usage dashboard). The principle is identical:
-<strong>a tight, specific prompt in a clean context is simultaneously
-higher-quality, cheaper, and — as we’ll see — greener.</strong></p>
+<code>/cost</code> — see what the current session has consumed;
+<code>/context</code> shows what’s filling the window.</li>
+<li>
+<kbd>Esc</kbd> — interrupt an agent that’s heading the wrong
+way.</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
+  <h3 class="accordion-header" id="headingSpoiler2">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
+  GitHub Copilot
+  </h3>
+</button>
+<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
+<div class="accordion-body">
+<ul><li>
+<strong>New chat</strong> between unrelated tasks — the
+<code>/clear</code> equivalent; keep each chat scoped to one task.</li>
+<li>For a long thread, carry a short summary of key decisions into a
+fresh chat rather than letting the thread grow.</li>
+<li>Check credit/premium-request usage on your <a href="https://github.com/settings/copilot" class="external-link">Copilot settings page</a>;
+model choice changes the burn rate.</li>
+<li>The <strong>stop button</strong> interrupts an agent-mode session
+mid-flight.</li>
+</ul></div>
+</div>
+</div>
+</div>
+<p>Whichever tool: course-correct early — an agent heading the wrong way
+generates output you then pay to carry in context for the rest of the
+session. The principle is identical everywhere: <strong>a tight,
+specific prompt in a clean context is simultaneously higher-quality,
+cheaper, and — as we’ll see — greener.</strong></p>
 </section><section><h2 class="section-heading" id="energy-the-dishwasher-comparison">Energy: the dishwasher comparison<a class="anchor" aria-label="anchor" href="#energy-the-dishwasher-comparison"></a></h2>
 <hr class="half-width"><p>A single LLM chat query costs roughly 0.3 Wh — about a Google search.
 An agentic coding session chains so many calls that one careful estimate
@@ -593,7 +632,7 @@ any links that you are not going to use.
   "url": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/cost-context-energy.html",
   "identifier": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/cost-context-energy.html",
   "dateCreated": "2026-08-10",
-  "dateModified": "2026-08-10",
+  "dateModified": "2026-08-11",
   "datePublished": "2026-08-11"
 }
 

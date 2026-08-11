@@ -348,7 +348,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>What Does 'Agentic' Mean?</h1>
-        <p>Last updated on 2026-08-10 |
+        <p>Last updated on 2026-08-11 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/introduction.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -391,7 +391,28 @@ tool.</li>
 </div>
 </div>
 <section><h2 class="section-heading" id="from-autocomplete-to-agents">From autocomplete to agents<a class="anchor" aria-label="anchor" href="#from-autocomplete-to-agents"></a></h2>
-<hr class="half-width"><p>Traditional AI code assistants (early GitHub Copilot, ChatGPT in a
+<hr class="half-width"><div id="agentic-is-an-overloaded-term" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="agentic-is-an-overloaded-term" class="callout-inner">
+<h3 class="callout-title">“Agentic” is an overloaded term</h3>
+<div class="callout-content">
+<p>“Agent” now gets attached to almost anything with a chat box, so
+let’s pin the word down. Computer science has long used it precisely: an
+agent is a system that <strong>takes actions</strong> in an environment
+and observes the results, in pursuit of a goal. That original meaning is
+the one that matters here. An assistant or chatbot produces text and
+<em>you</em> act on it; an agentic tool acts for itself — editing files,
+running commands, reading the output, deciding what to do next. The
+litmus test for any tool wearing the label: <em>does it act, or does it
+only advise?</em> In agentic coding, action is everywhere — which is
+both the point and, as this lesson explores, the risk.</p>
+</div>
+</div>
+</div>
+<p>Traditional AI code assistants (early GitHub Copilot, ChatGPT in a
 browser tab) work in a simple loop: you ask, they suggest, you accept or
 reject. You are the middleware — you paste context in, you copy code
 out, you run everything yourself.</p>
@@ -441,7 +462,26 @@ bring-your-own-agent option</td>
 </tr><tr><td>Amazon Q / Gemini Code Assist / GitLab Duo</td>
 <td>IDE + cloud consoles</td>
 <td>Deep integration with their respective platforms</td>
-</tr></tbody></table><p>Don’t memorize this table — it will be out of date within months.
+</tr></tbody></table><div class="section level3">
+<h3 id="open-source-increasingly-a-real-option">Open source: increasingly a real option<a class="anchor" aria-label="anchor" href="#open-source-increasingly-a-real-option"></a></h3>
+<p>Most of the table above is commercial services, but that’s no longer
+the whole picture. Open-weight models (Llama, Qwen, DeepSeek, Mistral,
+and others) have become genuinely capable at coding, and open-source
+agent harnesses like OpenCode can drive them — including <strong>fully
+locally</strong> via runtimes like Ollama, where your code never leaves
+your machine. No subscription plus maximal data privacy makes this an
+increasingly credible route for research groups, and it’s improving
+every month.</p>
+<p>The trade-offs to know: frontier commercial models still lead on
+long, multi-step agentic work; smaller local models hallucinate more
+(including inventing package names, which matters more than you’d
+think); and local inference needs real hardware. And “open” brings its
+own trust questions — model weights are downloads from the internet, and
+both the <em>files</em> and the <em>behavior</em> of a model can be
+tampered with. We cover those risks and their mitigations (provenance,
+safe formats, reviewing output) in the <a href="trust.html">trust
+episode</a>.</p>
+<p>Don’t memorize this table — it will be out of date within months.
 What is stable is the <strong>spectrum of autonomy</strong> these tools
 occupy:</p>
 <ol style="list-style-type: decimal"><li>
@@ -511,7 +551,7 @@ What’s different about them?</li>
   Typical patterns
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Most researchers cluster at the chat end — and the tasks people
 refuse to delegate are almost always the ones where they’d struggle to
@@ -523,14 +563,37 @@ you can verify.</p>
 </div>
 </div>
 </div>
+<div id="using-gitlab-instead-of-github" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="using-gitlab-instead-of-github" class="callout-inner">
+<h3 class="callout-title">Using GitLab instead of GitHub?</h3>
+<div class="callout-content">
+<p>Everything interactive in this lesson is host-agnostic — an agent on
+a local checkout does ordinary git, so GitHub, GitLab (self-hosted
+included), and Bitbucket work identically. Only the <strong>async
+tier</strong> is GitHub-centric today (assigning issues to agents, cloud
+sandboxes); GitLab offers CI/CD integrations instead, less turnkey. One
+caution: self-hosted GitLab doesn’t change where inference happens —
+code still goes to the model provider, so the data-policy rules still
+apply.</p>
+</div>
+</div>
+</div>
+</div>
 </section><section><h2 class="section-heading" id="why-principles-not-one-tool">Why principles, not one tool<a class="anchor" aria-label="anchor" href="#why-principles-not-one-tool"></a></h2>
-<hr class="half-width"><p>Tonight’s demonstrations use Claude Code because its design makes the
-trade-offs visible: it asks permission before acting, it has an explicit
-project-context mechanism, and it reports its own token costs. But every
-practice in this lesson — scoping, secrets hygiene, specification,
-verification, cost awareness — applies unchanged to whichever tool you
-or your lab ends up using. The tools will churn; the discipline
-won’t.</p>
+<hr class="half-width"><p>Every practice in this lesson — scoping, secrets hygiene,
+specification, verification, documentation, cost awareness — applies
+unchanged to whichever tool you or your lab ends up using, so the main
+text stays tool-agnostic. Where the mechanics differ (a command name, a
+mode toggle, a settings page), episodes give the equivalents for the two
+tools workshop participants most commonly have: <strong>Claude
+Code</strong> and <strong>GitHub Copilot</strong>. Use whichever you set
+up (the <a href="index.html#setup">setup page</a> lists options, including
+free routes), and translate freely if you brought something else — the
+concepts map one-to-one. The tools will churn; the discipline won’t.</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -613,7 +676,7 @@ any links that you are not going to use.
   "url": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/introduction.html",
   "identifier": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/introduction.html",
   "dateCreated": "2026-08-10",
-  "dateModified": "2026-08-10",
+  "dateModified": "2026-08-11",
   "datePublished": "2026-08-11"
 }
 

@@ -399,7 +399,7 @@
         
 <section id="aio-introduction"><p>Content from <a href="introduction.html">What Does 'Agentic' Mean?</a></p>
 <hr>
-<p>Last updated on 2026-08-10 |
+<p>Last updated on 2026-08-11 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/introduction.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 14 minutes</p>
@@ -443,6 +443,27 @@ tool.</li>
 <section><h2 class="section-heading" id="from-autocomplete-to-agents">From autocomplete to agents<a class="anchor" aria-label="anchor" href="#from-autocomplete-to-agents"></a>
 </h2>
 <hr class="half-width">
+<div id="agentic-is-an-overloaded-term" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="agentic-is-an-overloaded-term" class="callout-inner">
+<h3 class="callout-title">“Agentic” is an overloaded term</h3>
+<div class="callout-content">
+<p>“Agent” now gets attached to almost anything with a chat box, so
+let’s pin the word down. Computer science has long used it precisely: an
+agent is a system that <strong>takes actions</strong> in an environment
+and observes the results, in pursuit of a goal. That original meaning is
+the one that matters here. An assistant or chatbot produces text and
+<em>you</em> act on it; an agentic tool acts for itself — editing files,
+running commands, reading the output, deciding what to do next. The
+litmus test for any tool wearing the label: <em>does it act, or does it
+only advise?</em> In agentic coding, action is everywhere — which is
+both the point and, as this lesson explores, the risk.</p>
+</div>
+</div>
+</div>
 <p>Traditional AI code assistants (early GitHub Copilot, ChatGPT in a
 browser tab) work in a simple loop: you ask, they suggest, you accept or
 reject. You are the middleware — you paste context in, you copy code
@@ -520,6 +541,26 @@ bring-your-own-agent option</td>
 </tr>
 </tbody>
 </table>
+<div class="section level3">
+<h3 id="open-source-increasingly-a-real-option">Open source: increasingly a real option<a class="anchor" aria-label="anchor" href="#open-source-increasingly-a-real-option"></a>
+</h3>
+<p>Most of the table above is commercial services, but that’s no longer
+the whole picture. Open-weight models (Llama, Qwen, DeepSeek, Mistral,
+and others) have become genuinely capable at coding, and open-source
+agent harnesses like OpenCode can drive them — including <strong>fully
+locally</strong> via runtimes like Ollama, where your code never leaves
+your machine. No subscription plus maximal data privacy makes this an
+increasingly credible route for research groups, and it’s improving
+every month.</p>
+<p>The trade-offs to know: frontier commercial models still lead on
+long, multi-step agentic work; smaller local models hallucinate more
+(including inventing package names, which matters more than you’d
+think); and local inference needs real hardware. And “open” brings its
+own trust questions — model weights are downloads from the internet, and
+both the <em>files</em> and the <em>behavior</em> of a model can be
+tampered with. We cover those risks and their mitigations (provenance,
+safe formats, reviewing output) in the <a href="trust.html">trust
+episode</a>.</p>
 <p>Don’t memorize this table — it will be out of date within months.
 What is stable is the <strong>spectrum of autonomy</strong> these tools
 occupy:</p>
@@ -596,7 +637,7 @@ What’s different about them?</li>
   Typical patterns
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Most researchers cluster at the chat end — and the tasks people
 refuse to delegate are almost always the ones where they’d struggle to
@@ -608,16 +649,39 @@ you can verify.</p>
 </div>
 </div>
 </div>
+<div id="using-gitlab-instead-of-github" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="using-gitlab-instead-of-github" class="callout-inner">
+<h3 class="callout-title">Using GitLab instead of GitHub?</h3>
+<div class="callout-content">
+<p>Everything interactive in this lesson is host-agnostic — an agent on
+a local checkout does ordinary git, so GitHub, GitLab (self-hosted
+included), and Bitbucket work identically. Only the <strong>async
+tier</strong> is GitHub-centric today (assigning issues to agents, cloud
+sandboxes); GitLab offers CI/CD integrations instead, less turnkey. One
+caution: self-hosted GitLab doesn’t change where inference happens —
+code still goes to the model provider, so the data-policy rules still
+apply.</p>
+</div>
+</div>
+</div>
+</div>
 </section><section><h2 class="section-heading" id="why-principles-not-one-tool">Why principles, not one tool<a class="anchor" aria-label="anchor" href="#why-principles-not-one-tool"></a>
 </h2>
 <hr class="half-width">
-<p>Tonight’s demonstrations use Claude Code because its design makes the
-trade-offs visible: it asks permission before acting, it has an explicit
-project-context mechanism, and it reports its own token costs. But every
-practice in this lesson — scoping, secrets hygiene, specification,
-verification, cost awareness — applies unchanged to whichever tool you
-or your lab ends up using. The tools will churn; the discipline
-won’t.</p>
+<p>Every practice in this lesson — scoping, secrets hygiene,
+specification, verification, documentation, cost awareness — applies
+unchanged to whichever tool you or your lab ends up using, so the main
+text stays tool-agnostic. Where the mechanics differ (a command name, a
+mode toggle, a settings page), episodes give the equivalents for the two
+tools workshop participants most commonly have: <strong>Claude
+Code</strong> and <strong>GitHub Copilot</strong>. Use whichever you set
+up (the <a href="index.html#setup">setup page</a> lists options, including
+free routes), and translate freely if you brought something else — the
+concepts map one-to-one. The tools will churn; the discipline won’t.</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -644,7 +708,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-safety-and-security"><p>Content from <a href="safety-and-security.html">Words of Caution: Safety, Security, and Policy</a></p>
 <hr>
-<p>Last updated on 2026-08-10 |
+<p>Last updated on 2026-08-11 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/safety-and-security.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 17 minutes</p>
@@ -777,10 +841,12 @@ or committed to a public repo without leaking anything.</p>
 </section><section><h2 class="section-heading" id="layers-not-guarantees">Layers, not guarantees<a class="anchor" aria-label="anchor" href="#layers-not-guarantees"></a>
 </h2>
 <hr class="half-width">
-<p>Modern agents ship real protections — Claude Code asks permission
+<p>Modern agents ship real protections. Claude Code asks permission
 before writes and shell commands, supports deny rules for sensitive
 paths, and has an OS-level sandbox that restricts filesystem and network
-access. Configure them. But understand what they are:</p>
+access; Copilot’s agent mode asks before running terminal commands and
+can be run inside a dev container or Codespace for isolation. Configure
+whatever your tool provides. But understand what these layers are:</p>
 <ul>
 <li>Deny rules can be subtly mis-written, and an allowed command (like
 <code>cat</code>) can read a file that a read-rule covers.</li>
@@ -832,8 +898,37 @@ third-party processing.</li>
 your IT office <em>before</em> the session, not after.</li>
 </ul>
 <p>Remember: your code and prompts are sent to the model provider’s
-servers for inference. Don’t run an agent on a machine where restricted
-data is stored — anything in the workspace can end up in a prompt.</p>
+servers for inference.</p>
+<div id="no-agents-on-machines-that-hold-restricted-data" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="no-agents-on-machines-that-hold-restricted-data" class="callout-inner">
+<h3 class="callout-title">No agents on machines that hold restricted
+data</h3>
+<div class="callout-content">
+<p>To be explicit: <strong>running an agent locally on any machine that
+stores restricted data is not recommended at this time — full
+stop.</strong> Permission settings, deny rules, and sandboxes don’t
+change this: local agents scan for context, anything on the machine can
+end up in a prompt, and “the agent shouldn’t have looked there” is not a
+control your compliance office will accept.</p>
+<p>If you must work on a repository from such a machine, the acceptable
+routes are the ones with <strong>no local access by
+construction</strong>: a web UI where the agent operates only on a
+cloud-hosted copy of the repo (Claude Code on the web, Copilot’s cloud
+coding agent). The browser is just a window — execution and file access
+stay in the provider’s sandbox, and your machine’s contents are
+unreachable. Note the repo itself must still be free of restricted data,
+since its contents do go to the provider.</p>
+<p>Until your institution establishes vetted secure routes (formal data
+agreements, approved configurations), the operating rule is simple:
+<strong>agents and restricted data live on separate
+machines.</strong></p>
+</div>
+</div>
+</div>
 <p>Policies tell you what <em>you</em> may send to a provider. Later in
 the lesson, the trust episode turns the question around: how much should
 you trust the provider — and the packages and models your agent pulls in
@@ -876,7 +971,7 @@ git history — rotating it is the fix, deleting the file is not.</li>
   What people typically find
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Almost everyone finds something: a forgotten <code>.env</code>, a
 token pasted into a notebook cell, an old <code>credentials.json</code>
@@ -936,7 +1031,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-recon"><p>Content from <a href="recon.html">Reconnaissance: Read Before You Write</a></p>
 <hr>
-<p>Last updated on 2026-08-10 |
+<p>Last updated on 2026-08-11 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/recon.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 24 minutes</p>
@@ -983,9 +1078,11 @@ knowledge.</li>
 <hr class="half-width">
 <p>The most common agentic failure mode is letting the agent write code
 before either of you understands the project. Most tools have a
-read-only or “plan” mode (in Claude Code, toggle with
-<kbd>Shift</kbd>+<kbd>Tab</kbd>) in which the agent reads files and
-answers questions <strong>without making any changes</strong>.</p>
+read-only mode in which the agent reads files and answers questions
+<strong>without making any changes</strong> — in Claude Code it’s
+<em>plan mode</em> (toggle with <kbd>Shift</kbd>+<kbd>Tab</kbd>); in
+GitHub Copilot it’s <em>Ask</em> mode (the mode dropdown in the chat
+panel).</p>
 <p>This is the safest possible first contact with an agent: it can’t
 edit anything, so you can hand it a whole repository and simply ask what
 it sees. It’s also genuinely useful — onboarding onto a colleague’s
@@ -1024,7 +1121,7 @@ load-bearing vs. abandoned)?</li>
   Debrief
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Typical pattern: the agent is excellent at <em>what</em> and
 <em>how</em> — structure, dependencies, data flow, what each module
@@ -1126,7 +1223,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-specification"><p>Content from <a href="specification.html">Underspecification and Feature-Driven Development</a></p>
 <hr>
-<p>Last updated on 2026-08-10 |
+<p>Last updated on 2026-08-11 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/specification.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 20 minutes</p>
@@ -1274,10 +1371,11 @@ minutes)</h3>
 <li><p>Give your agent a deliberately <strong>bad</strong> prompt,
 e.g. “analyze this data” or “build a model.”</p></li>
 <li>
-<p>In a fresh session (<code>/clear</code> first — you’ll see why in
-the cost episode), give a <strong>better</strong> prompt. Specify the
-target and features, the split, the model family, the metric, and at
-least one verification step, e.g.:</p>
+<p>In a fresh session (<code>/clear</code> in Claude Code, a new
+chat in Copilot — you’ll see why in the cost episode), give a
+<strong>better</strong> prompt. Specify the target and features, the
+split, the model family, the metric, and at least one verification step,
+e.g.:</p>
 <blockquote>
 <p>Using the already-loaded <code>cancer</code> dataset, build a
 train/test split (80/20, stratified, random_state=42), fit a logistic
@@ -1300,7 +1398,7 @@ the data before modeling?</p></li>
   What people typically observe
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The bad prompt usually yields <em>something impressive-looking</em> —
 often a full modeling pipeline with choices you never made: an arbitrary
@@ -1342,7 +1440,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-verification-and-review"><p>Content from <a href="verification-and-review.html">Verification and Review: No Escaping Good Data Science</a></p>
 <hr>
-<p>Last updated on 2026-08-10 |
+<p>Last updated on 2026-08-11 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/verification-and-review.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 30 minutes</p>
@@ -1413,7 +1511,8 @@ practice</strong> — the agent didn’t absorb these responsibilities when
 it took over the typing. What changed is speed: you can now generate a
 plausible, clean-running, well-scoring analysis in minutes. Iteration is
 easier and results come faster — which also means you can be
-<em>misled</em> faster. The paranoia has to keep up with the pace.</p>
+<em>misled</em> faster. Your skepticism has to keep up with the
+pace.</p>
 </section><section><h2 class="section-heading" id="worked-example-leakage-that-scores-great">Worked example: leakage that scores great<a class="anchor" aria-label="anchor" href="#worked-example-leakage-that-scores-great"></a>
 </h2>
 <hr class="half-width">
@@ -1470,9 +1569,9 @@ wrong. The agent optimizes for “task apparently completed” — clean run,
 high score — and both boxes are checked. If your review process is also
 “does it run? is the score good?”, you and the agent share the same
 blind spot.</p>
-<p>Act like a paranoid person. Assume nothing. A surprisingly
-<em>good</em> result deserves the same suspicion as a surprisingly bad
-one — arguably more, because you’re motivated to believe it.</p>
+<p>Assume nothing; verify everything. A surprisingly <em>good</em>
+result deserves the same suspicion as a surprisingly bad one — arguably
+more, because you’re motivated to believe it.</p>
 </div>
 </div>
 </div>
@@ -1876,7 +1975,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-trust"><p>Content from <a href="trust.html">Trust: Packages, Models, and Providers</a></p>
 <hr>
-<p>Last updated on 2026-08-10 |
+<p>Last updated on 2026-08-11 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/trust.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 17 minutes</p>
@@ -1919,7 +2018,7 @@ questions before use.</li>
 </div>
 <p>Everything in this lesson so far assumes the things you install and
 the services you call are what they claim to be. That assumption
-deserves the same paranoia as your data. Agentic coding raises the
+deserves the same scrutiny as your data. Agentic coding raises the
 stakes in a specific way: <strong>the agent installs packages, downloads
 models, and ships your code to a provider on your behalf</strong> — so
 decisions you used to make one at a time now happen at machine speed, in
@@ -2072,7 +2171,7 @@ fast but only help if applied), install extensions only from official
 marketplaces, and <strong>never point an agent at production systems or
 irreplaceable data</strong> — dev/prod separation and backups are not
 optional just because the collaborator types quickly.</p>
-</section><section><h2 class="section-heading" id="vet-your-provider-like-a-paranoid-person">Vet your provider like a paranoid person<a class="anchor" aria-label="anchor" href="#vet-your-provider-like-a-paranoid-person"></a>
+</section><section><h2 class="section-heading" id="vet-your-provider-like-youd-vet-a-data-source">Vet your provider like you’d vet a data source<a class="anchor" aria-label="anchor" href="#vet-your-provider-like-youd-vet-a-data-source"></a>
 </h2>
 <hr class="half-width">
 <p>Whichever provider you choose — Anthropic, GitHub/Microsoft, Google,
@@ -2199,7 +2298,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-cost-context-energy"><p>Content from <a href="cost-context-energy.html">Cost, Context, and Energy</a></p>
 <hr>
-<p>Last updated on 2026-08-10 |
+<p>Last updated on 2026-08-11 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/cost-context-energy.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 12 minutes</p>
@@ -2257,7 +2356,17 @@ failure as in the specification episode — vagueness costs quality
 accumulated conversation — file contents, command output, all of it. The
 50th message in a session costs far more than the 1st.</li>
 </ul>
-<p>The tools give you levers — in Claude Code:</p>
+<p>The levers are the same everywhere; only the names differ:</p>
+<div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
+  <h3 class="accordion-header" id="headingSpoiler1">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
+  Claude Code
+  </h3>
+</button>
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div class="accordion-body">
 <ul>
 <li>
 <code>/clear</code> — reset context between unrelated tasks.
@@ -2266,15 +2375,46 @@ Cheapest single habit.</li>
 <code>/compact</code> — summarize a long conversation, keeping what
 matters.</li>
 <li>
-<code>/cost</code> — see what the current session has consumed.</li>
-<li>Course-correct early: if the agent is heading the wrong way,
-interrupt now rather than letting it generate output you’ll pay to carry
-in context for the rest of the session.</li>
+<code>/cost</code> — see what the current session has consumed;
+<code>/context</code> shows what’s filling the window.</li>
+<li>
+<kbd>Esc</kbd> — interrupt an agent that’s heading the wrong
+way.</li>
 </ul>
-<p>Other tools have equivalents (Copilot meters “premium
-requests”/credits with a usage dashboard). The principle is identical:
-<strong>a tight, specific prompt in a clean context is simultaneously
-higher-quality, cheaper, and — as we’ll see — greener.</strong></p>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
+  <h3 class="accordion-header" id="headingSpoiler2">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
+  GitHub Copilot
+  </h3>
+</button>
+<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
+<div class="accordion-body">
+<ul>
+<li>
+<strong>New chat</strong> between unrelated tasks — the
+<code>/clear</code> equivalent; keep each chat scoped to one task.</li>
+<li>For a long thread, carry a short summary of key decisions into a
+fresh chat rather than letting the thread grow.</li>
+<li>Check credit/premium-request usage on your <a href="https://github.com/settings/copilot" class="external-link">Copilot settings page</a>;
+model choice changes the burn rate.</li>
+<li>The <strong>stop button</strong> interrupts an agent-mode session
+mid-flight.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<p>Whichever tool: course-correct early — an agent heading the wrong way
+generates output you then pay to carry in context for the rest of the
+session. The principle is identical everywhere: <strong>a tight,
+specific prompt in a clean context is simultaneously higher-quality,
+cheaper, and — as we’ll see — greener.</strong></p>
 </section><section><h2 class="section-heading" id="energy-the-dishwasher-comparison">Energy: the dishwasher comparison<a class="anchor" aria-label="anchor" href="#energy-the-dishwasher-comparison"></a>
 </h2>
 <hr class="half-width">
@@ -2417,7 +2557,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-research-and-outlook"><p>Content from <a href="research-and-outlook.html">What the Research Shows, and Where This Leaves Us</a></p>
 <hr>
-<p>Last updated on 2026-08-10 |
+<p>Last updated on 2026-08-11 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/research-and-outlook.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 17 minutes</p>
@@ -2574,7 +2714,7 @@ workflow.</li>
 delegate, write one test or printed check that encodes what “correct”
 means for <em>your</em> data — before you prompt.</li>
 <li>
-<strong>Review one full diff like a paranoid person.</strong> Take
+<strong>Review one full diff like a skeptical referee.</strong> Take
 one agent-produced change and review it as if a stranger submitted it to
 your paper’s supplementary code: explore the data it touches, check a
 number against a source of truth, and see what the model is really

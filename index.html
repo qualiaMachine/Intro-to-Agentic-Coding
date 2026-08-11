@@ -347,10 +347,13 @@ easier to iterate and faster to see results. They also make it faster to
 be misled if you aren’t careful.</p>
 <p>This lesson teaches the working principles behind effective, safe
 agentic coding for researchers. It is deliberately about
-<strong>principles, not one tool</strong>: we use Claude Code as the
-primary demonstration lens because it exposes the trade-offs clearly
-(permissions, context, cost), but everything here transfers to GitHub
-Copilot, Cursor, OpenCode, and whatever ships next month.</p>
+<strong>principles, not one tool</strong>: the practices — scoping,
+secrets hygiene, specification, verification, documentation, cost
+awareness — apply unchanged across Claude Code, GitHub Copilot, Cursor,
+OpenCode, and whatever ships next month. Where the mechanics genuinely
+differ, episodes show side-by-side equivalents for two tools researchers
+most commonly have access to (Claude Code and GitHub Copilot); if you
+use something else, everything translates readily.</p>
 <p>Four ideas run through the whole lesson:</p>
 <ol style="list-style-type: decimal"><li>
 <strong>Stay in the driver’s seat.</strong> The agent is a very
@@ -363,11 +366,11 @@ Agents excel at well-scoped, well-specified tasks. Underspecified
 prompts don’t produce random code — they produce <em>plausible
 average-case</em> code, and your data is rarely the average case.</li>
 <li>
-<strong>Verify like a paranoid person.</strong> There is no escaping
-good data science practice. You still need to explore your data, find
-the outliers, know your features and their distributions, and know what
-your models are actually telling you. Code that runs clean and scores
-great can still be wrong.</li>
+<strong>Assume nothing; verify everything.</strong> There is no
+escaping good data science practice. You still need to explore your
+data, find the outliers, know your features and their distributions, and
+know what your models are actually telling you. Code that runs clean and
+scores great can still be wrong.</li>
 <li>
 <strong>Iteration is cheaper now — in both directions.</strong>
 Agents compress the loop between idea and result. That accelerates good

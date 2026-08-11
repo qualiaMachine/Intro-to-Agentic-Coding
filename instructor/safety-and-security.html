@@ -351,7 +351,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Words of Caution: Safety, Security, and Policy</h1>
-        <p>Last updated on 2026-08-10 |
+        <p>Last updated on 2026-08-11 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/safety-and-security.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -475,10 +475,12 @@ runtime.</li>
 <p>The second version can be read aloud by an agent, pasted into a chat,
 or committed to a public repo without leaking anything.</p>
 </section><section><h2 class="section-heading" id="layers-not-guarantees">Layers, not guarantees<a class="anchor" aria-label="anchor" href="#layers-not-guarantees"></a></h2>
-<hr class="half-width"><p>Modern agents ship real protections — Claude Code asks permission
+<hr class="half-width"><p>Modern agents ship real protections. Claude Code asks permission
 before writes and shell commands, supports deny rules for sensitive
 paths, and has an OS-level sandbox that restricts filesystem and network
-access. Configure them. But understand what they are:</p>
+access; Copilot’s agent mode asks before running terminal commands and
+can be run inside a dev container or Codespace for isolation. Configure
+whatever your tool provides. But understand what these layers are:</p>
 <ul><li>Deny rules can be subtly mis-written, and an allowed command (like
 <code>cat</code>) can read a file that a read-rule covers.</li>
 <li>Instruction files (“never touch <code>~/.ssh</code>”) are advisory —
@@ -521,8 +523,37 @@ third-party processing.</li>
 <li>General, non-sensitive research code is fine. When in doubt, ask
 your IT office <em>before</em> the session, not after.</li>
 </ul><p>Remember: your code and prompts are sent to the model provider’s
-servers for inference. Don’t run an agent on a machine where restricted
-data is stored — anything in the workspace can end up in a prompt.</p>
+servers for inference.</p>
+<div id="no-agents-on-machines-that-hold-restricted-data" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="no-agents-on-machines-that-hold-restricted-data" class="callout-inner">
+<h3 class="callout-title">No agents on machines that hold restricted
+data</h3>
+<div class="callout-content">
+<p>To be explicit: <strong>running an agent locally on any machine that
+stores restricted data is not recommended at this time — full
+stop.</strong> Permission settings, deny rules, and sandboxes don’t
+change this: local agents scan for context, anything on the machine can
+end up in a prompt, and “the agent shouldn’t have looked there” is not a
+control your compliance office will accept.</p>
+<p>If you must work on a repository from such a machine, the acceptable
+routes are the ones with <strong>no local access by
+construction</strong>: a web UI where the agent operates only on a
+cloud-hosted copy of the repo (Claude Code on the web, Copilot’s cloud
+coding agent). The browser is just a window — execution and file access
+stay in the provider’s sandbox, and your machine’s contents are
+unreachable. Note the repo itself must still be free of restricted data,
+since its contents do go to the provider.</p>
+<p>Until your institution establishes vetted secure routes (formal data
+agreements, approved configurations), the operating rule is simple:
+<strong>agents and restricted data live on separate
+machines.</strong></p>
+</div>
+</div>
+</div>
 <p>Policies tell you what <em>you</em> may send to a provider. Later in
 the lesson, the trust episode turns the question around: how much should
 you trust the provider — and the packages and models your agent pulls in
@@ -563,7 +594,7 @@ git history — rotating it is the fix, deleting the file is not.</li>
   What people typically find
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Almost everyone finds something: a forgotten <code>.env</code>, a
 token pasted into a notebook cell, an old <code>credentials.json</code>
@@ -679,7 +710,7 @@ any links that you are not going to use.
   "url": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/instructor/safety-and-security.html",
   "identifier": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/instructor/safety-and-security.html",
   "dateCreated": "2026-08-10",
-  "dateModified": "2026-08-10",
+  "dateModified": "2026-08-11",
   "datePublished": "2026-08-11"
 }
 

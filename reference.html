@@ -327,7 +327,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Reference</h1>
-        <p>Last updated on 2026-08-10 |
+        <p>Last updated on 2026-08-11 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/learners/reference.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -449,23 +449,34 @@ Leaving decisions unstated in a request. The agent resolves each gap
 with the most statistically typical (“average case”) choice, which is
 rarely your case.
 </dd>
-</dl></section><section><h2 class="section-heading" id="command-quick-reference-claude-code">Command quick reference (Claude Code)<a class="anchor" aria-label="anchor" href="#command-quick-reference-claude-code"></a></h2>
-<hr class="half-width"><table class="table"><thead><tr><th>Command</th>
-<th>Purpose</th>
-</tr></thead><tbody><tr><td><code>/clear</code></td>
-<td>Reset context between unrelated tasks</td>
-</tr><tr><td><code>/compact</code></td>
-<td>Summarize the conversation to reclaim context</td>
-</tr><tr><td><code>/cost</code></td>
-<td>Show token usage for the session</td>
-</tr><tr><td><code>/context</code></td>
-<td>Show what is consuming the context window</td>
-</tr><tr><td>
-<kbd>Shift</kbd>+<kbd>Tab</kbd>
-</td>
-<td>Toggle plan (read-only) mode</td>
-</tr><tr><td><kbd>Esc</kbd></td>
-<td>Interrupt the agent mid-action</td>
+</dl></section><section><h2 class="section-heading" id="tool-equivalents-quick-reference">Tool equivalents quick reference<a class="anchor" aria-label="anchor" href="#tool-equivalents-quick-reference"></a></h2>
+<hr class="half-width"><table class="table"><colgroup><col width="17%"><col width="37%"><col width="45%"></colgroup><thead><tr><th>Task</th>
+<th>Claude Code</th>
+<th>GitHub Copilot</th>
+</tr></thead><tbody><tr><td>Read-only exploration</td>
+<td>Plan mode (<kbd>Shift</kbd>+<kbd>Tab</kbd>)</td>
+<td>Ask mode (chat mode dropdown)</td>
+</tr><tr><td>Reset context between tasks</td>
+<td><code>/clear</code></td>
+<td>New chat</td>
+</tr><tr><td>Tame a long conversation</td>
+<td><code>/compact</code></td>
+<td>Carry a summary into a fresh chat</td>
+</tr><tr><td>See usage/cost</td>
+<td>
+<code>/cost</code> (and <code>/context</code>)</td>
+<td>
+<a href="https://github.com/settings/copilot" class="external-link">Copilot settings</a>
+usage</td>
+</tr><tr><td>Interrupt the agent</td>
+<td><kbd>Esc</kbd></td>
+<td>Stop button</td>
+</tr><tr><td>Project context file</td>
+<td><code>CLAUDE.md</code></td>
+<td><code>.github/copilot-instructions.md</code></td>
+</tr><tr><td>Async agent</td>
+<td>Claude Code on the web; <code>@claude</code> on GitHub</td>
+<td>Cloud coding agent; assign issue to Copilot</td>
 </tr></tbody></table></section><section><h2 class="section-heading" id="further-reading">Further reading<a class="anchor" aria-label="anchor" href="#further-reading"></a></h2>
 <hr class="half-width"><ul><li><a href="https://www.anthropic.com/engineering/claude-code-best-practices" class="external-link">Anthropic:
 Claude Code best practices</a></li>
@@ -536,7 +547,7 @@ any links that you are not going to use.
   "url": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/reference.html",
   "identifier": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/reference.html",
   "dateCreated": "2026-08-10",
-  "dateModified": "2026-08-10",
+  "dateModified": "2026-08-11",
   "datePublished": "2026-08-11"
 }
 
