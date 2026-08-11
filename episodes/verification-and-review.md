@@ -207,6 +207,19 @@ only feedback loop.
 - For analyses, demand printed evidence: row counts before/after joins, class balance,
   train/test overlap checks, a baseline model's score next to the fancy one.
 
+And make it the *default*, not a per-session request: put your testing requirements
+into the project context file from the planning episode —
+
+```markdown
+## Testing requirements
+- Run the full test suite (`pytest tests/`) after making changes
+- If tests fail, fix them before moving on; never commit failing tests
+```
+
+One instruction, written once, means the agent verifies even on the days you forget
+to ask. (It's advisory, as always — CI on the pull request is the guaranteed
+backstop.)
+
 The more trustworthy your test suite and checks, the more autonomy you can safely grant.
 This is the exchange rate at the center of agentic coding: **autonomy is purchased with
 verification.**
@@ -274,6 +287,20 @@ def test_no_leakage_in_pipeline():
 
 Then prompt: *"Create `analysis.py` with `load_data()` and `build_pipeline()` so that
 `pytest test_analysis.py` passes. Run the tests to confirm."*
+
+:::::::::::::::: group-tab
+
+### Claude Code
+
+Claude will run `pytest` itself — approve the command when prompted — read the
+failures, and iterate until the suite passes.
+
+### GitHub Copilot
+
+Use **Agent** mode: Copilot proposes the `pytest` run in the integrated terminal,
+waits for your approval, and iterates on the output the same way.
+
+::::::::::::::::::::::::
 
 Other properties worth encoding, depending on your data: no identifier appears in both
 train and test; feature X is always non-negative; row count survives the merge; the

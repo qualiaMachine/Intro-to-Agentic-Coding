@@ -98,6 +98,17 @@ context, because agents trust what they read. When behavior changes, updating th
 docs is part of the change, not an optional follow-up. ("Update the docstring and
 README to match" is a fine thing to put in the same prompt as the change itself.)
 
+And don't rely on change-by-change discipline alone — **periodically run a full
+audit**:
+
+> Go through the README, every docstring, and the comments, and verify each claim
+> against what the code actually does. Make no assumptions — read the code. List
+> every mismatch you find.
+
+It's a cheap sweep (end of the week, before a release, before sharing the repo) that
+catches the drift that slips past you one edit at a time — and every mismatch it
+surfaces is either a doc fix or a bug found.
+
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: challenge
@@ -135,6 +146,6 @@ written record of it — verification and documentation in one pass.
 - Ask for docstrings, why-comments, README updates, narrated notebooks, and end-of-session notes as a routine part of every task.
 - Documentation compounds: it becomes the context that makes future agent sessions (and future you) measurably better.
 - Explaining is verifying — a doc/code mismatch is a bug report; a surprising explanation is a lead worth chasing.
-- Review generated docs like code, and update them with the code: stale documentation misleads humans and poisons agent context.
+- Review generated docs like code, and update them with the code: stale documentation misleads humans and poisons agent context. Periodically ask the agent to audit every doc claim against the actual code — no assumptions.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
