@@ -124,21 +124,21 @@ payoff: quality where it matters, money and energy saved where it doesn't.
 
 ## Exercise 4: What did tonight cost? (6 minutes)
 
-1. Check what your session has consumed:
+:::::::::::::::: group-tab
 
-   :::::::::::::::: group-tab
+### Claude Code
 
-   ### Claude Code
+Run `/cost` in your session for tokens consumed and `/context` for what's filling
+the window.
 
-   Run `/cost` in your session for tokens consumed and `/context` for what's filling
-   the window.
+### GitHub Copilot
 
-   ### GitHub Copilot
+Open your [usage dashboard](https://github.com/settings/copilot) to see
+credit/premium-request consumption, and note which models you used today.
 
-   Open your [usage dashboard](https://github.com/settings/copilot) to see
-   credit/premium-request consumption; note which models you used today.
+::::::::::::::::::::::::
 
-   ::::::::::::::::::::::::
+1. Check what your session has consumed (your tool's tab above) and note the number.
 2. Back-of-napkin energy estimate: if a full session ≈ 41 Wh, scale by how much of a
    "typical" session you've used (tokens are a reasonable proxy). How many chat queries
    is that? What fraction of a dishwasher run?
