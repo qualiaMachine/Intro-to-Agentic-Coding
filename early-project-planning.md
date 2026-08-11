@@ -46,7 +46,26 @@ or auditing a repo before you build on it.
 ## Exercise 1: First look (8 minutes)
 
 Point your agent at the practice repository (see [setup](../learners/setup.md)) — or any
-real project you have handy — in plan/read-only mode, and prompt:
+real project you have handy — in read-only mode:
+
+:::::::::::::::: group-tab
+
+### Claude Code
+
+Launch `claude` from the repository root, then press <kbd>Shift</kbd>+<kbd>Tab</kbd>
+until the status line shows **plan mode** — Claude can now read and answer, but not
+edit or run anything.
+
+### GitHub Copilot
+
+Open the repository folder in VS Code, open the Copilot chat panel
+(<kbd>Ctrl</kbd>/<kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd>), and pick **Ask** in
+the mode dropdown. Start your message with `@workspace` so the question covers the
+whole repo.
+
+::::::::::::::::::::::::
+
+Then prompt:
 
 > Read this repo and tell me what it's doing, or attempting to do.
 
@@ -77,33 +96,6 @@ a fact. Treat it as the former.
 :::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
-
-## Context files: writing down the "why"
-
-The gaps you just found are exactly what **project context files** exist to fill.
-Claude Code reads `CLAUDE.md` from your project root at the start of every session;
-Copilot reads `.github/copilot-instructions.md`; a cross-tool convention, `AGENTS.md`,
-is emerging. Think of it as a README for the agent:
-
-```markdown
-## Project structure
-- Analysis pipelines live in `src/pipelines/`; each mirrors a notebook in `notebooks/`
-- Raw data in `data/raw/` is read-only — NEVER modify it; derived data goes to `data/processed/`
-
-## Conventions
-- Run tests with `pytest tests/` after changes; don't commit with failing tests
-- Use type hints; don't add dependencies without asking
-
-## Safety
-- Never force-push; never commit directly to main
-- The `results/` directory is generated — edit the code, not the outputs
-```
-
-Keep it short and operational (aim well under 300 lines): it is injected into every
-session, so everything in it competes for the model's attention with the actual task.
-If a linter can enforce a rule deterministically, use the linter and save the context
-budget. And remember from the words-of-caution episode: context files are advisory — back
-safety-critical rules with hooks or deny rules.
 
 ## Entry point 2: a blank page
 
@@ -148,6 +140,36 @@ the verification episode applies to designs too: if you can't explain it, you do
 own it yet.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Ready to begin: write the context file
+
+Both entry points converge here. Exploring surfaced gaps — the *why*, the
+conventions, what the data means — that live only in your head; designing produced
+specs that live only in a chat transcript. Before the first real feature, capture
+both in a **project context file**.
+Claude Code reads `CLAUDE.md` from your project root at the start of every session;
+Copilot reads `.github/copilot-instructions.md`; a cross-tool convention, `AGENTS.md`,
+is emerging. Think of it as a README for the agent:
+
+```markdown
+## Project structure
+- Analysis pipelines live in `src/pipelines/`; each mirrors a notebook in `notebooks/`
+- Raw data in `data/raw/` is read-only — NEVER modify it; derived data goes to `data/processed/`
+
+## Conventions
+- Run tests with `pytest tests/` after changes; don't commit with failing tests
+- Use type hints; don't add dependencies without asking
+
+## Safety
+- Never force-push; never commit directly to main
+- The `results/` directory is generated — edit the code, not the outputs
+```
+
+Keep it short and operational (aim well under 300 lines): it is injected into every
+session, so everything in it competes for the model's attention with the actual task.
+If a linter can enforce a rule deterministically, use the linter and save the context
+budget. And remember from the words-of-caution episode: context files are advisory — back
+safety-critical rules with hooks or deny rules.
 
 ## The same task at three autonomy levels
 

@@ -107,7 +107,23 @@ the agent genuinely needs an external system.
 ## Exercise: Write your workflow contract (6 minutes)
 
 Add a short "Workflow" section to a project context file (or draft one in a scratch
-file) — three to five rules that make your chosen pattern explicit. For example:
+file) — three to five rules that make your chosen pattern explicit.
+
+:::::::::::::::: group-tab
+
+### Claude Code
+
+The file is `CLAUDE.md` at the repository root — create it if the project doesn't
+have one yet.
+
+### GitHub Copilot
+
+The file is `.github/copilot-instructions.md`. (The emerging cross-tool convention
+`AGENTS.md` also works in tools that support it.)
+
+::::::::::::::::::::::::
+
+For example:
 
 ```markdown
 ## Workflow
