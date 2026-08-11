@@ -78,8 +78,8 @@ summarizing and triaging issues, drafting release notes and changelogs from the
 commit history, dependency-update PRs, doc-freshness sweeps, and a first-pass review
 of incoming PRs ("what does this change, and what should a human look hardest at?").
 The human still owns the merge button — an agent's review is a *brief* for your
-judgment, not a substitute (incoming PRs are untrusted input, and prompt
-injection via PR content is a real pattern — the next episode, on trust, digs in).
+judgment, not a substitute (remember the trust episode: incoming PRs are
+untrusted input, and prompt injection via PR content is a real pattern).
 
 ## Codifying workflows: skills, hooks, and MCP
 
@@ -95,8 +95,8 @@ once instead of re-prompting it forever:
   (run the linter, block writes to `data/raw/`).
 - **MCP (Model Context Protocol)** — connects the agent to external systems: your
   issue tracker, a database, a lab notebook. Each connection widens what the agent
-  can touch, so grant minimum access
-  and treat what flows back through it as untrusted input (more in the next episode).
+  can touch, so apply the trust episode's lens before wiring
+  one in: minimum access, and treat what flows back through it as untrusted input.
 
 A sensible progression: context file first, skills when you catch yourself repeating
 instructions, hooks when a rule needs enforcement rather than encouragement, MCP when
