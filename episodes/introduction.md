@@ -54,6 +54,23 @@ encounter:
 | OpenCode         | CLI                             | Open source; works with several free models — a good bring-your-own-agent option |
 | Amazon Q / Gemini Code Assist / GitLab Duo | IDE + cloud consoles | Deep integration with their respective platforms |
 
+### Open source: increasingly a real option
+
+Most of the table above is commercial services, but that's no longer the whole
+picture. Open-weight models (Llama, Qwen, DeepSeek, Mistral, and others) have become
+genuinely capable at coding, and open-source agent harnesses like OpenCode can drive
+them — including **fully locally** via runtimes like Ollama, where your code never
+leaves your machine. No subscription plus maximal data privacy makes this an
+increasingly credible route for research groups, and it's improving every month.
+
+The trade-offs to know: frontier commercial models still lead on long, multi-step
+agentic work; smaller local models hallucinate more (including inventing package
+names, which matters more than you'd think); and local inference needs real hardware.
+And "open" brings its own trust questions — model weights are downloads from the
+internet, and both the *files* and the *behavior* of a model can be tampered with. We
+cover those risks and their mitigations (provenance, safe formats, reviewing output)
+in the [trust episode](trust.md).
+
 Don't memorize this table — it will be out of date within months. What is stable is the
 **spectrum of autonomy** these tools occupy:
 
