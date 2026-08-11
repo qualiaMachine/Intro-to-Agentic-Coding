@@ -260,7 +260,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="recon.html">3. Reconnaissance: Read Before You Write</a>
+        <a href="trust.html">3. Trust: Packages, Models, and Providers</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -272,7 +272,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="specification.html">4. Underspecification and Feature-Driven Development</a>
+        <a href="early-project-planning.html">4. Early Project Planning</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -284,7 +284,7 @@
 <div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
-        <a href="verification-and-review.html">5. Verification and Review: No Escaping Good Data Science</a>
+        <a href="specification.html">5. Underspecification and Feature-Driven Development</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -296,7 +296,7 @@
 <div class="accordion accordion-flush" id="accordionFlush7">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading7">
-        <a href="documentation.html">6. Documentation: Notes to Your Future Self (and Your Agent)</a>
+        <a href="verification-and-review.html">6. Verification and Review: No Escaping Good Data Science</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -308,7 +308,7 @@
 <div class="accordion accordion-flush" id="accordionFlush8">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading8">
-        <a href="trust.html">7. Trust: Packages, Models, and Providers</a>
+        <a href="documentation.html">7. Documentation: Notes to Your Future Self (and Your Agent)</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -320,7 +320,7 @@
 <div class="accordion accordion-flush" id="accordionFlush9">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading9">
-        <a href="cost-context-energy.html">8. Cost, Context, and Energy</a>
+        <a href="common-workflows.html">8. Common Workflows</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -332,7 +332,19 @@
 <div class="accordion accordion-flush" id="accordionFlush10">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading10">
-        <a href="research-and-outlook.html">9. What the Research Shows, and Where This Leaves Us</a>
+        <a href="cost-context-energy.html">9. Cost, Context, and Energy</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush11">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading11">
+        <a href="research-and-outlook.html">10. What the Research Shows, and Where This Leaves Us</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -925,10 +937,10 @@ machines.</strong></p>
 </div>
 </div>
 </div>
-<p>Policies tell you what <em>you</em> may send to a provider. Later in
-the lesson, the trust episode turns the question around: how much should
-you trust the provider — and the packages and models your agent pulls in
-along the way?</p>
+<p>Policies tell you what <em>you</em> may send to a provider. The next
+episode turns the question around: how much should you trust the
+provider — and the packages and models your agent pulls in along the
+way?</p>
 <div id="exercise-sweep-your-workspace-5-minutes" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -967,7 +979,7 @@ git history — rotating it is the fix, deleting the file is not.</li>
   What people typically find
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Almost everyone finds something: a forgotten <code>.env</code>, a
 token pasted into a notebook cell, an old <code>credentials.json</code>
@@ -1017,946 +1029,6 @@ guarantees; prompt injection is a real attack surface.</li>
 mistakes cheap to undo.</li>
 <li>Institutional data policies apply unchanged: restricted data stays
 away from unvetted AI services.</li>
-</ul>
-</div>
-</div>
-</div>
-<!--
-Place links that you need to refer to multiple times across pages here. Delete
-any links that you are not going to use.
- -->
-</section></section><section id="aio-recon"><p>Content from <a href="recon.html">Reconnaissance: Read Before You Write</a></p>
-<hr>
-<p>Last updated on 2026-08-11 |
-
-        <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/recon.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<div class="text-end">
-          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
-        </div>
-<div class="overview card">
-<h2 class="card-header">Overview</h2>
-<div class="row g-0">
-<div class="col-md-4">
-<div class="card-body">
-<div class="inner">
-<h3 class="card-title">Questions</h3>
-<ul>
-<li>What can an agent infer about a codebase on its own — and what can’t
-it?</li>
-<li>What is plan mode / read-only exploration, and when should I use
-it?</li>
-<li>Why do project context files (like <code>CLAUDE.md</code>)
-exist?</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="col-md-8">
-<div class="card-body">
-<div class="inner bordered">
-<h3 class="card-title">Objectives</h3>
-<ul>
-<li>Use an agent in a read-only/plan mode to survey an unfamiliar
-repository.</li>
-<li>Identify the kinds of knowledge an agent cannot recover from code
-alone.</li>
-<li>Write a minimal project context file that supplies that missing
-knowledge.</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
-<section><h2 class="section-heading" id="explore-first-then-plan-then-code">Explore first, then plan, then code<a class="anchor" aria-label="anchor" href="#explore-first-then-plan-then-code"></a>
-</h2>
-<hr class="half-width">
-<p>The most common agentic failure mode is letting the agent write code
-before either of you understands the project. Most tools have a
-read-only mode in which the agent reads files and answers questions
-<strong>without making any changes</strong> — in Claude Code it’s
-<em>plan mode</em> (toggle with <kbd>Shift</kbd>+<kbd>Tab</kbd>); in
-GitHub Copilot it’s <em>Ask</em> mode (the mode dropdown in the chat
-panel).</p>
-<p>This is the safest possible first contact with an agent: it can’t
-edit anything, so you can hand it a whole repository and simply ask what
-it sees. It’s also genuinely useful — onboarding onto a colleague’s
-project, returning to your own code from two years ago, or auditing a
-repo before you build on it.</p>
-<div id="exercise-1-recon-8-minutes" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<span class="callout-header">Challenge</span>
-<div id="exercise-1-recon-8-minutes" class="callout-inner">
-<h3 class="callout-title">Exercise 1: Recon (8 minutes)</h3>
-<div class="callout-content">
-<p>Point your agent at the practice repository (see <a href="index.html#setup">setup</a>) — or any real project you have handy — in
-plan/read-only mode, and prompt:</p>
-<blockquote>
-<p>Read this repo and tell me what it’s doing, or attempting to do.</p>
-</blockquote>
-<p>While it works, note:</p>
-<ol style="list-style-type: decimal">
-<li>What did it get right that would have taken you longer to figure out
-by hand?</li>
-<li>What did it state confidently that you can’t actually verify from
-the code alone?</li>
-<li>What did it <em>not</em> mention that you know matters (why the
-project exists, who uses it, what “done” looks like, which parts are
-load-bearing vs. abandoned)?</li>
-</ol>
-</div>
-</div>
-</div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1">
-  Debrief
-  </h4>
-</button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
-<div class="accordion-body">
-<p>Typical pattern: the agent is excellent at <em>what</em> and
-<em>how</em> — structure, dependencies, data flow, what each module
-does. It is blind to <em>why</em> and <em>for whom</em>:</p>
-<ul>
-<li>Why this approach was chosen over the obvious alternative (the
-failed experiments aren’t in the repo).</li>
-<li>Which code is trusted and which is a half-finished experiment — both
-look the same.</li>
-<li>Project conventions that live in your head or your lab’s wiki: how
-to run tests, what never to touch, what the data actually means.</li>
-<li>Anything about the <em>data</em> itself beyond what filenames and
-column names reveal.</li>
-</ul>
-<p>The agent’s summary is a hypothesis about your project, phrased with
-the confidence of a fact. Treat it as the former.</p>
-</div>
-</div>
-</div>
-</div>
-</section><section><h2 class="section-heading" id="context-files-writing-down-the-why">Context files: writing down the “why”<a class="anchor" aria-label="anchor" href="#context-files-writing-down-the-why"></a>
-</h2>
-<hr class="half-width">
-<p>The gaps you just found are exactly what <strong>project context
-files</strong> exist to fill. Claude Code reads <code>CLAUDE.md</code>
-from your project root at the start of every session; Copilot reads
-<code>.github/copilot-instructions.md</code>; a cross-tool convention,
-<code>AGENTS.md</code>, is emerging. Think of it as a README for the
-agent:</p>
-<div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">MARKDOWN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode markdown" tabindex="0"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="fu">## Project structure</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="ss">- </span>Analysis pipelines live in <span class="in">`src/pipelines/`</span>; each mirrors a notebook in <span class="in">`notebooks/`</span></span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a><span class="ss">- </span>Raw data in <span class="in">`data/raw/`</span> is read-only — NEVER modify it; derived data goes to <span class="in">`data/processed/`</span></span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1" aria-label="code-block-1-4"></a></span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1" aria-label="code-block-1-5"></a><span class="fu">## Conventions</span></span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1" aria-label="code-block-1-6"></a><span class="ss">- </span>Run tests with <span class="in">`pytest tests/`</span> after changes; don't commit with failing tests</span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1" aria-label="code-block-1-7"></a><span class="ss">- </span>Use type hints; don't add dependencies without asking</span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1" aria-label="code-block-1-8"></a></span>
-<span id="cb1-9"><a href="#cb1-9" tabindex="-1" aria-label="code-block-1-9"></a><span class="fu">## Safety</span></span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1" aria-label="code-block-1-10"></a><span class="ss">- </span>Never force-push; never commit directly to main</span>
-<span id="cb1-11"><a href="#cb1-11" tabindex="-1" aria-label="code-block-1-11"></a><span class="ss">- </span>The <span class="in">`results/`</span> directory is generated — edit the code, not the outputs</span></code></pre>
-</div>
-<p>Keep it short and operational (aim well under 300 lines): it is
-injected into every session, so everything in it competes for the
-model’s attention with the actual task. If a linter can enforce a rule
-deterministically, use the linter and save the context budget. And
-remember from the last episode: context files are advisory — back
-safety-critical rules with hooks or deny rules.</p>
-</section><section><h2 class="section-heading" id="the-same-task-at-three-autonomy-levels">The same task at three autonomy levels<a class="anchor" aria-label="anchor" href="#the-same-task-at-three-autonomy-levels"></a>
-</h2>
-<hr class="half-width">
-<p>Recall the autonomy spectrum from episode 1. This recon task makes it
-concrete:</p>
-<ul>
-<li>
-<strong>Chat</strong>: you would paste selected files into a browser
-tab and ask. Fast, safe, but the summary only covers what you chose to
-paste — <em>you</em> did the recon.</li>
-<li>
-<strong>Interactive agent</strong>: what you just did. The agent
-explores everything, and you can interrogate it.</li>
-<li>
-<strong>Async agent</strong>: you could file an issue (“document
-this repo”) and get a PR back. Least effort — and the least opportunity
-to notice what the summary got wrong, because you weren’t watching it
-form.</li>
-</ul>
-<p>More autonomy isn’t automatically better. For understanding-type
-tasks, the interactive middle of the spectrum is usually the sweet spot:
-full access for the agent, full visibility for you.</p>
-<div id="keypoints1" class="callout keypoints">
-<div class="callout-square">
-<i class="callout-icon" data-feather="key"></i>
-</div>
-<span class="callout-header">Key Points</span>
-<div class="callout-inner">
-<div class="callout-content">
-<ul>
-<li>Start unfamiliar work in read-only/plan mode: let the agent explore
-before either of you writes code.</li>
-<li>Agents recover <em>what</em> and <em>how</em> from code, but not
-<em>why</em>, <em>for whom</em>, or anything that lives outside the
-repo.</li>
-<li>Project context files (<code>CLAUDE.md</code>,
-<code>copilot-instructions.md</code>, <code>AGENTS.md</code>) exist to
-write down that missing knowledge — keep them short, operational, and
-advisory-aware.</li>
-<li>An agent’s confident summary of your project is a hypothesis to
-verify, not a fact.</li>
-</ul>
-</div>
-</div>
-</div>
-<!--
-Place links that you need to refer to multiple times across pages here. Delete
-any links that you are not going to use.
- -->
-</section></section><section id="aio-specification"><p>Content from <a href="specification.html">Underspecification and Feature-Driven Development</a></p>
-<hr>
-<p>Last updated on 2026-08-11 |
-
-        <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/specification.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<div class="text-end">
-          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
-        </div>
-<div class="overview card">
-<h2 class="card-header">Overview</h2>
-<div class="row g-0">
-<div class="col-md-4">
-<div class="card-body">
-<div class="inner">
-<h3 class="card-title">Questions</h3>
-<ul>
-<li>What actually happens when I give an agent a vague request?</li>
-<li>Why should I work feature by feature instead of asking for whole
-projects?</li>
-<li>What does a good prompt look like for research code?</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="col-md-8">
-<div class="card-body">
-<div class="inner bordered">
-<h3 class="card-title">Objectives</h3>
-<ul>
-<li>Predict how an agent fills gaps in an underspecified request.</li>
-<li>Decompose project-sized goals into feature-sized, verifiable
-tasks.</li>
-<li>Write prompts that specify intent, constraints, and how to check the
-result.</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
-<section><h2 class="section-heading" id="not-a-mind-reader-but-not-a-dice-roll-either">Not a mind reader — but not a dice roll either<a class="anchor" aria-label="anchor" href="#not-a-mind-reader-but-not-a-dice-roll-either"></a>
-</h2>
-<hr class="half-width">
-<p>When your request is ambiguous, the agent doesn’t fail and it doesn’t
-guess randomly. It does something more subtle and more dangerous:
-<strong>it produces a good guess about the average case</strong>. It
-fills every gap in your specification with the most statistically
-typical choice from its training data — the most common file layout, the
-default hyperparameters, the standard preprocessing for data that looks
-like yours.</p>
-<p>That’s why underspecified requests so often produce code that
-<em>runs</em> and <em>looks reasonable</em>: average-case answers
-usually do. The problem is that your research is rarely the average
-case. Your data has that one weird instrument artifact. Your field has a
-convention the average GitHub repo doesn’t follow. Your “duplicate rows”
-are actually repeated measures. Every unstated assumption gets resolved
-in favor of someone else’s typical project — silently.</p>
-<p>Two consequences:</p>
-<ol style="list-style-type: decimal">
-<li>
-<strong>Precision in, precision out.</strong> The specification work
-you’d have to do for a colleague doesn’t disappear; it moves into the
-prompt.</li>
-<li>
-<strong>The failure mode is plausible-but-wrong</strong>, not
-obviously-broken. Which is why the next episode, on verification, is the
-heart of this lesson.</li>
-</ol></section><section><h2 class="section-heading" id="think-in-features-not-projects">Think in features, not projects<a class="anchor" aria-label="anchor" href="#think-in-features-not-projects"></a>
-</h2>
-<hr class="half-width">
-<p>Agents work best on clear, well-scoped requests. “Build me a
-dashboard for my experiment” forces the agent to invent dozens of
-decisions you never made. Instead, work the way good software teams
-already do — <strong>one feature at a time</strong>:</p>
-<ul>
-<li>“Add a function <code>load_trials()</code> in <code>src/io.py</code>
-that reads every CSV in <code>data/raw/</code>, concatenates them, and
-raises <code>ValueError</code> if expected columns are missing.”</li>
-<li>“Write a pytest fixture that builds a 20-row synthetic version of
-our trial data.”</li>
-<li>“Refactor <code>process_data</code> in <code>pipeline.py</code> to
-handle input with missing columns.”</li>
-</ul>
-<p>Each is a single, verifiable step. Small scope also means small diffs
-— which means you can actually review them, keeping you in the driver’s
-seat. A vague project-sized prompt doesn’t just produce worse code; it
-produces a diff too large to meaningfully review, at which point you’ve
-silently handed over the wheel.</p>
-</section><section><h2 class="section-heading" id="anatomy-of-a-better-prompt">Anatomy of a better prompt<a class="anchor" aria-label="anchor" href="#anatomy-of-a-better-prompt"></a>
-</h2>
-<hr class="half-width">
-<p>From the workshop slides — the same request at two levels of
-specification:</p>
-<p><strong>Bad prompt:</strong></p>
-<blockquote>
-<p>Fix this spaghetti code.</p>
-</blockquote>
-<p><strong>Better prompt:</strong></p>
-<blockquote>
-<p>Update this SQL to use CTEs and window functions to improve
-performance and legibility. Retain all existing in-line comments. Add
-comments to explain functionality for each step.</p>
-</blockquote>
-<p>The better prompt names the <em>technique</em> (CTEs, window
-functions), the <em>goals</em> (performance, legibility), and a
-<em>constraint</em> the agent could not have inferred (keep the existing
-comments). Notice what “fix” would have left to the average case: the
-agent would have to invent what “fixed” means.</p>
-<p>A useful checklist for research-code prompts — specify:</p>
-<ul>
-<li>
-<strong>Where</strong>: which files/functions to touch (and,
-implicitly, which to leave alone).</li>
-<li>
-<strong>What</strong>: the behavior you want, including edge cases
-you know about.</li>
-<li>
-<strong>Constraints</strong>: conventions, dependencies allowed,
-things to preserve.</li>
-<li>
-<strong>Verification</strong>: how the agent should check its own
-work — “run the tests,” “confirm the row count is unchanged,” “print the
-class balance before and after.”</li>
-</ul>
-<p>That last item is the bridge to the next episode: a prompt that
-includes its own check is worth two that don’t.</p>
-<div id="exercise-2-prompt-engineering-10-minutes" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<span class="callout-header">Challenge</span>
-<div id="exercise-2-prompt-engineering-10-minutes" class="callout-inner">
-<h3 class="callout-title">Exercise 2: Prompt engineering (10
-minutes)</h3>
-<div class="callout-content">
-<p>Start from this snippet in a fresh script or notebook:</p>
-<div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="co"># 1. Import modules and dataset</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a><span class="im">from</span> sklearn <span class="im">import</span> datasets</span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1" aria-label="code-block-1-4"></a></span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1" aria-label="code-block-1-5"></a>cancer <span class="op">=</span> datasets.load_breast_cancer()</span></code></pre>
-</div>
-<ol style="list-style-type: decimal">
-<li><p>Give your agent a deliberately <strong>bad</strong> prompt,
-e.g. “analyze this data” or “build a model.”</p></li>
-<li>
-<p>In a fresh session (<code>/clear</code> in Claude Code, a new
-chat in Copilot — you’ll see why in the cost episode), give a
-<strong>better</strong> prompt. Specify the target and features, the
-split, the model family, the metric, and at least one verification step,
-e.g.:</p>
-<blockquote>
-<p>Using the already-loaded <code>cancer</code> dataset, build a
-train/test split (80/20, stratified, random_state=42), fit a logistic
-regression on standardized features, and report test-set accuracy and a
-confusion matrix. Before modeling, print class balance and check for
-missing values. Don’t add other models or plots.</p>
-</blockquote>
-</li>
-<li><p>Compare: What decisions did the bad-prompt run make for you
-without telling you? Did it hold out a test set at all? Did it look at
-the data before modeling?</p></li>
-</ol>
-</div>
-</div>
-</div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1">
-  What people typically observe
-  </h4>
-</button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
-<div class="accordion-body">
-<p>The bad prompt usually yields <em>something impressive-looking</em> —
-often a full modeling pipeline with choices you never made: an arbitrary
-model, no stratification, maybe no held-out evaluation, rarely any
-actual data exploration. It’s not wrong so much as
-<em>unaccountable</em>: you can’t defend any of its decisions because
-you didn’t make them.</p>
-<p>The better prompt yields less code doing exactly what you asked, plus
-the printed checks that let you believe it. The difference isn’t
-intelligence — it’s that you did the thinking that can’t be
-delegated.</p>
-</div>
-</div>
-</div>
-</div>
-<div id="keypoints1" class="callout keypoints">
-<div class="callout-square">
-<i class="callout-icon" data-feather="key"></i>
-</div>
-<span class="callout-header">Key Points</span>
-<div class="callout-inner">
-<div class="callout-content">
-<ul>
-<li>Underspecified prompts get average-case answers; your data and your
-research are rarely the average case.</li>
-<li>The failure mode is plausible-but-wrong code, which is far more
-dangerous than broken code.</li>
-<li>Work feature by feature: small, well-specified tasks produce
-reviewable diffs and keep you in the driver’s seat.</li>
-<li>Good prompts specify where, what, constraints, and — most
-importantly — how to verify the result.</li>
-</ul>
-</div>
-</div>
-</div>
-<!--
-Place links that you need to refer to multiple times across pages here. Delete
-any links that you are not going to use.
- -->
-</section></section><section id="aio-verification-and-review"><p>Content from <a href="verification-and-review.html">Verification and Review: No Escaping Good Data Science</a></p>
-<hr>
-<p>Last updated on 2026-08-11 |
-
-        <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/verification-and-review.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<div class="text-end">
-          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
-        </div>
-<div class="overview card">
-<h2 class="card-header">Overview</h2>
-<div class="row g-0">
-<div class="col-md-4">
-<div class="card-body">
-<div class="inner">
-<h3 class="card-title">Questions</h3>
-<ul>
-<li>Why isn’t “the code runs and the score is high” enough?</li>
-<li>What does verification look like when an agent wrote the code?</li>
-<li>How much checking is enough, and when can I relax?</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="col-md-8">
-<div class="card-body">
-<div class="inner bordered">
-<h3 class="card-title">Objectives</h3>
-<ul>
-<li>Apply established data science verification practices (know your
-data, compare to a source of truth, ask a colleague) to agent-generated
-analyses.</li>
-<li>Detect a data leakage bug in code that runs cleanly and scores
-well.</li>
-<li>Give an agent an executable way to check its own work, including
-tests that encode data properties.</li>
-<li>Choose a verification tier proportional to the stakes of the
-result.</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
-<section><h2 class="section-heading" id="established-practice-comes-first">Established practice comes first<a class="anchor" aria-label="anchor" href="#established-practice-comes-first"></a>
-</h2>
-<hr class="half-width">
-<p>Before AI enters the picture, research computing already had an
-answer to “how do I know this analysis is right?”:</p>
-<ul>
-<li>
-<strong>Know your data.</strong> Explore it before modeling it. Plot
-distributions. Find the outliers and decide what they are. Know your
-features — units, ranges, missingness, how they were collected. Check
-class balance. Look at actual rows.</li>
-<li>
-<strong>Compare to a source of truth.</strong> A published baseline,
-a hand-computed subset, a simpler method you trust, a positive and
-negative control.</li>
-<li>
-<strong>Ask a colleague.</strong> Code review and “does this number
-seem plausible to you?” catch what self-review misses.</li>
-<li>
-<strong>Know what your models are telling you.</strong> Inspect
-coefficients or feature importances; if the strongest predictor makes no
-scientific sense, that’s a finding about your pipeline, not about
-nature.</li>
-</ul>
-<p>None of this changed. <strong>There is no escaping good data science
-practice</strong> — the agent didn’t absorb these responsibilities when
-it took over the typing. What changed is speed: you can now generate a
-plausible, clean-running, well-scoring analysis in minutes. Iteration is
-easier and results come faster — which also means you can be
-<em>misled</em> faster. Your skepticism has to keep up with the
-pace.</p>
-</section><section><h2 class="section-heading" id="worked-example-leakage-that-scores-great">Worked example: leakage that scores great<a class="anchor" aria-label="anchor" href="#worked-example-leakage-that-scores-great"></a>
-</h2>
-<hr class="half-width">
-<p>Data leakage is the perfect case study because it produces code that
-runs clean, scores great, and is wrong. Ask an underspecified agent for
-“a model with good accuracy on this dataset” and you may get something
-like:</p>
-<div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="im">from</span> sklearn <span class="im">import</span> datasets</span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1" aria-label="code-block-1-4"></a><span class="im">from</span> sklearn.feature_selection <span class="im">import</span> SelectKBest, f_classif</span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1" aria-label="code-block-1-5"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1" aria-label="code-block-1-6"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1" aria-label="code-block-1-7"></a></span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1" aria-label="code-block-1-8"></a>X, y <span class="op">=</span> datasets.load_breast_cancer(return_X_y<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" tabindex="-1" aria-label="code-block-1-9"></a></span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1" aria-label="code-block-1-10"></a><span class="co"># Standardize and select the 10 best features</span></span>
-<span id="cb1-11"><a href="#cb1-11" tabindex="-1" aria-label="code-block-1-11"></a>X <span class="op">=</span> StandardScaler().fit_transform(X)          <span class="co"># fit on ALL data</span></span>
-<span id="cb1-12"><a href="#cb1-12" tabindex="-1" aria-label="code-block-1-12"></a>X <span class="op">=</span> SelectKBest(f_classif, k<span class="op">=</span><span class="dv">10</span>).fit_transform(X, y)   <span class="co"># selected using ALL labels</span></span>
-<span id="cb1-13"><a href="#cb1-13" tabindex="-1" aria-label="code-block-1-13"></a></span>
-<span id="cb1-14"><a href="#cb1-14" tabindex="-1" aria-label="code-block-1-14"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
-<span id="cb1-15"><a href="#cb1-15" tabindex="-1" aria-label="code-block-1-15"></a>    X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb1-16"><a href="#cb1-16" tabindex="-1" aria-label="code-block-1-16"></a></span>
-<span id="cb1-17"><a href="#cb1-17" tabindex="-1" aria-label="code-block-1-17"></a>model <span class="op">=</span> LogisticRegression(max_iter<span class="op">=</span><span class="dv">5000</span>).fit(X_train, y_train)</span>
-<span id="cb1-18"><a href="#cb1-18" tabindex="-1" aria-label="code-block-1-18"></a><span class="bu">print</span>(<span class="ss">f"Test accuracy: </span><span class="sc">{</span>model<span class="sc">.</span>score(X_test, y_test)<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre>
-</div>
-<p>No errors. No warnings. A high score. And the evaluation is
-contaminated: the scaler and — much worse — the feature selector were
-fit on the <em>entire</em> dataset, labels included, before the split.
-The “held-out” test set helped choose the features it is now being used
-to evaluate. On this dataset the inflation is modest; with wide data
-(genomics, imaging radiomics, any p ≫ n problem) this exact bug can turn
-noise into a publishable-looking result.</p>
-<p>The fix is structural, not cosmetic: split first, and fit every
-preprocessing step on training data only (in scikit-learn, put the
-scaler and selector in a <code>Pipeline</code> so cross-validation
-refits them per fold).</p>
-<div id="why-agents-are-prone-to-this-and-why-you-might-not-catch-it" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<span class="callout-header">Callout</span>
-<div id="why-agents-are-prone-to-this-and-why-you-might-not-catch-it" class="callout-inner">
-<h3 class="callout-title">Why agents are prone to this — and why you
-might not catch it</h3>
-<div class="callout-content">
-<p>Leakage-style bugs are exactly the <em>plausible average case</em>
-failure from the previous episode: the code pattern appears all over
-training data (and all over real notebooks), and nothing about it looks
-wrong. The agent optimizes for “task apparently completed” — clean run,
-high score — and both boxes are checked. If your review process is also
-“does it run? is the score good?”, you and the agent share the same
-blind spot.</p>
-<p>Assume nothing; verify everything. A surprisingly <em>good</em>
-result deserves the same suspicion as a surprisingly bad one — arguably
-more, because you’re motivated to believe it.</p>
-</div>
-</div>
-</div>
-</section><section><h2 class="section-heading" id="give-the-agent-a-way-to-check-itself">Give the agent a way to check itself<a class="anchor" aria-label="anchor" href="#give-the-agent-a-way-to-check-itself"></a>
-</h2>
-<hr class="half-width">
-<p>The single highest-leverage practice in agentic coding: <strong>make
-verification executable</strong>. Agents perform dramatically better
-when they can check their own output — run tests, compare against known
-values, validate properties — instead of relying on you as the only
-feedback loop.</p>
-<ul>
-<li>Include test cases in the prompt: “Write
-<code>validate_email</code>. Cases:
-<code>user@example.com → True</code>, <code>invalid → False</code>,
-<code>user@.com → False</code>. Run the tests.”</li>
-<li>Point at symptoms, not just fixes: “The build fails with this error:
-[paste]. Fix the root cause and verify the build succeeds — don’t
-suppress the error.”</li>
-<li>For analyses, demand printed evidence: row counts before/after
-joins, class balance, train/test overlap checks, a baseline model’s
-score next to the fancy one.</li>
-</ul>
-<p>The more trustworthy your test suite and checks, the more autonomy
-you can safely grant. This is the exchange rate at the center of agentic
-coding: <strong>autonomy is purchased with verification.</strong></p>
-</section><section><h2 class="section-heading" id="tests-are-cheap-now-write-more-of-them">Tests are cheap now — write more of them<a class="anchor" aria-label="anchor" href="#tests-are-cheap-now-write-more-of-them"></a>
-</h2>
-<hr class="half-width">
-<p>Here’s the flip side, and it’s good news: the same tool that makes it
-easy to generate questionable analyses makes it <em>dramatically</em>
-cheaper to build the verification that catches them. Test suites used to
-be rationed because writing them was tedious; that constraint is gone.
-Use the agent to validate, validate, validate:</p>
-<ul>
-<li>
-<strong>Ask for tests alongside every feature</strong> — edge cases,
-failure modes, the inputs you know are weird (“write tests covering
-empty input, all-NaN columns, and a single-row DataFrame”).</li>
-<li>
-<strong>Ask for data-validation tests</strong> on your actual
-dataset: expected columns and dtypes, value ranges, uniqueness of IDs,
-row counts across merges — the executable version of “know your
-data.”</li>
-<li>
-<strong>Ask it to probe its own work</strong>: “what inputs would
-break this function? Write tests for them.”</li>
-</ul>
-<p>One trap to avoid: an agent asked to “add tests” for existing code
-will often write tests that simply <em>assert whatever the code
-currently does</em> — enshrining bugs rather than catching them. That’s
-why Exercise 3 had you write the contract first. The division of labor
-that works: <strong>you decide what must be true</strong> (the
-properties, the invariants, the known answers); <strong>the agent does
-the tedious part</strong> (fixtures, parametrization, the fifteen
-edge-case variants). Review tests with the same care as implementations
-— they are the specification everything else gets checked against.</p>
-</section><section><h2 class="section-heading" id="how-much-verification-is-enough">How much verification is enough?<a class="anchor" aria-label="anchor" href="#how-much-verification-is-enough"></a>
-</h2>
-<hr class="half-width">
-<p>Scale it to the stakes:</p>
-<table class="table">
-<colgroup>
-<col width="16%">
-<col width="24%">
-<col width="59%">
-</colgroup>
-<thead><tr>
-<th>Tier</th>
-<th>Example</th>
-<th>Minimum verification</th>
-</tr></thead>
-<tbody>
-<tr>
-<td>Throwaway</td>
-<td>one-off plot, scratch script</td>
-<td>Read the diff; eyeball the output</td>
-</tr>
-<tr>
-<td>Working code</td>
-<td>lab-internal pipeline, reusable utils</td>
-<td>Tests pass; you review the diff; data-property checks printed</td>
-</tr>
-<tr>
-<td>Load-bearing</td>
-<td>results in a paper, shared package, anything cited</td>
-<td>All of the above + comparison to a source of truth + a second
-human</td>
-</tr>
-</tbody>
-</table>
-<p>The mistake isn’t choosing a low tier — it’s choosing it
-<em>implicitly</em>. Decide what tier a task is before you start, and
-you’ll know when you’re done checking.</p>
-<div id="exercise-3-test-as-contract-10-minutes" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<span class="callout-header">Challenge</span>
-<div id="exercise-3-test-as-contract-10-minutes" class="callout-inner">
-<h3 class="callout-title">Exercise 3: Test as contract (10 minutes)</h3>
-<div class="callout-content">
-<p>Instead of hoping the agent avoids leakage, encode the requirement as
-a test it must satisfy. Write <strong>one pytest test that encodes a
-property your data or pipeline must satisfy</strong>, then ask the agent
-to make it pass. For example:</p>
-<div class="codewrapper sourceCode" id="cb2">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="kw">def</span> test_no_leakage_in_pipeline():</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a>    <span class="co">"""Preprocessing must be fit on training data only."""</span></span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1" aria-label="code-block-2-3"></a>    <span class="im">from</span> analysis <span class="im">import</span> build_pipeline, load_data</span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1" aria-label="code-block-2-4"></a>    X, y <span class="op">=</span> load_data()</span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1" aria-label="code-block-2-5"></a>    <span class="co"># A leakage-free pipeline's CV score should be computable end-to-end:</span></span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1" aria-label="code-block-2-6"></a>    <span class="co"># the pipeline object must contain ALL preprocessing steps.</span></span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1" aria-label="code-block-2-7"></a>    <span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score</span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1" aria-label="code-block-2-8"></a>    pipe <span class="op">=</span> build_pipeline()</span>
-<span id="cb2-9"><a href="#cb2-9" tabindex="-1" aria-label="code-block-2-9"></a>    step_names <span class="op">=</span> [name <span class="cf">for</span> name, _ <span class="kw">in</span> pipe.steps]</span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1" aria-label="code-block-2-10"></a>    <span class="cf">assert</span> <span class="st">"scaler"</span> <span class="kw">in</span> step_names <span class="kw">and</span> <span class="st">"select"</span> <span class="kw">in</span> step_names, <span class="op">\</span></span>
-<span id="cb2-11"><a href="#cb2-11" tabindex="-1" aria-label="code-block-2-11"></a>        <span class="st">"preprocessing must live inside the pipeline, not outside it"</span></span>
-<span id="cb2-12"><a href="#cb2-12" tabindex="-1" aria-label="code-block-2-12"></a>    scores <span class="op">=</span> cross_val_score(pipe, X, y, cv<span class="op">=</span><span class="dv">5</span>)</span>
-<span id="cb2-13"><a href="#cb2-13" tabindex="-1" aria-label="code-block-2-13"></a>    <span class="cf">assert</span> scores.mean() <span class="op">&gt;</span> <span class="fl">0.9</span></span></code></pre>
-</div>
-<p>Then prompt: <em>“Create <code>analysis.py</code> with
-<code>load_data()</code> and <code>build_pipeline()</code> so that
-<code>pytest test_analysis.py</code> passes. Run the tests to
-confirm.”</em></p>
-<p>Other properties worth encoding, depending on your data: no
-identifier appears in both train and test; feature X is always
-non-negative; row count survives the merge; the model beats a
-majority-class baseline.</p>
-</div>
-</div>
-</div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1">
-  Why this works
-  </h4>
-</button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
-<div class="accordion-body">
-<p>You’ve turned an invisible methodological requirement into an
-executable contract. The agent now has a feedback loop that fails loudly
-when it reaches for the average-case (leaky) pattern — and you have an
-artifact that keeps protecting you on every future change, whether the
-next edit comes from an agent, a labmate, or you in six months.</p>
-<p>Note what you did <em>not</em> have to do: trust the agent, or read
-its mind. The test is the specification.</p>
-</div>
-</div>
-</div>
-</div>
-<div id="keypoints1" class="callout keypoints">
-<div class="callout-square">
-<i class="callout-icon" data-feather="key"></i>
-</div>
-<span class="callout-header">Key Points</span>
-<div class="callout-inner">
-<div class="callout-content">
-<ul>
-<li>Established practice still rules: explore your data, know your
-features and distributions, compare to a source of truth, know what your
-model is telling you.</li>
-<li>Faster iteration means faster results <em>and</em> faster misleading
-— clean runs and great scores are not evidence of correctness.</li>
-<li>Leakage is the canonical agentic failure: plausible, silent, and
-flattering. Split first; fit preprocessing on training data only; be
-suspicious of good news.</li>
-<li>Make verification executable — tests, printed checks, baselines —
-because autonomy is purchased with verification.</li>
-<li>Agents make tests cheap: ask for them with every feature and for
-your data’s properties. You define what must be true; the agent writes
-the tedious parts; you review tests like implementations.</li>
-<li>Choose your verification tier (throwaway / working / load-bearing)
-explicitly, before you start.</li>
-</ul>
-</div>
-</div>
-</div>
-<!--
-Place links that you need to refer to multiple times across pages here. Delete
-any links that you are not going to use.
- -->
-</section></section><section id="aio-documentation"><p>Content from <a href="documentation.html">Documentation: Notes to Your Future Self (and Your Agent)</a></p>
-<hr>
-<p>Last updated on 2026-08-10 |
-
-        <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/documentation.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<div class="text-end">
-          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
-        </div>
-<div class="overview card">
-<h2 class="card-header">Overview</h2>
-<div class="row g-0">
-<div class="col-md-4">
-<div class="card-body">
-<div class="inner">
-<h3 class="card-title">Questions</h3>
-<ul>
-<li>Why is documentation one of the best uses of agentic coding?</li>
-<li>How does documentation feed back into agent performance?</li>
-<li>Can asking an agent to explain code actually help verify it?</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="col-md-8">
-<div class="card-body">
-<div class="inner bordered">
-<h3 class="card-title">Objectives</h3>
-<ul>
-<li>Use an agent to produce and maintain documentation: docstrings,
-comments, READMEs, and narrated notebooks.</li>
-<li>Explain how documentation doubles as persistent context that
-improves future agent (and human) sessions.</li>
-<li>Use “explain this code” as a verification technique, treating
-doc/code mismatches as bug reports.</li>
-<li>Review generated documentation with the same skepticism as generated
-code.</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
-<section><h2 class="section-heading" id="the-chore-that-stopped-being-a-chore">The chore that stopped being a chore<a class="anchor" aria-label="anchor" href="#the-chore-that-stopped-being-a-chore"></a>
-</h2>
-<hr class="half-width">
-<p>Research code is famously under-documented, and the reason was never
-that anyone doubted documentation’s value. It was cost: after the
-analysis finally works, writing up docstrings and updating the README is
-exactly the tedious, low-glamour work that loses to the next experiment.
-Agents change that economics completely — documentation is the task they
-are <em>best</em> suited to, because the source of truth (the code) is
-right there in context, and because you can review a paragraph of
-English far faster than you can review an implementation.</p>
-<p>Make it a habit to ask for documentation as part of every task, or as
-a cleanup pass:</p>
-<ul>
-<li>
-<strong>Docstrings</strong>: “Add NumPy-style docstrings to every
-public function in <code>src/io.py</code>, including parameter types and
-the exceptions raised.”</li>
-<li>
-<strong>Comments where they matter</strong>: “Add comments
-explaining <em>why</em> the outlier threshold is 3.5 here” — not
-line-by-line narration of <em>what</em> the code does.</li>
-<li>
-<strong>READMEs for your future self</strong>: “Update the README:
-how to set up the environment, run the pipeline end to end, and where
-outputs land. Note the raw data is read-only.”</li>
-<li>
-<strong>Narrated notebooks</strong>: “Add a markdown cell before
-each code cell explaining what it does and why, at a level a new lab
-member could follow.”</li>
-<li>
-<strong>Session notes</strong>: at the end of a work session,
-“summarize what we changed, what’s still broken, and where to pick up” —
-pasted into the README, a <code>NOTES.md</code>, or your lab notebook.
-Your future self is a stranger who will thank you.</li>
-</ul></section><section><h2 class="section-heading" id="documentation-is-context-it-compounds">Documentation is context — it compounds<a class="anchor" aria-label="anchor" href="#documentation-is-context-it-compounds"></a>
-</h2>
-<hr class="half-width">
-<p>Here is what makes this more than good hygiene: <strong>everything
-you document becomes context the agent reads back in later
-sessions.</strong> Remember the recon episode — agents recover
-<em>what</em> and <em>how</em> from code, but not <em>why</em>, <em>for
-whom</em>, or <em>what the data means</em>. Documentation is precisely
-where the “why” gets written down:</p>
-<ul>
-<li>A good README means next month’s session starts with the agent
-already knowing how to run your tests, instead of guessing.</li>
-<li>Docstrings carry intent (“assumes input is sorted by timestamp”)
-that stops the agent from “fixing” deliberate behavior.</li>
-<li>A data dictionary — column meanings, units, known quirks — is the
-difference between an agent that treats <code>-999</code> as a
-measurement and one that knows it’s your missing code.</li>
-</ul>
-<p>In other words, documentation gives LLMs useful added context that
-measurably improves what they produce — the same way it helps a new
-collaborator. Time spent documenting is not a tax on this workflow; it’s
-an investment that pays out on every future session, human or agent.</p>
-</section><section><h2 class="section-heading" id="explaining-as-verification">Explaining as verification<a class="anchor" aria-label="anchor" href="#explaining-as-verification"></a>
-</h2>
-<hr class="half-width">
-<p>There’s a second, subtler payoff: <strong>asking an agent to explain
-or document code is a verification act.</strong> To write an accurate
-docstring, the model has to actually process what the code does — and
-mismatches between the explanation and your intent surface real
-problems:</p>
-<ul>
-<li>Ask for a plain-English explanation of a pipeline you just built (or
-inherited). If the explanation <em>surprises</em> you — “it then drops
-rows with missing labels before the split” — you may have just found a
-bug, or at least an undocumented decision.</li>
-<li>Ask the agent to document a function’s edge-case behavior. “Returns
-0 when the input is empty” is either correct and worth writing down, or
-incorrect and worth fixing — both outcomes are wins.</li>
-<li>In a narrated notebook, a markdown cell that mis-describes its code
-cell is a red flag for <em>you</em> — and, left uncorrected, a trap for
-the next reader. Fix one or the other; never leave them
-disagreeing.</li>
-</ul>
-<p>This is the rubber-duck effect with a duck that talks back. It
-doesn’t replace the tests and checks from the previous episode — an
-explanation can be fluent and wrong — but it’s a cheap extra
-verification layer, and it produces a durable artifact while
-verifying.</p>
-<div id="review-docs-like-code-stale-docs-are-worse-than-none" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<span class="callout-header">Callout</span>
-<div id="review-docs-like-code-stale-docs-are-worse-than-none" class="callout-inner">
-<h3 class="callout-title">Review docs like code — stale docs are worse
-than none</h3>
-<div class="callout-content">
-<p>Generated documentation inherits the plausible-but-wrong failure
-mode: it reads confident, and it can be confidently mistaken. Read it
-before committing. And keep it current — documentation that contradicts
-the code misleads humans <em>and</em> poisons agent context, because
-agents trust what they read. When behavior changes, updating the docs is
-part of the change, not an optional follow-up. (“Update the docstring
-and README to match” is a fine thing to put in the same prompt as the
-change itself.)</p>
-</div>
-</div>
-</div>
-<div id="exercise-document-and-cross-examine-5-minutes" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<span class="callout-header">Challenge</span>
-<div id="exercise-document-and-cross-examine-5-minutes" class="callout-inner">
-<h3 class="callout-title">Exercise: Document and cross-examine (5
-minutes)</h3>
-<div class="callout-content">
-<p>Pick a function or notebook cell you (or an agent) wrote earlier
-today — or any undocumented piece of your own code.</p>
-<ol style="list-style-type: decimal">
-<li>Ask the agent: “Write a docstring for this function, including
-behavior on edge cases (empty input, missing values). Then explain in
-two sentences what this function does and why it might exist.”</li>
-<li>Read the result critically. Does the described behavior match your
-intent? Did it claim an edge-case behavior you never decided on?</li>
-<li>If you find a mismatch, treat it as a bug report: fix the code or
-fix the doc, and say which one you chose and why.</li>
-</ol>
-</div>
-</div>
-</div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1">
-  What people typically find
-  </h4>
-</button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
-<div class="accordion-body">
-<p>Most participants find at least one surprise — usually an edge case
-the code handles by accident rather than by decision (what <em>does</em>
-it return for an empty DataFrame?). That’s the point: the docstring
-forced a decision that writing the code never did. And whichever way you
-resolve it, you leave behind both a checked behavior and a written
-record of it — verification and documentation in one pass.</p>
-</div>
-</div>
-</div>
-</div>
-<div id="keypoints1" class="callout keypoints">
-<div class="callout-square">
-<i class="callout-icon" data-feather="key"></i>
-</div>
-<span class="callout-header">Key Points</span>
-<div class="callout-inner">
-<div class="callout-content">
-<ul>
-<li>Documentation is one of the best uses of agentic coding: the agent
-has the source of truth in context, and English is faster to review than
-code.</li>
-<li>Ask for docstrings, why-comments, README updates, narrated
-notebooks, and end-of-session notes as a routine part of every
-task.</li>
-<li>Documentation compounds: it becomes the context that makes future
-agent sessions (and future you) measurably better.</li>
-<li>Explaining is verifying — a doc/code mismatch is a bug report; a
-surprising explanation is a lead worth chasing.</li>
-<li>Review generated docs like code, and update them with the code:
-stale documentation misleads humans and poisons agent context.</li>
 </ul>
 </div>
 </div>
@@ -2241,7 +1313,7 @@ contract?</li>
   What people typically find
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Almost everyone discovers at least one surprise: a training toggle
 they’d never seen, a retention clause tied to the feedback button, or
@@ -2279,6 +1351,1382 @@ jurisdiction, and whether any institutional agreement covers you.</li>
 <li>Every rule here has a named incident behind it — torchtriton,
 Ultralytics, huggingface-cli, Amazon Q, Replit, DeepSeek, Samsung. None
 required exotic attackers; all required missing skepticism.</li>
+</ul>
+</div>
+</div>
+</div>
+<!--
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use.
+ -->
+</section></section><section id="aio-early-project-planning"><p>Content from <a href="early-project-planning.html">Early Project Planning</a></p>
+<hr>
+<p>Last updated on 2026-08-11 |
+
+        <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/early-project-planning.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>How do I put an agent to work before any code gets written?</li>
+<li>What can an agent infer about an existing project on its own — and
+what can’t it?</li>
+<li>How do I plan a <em>new</em> project with AI without being led
+somewhere I can’t follow?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Use an agent in a read-only/plan mode to survey an unfamiliar
+repository.</li>
+<li>Use chat or plan mode to develop a design for a new project —
+producing documentation and specs, not code.</li>
+<li>Identify the kinds of knowledge an agent cannot recover from code
+alone, and write a minimal project context file that supplies it.</li>
+<li>Evaluate AI design suggestions critically: probe what you don’t
+understand, and don’t build on ideas you can’t defend.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section><h2 class="section-heading" id="plan-first-code-second">Plan first, code second<a class="anchor" aria-label="anchor" href="#plan-first-code-second"></a>
+</h2>
+<hr class="half-width">
+<p>The most common agentic failure mode is letting the agent write code
+before either of you understands the problem. The planning phase — where
+the deliverables are <em>understanding, documentation, and specs</em>,
+not code — is where agents are both safest and most underused. There are
+two entry points, depending on whether a project already exists.</p>
+<p>Most tools have a read-only mode built for exactly this — in Claude
+Code it’s <em>plan mode</em> (toggle with
+<kbd>Shift</kbd>+<kbd>Tab</kbd>); in GitHub Copilot it’s <em>Ask</em>
+mode (the mode dropdown in the chat panel) — in which the agent reads
+files and answers questions <strong>without making any
+changes</strong>.</p>
+</section><section><h2 class="section-heading" id="entry-point-1-an-existing-project">Entry point 1: an existing project<a class="anchor" aria-label="anchor" href="#entry-point-1-an-existing-project"></a>
+</h2>
+<hr class="half-width">
+<p>The safest possible first contact with an agent: it can’t edit
+anything, so you can hand it a whole repository and simply ask what it
+sees. It’s also genuinely useful — onboarding onto a colleague’s
+project, returning to your own code from two years ago, or auditing a
+repo before you build on it.</p>
+<div id="exercise-1-first-look-8-minutes" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="exercise-1-first-look-8-minutes" class="callout-inner">
+<h3 class="callout-title">Exercise 1: First look (8 minutes)</h3>
+<div class="callout-content">
+<p>Point your agent at the practice repository (see <a href="index.html#setup">setup</a>) — or any real project you have handy — in
+plan/read-only mode, and prompt:</p>
+<blockquote>
+<p>Read this repo and tell me what it’s doing, or attempting to do.</p>
+</blockquote>
+<p>While it works, note:</p>
+<ol style="list-style-type: decimal">
+<li>What did it get right that would have taken you longer to figure out
+by hand?</li>
+<li>What did it state confidently that you can’t actually verify from
+the code alone?</li>
+<li>What did it <em>not</em> mention that you know matters (why the
+project exists, who uses it, what “done” looks like, which parts are
+load-bearing vs. abandoned)?</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1">
+  Debrief
+  </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div class="accordion-body">
+<p>Typical pattern: the agent is excellent at <em>what</em> and
+<em>how</em> — structure, dependencies, data flow, what each module
+does. It is blind to <em>why</em> and <em>for whom</em>:</p>
+<ul>
+<li>Why this approach was chosen over the obvious alternative (the
+failed experiments aren’t in the repo).</li>
+<li>Which code is trusted and which is a half-finished experiment — both
+look the same.</li>
+<li>Project conventions that live in your head or your lab’s wiki: how
+to run tests, what never to touch, what the data actually means.</li>
+<li>Anything about the <em>data</em> itself beyond what filenames and
+column names reveal.</li>
+</ul>
+<p>The agent’s summary is a hypothesis about your project, phrased with
+the confidence of a fact. Treat it as the former.</p>
+</div>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="context-files-writing-down-the-why">Context files: writing down the “why”<a class="anchor" aria-label="anchor" href="#context-files-writing-down-the-why"></a>
+</h2>
+<hr class="half-width">
+<p>The gaps you just found are exactly what <strong>project context
+files</strong> exist to fill. Claude Code reads <code>CLAUDE.md</code>
+from your project root at the start of every session; Copilot reads
+<code>.github/copilot-instructions.md</code>; a cross-tool convention,
+<code>AGENTS.md</code>, is emerging. Think of it as a README for the
+agent:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">MARKDOWN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode markdown" tabindex="0"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="fu">## Project structure</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="ss">- </span>Analysis pipelines live in <span class="in">`src/pipelines/`</span>; each mirrors a notebook in <span class="in">`notebooks/`</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a><span class="ss">- </span>Raw data in <span class="in">`data/raw/`</span> is read-only — NEVER modify it; derived data goes to <span class="in">`data/processed/`</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1" aria-label="code-block-1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1" aria-label="code-block-1-5"></a><span class="fu">## Conventions</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1" aria-label="code-block-1-6"></a><span class="ss">- </span>Run tests with <span class="in">`pytest tests/`</span> after changes; don't commit with failing tests</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1" aria-label="code-block-1-7"></a><span class="ss">- </span>Use type hints; don't add dependencies without asking</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1" aria-label="code-block-1-8"></a></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1" aria-label="code-block-1-9"></a><span class="fu">## Safety</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1" aria-label="code-block-1-10"></a><span class="ss">- </span>Never force-push; never commit directly to main</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1" aria-label="code-block-1-11"></a><span class="ss">- </span>The <span class="in">`results/`</span> directory is generated — edit the code, not the outputs</span></code></pre>
+</div>
+<p>Keep it short and operational (aim well under 300 lines): it is
+injected into every session, so everything in it competes for the
+model’s attention with the actual task. If a linter can enforce a rule
+deterministically, use the linter and save the context budget. And
+remember from the last episode: context files are advisory — back
+safety-critical rules with hooks or deny rules.</p>
+</section><section><h2 class="section-heading" id="entry-point-2-a-blank-page">Entry point 2: a blank page<a class="anchor" aria-label="anchor" href="#entry-point-2-a-blank-page"></a>
+</h2>
+<hr class="half-width">
+<p>When nothing exists yet, there is nothing to explore — all the
+knowledge has to flow from your head into the project. This is where
+general AI chat (or plan mode) shines as a <em>design partner</em>: talk
+through the problem before any code exists, and make the deliverables
+<strong>documentation and specs, not code</strong>. Useful asks:</p>
+<ul>
+<li>“Here’s my research question and my data situation. Sketch two or
+three ways to structure this analysis, with trade-offs.”</li>
+<li>“Draft a README for this project: goal, planned structure, data
+sources, what ‘done’ looks like.” — a README written <em>before</em> the
+code is a spec.</li>
+<li>“Write a data plan: expected inputs, formats, validation checks we
+should run.”</li>
+<li>“Turn this conversation into a first <code>AGENTS.md</code> /
+<code>CLAUDE.md</code> for the project.”</li>
+</ul>
+<p>Once the design conversation has produced specs you believe in, the
+transition to code is deliberate and small: initialize git
+<em>before</em> the agent writes anything, let it scaffold the skeleton
+(directory layout, environment file, that README — boilerplate is the
+one place the agent’s average-case instincts are exactly what you want),
+and then stop scaffolding and switch to feature-by-feature work (next
+episode). “Build me the whole project” is precisely the underspecified
+mega-prompt that goes wrong. A new repo is also the cheapest moment to
+write the context file: two paragraphs now beat archaeology later.</p>
+<div id="dont-build-on-ideas-you-cant-defend" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="dont-build-on-ideas-you-cant-defend" class="callout-inner">
+<h3 class="callout-title">Don’t build on ideas you can’t defend</h3>
+<div class="callout-content">
+<p>A caution that matters most at the design stage: AI design advice is
+fluent even when it’s wrong, and it is most persuasive exactly where
+your own domain knowledge is thinnest. An architecture, statistical
+approach, or library choice you don’t understand is a liability even if
+it’s good — you can’t debug, extend, or defend it in review (or peer
+review).</p>
+<p>So probe before you adopt. Ask “why this over the obvious
+alternative?”, “what are the failure modes?”, “what’s the simplest
+version that could work?” — and push back; the agent folds quickly when
+an idea is weak, which is itself information. Be especially wary the
+further a suggestion sits outside your domain: a clever-looking method
+from a field you don’t know is a place to consult a human expert or the
+literature, not a thing to build on because the chat sounded confident.
+The rule from the verification episode applies to designs too: if you
+can’t explain it, you don’t own it yet.</p>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="the-same-task-at-three-autonomy-levels">The same task at three autonomy levels<a class="anchor" aria-label="anchor" href="#the-same-task-at-three-autonomy-levels"></a>
+</h2>
+<hr class="half-width">
+<p>Recall the autonomy spectrum from episode 1. This read-the-repo task
+makes it concrete:</p>
+<ul>
+<li>
+<strong>Chat</strong>: you would paste selected files into a browser
+tab and ask. Fast, safe, but the summary only covers what you chose to
+paste — <em>you</em> did the exploring.</li>
+<li>
+<strong>Interactive agent</strong>: what you just did. The agent
+explores everything, and you can interrogate it.</li>
+<li>
+<strong>Async agent</strong>: you could file an issue (“document
+this repo”) and get a PR back. Least effort — and the least opportunity
+to notice what the summary got wrong, because you weren’t watching it
+form.</li>
+</ul>
+<p>More autonomy isn’t automatically better. For understanding-type
+tasks, the interactive middle of the spectrum is usually the sweet spot:
+full access for the agent, full visibility for you.</p>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<span class="callout-header">Key Points</span>
+<div class="callout-inner">
+<div class="callout-content">
+<ul>
+<li>Plan before code: the planning phase’s deliverables are
+understanding, documentation, and specs — territory where agents are
+safe and strong.</li>
+<li>For existing projects, start in read-only/plan mode; agents recover
+<em>what</em> and <em>how</em> from code, but not <em>why</em>, <em>for
+whom</em>, or what the data means.</li>
+<li>Project context files (<code>CLAUDE.md</code>,
+<code>copilot-instructions.md</code>, <code>AGENTS.md</code>) write down
+that missing knowledge — keep them short, operational, and
+advisory-aware.</li>
+<li>For new projects, design in chat first (README-as-spec, data plan),
+scaffold small, then go feature-by-feature — and write the context file
+at project birth.</li>
+<li>Probe AI design ideas before adopting them, hardest where your
+domain knowledge is thinnest: if you can’t explain it, you don’t own it
+yet.</li>
+</ul>
+</div>
+</div>
+</div>
+<!--
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use.
+ -->
+</section></section><section id="aio-specification"><p>Content from <a href="specification.html">Underspecification and Feature-Driven Development</a></p>
+<hr>
+<p>Last updated on 2026-08-11 |
+
+        <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/specification.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>What actually happens when I give an agent a vague request?</li>
+<li>Why should I work feature by feature instead of asking for whole
+projects?</li>
+<li>What does a good prompt look like for research code?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Predict how an agent fills gaps in an underspecified request.</li>
+<li>Decompose project-sized goals into feature-sized, verifiable
+tasks.</li>
+<li>Write prompts that specify intent, constraints, and how to check the
+result.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section><h2 class="section-heading" id="not-a-mind-reader-but-not-a-dice-roll-either">Not a mind reader — but not a dice roll either<a class="anchor" aria-label="anchor" href="#not-a-mind-reader-but-not-a-dice-roll-either"></a>
+</h2>
+<hr class="half-width">
+<p>When your request is ambiguous, the agent doesn’t fail and it doesn’t
+guess randomly. It does something more subtle and more dangerous:
+<strong>it produces a good guess about the average case</strong>. It
+fills every gap in your specification with the most statistically
+typical choice from its training data — the most common file layout, the
+default hyperparameters, the standard preprocessing for data that looks
+like yours.</p>
+<p>That’s why underspecified requests so often produce code that
+<em>runs</em> and <em>looks reasonable</em>: average-case answers
+usually do. The problem is that your research is rarely the average
+case. Your data has that one weird instrument artifact. Your field has a
+convention the average GitHub repo doesn’t follow. Your “duplicate rows”
+are actually repeated measures. Every unstated assumption gets resolved
+in favor of someone else’s typical project — silently.</p>
+<p>Two consequences:</p>
+<ol style="list-style-type: decimal">
+<li>
+<strong>Precision in, precision out.</strong> The specification work
+you’d have to do for a colleague doesn’t disappear; it moves into the
+prompt.</li>
+<li>
+<strong>The failure mode is plausible-but-wrong</strong>, not
+obviously-broken. Which is why the next episode, on verification, is the
+heart of this lesson.</li>
+</ol></section><section><h2 class="section-heading" id="think-in-features-not-projects">Think in features, not projects<a class="anchor" aria-label="anchor" href="#think-in-features-not-projects"></a>
+</h2>
+<hr class="half-width">
+<p>Agents work best on clear, well-scoped requests. “Build me a
+dashboard for my experiment” forces the agent to invent dozens of
+decisions you never made. Instead, work the way good software teams
+already do — <strong>one feature at a time</strong>:</p>
+<ul>
+<li>“Add a function <code>load_trials()</code> in <code>src/io.py</code>
+that reads every CSV in <code>data/raw/</code>, concatenates them, and
+raises <code>ValueError</code> if expected columns are missing.”</li>
+<li>“Write a pytest fixture that builds a 20-row synthetic version of
+our trial data.”</li>
+<li>“Refactor <code>process_data</code> in <code>pipeline.py</code> to
+handle input with missing columns.”</li>
+</ul>
+<p>Each is a single, verifiable step. Small scope also means small diffs
+— which means you can actually review them, keeping you in the driver’s
+seat. A vague project-sized prompt doesn’t just produce worse code; it
+produces a diff too large to meaningfully review, at which point you’ve
+silently handed over the wheel.</p>
+</section><section><h2 class="section-heading" id="anatomy-of-a-better-prompt">Anatomy of a better prompt<a class="anchor" aria-label="anchor" href="#anatomy-of-a-better-prompt"></a>
+</h2>
+<hr class="half-width">
+<p>From the workshop slides — the same request at two levels of
+specification:</p>
+<p><strong>Bad prompt:</strong></p>
+<blockquote>
+<p>Fix this spaghetti code.</p>
+</blockquote>
+<p><strong>Better prompt:</strong></p>
+<blockquote>
+<p>Update this SQL to use CTEs and window functions to improve
+performance and legibility. Retain all existing in-line comments. Add
+comments to explain functionality for each step.</p>
+</blockquote>
+<p>The better prompt names the <em>technique</em> (CTEs, window
+functions), the <em>goals</em> (performance, legibility), and a
+<em>constraint</em> the agent could not have inferred (keep the existing
+comments). Notice what “fix” would have left to the average case: the
+agent would have to invent what “fixed” means.</p>
+<p>A useful checklist for research-code prompts — specify:</p>
+<ul>
+<li>
+<strong>Where</strong>: which files/functions to touch (and,
+implicitly, which to leave alone).</li>
+<li>
+<strong>What</strong>: the behavior you want, including edge cases
+you know about.</li>
+<li>
+<strong>Constraints</strong>: conventions, dependencies allowed,
+things to preserve.</li>
+<li>
+<strong>Verification</strong>: how the agent should check its own
+work — “run the tests,” “confirm the row count is unchanged,” “print the
+class balance before and after.”</li>
+</ul>
+<p>That last item is the bridge to the next episode: a prompt that
+includes its own check is worth two that don’t.</p>
+<div id="exercise-2-prompt-engineering-10-minutes" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="exercise-2-prompt-engineering-10-minutes" class="callout-inner">
+<h3 class="callout-title">Exercise 2: Prompt engineering (10
+minutes)</h3>
+<div class="callout-content">
+<p>Start from this snippet in a fresh script or notebook:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="co"># 1. Import modules and dataset</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a><span class="im">from</span> sklearn <span class="im">import</span> datasets</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1" aria-label="code-block-1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1" aria-label="code-block-1-5"></a>cancer <span class="op">=</span> datasets.load_breast_cancer()</span></code></pre>
+</div>
+<ol style="list-style-type: decimal">
+<li><p>Give your agent a deliberately <strong>bad</strong> prompt,
+e.g. “analyze this data” or “build a model.”</p></li>
+<li>
+<p>In a fresh session (<code>/clear</code> in Claude Code, a new
+chat in Copilot — you’ll see why in the cost episode), give a
+<strong>better</strong> prompt. Specify the target and features, the
+split, the model family, the metric, and at least one verification step,
+e.g.:</p>
+<blockquote>
+<p>Using the already-loaded <code>cancer</code> dataset, build a
+train/test split (80/20, stratified, random_state=42), fit a logistic
+regression on standardized features, and report test-set accuracy and a
+confusion matrix. Before modeling, print class balance and check for
+missing values. Don’t add other models or plots.</p>
+</blockquote>
+</li>
+<li><p>Compare: What decisions did the bad-prompt run make for you
+without telling you? Did it hold out a test set at all? Did it look at
+the data before modeling?</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1">
+  What people typically observe
+  </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div class="accordion-body">
+<p>The bad prompt usually yields <em>something impressive-looking</em> —
+often a full modeling pipeline with choices you never made: an arbitrary
+model, no stratification, maybe no held-out evaluation, rarely any
+actual data exploration. It’s not wrong so much as
+<em>unaccountable</em>: you can’t defend any of its decisions because
+you didn’t make them.</p>
+<p>The better prompt yields less code doing exactly what you asked, plus
+the printed checks that let you believe it. The difference isn’t
+intelligence — it’s that you did the thinking that can’t be
+delegated.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<span class="callout-header">Key Points</span>
+<div class="callout-inner">
+<div class="callout-content">
+<ul>
+<li>Underspecified prompts get average-case answers; your data and your
+research are rarely the average case.</li>
+<li>The failure mode is plausible-but-wrong code, which is far more
+dangerous than broken code.</li>
+<li>Work feature by feature: small, well-specified tasks produce
+reviewable diffs and keep you in the driver’s seat.</li>
+<li>Good prompts specify where, what, constraints, and — most
+importantly — how to verify the result.</li>
+</ul>
+</div>
+</div>
+</div>
+<!--
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use.
+ -->
+</section></section><section id="aio-verification-and-review"><p>Content from <a href="verification-and-review.html">Verification and Review: No Escaping Good Data Science</a></p>
+<hr>
+<p>Last updated on 2026-08-11 |
+
+        <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/verification-and-review.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>Why isn’t “the code runs and the score is high” enough?</li>
+<li>What does verification look like when an agent wrote the code?</li>
+<li>Which cheap checks catch the expensive mistakes?</li>
+<li>How much checking is enough, and when can I relax?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Apply established data science verification practices (know your
+data, compare to a source of truth, ask a colleague) to agent-generated
+analyses.</li>
+<li>Detect a data leakage bug in code that runs cleanly and scores
+well.</li>
+<li>Run cheap sanity checks — label shuffling, baselines, overlap and
+duplicate checks — that expose broken evaluations.</li>
+<li>Review an agent’s diff by hunting for decisions you didn’t
+make.</li>
+<li>Give an agent an executable way to check its own work, including
+tests that encode data properties.</li>
+<li>Choose a verification tier proportional to the stakes of the
+result.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section><h2 class="section-heading" id="established-practice-comes-first">Established practice comes first<a class="anchor" aria-label="anchor" href="#established-practice-comes-first"></a>
+</h2>
+<hr class="half-width">
+<p>Before AI enters the picture, research computing already had an
+answer to “how do I know this analysis is right?”:</p>
+<ul>
+<li>
+<strong>Know your data.</strong> Explore it before modeling it. Plot
+distributions. Find the outliers and decide what they are. Know your
+features — units, ranges, missingness, how they were collected. Check
+class balance. Look at actual rows.</li>
+<li>
+<strong>Compare to a source of truth.</strong> A published baseline,
+a hand-computed subset, a simpler method you trust, a positive and
+negative control.</li>
+<li>
+<strong>Ask a colleague.</strong> Code review and “does this number
+seem plausible to you?” catch what self-review misses.</li>
+<li>
+<strong>Know what your models are telling you.</strong> Inspect
+coefficients or feature importances; if the strongest predictor makes no
+scientific sense, that’s a finding about your pipeline, not about
+nature.</li>
+</ul>
+<p>None of this changed. <strong>There is no escaping good data science
+practice</strong> — the agent didn’t absorb these responsibilities when
+it took over the typing. What changed is speed: you can now generate a
+plausible, clean-running, well-scoring analysis in minutes. Iteration is
+easier and results come faster — which also means you can be
+<em>misled</em> faster. Your skepticism has to keep up with the
+pace.</p>
+</section><section><h2 class="section-heading" id="worked-example-it-runs-clean-and-scores-great">Worked example: it runs clean and scores great<a class="anchor" aria-label="anchor" href="#worked-example-it-runs-clean-and-scores-great"></a>
+</h2>
+<hr class="half-width">
+<p>Ask an underspecified agent for “a model with good accuracy on this
+dataset” and you may get something like the code below. Before reading
+on, try the exercise.</p>
+<div id="exercise-spot-the-flaw-5-minutes" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="exercise-spot-the-flaw-5-minutes" class="callout-inner">
+<h3 class="callout-title">Exercise: Spot the flaw (5 minutes)</h3>
+<div class="callout-content">
+<p>This code runs without errors or warnings and reports high accuracy.
+What, if anything, is wrong with the evaluation?</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="im">from</span> sklearn <span class="im">import</span> datasets</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1" aria-label="code-block-1-4"></a><span class="im">from</span> sklearn.feature_selection <span class="im">import</span> SelectKBest, f_classif</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1" aria-label="code-block-1-5"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1" aria-label="code-block-1-6"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1" aria-label="code-block-1-7"></a></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1" aria-label="code-block-1-8"></a>X, y <span class="op">=</span> datasets.load_breast_cancer(return_X_y<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1" aria-label="code-block-1-9"></a></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1" aria-label="code-block-1-10"></a><span class="co"># Standardize and select the 10 best features</span></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1" aria-label="code-block-1-11"></a>X <span class="op">=</span> StandardScaler().fit_transform(X)</span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1" aria-label="code-block-1-12"></a>X <span class="op">=</span> SelectKBest(f_classif, k<span class="op">=</span><span class="dv">10</span>).fit_transform(X, y)</span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1" aria-label="code-block-1-13"></a></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1" aria-label="code-block-1-14"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1" aria-label="code-block-1-15"></a>    X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1" aria-label="code-block-1-16"></a></span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1" aria-label="code-block-1-17"></a>model <span class="op">=</span> LogisticRegression(max_iter<span class="op">=</span><span class="dv">5000</span>).fit(X_train, y_train)</span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1" aria-label="code-block-1-18"></a><span class="bu">print</span>(<span class="ss">f"Test accuracy: </span><span class="sc">{</span>model<span class="sc">.</span>score(X_test, y_test)<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1">
+  The leak
+  </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div class="accordion-body">
+<p>The evaluation is contaminated by <strong>data leakage</strong>: the
+scaler and — much worse — the feature selector were fit on the
+<em>entire</em> dataset, labels included, <em>before</em> the split. The
+“held-out” test set helped choose the very features it is now being used
+to evaluate.</p>
+<p>On this dataset the inflation is modest; with wide data (genomics,
+imaging radiomics, any p ≫ n problem) this exact bug can turn pure noise
+into a publishable-looking result. The fix is structural, not cosmetic:
+split first, and fit every preprocessing step on training data only — in
+scikit-learn, put the scaler and selector inside a <code>Pipeline</code>
+so cross-validation refits them per fold.</p>
+<p>If you didn’t spot it: that’s the point. Nothing about this code
+<em>looks</em> wrong, no error fires, and the score rewards you for not
+looking harder.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="why-agents-are-prone-to-this-and-why-you-might-not-catch-it" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="why-agents-are-prone-to-this-and-why-you-might-not-catch-it" class="callout-inner">
+<h3 class="callout-title">Why agents are prone to this — and why you
+might not catch it</h3>
+<div class="callout-content">
+<p>Leakage-style bugs are exactly the <em>plausible average case</em>
+failure from the previous episode: the code pattern appears all over
+training data (and all over real notebooks), and nothing about it looks
+wrong. The agent optimizes for “task apparently completed” — clean run,
+high score — and both boxes are checked. If your review process is also
+“does it run? is the score good?”, you and the agent share the same
+blind spot.</p>
+<p>Assume nothing; verify everything. A surprisingly <em>good</em>
+result deserves the same suspicion as a surprisingly bad one — arguably
+more, because you’re motivated to believe it.</p>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="cheap-sanity-checks-that-catch-expensive-mistakes">Cheap sanity checks that catch expensive mistakes<a class="anchor" aria-label="anchor" href="#cheap-sanity-checks-that-catch-expensive-mistakes"></a>
+</h2>
+<hr class="half-width">
+<p>You don’t need a heavyweight process to catch most broken
+evaluations. A handful of checks, each a few lines an agent will happily
+write for you, expose whole classes of silent failure:</p>
+<ul>
+<li>
+<strong>Shuffle the labels and re-run.</strong> With <code>y</code>
+randomly permuted, a sound pipeline should collapse to chance-level
+performance. If it still scores well, information is leaking somewhere —
+through preprocessing, duplicated rows, or an evaluation bug. This is
+the single highest-value five-minute check in applied ML.</li>
+<li>
+<strong>Beat a dumb baseline, on purpose.</strong> Always report the
+majority-class (or mean predictor) score next to your model’s. A 94%
+accuracy stops being impressive when the majority class is 92% of the
+data.</li>
+<li>
+<strong>Check train/test overlap.</strong> Assert that no sample
+identifier appears in both sets — and think about what “same sample”
+means for your data: repeated measures of one patient, tiles from one
+image, or sequences from one organism belong on the <em>same</em> side
+of the split (group-wise splitting), or you’ve built a subtler
+leak.</li>
+<li>
+<strong>Hunt duplicates before splitting.</strong> Duplicated or
+near-duplicated rows straddling the split are leakage without any code
+bug at all.</li>
+<li>
+<strong>Vary the seed.</strong> If the headline metric swings wildly
+across a few random seeds, you have a variance problem, not a
+result.</li>
+</ul>
+<div id="exercise-break-your-own-evaluation-5-minutes" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="exercise-break-your-own-evaluation-5-minutes" class="callout-inner">
+<h3 class="callout-title">Exercise: Break your own evaluation (5
+minutes)</h3>
+<div class="callout-content">
+<p>Take the modeling pipeline from the specification episode’s exercise
+(or the leaky code above, fixed or not) and ask your agent:</p>
+<blockquote>
+<p>Add a sanity check: rerun the exact same pipeline with the labels
+randomly shuffled (use a fixed seed) and report both scores side by
+side. Also print the majority-class baseline.</p>
+</blockquote>
+<ol style="list-style-type: decimal">
+<li>Did the shuffled-label score collapse to roughly chance? If not,
+work with the agent to find the leak.</li>
+<li>How does your real score look next to the majority-class
+baseline?</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2">
+  What you should see
+  </h4>
+</button>
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div class="accordion-body">
+<p>For the (fixed) breast-cancer pipeline: real accuracy well above the
+~63% majority-class baseline, and shuffled-label accuracy near 50–63%
+(chance-ish, given class imbalance). If shuffled labels still score
+high, the usual suspects in order: preprocessing fit before the split,
+duplicate rows, or evaluation on training data. Note what just happened:
+the <em>agent</em> wrote the check in seconds, but <em>you</em> knew
+which check mattered and what the result should look like. That division
+of labor is the whole lesson in miniature.</p>
+</div>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="reviewing-the-diff-hunt-for-decisions-you-didnt-make">Reviewing the diff: hunt for decisions you didn’t make<a class="anchor" aria-label="anchor" href="#reviewing-the-diff-hunt-for-decisions-you-didnt-make"></a>
+</h2>
+<hr class="half-width">
+<p>When you review agent-written analysis code, you’re not proofreading
+syntax — the code runs. You’re hunting for <strong>decisions you didn’t
+make</strong>. The high-yield places to look:</p>
+<ul>
+<li>
+<strong>Silently dropped or altered rows</strong>: default
+<code>dropna()</code>, inner joins that shrink the table, type coercions
+that turn errors into NaNs. Demand row counts before and after every
+join and filter.</li>
+<li>
+<strong>Defaults treated as decisions</strong>: imputation strategy,
+class weights, regularization strength, “reasonable” thresholds. Each
+default the agent accepted is a choice you now own — make sure you’d
+defend it.</li>
+<li>
+<strong>Metric switcheroos</strong>: you asked about accuracy, the
+report quietly features F1 (or vice versa) because the numbers looked
+better. Check the metric matches the question.</li>
+<li>
+<strong>Suppressed problems</strong>: warnings silenced,
+<code>try/except: pass</code>, errors “fixed” by deleting the check. An
+agent told to “make it run” sometimes does exactly that.</li>
+</ul>
+<p>A useful habit that costs one prompt: ask the agent to <strong>list
+its own assumptions</strong> — “summarize every choice you made that I
+didn’t specify, and flag the risky ones.” It’s the documentation
+episode’s explain-as-verification move, applied to the diff — and it
+often surfaces exactly the dropped-rows and default-parameter decisions
+above.</p>
+</section><section><h2 class="section-heading" id="give-the-agent-a-way-to-check-itself">Give the agent a way to check itself<a class="anchor" aria-label="anchor" href="#give-the-agent-a-way-to-check-itself"></a>
+</h2>
+<hr class="half-width">
+<p>The single highest-leverage practice in agentic coding: <strong>make
+verification executable</strong>. Agents perform dramatically better
+when they can check their own output — running tests, comparing against
+known values, validating properties — instead of relying on you as the
+only feedback loop.</p>
+<ul>
+<li>Include test cases in the prompt: “Write
+<code>validate_email</code>. Cases:
+<code>user@example.com → True</code>, <code>invalid → False</code>,
+<code>user@.com → False</code>. Run the tests.”</li>
+<li>Point at symptoms, not just fixes: “The build fails with this error:
+[paste]. Fix the root cause and verify the build succeeds — don’t
+suppress the error.”</li>
+<li>For analyses, demand printed evidence: row counts before/after
+joins, class balance, train/test overlap checks, a baseline model’s
+score next to the fancy one.</li>
+</ul>
+<p>The more trustworthy your test suite and checks, the more autonomy
+you can safely grant. This is the exchange rate at the center of agentic
+coding: <strong>autonomy is purchased with verification.</strong></p>
+</section><section><h2 class="section-heading" id="tests-are-cheap-now-write-more-of-them">Tests are cheap now — write more of them<a class="anchor" aria-label="anchor" href="#tests-are-cheap-now-write-more-of-them"></a>
+</h2>
+<hr class="half-width">
+<p>Here’s the flip side, and it’s good news: the same tool that makes it
+easy to generate questionable analyses makes it <em>dramatically</em>
+cheaper to build the verification that catches them. Test suites used to
+be rationed because writing them was tedious; that constraint is gone.
+Use the agent to validate, validate, validate:</p>
+<ul>
+<li>
+<strong>Ask for tests alongside every feature</strong> — edge cases,
+failure modes, the inputs you know are weird (“write tests covering
+empty input, all-NaN columns, and a single-row DataFrame”).</li>
+<li>
+<strong>Ask for data-validation tests</strong> on your actual
+dataset: expected columns and dtypes, value ranges, uniqueness of IDs,
+row counts across merges — the executable version of “know your
+data.”</li>
+<li>
+<strong>Ask it to probe its own work</strong>: “what inputs would
+break this function? Write tests for them.”</li>
+</ul>
+<p>One trap to avoid: an agent asked to “add tests” for existing code
+will often write tests that simply <em>assert whatever the code
+currently does</em> — enshrining bugs rather than catching them. That’s
+why the exercise below has you write the contract first. The division of
+labor that works: <strong>you decide what must be true</strong> (the
+properties, the invariants, the known answers); <strong>the agent does
+the tedious part</strong> (fixtures, parametrization, the fifteen
+edge-case variants). Review tests with the same care as implementations
+— they are the specification everything else gets checked against.</p>
+</section><section><h2 class="section-heading" id="how-much-verification-is-enough">How much verification is enough?<a class="anchor" aria-label="anchor" href="#how-much-verification-is-enough"></a>
+</h2>
+<hr class="half-width">
+<p>Scale it to the stakes:</p>
+<table class="table">
+<colgroup>
+<col width="16%">
+<col width="24%">
+<col width="59%">
+</colgroup>
+<thead><tr>
+<th>Tier</th>
+<th>Example</th>
+<th>Minimum verification</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Throwaway</td>
+<td>one-off plot, scratch script</td>
+<td>Read the diff; eyeball the output</td>
+</tr>
+<tr>
+<td>Working code</td>
+<td>lab-internal pipeline, reusable utils</td>
+<td>Tests pass; you review the diff; data-property checks printed</td>
+</tr>
+<tr>
+<td>Load-bearing</td>
+<td>results in a paper, shared package, anything cited</td>
+<td>All of the above + comparison to a source of truth + a second
+human</td>
+</tr>
+</tbody>
+</table>
+<p>The mistake isn’t choosing a low tier — it’s choosing it
+<em>implicitly</em>. Decide what tier a task is before you start, and
+you’ll know when you’re done checking.</p>
+<div id="exercise-test-as-contract-10-minutes" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="exercise-test-as-contract-10-minutes" class="callout-inner">
+<h3 class="callout-title">Exercise: Test as contract (10 minutes)</h3>
+<div class="callout-content">
+<p>Instead of hoping the agent avoids leakage, encode the requirement as
+a test it must satisfy. Write <strong>one pytest test that encodes a
+property your data or pipeline must satisfy</strong>, then ask the agent
+to make it pass. For example:</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="kw">def</span> test_no_leakage_in_pipeline():</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a>    <span class="co">"""Preprocessing must be fit on training data only."""</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1" aria-label="code-block-2-3"></a>    <span class="im">from</span> analysis <span class="im">import</span> build_pipeline, load_data</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1" aria-label="code-block-2-4"></a>    X, y <span class="op">=</span> load_data()</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1" aria-label="code-block-2-5"></a>    <span class="co"># A leakage-free pipeline's CV score should be computable end-to-end:</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1" aria-label="code-block-2-6"></a>    <span class="co"># the pipeline object must contain ALL preprocessing steps.</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1" aria-label="code-block-2-7"></a>    <span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1" aria-label="code-block-2-8"></a>    pipe <span class="op">=</span> build_pipeline()</span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1" aria-label="code-block-2-9"></a>    step_names <span class="op">=</span> [name <span class="cf">for</span> name, _ <span class="kw">in</span> pipe.steps]</span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1" aria-label="code-block-2-10"></a>    <span class="cf">assert</span> <span class="st">"scaler"</span> <span class="kw">in</span> step_names <span class="kw">and</span> <span class="st">"select"</span> <span class="kw">in</span> step_names, <span class="op">\</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1" aria-label="code-block-2-11"></a>        <span class="st">"preprocessing must live inside the pipeline, not outside it"</span></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1" aria-label="code-block-2-12"></a>    scores <span class="op">=</span> cross_val_score(pipe, X, y, cv<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1" aria-label="code-block-2-13"></a>    <span class="cf">assert</span> scores.mean() <span class="op">&gt;</span> <span class="fl">0.9</span></span></code></pre>
+</div>
+<p>Then prompt: <em>“Create <code>analysis.py</code> with
+<code>load_data()</code> and <code>build_pipeline()</code> so that
+<code>pytest test_analysis.py</code> passes. Run the tests to
+confirm.”</em></p>
+<p>Other properties worth encoding, depending on your data: no
+identifier appears in both train and test; feature X is always
+non-negative; row count survives the merge; the model beats a
+majority-class baseline.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3">
+  Why this works
+  </h4>
+</button>
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div class="accordion-body">
+<p>You’ve turned an invisible methodological requirement into an
+executable contract. The agent now has a feedback loop that fails loudly
+when it reaches for the average-case (leaky) pattern — and you have an
+artifact that keeps protecting you on every future change, whether the
+next edit comes from an agent, a labmate, or you in six months.</p>
+<p>Note what you did <em>not</em> have to do: trust the agent, or read
+its mind. The test is the specification.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<span class="callout-header">Key Points</span>
+<div class="callout-inner">
+<div class="callout-content">
+<ul>
+<li>Established practice still rules: explore your data, know your
+features and distributions, compare to a source of truth, know what your
+model is telling you.</li>
+<li>Faster iteration means faster results <em>and</em> faster misleading
+— clean runs and great scores are not evidence of correctness.</li>
+<li>Leakage is the canonical agentic failure: plausible, silent, and
+flattering. Split first; fit preprocessing on training data only; be
+suspicious of good news.</li>
+<li>Cheap checks catch expensive mistakes: shuffle labels, print the
+dumb baseline, assert no train/test overlap, hunt duplicates, vary the
+seed.</li>
+<li>Review diffs by hunting for decisions you didn’t make — dropped
+rows, accepted defaults, switched metrics, suppressed errors — and make
+the agent list its own assumptions.</li>
+<li>Make verification executable — tests, printed checks, baselines —
+because autonomy is purchased with verification.</li>
+<li>Agents make tests cheap: ask for them with every feature and for
+your data’s properties. You define what must be true; the agent writes
+the tedious parts; you review tests like implementations.</li>
+<li>Choose your verification tier (throwaway / working / load-bearing)
+explicitly, before you start.</li>
+</ul>
+</div>
+</div>
+</div>
+<!--
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use.
+ -->
+</section></section><section id="aio-documentation"><p>Content from <a href="documentation.html">Documentation: Notes to Your Future Self (and Your Agent)</a></p>
+<hr>
+<p>Last updated on 2026-08-11 |
+
+        <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/documentation.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>Why is documentation one of the best uses of agentic coding?</li>
+<li>How does documentation feed back into agent performance?</li>
+<li>Can asking an agent to explain code actually help verify it?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Use an agent to produce and maintain documentation: docstrings,
+comments, READMEs, and narrated notebooks.</li>
+<li>Explain how documentation doubles as persistent context that
+improves future agent (and human) sessions.</li>
+<li>Use “explain this code” as a verification technique, treating
+doc/code mismatches as bug reports.</li>
+<li>Review generated documentation with the same skepticism as generated
+code.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section><h2 class="section-heading" id="the-chore-that-stopped-being-a-chore">The chore that stopped being a chore<a class="anchor" aria-label="anchor" href="#the-chore-that-stopped-being-a-chore"></a>
+</h2>
+<hr class="half-width">
+<p>Research code is famously under-documented, and the reason was never
+that anyone doubted documentation’s value. It was cost: after the
+analysis finally works, writing up docstrings and updating the README is
+exactly the tedious, low-glamour work that loses to the next experiment.
+Agents change that economics completely — documentation is the task they
+are <em>best</em> suited to, because the source of truth (the code) is
+right there in context, and because you can review a paragraph of
+English far faster than you can review an implementation.</p>
+<p>Make it a habit to ask for documentation as part of every task, or as
+a cleanup pass:</p>
+<ul>
+<li>
+<strong>Docstrings</strong>: “Add NumPy-style docstrings to every
+public function in <code>src/io.py</code>, including parameter types and
+the exceptions raised.”</li>
+<li>
+<strong>Comments where they matter</strong>: “Add comments
+explaining <em>why</em> the outlier threshold is 3.5 here” — not
+line-by-line narration of <em>what</em> the code does.</li>
+<li>
+<strong>READMEs for your future self</strong>: “Update the README:
+how to set up the environment, run the pipeline end to end, and where
+outputs land. Note the raw data is read-only.”</li>
+<li>
+<strong>Narrated notebooks</strong>: “Add a markdown cell before
+each code cell explaining what it does and why, at a level a new lab
+member could follow.”</li>
+<li>
+<strong>Session notes</strong>: at the end of a work session,
+“summarize what we changed, what’s still broken, and where to pick up” —
+pasted into the README, a <code>NOTES.md</code>, or your lab notebook.
+Your future self is a stranger who will thank you.</li>
+</ul></section><section><h2 class="section-heading" id="documentation-is-context-it-compounds">Documentation is context — it compounds<a class="anchor" aria-label="anchor" href="#documentation-is-context-it-compounds"></a>
+</h2>
+<hr class="half-width">
+<p>Here is what makes this more than good hygiene: <strong>everything
+you document becomes context the agent reads back in later
+sessions.</strong> Remember the planning episode — agents recover
+<em>what</em> and <em>how</em> from code, but not <em>why</em>, <em>for
+whom</em>, or <em>what the data means</em>. Documentation is precisely
+where the “why” gets written down:</p>
+<ul>
+<li>A good README means next month’s session starts with the agent
+already knowing how to run your tests, instead of guessing.</li>
+<li>Docstrings carry intent (“assumes input is sorted by timestamp”)
+that stops the agent from “fixing” deliberate behavior.</li>
+<li>A data dictionary — column meanings, units, known quirks — is the
+difference between an agent that treats <code>-999</code> as a
+measurement and one that knows it’s your missing code.</li>
+</ul>
+<p>In other words, documentation gives LLMs useful added context that
+measurably improves what they produce — the same way it helps a new
+collaborator. Time spent documenting is not a tax on this workflow; it’s
+an investment that pays out on every future session, human or agent.</p>
+</section><section><h2 class="section-heading" id="explaining-as-verification">Explaining as verification<a class="anchor" aria-label="anchor" href="#explaining-as-verification"></a>
+</h2>
+<hr class="half-width">
+<p>There’s a second, subtler payoff: <strong>asking an agent to explain
+or document code is a verification act.</strong> To write an accurate
+docstring, the model has to actually process what the code does — and
+mismatches between the explanation and your intent surface real
+problems:</p>
+<ul>
+<li>Ask for a plain-English explanation of a pipeline you just built (or
+inherited). If the explanation <em>surprises</em> you — “it then drops
+rows with missing labels before the split” — you may have just found a
+bug, or at least an undocumented decision.</li>
+<li>Ask the agent to document a function’s edge-case behavior. “Returns
+0 when the input is empty” is either correct and worth writing down, or
+incorrect and worth fixing — both outcomes are wins.</li>
+<li>In a narrated notebook, a markdown cell that mis-describes its code
+cell is a red flag for <em>you</em> — and, left uncorrected, a trap for
+the next reader. Fix one or the other; never leave them
+disagreeing.</li>
+</ul>
+<p>This is the rubber-duck effect with a duck that talks back. It
+doesn’t replace the tests and checks from the previous episode — an
+explanation can be fluent and wrong — but it’s a cheap extra
+verification layer, and it produces a durable artifact while
+verifying.</p>
+<div id="review-docs-like-code-stale-docs-are-worse-than-none" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="review-docs-like-code-stale-docs-are-worse-than-none" class="callout-inner">
+<h3 class="callout-title">Review docs like code — stale docs are worse
+than none</h3>
+<div class="callout-content">
+<p>Generated documentation inherits the plausible-but-wrong failure
+mode: it reads confident, and it can be confidently mistaken. Read it
+before committing. And keep it current — documentation that contradicts
+the code misleads humans <em>and</em> poisons agent context, because
+agents trust what they read. When behavior changes, updating the docs is
+part of the change, not an optional follow-up. (“Update the docstring
+and README to match” is a fine thing to put in the same prompt as the
+change itself.)</p>
+</div>
+</div>
+</div>
+<div id="exercise-document-and-cross-examine-5-minutes" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="exercise-document-and-cross-examine-5-minutes" class="callout-inner">
+<h3 class="callout-title">Exercise: Document and cross-examine (5
+minutes)</h3>
+<div class="callout-content">
+<p>Pick a function or notebook cell you (or an agent) wrote earlier
+today — or any undocumented piece of your own code.</p>
+<ol style="list-style-type: decimal">
+<li>Ask the agent: “Write a docstring for this function, including
+behavior on edge cases (empty input, missing values). Then explain in
+two sentences what this function does and why it might exist.”</li>
+<li>Read the result critically. Does the described behavior match your
+intent? Did it claim an edge-case behavior you never decided on?</li>
+<li>If you find a mismatch, treat it as a bug report: fix the code or
+fix the doc, and say which one you chose and why.</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1">
+  What people typically find
+  </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div class="accordion-body">
+<p>Most participants find at least one surprise — usually an edge case
+the code handles by accident rather than by decision (what <em>does</em>
+it return for an empty DataFrame?). That’s the point: the docstring
+forced a decision that writing the code never did. And whichever way you
+resolve it, you leave behind both a checked behavior and a written
+record of it — verification and documentation in one pass.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<span class="callout-header">Key Points</span>
+<div class="callout-inner">
+<div class="callout-content">
+<ul>
+<li>Documentation is one of the best uses of agentic coding: the agent
+has the source of truth in context, and English is faster to review than
+code.</li>
+<li>Ask for docstrings, why-comments, README updates, narrated
+notebooks, and end-of-session notes as a routine part of every
+task.</li>
+<li>Documentation compounds: it becomes the context that makes future
+agent sessions (and future you) measurably better.</li>
+<li>Explaining is verifying — a doc/code mismatch is a bug report; a
+surprising explanation is a lead worth chasing.</li>
+<li>Review generated docs like code, and update them with the code:
+stale documentation misleads humans and poisons agent context.</li>
+</ul>
+</div>
+</div>
+</div>
+<!--
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use.
+ -->
+</section></section><section id="aio-common-workflows"><p>Content from <a href="common-workflows.html">Common Workflows</a></p>
+<hr>
+<p>Last updated on 2026-08-11 |
+
+        <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/common-workflows.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>How do experienced users actually structure day-to-day work with
+agents?</li>
+<li>Should I review every commit, or review at the pull request?</li>
+<li>How do agent workflows change when I’m contributing to (or
+maintaining) a shared project?</li>
+<li>What are skills, hooks, and MCP, and when do I need them?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Choose a review posture (per-commit vs. PR-as-gate) deliberately,
+matched to stakes and safety nets.</li>
+<li>Adapt agent workflows for contributing to projects you don’t own and
+for maintaining projects others contribute to.</li>
+<li>Recognize when to codify a recurring workflow as a skill, a hook, or
+an MCP integration.</li>
+<li>Write a short “workflow contract” into your project context
+file.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>The earlier episodes gave you principles; this one collects the
+recurring <em>shapes</em> of day-to-day agentic work. None of them is
+the one true way — the point is to pick your pattern deliberately and
+write it down, rather than improvising it fresh every session.</p>
+<section><h2 class="section-heading" id="two-review-postures">Two review postures<a class="anchor" aria-label="anchor" href="#two-review-postures"></a>
+</h2>
+<hr class="half-width">
+<p>Everyone agrees on the non-negotiables: agents work on branches,
+never on <code>main</code>, and <em>someone</em> — you, a colleague, or
+CI — reads the code before it lands. Within that, two workable postures
+differ on <strong>when</strong> the human review happens:</p>
+<p><strong>Posture A: the pull request is the review gate.</strong> Let
+the agent commit freely (and often) to its feature branch as it works.
+The commit log gets verbose — that’s fine; frequent small commits are
+revert points, and an agent’s chatty-but-granular history is more useful
+than the classic human <code>wip</code>, <code>fix</code>,
+<code>actually fix</code> sequence. Your serious review happens once, on
+the full PR diff, exactly as you’d review a human collaborator’s branch.
+This posture keeps momentum high and concentrates your attention where
+it’s most effective — but it leans on safety nets: a real test suite, CI
+checks gating the merge, and PR diffs kept small enough to genuinely
+read (feature-sized, per the specification episode).</p>
+<p><strong>Posture B: review every change as it happens.</strong>
+Approve each edit or commit yourself, staying close to the work in real
+time. Slower, but right for the situations where posture A’s safety nets
+are missing: you’re new to the tool, the code is sensitive, the tests
+are thin, or you’re still building trust in what the agent does with
+your codebase.</p>
+<p>The choice isn’t identity, it’s calibration — and it maps directly
+onto the verification tiers: throwaway and well-tested working code
+tolerate posture A; load-bearing code with weak tests deserves posture B
+(or A plus a second reviewer). Many people run both: A for routine
+feature work, dropping to B when touching anything that would be
+expensive to get wrong.</p>
+</section><section><h2 class="section-heading" id="contributing-to-projects-you-dont-own">Contributing to projects you don’t own<a class="anchor" aria-label="anchor" href="#contributing-to-projects-you-dont-own"></a>
+</h2>
+<hr class="half-width">
+<p>Agent workflows change when the repository belongs to a
+community:</p>
+<ul>
+<li>
+<strong>Read the contribution guidelines first</strong> — and this
+is a place the agent helps: “summarize CONTRIBUTING.md and any PR
+conventions in this repo” is a great first prompt. Then follow them,
+including commit-message and branch-naming conventions.</li>
+<li>
+<strong>Work from a fork</strong> when you lack write access; that’s
+the intended flow for most community projects, and it means no agent
+ever has push access to the canonical repo.</li>
+<li>
+<strong>Disclose AI assistance when the project asks for
+it.</strong> More projects have explicit policies now (The Carpentries
+has a Generative AI contributions policy, for example). Honesty here is
+cheap; discovered violations are not.</li>
+<li>
+<strong>Keep PRs small and self-explanatory.</strong> Maintainers
+review on their own time; an agent makes it easy to generate large
+diffs, and large diffs are how goodwill dies. One focused change, well
+described, tests included.</li>
+</ul></section><section><h2 class="section-heading" id="maintaining-a-project-others-contribute-to">Maintaining a project others contribute to<a class="anchor" aria-label="anchor" href="#maintaining-a-project-others-contribute-to"></a>
+</h2>
+<hr class="half-width">
+<p>On the receiving side, agents are useful for the unglamorous middle
+of maintenance: summarizing and triaging issues, drafting release notes
+and changelogs from the commit history, dependency-update PRs,
+doc-freshness sweeps, and a first-pass review of incoming PRs (“what
+does this change, and what should a human look hardest at?”). The human
+still owns the merge button — an agent’s review is a <em>brief</em> for
+your judgment, not a substitute (remember the trust episode: incoming
+PRs are untrusted input, and prompt injection via PR content is a real
+pattern).</p>
+</section><section><h2 class="section-heading" id="codifying-workflows-skills-hooks-and-mcp">Codifying workflows: skills, hooks, and MCP<a class="anchor" aria-label="anchor" href="#codifying-workflows-skills-hooks-and-mcp"></a>
+</h2>
+<hr class="half-width">
+<p>When you notice the same workflow recurring, the tools give you ways
+to write it down once instead of re-prompting it forever:</p>
+<ul>
+<li>
+<strong>Skills</strong> — reusable, on-demand instruction packages:
+a release checklist, your lab’s analysis conventions, a “new episode”
+template. They load only when relevant, so they don’t bloat every
+session the way an overgrown context file does.</li>
+<li>
+<strong>Hooks</strong> — deterministic scripts that run at fixed
+points (after every edit, before every commit). Unlike context-file
+instructions, which are advisory, hooks are <em>guaranteed</em> to fire
+— use them for the rules that must never be skipped (run the linter,
+block writes to <code>data/raw/</code>).</li>
+<li>
+<strong>MCP (Model Context Protocol)</strong> — connects the agent
+to external systems: your issue tracker, a database, a lab notebook.
+Each connection widens what the agent can touch, so apply the trust
+episode’s lens before wiring one in: minimum access, and treat what
+flows back through it as untrusted input.</li>
+</ul>
+<p>A sensible progression: context file first, skills when you catch
+yourself repeating instructions, hooks when a rule needs enforcement
+rather than encouragement, MCP when the agent genuinely needs an
+external system.</p>
+<div id="exercise-write-your-workflow-contract-6-minutes" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="exercise-write-your-workflow-contract-6-minutes" class="callout-inner">
+<h3 class="callout-title">Exercise: Write your workflow contract (6
+minutes)</h3>
+<div class="callout-content">
+<p>Add a short “Workflow” section to a project context file (or draft
+one in a scratch file) — three to five rules that make your chosen
+pattern explicit. For example:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">MARKDOWN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode markdown" tabindex="0"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="fu">## Workflow</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="ss">- </span>Agents work on feature branches (<span class="in">`feat/&lt;name&gt;`</span>); never commit to main</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a><span class="ss">- </span>Commit freely on the branch; review happens at the PR (Posture A)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1" aria-label="code-block-1-4"></a><span class="ss">- </span>Every PR: tests pass locally, diff under ~300 lines, description says how to verify</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1" aria-label="code-block-1-5"></a><span class="ss">- </span>Never modify <span class="in">`data/raw/`</span> or <span class="in">`results/`</span>; never force-push</span></code></pre>
+</div>
+<p>Make at least one rule about <em>review</em> (who reads what, when)
+and one about what the agent may never touch.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1">
+  Why write it down?
+  </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div class="accordion-body">
+<p>Two payoffs. The agent reads it — your posture, branch conventions,
+and forbidden paths now shape every session without re-prompting. And
+<em>collaborators</em> read it — the lab’s workflow stops being
+folklore. If a rule is safety-critical (“never touch
+<code>data/raw/</code>”), remember it’s advisory here: back it with a
+hook or deny rule.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<span class="callout-header">Key Points</span>
+<div class="callout-inner">
+<div class="callout-content">
+<ul>
+<li>Pick a review posture deliberately: PR-as-gate (agent commits
+freely, one serious review of the full diff) when tests and CI back you
+up; per-commit review when they don’t. Verbose agent commit logs are a
+feature — small commits are revert points.</li>
+<li>Contributing: read (or have the agent summarize) the project’s
+guidelines, work from forks, disclose AI use where policy asks, keep PRs
+small.</li>
+<li>Maintaining: agents draft triage, changelogs, and first-pass reviews
+— but incoming PRs are untrusted input, and the human owns the
+merge.</li>
+<li>Codify recurring workflows: context file → skills (reusable
+instructions) → hooks (guaranteed enforcement) → MCP (external systems,
+minimum access).</li>
 </ul>
 </div>
 </div>
@@ -2355,7 +2803,7 @@ accumulated conversation — file contents, command output, all of it. The
   Claude Code
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
 <ul>
 <li>
@@ -2383,7 +2831,7 @@ way.</li>
   GitHub Copilot
   </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
 <div class="accordion-body">
 <ul>
 <li>
@@ -2476,6 +2924,17 @@ thing chat answers never have — as a free side effect.</p>
 <p>The rule of thumb: <strong>use the model to build tools, not to be
 the tool.</strong> If you find yourself asking an AI the same kind of
 question repeatedly, that’s a script asking to be written.</p>
+<p>One more thing nobody will do for you: <strong>providers optimize for
+customer spend, not for efficiency.</strong> If you’ve selected a
+frontier model, the dumbest question you ask gets routed through that
+largest model — even though a trivial gating mechanism could have
+answered it with a tiny model at a small fraction of the energy (and
+cost). No such gate exists on the provider’s side, because they have no
+incentive to build one. So the routing falls to you: keep a small, cheap
+model as your default for mechanical work (renames, formatting, simple
+lookups) and reach for the frontier model deliberately, when the task
+actually needs the reasoning. Same discipline, third payoff: quality
+where it matters, money and energy saved where it doesn’t.</p>
 <div id="exercise-4-what-did-tonight-cost-6-minutes" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -2505,7 +2964,7 @@ the most? Was it a vague prompt that triggered a loop?</li>
   Typical findings
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Most workshop sessions land in the low single-digit Wh — a few
 percent of a dishwasher run. The interesting result is usually #3: one
@@ -2672,16 +3131,6 @@ Nexus</a> exists precisely for this (guides, notebooks, workshop
 materials, and blog posts from the community — including the guides this
 lesson draws on); elsewhere, your lab blog, The Carpentries Incubator,
 or a well-documented public repo all serve the same purpose.</p>
-</section><section><h2 class="section-heading" id="where-this-goes-next">Where this goes next<a class="anchor" aria-label="anchor" href="#where-this-goes-next"></a>
-</h2>
-<hr class="half-width">
-<p>Two extension points worth knowing exist, even if you don’t touch
-them this week: <strong>skills</strong> (reusable, on-demand workflow
-instructions for the agent — a <code>/deploy</code> checklist, your
-lab’s analysis conventions) and <strong>MCP servers</strong> (connecting
-agents to external systems: databases, lab notebooks, project trackers).
-The same principles govern them: minimum access, maximum clarity, human
-judgment on what matters.</p>
 <div id="three-things-before-your-next-sprint" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>

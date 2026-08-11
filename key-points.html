@@ -260,7 +260,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="recon.html">3. Reconnaissance: Read Before You Write</a>
+        <a href="trust.html">3. Trust: Packages, Models, and Providers</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -272,7 +272,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="specification.html">4. Underspecification and Feature-Driven Development</a>
+        <a href="early-project-planning.html">4. Early Project Planning</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -284,7 +284,7 @@
 <div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
-        <a href="verification-and-review.html">5. Verification and Review: No Escaping Good Data Science</a>
+        <a href="specification.html">5. Underspecification and Feature-Driven Development</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -296,7 +296,7 @@
 <div class="accordion accordion-flush" id="accordionFlush7">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading7">
-        <a href="documentation.html">6. Documentation: Notes to Your Future Self (and Your Agent)</a>
+        <a href="verification-and-review.html">6. Verification and Review: No Escaping Good Data Science</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -308,7 +308,7 @@
 <div class="accordion accordion-flush" id="accordionFlush8">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading8">
-        <a href="trust.html">7. Trust: Packages, Models, and Providers</a>
+        <a href="documentation.html">7. Documentation: Notes to Your Future Self (and Your Agent)</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -320,7 +320,7 @@
 <div class="accordion accordion-flush" id="accordionFlush9">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading9">
-        <a href="cost-context-energy.html">8. Cost, Context, and Energy</a>
+        <a href="common-workflows.html">8. Common Workflows</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -332,7 +332,19 @@
 <div class="accordion accordion-flush" id="accordionFlush10">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading10">
-        <a href="research-and-outlook.html">9. What the Research Shows, and Where This Leaves Us</a>
+        <a href="cost-context-energy.html">9. Cost, Context, and Energy</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush11">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading11">
+        <a href="research-and-outlook.html">10. What the Research Shows, and Where This Leaves Us</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -422,20 +434,46 @@ guarantees; prompt injection is a real attack surface.</li>
 mistakes cheap to undo.</li>
 <li>Institutional data policies apply unchanged: restricted data stays
 away from unvetted AI services.</li>
-</ul></section><section id="recon"><h2 class="section-heading"><a href="recon.html">Reconnaissance: Read Before You Write</a></h2>
+</ul></section><section id="trust"><h2 class="section-heading"><a href="trust.html">Trust: Packages, Models, and Providers</a></h2>
 <hr class="half-width">
 <ul>
-<li>Start unfamiliar work in read-only/plan mode: let the agent explore
-before either of you writes code.</li>
-<li>Agents recover <em>what</em> and <em>how</em> from code, but not
-<em>why</em>, <em>for whom</em>, or anything that lives outside the
-repo.</li>
+<li>Agents install packages and download models at machine speed — keep
+those decisions on the manually-approved list.</li>
+<li>Hallucinated package names are a real attack vector (slopsquatting);
+verify a package exists and is official before installing anything an
+agent suggests.</li>
+<li>Model weights in pickle formats are executable code: prefer
+safetensors, download from verified accounts, check provenance.</li>
+<li>Backdoors can live in the weights themselves (poisoned training
+data, surgical edits, trigger behaviors) — no scanner or benchmark
+detects them, so provenance and reviewing model output are the real
+defenses.</li>
+<li>The agent tooling itself is attack surface — keep it updated, and
+never point an agent at production or irreplaceable data.</li>
+<li>Vet your provider’s actual data policy: training default, retention,
+jurisdiction, and whether any institutional agreement covers you.</li>
+<li>Every rule here has a named incident behind it — torchtriton,
+Ultralytics, huggingface-cli, Amazon Q, Replit, DeepSeek, Samsung. None
+required exotic attackers; all required missing skepticism.</li>
+</ul></section><section id="early-project-planning"><h2 class="section-heading"><a href="early-project-planning.html">Early Project Planning</a></h2>
+<hr class="half-width">
+<ul>
+<li>Plan before code: the planning phase’s deliverables are
+understanding, documentation, and specs — territory where agents are
+safe and strong.</li>
+<li>For existing projects, start in read-only/plan mode; agents recover
+<em>what</em> and <em>how</em> from code, but not <em>why</em>, <em>for
+whom</em>, or what the data means.</li>
 <li>Project context files (<code>CLAUDE.md</code>,
-<code>copilot-instructions.md</code>, <code>AGENTS.md</code>) exist to
-write down that missing knowledge — keep them short, operational, and
+<code>copilot-instructions.md</code>, <code>AGENTS.md</code>) write down
+that missing knowledge — keep them short, operational, and
 advisory-aware.</li>
-<li>An agent’s confident summary of your project is a hypothesis to
-verify, not a fact.</li>
+<li>For new projects, design in chat first (README-as-spec, data plan),
+scaffold small, then go feature-by-feature — and write the context file
+at project birth.</li>
+<li>Probe AI design ideas before adopting them, hardest where your
+domain knowledge is thinnest: if you can’t explain it, you don’t own it
+yet.</li>
 </ul></section><section id="specification"><h2 class="section-heading"><a href="specification.html">Underspecification and Feature-Driven Development</a></h2>
 <hr class="half-width">
 <ul>
@@ -458,6 +496,12 @@ model is telling you.</li>
 <li>Leakage is the canonical agentic failure: plausible, silent, and
 flattering. Split first; fit preprocessing on training data only; be
 suspicious of good news.</li>
+<li>Cheap checks catch expensive mistakes: shuffle labels, print the
+dumb baseline, assert no train/test overlap, hunt duplicates, vary the
+seed.</li>
+<li>Review diffs by hunting for decisions you didn’t make — dropped
+rows, accepted defaults, switched metrics, suppressed errors — and make
+the agent list its own assumptions.</li>
 <li>Make verification executable — tests, printed checks, baselines —
 because autonomy is purchased with verification.</li>
 <li>Agents make tests cheap: ask for them with every feature and for
@@ -480,27 +524,22 @@ agent sessions (and future you) measurably better.</li>
 surprising explanation is a lead worth chasing.</li>
 <li>Review generated docs like code, and update them with the code:
 stale documentation misleads humans and poisons agent context.</li>
-</ul></section><section id="trust"><h2 class="section-heading"><a href="trust.html">Trust: Packages, Models, and Providers</a></h2>
+</ul></section><section id="common-workflows"><h2 class="section-heading"><a href="common-workflows.html">Common Workflows</a></h2>
 <hr class="half-width">
 <ul>
-<li>Agents install packages and download models at machine speed — keep
-those decisions on the manually-approved list.</li>
-<li>Hallucinated package names are a real attack vector (slopsquatting);
-verify a package exists and is official before installing anything an
-agent suggests.</li>
-<li>Model weights in pickle formats are executable code: prefer
-safetensors, download from verified accounts, check provenance.</li>
-<li>Backdoors can live in the weights themselves (poisoned training
-data, surgical edits, trigger behaviors) — no scanner or benchmark
-detects them, so provenance and reviewing model output are the real
-defenses.</li>
-<li>The agent tooling itself is attack surface — keep it updated, and
-never point an agent at production or irreplaceable data.</li>
-<li>Vet your provider’s actual data policy: training default, retention,
-jurisdiction, and whether any institutional agreement covers you.</li>
-<li>Every rule here has a named incident behind it — torchtriton,
-Ultralytics, huggingface-cli, Amazon Q, Replit, DeepSeek, Samsung. None
-required exotic attackers; all required missing skepticism.</li>
+<li>Pick a review posture deliberately: PR-as-gate (agent commits
+freely, one serious review of the full diff) when tests and CI back you
+up; per-commit review when they don’t. Verbose agent commit logs are a
+feature — small commits are revert points.</li>
+<li>Contributing: read (or have the agent summarize) the project’s
+guidelines, work from forks, disclose AI use where policy asks, keep PRs
+small.</li>
+<li>Maintaining: agents draft triage, changelogs, and first-pass reviews
+— but incoming PRs are untrusted input, and the human owns the
+merge.</li>
+<li>Codify recurring workflows: context file → skills (reusable
+instructions) → hooks (guaranteed enforcement) → MCP (external systems,
+minimum access).</li>
 </ul></section><section id="cost-context-energy"><h2 class="section-heading"><a href="cost-context-energy.html">Cost, Context, and Energy</a></h2>
 <hr class="half-width">
 <ul>

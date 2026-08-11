@@ -118,7 +118,7 @@
     <a id="search-button" class="btn btn-primary" href="../instructor/aio.html" role="button" aria-label="Search the All In One page">Search the All In One page</a>
   </div><!--/div.container-fluid -->
 </nav><aside class="col-md-12 lesson-progress"><div class="progress incubator">
-    <div class="progress-bar incubator" role="progressbar" style="width: 46%" aria-valuenow="46" aria-valuemin="0" aria-valuemax="100" aria-label="Lesson Progress">46%</div>
+    <div class="progress-bar incubator" role="progressbar" style="width: 49%" aria-valuenow="49" aria-valuemin="0" aria-valuemax="100" aria-label="Lesson Progress">49%</div>
   </div>
 </aside><div class="container">
       <div class="row">
@@ -217,7 +217,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="recon.html">3. Reconnaissance: Read Before You Write</a>
+        <a href="trust.html">3. Trust: Packages, Models, and Providers</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -226,7 +226,16 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="specification.html">4. Underspecification and Feature-Driven Development</a>
+        <a href="early-project-planning.html">4. Early Project Planning</a>
+    </div><!--/div.accordion-header-->
+
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush6">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading6">
+        <a href="specification.html">5. Underspecification and Feature-Driven Development</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -238,7 +247,7 @@
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsecurrent" aria-expanded="true" aria-controls="flush-collapsecurrent">
         <span class="visually-hidden">Current Chapter</span>
         <span class="current-chapter">
-        5. Verification and Review: No Escaping Good Data Science
+        6. Verification and Review: No Escaping Good Data Science
         </span>
       </button>
     </div><!--/div.accordion-header-->
@@ -246,7 +255,9 @@
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#established-practice-comes-first">Established practice comes first</a></li>
-<li><a href="#worked-example-leakage-that-scores-great">Worked example: leakage that scores great</a></li>
+<li><a href="#worked-example-it-runs-clean-and-scores-great">Worked example: it runs clean and scores great</a></li>
+<li><a href="#cheap-sanity-checks-that-catch-expensive-mistakes">Cheap sanity checks that catch expensive mistakes</a></li>
+<li><a href="#reviewing-the-diff-hunt-for-decisions-you-didnt-make">Reviewing the diff: hunt for decisions you didn’t make</a></li>
 <li><a href="#give-the-agent-a-way-to-check-itself">Give the agent a way to check itself</a></li>
 <li><a href="#tests-are-cheap-now-write-more-of-them">Tests are cheap now — write more of them</a></li>
 <li><a href="#how-much-verification-is-enough">How much verification is enough?</a></li>
@@ -256,19 +267,10 @@
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
-<div class="accordion accordion-flush" id="accordionFlush7">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading7">
-        <a href="documentation.html">6. Documentation: Notes to Your Future Self (and Your Agent)</a>
-    </div><!--/div.accordion-header-->
-
-  </div><!--/div.accordion-item-->
-</div><!--/div.accordion-flush-->
-
 <div class="accordion accordion-flush" id="accordionFlush8">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading8">
-        <a href="trust.html">7. Trust: Packages, Models, and Providers</a>
+        <a href="documentation.html">7. Documentation: Notes to Your Future Self (and Your Agent)</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -277,7 +279,7 @@
 <div class="accordion accordion-flush" id="accordionFlush9">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading9">
-        <a href="cost-context-energy.html">8. Cost, Context, and Energy</a>
+        <a href="common-workflows.html">8. Common Workflows</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -286,7 +288,16 @@
 <div class="accordion accordion-flush" id="accordionFlush10">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading10">
-        <a href="research-and-outlook.html">9. What the Research Shows, and Where This Leaves Us</a>
+        <a href="cost-context-energy.html">9. Cost, Context, and Energy</a>
+    </div><!--/div.accordion-header-->
+
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush11">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading11">
+        <a href="research-and-outlook.html">10. What the Research Shows, and Where This Leaves Us</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -356,7 +367,7 @@
 
 
 
-        <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 30 minutes</p>
+        <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 40 minutes</p>
 
         <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
@@ -373,6 +384,7 @@
 <h3 class="card-title">Questions</h3>
 <ul><li>Why isn’t “the code runs and the score is high” enough?</li>
 <li>What does verification look like when an agent wrote the code?</li>
+<li>Which cheap checks catch the expensive mistakes?</li>
 <li>How much checking is enough, and when can I relax?</li>
 </ul></div>
 </div>
@@ -386,6 +398,10 @@ data, compare to a source of truth, ask a colleague) to agent-generated
 analyses.</li>
 <li>Detect a data leakage bug in code that runs cleanly and scores
 well.</li>
+<li>Run cheap sanity checks — label shuffling, baselines, overlap and
+duplicate checks — that expose broken evaluations.</li>
+<li>Review an agent’s diff by hunting for decisions you didn’t
+make.</li>
 <li>Give an agent an executable way to check its own work, including
 tests that encode data properties.</li>
 <li>Choose a verification tier proportional to the stakes of the
@@ -422,11 +438,20 @@ plausible, clean-running, well-scoring analysis in minutes. Iteration is
 easier and results come faster — which also means you can be
 <em>misled</em> faster. Your skepticism has to keep up with the
 pace.</p>
-</section><section><h2 class="section-heading" id="worked-example-leakage-that-scores-great">Worked example: leakage that scores great<a class="anchor" aria-label="anchor" href="#worked-example-leakage-that-scores-great"></a></h2>
-<hr class="half-width"><p>Data leakage is the perfect case study because it produces code that
-runs clean, scores great, and is wrong. Ask an underspecified agent for
-“a model with good accuracy on this dataset” and you may get something
-like:</p>
+</section><section><h2 class="section-heading" id="worked-example-it-runs-clean-and-scores-great">Worked example: it runs clean and scores great<a class="anchor" aria-label="anchor" href="#worked-example-it-runs-clean-and-scores-great"></a></h2>
+<hr class="half-width"><p>Ask an underspecified agent for “a model with good accuracy on this
+dataset” and you may get something like the code below. Before reading
+on, try the exercise.</p>
+<div id="exercise-spot-the-flaw-5-minutes" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="exercise-spot-the-flaw-5-minutes" class="callout-inner">
+<h3 class="callout-title">Exercise: Spot the flaw (5 minutes)</h3>
+<div class="callout-content">
+<p>This code runs without errors or warnings and reports high accuracy.
+What, if anything, is wrong with the evaluation?</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -440,8 +465,8 @@ like:</p>
 <span id="cb1-8"><a href="#cb1-8" tabindex="-1" aria-label="code-block-1-8"></a>X, y <span class="op">=</span> datasets.load_breast_cancer(return_X_y<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb1-9"><a href="#cb1-9" tabindex="-1" aria-label="code-block-1-9"></a></span>
 <span id="cb1-10"><a href="#cb1-10" tabindex="-1" aria-label="code-block-1-10"></a><span class="co"># Standardize and select the 10 best features</span></span>
-<span id="cb1-11"><a href="#cb1-11" tabindex="-1" aria-label="code-block-1-11"></a>X <span class="op">=</span> StandardScaler().fit_transform(X)          <span class="co"># fit on ALL data</span></span>
-<span id="cb1-12"><a href="#cb1-12" tabindex="-1" aria-label="code-block-1-12"></a>X <span class="op">=</span> SelectKBest(f_classif, k<span class="op">=</span><span class="dv">10</span>).fit_transform(X, y)   <span class="co"># selected using ALL labels</span></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1" aria-label="code-block-1-11"></a>X <span class="op">=</span> StandardScaler().fit_transform(X)</span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1" aria-label="code-block-1-12"></a>X <span class="op">=</span> SelectKBest(f_classif, k<span class="op">=</span><span class="dv">10</span>).fit_transform(X, y)</span>
 <span id="cb1-13"><a href="#cb1-13" tabindex="-1" aria-label="code-block-1-13"></a></span>
 <span id="cb1-14"><a href="#cb1-14" tabindex="-1" aria-label="code-block-1-14"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
 <span id="cb1-15"><a href="#cb1-15" tabindex="-1" aria-label="code-block-1-15"></a>    X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
@@ -449,17 +474,36 @@ like:</p>
 <span id="cb1-17"><a href="#cb1-17" tabindex="-1" aria-label="code-block-1-17"></a>model <span class="op">=</span> LogisticRegression(max_iter<span class="op">=</span><span class="dv">5000</span>).fit(X_train, y_train)</span>
 <span id="cb1-18"><a href="#cb1-18" tabindex="-1" aria-label="code-block-1-18"></a><span class="bu">print</span>(<span class="ss">f"Test accuracy: </span><span class="sc">{</span>model<span class="sc">.</span>score(X_test, y_test)<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre>
 </div>
-<p>No errors. No warnings. A high score. And the evaluation is
-contaminated: the scaler and — much worse — the feature selector were
-fit on the <em>entire</em> dataset, labels included, before the split.
-The “held-out” test set helped choose the features it is now being used
-to evaluate. On this dataset the inflation is modest; with wide data
-(genomics, imaging radiomics, any p ≫ n problem) this exact bug can turn
-noise into a publishable-looking result.</p>
-<p>The fix is structural, not cosmetic: split first, and fit every
-preprocessing step on training data only (in scikit-learn, put the
-scaler and selector in a <code>Pipeline</code> so cross-validation
-refits them per fold).</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1">
+  The leak
+  </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div class="accordion-body">
+<p>The evaluation is contaminated by <strong>data leakage</strong>: the
+scaler and — much worse — the feature selector were fit on the
+<em>entire</em> dataset, labels included, <em>before</em> the split. The
+“held-out” test set helped choose the very features it is now being used
+to evaluate.</p>
+<p>On this dataset the inflation is modest; with wide data (genomics,
+imaging radiomics, any p ≫ n problem) this exact bug can turn pure noise
+into a publishable-looking result. The fix is structural, not cosmetic:
+split first, and fit every preprocessing step on training data only — in
+scikit-learn, put the scaler and selector inside a <code>Pipeline</code>
+so cross-validation refits them per fold.</p>
+<p>If you didn’t spot it: that’s the point. Nothing about this code
+<em>looks</em> wrong, no error fires, and the score rewards you for not
+looking harder.</p>
+</div>
+</div>
+</div>
+</div>
 <div id="why-agents-are-prone-to-this-and-why-you-might-not-catch-it" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -482,12 +526,114 @@ more, because you’re motivated to believe it.</p>
 </div>
 </div>
 </div>
+</section><section><h2 class="section-heading" id="cheap-sanity-checks-that-catch-expensive-mistakes">Cheap sanity checks that catch expensive mistakes<a class="anchor" aria-label="anchor" href="#cheap-sanity-checks-that-catch-expensive-mistakes"></a></h2>
+<hr class="half-width"><p>You don’t need a heavyweight process to catch most broken
+evaluations. A handful of checks, each a few lines an agent will happily
+write for you, expose whole classes of silent failure:</p>
+<ul><li>
+<strong>Shuffle the labels and re-run.</strong> With <code>y</code>
+randomly permuted, a sound pipeline should collapse to chance-level
+performance. If it still scores well, information is leaking somewhere —
+through preprocessing, duplicated rows, or an evaluation bug. This is
+the single highest-value five-minute check in applied ML.</li>
+<li>
+<strong>Beat a dumb baseline, on purpose.</strong> Always report the
+majority-class (or mean predictor) score next to your model’s. A 94%
+accuracy stops being impressive when the majority class is 92% of the
+data.</li>
+<li>
+<strong>Check train/test overlap.</strong> Assert that no sample
+identifier appears in both sets — and think about what “same sample”
+means for your data: repeated measures of one patient, tiles from one
+image, or sequences from one organism belong on the <em>same</em> side
+of the split (group-wise splitting), or you’ve built a subtler
+leak.</li>
+<li>
+<strong>Hunt duplicates before splitting.</strong> Duplicated or
+near-duplicated rows straddling the split are leakage without any code
+bug at all.</li>
+<li>
+<strong>Vary the seed.</strong> If the headline metric swings wildly
+across a few random seeds, you have a variance problem, not a
+result.</li>
+</ul><div id="exercise-break-your-own-evaluation-5-minutes" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="exercise-break-your-own-evaluation-5-minutes" class="callout-inner">
+<h3 class="callout-title">Exercise: Break your own evaluation (5
+minutes)</h3>
+<div class="callout-content">
+<p>Take the modeling pipeline from the specification episode’s exercise
+(or the leaky code above, fixed or not) and ask your agent:</p>
+<blockquote>
+<p>Add a sanity check: rerun the exact same pipeline with the labels
+randomly shuffled (use a fixed seed) and report both scores side by
+side. Also print the majority-class baseline.</p>
+</blockquote>
+<ol style="list-style-type: decimal"><li>Did the shuffled-label score collapse to roughly chance? If not,
+work with the agent to find the leak.</li>
+<li>How does your real score look next to the majority-class
+baseline?</li>
+</ol></div>
+</div>
+</div>
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2">
+  What you should see
+  </h4>
+</button>
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div class="accordion-body">
+<p>For the (fixed) breast-cancer pipeline: real accuracy well above the
+~63% majority-class baseline, and shuffled-label accuracy near 50–63%
+(chance-ish, given class imbalance). If shuffled labels still score
+high, the usual suspects in order: preprocessing fit before the split,
+duplicate rows, or evaluation on training data. Note what just happened:
+the <em>agent</em> wrote the check in seconds, but <em>you</em> knew
+which check mattered and what the result should look like. That division
+of labor is the whole lesson in miniature.</p>
+</div>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="reviewing-the-diff-hunt-for-decisions-you-didnt-make">Reviewing the diff: hunt for decisions you didn’t make<a class="anchor" aria-label="anchor" href="#reviewing-the-diff-hunt-for-decisions-you-didnt-make"></a></h2>
+<hr class="half-width"><p>When you review agent-written analysis code, you’re not proofreading
+syntax — the code runs. You’re hunting for <strong>decisions you didn’t
+make</strong>. The high-yield places to look:</p>
+<ul><li>
+<strong>Silently dropped or altered rows</strong>: default
+<code>dropna()</code>, inner joins that shrink the table, type coercions
+that turn errors into NaNs. Demand row counts before and after every
+join and filter.</li>
+<li>
+<strong>Defaults treated as decisions</strong>: imputation strategy,
+class weights, regularization strength, “reasonable” thresholds. Each
+default the agent accepted is a choice you now own — make sure you’d
+defend it.</li>
+<li>
+<strong>Metric switcheroos</strong>: you asked about accuracy, the
+report quietly features F1 (or vice versa) because the numbers looked
+better. Check the metric matches the question.</li>
+<li>
+<strong>Suppressed problems</strong>: warnings silenced,
+<code>try/except: pass</code>, errors “fixed” by deleting the check. An
+agent told to “make it run” sometimes does exactly that.</li>
+</ul><p>A useful habit that costs one prompt: ask the agent to <strong>list
+its own assumptions</strong> — “summarize every choice you made that I
+didn’t specify, and flag the risky ones.” It’s the documentation
+episode’s explain-as-verification move, applied to the diff — and it
+often surfaces exactly the dropped-rows and default-parameter decisions
+above.</p>
 </section><section><h2 class="section-heading" id="give-the-agent-a-way-to-check-itself">Give the agent a way to check itself<a class="anchor" aria-label="anchor" href="#give-the-agent-a-way-to-check-itself"></a></h2>
 <hr class="half-width"><p>The single highest-leverage practice in agentic coding: <strong>make
 verification executable</strong>. Agents perform dramatically better
-when they can check their own output — run tests, compare against known
-values, validate properties — instead of relying on you as the only
-feedback loop.</p>
+when they can check their own output — running tests, comparing against
+known values, validating properties — instead of relying on you as the
+only feedback loop.</p>
 <ul><li>Include test cases in the prompt: “Write
 <code>validate_email</code>. Cases:
 <code>user@example.com → True</code>, <code>invalid → False</code>,
@@ -522,8 +668,8 @@ break this function? Write tests for them.”</li>
 </ul><p>One trap to avoid: an agent asked to “add tests” for existing code
 will often write tests that simply <em>assert whatever the code
 currently does</em> — enshrining bugs rather than catching them. That’s
-why Exercise 3 had you write the contract first. The division of labor
-that works: <strong>you decide what must be true</strong> (the
+why the exercise below has you write the contract first. The division of
+labor that works: <strong>you decide what must be true</strong> (the
 properties, the invariants, the known answers); <strong>the agent does
 the tedious part</strong> (fixtures, parametrization, the fifteen
 edge-case variants). Review tests with the same care as implementations
@@ -546,13 +692,13 @@ human</td>
 </tr></tbody></table><p>The mistake isn’t choosing a low tier — it’s choosing it
 <em>implicitly</em>. Decide what tier a task is before you start, and
 you’ll know when you’re done checking.</p>
-<div id="exercise-3-test-as-contract-10-minutes" class="callout challenge">
+<div id="exercise-test-as-contract-10-minutes" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <span class="callout-header">Challenge</span>
-<div id="exercise-3-test-as-contract-10-minutes" class="callout-inner">
-<h3 class="callout-title">Exercise 3: Test as contract (10 minutes)</h3>
+<div id="exercise-test-as-contract-10-minutes" class="callout-inner">
+<h3 class="callout-title">Exercise: Test as contract (10 minutes)</h3>
 <div class="callout-content">
 <p>Instead of hoping the agent avoids leakage, encode the requirement as
 a test it must satisfy. Write <strong>one pytest test that encodes a
@@ -586,14 +732,14 @@ majority-class baseline.</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3">
   Why this works
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>You’ve turned an invisible methodological requirement into an
 executable contract. The agent now has a feedback loop that fails loudly
@@ -621,6 +767,12 @@ model is telling you.</li>
 <li>Leakage is the canonical agentic failure: plausible, silent, and
 flattering. Split first; fit preprocessing on training data only; be
 suspicious of good news.</li>
+<li>Cheap checks catch expensive mistakes: shuffle labels, print the
+dumb baseline, assert no train/test overlap, hunt duplicates, vary the
+seed.</li>
+<li>Review diffs by hunting for decisions you didn’t make — dropped
+rows, accepted defaults, switched metrics, suppressed errors — and make
+the agent list its own assumptions.</li>
 <li>Make verification executable — tests, printed checks, baselines —
 because autonomy is purchased with verification.</li>
 <li>Agents make tests cheap: ask for them with every feature and for

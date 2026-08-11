@@ -260,7 +260,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="recon.html">3. Reconnaissance: Read Before You Write</a>
+        <a href="trust.html">3. Trust: Packages, Models, and Providers</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -272,7 +272,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="specification.html">4. Underspecification and Feature-Driven Development</a>
+        <a href="early-project-planning.html">4. Early Project Planning</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -284,7 +284,7 @@
 <div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
-        <a href="verification-and-review.html">5. Verification and Review: No Escaping Good Data Science</a>
+        <a href="specification.html">5. Underspecification and Feature-Driven Development</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -296,7 +296,7 @@
 <div class="accordion accordion-flush" id="accordionFlush7">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading7">
-        <a href="documentation.html">6. Documentation: Notes to Your Future Self (and Your Agent)</a>
+        <a href="verification-and-review.html">6. Verification and Review: No Escaping Good Data Science</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -308,7 +308,7 @@
 <div class="accordion accordion-flush" id="accordionFlush8">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading8">
-        <a href="trust.html">7. Trust: Packages, Models, and Providers</a>
+        <a href="documentation.html">7. Documentation: Notes to Your Future Self (and Your Agent)</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -320,7 +320,7 @@
 <div class="accordion accordion-flush" id="accordionFlush9">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading9">
-        <a href="cost-context-energy.html">8. Cost, Context, and Energy</a>
+        <a href="common-workflows.html">8. Common Workflows</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -332,7 +332,19 @@
 <div class="accordion accordion-flush" id="accordionFlush10">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading10">
-        <a href="research-and-outlook.html">9. What the Research Shows, and Where This Leaves Us</a>
+        <a href="cost-context-energy.html">9. Cost, Context, and Energy</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush11">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading11">
+        <a href="research-and-outlook.html">10. What the Research Shows, and Where This Leaves Us</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -437,32 +449,32 @@ the workshop schedule below maps blocks to episodes.</p>
 <td>0:15</td>
 <td>12</td>
 <td>Words of caution: security, secrets, policies, trust</td>
-<td>Episodes 2 &amp; 7</td>
+<td>Episodes 2–3</td>
 </tr>
 <tr>
 <td>0:27</td>
 <td>8</td>
-<td>Exercise 1: recon (plan mode, read-only)</td>
-<td>Episode 3</td>
+<td>Exercise 1: first look at a repo (plan mode, read-only)</td>
+<td>Episode 4</td>
 </tr>
 <tr>
 <td>0:35</td>
 <td>8</td>
 <td>Debrief: what it couldn’t infer; context files; autonomy
 comparison</td>
-<td>Episode 3</td>
+<td>Episode 4</td>
 </tr>
 <tr>
 <td>0:43</td>
 <td>10</td>
 <td>Underspecification &amp; feature-driven development</td>
-<td>Episode 4</td>
+<td>Episode 5</td>
 </tr>
 <tr>
 <td>0:53</td>
 <td>10</td>
 <td>Exercise 2: bad vs. better prompt</td>
-<td>Episode 4</td>
+<td>Episode 5</td>
 </tr>
 <tr>
 <td>1:03</td>
@@ -474,38 +486,38 @@ comparison</td>
 <td>1:08</td>
 <td>20</td>
 <td>Verification and review; leakage worked example</td>
-<td>Episode 5</td>
+<td>Episode 6</td>
 </tr>
 <tr>
 <td>1:28</td>
 <td>10</td>
 <td>Exercise 3: test as contract</td>
-<td>Episode 5</td>
+<td>Episode 6</td>
 </tr>
 <tr>
 <td>1:38</td>
 <td>8</td>
 <td>What the research shows</td>
-<td>Episode 9</td>
+<td>Episode 10</td>
 </tr>
 <tr>
 <td>1:46</td>
 <td>6</td>
 <td>Cost + energy; Exercise 4 (<code>/cost</code>, napkin math)</td>
-<td>Episode 8</td>
+<td>Episode 9</td>
 </tr>
 <tr>
 <td>1:52</td>
 <td>8</td>
 <td>Close: is programming dead?; three things before the sprint</td>
-<td>Episode 9</td>
+<td>Episode 10</td>
 </tr>
 </tbody>
 </table>
 <p>Note the live schedule runs research-findings <em>before</em> the
 cost block; the written episodes order cost before research/outlook
 because it reads better asynchronously. Either order works.</p>
-<p><strong>Episode 6 (Documentation) in the 2-hour format:</strong> like
+<p><strong>Episode 7 (Documentation) in the 2-hour format:</strong> like
 the trust episode, this has no dedicated live slot — it exists in full
 for asynchronous study. In the workshop, land its two headline ideas
 inside the verification block or the close: (1) agents make
@@ -515,7 +527,13 @@ reads back later, so it compounds — and “explain this code” doubles as a
 verification pass. Its 5-minute document-and-cross-examine exercise
 makes a good at-home assignment alongside the trust episode’s
 provider-vetting exercise.</p>
-<p><strong>Episode 7 (Trust) in the 2-hour format:</strong> there is no
+<p><strong>Episode 8 (Common Workflows) in the 2-hour format:</strong>
+async-only material. If time allows, its highest-value live moment is
+naming the two review postures (agent commits freely, PR is the review
+gate vs. review every change) during the verification block or close,
+and noting that the choice should be deliberate and written into the
+project context file.</p>
+<p><strong>Episode 3 (Trust) in the 2-hour format:</strong> there is no
 dedicated slot for the trust episode in the live schedule — it exists in
 full for asynchronous study. In the workshop, compress it into the
 words-of-caution block: name two or three of the real incidents (the
