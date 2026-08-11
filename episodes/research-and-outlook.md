@@ -111,7 +111,7 @@ Before your next project work session, commit to:
    `copilot-instructions.md`) under 100 lines, and a branch-only workflow.
 2. **Write the contract first.** For the next feature you delegate, write one test or
    printed check that encodes what "correct" means for *your* data — before you prompt.
-3. **Review one full diff like a paranoid person.** Take one agent-produced change and
+3. **Review one full diff like a skeptical referee.** Take one agent-produced change and
    review it as if a stranger submitted it to your paper's supplementary code:
    explore the data it touches, check a number against a source of truth, and see what
    the model is really telling you.

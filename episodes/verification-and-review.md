@@ -41,7 +41,7 @@ None of this changed. **There is no escaping good data science practice** — th
 didn't absorb these responsibilities when it took over the typing. What changed is
 speed: you can now generate a plausible, clean-running, well-scoring analysis in
 minutes. Iteration is easier and results come faster — which also means you can be
-*misled* faster. The paranoia has to keep up with the pace.
+*misled* faster. Your skepticism has to keep up with the pace.
 
 ## Worked example: leakage that scores great
 
@@ -91,7 +91,7 @@ and nothing about it looks wrong. The agent optimizes for "task apparently compl
 clean run, high score — and both boxes are checked. If your review process is also
 "does it run? is the score good?", you and the agent share the same blind spot.
 
-Act like a paranoid person. Assume nothing. A surprisingly *good* result deserves the
+Assume nothing; verify everything. A surprisingly *good* result deserves the
 same suspicion as a surprisingly bad one — arguably more, because you're motivated to
 believe it.
 
