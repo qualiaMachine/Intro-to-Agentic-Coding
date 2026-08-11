@@ -102,10 +102,26 @@ from sklearn import datasets
 cancer = datasets.load_breast_cancer()
 ```
 
+:::::::::::::::: group-tab
+
+### Claude Code
+
+Work in a project directory with `claude` (normal mode, so it can write and run
+code). Between the two attempts, run `/clear` so the second prompt starts from a
+clean context.
+
+### GitHub Copilot
+
+Use the chat panel in **Agent** mode so Copilot can create and run the script.
+Between attempts, start a **New Chat** (the + button) so the second prompt starts
+fresh.
+
+::::::::::::::::::::::::
+
 1. Give your agent a deliberately **bad** prompt, e.g. "analyze this data" or "build a
    model."
-2. In a fresh session (`/clear` in Claude Code, a new chat in Copilot — you'll see why
-   in the cost episode), give a **better** prompt. Specify the target and features, the split, the model family, the
+2. In a fresh session (see your tool's tab above — the cost episode explains why),
+   give a **better** prompt. Specify the target and features, the split, the model family, the
    metric, and at least one verification step, e.g.:
 
    > Using the already-loaded `cancer` dataset, build a train/test split (80/20,

@@ -46,7 +46,26 @@ or auditing a repo before you build on it.
 ## Exercise 1: First look (8 minutes)
 
 Point your agent at the practice repository (see [setup](../learners/setup.md)) — or any
-real project you have handy — in plan/read-only mode, and prompt:
+real project you have handy — in read-only mode:
+
+:::::::::::::::: group-tab
+
+### Claude Code
+
+Launch `claude` from the repository root, then press <kbd>Shift</kbd>+<kbd>Tab</kbd>
+until the status line shows **plan mode** — Claude can now read and answer, but not
+edit or run anything.
+
+### GitHub Copilot
+
+Open the repository folder in VS Code, open the Copilot chat panel
+(<kbd>Ctrl</kbd>/<kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd>), and pick **Ask** in
+the mode dropdown. Start your message with `@workspace` so the question covers the
+whole repo.
+
+::::::::::::::::::::::::
+
+Then prompt:
 
 > Read this repo and tell me what it's doing, or attempting to do.
 

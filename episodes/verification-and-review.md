@@ -288,6 +288,20 @@ def test_no_leakage_in_pipeline():
 Then prompt: *"Create `analysis.py` with `load_data()` and `build_pipeline()` so that
 `pytest test_analysis.py` passes. Run the tests to confirm."*
 
+:::::::::::::::: group-tab
+
+### Claude Code
+
+Claude will run `pytest` itself — approve the command when prompted — read the
+failures, and iterate until the suite passes.
+
+### GitHub Copilot
+
+Use **Agent** mode: Copilot proposes the `pytest` run in the integrated terminal,
+waits for your approval, and iterates on the output the same way.
+
+::::::::::::::::::::::::
+
 Other properties worth encoding, depending on your data: no identifier appears in both
 train and test; feature X is always non-negative; row count survives the merge; the
 model beats a majority-class baseline.
