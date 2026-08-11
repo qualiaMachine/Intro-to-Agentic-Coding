@@ -102,7 +102,7 @@ is emerging. Think of it as a README for the agent:
 Keep it short and operational (aim well under 300 lines): it is injected into every
 session, so everything in it competes for the model's attention with the actual task.
 If a linter can enforce a rule deterministically, use the linter and save the context
-budget. And remember from the last episode: context files are advisory — back
+budget. And remember from the words-of-caution episode: context files are advisory — back
 safety-critical rules with hooks or deny rules.
 
 ## Entry point 2: a blank page
