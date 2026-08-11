@@ -207,6 +207,19 @@ only feedback loop.
 - For analyses, demand printed evidence: row counts before/after joins, class balance,
   train/test overlap checks, a baseline model's score next to the fancy one.
 
+And make it the *default*, not a per-session request: put your testing requirements
+into the project context file from the planning episode —
+
+```markdown
+## Testing requirements
+- Run the full test suite (`pytest tests/`) after making changes
+- If tests fail, fix them before moving on; never commit failing tests
+```
+
+One instruction, written once, means the agent verifies even on the days you forget
+to ask. (It's advisory, as always — CI on the pull request is the guaranteed
+backstop.)
+
 The more trustworthy your test suite and checks, the more autonomy you can safely grant.
 This is the exchange rate at the center of agentic coding: **autonomy is purchased with
 verification.**
