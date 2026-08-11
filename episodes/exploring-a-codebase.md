@@ -97,6 +97,30 @@ If a linter can enforce a rule deterministically, use the linter and save the co
 budget. And remember from the last episode: context files are advisory — back
 safety-critical rules with hooks or deny rules.
 
+::::::::::::::::::::::::::::::::::::: callout
+
+## No repo yet? Starting from scratch
+
+This episode assumes an existing project, but agents are also good midwives for new
+ones — with the same principle running in reverse. When nothing exists yet, there is
+nothing to explore, so all the knowledge has to flow from your head into the project:
+
+1. **`git init` before the agent writes anything.** The safety episode's hygiene
+   (clean state, branches, small commits) applies from the very first file.
+2. **Have the agent scaffold the skeleton**: directory layout, environment file, a
+   starter README, and a first project context file. Boilerplate is the one place the
+   agent's average-case instincts are exactly what you want — standard layouts are
+   standard for a reason.
+3. **Then stop scaffolding and switch to feature-by-feature work** (next episode).
+   "Build me the whole project" is precisely the underspecified mega-prompt that goes
+   wrong.
+
+A new repo is also the cheapest moment to write the context file: two paragraphs
+about goals and conventions now beat archaeology later — for the agent and for
+whoever joins the project after you.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 ## The same task at three autonomy levels
 
 Recall the autonomy spectrum from episode 1. This read-the-repo task makes it concrete:
