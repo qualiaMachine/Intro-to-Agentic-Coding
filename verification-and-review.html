@@ -482,7 +482,7 @@ What, if anything, is wrong with the evaluation?</p>
   The leak
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The evaluation is contaminated by <strong>data leakage</strong>: the
 scaler and — much worse — the feature selector were fit on the
@@ -584,7 +584,7 @@ baseline?</li>
   What you should see
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>For the (fixed) breast-cancer pipeline: real accuracy well above the
 ~63% majority-class baseline, and shuffled-label accuracy near 50–63%
@@ -642,7 +642,20 @@ suppress the error.”</li>
 <li>For analyses, demand printed evidence: row counts before/after
 joins, class balance, train/test overlap checks, a baseline model’s
 score next to the fancy one.</li>
-</ul><p>The more trustworthy your test suite and checks, the more autonomy
+</ul><p>And make it the <em>default</em>, not a per-session request: put your
+testing requirements into the project context file from the planning
+episode —</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">MARKDOWN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode markdown" tabindex="0"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="fu">## Testing requirements</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a><span class="ss">- </span>Run the full test suite (<span class="in">`pytest tests/`</span>) after making changes</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1" aria-label="code-block-2-3"></a><span class="ss">- </span>If tests fail, fix them before moving on; never commit failing tests</span></code></pre>
+</div>
+<p>One instruction, written once, means the agent verifies even on the
+days you forget to ask. (It’s advisory, as always — CI on the pull
+request is the guaranteed backstop.)</p>
+<p>The more trustworthy your test suite and checks, the more autonomy
 you can safely grant. This is the exchange rate at the center of agentic
 coding: <strong>autonomy is purchased with verification.</strong></p>
 </section><section><h2 class="section-heading" id="tests-are-cheap-now-write-more-of-them">Tests are cheap now — write more of them<a class="anchor" aria-label="anchor" href="#tests-are-cheap-now-write-more-of-them"></a></h2>
@@ -702,27 +715,52 @@ you’ll know when you’re done checking.</p>
 a test it must satisfy. Write <strong>one pytest test that encodes a
 property your data or pipeline must satisfy</strong>, then ask the agent
 to make it pass. For example:</p>
-<div class="codewrapper sourceCode" id="cb2">
+<div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="kw">def</span> test_no_leakage_in_pipeline():</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a>    <span class="co">"""Preprocessing must be fit on training data only."""</span></span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1" aria-label="code-block-2-3"></a>    <span class="im">from</span> analysis <span class="im">import</span> build_pipeline, load_data</span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1" aria-label="code-block-2-4"></a>    X, y <span class="op">=</span> load_data()</span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1" aria-label="code-block-2-5"></a>    <span class="co"># A leakage-free pipeline's CV score should be computable end-to-end:</span></span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1" aria-label="code-block-2-6"></a>    <span class="co"># the pipeline object must contain ALL preprocessing steps.</span></span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1" aria-label="code-block-2-7"></a>    <span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score</span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1" aria-label="code-block-2-8"></a>    pipe <span class="op">=</span> build_pipeline()</span>
-<span id="cb2-9"><a href="#cb2-9" tabindex="-1" aria-label="code-block-2-9"></a>    step_names <span class="op">=</span> [name <span class="cf">for</span> name, _ <span class="kw">in</span> pipe.steps]</span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1" aria-label="code-block-2-10"></a>    <span class="cf">assert</span> <span class="st">"scaler"</span> <span class="kw">in</span> step_names <span class="kw">and</span> <span class="st">"select"</span> <span class="kw">in</span> step_names, <span class="op">\</span></span>
-<span id="cb2-11"><a href="#cb2-11" tabindex="-1" aria-label="code-block-2-11"></a>        <span class="st">"preprocessing must live inside the pipeline, not outside it"</span></span>
-<span id="cb2-12"><a href="#cb2-12" tabindex="-1" aria-label="code-block-2-12"></a>    scores <span class="op">=</span> cross_val_score(pipe, X, y, cv<span class="op">=</span><span class="dv">5</span>)</span>
-<span id="cb2-13"><a href="#cb2-13" tabindex="-1" aria-label="code-block-2-13"></a>    <span class="cf">assert</span> scores.mean() <span class="op">&gt;</span> <span class="fl">0.9</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="kw">def</span> test_no_leakage_in_pipeline():</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1" aria-label="code-block-3-2"></a>    <span class="co">"""Preprocessing must be fit on training data only."""</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1" aria-label="code-block-3-3"></a>    <span class="im">from</span> analysis <span class="im">import</span> build_pipeline, load_data</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1" aria-label="code-block-3-4"></a>    X, y <span class="op">=</span> load_data()</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1" aria-label="code-block-3-5"></a>    <span class="co"># A leakage-free pipeline's CV score should be computable end-to-end:</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1" aria-label="code-block-3-6"></a>    <span class="co"># the pipeline object must contain ALL preprocessing steps.</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1" aria-label="code-block-3-7"></a>    <span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score</span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1" aria-label="code-block-3-8"></a>    pipe <span class="op">=</span> build_pipeline()</span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1" aria-label="code-block-3-9"></a>    step_names <span class="op">=</span> [name <span class="cf">for</span> name, _ <span class="kw">in</span> pipe.steps]</span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1" aria-label="code-block-3-10"></a>    <span class="cf">assert</span> <span class="st">"scaler"</span> <span class="kw">in</span> step_names <span class="kw">and</span> <span class="st">"select"</span> <span class="kw">in</span> step_names, <span class="op">\</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1" aria-label="code-block-3-11"></a>        <span class="st">"preprocessing must live inside the pipeline, not outside it"</span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1" aria-label="code-block-3-12"></a>    scores <span class="op">=</span> cross_val_score(pipe, X, y, cv<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1" aria-label="code-block-3-13"></a>    <span class="cf">assert</span> scores.mean() <span class="op">&gt;</span> <span class="fl">0.9</span></span></code></pre>
 </div>
 <p>Then prompt: <em>“Create <code>analysis.py</code> with
 <code>load_data()</code> and <code>build_pipeline()</code> so that
 <code>pytest test_analysis.py</code> passes. Run the tests to
 confirm.”</em></p>
+<div class="tabs">
+<nav><div id="nav-tab-1" class="nav nav-tabs" role="tablist">
+<button class="nav-link active" id="nav-tab-1-ClaudeCode" name="ClaudeCode" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-ClaudeCode" type="button" role="tab" aria-controls="nav-tabpanel-1-ClaudeCode" aria-selected="true">
+  <h3 class="tab-header" id="nav-tab-heading-1-ClaudeCode">
+  Claude Code
+  </h3>
+</button>
+<button class="nav-link" id="nav-tab-1-GitHubCopilot" name="GitHubCopilot" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-GitHubCopilot" type="button" role="tab" aria-controls="nav-tabpanel-1-GitHubCopilot" aria-selected="false">
+  <h3 class="tab-header" id="nav-tab-heading-1-GitHubCopilot">
+  GitHub Copilot
+  </h3>
+</button>
+</div>
+</nav><div id="nav-tabContent-1" class="tab-content">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
+<p>Claude will run <code>pytest</code> itself — approve the command when
+prompted — read the failures, and iterate until the suite passes.</p>
+</div>
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
+<p>Use <strong>Agent</strong> mode: Copilot proposes the
+<code>pytest</code> run in the integrated terminal, waits for your
+approval, and iterates on the output the same way.</p>
+</div>
+</div>
+</div>
 <p>Other properties worth encoding, depending on your data: no
 identifier appears in both train and test; feature X is always
 non-negative; row count survives the merge; the model beats a
@@ -737,7 +775,7 @@ majority-class baseline.</p>
   Why this works
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>You’ve turned an invisible methodological requirement into an
 executable contract. The agent now has a feedback loop that fails loudly

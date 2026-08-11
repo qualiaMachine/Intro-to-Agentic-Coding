@@ -238,8 +238,8 @@
       <div class="accordion-body">
         <ul><li><a href="#plan-first-code-second">Plan first, code second</a></li>
 <li><a href="#entry-point-1-an-existing-project">Entry point 1: an existing project</a></li>
-<li><a href="#context-files-writing-down-the-why">Context files: writing down the “why”</a></li>
 <li><a href="#entry-point-2-a-blank-page">Entry point 2: a blank page</a></li>
+<li><a href="#ready-to-begin-write-the-context-file">Ready to begin: write the context file</a></li>
 <li><a href="#the-same-task-at-three-autonomy-levels">The same task at three autonomy levels</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
@@ -432,7 +432,36 @@ repo before you build on it.</p>
 <h3 class="callout-title">Exercise 1: First look (8 minutes)</h3>
 <div class="callout-content">
 <p>Point your agent at the practice repository (see <a href="index.html#setup">setup</a>) — or any real project you have handy — in
-plan/read-only mode, and prompt:</p>
+read-only mode:</p>
+<div class="tabs">
+<nav><div id="nav-tab-1" class="nav nav-tabs" role="tablist">
+<button class="nav-link active" id="nav-tab-1-ClaudeCode" name="ClaudeCode" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-ClaudeCode" type="button" role="tab" aria-controls="nav-tabpanel-1-ClaudeCode" aria-selected="true">
+  <h3 class="tab-header" id="nav-tab-heading-1-ClaudeCode">
+  Claude Code
+  </h3>
+</button>
+<button class="nav-link" id="nav-tab-1-GitHubCopilot" name="GitHubCopilot" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-GitHubCopilot" type="button" role="tab" aria-controls="nav-tabpanel-1-GitHubCopilot" aria-selected="false">
+  <h3 class="tab-header" id="nav-tab-heading-1-GitHubCopilot">
+  GitHub Copilot
+  </h3>
+</button>
+</div>
+</nav><div id="nav-tabContent-1" class="tab-content">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
+<p>Launch <code>claude</code> from the repository root, then press
+<kbd>Shift</kbd>+<kbd>Tab</kbd> until the status line shows <strong>plan
+mode</strong> — Claude can now read and answer, but not edit or run
+anything.</p>
+</div>
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
+<p>Open the repository folder in VS Code, open the Copilot chat panel
+(<kbd>Ctrl</kbd>/<kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd>), and pick
+<strong>Ask</strong> in the mode dropdown. Start your message with
+<code>@workspace</code> so the question covers the whole repo.</p>
+</div>
+</div>
+</div>
+<p>Then prompt:</p>
 <blockquote>
 <p>Read this repo and tell me what it’s doing, or attempting to do.</p>
 </blockquote>
@@ -473,34 +502,6 @@ the confidence of a fact. Treat it as the former.</p>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="context-files-writing-down-the-why">Context files: writing down the “why”<a class="anchor" aria-label="anchor" href="#context-files-writing-down-the-why"></a></h2>
-<hr class="half-width"><p>The gaps you just found are exactly what <strong>project context
-files</strong> exist to fill. Claude Code reads <code>CLAUDE.md</code>
-from your project root at the start of every session; Copilot reads
-<code>.github/copilot-instructions.md</code>; a cross-tool convention,
-<code>AGENTS.md</code>, is emerging. Think of it as a README for the
-agent:</p>
-<div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">MARKDOWN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode markdown" tabindex="0"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="fu">## Project structure</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="ss">- </span>Analysis pipelines live in <span class="in">`src/pipelines/`</span>; each mirrors a notebook in <span class="in">`notebooks/`</span></span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a><span class="ss">- </span>Raw data in <span class="in">`data/raw/`</span> is read-only — NEVER modify it; derived data goes to <span class="in">`data/processed/`</span></span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1" aria-label="code-block-1-4"></a></span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1" aria-label="code-block-1-5"></a><span class="fu">## Conventions</span></span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1" aria-label="code-block-1-6"></a><span class="ss">- </span>Run tests with <span class="in">`pytest tests/`</span> after changes; don't commit with failing tests</span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1" aria-label="code-block-1-7"></a><span class="ss">- </span>Use type hints; don't add dependencies without asking</span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1" aria-label="code-block-1-8"></a></span>
-<span id="cb1-9"><a href="#cb1-9" tabindex="-1" aria-label="code-block-1-9"></a><span class="fu">## Safety</span></span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1" aria-label="code-block-1-10"></a><span class="ss">- </span>Never force-push; never commit directly to main</span>
-<span id="cb1-11"><a href="#cb1-11" tabindex="-1" aria-label="code-block-1-11"></a><span class="ss">- </span>The <span class="in">`results/`</span> directory is generated — edit the code, not the outputs</span></code></pre>
-</div>
-<p>Keep it short and operational (aim well under 300 lines): it is
-injected into every session, so everything in it competes for the
-model’s attention with the actual task. If a linter can enforce a rule
-deterministically, use the linter and save the context budget. And
-remember from the words-of-caution episode: context files are advisory —
-back safety-critical rules with hooks or deny rules.</p>
 </section><section><h2 class="section-heading" id="entry-point-2-a-blank-page">Entry point 2: a blank page<a class="anchor" aria-label="anchor" href="#entry-point-2-a-blank-page"></a></h2>
 <hr class="half-width"><p>When nothing exists yet, there is nothing to explore — all the
 knowledge has to flow from your head into the project. This is where
@@ -551,6 +552,37 @@ can’t explain it, you don’t own it yet.</p>
 </div>
 </div>
 </div>
+</section><section><h2 class="section-heading" id="ready-to-begin-write-the-context-file">Ready to begin: write the context file<a class="anchor" aria-label="anchor" href="#ready-to-begin-write-the-context-file"></a></h2>
+<hr class="half-width"><p>Both entry points converge here. Exploring surfaced gaps — the
+<em>why</em>, the conventions, what the data means — that live only in
+your head; designing produced specs that live only in a chat transcript.
+Before the first real feature, capture both in a <strong>project context
+file</strong>. Claude Code reads <code>CLAUDE.md</code> from your
+project root at the start of every session; Copilot reads
+<code>.github/copilot-instructions.md</code>; a cross-tool convention,
+<code>AGENTS.md</code>, is emerging. Think of it as a README for the
+agent:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">MARKDOWN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode markdown" tabindex="0"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="fu">## Project structure</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="ss">- </span>Analysis pipelines live in <span class="in">`src/pipelines/`</span>; each mirrors a notebook in <span class="in">`notebooks/`</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a><span class="ss">- </span>Raw data in <span class="in">`data/raw/`</span> is read-only — NEVER modify it; derived data goes to <span class="in">`data/processed/`</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1" aria-label="code-block-1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1" aria-label="code-block-1-5"></a><span class="fu">## Conventions</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1" aria-label="code-block-1-6"></a><span class="ss">- </span>Run tests with <span class="in">`pytest tests/`</span> after changes; don't commit with failing tests</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1" aria-label="code-block-1-7"></a><span class="ss">- </span>Use type hints; don't add dependencies without asking</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1" aria-label="code-block-1-8"></a></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1" aria-label="code-block-1-9"></a><span class="fu">## Safety</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1" aria-label="code-block-1-10"></a><span class="ss">- </span>Never force-push; never commit directly to main</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1" aria-label="code-block-1-11"></a><span class="ss">- </span>The <span class="in">`results/`</span> directory is generated — edit the code, not the outputs</span></code></pre>
+</div>
+<p>Keep it short and operational (aim well under 300 lines): it is
+injected into every session, so everything in it competes for the
+model’s attention with the actual task. If a linter can enforce a rule
+deterministically, use the linter and save the context budget. And
+remember from the words-of-caution episode: context files are advisory —
+back safety-critical rules with hooks or deny rules.</p>
 </section><section><h2 class="section-heading" id="the-same-task-at-three-autonomy-levels">The same task at three autonomy levels<a class="anchor" aria-label="anchor" href="#the-same-task-at-three-autonomy-levels"></a></h2>
 <hr class="half-width"><p>Recall the autonomy spectrum from episode 1. This read-the-repo task
 makes it concrete:</p>

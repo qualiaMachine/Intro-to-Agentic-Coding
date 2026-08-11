@@ -415,16 +415,21 @@ failure as in the specification episode — vagueness costs quality
 accumulated conversation — file contents, command output, all of it. The
 50th message in a session costs far more than the 1st.</li>
 </ul><p>The levers are the same everywhere; only the names differ:</p>
-<div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
-  <h3 class="accordion-header" id="headingSpoiler1">
-  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
+<div class="tabs">
+<nav><div id="nav-tab-1" class="nav nav-tabs" role="tablist">
+<button class="nav-link active" id="nav-tab-1-ClaudeCode" name="ClaudeCode" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-ClaudeCode" type="button" role="tab" aria-controls="nav-tabpanel-1-ClaudeCode" aria-selected="true">
+  <h3 class="tab-header" id="nav-tab-heading-1-ClaudeCode">
   Claude Code
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
-<div class="accordion-body">
+<button class="nav-link" id="nav-tab-1-GitHubCopilot" name="GitHubCopilot" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-GitHubCopilot" type="button" role="tab" aria-controls="nav-tabpanel-1-GitHubCopilot" aria-selected="false">
+  <h3 class="tab-header" id="nav-tab-heading-1-GitHubCopilot">
+  GitHub Copilot
+  </h3>
+</button>
+</div>
+</nav><div id="nav-tabContent-1" class="tab-content">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
 <ul><li>
 <code>/clear</code> — reset context between unrelated tasks.
 Cheapest single habit.</li>
@@ -438,19 +443,7 @@ matters.</li>
 <kbd>Esc</kbd> — interrupt an agent that’s heading the wrong
 way.</li>
 </ul></div>
-</div>
-</div>
-</div>
-<div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
-  <h3 class="accordion-header" id="headingSpoiler2">
-  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
-  GitHub Copilot
-  </h3>
-</button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
-<div class="accordion-body">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
 <ul><li>
 <strong>New chat</strong> between unrelated tasks — the
 <code>/clear</code> equivalent; keep each chat scoped to one task.</li>
@@ -461,7 +454,6 @@ model choice changes the burn rate.</li>
 <li>The <strong>stop button</strong> interrupts an agent-mode session
 mid-flight.</li>
 </ul></div>
-</div>
 </div>
 </div>
 <p>Whichever tool: course-correct early — an agent heading the wrong way
@@ -538,8 +530,33 @@ where it matters, money and energy saved where it doesn’t.</p>
 <h3 class="callout-title">Exercise 4: What did tonight cost? (6
 minutes)</h3>
 <div class="callout-content">
-<ol style="list-style-type: decimal"><li>Run <code>/cost</code> (or open your tool’s usage dashboard) and
-note your session’s token usage.</li>
+<div class="tabs">
+<nav><div id="nav-tab-2" class="nav nav-tabs" role="tablist">
+<button class="nav-link active" id="nav-tab-2-ClaudeCode" name="ClaudeCode" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-2-ClaudeCode" type="button" role="tab" aria-controls="nav-tabpanel-2-ClaudeCode" aria-selected="true">
+  <h3 class="tab-header" id="nav-tab-heading-2-ClaudeCode">
+  Claude Code
+  </h3>
+</button>
+<button class="nav-link" id="nav-tab-2-GitHubCopilot" name="GitHubCopilot" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-2-GitHubCopilot" type="button" role="tab" aria-controls="nav-tabpanel-2-GitHubCopilot" aria-selected="false">
+  <h3 class="tab-header" id="nav-tab-heading-2-GitHubCopilot">
+  GitHub Copilot
+  </h3>
+</button>
+</div>
+</nav><div id="nav-tabContent-2" class="tab-content">
+<div id="nav-tabpanel-2-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-2-ClaudeCode" role="tabpanel">
+<p>Run <code>/cost</code> in your session for tokens consumed and
+<code>/context</code> for what’s filling the window.</p>
+</div>
+<div id="nav-tabpanel-2-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-2-GitHubCopilot" role="tabpanel">
+<p>Open your <a href="https://github.com/settings/copilot" class="external-link">usage
+dashboard</a> to see credit/premium-request consumption, and note which
+models you used today.</p>
+</div>
+</div>
+</div>
+<ol style="list-style-type: decimal"><li>Check what your session has consumed (your tool’s tab above) and
+note the number.</li>
 <li>Back-of-napkin energy estimate: if a full session ≈ 41 Wh, scale by
 how much of a “typical” session you’ve used (tokens are a reasonable
 proxy). How many chat queries is that? What fraction of a dishwasher
@@ -556,7 +573,7 @@ the most? Was it a vague prompt that triggered a loop?</li>
   Typical findings
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Most workshop sessions land in the low single-digit Wh — a few
 percent of a dishwasher run. The interesting result is usually #3: one

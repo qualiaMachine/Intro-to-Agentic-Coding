@@ -488,6 +488,16 @@ agents trust what they read. When behavior changes, updating the docs is
 part of the change, not an optional follow-up. (“Update the docstring
 and README to match” is a fine thing to put in the same prompt as the
 change itself.)</p>
+<p>And don’t rely on change-by-change discipline alone —
+<strong>periodically run a full audit</strong>:</p>
+<blockquote>
+<p>Go through the README, every docstring, and the comments, and verify
+each claim against what the code actually does. Make no assumptions —
+read the code. List every mismatch you find.</p>
+</blockquote>
+<p>It’s a cheap sweep (end of the week, before a release, before sharing
+the repo) that catches the drift that slips past you one edit at a time
+— and every mismatch it surfaces is either a doc fix or a bug found.</p>
 </div>
 </div>
 </div>
@@ -519,7 +529,7 @@ fix the doc, and say which one you chose and why.</li>
   What people typically find
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Most participants find at least one surprise — usually an edge case
 the code handles by accident rather than by decision (what <em>does</em>
@@ -549,7 +559,9 @@ agent sessions (and future you) measurably better.</li>
 <li>Explaining is verifying — a doc/code mismatch is a bug report; a
 surprising explanation is a lead worth chasing.</li>
 <li>Review generated docs like code, and update them with the code:
-stale documentation misleads humans and poisons agent context.</li>
+stale documentation misleads humans and poisons agent context.
+Periodically ask the agent to audit every doc claim against the actual
+code — no assumptions.</li>
 </ul></div>
 </div>
 </div>

@@ -491,14 +491,40 @@ minutes)</h3>
 <span id="cb1-4"><a href="#cb1-4" tabindex="-1" aria-label="code-block-1-4"></a></span>
 <span id="cb1-5"><a href="#cb1-5" tabindex="-1" aria-label="code-block-1-5"></a>cancer <span class="op">=</span> datasets.load_breast_cancer()</span></code></pre>
 </div>
+<div class="tabs">
+<nav><div id="nav-tab-1" class="nav nav-tabs" role="tablist">
+<button class="nav-link active" id="nav-tab-1-ClaudeCode" name="ClaudeCode" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-ClaudeCode" type="button" role="tab" aria-controls="nav-tabpanel-1-ClaudeCode" aria-selected="true">
+  <h3 class="tab-header" id="nav-tab-heading-1-ClaudeCode">
+  Claude Code
+  </h3>
+</button>
+<button class="nav-link" id="nav-tab-1-GitHubCopilot" name="GitHubCopilot" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-GitHubCopilot" type="button" role="tab" aria-controls="nav-tabpanel-1-GitHubCopilot" aria-selected="false">
+  <h3 class="tab-header" id="nav-tab-heading-1-GitHubCopilot">
+  GitHub Copilot
+  </h3>
+</button>
+</div>
+</nav><div id="nav-tabContent-1" class="tab-content">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
+<p>Work in a project directory with <code>claude</code> (normal mode, so
+it can write and run code). Between the two attempts, run
+<code>/clear</code> so the second prompt starts from a clean
+context.</p>
+</div>
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
+<p>Use the chat panel in <strong>Agent</strong> mode so Copilot can
+create and run the script. Between attempts, start a <strong>New
+Chat</strong> (the + button) so the second prompt starts fresh.</p>
+</div>
+</div>
+</div>
 <ol style="list-style-type: decimal"><li><p>Give your agent a deliberately <strong>bad</strong> prompt,
 e.g. “analyze this data” or “build a model.”</p></li>
 <li>
-<p>In a fresh session (<code>/clear</code> in Claude Code, a new
-chat in Copilot — you’ll see why in the cost episode), give a
-<strong>better</strong> prompt. Specify the target and features, the
-split, the model family, the metric, and at least one verification step,
-e.g.:</p>
+<p>In a fresh session (see your tool’s tab above — the cost episode
+explains why), give a <strong>better</strong> prompt. Specify the target
+and features, the split, the model family, the metric, and at least one
+verification step, e.g.:</p>
 <blockquote>
 <p>Using the already-loaded <code>cancer</code> dataset, build a
 train/test split (80/20, stratified, random_state=42), fit a logistic
@@ -520,7 +546,7 @@ the data before modeling?</p></li>
   What people typically observe
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The bad prompt usually yields <em>something impressive-looking</em> —
 often a full modeling pipeline with choices you never made: an arbitrary

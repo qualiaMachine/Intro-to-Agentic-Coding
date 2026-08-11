@@ -575,40 +575,155 @@ and <code>git restore</code> undoes it.</p>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a><span class="ex">pip</span> install pandas scikit-learn pytest</span></code></pre>
 </div>
 </section><section><h2 class="section-heading" id="choose-an-agentic-coding-tool">Choose an agentic coding tool<a class="anchor" aria-label="anchor" href="#choose-an-agentic-coding-tool"></a></h2>
-<hr class="half-width"><p>Any of the following works for every exercise. If your workshop
+<hr class="half-width"><div id="no-agentic-tools-on-machines-holding-sensitive-or-restricted-data" class="callout caution">
+<div class="callout-square">
+<i class="callout-icon" data-feather="alert-triangle"></i>
+</div>
+<span class="callout-header">Caution</span>
+<div id="no-agentic-tools-on-machines-holding-sensitive-or-restricted-data" class="callout-inner">
+<h3 class="callout-title">No agentic tools on machines holding sensitive
+or restricted data</h3>
+<div class="callout-content">
+<p>If the machine you’re on stores restricted data (FERPA, HIPAA/PHI,
+CUI, export-controlled, unpublished sensitive research, or anything
+under a data-use agreement), <strong>do not install or run any agentic
+tool on it — even inside a dev container.</strong> The container
+requirement below protects a <em>clean</em> machine from the agent; it
+is not a license to run agents next to restricted data, where one
+mis-mounted folder exposes everything and institutional policy bars
+unvetted tools regardless. Use a different machine, or a browser-only
+web route against a repo with no restricted data in it. The
+words-of-caution episode explains why.</p>
+</div>
+</div>
+</div>
+<p>Any of the tools below works for every exercise. If your workshop
 provides cloud credits or a specific tool, use that; otherwise pick
-whichever you can access:</p>
-<div class="section level3">
-<h3 id="claude-code-used-for-demonstrations">Claude Code (used for demonstrations)<a class="anchor" aria-label="anchor" href="#claude-code-used-for-demonstrations"></a></h3>
+whichever you can access.</p>
+<div id="access-route-policy-web-ui-recommended-otherwise-a-dev-container-is-required" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="access-route-policy-web-ui-recommended-otherwise-a-dev-container-is-required" class="callout-inner">
+<h3 class="callout-title">Access-route policy: web UI recommended;
+otherwise a dev container is required</h3>
+<div class="callout-content">
+<p>Agents run with the permissions of wherever they execute. For this
+workshop (and as good default practice):</p>
 <ul><li>
-<strong>Subscription</strong>: a Claude Pro/Max plan includes Claude
-Code (CLI, desktop app, web at <a href="https://claude.ai/code" class="external-link">claude.ai/code</a>, and IDE
-extensions).</li>
+<strong>Recommended: use a web UI</strong>, where the agent works on
+a <strong>cloud copy of a GitHub repo and has no access to your machine
+at all</strong> — no local filesystem, no SSH keys, no credentials.
+Nothing to isolate, because nothing runs locally.</li>
 <li>
-<strong>CLI install</strong>:
+<strong>If you run an agent locally instead, you MUST run it inside
+a dev container</strong> (or a cloud workspace like GitHub Codespaces).
+A bare local agent has your full user account’s access; a container caps
+the blast radius at the project directory.</li>
+</ul><p>The <a href="#dev-container-required-for-any-local-agent">dev
+container setup</a> below takes about five minutes. If that’s friction
+you don’t want, that’s one more reason to take the web route.</p>
+</div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="claude-code">Claude Code<a class="anchor" aria-label="anchor" href="#claude-code"></a></h3>
+<p><strong>Recommended route — web (no local access):</strong></p>
+<ol style="list-style-type: decimal"><li>You need a Claude subscription that includes Claude Code (Pro or
+Max), or workshop-provided credits.</li>
+<li>Go to <a href="https://claude.ai/code" class="external-link">claude.ai/code</a>, connect
+your GitHub account, and point it at a repository. Each session clones
+the repo into a fresh, ephemeral cloud VM; your laptop is just a browser
+window. Results come back as branches/PRs you review on GitHub.</li>
+<li>That’s the whole setup — nothing to install.</li>
+</ol><p><strong>Local route (dev container required):</strong></p>
+<ul><li>Inside your dev container, install the CLI:
 <code>npm install -g @anthropic-ai/claude-code</code>, then run
-<code>claude</code> from your project directory.</li>
+<code>claude</code> from the project directory and log in when
+prompted.</li>
+<li>The VS Code extension gives the same engine an in-editor UI; make
+sure VS Code is attached to the container, not your host.</li>
 <li>
-<strong>Institutional cloud</strong>: the CLI can route through
-Google Vertex AI or AWS Bedrock if your institution provides cloud
-credits (workshops at UW–Madison typically provide GCP credits — your
-instructors will share details).</li>
+<strong>Institutional cloud routing</strong>: the CLI can route
+requests through Google Vertex AI or AWS Bedrock if your institution
+provides cloud credits (UW–Madison workshops typically provide GCP
+credits — your instructors will share details). This changes billing and
+data handling, not the local-access picture — the container is still
+required.</li>
+<li>The desktop app is <strong>not</strong> recommended for this
+workshop unless you use its cloud-session mode: a “local repository”
+session runs on your machine with your full user access.</li>
 </ul></div>
 <div class="section level3">
 <h3 id="github-copilot">GitHub Copilot<a class="anchor" aria-label="anchor" href="#github-copilot"></a></h3>
-<ul><li>
-<strong>Free paid tier for students, teachers, and open-source
-maintainers</strong> via <a href="https://github.com/education" class="external-link">GitHub
-Education</a> — this includes agent mode and the cloud coding agent, not
-just autocomplete. Apply <em>and then</em> redeem the Copilot benefit
-(two separate steps).</li>
-<li>Install the Copilot extension in VS Code and sign in.</li>
+<p><strong>Get the free education tier first</strong> (students,
+teachers, and open-source maintainers): apply at <a href="https://github.com/education" class="external-link">GitHub Education</a>, then — a
+<strong>separate second step</strong> — redeem the Copilot benefit at
+the <a href="https://github.com/github-copilot/free_signup" class="external-link">Copilot
+signup page</a>. This grants the paid tier including agent mode and the
+cloud coding agent, not just autocomplete. Allow a few days for
+verification; do this <em>before</em> the workshop.</p>
+<p><strong>Recommended route — web (no local access):</strong></p>
+<ol style="list-style-type: decimal"><li>Use the chat UI at <a href="https://github.com/copilot" class="external-link">github.com/copilot</a> and delegate
+tasks to the <strong>cloud coding agent</strong> at <a href="https://github.com/copilot/agents" class="external-link">github.com/copilot/agents</a>
+(or by assigning an issue to Copilot on a repo where it’s enabled).</li>
+<li>Tasks run in GitHub’s cloud sandbox against the GitHub-hosted repo
+and come back as draft PRs. Nothing executes on your machine.</li>
+</ol><p><strong>Local route (dev container or Codespace
+required):</strong></p>
+<ul><li>Easiest compliant option: open the repo in a <strong>GitHub
+Codespace</strong> — the whole workspace is a cloud machine, so the
+“container” requirement is satisfied automatically, and the VS Code
+experience is identical.</li>
+<li>Otherwise: open the project <em>inside a dev container</em> in VS
+Code, install the GitHub Copilot extension in the container, sign in,
+and use <strong>Agent</strong> mode from the chat panel.</li>
 </ul></div>
 <div class="section level3">
 <h3 id="opencode-freeopen-source-option">OpenCode (free/open-source option)<a class="anchor" aria-label="anchor" href="#opencode-freeopen-source-option"></a></h3>
-<ul><li>Open-source CLI agent that works with several free models: <a href="https://opencode.ai" class="external-link">opencode.ai</a>. A good option if you don’t
-have access to a paid plan.</li>
-</ul><div id="before-the-workshop-check-your-data-privacy-settings" class="callout">
+<ul><li>Open-source CLI agent (<a href="https://opencode.ai" class="external-link">opencode.ai</a>) that works with several free
+hosted models — the fallback if you have no paid plan or credits.</li>
+<li>It’s a local CLI, so <strong>the dev container requirement
+applies</strong>: install it inside the container, not on your
+host.</li>
+<li>It can also drive fully local models (e.g., via Ollama), which keeps
+your code on your machine entirely — at the cost of weaker models and
+real hardware needs. If you go this route, download models only from
+verified publishers (the trust episode explains why).</li>
+</ul></div>
+<div class="section level3">
+<h3 id="dev-container-required-for-any-local-agent">Dev container (required for any local agent)<a class="anchor" aria-label="anchor" href="#dev-container-required-for-any-local-agent"></a></h3>
+<p>A dev container is a project-scoped Linux environment that VS Code
+(or any devcontainer-compatible editor) runs your tools inside. The
+agent sees the project and the container — not your home directory, your
+SSH keys, or the rest of your machine.</p>
+<ol style="list-style-type: decimal"><li><p>Install <a href="https://www.docker.com/products/docker-desktop/" class="external-link">Docker
+Desktop</a> (or Podman) and the VS Code <strong>Dev Containers</strong>
+extension.</p></li>
+<li>
+<p>In your project root, create
+<code>.devcontainer/devcontainer.json</code>:</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">JSON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode json" tabindex="0"><code class="sourceCode json"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="fu">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1" aria-label="code-block-3-2"></a>  <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"agentic-workshop"</span><span class="fu">,</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1" aria-label="code-block-3-3"></a>  <span class="dt">"image"</span><span class="fu">:</span> <span class="st">"mcr.microsoft.com/devcontainers/python:3.12"</span><span class="fu">,</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1" aria-label="code-block-3-4"></a>  <span class="dt">"postCreateCommand"</span><span class="fu">:</span> <span class="st">"pip install pandas scikit-learn pytest"</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1" aria-label="code-block-3-5"></a><span class="fu">}</span></span></code></pre>
+</div>
+</li>
+<li><p>In VS Code: <strong>Dev Containers: Reopen in Container</strong>.
+Install your agent CLI <em>in the container terminal</em> (e.g., the npm
+install above), and confirm it’s containerized: <code>ls ~</code> inside
+the terminal should show a bare container home, not your real
+one.</p></li>
+</ol><p>No Docker and no time? Use <strong>GitHub Codespaces</strong> — it’s
+the same devcontainer.json running on a cloud machine, with a generous
+free tier, and it satisfies the requirement with zero local
+installs.</p>
+<div id="before-the-workshop-check-your-data-privacy-settings" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
