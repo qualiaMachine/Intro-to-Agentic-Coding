@@ -132,16 +132,13 @@ Version control is what makes agent mistakes cheap instead of catastrophic:
 ## Institutional data policies apply — fully
 
 AI tools do not get an exemption from your institution's data rules. At UW–Madison
-specifically (adapt to your own institution):
+specifically:
 
-- Follow UW–Madison, UW System, and Board of Regents GenAI policies; DoIT maintains an
-  overview of policies and vetted tools at [it.wisc.edu/ai](https://it.wisc.edu/ai/).
-- UW does not currently have a data agreement with Anthropic, so **restricted data stays
-  off**: no student records (FERPA), health data (HIPAA/PHI), unpublished sensitive
-  research, CUI, export-controlled data, or anything under a DUA that prohibits
-  third-party processing.
-- General, non-sensitive research code is fine. When in doubt, ask your IT office
-  *before* the session, not after.
+- Follow all UW–Madison, UW System, and Board of Regents GenAI policies.
+- DoIT overviews policies and vetted tools at [it.wisc.edu/ai](https://it.wisc.edu/ai/).
+- UW does not currently have a data agreement with Anthropic.
+- Importantly, **sensitive or restricted data stays off**: no student records (FERPA), health data (HIPAA/PHI), unpublished research, CUI, export-controlled data, or anything under a DUA that prohibits third-party processing.
+- General, non-sensitive research code is fine. When in doubt, ask your IT office *before* the session, not after.
 
 Remember: your code and prompts are sent to the model provider's servers for inference.
 
