@@ -144,9 +144,9 @@ Remember: your code and prompts are sent to the model provider's servers for inf
 
 ::::::::::::::::::::::::::::::::::::: callout
 
-## No agents on machines that hold restricted data
+## No agents on machines that hold sensitive or restricted data
 
-To be explicit: **running an agent locally on any machine that stores restricted data
+To be explicit: **running an agent locally on any machine that stores sensitive or restricted data
 is not recommended at this time — full stop.** Permission settings, deny rules, and
 sandboxes don't change this: local agents scan for context, anything on the machine
 can end up in a prompt, and "the agent shouldn't have looked there" is not a control
@@ -157,10 +157,10 @@ ones with **no local access by construction**: a web UI where the agent operates
 on a cloud-hosted copy of the repo (Claude Code on the web, Copilot's cloud coding
 agent). The browser is just a window — execution and file access stay in the provider's
 sandbox, and your machine's contents are unreachable. Note the repo itself must still
-be free of restricted data, since its contents do go to the provider.
+be free of sensitive or restricted data, since its contents do go to the provider.
 
 Until your institution establishes vetted secure routes (formal data agreements,
-approved configurations), the operating rule is simple: **agents and restricted data
+approved configurations), the operating rule is simple: **agents and sensitive or restricted data
 live on separate machines.**
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -221,6 +221,6 @@ and make a deliberate choice.
 - The only secret an agent can't leak is one that isn't there: use a secrets manager or keyring and inject at runtime.
 - Permissions, sandboxing, and deny rules are valuable layers, not guarantees; prompt injection is a real attack surface.
 - Clean git state, branches, and small frequent commits make agent mistakes cheap to undo.
-- Institutional data policies apply unchanged: restricted data stays away from unvetted AI services.
+- Institutional data policies apply unchanged: sensitive or restricted data stays away from unvetted AI services.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
