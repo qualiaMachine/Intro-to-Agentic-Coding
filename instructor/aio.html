@@ -649,7 +649,7 @@ What’s different about them?</li>
   Typical patterns
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Most researchers cluster at the chat end — and the tasks people
 refuse to delegate are almost always the ones where they’d struggle to
@@ -720,7 +720,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-safety-and-security"><p>Content from <a href="safety-and-security.html">Words of Caution: Safety, Security, and Policy</a></p>
 <hr>
-<p>Last updated on 2026-08-11 |
+<p>Last updated on 2026-08-12 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/safety-and-security.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 17 minutes</p>
@@ -737,8 +737,8 @@ any links that you are not going to use.
 <ul>
 <li>What can an agent actually access on my machine, and why does that
 matter?</li>
-<li>How do I keep credentials and restricted data away from AI
-tools?</li>
+<li>How do I keep credentials and sensitive or restricted data away from
+AI tools?</li>
 <li>Which protections are guarantees, and which are just layers?</li>
 </ul>
 </div>
@@ -983,7 +983,7 @@ git history — rotating it is the fix, deleting the file is not.</li>
   What people typically find
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Almost everyone finds something: a forgotten <code>.env</code>, a
 token pasted into a notebook cell, an old <code>credentials.json</code>
@@ -1455,13 +1455,13 @@ read-only mode:</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
 <p>Launch <code>claude</code> from the repository root, then press
 <kbd>Shift</kbd>+<kbd>Tab</kbd> until the status line shows <strong>plan
 mode</strong> — Claude can now read and answer, but not edit or run
 anything.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
 <p>Open the repository folder in VS Code, open the Copilot chat panel
 (<kbd>Ctrl</kbd>/<kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd>), and pick
 <strong>Ask</strong> in the mode dropdown. Start your message with
@@ -1493,7 +1493,7 @@ load-bearing vs. abandoned)?</li>
   Debrief
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Typical pattern: the agent is excellent at <em>what</em> and
 <em>how</em> — structure, dependencies, data flow, what each module
@@ -1815,13 +1815,13 @@ minutes)</h3>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
 <p>Work in a project directory with <code>claude</code> (normal mode, so
 it can write and run code). Between the two attempts, run
 <code>/clear</code> so the second prompt starts from a clean
 context.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
 <p>Use the chat panel in <strong>Agent</strong> mode so Copilot can
 create and run the script. Between attempts, start a <strong>New
 Chat</strong> (the + button) so the second prompt starts fresh.</p>
@@ -2026,7 +2026,7 @@ What, if anything, is wrong with the evaluation?</p>
   The leak
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The evaluation is contaminated by <strong>data leakage</strong>: the
 scaler and — much worse — the feature selector were fit on the
@@ -2134,7 +2134,7 @@ baseline?</li>
   What you should see
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>For the (fixed) breast-cancer pipeline: real accuracy well above the
 ~63% majority-class baseline, and shuffled-label accuracy near 50–63%
@@ -2356,7 +2356,7 @@ majority-class baseline.</p>
   Why this works
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>You’ve turned an invisible methodological requirement into an
 executable contract. The agent now has a feedback loop that fails loudly
@@ -2592,7 +2592,7 @@ fix the doc, and say which one you chose and why.</li>
   What people typically find
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Most participants find at least one surprise — usually an edge case
 the code handles by accident rather than by decision (what <em>does</em>
@@ -2838,7 +2838,7 @@ and one about what the agent may never touch.</p>
   Why write it down?
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Two payoffs. The agent reads it — your posture, branch conventions,
 and forbidden paths now shape every session without re-prompting. And
@@ -3126,7 +3126,7 @@ the most? Was it a vague prompt that triggered a loop?</li>
   Typical findings
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Most workshop sessions land in the low single-digit Wh — a few
 percent of a dishwasher run. The interesting result is usually #3: one
@@ -3405,8 +3405,8 @@ any links that you are not going to use.
   "url": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/instructor/aio.html",
   "identifier": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/instructor/aio.html",
   "dateCreated": "2026-08-10",
-  "dateModified": "2026-08-11",
-  "datePublished": "2026-08-11"
+  "dateModified": "2026-08-12",
+  "datePublished": "2026-08-12"
 }
 
   </script><script>
