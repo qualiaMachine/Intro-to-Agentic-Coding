@@ -537,18 +537,18 @@ CUI, export-controlled data, or anything under a data use agreement
 (DUA) that prohibits third-party processing.</li>
 </ul><p>Remember: your code and prompts are sent to the model provider’s
 servers for inference.</p>
-<div id="no-agents-on-machines-that-hold-restricted-data" class="callout">
+<div id="no-agents-on-machines-that-hold-sensitive-or-restricted-data" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <span class="callout-header">Callout</span>
-<div id="no-agents-on-machines-that-hold-restricted-data" class="callout-inner">
-<h3 class="callout-title">No agents on machines that hold restricted
-data</h3>
+<div id="no-agents-on-machines-that-hold-sensitive-or-restricted-data" class="callout-inner">
+<h3 class="callout-title">No agents on machines that hold sensitive or
+restricted data</h3>
 <div class="callout-content">
 <p>To be explicit: <strong>running an agent locally on any machine that
-stores restricted data is not recommended at this time — full
-stop.</strong> Permission settings, deny rules, and sandboxes don’t
+stores sensitive or restricted data is not recommended at this time —
+full stop.</strong> Permission settings, deny rules, and sandboxes don’t
 change this: local agents scan for context, anything on the machine can
 end up in a prompt, and “the agent shouldn’t have looked there” is not a
 control your compliance office will accept.</p>
@@ -558,11 +558,11 @@ construction</strong>: a web UI where the agent operates only on a
 cloud-hosted copy of the repo (Claude Code on the web, Copilot’s cloud
 coding agent). The browser is just a window — execution and file access
 stay in the provider’s sandbox, and your machine’s contents are
-unreachable. Note the repo itself must still be free of restricted data,
-since its contents do go to the provider.</p>
+unreachable. Note the repo itself must still be free of sensitive or
+restricted data, since its contents do go to the provider.</p>
 <p>Until your institution establishes vetted secure routes (formal data
 agreements, approved configurations), the operating rule is simple:
-<strong>agents and restricted data live on separate
+<strong>agents and sensitive or restricted data live on separate
 machines.</strong></p>
 </div>
 </div>
@@ -654,8 +654,8 @@ secrets manager or keyring and inject at runtime.</li>
 guarantees; prompt injection is a real attack surface.</li>
 <li>Clean git state, branches, and small frequent commits make agent
 mistakes cheap to undo.</li>
-<li>Institutional data policies apply unchanged: restricted data stays
-away from unvetted AI services.</li>
+<li>Institutional data policies apply unchanged: sensitive or restricted
+data stays away from unvetted AI services.</li>
 </ul></div>
 </div>
 </div>

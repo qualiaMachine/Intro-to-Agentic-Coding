@@ -646,7 +646,7 @@ What’s different about them?</li>
   Typical patterns
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Most researchers cluster at the chat end — and the tasks people
 refuse to delegate are almost always the ones where they’d struggle to
@@ -911,18 +911,18 @@ CUI, export-controlled data, or anything under a data use agreement
 </ul>
 <p>Remember: your code and prompts are sent to the model provider’s
 servers for inference.</p>
-<div id="no-agents-on-machines-that-hold-restricted-data" class="callout">
+<div id="no-agents-on-machines-that-hold-sensitive-or-restricted-data" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <span class="callout-header">Callout</span>
-<div id="no-agents-on-machines-that-hold-restricted-data" class="callout-inner">
-<h3 class="callout-title">No agents on machines that hold restricted
-data</h3>
+<div id="no-agents-on-machines-that-hold-sensitive-or-restricted-data" class="callout-inner">
+<h3 class="callout-title">No agents on machines that hold sensitive or
+restricted data</h3>
 <div class="callout-content">
 <p>To be explicit: <strong>running an agent locally on any machine that
-stores restricted data is not recommended at this time — full
-stop.</strong> Permission settings, deny rules, and sandboxes don’t
+stores sensitive or restricted data is not recommended at this time —
+full stop.</strong> Permission settings, deny rules, and sandboxes don’t
 change this: local agents scan for context, anything on the machine can
 end up in a prompt, and “the agent shouldn’t have looked there” is not a
 control your compliance office will accept.</p>
@@ -932,11 +932,11 @@ construction</strong>: a web UI where the agent operates only on a
 cloud-hosted copy of the repo (Claude Code on the web, Copilot’s cloud
 coding agent). The browser is just a window — execution and file access
 stay in the provider’s sandbox, and your machine’s contents are
-unreachable. Note the repo itself must still be free of restricted data,
-since its contents do go to the provider.</p>
+unreachable. Note the repo itself must still be free of sensitive or
+restricted data, since its contents do go to the provider.</p>
 <p>Until your institution establishes vetted secure routes (formal data
 agreements, approved configurations), the operating rule is simple:
-<strong>agents and restricted data live on separate
+<strong>agents and sensitive or restricted data live on separate
 machines.</strong></p>
 </div>
 </div>
@@ -1031,8 +1031,8 @@ secrets manager or keyring and inject at runtime.</li>
 guarantees; prompt injection is a real attack surface.</li>
 <li>Clean git state, branches, and small frequent commits make agent
 mistakes cheap to undo.</li>
-<li>Institutional data policies apply unchanged: restricted data stays
-away from unvetted AI services.</li>
+<li>Institutional data policies apply unchanged: sensitive or restricted
+data stays away from unvetted AI services.</li>
 </ul>
 </div>
 </div>
@@ -1453,13 +1453,13 @@ read-only mode:</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
 <p>Launch <code>claude</code> from the repository root, then press
 <kbd>Shift</kbd>+<kbd>Tab</kbd> until the status line shows <strong>plan
 mode</strong> — Claude can now read and answer, but not edit or run
 anything.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
 <p>Open the repository folder in VS Code, open the Copilot chat panel
 (<kbd>Ctrl</kbd>/<kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd>), and pick
 <strong>Ask</strong> in the mode dropdown. Start your message with
@@ -1855,7 +1855,7 @@ the data before modeling?</p></li>
   What people typically observe
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The bad prompt usually yields <em>something impressive-looking</em> —
 often a full modeling pipeline with choices you never made: an arbitrary
@@ -2327,11 +2327,11 @@ confirm.”</em></p>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
 <p>Claude will run <code>pytest</code> itself — approve the command when
 prompted — read the failures, and iterate until the suite passes.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
 <p>Use <strong>Agent</strong> mode: Copilot proposes the
 <code>pytest</code> run in the integrated terminal, waits for your
 approval, and iterates on the output the same way.</p>
@@ -2587,7 +2587,7 @@ fix the doc, and say which one you chose and why.</li>
   What people typically find
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Most participants find at least one surprise — usually an edge case
 the code handles by accident rather than by decision (what <em>does</em>
@@ -3119,7 +3119,7 @@ the most? Was it a vague prompt that triggered a loop?</li>
   Typical findings
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Most workshop sessions land in the low single-digit Wh — a few
 percent of a dishwasher run. The interesting result is usually #3: one
