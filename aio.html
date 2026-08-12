@@ -893,15 +893,16 @@ the review happening at all is the non-negotiable part.</li>
 </h2>
 <hr class="half-width">
 <p>AI tools do not get an exemption from your institution’s data rules.
-At UW–Madison specifically (adapt to your own institution):</p>
+At UW–Madison specifically:</p>
 <ul>
-<li>Follow UW–Madison, UW System, and Board of Regents GenAI policies;
-DoIT maintains an overview of policies and vetted tools at <a href="https://it.wisc.edu/ai/" class="external-link">it.wisc.edu/ai</a>.</li>
-<li>UW does not currently have a data agreement with Anthropic, so
-<strong>restricted data stays off</strong>: no student records (FERPA),
-health data (HIPAA/PHI), unpublished sensitive research, CUI,
-export-controlled data, or anything under a DUA that prohibits
-third-party processing.</li>
+<li>Follow all UW–Madison, UW System, and Board of Regents GenAI
+policies.</li>
+<li>DoIT overviews policies and vetted tools at <a href="https://it.wisc.edu/ai/" class="external-link">it.wisc.edu/ai</a>.</li>
+<li>UW does not currently have a data agreement with Anthropic.</li>
+<li>Importantly, <strong>sensitive or restricted data stays
+off</strong>: no student records (FERPA), health data (HIPAA/PHI),
+unpublished research, CUI, export-controlled data, or anything under a
+DUA that prohibits third-party processing.</li>
 <li>General, non-sensitive research code is fine. When in doubt, ask
 your IT office <em>before</em> the session, not after.</li>
 </ul>
@@ -1313,7 +1314,7 @@ contract?</li>
   What people typically find
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Almost everyone discovers at least one surprise: a training toggle
 they’d never seen, a retention clause tied to the feedback button, or
@@ -2018,7 +2019,7 @@ What, if anything, is wrong with the evaluation?</p>
   The leak
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The evaluation is contaminated by <strong>data leakage</strong>: the
 scaler and — much worse — the feature selector were fit on the
@@ -2126,7 +2127,7 @@ baseline?</li>
   What you should see
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>For the (fixed) breast-cancer pipeline: real accuracy well above the
 ~63% majority-class baseline, and shuffled-label accuracy near 50–63%
@@ -2323,11 +2324,11 @@ confirm.”</em></p>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
 <p>Claude will run <code>pytest</code> itself — approve the command when
 prompted — read the failures, and iterate until the suite passes.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
 <p>Use <strong>Agent</strong> mode: Copilot proposes the
 <code>pytest</code> run in the integrated terminal, waits for your
 approval, and iterates on the output the same way.</p>
@@ -2348,7 +2349,7 @@ majority-class baseline.</p>
   Why this works
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>You’ve turned an invisible methodological requirement into an
 executable contract. The agent now has a feedback loop that fails loudly
@@ -2583,7 +2584,7 @@ fix the doc, and say which one you chose and why.</li>
   What people typically find
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Most participants find at least one surprise — usually an edge case
 the code handles by accident rather than by decision (what <em>does</em>
@@ -2795,11 +2796,11 @@ pattern explicit.</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
 <p>The file is <code>CLAUDE.md</code> at the repository root — create it
 if the project doesn’t have one yet.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
 <p>The file is <code>.github/copilot-instructions.md</code>. (The
 emerging cross-tool convention <code>AGENTS.md</code> also works in
 tools that support it.)</p>
@@ -2828,7 +2829,7 @@ and one about what the agent may never touch.</p>
   Why write it down?
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Two payoffs. The agent reads it — your posture, branch conventions,
 and forbidden paths now shape every session without re-prompting. And
@@ -2943,7 +2944,7 @@ accumulated conversation — file contents, command output, all of it. The
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
 <ul>
 <li>
 <code>/clear</code> — reset context between unrelated tasks.
@@ -2959,7 +2960,7 @@ matters.</li>
 way.</li>
 </ul>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
 <ul>
 <li>
 <strong>New chat</strong> between unrelated tasks — the
@@ -3084,11 +3085,11 @@ minutes)</h3>
 </button>
 </div>
 </nav><div id="nav-tabContent-2" class="tab-content">
-<div id="nav-tabpanel-2-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-2-ClaudeCode" role="tabpanel">
+<div id="nav-tabpanel-2-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-2-ClaudeCode">
 <p>Run <code>/cost</code> in your session for tokens consumed and
 <code>/context</code> for what’s filling the window.</p>
 </div>
-<div id="nav-tabpanel-2-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-2-GitHubCopilot" role="tabpanel">
+<div id="nav-tabpanel-2-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-2-GitHubCopilot">
 <p>Open your <a href="https://github.com/settings/copilot" class="external-link">usage
 dashboard</a> to see credit/premium-request consumption, and note which
 models you used today.</p>
@@ -3115,7 +3116,7 @@ the most? Was it a vague prompt that triggered a loop?</li>
   Typical findings
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Most workshop sessions land in the low single-digit Wh — a few
 percent of a dishwasher run. The interesting result is usually #3: one
