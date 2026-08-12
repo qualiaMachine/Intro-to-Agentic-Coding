@@ -135,10 +135,10 @@ AI tools do not get an exemption from your institution's data rules. At UW–Mad
 specifically:
 
 - Follow all UW–Madison, UW System, and Board of Regents GenAI policies.
+- Understand policies *before* the session, not after. When in doubt, ask your data governance office, IRB office, IT office, or whatever data policy experts guide your work. They will be happy to help you!
 - DoIT overviews policies and vetted tools at [it.wisc.edu/ai](https://it.wisc.edu/ai/).
 - UW does not currently have a data agreement with Anthropic.
-- Importantly, **sensitive or restricted data stays off**: no student records (FERPA), health data (HIPAA/PHI), unpublished research, CUI, export-controlled data, or anything under a DUA that prohibits third-party processing.
-- General, non-sensitive research code is fine. When in doubt, ask your IT office *before* the session, not after.
+- **Do not leak sensitive or restricted data, such as:** student records (FERPA), health data (HIPAA/PHI), unpublished research, CUI, export-controlled data, or anything under a data use agreement (DUA) that prohibits third-party processing.
 
 Remember: your code and prompts are sent to the model provider's servers for inference.
 
