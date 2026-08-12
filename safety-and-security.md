@@ -7,7 +7,7 @@ exercises: 5
 :::::::::::::::::::::::::::::::::::::: questions
 
 - What can an agent actually access on my machine, and why does that matter?
-- How do I keep credentials and restricted data away from AI tools?
+- How do I keep credentials and sensitive or restricted data away from AI tools?
 - Which protections are guarantees, and which are just layers?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
