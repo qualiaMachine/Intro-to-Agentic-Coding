@@ -43,6 +43,12 @@ python -m venv .venv && source .venv/bin/activate
 pip install pandas scikit-learn pytest
 ```
 
+Verify the environment from the lesson repository:
+
+```bash
+python src/python/verify_environment.py
+```
+
 ## Choose an agentic coding tool
 
 ::::::::::::::::::::::::::::::::::::::: caution
@@ -156,14 +162,25 @@ and the container — not your home directory, your SSH keys, or the rest of you
 machine.
 
 1. Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) (or
-   Podman) and the VS Code **Dev Containers** extension.
+   Podman) and the VS Code **Dev Containers** extension. To use Podman with VS Code,
+   configure the Dev Containers extension to run `podman` rather than `docker`:
+
+   ```json
+   {
+     "dev.containers.dockerPath": "podman"
+   }
+   ```
 2. In your project root, create `.devcontainer/devcontainer.json`:
 
    ```json
    {
      "name": "agentic-workshop",
      "image": "mcr.microsoft.com/devcontainers/python:3.12",
-     "postCreateCommand": "pip install pandas scikit-learn pytest"
+     "remoteUser": "vscode",
+     "runArgs": [
+       "--userns=keep-id"
+     ],
+     "postCreateCommand": "python -m pip install pandas scikit-learn pytest"
    }
    ```
 
