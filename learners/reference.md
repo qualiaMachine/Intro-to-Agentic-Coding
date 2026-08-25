@@ -49,7 +49,9 @@ safetensors don't help and no scanner or benchmark reliably detects it.
 
 **MCP (Model Context Protocol)**
 : An open protocol for connecting agents to external tools and data sources (databases,
-trackers, browsers).
+trackers, browsers). An MCP server is typically a thin wrapper that makes ordinary API
+calls under the hood — MCP standardizes how agents discover and invoke those
+capabilities; it doesn't replace the APIs themselves.
 
 **Plan mode / read-only mode**
 : An agent mode in which files can be read and questions answered but nothing is

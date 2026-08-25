@@ -97,6 +97,8 @@ once instead of re-prompting it forever:
   issue tracker, a database, a lab notebook. Each connection widens what the agent
   can touch, so apply the trust episode's lens before wiring
   one in: minimum access, and treat what flows back through it as untrusted input.
+  (The next episode is devoted to MCP — what it is and how it relates to ordinary
+  API calls.)
 
 A sensible progression: context file first, skills when you catch yourself repeating
 instructions, hooks when a rule needs enforcement rather than encouragement, MCP when
