@@ -23,8 +23,8 @@ material asynchronously; the workshop schedule below maps blocks to episodes.
 | 1:03 | 5 | Break | — |
 | 1:08 | 20 | Verification and review; leakage worked example | Episode 6 |
 | 1:28 | 10 | Exercise 3: test as contract | Episode 6 |
-| 1:38 | 8 | What the research shows | Episode 10 |
-| 1:46 | 6 | Cost + energy; Exercise 4 (`/cost`, napkin math) | Episode 9 |
+| 1:38 | 8 | What the research shows | Episode 11 |
+| 1:46 | 6 | Cost + energy; Exercise 4 (`/cost`, napkin math) | Episode 10 |
 | 1:52 | 8 | Close: is programming dead?; three things before the sprint | Episode 10 |
 
 Note the live schedule runs research-findings *before* the cost block; the written
@@ -45,6 +45,14 @@ allows, its highest-value live moment is naming the two review postures (agent c
 freely, PR is the review gate vs. review every change) during the verification block
 or close, and noting that the choice should be deliberate and written into the project
 context file.
+
+**Episode 9 (Skills and MCP) in the 2-hour format:** async-only material, like
+Documentation and Common Workflows. If time allows, its highest-value live moment is
+the 2-minute caveman skill demo (build the `SKILL.md`, trigger it, watch the style
+carry through) — it makes the "packaged instructions, loaded on demand" mechanism
+land in a way the common-workflows episode's paragraph description can't, and it's
+fast enough to slot into the close or the Exercise-1 debrief without displacing
+anything.
 
 **Episode 3 (Trust) in the 2-hour format:** there is no dedicated slot for the trust
 episode in the live schedule — it exists in full for asynchronous study. In the

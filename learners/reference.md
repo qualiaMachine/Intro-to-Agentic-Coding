@@ -41,6 +41,11 @@ from code that runs cleanly.
 : Delegating work to an agent one well-scoped, verifiable feature at a time, rather than
 project-sized requests — keeping diffs small enough to genuinely review.
 
+**Hook**
+: A deterministic script configured to run at a fixed point in an agent's workflow
+(after every edit, before every commit). Unlike a context file or a skill, a hook is
+*guaranteed* to fire rather than advisory.
+
 **Model backdoor (trojaned model)**
 : A model engineered — via poisoned training data, fine-tuning, or surgical weight
 edits — to behave normally except on a trigger input (e.g., emitting vulnerable code

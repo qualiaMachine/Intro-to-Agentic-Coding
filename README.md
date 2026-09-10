@@ -26,8 +26,9 @@ Mann, Chris Endemann, and Zain Waseem, and expands it into a self-study resource
 6. Verification and Review: No Escaping Good Data Science
 7. Documentation: Notes to Your Future Self (and Your Agent)
 8. Common Workflows
-9. Cost, Context, and Energy
-10. What the Research Shows, and Where This Leaves Us
+9. Skills and MCP: Extending Your Agent
+10. Cost, Context, and Energy
+11. What the Research Shows, and Where This Leaves Us
 
 ## Building the lesson locally
 
