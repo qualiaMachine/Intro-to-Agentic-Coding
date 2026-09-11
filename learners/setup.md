@@ -195,6 +195,8 @@ machine.
    are finished. Continue to open and work on the project in VS Code; Podman Desktop
    is only for monitoring and managing the local container.
 
+   ![Podman Desktop container view](fig/podman_container.png){alt='Podman Desktop Containers view showing the running dev container'}
+
 3. In VS Code, open the Command Palette, choose **Dev Containers: Reopen in
    Container**, and wait for VS Code to rebuild and reopen the project. Install your
    agent CLI *in the container terminal* (your command prompt will be something like
