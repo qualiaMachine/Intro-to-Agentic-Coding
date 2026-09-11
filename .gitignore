@@ -49,3 +49,7 @@ docs/
 # translation temp files
 po/*~
 
+# Generated Dev Container metadata
+.devcontainer/Dockerfile
+.devcontainer/devcontainer.json
+.devcontainer/devcontainer-lock.json

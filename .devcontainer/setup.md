@@ -195,14 +195,11 @@ machine.
    are finished. Continue to open and work on the project in VS Code; Podman Desktop
    is only for monitoring and managing the local container.
 
-   ![Podman Desktop container view](fig/podman_container.png){alt='Podman Desktop Containers view showing the running dev container'}
-
 3. In VS Code, open the Command Palette, choose **Dev Containers: Reopen in
    Container**, and wait for VS Code to rebuild and reopen the project. Install your
-   agent CLI *in the container terminal* (your command prompt will be something like
-   `vscode@containerID:/workspaces/Intro-to-Agentic-Coding$`), and confirm it's
-   containerized: `ls ~` inside the terminal should show a bare container home, not
-   your real one.
+   agent CLI *in the container terminal* (for example, 
+   `vscode@containerID:/workspaces/Intro-to-Agentic-Coding`), and confirm it's containerized: `ls ~`
+   inside the terminal should show a bare container home, not your real one.
 
 No Docker and no time? Use **GitHub Codespaces** — it's the same devcontainer.json
 running on a cloud machine, with a generous free tier, and it satisfies the
@@ -219,16 +216,6 @@ tool not covered by an institutional agreement. UW–Madison folks: see
 [it.wisc.edu/ai](https://it.wisc.edu/ai/).
 
 :::::::::::::::::::::::::::::::::::::::::::::::
-
-## Optional: GitHub token (for the MCP demo)
-
-The [Skills and MCP](../episodes/skills-and-mcp.md) episode connects your agent to the
-GitHub MCP server. Create a
-[fine-grained personal access token](https://github.com/settings/personal-access-tokens/new)
-scoped to **read-only** access (Issues and Pull requests: read) on one repository you
-don't mind exposing — not a token with write, delete, or org-wide scope. Set it as an
-environment variable (`GH_TOKEN`) rather than pasting it into a config file you might
-commit.
 
 ## Practice repository
 

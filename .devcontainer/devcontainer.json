@@ -1,30 +1,41 @@
 {
-    "forwardPorts": [8787],
-    "portsAttributes": {
-        "8787": {
-            "label": "RStudio Server",
-            "onAutoForward": "notify"
-        }
+  "name": "agentic-workshop",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "containerUser": "root",
+  "remoteUser": "vscode",
+  "overrideCommand": false,
+  "containerEnv": {
+    "DISABLE_AUTH": "true",
+    "R_SERVR_PORT": "4321"
+  },
+  "remoteEnv": {
+    "PATH": "/home/vscode/.venv/bin:${containerEnv:PATH}"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/node:1": {},
+    "ghcr.io/anthropics/devcontainer-features/claude-code:1.0": {},
+    "ghcr.io/devcontainers/features/node:2": {}
+  },
+  "runArgs": [
+    "--userns=keep-id"
+  ],
+  "forwardPorts": [
+    8787,
+    4321
+  ],
+  "portsAttributes": {
+    "8787": {
+      "label": "RStudio Server",
+      "onAutoForward": "notify"
     },
-    "remoteUser":"rstudio",
-    "workspaceMount": "source=${localWorkspaceFolder},target=/home/rstudio/lessons/${localWorkspaceFolderBasename},type=bind",
-    "workspaceFolder": "/home/rstudio/lessons/${localWorkspaceFolderBasename}",
-    "mounts": [
-        "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/rstudio/.ssh,type=bind,consistency=cached",
-        "source=${localEnv:HOME}${localEnv:USERPROFILE}/.gnupg,target=/home/rstudio/.gnupg,type=bind,consistency=cached"
-    ],
-    "build": {
-        "dockerfile": "Dockerfile",
-        "context": ".."
-    },
-    "postCreateCommand": {
-        "pre_echo": "echo 'Installing lesson prerequisites - please wait...'",
-        "gpg_reset": "gpgconf --kill all",
-        "lesson_deps": "Rscript /home/rstudio/.workbench/setup_lesson_deps.R",
-        "fortify": "Rscript /home/rstudio/.workbench/fortify_renv_cache.R"
-    },
-    "containerEnv": {
-        "DISABLE_AUTH": "true",
-        "GPG_TTY": "/dev/pts/0"
+    "4321": {
+      "label": "Carpentries Workbench lesson preview",
+      "onAutoForward": "openBrowser"
     }
+  },
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install --yes --no-install-recommends libgit2-dev libxslt1-dev python3-venv && sudo find /workspaces/Intro-to-Agentic-Coding -path /workspaces/Intro-to-Agentic-Coding/.git -prune -o -exec chmod a+rwX {} + && python3 -m venv \"$HOME/.venv\" && \"$HOME/.venv/bin/pip\" install pandas scikit-learn pytest && sudo Rscript -e 'install.packages(c(\"rmarkdown\", \"knitr\", \"here\", \"tidyverse\", \"DBI\", \"RMySQL\", \"readr\"), repos = \"https://cloud.r-project.org\")' && sudo Rscript -e 'install.packages(c(\"sandpaper\", \"varnish\", \"pegboard\"), repos = c(\"https://carpentries.r-universe.dev\", \"https://cloud.r-project.org\"))'"
 }
