@@ -188,6 +188,16 @@ tool not covered by an institutional agreement. UW–Madison folks: see
 
 :::::::::::::::::::::::::::::::::::::::::::::::
 
+## Optional: GitHub token (for the MCP demo)
+
+The [Skills and MCP](../episodes/skills-and-mcp.md) episode connects your agent to the
+GitHub MCP server. Create a
+[fine-grained personal access token](https://github.com/settings/personal-access-tokens/new)
+scoped to **read-only** access (Issues and Pull requests: read) on one repository you
+don't mind exposing — not a token with write, delete, or org-wide scope. Set it as an
+environment variable (`GH_TOKEN`) rather than pasting it into a config file you might
+commit.
+
 ## Practice repository
 
 Exercise 1 (the read-only repo exploration) works best on a repository that is real but unfamiliar to you. Your
