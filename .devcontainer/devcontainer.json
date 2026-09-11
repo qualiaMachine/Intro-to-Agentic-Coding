@@ -1,14 +1,41 @@
 {
   "name": "agentic-workshop",
-  "image": "mcr.microsoft.com/devcontainers/python:3.12",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "containerUser": "root",
   "remoteUser": "vscode",
+  "overrideCommand": false,
+  "containerEnv": {
+    "DISABLE_AUTH": "true",
+    "R_SERVR_PORT": "4321"
+  },
+  "remoteEnv": {
+    "PATH": "/home/vscode/.venv/bin:${containerEnv:PATH}"
+  },
   "features": {
     "ghcr.io/devcontainers/features/github-cli:1": {},
     "ghcr.io/devcontainers/features/node:1": {},
-    "ghcr.io/anthropics/devcontainer-features/claude-code:1.0": {}
+    "ghcr.io/anthropics/devcontainer-features/claude-code:1.0": {},
+    "ghcr.io/devcontainers/features/node:2": {}
   },
   "runArgs": [
     "--userns=keep-id"
   ],
-  "postCreateCommand": "python -m pip install pandas scikit-learn pytest"
+  "forwardPorts": [
+    8787,
+    4321
+  ],
+  "portsAttributes": {
+    "8787": {
+      "label": "RStudio Server",
+      "onAutoForward": "notify"
+    },
+    "4321": {
+      "label": "Carpentries Workbench lesson preview",
+      "onAutoForward": "openBrowser"
+    }
+  },
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install --yes --no-install-recommends libgit2-dev libxslt1-dev python3-venv && sudo find /workspaces/Intro-to-Agentic-Coding -path /workspaces/Intro-to-Agentic-Coding/.git -prune -o -exec chmod a+rwX {} + && python3 -m venv \"$HOME/.venv\" && \"$HOME/.venv/bin/pip\" install pandas scikit-learn pytest && sudo Rscript -e 'install.packages(c(\"rmarkdown\", \"knitr\", \"here\", \"tidyverse\", \"DBI\", \"RMySQL\", \"readr\"), repos = \"https://cloud.r-project.org\")' && sudo Rscript -e 'install.packages(c(\"sandpaper\", \"varnish\", \"pegboard\"), repos = c(\"https://carpentries.r-universe.dev\", \"https://cloud.r-project.org\"))'"
 }

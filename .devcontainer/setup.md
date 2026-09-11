@@ -197,10 +197,9 @@ machine.
 
 3. In VS Code, open the Command Palette, choose **Dev Containers: Reopen in
    Container**, and wait for VS Code to rebuild and reopen the project. Install your
-   agent CLI *in the container terminal* (your command prompt will be something like
-   `vscode@containerID:/workspaces/Intro-to-Agentic-Coding$`), and confirm it's
-   containerized: `ls ~` inside the terminal should show a bare container home, not
-   your real one.
+   agent CLI *in the container terminal* (for example, 
+   `vscode@containerID:/workspaces/Intro-to-Agentic-Coding`), and confirm it's containerized: `ls ~`
+   inside the terminal should show a bare container home, not your real one.
 
 No Docker and no time? Use **GitHub Codespaces** — it's the same devcontainer.json
 running on a cloud machine, with a generous free tier, and it satisfies the
