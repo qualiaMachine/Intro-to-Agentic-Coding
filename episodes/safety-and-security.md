@@ -1,226 +1,305 @@
 ---
-title: "Words of Caution: Safety, Security, and Policy"
-teaching: 12
-exercises: 5
+title: "Safety and Security: Limit What the Agent Can Access"
+teaching: 20
+exercises: 8
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions
 
 - What can an agent actually access on my machine, and why does that matter?
+- Which protections are real limits, and which are just requests the model may ignore?
 - How do I keep credentials and sensitive or restricted data away from AI tools?
-- Which protections are guarantees, and which are just layers?
+- How do I get an agent running safely on my own project?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Keep secrets out of local plaintext files entirely, injecting them at runtime instead.
-- Treat permissions and sandboxing as defense-in-depth layers, not guarantees.
-- Use git hygiene (clean state, branches, small frequent commits) as your primary recovery mechanism.
 - Apply institutional data policies before pointing an agent at any project.
+- Limit an agent along six axes: where it runs, which commands it may run, which credentials it can see, what it can commit, what it can reach on the network, and whom you trust.
+- Distinguish instructions (which shape behavior) from permissions (which constrain it).
+- Keep secrets out of local plaintext files entirely, loading them at runtime from a password manager.
+- Start an agent session on your own repository using a cloud VM, a feature branch, and no keys on disk.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## An agent runs with *your* permissions
+## Follow your institution's GenAI policies
 
-When you launch an agentic tool from your terminal or IDE, it operates with your user
-account's full filesystem and shell access. It can read your SSH keys, your `.env`
-files, your notes — anything you can. This is not unique to any one tool; it is what
-"shell access" means.
-
-Agents also *automatically scan for context*. That is their job: to read your project
-and figure out what's relevant. A credentials file sitting in your working directory is,
-from the agent's point of view, just more context.
-
-## Default to surfaces that never touch your machine
-
-Before tuning permissions and sandboxes, ask a simpler question: does the agent need to
-run on your machine at all? Several access routes keep execution entirely off your
-laptop, by construction:
-
-- **Claude Code on the web** ([claude.ai/code](https://claude.ai/code)): your GitHub
-  repo is cloned into a fresh, ephemeral cloud VM. The agent cannot reach your local
-  filesystem, SSH keys, or credentials, and the VM is destroyed when the task ends.
-- **GitHub Copilot's web surfaces** ([github.com/copilot](https://github.com/copilot)
-  and the cloud coding agent at
-  [github.com/copilot/agents](https://github.com/copilot/agents), or assigning an issue
-  to Copilot): a browser tab has no local access, and delegated tasks run in GitHub's
-  cloud sandbox, pushing to their own branch for your review.
-- **Desktop apps — but only in cloud modes.** Desktop apps are not automatically safe:
-  a "local repository" session runs on your machine with your user account's full
-  access. Check where a session executes, and prefer modes that work against a cloud
-  repo or hand off to a cloud agent, so the app is just a window onto remote execution.
-
-A useful hierarchy when local exposure is the concern: **cloud agent (nothing runs
-locally) → agent in a dev container or cloud workspace (contained local access) → bare
-local agent (full user access — rely on the rest of this episode).**
-
-Two honest caveats. First, this isolation protects *your machine*, not *your data*:
-whatever is in the repo still goes to the provider, so the data-policy rules below
-apply on every route. Second, cloud surfaces trade away some interactivity — for deep,
-conversational work on a local checkout you may still choose a local agent, which is
-what the remaining defenses are for.
-
-## Secrets never touch disk
-
-The single most effective protection: **a secret that isn't on disk can't be read,
-echoed, committed, or exfiltrated** — by an agent, by malware, or by you at 11pm.
-
-- Don't store passwords or API keys in `.env` files, JSON configs, or shell profiles.
-- Use a secrets manager (many universities, including UW–Madison, provide 1Password for
-  free) or your OS keyring, and inject values at runtime.
-
-Compare these two patterns:
-
-```python
-# BAD: secret lives in plaintext on disk; any process (or agent) can read it
-API_KEY = open(".env").read().split("=")[1]
-```
-
-```python
-# GOOD: secret lives in the OS keyring, fetched only at call time
-def get_oauth_token() -> str:
-    """Obtain OAuth token for UW-Madison API using credentials from keyring."""
-    url = "https://api.wisc.edu/oauth/token"
-    response = httpx.post(
-        url,
-        data={
-            "client_id": keyring.get_password("UW_API", "UW_API_KEY"),
-            "client_secret": keyring.get_password("UW_API", "UW_API_SECRET"),
-            "grant_type": "client_credentials",
-        },
-    )
-    response.raise_for_status()
-    return response.json()["access_token"]
-```
-
-The second version can be read aloud by an agent, pasted into a chat, or committed to a
-public repo without leaking anything.
-
-## Layers, not guarantees
-
-Modern agents ship real protections. Claude Code asks permission before writes and
-shell commands, supports deny rules for sensitive paths, and has an OS-level sandbox
-that restricts filesystem and network access; Copilot's agent mode asks before running
-terminal commands and can be run inside a dev container or Codespace for isolation.
-Configure whatever your tool provides. But understand what these layers are:
-
-- Deny rules can be subtly mis-written, and an allowed command (like `cat`) can read a
-  file that a read-rule covers.
-- Instruction files ("never touch `~/.ssh`") are advisory — followed in good faith, not
-  enforced by the system.
-- Prompt injection is real: a malicious README, issue body, or data file can contain
-  hidden instructions that try to hijack the agent.
-
-Think of it as defense in depth: secrets off disk *first*, then sandbox, then deny
-rules, then permission prompts. Each layer reduces the odds; none is a vault door.
-
-## Git is your seatbelt
-
-Version control is what makes agent mistakes cheap instead of catastrophic:
-
-- **Start from a clean git state.** If the agent goes sideways, `git diff` shows you
-  exactly what it did and `git restore` undoes it. A dirty working tree means agent
-  changes and your changes get tangled together.
-- **Always work on a branch.** Never let an agent commit directly to `main`.
-- **Commit small and often.** Each commit is a save point you can revert to.
-- **Someone reads the code before it lands on `main`** — you, a colleague, or CI.
-  Whether you review each change as it happens or the full diff at the pull request
-  is a real choice with trade-offs (the common-workflows episode compares the two);
-  the review happening at all is the non-negotiable part.
-
-## Institutional data policies apply — fully
-
-AI tools do not get an exemption from your institution's data rules. At UW–Madison
+AI tools do not get an exemption from your institution's data rules. Like GenAI
+itself, the policies are developing rapidly, so look out for changes. At UW–Madison
 specifically:
 
 - Follow all UW–Madison, UW System, and Board of Regents GenAI policies.
-- Understand policies *before* the session, not after. When in doubt, ask your data governance office, IRB office, IT office, or whatever data policy experts guide your work. They will be happy to help you!
 - DoIT overviews policies and vetted tools at [it.wisc.edu/ai](https://it.wisc.edu/ai/).
-- UW does not currently have a data agreement with Anthropic.
-- **Do not leak sensitive or restricted data, such as:** student records (FERPA), health data (HIPAA/PHI), unpublished research, CUI, export-controlled data, or anything under a data use agreement (DUA) that prohibits third-party processing.
+  If you are unsure of your data's classification level, reach out to a data steward
+  via that page — or to your data governance office, IRB office, or IT office. They
+  will be happy to help.
+- **Never enter sensitive or restricted information into unvetted AI services**:
+  student records (FERPA), health data (HIPAA/PHI), unpublished research, CUI,
+  export-controlled data, or anything under a data use agreement (DUA) that prohibits
+  third-party processing.
 
-Remember: your code and prompts are sent to the model provider's servers for inference.
+Remember: your code and prompts are sent to the model provider's servers for
+inference. Every route in this episode protects your *machine*; none of them changes
+where your *repository contents* go.
+
+## Recognize what an agent can and cannot do
+
+Mitigating risk starts with a realistic picture of the tool:
+
+| A GenAI agent **can** | A GenAI agent **cannot** |
+|---|---|
+| Write or translate code | Work safely with sensitive or restricted data or secrets |
+| Explain basic logic | Explain *human* logic — why your field does it this way |
+| Execute validation steps you specify | Determine all the necessary validation steps |
+| Run commands from your terminal (!) | Prevent all bad commands from running |
+
+That last row is the one people underestimate. When you launch an agent from your
+terminal or IDE, it operates with your user account's full filesystem and shell
+access. It can read your SSH keys, your `.env` files, your notes — anything you can.
+And agents *automatically scan for context*: that is their job. A credentials file in
+your working directory is, from the agent's point of view, just more context.
+
+## Limit what the agent can access
+
+The rest of this episode is six limits, in this order:
+
+1. **Where it runs.** A throwaway cloud VM, not your laptop.
+2. **Which commands it may run.** Allow and deny rules.
+3. **Which credentials it can see.** A password manager, never the repo.
+4. **What it can commit.** Feature branch, pull request, you merge.
+5. **What it can reach on the network.** An egress allowlist against prompt injection.
+6. **Whom you trust.** Providers, their data policies, and downloaded repos and weights.
+
+One distinction organizes all six. An *instruction* (a rules file, a line in a prompt)
+asks the model to behave. A *permission* (a VM boundary, a deny rule, a branch
+protection) removes the ability. **Instructions shape behavior; permissions constrain
+it.** Prefer the second wherever you can get it.
+
+### 1. Prefer a cloud VM over your own machine
+
+Run the agent on a cloud virtual machine, not your local machine. There is then no
+risk it wipes your filesystem, reads your password store, or finds last year's `.env`.
+
+- **Claude Code on the web** ([claude.ai/code](https://claude.ai/code)) and **GitHub
+  Copilot's cloud coding agent** ([github.com/copilot/agents](https://github.com/copilot/agents))
+  both clone your repository into a throwaway VM. The work comes back as a branch or a
+  pull request.
+- **The desktop apps do both.** Claude Desktop and the VS Code extensions can run a
+  cloud session *or* a local one. A "local repository" session runs on your machine
+  with your full user access. **Check which mode you are in before you prompt.**
+- Running locally anyway? Use a dev container, and know its limits.
+
+::::::::::::::::::::::::::::::::::::: callout
+
+## Dev containers are not a security boundary
+
+A dev container caps the blast radius at the project directory, which is worth
+having. But AWS does not consider containers a security boundary (see its bulletin on
+the November 2025 `runc` container escapes), and Anthropic says the same of its own
+[Claude Code dev container](https://code.claude.com/docs/en/devcontainer): use it
+only with trusted repositories. The hierarchy, when local exposure is the concern:
+**cloud VM (nothing runs locally) → dev container (contained local access) → bare
+local agent (full user access).**
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+### 2. Command permissions help, and are not sufficient
+
+Allow, ask, and deny rules decide which commands run without asking. The defaults
+usually deny nothing, so set them: deny `rm -rf`, force-push, and reads of `.env` and
+`~/.ssh`. Claude Code's docs on
+[permissions versus sandboxing](https://code.claude.com/docs/en/permissions) explain
+the two mechanisms.
+
+Understand what a permission rule is, though: **the check reads the command text, not
+what the command does when run.** In January 2026, Cursor's allowlist was bypassed
+([CVE-2026-22708](https://github.com/cursor/cursor/security/advisories/GHSA-82wg-qcm4-fp2w),
+found by Pillar Security): prompt injection set an environment variable through a
+shell built-in the allowlist did not check, and the next approved `git` command ran
+the attacker's code. Deny rules are a layer. The VM is the wall.
+
+### 3. Credentials: a password manager, never the repo
+
+Agent instruction files help here too, but first the mechanism that actually removes
+the risk. **A secret that isn't on disk can't be read, echoed, committed, or
+exfiltrated** — by an agent, by malware, or by you at 11pm.
+
+- Do not store passwords or API keys in `.env` files, JSON configs, or shell profiles.
+- Keep keys in a password manager and load them once per session. Every UW–Madison
+  NetID can (and should) request a free
+  [1Password account](https://it.wisc.edu/services/1password/); the 1Password CLI
+  (`op`) reads a secret by reference:
+
+```bash
+# bash / zsh — load the key once per session
+export OPENAI_API_KEY=$(op read 'op://Private/bbadger/credential')
+```
+
+```powershell
+# PowerShell
+$env:OPENAI_API_KEY = op read "op://Private/bbadger/credential"
+```
+
+For a Jupyter workflow, keep a file of *references* (safe to commit — an `op://` path
+is not a secret) and launch through `op run`, so every kernel inherits the variables
+and no key ever appears in a notebook:
+
+```bash
+# .env.op  (references, not secrets; safe to commit)
+OPENAI_API_KEY=op://Private/BadgerBrain/credential
+OPENAI_BASE_URL=https://deepthought.doit.wisc.edu/v1
+
+# launch JupyterLab through 1Password
+op run --env-file=.env.op -- jupyter lab
+```
+
+```python
+# in any notebook, in any kernel
+import os
+from openai import OpenAI
+client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
+```
+
+Never print the key and never paste it into a cell. 1Password prompts on each read;
+your OS keychain, by contrast, hands secrets to any process running as you. Cloud
+equivalents (AWS Secrets Manager, Azure Key Vault) work the same way. See the
+[1Password CLI docs](https://developer.1password.com/docs/cli/secrets-environment-variables/).
+
+::::::::::::::::::::::::::::::::::::: callout
+
+## Agent instruction files: helpful, but not 100% reliable
+
+An instruction file is a markdown file the agent reads at the start of every session:
+project context, commands, conventions. Claude Code reads `CLAUDE.md`; Copilot reads
+`.github/copilot-instructions.md`; nearly everything, Copilot included, also reads
+`AGENTS.md`. Commit it to the repo and keep it short — test command, data location,
+what not to touch. (The [planning](early-project-planning.md) episode shows one.)
+
+But know what it is. In April 2026 a Cursor agent working a staging task for the
+startup PocketOS hit a credential mismatch, found a Railway API token in an unrelated
+file, and used it — deleting the production database and its backups in nine seconds.
+The rules file lives in the same context window as everything else. **It is text the
+model weighs, not a permission it lacks.** Instructions shape behavior; permissions
+constrain it.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+### 4. Version control: feature branch, pull request, you merge
+
+Version control is what makes agent mistakes cheap instead of catastrophic.
+
+- Always use version control (GitHub, GitLab, Bitbucket).
+- **Do not let an agent commit to `main`.** The agent creates a feature branch and
+  opens a pull request; *you* review and merge.
+- Review and test code before committing. Make small, frequent commits — each one is
+  a save point.
+- Start from a clean git state, so `git diff` shows exactly what the agent did and
+  `git restore` undoes it.
+
+Protect `main` on the host so that this is a permission, not a habit: require a pull
+request and a passing check before merge (the verification episode sets that up).
+
+### 5. Network: treat everything the agent reads as untrusted
+
+An agent treats the text it reads as instructions. A README, an issue, a web page, or
+a dependency's install script can carry commands it will follow. This is **prompt
+injection**, and it is not hypothetical:
+
+- **GitHub MCP, May 2025.** Invariant Labs showed that a malicious issue in a public
+  repository could steer an agent with GitHub access into leaking data from the
+  user's private repositories.
+- **Nx on npm, August 2025.** A compromised package's install script prompted the
+  victim's *own* Claude Code, Gemini CLI, or Amazon Q to search the machine for
+  secrets; thousands of credentials were leaked to public GitHub repositories. (Wiz's
+  analysis found Claude refused about a quarter of the time — a layer, not a wall.)
+
+Reduce the risk:
+
+- **Be careful what you install and clone.** Every dependency's install script and
+  every file in a repository is code the agent runs and text it reads.
+- **Treat anything the agent reads as untrusted** — issues, PR comments, web pages. A
+  prompt that sends it to the web brings back whatever the page says.
+- **Use the web session and keep its defaults.** Claude Code on the web and Copilot's
+  cloud agent limit network access to an allowlist and keep your keys out of the
+  sandbox. Do not turn the firewall off to fix a blocked request.
+- **Review the PR before you merge.** The last wall of defense.
+
+Simon Willison's ["lethal trifecta"](https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/)
+names the combination to avoid: private data, exposure to untrusted content, and a way
+to send data out. Remove any one leg and the attack fails.
+
+### 6. Whom you trust: providers, models, and repos
+
+The last limit is the one no setting enforces: which providers, packages, and model
+weights you let into the loop at all. Vet a provider's data policy (is my data used
+for training, and is that the default? how long is it retained? where does inference
+run? does an institutional agreement cover this?), and treat downloaded weights and
+packages with the suspicion you'd give any executable. The next episode,
+[trust](trust.md), goes through each with the incidents behind the rules.
 
 ::::::::::::::::::::::::::::::::::::: callout
 
 ## No agents on machines that hold sensitive or restricted data
 
-To be explicit: **running an agent locally on any machine that stores sensitive or restricted data
-is not recommended at this time — full stop.** Permission settings, deny rules, and
-sandboxes don't change this: local agents scan for context, anything on the machine
-can end up in a prompt, and "the agent shouldn't have looked there" is not a control
-your compliance office will accept.
+To be explicit: **running an agent locally on any machine that stores sensitive or
+restricted data is not recommended at this time — full stop.** Permission settings,
+deny rules, and containers don't change this: local agents scan for context, anything
+on the machine can end up in a prompt, and "the agent shouldn't have looked there" is
+not a control your compliance office will accept.
 
-If you must work on a repository from such a machine, the acceptable routes are the
-ones with **no local access by construction**: a web UI where the agent operates only
-on a cloud-hosted copy of the repo (Claude Code on the web, Copilot's cloud coding
-agent). The browser is just a window — execution and file access stay in the provider's
-sandbox, and your machine's contents are unreachable. Note the repo itself must still
-be free of sensitive or restricted data, since its contents do go to the provider.
-
-Until your institution establishes vetted secure routes (formal data agreements,
-approved configurations), the operating rule is simple: **agents and sensitive or restricted data
+If you must work on a repository from such a machine, use a route with **no local
+access by construction** — a web UI where the agent operates only on a cloud-hosted
+copy of the repo. The repo itself must still be free of sensitive or restricted data,
+since its contents do go to the provider. Until your institution establishes vetted
+secure routes, the operating rule is simple: **agents and sensitive or restricted data
 live on separate machines.**
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-Policies tell you what *you* may send to a provider. The next episode turns the
-question around: how much should you trust the provider — and the packages and models
-your agent pulls in along the way?
-
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Exercise: Sweep your workspace (5 minutes)
+## Exercise: Get your agent running (8 minutes)
 
-Before you grant any agent access to your machine, see what it would find. From a
-project directory you actually use:
+Everyone gets an agent open on their own repository, safely, before any real work.
 
-```bash
-git status                              # clean working tree?
-cat .gitignore | grep -E "env|pem|key|credential"   # secrets patterns ignored?
-grep -rn --include="*.py" --include="*.json" --include="*.env" \
-  -iE "api[_-]?key|secret|password|token" . | head
-ls -a ~ | grep -iE "env|credential|token"           # loose files in your home dir?
-```
-
-1. Did anything turn up in plaintext? Would an agent scanning "context" see it?
-2. Is your `.gitignore` covering secret-shaped files *before* they're ever created?
-3. If you found a real credential that was ever committed: it lives in git history —
-   rotating it is the fix, deleting the file is not.
+1. **Use a web session.** Claude Code on the web ([claude.ai/code](https://claude.ai/code))
+   or Copilot's cloud agent ([github.com/copilot/agents](https://github.com/copilot/agents)).
+   Nothing runs on your machine. (Other routes, including free ones, are on the
+   [setup page](../learners/setup.md).)
+2. **Use your own project repository.** For a team project, the primary owner
+   creates a `<username>-main` branch to merge tonight's work into; everyone else
+   forks the repo to get a clean copy. Agents generate many branches — keep them
+   yours. No project yet? Create a small repository now.
+3. **Confirm cloud before you prompt.** The session should be pointed at a cloud VM
+   clone of a GitHub repo, not a local folder on your laptop.
+4. **Keys via `op read`, not `.env`.** No `.env` anywhere in the repo, and preferably
+   no keys stored on your machine at all.
+5. Prompt: *"Read this repo and tell me what it's doing, or attempting to do. Do not
+   change anything."* While it works, note what it gets right, what it states
+   confidently that you can't verify, and what it doesn't know that you do.
 
 :::::::::::::::::::::::: solution
 
-## What people typically find
+## What to check
 
-Almost everyone finds something: a forgotten `.env`, a token pasted into a notebook
-cell, an old `credentials.json` from a tutorial. That's the point of running this
-*before* the agent does. Move real secrets into a manager or keyring, rotate anything
-that was ever committed, and add the ignore patterns now — the cheapest security work
-you'll do all year.
+If step 3 is wrong — the session is local — stop and switch before prompting; that is
+the single most common mistake with the desktop apps. The read-only prompt in step 5
+also previews the planning episode: agents are excellent at *what* and *how* (structure,
+dependencies, data flow) and blind to *why* and *for whom*, which is exactly the
+knowledge a plan and an instruction file have to supply.
 
 :::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::: callout
-
-## On individual/consumer AI plans, check your training settings
-
-Commercial and enterprise API terms typically prohibit training on your data. Consumer
-plans (free or personal subscriptions) often make it a *setting* — sometimes defaulted
-on. Whatever tool you use, find the data/model-training toggle in your account settings
-and make a deliberate choice.
-
-::::::::::::::::::::::::::::::::::::::::::::::::
-
 ::::::::::::::::::::::::::::::::::::: keypoints
 
+- Institutional data policies apply unchanged: sensitive or restricted data stays away from unvetted AI services, on every route.
 - Agents run with your permissions and scan your workspace for context — assume anything on disk in plaintext can be read.
-- Default to surfaces that never run on your machine (web UIs, cloud coding agents); local execution is a choice you make deliberately, with the defenses below in place.
-- The only secret an agent can't leak is one that isn't there: use a secrets manager or keyring and inject at runtime.
-- Permissions, sandboxing, and deny rules are valuable layers, not guarantees; prompt injection is a real attack surface.
-- Clean git state, branches, and small frequent commits make agent mistakes cheap to undo.
-- Institutional data policies apply unchanged: sensitive or restricted data stays away from unvetted AI services.
+- Limit six things: where it runs (cloud VM), which commands (allow/deny), which credentials (password manager), what it commits (branch + PR), what it reaches (network allowlist), whom you trust.
+- Instructions shape behavior; permissions constrain it. A rules file is text the model weighs, not a permission it lacks.
+- The only secret an agent can't leak is one that isn't there: load keys at runtime with `op read`.
+- Prompt injection is real: treat everything the agent reads as untrusted, keep the web session's firewall on, and review the PR before you merge.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::

@@ -24,28 +24,34 @@ exercises: 5
 
 The evidence base is young and shifting, but a few findings recur:
 
-- **Gains are real but uneven.** Early studies of AI *assistants* (autocomplete-style)
-  found the largest gains for junior developers on routine tasks. For *agentic* work,
-  the pattern appears to flip: experienced developers — who can specify precisely,
-  review effectively, and catch plausible-but-wrong output — extract more value, while
+- **Coding speed is only one bottleneck.** Agents multiply commits (+240%) far more
+  than releases (+30%), and pull requests wait about five times longer for a human
+  review under heavy AI use (the verification episode's numbers). Advanced analyses
+  still require expert review and verification, and that step doesn't speed up.
+- **Perceived speed and measured speed can diverge.** In one widely discussed 2025
+  randomized trial (METR), experienced open-source developers *felt* about 20%
+  faster with AI tools on their own mature repositories while actually being ~19%
+  *slower*. Measure, don't vibe — the same rule we apply to model scores applies to
+  our own productivity.
+- **Learning with AI can cost understanding.** In Anthropic's 2026 study, developers
+  who learned an unfamiliar library with AI assistance scored **17% lower** on a quiz
+  covering concepts they'd used minutes earlier — with the **biggest gap on
+  debugging** questions. The participants who kept their understanding were the ones
+  who used the assistant to ask *why*, not only to produce code
+  ([Anthropic, 2026](https://www.anthropic.com/research/AI-assistance-coding-skills)).
+- **Gains are uneven.** Experienced practitioners — who can specify precisely, review
+  effectively, and catch plausible-but-wrong output — extract more value, while
   novices are more likely to accept flawed results. Verification skill, not typing
   speed, is the bottleneck.
-- **Perceived speed and measured speed can diverge.** In one widely discussed 2025
-  randomized trial (METR), experienced open-source developers *felt* about 20% faster
-  with AI tools on their own mature repositories while actually being ~19% *slower*.
-  Measure, don't vibe — the same rule we apply to model scores applies to our own
-  productivity.
-- **The skill-formation question is open.** If agents do the routine work, where do
-  juniors build the architectural intuition seniors rely on to supervise agents? This
-  worry appears across the literature and industry commentary, and it is a real concern
-  for how we train researchers — deliberate practice may need to be scheduled where it
-  used to happen for free.
 
-The honest summary: these tools amplify expertise more than they replace it. Everything
-in this lesson — scoping, specifying, verifying — is precisely the expertise being
-amplified.
+The honest summary: these tools amplify expertise more than they replace it.
+Everything in this lesson — scoping, specifying, verifying — is precisely the
+expertise being amplified. And the skill-formation question is open: if agents do the
+routine work, where do juniors build the debugging intuition seniors rely on to
+supervise agents? Deliberate practice may need to be scheduled where it used to
+happen for free.
 
-## Is programming dead?
+## Is programming dead? The evidence says no
 
 Programming has survived its own death many times: assembly gave way to compilers and
 then to languages like Python, manual memory management to garbage collection, servers
@@ -61,11 +67,11 @@ average case, and the same prompt can yield different code on different days.
 
 We correct for that non-determinism with the two practices this lesson keeps returning
 to: **good prompting** (specification narrows the space of outcomes — the whole point
-of the underspecification episode) and **a review process** (verification catches the
-outcomes that specification didn't prevent). Never assume the AI will work 100% of the
-time — not because the tools are bad, but because "usually right, occasionally
-plausibly wrong" is what a probabilistic abstraction *is*. Design your workflow for
-that, and it's just another layer; assume perfection, and it's a trap.
+of the feature-based-development episode) and **a review process** (verification
+catches the outcomes that specification didn't prevent). Never assume the AI will work
+100% of the time — not because the tools are bad, but because "usually right,
+occasionally plausibly wrong" is what a probabilistic abstraction *is*. Design your
+workflow for that, and it's just another layer; assume perfection, and it's a trap.
 
 So: not dead. The job shifts from writing every line toward specifying intent,
 designing verification, and exercising judgment — which, conveniently, were always the
@@ -113,6 +119,7 @@ Before your next project work session, commit to:
 ::::::::::::::::::::::::::::::::::::: keypoints
 
 - Agentic tools amplify expertise; verification skill, not typing speed, is the bottleneck — and perceived speedups can be illusory, so measure.
+- Learning with AI can cost understanding (17% lower quiz scores, biggest gap in debugging): use the agent to ask why, not only to produce code.
 - How novices build supervisory expertise in an agentic world is an open and serious question.
 - Agentic coding is another abstraction layer — but the first non-deterministic one: one request, many possible outcomes. Good prompting narrows the outcomes; review catches the rest; never assume 100%.
 - The job shifts toward specifying intent, designing verification, and exercising judgment: the parts that were always hard — and there is still no escaping good data science practice.

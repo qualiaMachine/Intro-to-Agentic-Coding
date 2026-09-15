@@ -1,155 +1,206 @@
 ---
-title: "Early Project Planning"
-teaching: 10
-exercises: 16
+title: "Planning with Agents"
+teaching: 12
+exercises: 10
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions
 
-- How do I put an agent to work before any code gets written?
-- What can an agent infer about an existing project on its own — and what can't it?
-- How do I plan a *new* project with AI without being led somewhere I can't follow?
+- Why plan before letting an agent write code — and what does the evidence say?
+- What goes into a plan, and where does the agent get the context to make one?
+- What is a minimum viable pipeline, and why start there?
+- How do I plan with an agent without being led somewhere I can't follow?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Use an agent in a read-only/plan mode to survey an unfamiliar repository.
-- Use chat or plan mode to develop a design for a new project — producing documentation and specs, not code.
-- Identify the kinds of knowledge an agent cannot recover from code alone, and write a minimal project context file that supplies it.
+- Explain how a plan changes what an agent does with its context and tokens.
+- Supply the context an agent needs to plan: goal, constraints, existing code, standards, prior decisions.
+- Use an agent in a read-only/plan mode to review and improve a plan before any code exists.
+- Produce a `plan.md` with ordered features and a check for each, and commit it before implementing anything.
 - Evaluate AI design suggestions critically: probe what you don't understand, and don't build on ideas you can't defend.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Plan first, code second
+## Start with a plan
 
 The most common agentic failure mode is letting the agent write code before either of
-you understands the problem. The planning phase — where the deliverables are
-*understanding, documentation, and specs*, not code — is where agents are both safest
-and most underused. There are two entry points, depending on whether a project already
-exists.
+you understands the problem. The research on planning is consistent:
 
-Most tools have a read-only mode built for exactly this — in Claude Code it's *plan
-mode* (toggle with <kbd>Shift</kbd>+<kbd>Tab</kbd>); in GitHub Copilot it's *Ask* mode
-(the mode dropdown in the chat panel) — in which the agent reads files and answers
-questions **without making any changes**.
+- Structured planning before implementation improved coding success by up to **26.7%**,
+  reducing failed generations and repeated implementation attempts (Jiang et al., 2023).
+- Removing the blueprint-planning agent from a structured coding pipeline reduced
+  accuracy by **14.8 percentage points** (Mao et al., 2025).
+- Runs on the *same* coding task varied by up to **30×** in total token usage, and
+  higher token consumption did not produce greater accuracy (Bai et al., 2026).
 
-## Entry point 1: an existing project
+Those studies measured accuracy, not token savings, but the mechanism is easy to
+see. No plan → exploratory and redundant tool calls → often *more* tokens for *worse*
+accuracy. A good plan → fewer wasted turns and less rework → often fewer tokens with
+better accuracy. A bad plan → anchoring to incorrect assumptions → the worst of both.
 
-The safest possible first contact with an agent: it can't edit anything, so you can
-hand it a whole repository and simply ask what it sees. It's also genuinely useful —
-onboarding onto a colleague's project, returning to your own code from two years ago,
-or auditing a repo before you build on it.
+Without a plan, an agent tends to make unnecessary repository searches, re-read the
+same files, modify the wrong layer, expand beyond the requested scope, make
+contradictory edits, loop on debugging, and claim completion prematurely. With one, it
+searches purposefully, reads only the relevant files, understands constraints before
+implementing, detects missing information early, sequences dependent changes
+correctly, tracks what's done, verifies the acceptance criteria, and *stops* when the
+task is complete.
 
-::::::::::::::::::::::::::::::::::::: challenge
+A plan gives the agent direction. It gives you a review point *before*
+implementation. And it gives both sides a shared definition of "done." The goal is
+**proportional** planning — a three-line plan for a three-line task — not maximum
+planning.
 
-## Exercise 1: First look (8 minutes)
+## How to make a plan: add context
 
-Point your agent at the practice repository (see [setup](../learners/setup.md)) — or any
-real project you have handy — in read-only mode:
+Ask an agent to "make a plan" with nothing else and you get the average-case plan
+for the average-case project. A plan is only as good as the context it's built from.
+Examples of context worth handing over, in rough order of how often they're missing:
+
+- **The goal and constraints** — the research question, the challenge page, the
+  scoring rule, the compute you actually have.
+- **`plan.md` from last time**, or the previous plan's discoveries and blockers.
+- **Skeleton code** — a stub of the function or module you want, so the shape is
+  yours, not the agent's.
+- **A GitHub issue or story** describing the feature in your words.
+- **`future-work.md`** — what's deliberately out of scope.
+- **Rules and coding-standards files** — the project context file below, plus any
+  style guide your lab follows.
+
+For long tasks — multi-hour work, anything spanning several sessions, handoffs
+between people or agents — keep the plan in a file the agent updates as it goes.
+Aaron Friel's [Using PLANS.md for multi-hour problem solving](https://developers.openai.com/cookbook/articles/codex_exec_plans)
+describes the pattern; a persistent plan file typically holds:
+
+- Goal and context
+- Scope and acceptance criteria
+- Architectural decisions
+- Ordered implementation steps
+- Progress and completion status
+- Discoveries, assumptions, and blockers
+- Test commands and results
+- Final outcome
+
+Planning is iterative. The first plan is a draft you argue with; a plan you'd sign
+is the deliverable.
+
+## Plan mode: read, don't write
+
+Most tools have a read-only mode built for exactly this stage, in which the agent
+reads files and answers questions **without making any changes**. It's the safest
+possible first contact with a repository — and the right mode for reviewing a plan.
 
 :::::::::::::::: group-tab
 
 ### Claude Code
 
-Launch `claude` from the repository root, then press <kbd>Shift</kbd>+<kbd>Tab</kbd>
-until the status line shows **plan mode** — Claude can now read and answer, but not
-edit or run anything.
+Press <kbd>Shift</kbd>+<kbd>Tab</kbd> until the status line shows **plan mode**.
+Claude can now read and answer, but not edit or run anything. On the web, start the
+prompt with "Plan mode, do not edit" — or ask for a plan and review it before
+approving implementation.
 
 ### GitHub Copilot
 
-Open the repository folder in VS Code, open the Copilot chat panel
-(<kbd>Ctrl</kbd>/<kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd>), and pick **Ask** in
-the mode dropdown. Start your message with `@workspace` so the question covers the
-whole repo.
+Pick **Ask** (or **Plan**) in the chat panel's mode dropdown, and start your message
+with `@workspace` so the question covers the whole repo. Switch to **Agent** only
+when you're ready for it to edit.
 
 ::::::::::::::::::::::::
 
-Then prompt:
+## Start from a minimum viable pipeline
 
-> Read this repo and tell me what it's doing, or attempting to do.
+Before the exercise, a framing you may have met in your project kickoff. A
+**minimum viable pipeline (MVP)** is whatever you can get running quickly and
+understand end to end. Not always the *simplest* model — a pretrained model you
+understand beats a from-scratch one you don't. The point is fewer friction and
+failure points: a slice of the data, one model, your laptop. Every extra step or
+fancier setup is another place to break.
 
-While it works, note:
+- **Functional, not perfect.** Borrowed code is fine if you can explain what it does.
+  Skip the edge cases for now.
+- **Don't skip the understanding.** A pipeline you understand shows you the real
+  relationships, the processing bugs, and the data problems that a system you don't
+  understand would hide.
 
-1. What did it get right that would have taken you longer to figure out by hand?
-2. What did it state confidently that you can't actually verify from the code alone?
-3. What did it *not* mention that you know matters (why the project exists, who uses it,
-   what "done" looks like, which parts are load-bearing vs. abandoned)?
+The MVP is also the ideal first plan for an agent: small enough to specify fully,
+and every feature in it is something you can check.
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+## Exercise: Plan your MVP with an agent (10 minutes)
+
+1. **Open your project's MVP plan.** No plan yet? Write three lines now: the data
+   slice, one model, how you score it. (No project? Pick a public dataset or
+   competition you know and plan an MVP for it.)
+2. **Ask the agent to review it**, in plan mode, against your project's goal — the
+   challenge page, the paper's research question, or your grant aim:
+
+   > Review our MVP plan against the challenge page.
+   >
+   > **MVP plan**
+   > \<paste from your shared doc\>
+   >
+   > **Challenge page**
+   > \<paste challenge text, scoring, data description\>
+   >
+   > The point of the MVP is something we can get running quickly and understand
+   > end to end. Is this a good starting point, or is there a better one? Say why.
+   > If it is good, propose `plan.md` with the first three features in order and how
+   > we will know each works. Do not write any code yet.
+   >
+   > **Compute available**
+   > \<laptops; hosted models and their API; cloud credits and when\>
+
+3. **Argue with the plan until you would sign it.** Push back on anything you can't
+   explain; ask why this over the obvious alternative.
+4. **Commit `plan.md` to your repo.** No code until the plan is in.
 
 :::::::::::::::::::::::: solution
 
-## Debrief
+## What a good `plan.md` looks like
 
-Typical pattern: the agent is excellent at *what* and *how* — structure, dependencies,
-data flow, what each module does. It is blind to *why* and *for whom*:
-
-- Why this approach was chosen over the obvious alternative (the failed experiments
-  aren't in the repo).
-- Which code is trusted and which is a half-finished experiment — both look the same.
-- Project conventions that live in your head or your lab's wiki: how to run tests,
-  what never to touch, what the data actually means.
-- Anything about the *data* itself beyond what filenames and column names reveal.
-
-The agent's summary is a hypothesis about your project, phrased with the confidence of
-a fact. Treat it as the former.
+Three features, each one thing you can check — e.g. *(1) load and validate the data
+slice: row count and class balance printed; (2) train one baseline: a scored number
+on a held-out split; (3) write the scoring function: matches the challenge metric on
+a hand-computed example.* If the agent's plan has a feature you can't describe a check
+for, it isn't a feature yet — split it or drop it. And notice what the agent
+*couldn't* know: which data is trustworthy, what compute you really have, what the
+kickoff decided. That's the context you supplied; without it the plan would have
+been someone else's.
 
 :::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Entry point 2: a blank page
-
-When nothing exists yet, there is nothing to explore — all the knowledge has to flow
-from your head into the project. This is where general AI chat (or plan mode) shines
-as a *design partner*: talk through the problem before any code exists, and make the
-deliverables **documentation and specs, not code**. Useful asks:
-
-- "Here's my research question and my data situation. Sketch two or three ways to
-  structure this analysis, with trade-offs."
-- "Draft a README for this project: goal, planned structure, data sources, what
-  'done' looks like." — a README written *before* the code is a spec.
-- "Write a data plan: expected inputs, formats, validation checks we should run."
-- "Turn this conversation into a first `AGENTS.md` / `CLAUDE.md` for the project."
-
-Once the design conversation has produced specs you believe in, the transition to code
-is deliberate and small: initialize git *before* the agent writes anything, let it
-scaffold the skeleton (directory layout, environment file, that README — boilerplate
-is the one place the agent's average-case instincts are exactly what you want), and
-then stop scaffolding and switch to feature-by-feature work (next episode). "Build me
-the whole project" is precisely the underspecified mega-prompt that goes wrong. A new
-repo is also the cheapest moment to write the context file: two paragraphs now beat
-archaeology later.
-
 ::::::::::::::::::::::::::::::::::::: callout
 
 ## Don't build on ideas you can't defend
 
-A caution that matters most at the design stage: AI design advice is fluent even when
-it's wrong, and it is most persuasive exactly where your own domain knowledge is
-thinnest. An architecture, statistical approach, or library choice you don't
-understand is a liability even if it's good — you can't debug, extend, or defend it
-in review (or peer review).
+AI design advice is fluent even when it's wrong, and it is most persuasive exactly
+where your own domain knowledge is thinnest. An architecture, statistical approach,
+or library choice you don't understand is a liability even if it's good — you can't
+debug, extend, or defend it in review (or peer review).
 
-So probe before you adopt. Ask "why this over the obvious alternative?", "what are
-the failure modes?", "what's the simplest version that could work?" — and push back;
-the agent folds quickly when an idea is weak, which is itself information. Be
-especially wary the further a suggestion sits outside your domain: a clever-looking
-method from a field you don't know is a place to consult a human expert or the
-literature, not a thing to build on because the chat sounded confident. The rule from
-the verification episode applies to designs too: if you can't explain it, you don't
-own it yet.
+So probe before you adopt. Ask "why this over the obvious alternative?", "what are the
+failure modes?", "what's the simplest version that could work?" — and push back; the
+agent folds quickly when an idea is weak, which is itself information. Be especially
+wary the further a suggestion sits outside your domain: a clever-looking method from a
+field you don't know is a place to consult a human expert or the literature, not a
+thing to build on because the chat sounded confident. If you can't explain it, you
+don't own it yet.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Ready to begin: write the context file
 
-Both entry points converge here. Exploring surfaced gaps — the *why*, the
-conventions, what the data means — that live only in your head; designing produced
-specs that live only in a chat transcript. Before the first real feature, capture
-both in a **project context file**.
-Claude Code reads `CLAUDE.md` from your project root at the start of every session;
-Copilot reads `.github/copilot-instructions.md`; a cross-tool convention, `AGENTS.md`,
-is emerging. Think of it as a README for the agent:
+Planning surfaces the knowledge that lives only in your head — the *why*, the
+conventions, what the data means. Before the first real feature, capture it in a
+**project context file**, the rules file from the safety episode. Claude Code reads
+`CLAUDE.md` from your project root at the start of every session; Copilot reads
+`.github/copilot-instructions.md`; nearly everything also reads `AGENTS.md`. Think of
+it as a README for the agent:
 
 ```markdown
 ## Project structure
@@ -168,31 +219,16 @@ is emerging. Think of it as a README for the agent:
 Keep it short and operational (aim well under 300 lines): it is injected into every
 session, so everything in it competes for the model's attention with the actual task.
 If a linter can enforce a rule deterministically, use the linter and save the context
-budget. And remember from the words-of-caution episode: context files are advisory — back
-safety-critical rules with hooks or deny rules.
-
-## The same task at three autonomy levels
-
-Recall the autonomy spectrum from episode 1. This read-the-repo task makes it concrete:
-
-- **Chat**: you would paste selected files into a browser tab and ask. Fast, safe, but
-  the summary only covers what you chose to paste — *you* did the exploring.
-- **Interactive agent**: what you just did. The agent explores everything, and you can
-  interrogate it.
-- **Async agent**: you could file an issue ("document this repo") and get a PR back.
-  Least effort — and the least opportunity to notice what the summary got wrong,
-  because you weren't watching it form.
-
-More autonomy isn't automatically better. For understanding-type tasks, the interactive
-middle of the spectrum is usually the sweet spot: full access for the agent, full
-visibility for you.
+budget. And remember from the safety episode: context files are advisory — back
+safety-critical rules with permissions, hooks, or branch protection.
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 
-- Plan before code: the planning phase's deliverables are understanding, documentation, and specs — territory where agents are safe and strong.
-- For existing projects, start in read-only/plan mode; agents recover *what* and *how* from code, but not *why*, *for whom*, or what the data means.
-- Project context files (`CLAUDE.md`, `copilot-instructions.md`, `AGENTS.md`) write down that missing knowledge — keep them short, operational, and advisory-aware.
-- For new projects, design in chat first (README-as-spec, data plan), scaffold small, then go feature-by-feature — and write the context file at project birth.
+- Plan before code: planning measurably improves accuracy, and a good plan usually costs fewer tokens, not more. Proportional, not maximal.
+- A plan is only as good as its context — hand over the goal, constraints, compute, existing code, standards, and prior decisions; for long work keep the plan in a file the agent updates.
+- Use plan mode (read-only) to review a plan; the deliverable is a `plan.md` with ordered features and a check for each, committed before any code.
+- Start from a minimum viable pipeline: a slice of data, one model, something you understand end to end.
 - Probe AI design ideas before adopting them, hardest where your domain knowledge is thinnest: if you can't explain it, you don't own it yet.
+- Write the project context file (`CLAUDE.md` / `AGENTS.md` / `copilot-instructions.md`) at project birth — short, operational, advisory-aware.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
