@@ -74,6 +74,12 @@ Two levers, at two time scales:
 - **Prompt engineering** phrases the specific request to get the best possible
   result for *this* task.
 
+These aren't competing approaches; they are concentric layers around the model, and
+each contains the one inside it. The harness (the loop, tools, memory, sandbox) is the
+outermost layer and mostly not yours to change; context and prompt are.
+
+![Prompt, context, and harness engineering as three concentric layers around the model.](fig/prompt-context-harness.png){alt='Diagram of concentric circles. Innermost: Model. Around it: Prompt, the wording of a single instruction. Around that: Context, everything the model sees in its context window. Outermost: Harness, the whole system around the model: loop, tools, memory, sandbox. Caption: each layer contains the one inside it.'}
+
 The same request at two levels of specification:
 
 **Bad prompt:**

@@ -1,7 +1,7 @@
 ---
 title: "Planning with Agents"
 teaching: 12
-exercises: 10
+exercises: 25
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions
@@ -18,6 +18,7 @@ exercises: 10
 - Explain how a plan changes what an agent does with its context and tokens.
 - Supply the context an agent needs to plan: goal, constraints, existing code, standards, prior decisions.
 - Use an agent in a read-only/plan mode to review and improve a plan before any code exists.
+- Agree team collaboration conventions with an agent's help and commit them as a `CONTRIBUTING.md` that people and agents both read.
 - Produce a `plan.md` with ordered features and a check for each, and commit it before implementing anything.
 - Evaluate AI design suggestions critically: probe what you don't understand, and don't build on ideas you can't defend.
 
@@ -109,6 +110,55 @@ when you're ready for it to edit.
 
 ::::::::::::::::::::::::
 
+:::::::::::::::::::::::::::::::::::: challenge
+
+## Exercise: Agree how your team will work together (10 minutes)
+
+Every one of you is about to use a coding agent on the same repository, so you will
+generate more branches, more commits, and bigger diffs than a normal project. Decide
+the rules before the first feature — and let the agent draft them.
+
+1. **Decide branches or forks first.** One shared repo and branches is the usual
+   answer for a team that trusts each other: every teammate's work is a `git fetch`
+   away, so an agent can read another branch, diff against it, and merge without
+   anyone adding remotes.
+2. **Ask the agent.** Give it your team size and what you are building:
+
+   > Our team of \<n\> is working in one GitHub repo on \<challenge\>. Every one of us
+   > is using a coding agent, so we will be generating more branches, more commits
+   > and bigger diffs than a normal class project.
+   >
+   > Propose collaboration conventions that keep `main` clean and reviewable. Cover
+   > branch naming, how small a pull request should be, who reviews, what an agent is
+   > allowed to touch without asking, how we avoid two agents editing the same file,
+   > and what goes in commit messages.
+   >
+   > Give me a `CONTRIBUTING.md` we can commit today. Short enough that people read it.
+
+3. **Argue with what it gives you.** Keep the rules you will actually follow; cut the
+   rest.
+4. **Commit `CONTRIBUTING.md` to the team repo.** Your agents read it too.
+5. Share the link with whoever advises your team, so they can see what you agreed.
+
+Working solo? Do the same for yourself in three to five lines — a branch convention,
+a PR size, what the agent may never touch — and put them in your context file.
+
+:::::::::::::::::::::::: solution
+
+## What a usable answer looks like
+
+Short. A branch name pattern (`<name>/<feature>`), a PR size people will actually
+review (a few hundred lines at most), one named reviewer per PR, a list of paths the
+agent may not touch without asking (`data/raw/`, the scoring function, `main`), a
+rule for avoiding collisions (one feature per branch, claim it in the plan), and a
+commit-message shape. Agents draft a good first version because conventions are the
+average case; the value you add is deleting what your team won't do. The rules are
+advisory for the agent — back the important ones with branch protection.
+
+:::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 ## Start from a minimum viable pipeline
 
 Before the exercise, a framing you may have met in your project kickoff. A
@@ -124,12 +174,13 @@ fancier setup is another place to break.
   relationships, the processing bugs, and the data problems that a system you don't
   understand would hide.
 
-The MVP is also the ideal first plan for an agent: small enough to specify fully,
-and every feature in it is something you can check.
+The MVP is the baseline you A/B new components against, before you invest in
+solutions that take time to build. It is also the ideal first plan for an agent:
+small enough to specify fully, and every feature in it is something you can check.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Exercise: Plan your MVP with an agent (10 minutes)
+## Exercise: Plan your MVP with an agent (15 minutes)
 
 1. **Open your project's MVP plan.** No plan yet? Write three lines now: the data
    slice, one model, how you score it. (No project? Pick a public dataset or
@@ -137,7 +188,10 @@ and every feature in it is something you can check.
 2. **Ask the agent to review it**, in plan mode, against your project's goal — the
    challenge page, the paper's research question, or your grant aim:
 
-   > Review our MVP plan against the challenge page.
+   > Review our Minimum Viable Pipeline (MVP) plan against the challenge page. The
+   > MVP should be something we can get running quickly and understand end-to-end.
+   > It is the baseline we A/B new components against, before we invest in
+   > solutions that take time to build.
    >
    > **MVP plan**
    > \<paste from your shared doc\>
@@ -145,17 +199,19 @@ and every feature in it is something you can check.
    > **Challenge page**
    > \<paste challenge text, scoring, data description\>
    >
-   > The point of the MVP is something we can get running quickly and understand
-   > end to end. Is this a good starting point, or is there a better one? Say why.
-   > If it is good, propose `plan.md` with the first three features in order and how
-   > we will know each works. Do not write any code yet.
-   >
    > **Compute available**
-   > \<laptops; hosted models and their API; cloud credits and when\>
+   > \<laptops; hosted models and how they're accessed; cloud credits and when\>
+   >
+   > Is this a good MVP? Say why or why not. If it is good, propose a `plan.md` with
+   > each step in order and how we will know each one works. If it is not, propose a
+   > better starting point and do the same for that. Do not write any code yet.
 
 3. **Argue with the plan until you would sign it.** Push back on anything you can't
    explain; ask why this over the obvious alternative.
 4. **Commit `plan.md` to your repo.** No code until the plan is in.
+5. **Finished early?** Interrogate your pre-modeling steps the same way — loading,
+   cleaning, splitting, feature construction — and save the result as `prep.md`. Then
+   ask the agent to review `plan.md` and `prep.md` together, holistically.
 
 :::::::::::::::::::::::: solution
 
@@ -226,6 +282,7 @@ safety-critical rules with permissions, hooks, or branch protection.
 
 - Plan before code: planning measurably improves accuracy, and a good plan usually costs fewer tokens, not more. Proportional, not maximal.
 - A plan is only as good as its context — hand over the goal, constraints, compute, existing code, standards, and prior decisions; for long work keep the plan in a file the agent updates.
+- Agree team conventions first — branches not forks, PR size, who reviews, what the agent may not touch — and commit them as a `CONTRIBUTING.md` your agents read too.
 - Use plan mode (read-only) to review a plan; the deliverable is a `plan.md` with ordered features and a check for each, committed before any code.
 - Start from a minimum viable pipeline: a slice of data, one model, something you understand end to end.
 - Probe AI design ideas before adopting them, hardest where your domain knowledge is thinnest: if you can't explain it, you don't own it yet.

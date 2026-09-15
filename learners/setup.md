@@ -238,14 +238,17 @@ commit.
 
 ## A repository to work on
 
-The exercises run on **your own project repository** where possible — the plan, the
-first feature, the assertions, and the CI workflow all land in a repo you'll keep
-using. For a team project:
+The exercises run on **your own project repository** where possible — the team
+conventions, the plan, the first feature, the assertions, and the CI workflow all
+land in a repo you'll keep using. For a team project:
 
-- The **primary owner** creates a `<username>-main` branch to merge the workshop's
-  work into, so experiments never touch the shared `main`.
-- **Everyone else forks** the repository to get a clean copy. Agents generate many
-  branches; keep them in your fork.
+- **One shared repo, branches not forks.** Everyone works on a branch named for
+  them. Teammates and their agents can `git fetch` and read a branch; they cannot see
+  a fork without adding remotes.
+- **No write access yet?** Ask the repo owner to add you as a collaborator before
+  the session, not during it.
+- **Protect `main`** so nothing lands without a pull request (the verification
+  episode adds a passing-check requirement).
 
 No project yet? Create a small repository now with a README and a slice of data you
 understand. The feature-based-development episode also provides a scikit-learn
@@ -275,12 +278,16 @@ plaintext file an agent could read.
 
 ## Before your first session
 
-The checklist from the *Get your agent running* exercise:
+The checklist from the *Get your agent running, safely* exercise:
 
-1. **Use a web session** — Claude Code on the web or Copilot's cloud agent — so
-   nothing runs on your machine.
-2. **Point it at your project repo** (your `<username>-main` branch or your fork).
-3. **Confirm cloud before you prompt.** The session should show a cloud VM clone of a
-   GitHub repository, not a local folder.
+1. **Pick a cloud route with plan mode.** Claude: [claude.ai/code](https://claude.ai/code),
+   nothing to install. Copilot: install the
+   [GitHub Copilot app](https://docs.github.com/en/copilot/concepts/agents/github-copilot-app)
+   — the only Copilot route with a real plan mode (the web "Plan" button just
+   prefills a prompt and runs to a PR) — and start a **cloud** session, not local.
+2. **Confirm cloud before you prompt.** The session should show a cloud VM and a
+   GitHub repository, not a local folder. Cloud sandboxes are usage-billed; test your
+   account first.
+3. **Point it at your project repo**, on a branch named for you.
 4. **Keys via `op read`**, no `.env` anywhere in the repo.
-5. **Start on a branch, from a clean git state.**
+5. **Start from a clean git state.**

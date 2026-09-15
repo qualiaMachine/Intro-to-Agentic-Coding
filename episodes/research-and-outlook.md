@@ -51,6 +51,15 @@ routine work, where do juniors build the debugging intuition seniors rely on to
 supervise agents? Deliberate practice may need to be scheduled where it used to
 happen for free.
 
+::::::::::::::::::::::::::::::::::::: discussion
+
+## Is programming dead?
+
+Before reading on: discuss with a neighbor and share your thoughts. What, in your
+own work, got faster this session — and what didn't?
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 ## Is programming dead? The evidence says no
 
 Programming has survived its own death many times: assembly gave way to compilers and

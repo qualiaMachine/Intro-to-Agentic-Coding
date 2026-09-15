@@ -15,13 +15,16 @@ online, so nobody needs to take notes on the details.
 
 ## Suggested 2-hour schedule
 
-Two hours, four short exercises plus two demos, one break. Everything runs on the
-participants' own repositories where possible.
+Two hours, five short exercises plus two demos, one break. Everything runs on the
+participants' own repositories where possible. The 2026 pilot split blocks among the
+presenters (Chris: intro, trust, getting started, close; Tejvir: what agentic coding
+is, planning; Tracy: safety, prompting), which is a workable division for any team of
+three.
 
 | Time | Min | Block | Episode |
 |------|-----|-------|---------|
-| 0:00 | 30 | **Intro & getting started (safely).** Three principles; what agentic coding is (spectrum, harness, loop); live demo at three autonomy levels; safety: policies, the six limits, prompt injection, version control, providers; **Exercise: Get your agent running** (8 min) | Episodes 1–2 (3 compressed) |
-| 0:30 | 15 | **Planning with agents.** Research on planning; add context; MVP; **Exercise: Plan your MVP with an agent** (10 min) | Episode 4 |
+| 0:00 | 30 | **Intro & getting started (safely).** Before we start (any access requests participants must file now); three principles; what agentic coding is (spectrum, harness, loop); live demo at three autonomy levels; safety: policies, prompt injection, the six limits (network allowlist demo, 2 min), providers, recap; **Exercise: Get your agent running, safely** (8 min) | Episodes 1–2 (3 compressed) |
+| 0:30 | 15 | **Planning with agents.** Research on planning; add context; **Exercise: Agree how your team will work together** (10 min); MVP; **Exercise: Plan your MVP with an agent** (15 min) — this block overruns its slot in the pilot agenda; see below | Episode 4 |
 | 0:45 | 10 | **Feature-based dev and good prompting.** Feature by feature; bad/better prompt; underspecified ≠ random; maintenance tasks | Episode 5 |
 | 0:55 | 8 | Break | — |
 | 1:03 | 20 | **Exercise: Implement feature 1** (15 min) then debrief on "choices you did not specify" — or run it before the break if the room is fast | Episode 5 |
@@ -29,11 +32,19 @@ participants' own repositories where possible.
 | 1:43 | 12 | **MCP tools and skills.** MCP vs API; **Demo: connect an MCP server** (5 min); what a skill is; **Demo: caveman skill** (4–5 min); resources | Episode 7 |
 | 1:55 | 5 | **Cost, energy, and wrap-up.** Energy numbers; token techniques with `/cost`, `/model`, `/compact` demos; is programming dead?; feedback survey | Episodes 8, 11 |
 
-The live agenda is tight. If you are running behind, the feature-1 exercise can be
-shortened to 10 minutes (stop at "read the diff"), and the MCP connect can become a
-narrated demo from the instructor's screen rather than a hands-on.
+The live agenda is tight — the pilot agenda gave planning 15 minutes but its two
+exercises alone total 25. Options: run the team-conventions exercise as homework
+announced at the start (teams commit `CONTRIBUTING.md` before the next session), cap
+the MVP exercise at 10 minutes and make the `prep.md` follow-up homework, shorten the
+feature-1 exercise to 10 minutes (stop at "read the diff"), or turn the MCP connect
+into a narrated demo from the instructor's screen rather than a hands-on.
 
 ## Block-by-block notes
+
+**Before we start.** If participants need access to a campus-hosted model or
+compute (the pilot used BadgerBrain, UW–Madison's hosted open-weight models), put
+the request link on the first slide: approvals take days, so file tonight to have it
+for the next working session.
 
 **Intro.** Callback to the mech suit from kickoff: the suit multiplies what the pilot
 can do, but the pilot is still steering — that's the driver's-seat principle. Ask
@@ -43,13 +54,21 @@ workshop returns to: a tightly directed task, a plan-then-implement task, and an
 *explained but not run* multi-agent workflow. Point out the setup page has free
 routes (Copilot education tier, OpenCode) for anyone whose credits didn't work.
 
-**Safety.** Signpost the six limits, in order, and say that an instruction file
-*asks* while everything else *removes the ability*. The PocketOS and Cursor CVE
-stories land the "instructions vs. permissions" distinction; the Nx incident lands
-prompt injection. The 1Password CLI slides are worth showing live if your institution
-provides it. For **Get your agent running**: helpers circulate; the failure to watch
-for is a desktop app in local mode. Team repos: primary owner makes a
-`<username>-main` branch, everyone else forks.
+**Safety.** Prompt injection first (the Nx incident lands it), then signpost the
+six limits in order — "injection was the threat; these six cap what it can do" — and
+say that an instruction file *asks* while everything else *removes the ability*. The
+PocketOS and Cursor CVE stories land the "instructions vs. permissions" distinction.
+The network-allowlist demo is two minutes in the browser: Claude Code on the web's
+environment selector (No network / Trusted / All domains), then a repo's Settings →
+Copilot → Cloud agent → Internet access; the point to make while clicking is that a
+blocked request is fixed by adding the host, not by switching the firewall off. The
+1Password CLI slides are worth showing live if your institution provides it. End with
+a one-slide recap. For **Get your agent running, safely**: helpers circulate; the
+failures to watch for are a desktop app in local mode and a Copilot user on the web
+"Plan" button (which just prefills a prompt and runs to a PR — the Copilot *app* has
+the real plan mode). Team repos: one shared repo, everyone on a branch named for them,
+branches not forks; anyone without write access gets added as a collaborator now.
+Cloud sandboxes are usage-billed, so have people confirm their account works.
 
 **Trust (Episode 3) has no dedicated slot.** Its headline content — vet the provider
 (the Claude/Copilot defaults table), and model weights are code — is the sixth limit
@@ -57,11 +76,16 @@ in the safety block. Name two or three incidents (the fake OpenAI repo at #1 tre
 the hallucinated `huggingface-cli` package, Replit) and point to the episode. Its
 provider-vetting exercise is a good at-home assignment.
 
-**Planning.** Acknowledge levels of planning: it's iterative, and a three-line plan is
+**Planning.** Two exercises. *Agree how your team will work together* comes first:
+decide branches or forks, let the agent draft `CONTRIBUTING.md`, argue it down to
+rules people will follow, commit it, and post the link where advisors can see it.
+Then MVP: acknowledge levels of planning — it's iterative, and a three-line plan is
 fine for a three-line task. Have the team MVP plans open (the shared doc from kickoff
-if you have one). The deliverable is a committed `plan.md` — no code until the plan
-is in. Note the planning studies measured accuracy, not tokens; the token argument is
-a mechanism, not a measured result.
+if you have one) and frame the MVP as the baseline you A/B new components against.
+The deliverable is a committed `plan.md` — no code until the plan is in; teams that
+finish early interrogate their pre-modeling steps into `prep.md`. Note the planning
+studies measured accuracy, not tokens; the token argument is a mechanism, not a
+measured result.
 
 **Feature-based dev.** The "list every choice you made that I did not specify" line
 is the hook — ask two or three people to read theirs out. The room reliably discovers
@@ -85,7 +109,8 @@ water) and replace it with a number. Be honest about the spread (Couch ~41 Wh,
 Hausfather ~600 Wh). Three live demos in order: `/cost`, `/model`, `/compact`; then
 pull up the OpenRouter session-cost rankings. Loop back to skills as a cost lever.
 
-**Close.** Is programming dead? The evidence says no — coding speed is one bottleneck,
+**Close.** Is programming dead? Put the question to the room first — discuss with a
+neighbor, then share — before giving the evidence: coding speed is one bottleneck,
 and the Anthropic skill-formation result (17% lower, biggest gap in debugging) is the
 one to leave people with: use the agent to ask *why*. Feedback survey, materials link,
 and ask people to send resources they find useful.
@@ -95,8 +120,9 @@ and ask people to send resources they find useful.
 - **Agent access is the #1 failure mode.** Have helpers confirm during arrival that
   every participant can start a cloud session in *some* tool. Provide a fallback
   (cloud credits, OpenCode with free models, or pairing participants).
-- **Participants need a repository.** The exercises assume a project repo (or fork).
-  Have a small starter repo ready for anyone without one.
+- **Participants need a repository, with write access.** The exercises assume one
+  shared project repo with everyone on their own branch. Have a small starter repo
+  ready for anyone without one, and get collaborators added before the session.
 - **Pre-run every demo** — the MCP connection, the caveman install, `/compact` on a
   long session — on the same network you'll present from.
 - **Keys off disk.** If any exercise calls a hosted model API, show the `op read`

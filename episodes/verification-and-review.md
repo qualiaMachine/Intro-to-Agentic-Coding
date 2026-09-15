@@ -40,6 +40,8 @@ In research code, **checking agent output is the bottleneck**, not producing it:
   use — and **31% more merge without one** (Faros AI telemetry, 22,000 developers,
   2026).
 
+![Adopting coding agents multiplies output far more than it multiplies shipped work, and the wait for human review grows most of all.](fig/agent-output-vs-review.png){alt='Bar chart of percent change after adopting coding agents. Commits, Demirer et al.: plus 240 percent. Releases shipped, Demirer et al.: plus 30 percent. Task throughput, Faros AI: plus 33.7 percent. PR wait for review, Faros AI, in red: plus 441.5 percent.'}
+
 So the skill this episode teaches is the one that's scarce.
 
 ## There is no escaping good data science
@@ -143,7 +145,8 @@ add a test for each. The high-yield places to look:
   before and after every join and filter.
 - **Defaults treated as decisions**: imputation strategy, class weights,
   regularization strength, "reasonable" thresholds. Every default it accepted is now
-  a choice you own.
+  a choice you must own — which is why we start with an MVP small enough that you
+  *can* own every choice in it.
 - **Metric switcheroos**: you asked about accuracy, the report quietly features F1
   because the number looked better.
 - **Suppressed problems**: warnings silenced, `try/except: pass`, an error "fixed" by

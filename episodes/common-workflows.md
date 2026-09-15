@@ -107,8 +107,11 @@ the agent genuinely needs an external system.
 
 ## Exercise: Write your workflow contract (6 minutes)
 
-Add a short "Workflow" section to a project context file (or draft one in a scratch
-file) — three to five rules that make your chosen pattern explicit.
+If your team did the planning episode's *agree how your team will work together*
+exercise, you already have a `CONTRIBUTING.md`; this is the solo version, and a
+chance to add the review-posture decision above to it. Add a short "Workflow" section
+to a project context file (or draft one in a scratch file) — three to five rules that
+make your chosen pattern explicit.
 
 :::::::::::::::: group-tab
 

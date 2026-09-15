@@ -127,8 +127,9 @@ statistically typical ("average case") choice, which is rarely your case.
 
 | Task | Claude Code | GitHub Copilot |
 |------|-------------|----------------|
-| Cloud VM session (nothing local) | [claude.ai/code](https://claude.ai/code) | [github.com/copilot/agents](https://github.com/copilot/agents); assign an issue to Copilot |
-| Read-only exploration / plan review | Plan mode (<kbd>Shift</kbd>+<kbd>Tab</kbd>) | Ask or Plan mode (chat mode dropdown) |
+| Cloud VM session (nothing local) | [claude.ai/code](https://claude.ai/code) | Copilot app in cloud mode; [github.com/copilot/agents](https://github.com/copilot/agents); assign an issue to Copilot |
+| Read-only exploration / plan review | Plan mode (<kbd>Shift</kbd>+<kbd>Tab</kbd>; built in on the web) | Plan mode in the Copilot app; Ask mode in VS Code chat |
+| Network allowlist | Session **Network access** (No network / Trusted / All); account extras at claude.ai/settings/capabilities | Repo Settings → Copilot → Cloud agent → Internet access (firewall, recommended/custom allowlist) |
 | Reset context between tasks | `/clear` | New chat |
 | Tame a long conversation | `/compact` | Carry a summary into a fresh chat |
 | See usage/cost | `/cost` (and `/context`) | [Copilot settings](https://github.com/settings/copilot) usage |
