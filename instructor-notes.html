@@ -236,7 +236,7 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="introduction.html">1. What Does 'Agentic' Mean?</a>
+        <a href="introduction.html">1. What Is Agentic Coding?</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -248,7 +248,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="safety-and-security.html">2. Words of Caution: Safety, Security, and Policy</a>
+        <a href="safety-and-security.html">2. Safety and Security: Limit What the Agent Can Access</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -272,7 +272,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="early-project-planning.html">4. Early Project Planning</a>
+        <a href="early-project-planning.html">4. Planning with Agents</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -284,7 +284,7 @@
 <div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
-        <a href="specification.html">5. Underspecification and Feature-Driven Development</a>
+        <a href="specification.html">5. Feature-Based Development and Good Prompting</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -296,7 +296,7 @@
 <div class="accordion accordion-flush" id="accordionFlush7">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading7">
-        <a href="verification-and-review.html">6. Verification and Review: No Escaping Good Data Science</a>
+        <a href="verification-and-review.html">6. Verification and Testing: No Escaping Good Data Science</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -308,7 +308,7 @@
 <div class="accordion accordion-flush" id="accordionFlush8">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading8">
-        <a href="documentation.html">7. Documentation: Notes to Your Future Self (and Your Agent)</a>
+        <a href="skills-and-mcp.html">7. MCP Tools and Skills: Extending Your Agent</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -320,7 +320,7 @@
 <div class="accordion accordion-flush" id="accordionFlush9">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading9">
-        <a href="common-workflows.html">8. Common Workflows</a>
+        <a href="cost-context-energy.html">8. Cost, Context, and Energy</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -332,7 +332,7 @@
 <div class="accordion accordion-flush" id="accordionFlush10">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading10">
-        <a href="cost-context-energy.html">9. Cost, Context, and Energy</a>
+        <a href="documentation.html">9. Documentation: Notes to Your Future Self (and Your Agent)</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -344,7 +344,19 @@
 <div class="accordion accordion-flush" id="accordionFlush11">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading11">
-        <a href="research-and-outlook.html">10. What the Research Shows, and Where This Leaves Us</a>
+        <a href="common-workflows.html">10. Common Workflows</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush12">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading12">
+        <a href="research-and-outlook.html">11. What the Research Shows, and Where This Leaves Us</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -411,14 +423,23 @@
 <section><h2 class="section-heading" id="origin-and-format">Origin and format<a class="anchor" aria-label="anchor" href="#origin-and-format"></a>
 </h2>
 <hr class="half-width">
-<p>This lesson began as a 2-hour evening workshop (“Agentic Coding Best
-Practices,” ML Marathon 2026, UW–Madison, developed by Tracy Reuter,
-Tejvir Mann, Chris Endemann, and Zain Waseem). The episodes expand the
-workshop blocks so participants can study the material asynchronously;
-the workshop schedule below maps blocks to episodes.</p>
+<p>This lesson began as a 2-hour evening workshop (“Agentic Coding:
+(Developing) Best Practices,” ML Marathon 2026, UW–Madison, developed by
+Tracy Reuter, Tejvir Mann, Chris Endemann, and Zain Waseem). The first
+eight episodes follow the workshop’s blocks in order; the last three
+(documentation, common workflows, research and outlook) are asynchronous
+reading, with the outlook’s headline landing in the close.</p>
+<p>Say up front: <strong>the deck is the highlights reel.</strong> The
+full lesson is online and stays online, so nobody needs to take notes on
+the details.</p>
 </section><section><h2 class="section-heading" id="suggested-2-hour-schedule">Suggested 2-hour schedule<a class="anchor" aria-label="anchor" href="#suggested-2-hour-schedule"></a>
 </h2>
 <hr class="half-width">
+<p>Two hours, five short exercises plus two demos, one break. Everything
+runs on the participants’ own repositories where possible. The 2026
+pilot split blocks among the presenters (Chris: intro, trust, getting
+started, close; Tejvir: what agentic coding is, planning; Tracy: safety,
+prompting), which is a workable division for any team of three.</p>
 <table class="table">
 <colgroup>
 <col width="22%">
@@ -435,141 +456,200 @@ the workshop schedule below maps blocks to episodes.</p>
 <tbody>
 <tr>
 <td>0:00</td>
-<td>10</td>
-<td>Arrival/food; helpers confirm everyone’s agent access works</td>
-<td>—</td>
+<td>30</td>
+<td>
+<strong>Intro &amp; getting started (safely).</strong> Before we
+start (any access requests participants must file now); three
+principles; what agentic coding is (spectrum, harness, loop); live demo
+at three autonomy levels; safety: policies, prompt injection, the six
+limits (network allowlist demo, 2 min), providers, recap;
+<strong>Exercise: Get your agent running, safely</strong> (8 min)</td>
+<td>Episodes 1–2 (3 compressed)</td>
 </tr>
 <tr>
-<td>0:10</td>
-<td>5</td>
-<td>What “agentic” means; tooling landscape</td>
-<td>Episode 1</td>
-</tr>
-<tr>
-<td>0:15</td>
-<td>12</td>
-<td>Words of caution: security, secrets, policies, trust</td>
-<td>Episodes 2–3</td>
-</tr>
-<tr>
-<td>0:27</td>
-<td>8</td>
-<td>Exercise 1: first look at a repo (plan mode, read-only)</td>
+<td>0:30</td>
+<td>15</td>
+<td>
+<strong>Planning with agents.</strong> Research on planning; add
+context; <strong>Exercise: Agree how your team will work
+together</strong> (10 min); MVP; <strong>Exercise: Plan your MVP with an
+agent</strong> (15 min) — this block overruns its slot in the pilot
+agenda; see below</td>
 <td>Episode 4</td>
 </tr>
 <tr>
-<td>0:35</td>
+<td>0:45</td>
+<td>10</td>
+<td>
+<strong>Feature-based dev and good prompting.</strong> Feature by
+feature; bad/better prompt; underspecified ≠ random; maintenance
+tasks</td>
+<td>Episode 5</td>
+</tr>
+<tr>
+<td>0:55</td>
 <td>8</td>
-<td>Debrief: what it couldn’t infer; context files; autonomy
-comparison</td>
-<td>Episode 4</td>
-</tr>
-<tr>
-<td>0:43</td>
-<td>10</td>
-<td>Underspecification &amp; feature-driven development</td>
-<td>Episode 5</td>
-</tr>
-<tr>
-<td>0:53</td>
-<td>10</td>
-<td>Exercise 2: bad vs. better prompt</td>
-<td>Episode 5</td>
-</tr>
-<tr>
-<td>1:03</td>
-<td>5</td>
 <td>Break</td>
 <td>—</td>
 </tr>
 <tr>
-<td>1:08</td>
+<td>1:03</td>
 <td>20</td>
-<td>Verification and review; leakage worked example</td>
+<td>
+<strong>Exercise: Implement feature 1</strong> (15 min) then debrief
+on “choices you did not specify” — or run it before the break if the
+room is fast</td>
+<td>Episode 5</td>
+</tr>
+<tr>
+<td>1:23</td>
+<td>20</td>
+<td>
+<strong>Verification and testing.</strong> Research on checking; no
+escaping good data science; cheap checks; <strong>Exercise: What is
+wrong with this?</strong> (5 min); hunt for decisions; agents as data
+science assistants; <strong>Exercise: Now your repo</strong> (10
+min)</td>
 <td>Episode 6</td>
 </tr>
 <tr>
-<td>1:28</td>
-<td>10</td>
-<td>Exercise 3: test as contract</td>
-<td>Episode 6</td>
+<td>1:43</td>
+<td>12</td>
+<td>
+<strong>MCP tools and skills.</strong> MCP vs API; <strong>Demo:
+connect an MCP server</strong> (5 min); what a skill is; <strong>Demo:
+caveman skill</strong> (4–5 min); resources</td>
+<td>Episode 7</td>
 </tr>
 <tr>
-<td>1:38</td>
-<td>8</td>
-<td>What the research shows</td>
-<td>Episode 10</td>
-</tr>
-<tr>
-<td>1:46</td>
-<td>6</td>
-<td>Cost + energy; Exercise 4 (<code>/cost</code>, napkin math)</td>
-<td>Episode 9</td>
-</tr>
-<tr>
-<td>1:52</td>
-<td>8</td>
-<td>Close: is programming dead?; three things before the sprint</td>
-<td>Episode 10</td>
+<td>1:55</td>
+<td>5</td>
+<td>
+<strong>Cost, energy, and wrap-up.</strong> Energy numbers; token
+techniques with <code>/cost</code>, <code>/model</code>,
+<code>/compact</code> demos; is programming dead?; feedback survey</td>
+<td>Episodes 8, 11</td>
 </tr>
 </tbody>
 </table>
-<p>Note the live schedule runs research-findings <em>before</em> the
-cost block; the written episodes order cost before research/outlook
-because it reads better asynchronously. Either order works.</p>
-<p><strong>Episode 7 (Documentation) in the 2-hour format:</strong> like
-the trust episode, this has no dedicated live slot — it exists in full
-for asynchronous study. In the workshop, land its two headline ideas
-inside the verification block or the close: (1) agents make
-documentation cheap, so ask for docstrings/README updates/narrated
-notebooks with every task, and (2) documentation is context the agent
-reads back later, so it compounds — and “explain this code” doubles as a
-verification pass. Its 5-minute document-and-cross-examine exercise
-makes a good at-home assignment alongside the trust episode’s
-provider-vetting exercise.</p>
-<p><strong>Episode 8 (Common Workflows) in the 2-hour format:</strong>
-async-only material. If time allows, its highest-value live moment is
-naming the two review postures (agent commits freely, PR is the review
-gate vs. review every change) during the verification block or close,
-and noting that the choice should be deliberate and written into the
-project context file.</p>
-<p><strong>Episode 3 (Trust) in the 2-hour format:</strong> there is no
-dedicated slot for the trust episode in the live schedule — it exists in
-full for asynchronous study. In the workshop, compress it into the
-words-of-caution block: name two or three of the real incidents (the
-Replit production-database deletion and the hallucinated
-<code>huggingface-cli</code> package land especially well), state the
-two rules that follow (never auto-approve installs; vet your provider’s
-data policy), and point to the episode for the rest. Its 5-minute “vet
-your own tool” exercise also works as an at-home assignment announced
-during the close.</p>
+<p>The live agenda is tight — the pilot agenda gave planning 15 minutes
+but its two exercises alone total 25. Options: run the team-conventions
+exercise as homework announced at the start (teams commit
+<code>CONTRIBUTING.md</code> before the next session), cap the MVP
+exercise at 10 minutes and make the <code>prep.md</code> follow-up
+homework, shorten the feature-1 exercise to 10 minutes (stop at “read
+the diff”), or turn the MCP connect into a narrated demo from the
+instructor’s screen rather than a hands-on.</p>
+</section><section><h2 class="section-heading" id="block-by-block-notes">Block-by-block notes<a class="anchor" aria-label="anchor" href="#block-by-block-notes"></a>
+</h2>
+<hr class="half-width">
+<p><strong>Before we start.</strong> If participants need access to a
+campus-hosted model or compute (the pilot used BadgerBrain, UW–Madison’s
+hosted open-weight models), put the request link on the first slide:
+approvals take days, so file tonight to have it for the next working
+session.</p>
+<p><strong>Intro.</strong> Callback to the mech suit from kickoff: the
+suit multiplies what the pilot can do, but the pilot is still steering —
+that’s the driver’s-seat principle. Ask “anyone want to share something
+impressive their agent did?” to warm the room. For the demo, use Claude
+Code in VS Code (or OpenCode) on the project the rest of the workshop
+returns to: a tightly directed task, a plan-then-implement task, and an
+<em>explained but not run</em> multi-agent workflow. Point out the setup
+page has free routes (Copilot education tier, OpenCode) for anyone whose
+credits didn’t work.</p>
+<p><strong>Safety.</strong> Prompt injection first (the Nx incident
+lands it), then signpost the six limits in order — “injection was the
+threat; these six cap what it can do” — and say that an instruction file
+<em>asks</em> while everything else <em>removes the ability</em>. The
+PocketOS and Cursor CVE stories land the “instructions vs. permissions”
+distinction. The network-allowlist demo is two minutes in the browser:
+Claude Code on the web’s environment selector (No network / Trusted /
+All domains), then a repo’s Settings → Copilot → Cloud agent → Internet
+access; the point to make while clicking is that a blocked request is
+fixed by adding the host, not by switching the firewall off. The
+1Password CLI slides are worth showing live if your institution provides
+it. End with a one-slide recap. For <strong>Get your agent running,
+safely</strong>: helpers circulate; the failure to watch for is a
+desktop app in local mode. Copilot’s app has an explicit plan mode,
+which is clearer to teach; on the Copilot web, planning is done via the
+prompt and gives the same approve-or-exit gate with no toggle, so it is
+acceptable for anyone who can’t install. Team repos: one shared repo,
+everyone on a branch named for them, branches not forks; anyone without
+write access gets added as a collaborator now. Cloud sandboxes are
+usage-billed, so have people confirm their account works.</p>
+<p><strong>Trust (Episode 3) has no dedicated slot.</strong> Its
+headline content — vet the provider (the Claude/Copilot defaults table),
+and model weights are code — is the sixth limit in the safety block.
+Name two or three incidents (the fake OpenAI repo at #1 trending, the
+hallucinated <code>huggingface-cli</code> package, Replit) and point to
+the episode. Its provider-vetting exercise is a good at-home
+assignment.</p>
+<p><strong>Planning.</strong> Two exercises. <em>Agree how your team
+will work together</em> comes first: decide branches or forks, let the
+agent draft <code>CONTRIBUTING.md</code>, argue it down to rules people
+will follow, commit it, and post the link where advisors can see it.
+Then MVP: acknowledge levels of planning — it’s iterative, and a
+three-line plan is fine for a three-line task. Have the team MVP plans
+open (the shared doc from kickoff if you have one) and frame the MVP as
+the baseline you A/B new components against. The deliverable is a
+committed <code>plan.md</code> — no code until the plan is in; teams
+that finish early interrogate their pre-modeling steps into
+<code>prep.md</code>. Note the planning studies measured accuracy, not
+tokens; the token argument is a mechanism, not a measured result.</p>
+<p><strong>Feature-based dev.</strong> The “list every choice you made
+that I did not specify” line is the hook — ask two or three people to
+read theirs out. The room reliably discovers that everyone got
+<em>different</em> unaccounted decisions.</p>
+<p><strong>Verification.</strong> The brain-decoding leak is the
+emotional core of the lesson. Let the clean run and 0.91 land first,
+then ask “so are we done?” before revealing the bug, then show the 0.58
+on unseen subjects. Translate “the unit that repeats” to each team’s
+project (subject, camera burst, page, source document). For <strong>Now
+your repo</strong>, insist on plan mode for step 1 and timebox firmly;
+the CI workflow and branch protection can be finished after the
+session.</p>
+<p><strong>MCP and skills.</strong> Pre-test the MCP server and the
+caveman install beforehand so auth and npm aren’t what the room watches.
+Run <code>claude mcp list</code> before and after. For the caveman demo,
+ask the same question before and after <code>/caveman</code>, and
+<code>cat</code> the state file to prove it’s toggled. Note for VS Code
+extension users: the same two install commands work; reload the chat
+panel afterward.</p>
+<p><strong>Cost and energy.</strong> Name the claim people arrive with
+(a prompt costs gallons of water) and replace it with a number. Be
+honest about the spread (Couch ~41 Wh, Hausfather ~600 Wh). Three live
+demos in order: <code>/cost</code>, <code>/model</code>,
+<code>/compact</code>; then pull up the OpenRouter session-cost
+rankings. Loop back to skills as a cost lever.</p>
+<p><strong>Close.</strong> Is programming dead? Put the question to the
+room first — discuss with a neighbor, then share — before giving the
+evidence: coding speed is one bottleneck, and the Anthropic
+skill-formation result (17% lower, biggest gap in debugging) is the one
+to leave people with: use the agent to ask <em>why</em>. Feedback
+survey, materials link, and ask people to send resources they find
+useful.</p>
 </section><section><h2 class="section-heading" id="logistics-that-matter">Logistics that matter<a class="anchor" aria-label="anchor" href="#logistics-that-matter"></a>
 </h2>
 <hr class="half-width">
 <ul>
 <li>
 <strong>Agent access is the #1 failure mode.</strong> Have helpers
-confirm during arrival that every participant can start a session in
-<em>some</em> tool. Provide a fallback (e.g., cloud credits, OpenCode
-with free models, or pairing participants).</li>
+confirm during arrival that every participant can start a cloud session
+in <em>some</em> tool. Provide a fallback (cloud credits, OpenCode with
+free models, or pairing participants).</li>
 <li>
-<strong>Exercise 1 needs an unfamiliar repo.</strong> Pick one
-practice repository in advance so the debrief has common ground —
-ideally a small research project with some undocumented quirks the agent
-will confidently gloss over.</li>
+<strong>Participants need a repository, with write access.</strong>
+The exercises assume one shared project repo with everyone on their own
+branch. Have a small starter repo ready for anyone without one, and get
+collaborators added before the session.</li>
 <li>
-<strong>Exercise 2 works best with a visible contrast.</strong> Ask
-2–3 participants to share what their bad prompt produced; the room
-reliably discovers that everyone got <em>different</em> unaccountable
-pipelines.</li>
+<strong>Pre-run every demo</strong> — the MCP connection, the
+caveman install, <code>/compact</code> on a long session — on the same
+network you’ll present from.</li>
 <li>
-<strong>The leakage example is the emotional core of the
-lesson.</strong> Don’t rush it. Let the clean run and high score land
-first, then ask “so are we done?” before revealing the bug.</li>
-<li>
-<strong>Timebox Exercise 3 firmly</strong> — writing a test from
-scratch can sprawl. Offer the provided leakage test as a starting point
-for anyone stalled at the 4-minute mark.</li>
+<strong>Keys off disk.</strong> If any exercise calls a hosted model
+API, show the <code>op read</code> pattern rather than handing out a
+<code>.env</code>.</li>
 </ul></section><section><h2 class="section-heading" id="teaching-tips">Teaching tips<a class="anchor" aria-label="anchor" href="#teaching-tips"></a>
 </h2>
 <hr class="half-width">
@@ -578,10 +658,12 @@ for anyone stalled at the 4-minute mark.</li>
 a different tool, translate rather than troubleshoot (“what’s the
 plan-mode equivalent in yours?”).</li>
 <li>Recurring motifs worth calling back to explicitly: <em>stay in the
-driver’s seat</em>, <em>plausible-but-wrong beats broken as the
-dangerous failure mode</em>, <em>autonomy is purchased with
-verification</em>, and <em>vague prompts cost quality, money, and energy
-— the same discipline pays three times</em>.</li>
+driver’s seat</em>, <em>instructions shape behavior, permissions
+constrain it</em>, <em>a feature is one thing you can check</em>,
+<em>plausible-but-wrong beats broken as the dangerous failure mode</em>,
+<em>autonomy is purchased with verification</em>, and <em>vague prompts
+cost quality, money, and energy — the same discipline pays three
+times</em>.</li>
 <li>Participants who are experienced ML practitioners sometimes bristle
 at the “no escaping good data science” framing as obvious. Agree with
 them — then point out the METR result: experienced developers
@@ -618,7 +700,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.20.2)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/" class="external-link">varnish (1.1.1)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.21.0)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/" class="external-link">varnish (1.1.2)</a></p>
 		</div>
 		</footer>
 </div> <!-- / div.container -->
@@ -641,8 +723,8 @@ any links that you are not going to use.
   "url": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/instructor-notes.html",
   "identifier": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/instructor-notes.html",
   "dateCreated": "2026-08-10",
-  "dateModified": "2026-08-25",
-  "datePublished": "2026-08-25"
+  "dateModified": "2026-09-15",
+  "datePublished": "2026-09-15"
 }
 
   </script><script>

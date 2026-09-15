@@ -237,7 +237,7 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="introduction.html">1. What Does 'Agentic' Mean?</a>
+        <a href="introduction.html">1. What Is Agentic Coding?</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -249,7 +249,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="safety-and-security.html">2. Words of Caution: Safety, Security, and Policy</a>
+        <a href="safety-and-security.html">2. Safety and Security: Limit What the Agent Can Access</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -273,7 +273,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="early-project-planning.html">4. Early Project Planning</a>
+        <a href="early-project-planning.html">4. Planning with Agents</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -285,7 +285,7 @@
 <div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
-        <a href="specification.html">5. Underspecification and Feature-Driven Development</a>
+        <a href="specification.html">5. Feature-Based Development and Good Prompting</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -297,7 +297,7 @@
 <div class="accordion accordion-flush" id="accordionFlush7">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading7">
-        <a href="verification-and-review.html">6. Verification and Review: No Escaping Good Data Science</a>
+        <a href="verification-and-review.html">6. Verification and Testing: No Escaping Good Data Science</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -309,7 +309,7 @@
 <div class="accordion accordion-flush" id="accordionFlush8">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading8">
-        <a href="documentation.html">7. Documentation: Notes to Your Future Self (and Your Agent)</a>
+        <a href="skills-and-mcp.html">7. MCP Tools and Skills: Extending Your Agent</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -321,7 +321,7 @@
 <div class="accordion accordion-flush" id="accordionFlush9">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading9">
-        <a href="common-workflows.html">8. Common Workflows</a>
+        <a href="cost-context-energy.html">8. Cost, Context, and Energy</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -333,7 +333,7 @@
 <div class="accordion accordion-flush" id="accordionFlush10">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading10">
-        <a href="cost-context-energy.html">9. Cost, Context, and Energy</a>
+        <a href="documentation.html">9. Documentation: Notes to Your Future Self (and Your Agent)</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -345,7 +345,19 @@
 <div class="accordion accordion-flush" id="accordionFlush11">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading11">
-        <a href="research-and-outlook.html">10. What the Research Shows, and Where This Leaves Us</a>
+        <a href="common-workflows.html">10. Common Workflows</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush12">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading12">
+        <a href="research-and-outlook.html">11. What the Research Shows, and Where This Leaves Us</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -409,33 +421,38 @@
     <main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Key Points</h1>
         
-<section id="introduction"><h2 class="section-heading"><a href="introduction.html">What Does 'Agentic' Mean?</a></h2>
+<section id="introduction"><h2 class="section-heading"><a href="introduction.html">What Is Agentic Coding?</a></h2>
 <hr class="half-width">
 <ul>
-<li>Agentic tools read your repo, run commands, edit files, and iterate
-on their own output — they are collaborators with real system access,
-not autocomplete.</li>
-<li>Tools occupy a spectrum of autonomy: chat → interactive agent →
-asynchronous agent.</li>
-<li>More autonomy shifts your effort from approving actions to
-specifying intent up front and reviewing results afterward.</li>
-<li>Learn the principles; the specific tools will keep changing.</li>
-</ul></section><section id="safety-and-security"><h2 class="section-heading"><a href="safety-and-security.html">Words of Caution: Safety, Security, and Policy</a></h2>
+<li>Agentic coding: AI agents plan, write, test, debug, and revise code
+with limited human intervention. An agent acts; a chatbot advises.</li>
+<li>Agent = LLM + harness + tools + agent loop. The model reasons; the
+harness gives it files, a terminal, tests, permissions, and memory.</li>
+<li>Requests sit on a spectrum from “write this loop” to “build it all”.
+More autonomy shifts your effort from approving actions to specifying
+intent up front and reviewing results afterward.</li>
+<li>The leading tools are within a point or two of each other; pick what
+you can access and learn the principles.</li>
+</ul></section><section id="safety-and-security"><h2 class="section-heading"><a href="safety-and-security.html">Safety and Security: Limit What the Agent Can Access</a></h2>
 <hr class="half-width">
 <ul>
+<li>Institutional data policies apply unchanged: sensitive or restricted
+data stays away from unvetted AI services, on every route.</li>
 <li>Agents run with your permissions and scan your workspace for context
 — assume anything on disk in plaintext can be read.</li>
-<li>Default to surfaces that never run on your machine (web UIs, cloud
-coding agents); local execution is a choice you make deliberately, with
-the defenses below in place.</li>
-<li>The only secret an agent can’t leak is one that isn’t there: use a
-secrets manager or keyring and inject at runtime.</li>
-<li>Permissions, sandboxing, and deny rules are valuable layers, not
-guarantees; prompt injection is a real attack surface.</li>
-<li>Clean git state, branches, and small frequent commits make agent
-mistakes cheap to undo.</li>
-<li>Institutional data policies apply unchanged: sensitive or restricted
-data stays away from unvetted AI services.</li>
+<li>Prompt injection is the threat: anything the agent reads can carry
+instructions, so treat it all as untrusted, keep the web session’s
+firewall on, and review the PR before you merge.</li>
+<li>Cap what injection can do with six limits: network allowlist, cloud
+VM, command rules, password-manager credentials, branch + PR, and whom
+you trust.</li>
+<li>Instructions shape behavior; permissions constrain it. A rules file
+is text the model weighs, not a permission it lacks.</li>
+<li>The only secret an agent can’t leak is one that isn’t there: load
+keys at runtime with <code>op read</code>.</li>
+<li>First session: a cloud route with plan mode, confirm cloud before
+you prompt, a branch named for you (branches, not forks), no
+<code>.env</code>.</li>
 </ul></section><section id="trust"><h2 class="section-heading"><a href="trust.html">Trust: Packages, Models, and Providers</a></h2>
 <hr class="half-width">
 <ul>
@@ -445,7 +462,8 @@ those decisions on the manually-approved list.</li>
 verify a package exists and is official before installing anything an
 agent suggests.</li>
 <li>Model weights in pickle formats are executable code: prefer
-safetensors, download from verified accounts, check provenance.</li>
+safetensors, download from verified organizations, never default
+<code>trust_remote_code</code> on, check provenance.</li>
 <li>Backdoors can live in the weights themselves (poisoned training
 data, surgical edits, trigger behaviors) — no scanner or benchmark
 detects them, so provenance and reviewing model output are the real
@@ -454,63 +472,107 @@ defenses.</li>
 never point an agent at production or irreplaceable data.</li>
 <li>Vet your provider’s actual data policy: training default, retention,
 jurisdiction, and whether any institutional agreement covers you.</li>
+<li>Provider defaults differ by plan tier: consumer Claude and Copilot
+plans train on your data unless you opt out; team, enterprise, API, and
+education tiers don’t. Check the setting, not the brand.</li>
 <li>Every rule here has a named incident behind it — torchtriton,
-Ultralytics, huggingface-cli, Amazon Q, Replit, DeepSeek, Samsung. None
-required exotic attackers; all required missing skepticism.</li>
-</ul></section><section id="early-project-planning"><h2 class="section-heading"><a href="early-project-planning.html">Early Project Planning</a></h2>
+Ultralytics, huggingface-cli, Amazon Q, Replit, DeepSeek, Samsung, the
+fake OpenAI repo, InstructLab. None required exotic attackers; all
+required missing skepticism.</li>
+</ul></section><section id="early-project-planning"><h2 class="section-heading"><a href="early-project-planning.html">Planning with Agents</a></h2>
 <hr class="half-width">
 <ul>
-<li>Plan before code: the planning phase’s deliverables are
-understanding, documentation, and specs — territory where agents are
-safe and strong.</li>
-<li>For existing projects, start in read-only/plan mode; agents recover
-<em>what</em> and <em>how</em> from code, but not <em>why</em>, <em>for
-whom</em>, or what the data means.</li>
-<li>Project context files (<code>CLAUDE.md</code>,
-<code>copilot-instructions.md</code>, <code>AGENTS.md</code>) write down
-that missing knowledge — keep them short, operational, and
-advisory-aware.</li>
-<li>For new projects, design in chat first (README-as-spec, data plan),
-scaffold small, then go feature-by-feature — and write the context file
-at project birth.</li>
+<li>Plan before code: planning measurably improves accuracy, and a good
+plan usually costs fewer tokens, not more. Proportional, not
+maximal.</li>
+<li>A plan is only as good as its context — hand over the goal,
+constraints, compute, existing code, standards, and prior decisions; for
+long work keep the plan in a file the agent updates.</li>
+<li>Agree team conventions first — branches not forks, PR size, who
+reviews, what the agent may not touch — and commit them as a
+<code>CONTRIBUTING.md</code> your agents read too.</li>
+<li>Use plan mode (read-only) to review a plan; the deliverable is a
+<code>plan.md</code> with ordered features and a check for each,
+committed before any code.</li>
+<li>Start from a minimum viable pipeline: a slice of data, one model,
+something you understand end to end.</li>
 <li>Probe AI design ideas before adopting them, hardest where your
 domain knowledge is thinnest: if you can’t explain it, you don’t own it
 yet.</li>
-</ul></section><section id="specification"><h2 class="section-heading"><a href="specification.html">Underspecification and Feature-Driven Development</a></h2>
+<li>Write the project context file (<code>CLAUDE.md</code> /
+<code>AGENTS.md</code> / <code>copilot-instructions.md</code>) at
+project birth — short, operational, advisory-aware.</li>
+</ul></section><section id="specification"><h2 class="section-heading"><a href="specification.html">Feature-Based Development and Good Prompting</a></h2>
 <hr class="half-width">
 <ul>
+<li>A feature is one thing you can check. Work the plan one feature per
+session, with a small diff and one pull request.</li>
 <li>Underspecified prompts get average-case answers; your data and your
-research are rarely the average case.</li>
-<li>The failure mode is plausible-but-wrong code, which is far more
-dangerous than broken code.</li>
-<li>Work feature by feature: small, well-specified tasks produce
-reviewable diffs and keep you in the driver’s seat.</li>
-<li>Good prompts specify where, what, constraints, and — most
-importantly — how to verify the result.</li>
-</ul></section><section id="verification-and-review"><h2 class="section-heading"><a href="verification-and-review.html">Verification and Review: No Escaping Good Data Science</a></h2>
+research are rarely the average case. The failure mode is
+plausible-but-wrong.</li>
+<li>Context engineering sets the standing rules (context file,
+standards, plan); prompt engineering phrases the specific ask. Use
+both.</li>
+<li>Good prompts give evidence, ask for a diagnosis before a change, and
+specify inputs, output, “done when”, and “do not touch”.</li>
+<li>Maintenance tasks — refactors, docstrings, README audits,
+environment pins, merge summaries — are ideal agent work under the same
+small-specified-checkable rules.</li>
+<li>Always ask the agent to list the choices you didn’t specify.</li>
+</ul></section><section id="verification-and-review"><h2 class="section-heading"><a href="verification-and-review.html">Verification and Testing: No Escaping Good Data Science</a></h2>
 <hr class="half-width">
 <ul>
-<li>Established practice still rules: explore your data, know your
-features and distributions, compare to a source of truth, know what your
-model is telling you.</li>
-<li>Faster iteration means faster results <em>and</em> faster misleading
-— clean runs and great scores are not evidence of correctness.</li>
-<li>Leakage is the canonical agentic failure: plausible, silent, and
-flattering. Split first; fit preprocessing on training data only; be
-suspicious of good news.</li>
+<li>Checking is the bottleneck: agents multiply commits far more than
+releases, and unreviewed merges rise. The scarce skill is
+verification.</li>
+<li>Established practice still rules: know your data, compare to a
+source of truth, ask a colleague, know what your model is telling you,
+reproduce the result. Only the typing moved.</li>
 <li>Cheap checks catch expensive mistakes: shuffle labels, print the
-dumb baseline, assert no train/test overlap, hunt duplicates, vary the
+baseline, assert no sample in both splits, hunt duplicates, vary the
 seed.</li>
-<li>Review diffs by hunting for decisions you didn’t make — dropped
-rows, accepted defaults, switched metrics, suppressed errors — and make
-the agent list its own assumptions.</li>
-<li>Make verification executable — tests, printed checks, baselines —
-because autonomy is purchased with verification.</li>
-<li>Agents make tests cheap: ask for them with every feature and for
-your data’s properties. You define what must be true; the agent writes
-the tedious parts; you review tests like implementations.</li>
-<li>Choose your verification tier (throwaway / working / load-bearing)
-explicitly, before you start.</li>
+<li>Split by the unit that repeats, and assert it. A confident,
+clean-running 0.91 can be a 0.58 on unseen subjects.</li>
+<li>Review diffs by hunting for decisions you didn’t make, and make the
+agent list its own assumptions.</li>
+<li>Leave evidence in the repo and point the agent at it; it reads
+figures and metrics, but only the ones you name — and you check every
+number it cites.</li>
+<li>Make verification automatic: tests in CI, a context-file rule, a
+protected <code>main</code>. Autonomy is purchased with
+verification.</li>
+</ul></section><section id="skills-and-mcp"><h2 class="section-heading"><a href="skills-and-mcp.html">MCP Tools and Skills: Extending Your Agent</a></h2>
+<hr class="half-width">
+<ul>
+<li>API: you write the calling code. MCP: the agent discovers the tools
+and decides when to call them. MCP when the agent should reach a system
+on its own; direct API when you’re writing the pipeline.</li>
+<li>An MCP server exposes tools, resources, and prompts over a standard
+protocol; connecting one is like installing a plugin.</li>
+<li>A skill is a playbook — packaged instructions loaded on demand, no
+server, no network — and it saves context because it expands only when
+relevant.</li>
+<li>Everything an MCP tool returns is untrusted input; scope tokens to
+the minimum and configure per project.</li>
+<li>Vet a skill or MCP server before installing it, even from a
+well-known author; Parse, Matt Pocock’s skills, gstack, Claude Science,
+and ToolUniverse are good places to start looking.</li>
+</ul></section><section id="cost-context-energy"><h2 class="section-heading"><a href="cost-context-energy.html">Cost, Context, and Energy</a></h2>
+<hr class="half-width">
+<ul>
+<li>A chat query is ~0.3 Wh; a median coding session ~41 Wh; a heavy
+agentic day about a dishwasher cycle. Estimates spread by an order of
+magnitude — think tens to hundreds of Wh per session, not
+precision.</li>
+<li>The issue is aggregate demand, and inference now dominates; your
+usage patterns are the lever.</li>
+<li>Agentic sessions chain hundreds of model calls; context accumulation
+makes late messages far more expensive than early ones.</li>
+<li>Watch usage, match the model to the task, keep sessions short and
+compact, use skills, and compare real session cost across models before
+committing.</li>
+<li>Specific prompts in clean context are better, cheaper, and greener —
+the same discipline pays three times.</li>
 </ul></section><section id="documentation"><h2 class="section-heading"><a href="documentation.html">Documentation: Notes to Your Future Self (and Your Agent)</a></h2>
 <hr class="half-width">
 <ul>
@@ -544,28 +606,15 @@ merge.</li>
 <li>Codify recurring workflows: context file → skills (reusable
 instructions) → hooks (guaranteed enforcement) → MCP (external systems,
 minimum access).</li>
-</ul></section><section id="cost-context-energy"><h2 class="section-heading"><a href="cost-context-energy.html">Cost, Context, and Energy</a></h2>
-<hr class="half-width">
-<ul>
-<li>Agentic sessions chain hundreds of model calls; context accumulation
-makes late messages far more expensive than early ones.</li>
-<li>
-<code>/clear</code> between tasks, <code>/compact</code> within long
-ones, <code>/cost</code> to stay aware — and interrupt early when the
-agent drifts.</li>
-<li>One agentic session ≈ 41 Wh; a heavy day ≈ one dishwasher run.
-Individually modest, collectively significant.</li>
-<li>Specific prompts in clean context are better, cheaper, and greener —
-the same discipline pays three times.</li>
-<li>Use the model to build tools, not to be the tool: code you generate
-once runs at negligible energy forever, while asking the assistant the
-same question daily re-spends inference every time.</li>
 </ul></section><section id="research-and-outlook"><h2 class="section-heading"><a href="research-and-outlook.html">What the Research Shows, and Where This Leaves Us</a></h2>
 <hr class="half-width">
 <ul>
 <li>Agentic tools amplify expertise; verification skill, not typing
 speed, is the bottleneck — and perceived speedups can be illusory, so
 measure.</li>
+<li>Learning with AI can cost understanding (17% lower quiz scores,
+biggest gap in debugging): use the agent to ask why, not only to produce
+code.</li>
 <li>How novices build supervisory expertise in an agentic world is an
 open and serious question.</li>
 <li>Agentic coding is another abstraction layer — but the first
@@ -605,7 +654,7 @@ instead of re-spending the chats.</li>
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.20.2)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/" class="external-link">varnish (1.1.1)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.21.0)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/" class="external-link">varnish (1.1.2)</a></p>
 		</div>
 		</footer>
 </div> <!-- / div.container -->
@@ -628,8 +677,8 @@ instead of re-spending the chats.</li>
   "url": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/instructor/key-points.html",
   "identifier": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/instructor/key-points.html",
   "dateCreated": "2026-08-10",
-  "dateModified": "2026-08-25",
-  "datePublished": "2026-08-25"
+  "dateModified": "2026-09-15",
+  "datePublished": "2026-09-15"
 }
 
   </script><script>

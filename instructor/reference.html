@@ -196,7 +196,7 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="introduction.html">1. What Does 'Agentic' Mean?</a>
+        <a href="introduction.html">1. What Is Agentic Coding?</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -205,7 +205,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="safety-and-security.html">2. Words of Caution: Safety, Security, and Policy</a>
+        <a href="safety-and-security.html">2. Safety and Security: Limit What the Agent Can Access</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -223,7 +223,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="early-project-planning.html">4. Early Project Planning</a>
+        <a href="early-project-planning.html">4. Planning with Agents</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -232,7 +232,7 @@
 <div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
-        <a href="specification.html">5. Underspecification and Feature-Driven Development</a>
+        <a href="specification.html">5. Feature-Based Development and Good Prompting</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -241,7 +241,7 @@
 <div class="accordion accordion-flush" id="accordionFlush7">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading7">
-        <a href="verification-and-review.html">6. Verification and Review: No Escaping Good Data Science</a>
+        <a href="verification-and-review.html">6. Verification and Testing: No Escaping Good Data Science</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -250,7 +250,7 @@
 <div class="accordion accordion-flush" id="accordionFlush8">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading8">
-        <a href="documentation.html">7. Documentation: Notes to Your Future Self (and Your Agent)</a>
+        <a href="skills-and-mcp.html">7. MCP Tools and Skills: Extending Your Agent</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -259,7 +259,7 @@
 <div class="accordion accordion-flush" id="accordionFlush9">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading9">
-        <a href="common-workflows.html">8. Common Workflows</a>
+        <a href="cost-context-energy.html">8. Cost, Context, and Energy</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -268,7 +268,7 @@
 <div class="accordion accordion-flush" id="accordionFlush10">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading10">
-        <a href="cost-context-energy.html">9. Cost, Context, and Energy</a>
+        <a href="documentation.html">9. Documentation: Notes to Your Future Self (and Your Agent)</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -277,7 +277,16 @@
 <div class="accordion accordion-flush" id="accordionFlush11">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading11">
-        <a href="research-and-outlook.html">10. What the Research Shows, and Where This Leaves Us</a>
+        <a href="common-workflows.html">10. Common Workflows</a>
+    </div><!--/div.accordion-header-->
+
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush12">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading12">
+        <a href="research-and-outlook.html">11. What the Research Shows, and Where This Leaves Us</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -336,7 +345,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Reference</h1>
-        <p>Last updated on 2026-08-11 |
+        <p>Last updated on 2026-09-15 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/learners/reference.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -357,11 +366,11 @@ Working with an AI tool that can read a repository, execute commands,
 edit files, and iterate on its own output semi-autonomously — as opposed
 to suggest-and-accept assistants.
 </dd>
-<dt><strong>Agentic loop</strong></dt>
+<dt><strong>Agent loop</strong></dt>
 <dd>
-A cycle in which an agent tries an approach, observes failure, gathers
-more context, and tries again. Productive in small doses; a
-token-burning spiral when the task is underspecified.
+The cycle a harness runs: request → understand → plan → act → observe →
+revise → repeat. Productive when the task is well specified; a
+token-burning spiral when it isn’t.
 </dd>
 <dt><strong>Context window</strong></dt>
 <dd>
@@ -395,11 +404,32 @@ Any path by which information from outside the training data (typically
 from the test set or the future) influences model training or
 evaluation. Produces inflated scores from code that runs cleanly.
 </dd>
-<dt><strong>Feature-driven development</strong></dt>
+<dt><strong>Feature-based development</strong></dt>
 <dd>
 Delegating work to an agent one well-scoped, verifiable feature at a
-time, rather than project-sized requests — keeping diffs small enough to
-genuinely review.
+time — one feature per session, a small diff, one pull request — rather
+than project-sized requests. A feature is one thing you can check.
+</dd>
+<dt><strong>Group leakage</strong></dt>
+<dd>
+Data leakage caused by splitting on rows when the unit that repeats
+(subject, image, document, site) appears on both sides of the split. The
+model learns the unit, not the signal. Fix: split by group
+(<code>GroupShuffleSplit</code>, <code>GroupKFold</code>) and assert
+disjointness.
+</dd>
+<dt><strong>Harness</strong></dt>
+<dd>
+The application around a language model that lets it act on a real
+codebase: file access, terminal and test execution, context management,
+planning, tool integrations, memory, permission controls, and the agent
+loop. Agent = LLM + harness + tools + loop.
+</dd>
+<dt><strong>Hook</strong></dt>
+<dd>
+A deterministic script configured to run at a fixed point in an agent’s
+workflow (after every edit, before every commit). Unlike a context file
+or a skill, a hook is <em>guaranteed</em> to fire rather than advisory.
 </dd>
 <dt><strong>Model backdoor (trojaned model)</strong></dt>
 <dd>
@@ -409,10 +439,38 @@ surgical weight edits — to behave normally except on a trigger input
 parameters, so file-format defenses like safetensors don’t help and no
 scanner or benchmark reliably detects it.
 </dd>
+<dt><strong>Instructions vs. permissions</strong></dt>
+<dd>
+An instruction (a rules file, a prompt) asks the model to behave and is
+text it weighs; a permission (a VM boundary, a deny rule, branch
+protection) removes the ability. Instructions shape behavior;
+permissions constrain it.
+</dd>
 <dt><strong>MCP (Model Context Protocol)</strong></dt>
 <dd>
-An open protocol for connecting agents to external tools and data
-sources (databases, trackers, browsers).
+An open standard for plugging tools and data into any agent. Unlike an
+API, where you write the calling code, the agent discovers an MCP
+server’s tools and decides when to call them.
+</dd>
+<dt><strong>MCP server</strong></dt>
+<dd>
+A lightweight program that exposes tools, resources, and prompts to an
+agent over MCP, locally over stdio or remotely over HTTP. Its output
+enters the agent’s context as untrusted input.
+</dd>
+<dt><strong>Minimum viable pipeline (MVP)</strong></dt>
+<dd>
+Whatever you can get running quickly and understand end to end: a slice
+of the data, one model, your laptop. Fewer friction and failure points,
+and the ideal first plan for an agent.
+</dd>
+<dt><strong>Plan file (<code>plan.md</code> /
+<code>PLANS.md</code>)</strong></dt>
+<dd>
+A committed, living document holding goal, scope and acceptance
+criteria, ordered steps, progress, discoveries and blockers, and test
+results. The agent’s direction, your review point before implementation,
+and a shared definition of done.
 </dd>
 <dt><strong>Plan mode / read-only mode</strong></dt>
 <dd>
@@ -464,9 +522,20 @@ rarely your case.
 <hr class="half-width"><table class="table"><colgroup><col width="17%"><col width="37%"><col width="45%"></colgroup><thead><tr><th>Task</th>
 <th>Claude Code</th>
 <th>GitHub Copilot</th>
-</tr></thead><tbody><tr><td>Read-only exploration</td>
-<td>Plan mode (<kbd>Shift</kbd>+<kbd>Tab</kbd>)</td>
-<td>Ask mode (chat mode dropdown)</td>
+</tr></thead><tbody><tr><td>Cloud VM session (nothing local)</td>
+<td><a href="https://claude.ai/code" class="external-link">claude.ai/code</a></td>
+<td>Copilot app in cloud mode; <a href="https://github.com/copilot/agents" class="external-link">github.com/copilot/agents</a>;
+assign an issue to Copilot</td>
+</tr><tr><td>Read-only exploration / plan review</td>
+<td>Plan mode (<kbd>Shift</kbd>+<kbd>Tab</kbd>; built in on the
+web)</td>
+<td>Explicit plan mode in the Copilot app; on the web, ask for a plan in
+the prompt; Ask mode in VS Code chat</td>
+</tr><tr><td>Network allowlist</td>
+<td>Session <strong>Network access</strong> (No network / Trusted /
+All); account extras at claude.ai/settings/capabilities</td>
+<td>Repo Settings → Copilot → Cloud agent → Internet access (firewall,
+recommended/custom allowlist)</td>
 </tr><tr><td>Reset context between tasks</td>
 <td><code>/clear</code></td>
 <td>New chat</td>
@@ -479,27 +548,86 @@ rarely your case.
 <td>
 <a href="https://github.com/settings/copilot" class="external-link">Copilot settings</a>
 usage</td>
+</tr><tr><td>Switch model</td>
+<td><code>/model</code></td>
+<td>Model picker in the chat panel</td>
 </tr><tr><td>Interrupt the agent</td>
 <td><kbd>Esc</kbd></td>
 <td>Stop button</td>
 </tr><tr><td>Project context file</td>
-<td><code>CLAUDE.md</code></td>
-<td><code>.github/copilot-instructions.md</code></td>
-</tr><tr><td>Async agent</td>
-<td>Claude Code on the web; <code>@claude</code> on GitHub</td>
-<td>Cloud coding agent; assign issue to Copilot</td>
+<td>
+<code>CLAUDE.md</code> (also reads <code>AGENTS.md</code>)</td>
+<td>
+<code>.github/copilot-instructions.md</code> (also reads
+<code>AGENTS.md</code>)</td>
+</tr><tr><td>Command allow/deny rules</td>
+<td>
+<code>/permissions</code>, <code>settings.json</code>
+</td>
+<td>Terminal auto-approve settings</td>
+</tr><tr><td>Add an MCP server</td>
+<td>
+<code>claude mcp add …</code>; <code>claude mcp list</code>
+</td>
+<td><strong>MCP: Open User Configuration</strong></td>
+</tr><tr><td>Skills</td>
+<td>
+<code>.claude/skills/&lt;name&gt;/SKILL.md</code>; plugins via
+<code>claude plugin install</code>
+</td>
+<td>Prompt files
+<code>.github/prompts/&lt;name&gt;.prompt.md</code>
+</td>
 </tr></tbody></table></section><section><h2 class="section-heading" id="further-reading">Further reading<a class="anchor" aria-label="anchor" href="#further-reading"></a></h2>
-<hr class="half-width"><ul><li><a href="https://www.anthropic.com/engineering/claude-code-best-practices" class="external-link">Anthropic:
+<hr class="half-width"><p><strong>Tools and workflow</strong></p>
+<ul><li><a href="https://www.anthropic.com/engineering/claude-code-best-practices" class="external-link">Anthropic:
 Claude Code best practices</a></li>
-<li><a href="https://simonwillison.net/" class="external-link">Simon Willison: Agentic
-engineering patterns</a></li>
-<li><a href="https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/" class="external-link">METR:
-Measuring the impact of AI on experienced open-source developer
-productivity</a></li>
+<li><a href="https://developers.openai.com/cookbook/articles/codex_exec_plans" class="external-link">Aaron
+Friel: Using PLANS.md for multi-hour problem solving</a></li>
+<li>
+<a href="https://www.tbench.ai/leaderboard/terminal-bench/2.1" class="external-link">Terminal-Bench
+2.1 leaderboard</a> — agent and model pairs</li>
+<li><a href="https://openrouter.ai/rankings#session-cost" class="external-link">OpenRouter
+session-cost rankings</a></li>
 <li>
 <a href="https://uw-madison-datascience.github.io/ML-X-Nexus/" class="external-link">ML+X
-Nexus: Claude Code Best Practices</a> — the community guide this lesson
-draws on</li>
+Nexus</a> — the UW–Madison community guides this lesson draws on</li>
+</ul><p><strong>Safety and security</strong></p>
+<ul><li><a href="https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/" class="external-link">Simon
+Willison: The lethal trifecta</a></li>
+<li>
+<a href="https://code.claude.com/docs/en/permissions" class="external-link">Claude Code:
+permissions vs. sandboxing</a> and <a href="https://code.claude.com/docs/en/claude-code-on-the-web" class="external-link">Claude
+Code on the web</a>
+</li>
+<li><a href="https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/customize-the-agent-firewall" class="external-link">Copilot
+cloud agent firewall</a></li>
+<li>
+<a href="https://nx.dev/blog/s1ngularity-postmortem" class="external-link">Nx
+“s1ngularity” postmortem</a> and <a href="https://www.wiz.io/blog/s1ngularitys-aftermath" class="external-link">Wiz’s aftermath
+analysis</a>
+</li>
+<li><a href="https://invariantlabs.ai/blog/mcp-github-vulnerability" class="external-link">Invariant
+Labs: GitHub MCP vulnerability</a></li>
+<li><a href="https://github.com/cursor/cursor/security/advisories/GHSA-82wg-qcm4-fp2w" class="external-link">Cursor
+allowlist bypass, CVE-2026-22708</a></li>
+<li><a href="https://developer.1password.com/docs/cli/secrets-environment-variables/" class="external-link">1Password
+CLI: secrets in environment variables</a></li>
+</ul><p><strong>Research</strong></p>
+<ul><li><a href="https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/" class="external-link">METR:
+Measuring the impact of AI on experienced open-source developer
+productivity</a></li>
+<li><a href="https://www.anthropic.com/research/AI-assistance-coding-skills" class="external-link">Anthropic:
+How AI assistance impacts the formation of coding skills</a></li>
+<li><a href="https://www.nber.org/papers/w35275" class="external-link">Demirer, Musolff &amp;
+Yang: Writing Code vs. Shipping Code</a></li>
+<li><a href="https://pages.faros.ai/hubfs/AI_Engineering_Report_2026_The_Acceleration_Whiplash_Faros.pdf" class="external-link">Faros
+AI: 2026 AI Engineering Report</a></li>
+<li>
+<a href="https://simonpcouch.com/blog/2026-01-20-cc-impact/" class="external-link">Simon
+Couch: Electricity use of AI coding agents</a> and <a href="https://www.theclimatebrink.com/p/the-real-energy-use-of-agentic-ai" class="external-link">Zeke
+Hausfather: The real energy use of agentic AI</a>
+</li>
 </ul><!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
@@ -536,7 +664,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.20.2)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/" class="external-link">varnish (1.1.1)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.21.0)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/" class="external-link">varnish (1.1.2)</a></p>
 		</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -558,8 +686,8 @@ any links that you are not going to use.
   "url": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/instructor/reference.html",
   "identifier": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/instructor/reference.html",
   "dateCreated": "2026-08-10",
-  "dateModified": "2026-08-11",
-  "datePublished": "2026-08-25"
+  "dateModified": "2026-09-15",
+  "datePublished": "2026-09-15"
 }
 
   </script><script>
