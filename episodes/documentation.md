@@ -23,6 +23,10 @@ exercises: 5
 
 ## The chore that stopped being a chore
 
+The feature-based-development episode listed docstrings, README audits, and
+environment pins among the maintenance tasks agents do well. This episode — reading
+for after the workshop — explains why documentation deserves more than a bullet.
+
 Research code is famously under-documented, and the reason was never that anyone
 doubted documentation's value. It was cost: after the analysis finally works, writing
 up docstrings and updating the README is exactly the tedious, low-glamour work that
@@ -83,7 +87,7 @@ real problems:
   other; never leave them disagreeing.
 
 This is the rubber-duck effect with a duck that talks back. It doesn't replace the
-tests and checks from the previous episode — an explanation can be fluent and wrong —
+tests and checks from the verification episode — an explanation can be fluent and wrong —
 but it's a cheap extra verification layer, and it produces a durable artifact while
 verifying.
 

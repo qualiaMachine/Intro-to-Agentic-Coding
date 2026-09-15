@@ -22,8 +22,8 @@ exercises: 6
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-The earlier episodes gave you principles; this one collects the recurring *shapes* of
-day-to-day agentic work. None of them is the one true way — the point is to pick your
+The workshop episodes gave you principles; this one — asynchronous reading, not a
+live block — collects the recurring *shapes* of day-to-day agentic work. None of them is the one true way — the point is to pick your
 pattern deliberately and write it down, rather than improvising it fresh every session.
 
 ## Two review postures
@@ -40,7 +40,7 @@ serious review happens once, on the full PR diff, exactly as you'd review a huma
 collaborator's branch. This posture keeps momentum high and concentrates your
 attention where it's most effective — but it leans on safety nets: a real test suite,
 CI checks gating the merge, and PR diffs kept small enough to genuinely read
-(feature-sized, per the specification episode).
+(feature-sized, per the feature-based-development episode).
 
 **Posture B: review every change as it happens.** Approve each edit or commit
 yourself, staying close to the work in real time. Slower, but right for the
@@ -95,8 +95,9 @@ once instead of re-prompting it forever:
   (run the linter, block writes to `data/raw/`).
 - **MCP (Model Context Protocol)** — connects the agent to external systems: your
   issue tracker, a database, a lab notebook. Each connection widens what the agent
-  can touch, so apply the trust episode's lens before wiring
-  one in: minimum access, and treat what flows back through it as untrusted input.
+  can touch, so apply the trust episode's lens before wiring one in: minimum access,
+  and treat what flows back through it as untrusted input. (The
+  [MCP and skills](skills-and-mcp.md) episode has hands-on exercises for both.)
 
 A sensible progression: context file first, skills when you catch yourself repeating
 instructions, hooks when a rule needs enforcement rather than encouragement, MCP when
@@ -106,8 +107,11 @@ the agent genuinely needs an external system.
 
 ## Exercise: Write your workflow contract (6 minutes)
 
-Add a short "Workflow" section to a project context file (or draft one in a scratch
-file) — three to five rules that make your chosen pattern explicit.
+If your team did the planning episode's *agree how your team will work together*
+exercise, you already have a `CONTRIBUTING.md`; this is the solo version, and a
+chance to add the review-posture decision above to it. Add a short "Workflow" section
+to a project context file (or draft one in a scratch file) — three to five rules that
+make your chosen pattern explicit.
 
 :::::::::::::::: group-tab
 

@@ -7,27 +7,31 @@ The lesson grew out of the 2-hour "Agentic Coding Best Practices" workshop devel
 the [ML Marathon](https://ml-marathon.wisc.edu/) at UW–Madison by Tracy Reuter, Tejvir
 Mann, Chris Endemann, and Zain Waseem, and expands it into a self-study resource.
 
-## Core themes
+## Core principles
 
-- **Stay in the driver's seat** — the agent types; you decide.
-- **Feature-driven development** — well-scoped, verifiable tasks over project-sized prompts.
-- **No escaping good data science** — explore your data, know your distributions, know
-  what your models are telling you; code that runs clean and scores great can still be wrong.
-- **Assume nothing; verify everything** — faster iteration means faster results *and* faster
-  misleading.
+- **Stay in the driver's seat** — the agent types; you review, and you decide what
+  lands on `main`.
+- **Work feature by feature, not project by project** — a feature is one thing you can
+  check; whole-project prompts produce whole-project guesses.
+- **Assume nothing; verify everything** — lean on tests. There is no escaping good
+  data science: code that runs clean and scores great can still be wrong, and faster
+  iteration means faster results *and* faster misleading.
 
 ## Episodes
 
-1. What Does "Agentic" Mean?
-2. Words of Caution: Safety, Security, and Policy
+The first eight episodes follow the two-hour workshop in order; the last three are
+asynchronous reading.
+
+1. What Is Agentic Coding?
+2. Safety and Security: Limit What the Agent Can Access
 3. Trust: Packages, Models, and Providers
-4. Early Project Planning
-5. Underspecification and Feature-Driven Development
-6. Verification and Review: No Escaping Good Data Science
-7. Documentation: Notes to Your Future Self (and Your Agent)
-8. Common Workflows
-9. Skills and MCP: Extending Your Agent
-10. Cost, Context, and Energy
+4. Planning with Agents
+5. Feature-Based Development and Good Prompting
+6. Verification and Testing: No Escaping Good Data Science
+7. MCP Tools and Skills: Extending Your Agent
+8. Cost, Context, and Energy
+9. Documentation: Notes to Your Future Self (and Your Agent)
+10. Common Workflows
 11. What the Research Shows, and Where This Leaves Us
 
 ## Building the lesson locally

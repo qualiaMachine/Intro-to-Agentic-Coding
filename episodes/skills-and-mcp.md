@@ -1,129 +1,91 @@
 ---
-title: "Skills and MCP: Extending Your Agent"
-teaching: 15
+title: "MCP Tools and Skills: Extending Your Agent"
+teaching: 10
 exercises: 10
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions
 
+- How is MCP different from an API — and when do I want each?
+- What is an MCP server, and what happens when I connect one?
 - What's actually inside a skill, and how does an agent decide to use one?
-- How is an MCP server different from a skill — what can it do that instructions alone can't?
-- Where do I find good skills and MCP servers other people have already built?
-- What extra scrutiny does connecting an MCP server deserve?
+- What extra scrutiny does connecting an MCP server or installing a skill deserve?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Build and trigger a minimal custom skill.
-- Explain the difference between a skill (packaged instructions) and an MCP server (new tool calls to an external system).
-- Connect a read-only MCP server and use it for one real task.
-- Apply the trust episode's minimum-access lens to a new MCP connection.
+- Explain the difference between an API (you write the calling code) and MCP (the agent discovers and calls tools itself).
+- Connect an MCP server and use it for one real task without naming the tool.
+- Install a published skill, trigger it, and explain what changed.
+- Apply the safety episode's trust lens to a new MCP connection or skill.
 - Locate community skill and MCP directories worth checking before you build your own.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-The [common workflows](common-workflows.md) episode named skills, hooks, and MCP as
-the last two rungs of a progression: write instructions once as a skill when you catch
-yourself repeating them, reach for MCP when the agent genuinely needs to touch an
-external system. This episode makes both concrete — you'll build one of each.
+## MCP vs API
 
-## Skills: instructions, packaged and triggered on demand
+An **API** is a contract you write custom code against — one integration per service.
+You read the docs, write the request, parse the response.
 
-A skill is a folder the agent can load mid-session: a short **description** that says
-when to use it, and a body of instructions (and optionally scripts or reference files)
-that only enter context when that description matches what you're doing. That's the
-whole mechanism — a skill can't make the agent do anything it couldn't already do by
-reading and writing files and running commands. It just saves you from re-typing the
-same instructions every session, and it stays out of the way (and out of your context
-window) the rest of the time.
+**MCP (Model Context Protocol)** is a standard way to plug tools and data into any
+agent. Write the integration once and every MCP-compatible client can use it. With an
+API, *you* write the calling code. With MCP, **the agent discovers the available tools
+itself and decides when to call them.** Anthropic open-sourced MCP in November 2024;
+it is now supported by Claude, Copilot, and most other agents.
 
-The description is the important part: it's what the agent matches against, so vague
-wording ("helps with releases") triggers unreliably, while specific wording ("use when
-the user asks to cut a release, bump a version, or write release notes") triggers when
-you actually mean it.
+Rule of thumb: **MCP when the agent should reach a system on its own. Direct API when
+you're writing the pipeline code yourself.**
 
-::::::::::::::::::::::::::::::::::::: callout
+This is why MCP matters for agentic coding specifically: the agent decides when to
+reach for GitHub, a database, or a lab notebook — not you.
 
-## Demo: the caveman skill
+## What is an MCP server?
 
-A deliberately silly, zero-risk skill is the fastest way to *see* the mechanism work —
-nothing it touches matters, so the whole room can watch the trigger fire.
+A lightweight server that exposes **tools**, **resources**, and **prompts** to an agent
+over a standard protocol. It runs locally over stdio or remotely over HTTP. Examples:
+GitHub MCP, filesystem MCP, Slack MCP, Postgres MCP. When the session starts, the
+agent lists the server's available tools — `search_issues`, `run_query` — and then
+calls them like any built-in tool.
 
-:::::::::::::::: group-tab
+The analogy that lands: it's like installing a plugin. You are not writing new agent
+code; you are handing the agent a new capability.
 
-### Claude Code
+And the safety flag, tying back to that episode: **only add MCP servers you trust.**
+Tool output goes straight into the agent's context and it will act on it — an issue
+body or PR description fetched over MCP is exactly as untrusted as a README you didn't
+write. Two rules follow:
 
-Create `.claude/skills/caveman/SKILL.md` in a project:
+- **Scope the token to the minimum the task needs.** A read-only token for a
+  "summarize these issues" task; never delete or admin scope, and never your everyday
+  org-wide token wired into a workshop laptop.
+- **Configure per-project, not globally**, where your tool supports it.
 
-```markdown
----
-name: caveman
-description: Use when the user asks to talk like a caveman, or wants "caveman mode" responses.
----
+::::::::::::::::::::::::::::::::::::: challenge
 
-Respond in short grunts. Drop articles ("the", "a"). Present tense only. Never use a
-word longer than two syllables if a shorter one works. Stay helpful and accurate —
-just say it like a caveman would.
-```
+## Exercise: Connect an MCP server (5 minutes)
 
-Start a fresh session and say "talk like a caveman for the rest of this chat" (or
-invoke it directly with `/caveman`). Then ask it something ordinary — "explain what a
-for loop does" — and watch the style carry through.
-
-### GitHub Copilot
-
-Copilot's closest equivalent is a reusable **prompt file**:
-`.github/prompts/caveman.prompt.md` with the same instructions in the body. Invoke it
-explicitly in chat with `/caveman`.
-
-The real difference from Claude Code skills is worth naming: a Copilot prompt file
-never auto-triggers from a description match — you always invoke it by name. Claude
-Code skills can fire on their own when your request matches the description.
-
-::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-The caveman skill proves the mechanism, but the payoff is packaging something you'd
-otherwise repeat: a lab's analysis conventions, a release checklist, this lesson's own
-"new episode" template. Pick one instruction you find yourself re-typing in your own
-project and turn it into a skill next.
-
-## MCP: new tools, not just new instructions
-
-A skill only ever gives the agent *words* — instructions it applies with capabilities
-it already had. MCP (Model Context Protocol) is different: it's a live connection to
-an external system that hands the agent tool calls it did not have a moment ago —
-`list_issues`, `create_pull_request`, `query_database`. Claude Code and Copilot are MCP
-*clients*; an MCP *server* (run locally or hosted remotely) exposes the tools.
-
-::::::::::::::::::::::::::::::::::::: callout
-
-## Demo: connect the GitHub MCP server (read-only)
-
-GitHub's official MCP server is a good first connection — most people in a research
-computing workshop already have the account, and you can keep it strictly read-only
-for the demo.
+GitHub's official MCP server is a good first connection — most people already have
+the account, and it can stay strictly read-only. Use a token with read-only scopes
+(see [setup](../learners/setup.md#optional-github-token-for-the-mcp-exercise)).
 
 :::::::::::::::: group-tab
 
 ### Claude Code
 
 ```bash
+claude mcp list                       # before: nothing (or only existing servers)
 claude mcp add --transport http github https://api.githubcopilot.com/mcp/ \
   --header "Authorization: Bearer $GH_TOKEN"
+claude mcp list                       # after: github listed
 ```
 
-Then, in a session: "what are the 5 most recently opened issues on `<org>/<repo>`?" or
-"summarize the open PRs on this repo and flag anything that's been idle for two
-weeks." The agent is now calling real GitHub API tools, not guessing from training
-data.
+Restart the session so the tools load.
 
 ### GitHub Copilot (VS Code)
 
-Command Palette → **MCP: Open User Configuration**, add an entry pointing at the same
-endpoint:
+Command Palette → **MCP: Open User Configuration**, add an entry pointing at the
+same endpoint, then click **Start** and switch Copilot Chat to **Agent** mode:
 
 ```json
 {
@@ -137,88 +99,158 @@ endpoint:
 }
 ```
 
-Click **Start**, then switch Copilot Chat to **Agent** mode and ask the same kind of
-question.
-
 ::::::::::::::::::::::::
 
-Use a token with **read-only** scopes for this demo — see
-[setup](../learners/setup.md#optional-github-token-for-the-mcp-demo).
+Then give a natural-language prompt that *needs* the tool, without naming it:
 
-::::::::::::::::::::::::::::::::::::::::::::::::
+> What are the five most recently opened issues on `<org>/<repo>`, and which look
+> stale?
 
-### The trust lens, applied to MCP specifically
-
-Everything an MCP tool call returns flows into context exactly like a README or a PR
-you didn't write — the [trust](trust.md) episode's warning about prompt injection
-applies to an issue body or a PR description fetched over MCP just as much as to a
-file you opened yourself. Two rules follow directly:
-
-- **Scope the token to the minimum the task needs.** A read-only PAT for a "summarize
-  these issues" demo; never a token with delete or admin scope, and never your
-  everyday token with org-wide access wired into a workshop laptop.
-- **Configure per-project, not globally**, where your tool supports it — a connection
-  made for one repository shouldn't be able to reach every repository you own.
-
-## Where to find more of both
-
-Before building your own, it's often faster to check what the community has already
-published:
-
-- **[mattpocock/skills](https://github.com/mattpocock/skills)** — Matt Pocock's public
-  Claude Code skills covering workflow enforcement: TDD, planning, debugging, git
-  guardrails.
-- **GStack** — Garry Tan's public Claude Code skills setup, covering plan review, code
-  review, and shipping workflows.
-- **[modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers)** —
-  the official reference MCP servers, plus pointers into the broader MCP Registry.
-- **[Parse](https://parse.bot/)** — an MCP server that turns arbitrary websites into
-  typed, callable APIs (scraping and multi-step actions like form submission), useful
-  when the data or system you need has no purpose-built MCP server of its own.
-
-Treat these the same way the [trust](trust.md) episode treats a package: read before
-you install. A skill is instructions an agent will follow, and an MCP server is code
-that runs with whatever access you grant it — popularity and a well-known author are a
-reason to look first, not a substitute for looking.
-
-::::::::::::::::::::::::::::::::::::: challenge
-
-## Exercise: Build or connect (10 minutes)
-
-Pick one:
-
-**(a) Build a skill** for something you actually repeat in your own work — a commit
-message convention, a data-checking routine, a lab report template. Write the
-`SKILL.md` (or prompt file), trigger it, and check the output matches what you
-intended.
-
-**(b) Connect a read-only MCP server** (GitHub, or pick one from
-[modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers)) and
-use it for one real task against a repository or system you actually use.
-
-Either way, write one sentence: what *wider* access would this need to do the next
-thing you'd want it to do — and would you grant it?
+Watch for two things: the agent chose the tool — you did not name it — and the
+approval prompt when it first calls the server. That prompt is the same guardrail
+from the safety episode.
 
 :::::::::::::::::::::::: solution
 
-## What people typically find
+## What just happened
 
-Skill-builders usually discover their first draft of the description is too vague to
-trigger reliably — a good forcing function for writing precise instructions in
-general. MCP-connectors usually stop at "read issues" or "read files" and, when asked
-about the next step (file a PR, write to a database), hesitate — which is exactly the
-minimum-access instinct this exercise is meant to surface.
+The agent is now calling real GitHub API tools, not guessing from training data.
+Ask yourself the question this exercise is designed to surface: what *wider* access
+would it need to do the next thing you'd want (file a PR, close an issue, write to a
+database) — and would you grant it? Most people hesitate. That hesitation is the
+minimum-access instinct working.
 
 :::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+## What is a skill?
+
+A **skill** is a packaged, reusable set of instructions — a folder with a `SKILL.md`
+file, plus optional scripts — that the agent loads on demand. Unlike MCP, a skill
+needs no running server and no network call: it's markdown and maybe a script,
+sitting in a folder. It's triggered automatically when the task matches its
+description, or invoked directly with `/skill-name`.
+
+If MCP is a plugin that gives the agent a new tool, a skill is a **playbook** —
+written instructions for one job, that the agent loads without you re-explaining it
+every session. Good for repeatable workflows: a review checklist, a repo-specific
+release process, a data-format spec, your lab's analysis conventions.
+
+A skill can't make the agent do anything it couldn't already do by reading files and
+running commands. The description is the important part: it's what the agent
+matches against, so vague wording ("helps with releases") triggers unreliably, while
+specific wording ("use when the user asks to cut a release, bump a version, or write
+release notes") triggers when you actually mean it.
+
+Skills also help with **cost**: the full skill content is only expanded when it's
+relevant, instead of sitting in context the whole session the way an overgrown
+context file does. That's one of the token-saving levers in the next episode.
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+## Exercise: Add the caveman skill (5 minutes)
+
+A deliberately silly, zero-risk skill is the fastest way to *see* the mechanism work.
+[Caveman](https://github.com/JuliusBrussee/caveman) is a real, public plugin that
+rewrites the agent's replies into terse "caveman speak" — the author measured about
+65% fewer output tokens with technical accuracy intact. The effect is immediately
+visible, which makes the token-savings point land.
+
+:::::::::::::::: group-tab
+
+### Claude Code
+
+```bash
+claude plugin marketplace add JuliusBrussee/caveman
+claude plugin install caveman@caveman
+```
+
+Restart the session. Ask an ordinary question — "what is a closure in Python?" —
+then type `/caveman` and ask it again. To prove it's toggled rather than a fluke:
+
+```bash
+cat ~/.claude/.caveman-active
+```
+
+The VS Code extension reads the same `~/.claude` config: run the same two commands,
+then reload the chat panel.
+
+### GitHub Copilot
+
+Caveman ships rule files for Copilot too:
+
+```bash
+npx -y github:JuliusBrussee/caveman -- --only copilot --with-init
+```
+
+Copilot's closest native equivalent to a skill is a reusable **prompt file**
+(`.github/prompts/<name>.prompt.md`), invoked explicitly with `/<name>` — it never
+auto-triggers from a description match the way a Claude Code skill can.
+
+::::::::::::::::::::::::
+
+Note this is a *plugin install*, not a skill file you hand-wrote — the same
+underlying mechanism, packaged for distribution. To write your own, create
+`.claude/skills/<name>/SKILL.md` with a `name`, a `description` that says when to use
+it, and the instructions:
+
+```markdown
+---
+name: caveman
+description: Use when the user asks to talk like a caveman, or wants "caveman mode" responses.
+---
+
+Respond in short grunts. Drop articles. Present tense only. Keep code, commands, and
+exact errors intact. Stay accurate — just say it like a caveman would.
+```
+
+:::::::::::::::::::::::: solution
+
+## Beyond the joke
+
+The caveman skill proves the mechanism; the payoff is packaging something you'd
+otherwise repeat. Pick one instruction you find yourself re-typing in your own
+project — a commit-message convention, a data-checking routine, a report template —
+and turn it into a skill next. Skill-builders usually discover their first
+description is too vague to trigger reliably, which is a good forcing function for
+writing precise instructions in general.
+
+:::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Where to find more of both
+
+Before building your own, check what the community has already published:
+
+- **[Parse.bot MCP marketplace](https://parse.bot/marketplace)** — turns arbitrary
+  websites into typed, callable APIs and exposes them over MCP; thousands of
+  prebuilt endpoints for sites with no purpose-built server of their own.
+- **[Matt Pocock's skills](https://github.com/mattpocock/skills)** — workflow
+  enforcement: TDD, planning, debugging, git guardrails.
+- **[gstack](https://github.com/garrytan/gstack)** — Garry Tan's Claude Code setup:
+  plan review, code review, QA, and shipping workflows as skills.
+- **[Claude Science](https://www.anthropic.com/news/claude-science-ai-workbench)** —
+  Anthropic's workbench for scientists, with analysis specialists and access to
+  scientific databases as skills and connectors.
+- **[ToolUniverse](https://github.com/mims-harvard/ToolUniverse)** — Harvard's open
+  platform of thousands of scientific tools (databases, models, workflows), exposed
+  over MCP with a Claude Code plugin.
+- **[modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers)** —
+  the official reference MCP servers and the broader registry.
+
+Treat these the way the [trust](trust.md) episode treats a package: **read before you
+install.** A skill is instructions an agent will follow, and an MCP server is code
+that runs with whatever access you grant it — popularity and a well-known author are a
+reason to look first, not a substitute for looking.
+
 ::::::::::::::::::::::::::::::::::::: keypoints
 
-- A skill is packaged instructions loaded on demand by a description match; it can't do anything the agent couldn't already do.
-- An MCP server is a live connection that hands the agent genuinely new tool calls to an external system.
-- Everything an MCP tool returns is untrusted input, same as a README or PR — apply the trust episode's lens.
-- Scope MCP tokens to the minimum needed, and vet a skill or MCP server before installing it, even from a well-known author.
-- mattpocock/skills, GStack, and modelcontextprotocol/servers are good starting points for both.
+- API: you write the calling code. MCP: the agent discovers the tools and decides when to call them. MCP when the agent should reach a system on its own; direct API when you're writing the pipeline.
+- An MCP server exposes tools, resources, and prompts over a standard protocol; connecting one is like installing a plugin.
+- A skill is a playbook — packaged instructions loaded on demand, no server, no network — and it saves context because it expands only when relevant.
+- Everything an MCP tool returns is untrusted input; scope tokens to the minimum and configure per project.
+- Vet a skill or MCP server before installing it, even from a well-known author; Parse, Matt Pocock's skills, gstack, Claude Science, and ToolUniverse are good places to start looking.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
