@@ -3,9 +3,10 @@
 A [Carpentries Workbench][workbench] lesson on working effectively and safely with AI
 coding agents (Claude Code, GitHub Copilot, Cursor, OpenCode, …) as a researcher.
 
-The lesson grew out of the 2-hour "Agentic Coding Best Practices" workshop developed for
-the [ML Marathon](https://ml-marathon.wisc.edu/) at UW–Madison by Tracy Reuter, Tejvir
-Mann, Chris Endemann, and Zain Waseem, and expands it into a self-study resource.
+The lesson grew out of the 2-hour "Agentic Coding: (Developing) Best Practices"
+workshop developed for the [ML Marathon](https://ml-marathon.wisc.edu/) at UW–Madison
+by Chris Endemann, Tracy Reuter, and Tejvir Mann, and expands it into a self-study
+resource.
 
 ## Core principles
 
@@ -53,9 +54,12 @@ Contributions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md). This lesso
 **pre-alpha**: content is under active development and feedback via issues is
 especially valuable.
 
-## Maintainers
+## Authors and contributors
 
-- Chris Endemann (endemann@wisc.edu)
+- **Authors:** Chris Endemann (maintainer, endemann@wisc.edu), Tracy Reuter, Tejvir Mann
+- **Contributors:** Zekai Otles (dev container setup on the setup page)
+
+See [CITATION.cff](CITATION.cff) for how to cite the lesson.
 
 ## License
 
