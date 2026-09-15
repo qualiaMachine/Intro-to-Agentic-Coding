@@ -26,6 +26,7 @@ abstract: >-
   reconnaissance, specification and feature-driven
   development, verification and review of agent-generated
   analyses, and cost, context, and energy management.
-  Developed from the "Agentic Coding Best Practices"
-  workshop at the UW-Madison ML Marathon.
+  Developed from the "Agentic Coding: (Developing) Best
+  Practices" workshop at the UW-Madison ML Marathon (2026).
+  Zekai Otles contributed the dev container setup.
 license: CC-BY-4.0
