@@ -153,10 +153,10 @@ Take feature 1 from your `plan.md` — or any feature you want to try adding.
    > **Feature**
    > \<name and what it does\>
    >
-   > **Inputs**
+   > **Inputs** (if applicable)
    > \<files or data it reads; the slice we agreed on\>
    >
-   > **Output**
+   > **Output** (if applicable)
    > \<what it produces and where\>
    >
    > **Done when**
@@ -165,8 +165,8 @@ Take feature 1 from your `plan.md` — or any feature you want to try adding.
    > **Do not touch**
    > \<other files, `data/raw/`, the scoring function\>
    >
-   > Work on a new branch. When finished, list every choice you made that I did not
-   > specify.
+   > Work on a new branch (most coding agents do this automatically). When finished,
+   > list every choice you made that I did not specify.
 
 2. **Run it.** Read the diff before anything else.
 3. **Audit.** Did it do only what you asked? What did it decide that you did not

@@ -64,9 +64,10 @@ Copilot → Cloud agent → Internet access; the point to make while clicking is
 blocked request is fixed by adding the host, not by switching the firewall off. The
 1Password CLI slides are worth showing live if your institution provides it. End with
 a one-slide recap. For **Get your agent running, safely**: helpers circulate; the
-failures to watch for are a desktop app in local mode and a Copilot user on the web
-"Plan" button (which just prefills a prompt and runs to a PR — the Copilot *app* has
-the real plan mode). Team repos: one shared repo, everyone on a branch named for them,
+failure to watch for is a desktop app in local mode. Copilot's app has an explicit
+plan mode, which is clearer to teach; on the Copilot web, planning is done via the
+prompt and gives the same approve-or-exit gate with no toggle, so it is acceptable for
+anyone who can't install. Team repos: one shared repo, everyone on a branch named for them,
 branches not forks; anyone without write access gets added as a collaborator now.
 Cloud sandboxes are usage-billed, so have people confirm their account works.
 
