@@ -324,11 +324,14 @@ real work. (Other routes, including free ones, are on the
 
 1. **Pick a cloud route with plan mode.**
    - *Claude users:* use the web, [claude.ai/code](https://claude.ai/code). Plan mode
-     is already there and there is nothing to install.
-   - *Copilot users:* install the [GitHub Copilot app](https://docs.github.com/en/copilot/concepts/agents/github-copilot-app).
-     It is the only Copilot route with a real plan mode — the agent asks questions and
-     waits before it edits. (The Copilot *web* "Plan" button only prefills a prompt and
-     runs straight to a PR.) Start a **cloud** session, not local.
+     is already there and there is nothing to install. The desktop app is also fine —
+     just keep the session in a cloud-hosted VM.
+   - *Copilot users:* install the [GitHub Copilot app](https://docs.github.com/en/copilot/concepts/agents/github-copilot-app)
+     for an explicit plan mode — the agent asks questions and waits for you to approve
+     before it edits. Start a **cloud** session, not local: cloud runs in a
+     GitHub-hosted VM; local runs on your machine with your access. No install? The
+     web works too: ask for a plan in the prompt and you get the same review gate,
+     just less interactive.
 2. **Confirm cloud before you prompt.** The session should be pointed at a cloud VM
    and a GitHub repo, not a folder on your laptop.
 3. **Use your project repository.** No project yet? Create one now.

@@ -201,8 +201,6 @@ machine.
    are finished. Continue to open and work on the project in VS Code; Podman Desktop
    is only for monitoring and managing the local container.
 
-   ![Podman Desktop container view](fig/podman_container.png){alt='Podman Desktop Containers view showing the running dev container'}
-
 3. In VS Code, open the Command Palette, choose **Dev Containers: Reopen in
    Container**, and wait for VS Code to rebuild and reopen the project. Install your
    agent CLI *in the container terminal* (your command prompt will be something like
@@ -281,10 +279,13 @@ plaintext file an agent could read.
 The checklist from the *Get your agent running, safely* exercise:
 
 1. **Pick a cloud route with plan mode.** Claude: [claude.ai/code](https://claude.ai/code),
-   nothing to install. Copilot: install the
+   nothing to install; plan mode is built in. Copilot: install the
    [GitHub Copilot app](https://docs.github.com/en/copilot/concepts/agents/github-copilot-app)
-   — the only Copilot route with a real plan mode (the web "Plan" button just
-   prefills a prompt and runs to a PR) — and start a **cloud** session, not local.
+   for an explicit plan mode (the agent asks questions and waits for your approval
+   before it edits) and start a **cloud** session, not local. No install? The Copilot
+   web works too: ask for a plan in the prompt and you get the same approve-or-exit
+   gate, just less interactive. The desktop apps are fine as long as the session is a
+   cloud one.
 2. **Confirm cloud before you prompt.** The session should show a cloud VM and a
    GitHub repository, not a local folder. Cloud sandboxes are usage-billed; test your
    account first.
