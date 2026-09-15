@@ -4,12 +4,18 @@ title: Setup
 
 ## Summary
 
-To follow along you need three things:
+To follow along you need four things:
 
 1. A working **git** installation and a GitHub account.
 2. A **Python** environment with `pandas`, `scikit-learn`, and `pytest`.
 3. Access to at least one **agentic coding tool** ("bring your own agent" is
    encouraged — the lesson is tool-agnostic).
+4. A **repository to work on** — ideally your own project — and a way to load any
+   API keys that keeps them off disk.
+
+The safety episode's first exercise, *Get your agent running*, walks through the
+first session; the checklist at the [end of this page](#before-your-first-session)
+is the same steps in short form.
 
 ## Git and GitHub
 
@@ -43,6 +49,12 @@ python -m venv .venv && source .venv/bin/activate
 pip install pandas scikit-learn pytest
 ```
 
+Verify the environment from the lesson repository:
+
+```bash
+python src/python/verify_environment.py
+```
+
 ## Choose an agentic coding tool
 
 ::::::::::::::::::::::::::::::::::::::: caution
@@ -56,7 +68,7 @@ container.** The container requirement below protects a *clean* machine from the
 agent; it is not a license to run agents next to restricted data, where one
 mis-mounted folder exposes everything and institutional policy bars unvetted tools
 regardless. Use a different machine, or a browser-only web route against a repo with
-no restricted data in it. The words-of-caution episode explains why.
+no restricted data in it. The safety episode explains why.
 
 :::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -156,19 +168,43 @@ and the container — not your home directory, your SSH keys, or the rest of you
 machine.
 
 1. Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) (or
-   Podman) and the VS Code **Dev Containers** extension.
+   [Podman](https://podman.io/docs/installation)) and the VS Code **Dev Containers** extension. To use Podman with VS Code,
+   open the Command Palette, choose **Preferences: Open User Settings (JSON)**,
+   and add this setting to configure the Dev Containers extension to run `podman`
+   rather than `docker`:
+
+   ```json
+   {
+     "dev.containers.dockerPath": "podman"
+   }
+   ```
 2. In your project root, create `.devcontainer/devcontainer.json`:
 
    ```json
    {
      "name": "agentic-workshop",
      "image": "mcr.microsoft.com/devcontainers/python:3.12",
-     "postCreateCommand": "pip install pandas scikit-learn pytest"
+     "remoteUser": "vscode",
+     "runArgs": [
+       "--userns=keep-id"
+     ],
+     "postCreateCommand": "python -m pip install pandas scikit-learn pytest"
    }
    ```
 
-3. In VS Code: **Dev Containers: Reopen in Container**. Install your agent CLI *in
-   the container terminal* (e.g., the npm install above), and confirm it's
+   ### Podman Desktop (optional)
+
+   [Podman Desktop](https://podman-desktop.io/) is a graphical application for
+   managing your local Podman containers. Open it and make sure the Podman engine is
+   running. After VS Code creates the dev container, you can use Podman Desktop's
+   **Containers** view to see that container, inspect its logs, or stop it when you
+   are finished. Continue to open and work on the project in VS Code; Podman Desktop
+   is only for monitoring and managing the local container.
+
+3. In VS Code, open the Command Palette, choose **Dev Containers: Reopen in
+   Container**, and wait for VS Code to rebuild and reopen the project. Install your
+   agent CLI *in the container terminal* (your command prompt will be something like
+   `vscode@containerID:/workspaces/Intro-to-Agentic-Coding$`), and confirm it's
    containerized: `ls ~` inside the terminal should show a bare container home, not
    your real one.
 
@@ -188,8 +224,71 @@ tool not covered by an institutional agreement. UW–Madison folks: see
 
 :::::::::::::::::::::::::::::::::::::::::::::::
 
-## Practice repository
+## Optional: GitHub token (for the MCP exercise)
 
-Exercise 1 (the read-only repo exploration) works best on a repository that is real but unfamiliar to you. Your
-instructors may provide one; otherwise, pick a small-to-medium public research
-repository from your field, or a labmate's project (with permission).
+The [MCP tools and skills](../episodes/skills-and-mcp.md) episode connects your agent
+to the GitHub MCP server. Create a
+[fine-grained personal access token](https://github.com/settings/personal-access-tokens/new)
+scoped to **read-only** access (Issues and Pull requests: read) on one repository you
+don't mind exposing — not a token with write, delete, or org-wide scope. Set it as an
+environment variable (`GH_TOKEN`) rather than pasting it into a config file you might
+commit.
+
+## A repository to work on
+
+The exercises run on **your own project repository** where possible — the team
+conventions, the plan, the first feature, the assertions, and the CI workflow all
+land in a repo you'll keep using. For a team project:
+
+- **One shared repo, branches not forks.** Everyone works on a branch named for
+  them. Teammates and their agents can `git fetch` and read a branch; they cannot see
+  a fork without adding remotes.
+- **No write access yet?** Ask the repo owner to add you as a collaborator before
+  the session, not during it.
+- **Protect `main`** so nothing lands without a pull request (the verification
+  episode adds a passing-check requirement).
+
+No project yet? Create a small repository now with a README and a slice of data you
+understand. The feature-based-development episode also provides a scikit-learn
+starter for anyone without a dataset.
+
+## API keys: a password manager, never a file
+
+If your project calls a model API (for example a hosted open-weight model with an
+OpenAI-style endpoint), keep the key in a password manager and load it per session
+instead of writing a `.env`. Every UW–Madison NetID can request a free
+[1Password account](https://it.wisc.edu/services/1password/); with the
+[1Password CLI](https://developer.1password.com/docs/cli/get-started/) installed:
+
+```bash
+export OPENAI_API_KEY=$(op read 'op://Private/<item>/credential')     # bash/zsh
+```
+
+```powershell
+$env:OPENAI_API_KEY = op read "op://Private/<item>/credential"        # PowerShell
+```
+
+For JupyterLab, keep a `.env.op` file of `op://` *references* (safe to commit) and
+launch with `op run --env-file=.env.op -- jupyter lab`. The safety episode shows the
+full pattern. If you don't use 1Password, any secrets manager or your OS keyring
+works the same way — the rule is that no key lives in the repository or in a
+plaintext file an agent could read.
+
+## Before your first session
+
+The checklist from the *Get your agent running, safely* exercise:
+
+1. **Pick a cloud route with plan mode.** Claude: [claude.ai/code](https://claude.ai/code),
+   nothing to install; plan mode is built in. Copilot: install the
+   [GitHub Copilot app](https://docs.github.com/en/copilot/concepts/agents/github-copilot-app)
+   for an explicit plan mode (the agent asks questions and waits for your approval
+   before it edits) and start a **cloud** session, not local. No install? The Copilot
+   web works too: ask for a plan in the prompt and you get the same approve-or-exit
+   gate, just less interactive. The desktop apps are fine as long as the session is a
+   cloud one.
+2. **Confirm cloud before you prompt.** The session should show a cloud VM and a
+   GitHub repository, not a local folder. Cloud sandboxes are usage-billed; test your
+   account first.
+3. **Point it at your project repo**, on a branch named for you.
+4. **Keys via `op read`**, no `.env` anywhere in the repo.
+5. **Start from a clean git state.**

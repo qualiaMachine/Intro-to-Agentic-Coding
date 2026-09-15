@@ -21,8 +21,9 @@ exercises: 5
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-Everything in this lesson so far assumes the things you install and the services you
-call are what they claim to be. That assumption deserves the same scrutiny as your
+The safety episode ended with the one limit no setting enforces: whom you trust.
+Everything so far assumes the things you install and the services you call are what
+they claim to be. That assumption deserves the same scrutiny as your
 data. Agentic coding raises the stakes in a specific way: **the agent installs
 packages, downloads models, and ships your code to a provider on your behalf** — so
 decisions you used to make one at a time now happen at machine speed, in bulk, unless
@@ -54,7 +55,7 @@ What to do:
 
 - **Never auto-approve package installation.** Keep installs on the
   manually-approved list (or add "don't add new dependencies without asking" to your
-  project context file — and treat it as advisory, per the words-of-caution episode).
+  project context file — and treat it as advisory, per the safety episode).
 - **Before installing anything an agent suggests, verify it exists and is official**:
   check the registry page, the linked source repo, download counts, and release
   history. Thirty seconds of looking defeats most slopsquatting.
@@ -64,13 +65,22 @@ What to do:
 
 ## Model weights are code
 
-Running open-source models locally has a real privacy upside — your data never leaves
+Running open-weight models locally has a real privacy upside — your data never leaves
 your machine. But downloaded weights deserve the same suspicion as downloaded
-executables, because in the common formats they *are* executables: Python's pickle
-serialization, used by many model files, can run arbitrary code on load. In 2024,
-researchers found on the order of a hundred malicious models on Hugging Face whose
-payloads did things like open a reverse shell to a remote server when loaded — and
-scanners haven't caught everything since.
+executables, because in the common formats they *are* executables. Four ways a model
+download can hurt you, each with a documented case:
+
+- **Weights can carry code.** Python's pickle serialization, used by many model
+  files, runs arbitrary code on load. In 2024 JFrog found on the order of a hundred
+  malicious models on Hugging Face whose payloads did things like open a reverse
+  shell when loaded — and scanners haven't caught everything since.
+- **Typosquats.** Check the *organization*, not the model card. In 2026 HiddenLayer
+  caught a fake "OpenAI" repository sitting at #1 trending on Hugging Face.
+- **Values get trained in.** DeepSeek R1 ships with censorship of certain topics;
+  Perplexity's R1 1776 (2025) was post-trained specifically to strip it out. Whatever
+  a model's builders wanted it to do or avoid, it will do or avoid in your pipeline.
+- **Hidden backdoors work, and no reliable detector exists yet.** Mithril's PoisonGPT
+  (2023) passed standard benchmarks while emitting specific false facts — more below.
 
 Practical rules:
 
@@ -78,6 +88,9 @@ Practical rules:
   formats when available.
 - Download from the **verified official organization account** (e.g., `meta-llama`,
   `mistralai`), not a lookalike re-upload, and check checksums where published.
+- **Never set `trust_remote_code=True` by default.** It runs whatever Python ships
+  with the model. Tooling can get this wrong for you: InstructLab hardcoded it on
+  (CVE-2026-6859).
 - Remember that "open weights" ≠ audited: provenance tells you who built it, not that
   it's good. Smaller local models also hallucinate more — including package names,
   which loops you back to the previous section.
@@ -151,16 +164,31 @@ answer four questions from their actual policy documents, not their marketing pa
 2. **How long is it retained, and who can see it?** Retention windows differ by an
    order of magnitude between plan tiers; feedback buttons and safety reviews often
    extend them.
-3. **Where does inference run, and under what jurisdiction?** In January 2025,
+3. **Where does inference run, and under whose jurisdiction?** In January 2025,
    researchers found a publicly exposed **DeepSeek** database leaking user chat
    histories and API keys — a reminder that provider security practices and legal
    jurisdiction are part of the deal, not a footnote.
-4. **Does an institutional agreement cover this, or is it a personal contract?** The
+4. **Does an institutional agreement cover this, or is it your personal contract?** The
    classic cautionary tale: in 2023, **Samsung** engineers pasted proprietary
    source code into ChatGPT while debugging; the company responded by banning
    generative AI tools internally. An individual subscription gives your institution
-   no protections at all — which is why episode 2's rule (restricted data stays off
-   unvetted tools) exists.
+   no protections at all — which is why the safety episode's rule (restricted data
+   stays off unvetted tools) exists.
+
+### What Claude and Copilot do by default (as of September 2026)
+
+The two tools this lesson uses most are a good illustration of how much the answers
+depend on *plan tier*, not just provider:
+
+| | Claude (Free, Pro, Max) | GitHub Copilot (Free, Pro, Pro+) |
+|---|---|---|
+| Trains on your data? | Yes when the setting is on — Claude Code included ([consumer terms](https://www.anthropic.com/news/updates-to-our-consumer-terms)) | Yes by default since April 2026 ([GitHub docs](https://docs.github.com/en/copilot/how-tos/manage-your-account/manage-policies)) |
+| Retention | 5 years if training is on, 30 days if off ([Privacy Center](https://privacy.anthropic.com/)) | Per GitHub's data policies |
+| Exempt tiers | Team, Enterprise, and API don't train ([Claude Code data usage](https://code.claude.com/docs/en/data-usage)) | Business and Enterprise don't train; students and teachers on free Pro are exempt |
+| Where to check | [Claude privacy settings](https://claude.ai/settings/data-privacy-controls) | [Copilot settings](https://github.com/settings/copilot) |
+
+Neither is on UW–Madison's list of vetted AI tools. Policies change; check the linked
+pages rather than this table.
 
 ::::::::::::::::::::::::::::::::::::: callout
 
@@ -205,10 +233,11 @@ policy" can't be delegated, even to the agent.
 
 - Agents install packages and download models at machine speed — keep those decisions on the manually-approved list.
 - Hallucinated package names are a real attack vector (slopsquatting); verify a package exists and is official before installing anything an agent suggests.
-- Model weights in pickle formats are executable code: prefer safetensors, download from verified accounts, check provenance.
+- Model weights in pickle formats are executable code: prefer safetensors, download from verified organizations, never default `trust_remote_code` on, check provenance.
 - Backdoors can live in the weights themselves (poisoned training data, surgical edits, trigger behaviors) — no scanner or benchmark detects them, so provenance and reviewing model output are the real defenses.
 - The agent tooling itself is attack surface — keep it updated, and never point an agent at production or irreplaceable data.
 - Vet your provider's actual data policy: training default, retention, jurisdiction, and whether any institutional agreement covers you.
-- Every rule here has a named incident behind it — torchtriton, Ultralytics, huggingface-cli, Amazon Q, Replit, DeepSeek, Samsung. None required exotic attackers; all required missing skepticism.
+- Provider defaults differ by plan tier: consumer Claude and Copilot plans train on your data unless you opt out; team, enterprise, API, and education tiers don't. Check the setting, not the brand.
+- Every rule here has a named incident behind it — torchtriton, Ultralytics, huggingface-cli, Amazon Q, Replit, DeepSeek, Samsung, the fake OpenAI repo, InstructLab. None required exotic attackers; all required missing skepticism.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
