@@ -170,25 +170,7 @@ inference runs: code still goes to the model provider, so the data-policy rules 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Demo: one project at three levels of autonomy
-
-::::::::::::::::::::::::::::::::::::: instructor
-
-Run this live with Claude Code in VS Code (or OpenCode) on the project the rest of the
-workshop uses. Show three examples along the spectrum:
-
-1. A tightly directed coding task: one function.
-2. A task in which the agent creates and follows a plan: use plan mode first, then
-   let it implement.
-3. A more autonomous, multi-agent workflow: describe it, but do not run it live. It
-   takes longer and its outcome varies between runs.
-
-Ask participants whether anyone wants to describe something notable their agent has
-done. The answers indicate the range of experience in the group.
-
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::: keypoints
+:::::::::::::::::::::::::::::::::::: keypoints
 
 - Agentic coding: AI agents plan, write, test, debug, and revise code with limited human intervention. An agent acts; a chatbot advises.
 - Agent = LLM + harness + tools + agent loop. The model reasons; the harness supplies files, a terminal, tests, permissions, and memory.
