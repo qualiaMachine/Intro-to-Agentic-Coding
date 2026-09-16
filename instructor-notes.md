@@ -29,7 +29,7 @@ three.
 | 0:45 | 10 | **Feature-based dev and good prompting.** Feature by feature; bad/better prompt; underspecified ≠ random; maintenance tasks | Episode 5 |
 | 0:55 | 8 | Break | — |
 | 1:03 | 20 | **Exercise: Implement feature 1** (15 min) then debrief on "choices you did not specify" — or run it before the break if the room is fast | Episode 5 |
-| 1:23 | 20 | **Verification and testing.** Research on checking; no escaping good data science; cheap checks; **Exercise: What is wrong with this?** (5 min); hunt for decisions; agents as data science assistants; **Exercise: Now your repo** (10 min) | Episode 6 |
+| 1:23 | 20 | **Verification and testing.** Research on checking; look for decisions you did not make; **Exercise 1: Test the feature you just built** (10 min); no escaping good data science; agents as data science assistants; quick checks; **Exercise 2: What is wrong with this?** (5 min) | Episode 6 |
 | 1:43 | 12 | **MCP tools and skills.** MCP vs API; **Demo: connect an MCP server** (5 min); what a skill is; **Demo: caveman skill** (4–5 min); resources | Episode 7 |
 | 1:55 | 5 | **Cost, energy, and wrap-up.** Energy numbers; token techniques with `/cost`, `/model`, `/compact` demos; is programming dead?; feedback survey | Episodes 8, 11 |
 
@@ -79,8 +79,11 @@ the hallucinated `huggingface-cli` package, Replit) and point to the episode. It
 provider-vetting exercise is a good at-home assignment.
 
 **Planning.** Two exercises. *Agree how your team will work together* comes first:
-decide branches or forks, let the agent draft `CONTRIBUTING.md`, argue it down to
-rules people will follow, commit it, and post the link where advisors can see it.
+decide branches or forks, let the agent draft `CONTRIBUTING.md` on a branch named for
+the participant, cut it down to rules people will follow, merge it through a
+teammate-reviewed pull request (the first use of the rules just written), and post
+the link where advisors can see it. Agents open a pull request by default; point that
+out when it happens.
 Then MVP: acknowledge levels of planning — it's iterative, and a three-line plan is
 fine for a three-line task. Have the team MVP plans open (the shared doc from kickoff
 if you have one) and frame the MVP as the baseline you A/B new components against.
@@ -93,12 +96,15 @@ measured result.
 is the key step: ask two or three people to read theirs out. Participants reliably discover
 that everyone got *different* unaccounted decisions.
 
-**Verification.** The brain-decoding leak is the central example of the lesson. Show
-the clean run and the 0.91 first, then ask "so are we done?" before revealing the
-bug, then show the 0.58 on unseen subjects. Translate "the unit that repeats" to each
-team's project (subject, camera burst, page, source document). For **Now your repo**,
-insist on plan mode for step 1 and timebox firmly; the CI workflow and branch
-protection can be finished after the session.
+**Verification.** The block opens with the after-every-feature routine: ask for
+assumptions, ask for tests and edge cases, run them, commit. *Exercise 1: Test the
+feature you just built* applies it to feature 1 from before the break; insist on plan
+mode for the first prompt, and timebox. The CI workflow and branch protection can be
+completed after the session. The brain-decoding leak (*Exercise 2*) is the central
+example of the lesson. Show the clean run and the 0.91 first, then ask "so are we
+done?" before revealing the bug, then show the 0.58 on unseen subjects. Translate
+"the unit that repeats" to each team's project (subject, camera burst, page, source
+document).
 
 **MCP and skills.** Pre-test the MCP server and the caveman install beforehand so
 auth and npm aren't what the room watches. Run `claude mcp list` before and after.

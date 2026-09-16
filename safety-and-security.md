@@ -228,19 +228,26 @@ secrets before the agent arrives.
 
 - Do not store passwords or API keys in `.env` files, JSON configuration files, or
   shell profiles.
-- Keep keys in a password manager and load them once per session. Every UW–Madison
+- Keep keys in a password manager and read them when needed. Every UW–Madison
   NetID can request a free [1Password account](https://it.wisc.edu/services/1password/).
   The 1Password CLI (`op`) reads a secret by reference:
 
 ```bash
-# bash / zsh — load the key once per session
-export OPENAI_API_KEY=$(op read 'op://Private/bbadger/credential')
+# The op:// reference is a pointer, not a secret. It is safe to commit.
+op read "op://Private/bbadger/credential"
+#         vault   item     field
+
+# Into the environment for this shell only
+export OPENAI_API_KEY=$(op read 'op://Private/bbadger/credential')   # bash / zsh
 ```
 
 ```powershell
-# PowerShell
-$env:OPENAI_API_KEY = op read "op://Private/bbadger/credential"
+$env:OPENAI_API_KEY = op read "op://Private/bbadger/credential"     # PowerShell
 ```
+
+An `op://` reference names a vault, an item, and a field. It is a pointer, not a key:
+it is safe in a repository, a script, or a chat message, and useless to anyone without
+access to your vault. Read it when you need it; nothing is stored on disk.
 
 For a Jupyter workflow, keep a file of references (safe to commit, since an `op://`
 path is not a secret) and launch through `op run`. Every kernel inherits the

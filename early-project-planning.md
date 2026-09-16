@@ -129,16 +129,21 @@ Decide the rules before the first feature, and have the agent draft them.
    > is using a coding agent, so we will be generating more branches, more commits
    > and bigger diffs than a normal class project.
    >
-   > Propose collaboration conventions that keep `main` clean and reviewable. Cover
-   > branch naming, how small a pull request should be, who reviews, what an agent is
-   > allowed to touch without asking, how we avoid two agents editing the same file,
-   > and what goes in commit messages.
+   > We each work on a branch named for us and merge to `main` through a pull
+   > request. Propose the rest of the conventions that keep `main` clean and
+   > reviewable. Cover branch naming, how small a pull request should be, who
+   > reviews, what an agent may touch without asking, how we avoid two agents editing
+   > the same file, and what goes in commit messages.
    >
-   > Give me a `CONTRIBUTING.md` we can commit today. Short enough that people read it.
+   > Write `CONTRIBUTING.md`. Commit it to a branch named for me, not to `main`, and
+   > open a pull request for it. Short enough that people read it.
 
 3. **Edit what it produces.** Keep the rules the team will follow and remove the
    rest.
-4. **Commit `CONTRIBUTING.md` to the team repository.** Agents read it too.
+4. **Merge it through the process it describes.** `CONTRIBUTING.md` goes on your own
+   branch, not directly to `main`. Open a pull request, have a teammate review it,
+   then merge. This is the first use of the rules you have just written. Most agents
+   open a pull request by default; note that when it happens.
 5. Share the link with whoever advises the team, so they can see what was agreed.
 
 If you are working alone, write the same thing for yourself in three to five lines (a
