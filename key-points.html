@@ -526,20 +526,21 @@ releases, and unreviewed merges increase. Verification is the scarce
 skill.</li>
 <li>Established practice still applies: know your data, compare to a
 source of truth, ask a colleague, know what your model responds to,
-reproduce the result. Only the typing has moved.</li>
-<li>Inexpensive checks catch expensive mistakes: shuffle labels, print
-the baseline, assert no sample is in both splits, find duplicates, vary
-the seed.</li>
+reproduce the result. Only the typing and quick ideation have
+moved.</li>
+<li>Quick checks catch common mistakes: shuffle labels, print the
+baseline, assert no sample is in both splits, find duplicates, vary the
+seed.</li>
 <li>Split by the unit that repeats, and assert it. A clean-running 0.91
 can be 0.58 on unseen subjects.</li>
-<li>Review diffs by looking for decisions you did not make, and have the
-agent list its own assumptions.</li>
+<li>After every feature, before the next: have the agent list its
+assumptions, propose tests and edge cases, add them, and run them. Then
+commit.</li>
+<li>Make verification automatic: tests in CI and a protected
+<code>main</code>. Autonomy is purchased with verification.</li>
 <li>Leave evidence in the repository and direct the agent to it. It
 reads figures and metrics, but only those you name, and you check every
 number it cites.</li>
-<li>Make verification automatic: tests in CI, a context-file rule, a
-protected <code>main</code>. Autonomy is purchased with
-verification.</li>
 </ul></section><section id="skills-and-mcp"><h2 class="section-heading"><a href="skills-and-mcp.html">MCP Tools and Skills: Extending Your Agent</a></h2>
 <hr class="half-width">
 <ul>

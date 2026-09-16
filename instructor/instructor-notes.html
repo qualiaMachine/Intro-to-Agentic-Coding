@@ -508,11 +508,11 @@ room is fast</td>
 <td>1:23</td>
 <td>20</td>
 <td>
-<strong>Verification and testing.</strong> Research on checking; no
-escaping good data science; cheap checks; <strong>Exercise: What is
-wrong with this?</strong> (5 min); hunt for decisions; agents as data
-science assistants; <strong>Exercise: Now your repo</strong> (10
-min)</td>
+<strong>Verification and testing.</strong> Research on checking;
+look for decisions you did not make; <strong>Exercise 1: Test the
+feature you just built</strong> (10 min); no escaping good data science;
+agents as data science assistants; quick checks; <strong>Exercise 2:
+What is wrong with this?</strong> (5 min)</td>
 <td>Episode 6</td>
 </tr>
 <tr>
@@ -590,27 +590,34 @@ the episode. Its provider-vetting exercise is a good at-home
 assignment.</p>
 <p><strong>Planning.</strong> Two exercises. <em>Agree how your team
 will work together</em> comes first: decide branches or forks, let the
-agent draft <code>CONTRIBUTING.md</code>, argue it down to rules people
-will follow, commit it, and post the link where advisors can see it.
-Then MVP: acknowledge levels of planning — it’s iterative, and a
-three-line plan is fine for a three-line task. Have the team MVP plans
-open (the shared doc from kickoff if you have one) and frame the MVP as
-the baseline you A/B new components against. The deliverable is a
-committed <code>plan.md</code> — no code until the plan is in; teams
-that finish early interrogate their pre-modeling steps into
-<code>prep.md</code>. Note the planning studies measured accuracy, not
-tokens; the token argument is a mechanism, not a measured result.</p>
+agent draft <code>CONTRIBUTING.md</code> on a branch named for the
+participant, cut it down to rules people will follow, merge it through a
+teammate-reviewed pull request (the first use of the rules just
+written), and post the link where advisors can see it. Agents open a
+pull request by default; point that out when it happens. Then MVP:
+acknowledge levels of planning — it’s iterative, and a three-line plan
+is fine for a three-line task. Have the team MVP plans open (the shared
+doc from kickoff if you have one) and frame the MVP as the baseline you
+A/B new components against. The deliverable is a committed
+<code>plan.md</code> — no code until the plan is in; teams that finish
+early interrogate their pre-modeling steps into <code>prep.md</code>.
+Note the planning studies measured accuracy, not tokens; the token
+argument is a mechanism, not a measured result.</p>
 <p><strong>Feature-based dev.</strong> The “list every choice you made
 that I did not specify” line is the key step: ask two or three people to
 read theirs out. Participants reliably discover that everyone got
 <em>different</em> unaccounted decisions.</p>
-<p><strong>Verification.</strong> The brain-decoding leak is the central
-example of the lesson. Show the clean run and the 0.91 first, then ask
-“so are we done?” before revealing the bug, then show the 0.58 on unseen
-subjects. Translate “the unit that repeats” to each team’s project
-(subject, camera burst, page, source document). For <strong>Now your
-repo</strong>, insist on plan mode for step 1 and timebox firmly; the CI
-workflow and branch protection can be finished after the session.</p>
+<p><strong>Verification.</strong> The block opens with the
+after-every-feature routine: ask for assumptions, ask for tests and edge
+cases, run them, commit. <em>Exercise 1: Test the feature you just
+built</em> applies it to feature 1 from before the break; insist on plan
+mode for the first prompt, and timebox. The CI workflow and branch
+protection can be completed after the session. The brain-decoding leak
+(<em>Exercise 2</em>) is the central example of the lesson. Show the
+clean run and the 0.91 first, then ask “so are we done?” before
+revealing the bug, then show the 0.58 on unseen subjects. Translate “the
+unit that repeats” to each team’s project (subject, camera burst, page,
+source document).</p>
 <p><strong>MCP and skills.</strong> Pre-test the MCP server and the
 caveman install beforehand so auth and npm aren’t what the room watches.
 Run <code>claude mcp list</code> before and after. For the caveman demo,

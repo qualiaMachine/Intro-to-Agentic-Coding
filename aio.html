@@ -658,7 +658,7 @@ distinguishes them?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Typical answers </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Most researchers cluster at the chat end. The tasks people decline to
 delegate are usually the ones whose results they would find hard to
@@ -1072,22 +1072,29 @@ before the agent arrives.</p>
 <ul>
 <li>Do not store passwords or API keys in <code>.env</code> files, JSON
 configuration files, or shell profiles.</li>
-<li>Keep keys in a password manager and load them once per session.
-Every UW–Madison NetID can request a free <a href="https://it.wisc.edu/services/1password/" class="external-link">1Password account</a>.
+<li>Keep keys in a password manager and read them when needed. Every
+UW–Madison NetID can request a free <a href="https://it.wisc.edu/services/1password/" class="external-link">1Password account</a>.
 The 1Password CLI (<code>op</code>) reads a secret by reference:</li>
 </ul>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="co"># bash / zsh — load the key once per session</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="bu">export</span> <span class="va">OPENAI_API_KEY</span><span class="op">=</span><span class="va">$(</span><span class="ex">op</span> read <span class="st">'op://Private/bbadger/credential'</span><span class="va">)</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="co"># The op:// reference is a pointer, not a secret. It is safe to commit.</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="ex">op</span> read <span class="st">"op://Private/bbadger/credential"</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a><span class="co">#         vault   item     field</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1" aria-label="code-block-1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1" aria-label="code-block-1-5"></a><span class="co"># Into the environment for this shell only</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1" aria-label="code-block-1-6"></a><span class="bu">export</span> <span class="va">OPENAI_API_KEY</span><span class="op">=</span><span class="va">$(</span><span class="ex">op</span> read <span class="st">'op://Private/bbadger/credential'</span><span class="va">)</span>   <span class="co"># bash / zsh</span></span></code></pre>
 </div>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">POWERSHELL<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode powershell" tabindex="0"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="co"># PowerShell</span></span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a><span class="va">$env</span><span class="op">:</span><span class="va">OPENAI_API_KEY</span> <span class="op">=</span> op read <span class="st">"op://Private/bbadger/credential"</span></span></code></pre>
+<pre class="sourceCode powershell" tabindex="0"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="va">$env</span><span class="op">:</span><span class="va">OPENAI_API_KEY</span> <span class="op">=</span> op read <span class="st">"op://Private/bbadger/credential"</span>     <span class="co"># PowerShell</span></span></code></pre>
 </div>
+<p>An <code>op://</code> reference names a vault, an item, and a field.
+It is a pointer, not a key: it is safe in a repository, a script, or a
+chat message, and useless to anyone without access to your vault. Read
+it when you need it; nothing is stored on disk.</p>
 <p>For a Jupyter workflow, keep a file of references (safe to commit,
 since an <code>op://</code> path is not a secret) and launch through
 <code>op run</code>. Every kernel inherits the variables and no key
@@ -1634,7 +1641,7 @@ contract?</li>
   Typical findings
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Most participants find at least one surprise: a training setting they
 had not seen, a retention clause tied to the feedback button, or the
@@ -1881,19 +1888,25 @@ you are building:</p>
 &lt;challenge&gt;. Every one of us is using a coding agent, so we will
 be generating more branches, more commits and bigger diffs than a normal
 class project.</p>
-<p>Propose collaboration conventions that keep <code>main</code> clean
-and reviewable. Cover branch naming, how small a pull request should be,
-who reviews, what an agent is allowed to touch without asking, how we
-avoid two agents editing the same file, and what goes in commit
-messages.</p>
-<p>Give me a <code>CONTRIBUTING.md</code> we can commit today. Short
+<p>We each work on a branch named for us and merge to <code>main</code>
+through a pull request. Propose the rest of the conventions that keep
+<code>main</code> clean and reviewable. Cover branch naming, how small a
+pull request should be, who reviews, what an agent may touch without
+asking, how we avoid two agents editing the same file, and what goes in
+commit messages.</p>
+<p>Write <code>CONTRIBUTING.md</code>. Commit it to a branch named for
+me, not to <code>main</code>, and open a pull request for it. Short
 enough that people read it.</p>
 </blockquote>
 </li>
 <li><p><strong>Edit what it produces.</strong> Keep the rules the team
 will follow and remove the rest.</p></li>
-<li><p><strong>Commit <code>CONTRIBUTING.md</code> to the team
-repository.</strong> Agents read it too.</p></li>
+<li><p><strong>Merge it through the process it describes.</strong>
+<code>CONTRIBUTING.md</code> goes on your own branch, not directly to
+<code>main</code>. Open a pull request, have a teammate review it, then
+merge. This is the first use of the rules you have just written. Most
+agents open a pull request by default; note that when it
+happens.</p></li>
 <li><p>Share the link with whoever advises the team, so they can see
 what was agreed.</p></li>
 </ol>
@@ -2463,17 +2476,18 @@ skipped?</li>
 <li>Apply established data science verification practices (know your
 data, compare to a source of truth, ask a colleague, reproduce) to
 agent-generated analyses.</li>
-<li>Detect a group-leakage bug in code that runs cleanly and scores
-well, and write the assertion that catches it.</li>
-<li>Run inexpensive sanity checks (label shuffling, baselines, overlap
-and duplicate checks, seed variation) that expose broken
-evaluations.</li>
-<li>Review an agent’s diff by looking for decisions you did not
-make.</li>
+<li>Review an agent’s diff by looking for decisions you did not make,
+and have the agent list its own assumptions.</li>
+<li>After each feature, have the agent propose and add tests, including
+edge cases, and run them before moving on.</li>
+<li>Make verification automatic: tests in CI and a protected
+<code>main</code>.</li>
 <li>Use an agent to reason over saved results and figures, and leave
 evidence in the repository for it to read.</li>
-<li>Make verification automatic: tests in CI, a context-file rule, and a
-protected <code>main</code>.</li>
+<li>Run quick checks (label shuffling, baselines, overlap and duplicate
+checks, seed variation) that expose broken evaluations.</li>
+<li>Detect a group-leakage bug in code that runs cleanly and scores
+well, and write the assertion that catches it.</li>
 </ul>
 </div>
 </div>
@@ -2483,16 +2497,13 @@ protected <code>main</code>.</li>
 <section><h2 class="section-heading" id="what-the-research-shows-about-checking">What the research shows about checking<a class="anchor" aria-label="anchor" href="#what-the-research-shows-about-checking"></a>
 </h2>
 <hr class="half-width">
-<p>In research code, checking agent output is the bottleneck, not
-producing it:</p>
+<p>Checking agent output is the bottleneck, not producing it:</p>
 <ul>
-<li>Agents could not judge scientific validity. In OpenAI’s 2026 field
-report on scientists using agents, the researchers still had to decide
-whether a result was correct, not only whether it ran.</li>
 <li>Agents multiply code written far more than code shipped: 240% more
 commits but only 30% more releases across half a million GitHub
-developers (Demirer, Musolff &amp; Yang, 2026). The gains attenuate at
-the human review step.</li>
+developers (Demirer, Musolff &amp; Yang, 2026). Not all of the
+additional code is good code, and the gains attenuate at the human
+review step.</li>
 <li>Pull requests wait about five times longer for a human review under
 heavy AI use, and 31% more are merged without one (Faros AI telemetry,
 22,000 developers, 2026).</li>
@@ -2501,134 +2512,14 @@ heavy AI use, and 31% more are merged without one (Faros AI telemetry,
 more than it multiplies shipped work, and the wait for human review
 grows most of all.</div>
 </figure><p>The skill this episode teaches is the one in short supply.</p>
-</section><section><h2 class="section-heading" id="no-escaping-good-data-science">No escaping good data science<a class="anchor" aria-label="anchor" href="#no-escaping-good-data-science"></a>
-</h2>
-<hr class="half-width">
-<p>Research computing already had an answer to “how do I know this
-analysis is correct?” before AI tools existed:</p>
-<ul>
-<li>
-<strong>Know your data.</strong> Distributions, outliers, units,
-missingness, class balance. Look at the rows.</li>
-<li>
-<strong>Compare to a source of truth.</strong> A published baseline,
-a hand-computed subset, a control.</li>
-<li>
-<strong>Ask a colleague.</strong> “Does this number seem plausible
-to you?”</li>
-<li>
-<strong>Know what your model is responding to.</strong> If the
-strongest predictor makes no scientific sense, that is a finding about
-the pipeline, not about the phenomenon.</li>
-<li>
-<strong>Reproduce the result.</strong> Rerun it, change the seed,
-rerun on a fresh split. If it does not hold, something you are not
-controlling is driving it.</li>
-</ul>
-<p>None of this has changed. Only the typing has moved to the agent.
-What has changed is speed: a plausible, clean-running, well-scoring
-analysis can now be produced in minutes, which means you can be misled
-in minutes as well. The checking has to keep pace. Agents can learn more
-about your project as you leave evidence in the repository (figures,
-metrics, notes), but they see a portion of the project at a time, never
-all of it.</p>
-</section><section><h2 class="section-heading" id="inexpensive-checks-that-catch-expensive-mistakes">Inexpensive checks that catch expensive mistakes<a class="anchor" aria-label="anchor" href="#inexpensive-checks-that-catch-expensive-mistakes"></a>
-</h2>
-<hr class="half-width">
-<p>A small set of checks, each a few lines an agent will write for you,
-exposes whole classes of silent failure:</p>
-<ul>
-<li>
-<strong>Shuffle the labels and rerun.</strong> A sound pipeline
-collapses to chance. If it does not, information is leaking.</li>
-<li>
-<strong>Print the baseline.</strong> 94% accuracy is not impressive
-when the majority class is 92% of the data.</li>
-<li>
-<strong>Assert that no sample appears in both splits.</strong>
-Repeated measures and tiles from one image belong on one side.</li>
-<li>
-<strong>Find duplicates before splitting.</strong> Duplicates across
-the split are leakage with no code bug.</li>
-<li>
-<strong>Vary the seed.</strong> A metric that moves substantially
-across seeds is a variance problem, not a result.</li>
-</ul>
-<div id="exercise-what-is-wrong-with-this-5-minutes" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<span class="callout-header">Challenge</span>
-<div id="exercise-what-is-wrong-with-this-5-minutes" class="callout-inner">
-<h3 class="callout-title">Exercise: What is wrong with this? (5
-minutes)</h3>
-<div class="callout-content">
-<div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="co"># Brain decoding. 20 subjects, 400 trials each,</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="co"># one EEG window per trial.</span></span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a>X, y, subject <span class="op">=</span> load_windows()      <span class="co"># X: (8000, ch, t)</span></span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1" aria-label="code-block-1-4"></a></span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1" aria-label="code-block-1-5"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1" aria-label="code-block-1-6"></a>    X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1" aria-label="code-block-1-7"></a></span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1" aria-label="code-block-1-8"></a>clf <span class="op">=</span> make_pipeline(StandardScaler(), LogisticRegression())</span>
-<span id="cb1-9"><a href="#cb1-9" tabindex="-1" aria-label="code-block-1-9"></a>clf.fit(X_train.reshape(<span class="bu">len</span>(X_train), <span class="op">-</span><span class="dv">1</span>), y_train)</span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1" aria-label="code-block-1-10"></a><span class="bu">print</span>(<span class="st">"accuracy"</span>, clf.score(</span>
-<span id="cb1-11"><a href="#cb1-11" tabindex="-1" aria-label="code-block-1-11"></a>    X_test.reshape(<span class="bu">len</span>(X_test), <span class="op">-</span><span class="dv">1</span>), y_test))</span>
-<span id="cb1-12"><a href="#cb1-12" tabindex="-1" aria-label="code-block-1-12"></a><span class="co"># accuracy 0.91</span></span></code></pre>
-</div>
-<p>The code runs. The number is high. Find the bug. Then write the one
-assertion that would have caught it.</p>
-</div>
-</div>
-</div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1">
-  The bug, and the assertion that catches it
-  </h4>
-</button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
-<div class="accordion-body">
-<p>Every subject appears in both splits. The model learned to identify
-each person, not what they were looking at. On a new subject the score
-drops:</p>
-<div class="codewrapper sourceCode" id="cb2">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> GroupShuffleSplit</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1" aria-label="code-block-2-3"></a>train_idx, test_idx <span class="op">=</span> <span class="bu">next</span>(GroupShuffleSplit(</span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1" aria-label="code-block-2-4"></a>    test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>).split(X, y, groups<span class="op">=</span>subject))</span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1" aria-label="code-block-2-5"></a><span class="cf">assert</span> <span class="bu">set</span>(subject[train_idx]).isdisjoint(subject[test_idx])</span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1" aria-label="code-block-2-6"></a><span class="co"># accuracy on unseen subjects: 0.58</span></span></code></pre>
-</div>
-<p>Split by the unit that repeats, and assert it: subject in a
-brain-decoding study, camera burst in a wildlife-camera dataset, page in
-a document-transcription task, source document in a retrieval pipeline.
-The assertion runs every time, so it is never forgotten. Checks that
-must be remembered are eventually skipped.</p>
-<p>If you did not find it, that is the usual outcome. Nothing in this
-code looks wrong, no error is raised, and the score rewards not looking
-further. This is the plausible-average-case failure from the previous
-episode: <code>train_test_split</code> is the pattern in a million
-notebooks, and the agent optimized for apparent completion, a clean run
-and a high score. If your review consists of “does it run, is the score
-good”, you and the agent have the same blind spot.</p>
-</div>
-</div>
-</div>
-</div>
 </section><section><h2 class="section-heading" id="look-for-decisions-you-did-not-make">Look for decisions you did not make<a class="anchor" aria-label="anchor" href="#look-for-decisions-you-did-not-make"></a>
 </h2>
 <hr class="half-width">
 <p>When reviewing agent-written analysis code you are not checking
-syntax; the code runs. You are looking for decisions. Check the
-assumptions at each step and add a test for each. The places most likely
-to contain them:</p>
+syntax; the code runs. You are looking for decisions. Do this after
+every feature, before the next one: ask the agent for its assumptions,
+ask for tests and edge cases, run them, and then move on. The places
+most likely to contain unexamined decisions:</p>
 <ul>
 <li>
 <strong>Silently dropped or altered rows</strong>: a default
@@ -2656,6 +2547,133 @@ risky ones.</p>
 </blockquote>
 <p>It surfaces the dropped-row and default-parameter decisions above
 more reliably than reading line by line.</p>
+<div id="exercise-1-test-the-feature-you-just-built-10-minutes" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="exercise-1-test-the-feature-you-just-built-10-minutes" class="callout-inner">
+<h3 class="callout-title">Exercise 1: Test the feature you just built
+(10 minutes)</h3>
+<div class="callout-content">
+<p>Start from feature 1, the one you implemented in the previous
+episode. This is the step that follows every feature, before the next
+one begins.</p>
+<ol style="list-style-type: decimal">
+<li>
+<p><strong>Ask for its assumptions and proposed tests</strong>, in
+plan mode:</p>
+<blockquote>
+<p>Read <code>plan.md</code> and the feature 1 code you just wrote.</p>
+<ol style="list-style-type: decimal">
+<li>List every choice you made that I did not specify, and flag the
+risky ones.</li>
+<li>Propose tests for this feature, including edge cases: empty input,
+wrong shape, duplicates, a sample that lands in both splits.</li>
+<li>Say which three matter most and why.</li>
+</ol>
+<p>Do not edit anything yet.</p>
+</blockquote>
+</li>
+<li><p><strong>Select the tests that matter.</strong> Let the agent
+propose more than you would; keep the ones that protect against a wrong
+result.</p></li>
+<li><p><strong>Have it add them and run <code>pytest</code>.</strong>
+Fix what fails, then commit.</p></li>
+<li><p><strong>Make it automatic.</strong> A workflow runs
+<code>pytest</code> on every push (<a href="https://docs.github.com/en/actions/use-cases-and-examples/building-and-testing/building-and-testing-python" class="external-link">GitHub
+Actions for Python</a>); ask the agent to write it. Protect
+<code>main</code> so that a failing check blocks the merge (<a href="https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches" class="external-link">about
+protected branches</a>).</p></li>
+</ol>
+<div class="tabs">
+<nav><div id="nav-tab-1" class="nav nav-tabs" role="tablist">
+<button class="nav-link active" id="nav-tab-1-ClaudeCode" name="ClaudeCode" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-ClaudeCode" type="button" role="tab" aria-controls="nav-tabpanel-1-ClaudeCode" aria-selected="true">
+  <h3 class="tab-header" id="nav-tab-heading-1-ClaudeCode">
+  Claude Code
+  </h3>
+</button>
+<button class="nav-link" id="nav-tab-1-GitHubCopilot" name="GitHubCopilot" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-GitHubCopilot" type="button" role="tab" aria-controls="nav-tabpanel-1-GitHubCopilot" aria-selected="false">
+  <h3 class="tab-header" id="nav-tab-heading-1-GitHubCopilot">
+  GitHub Copilot
+  </h3>
+</button>
+</div>
+</nav><div id="nav-tabContent-1" class="tab-content">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
+<p>Plan mode for step 1 (<kbd>Shift</kbd>+<kbd>Tab</kbd> locally; on the
+web, the “do not edit” line has the same effect). For steps 3 and 4
+switch to normal mode. Claude will run <code>pytest</code> itself
+(approve the command) and iterate until it passes.</p>
+</div>
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
+<p><strong>Ask</strong> mode with <code>@workspace</code> for step 1;
+<strong>Agent</strong> mode for steps 3 and 4. Copilot proposes the
+<code>pytest</code> run in the terminal and waits for approval. The
+Actions workflow and branch protection are configured on GitHub, not in
+the editor.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1">
+  Why this works
+  </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div class="accordion-body">
+<p>A methodological requirement that was previously implicit is now an
+executable contract. The agent has a feedback loop that fails when it
+reaches for the average-case pattern, and you have an artifact that
+continues to protect the project on every future change, whether the
+next edit comes from an agent, a colleague, or you in six months. With
+CI and a protected <code>main</code>, the check cannot be forgotten.</p>
+<p>One caution: an agent asked to “add tests” for existing code will
+often write tests that assert whatever the code currently does, which
+preserves bugs rather than catching them. That is why step 1 asks for
+assumptions and risks before asking for tests. You decide what must be
+true; the agent writes the repetitive parts; you review the tests with
+the same care as the implementation.</p>
+</div>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="no-escaping-good-data-science">No escaping good data science<a class="anchor" aria-label="anchor" href="#no-escaping-good-data-science"></a>
+</h2>
+<hr class="half-width">
+<p>Research computing already had an answer to “how do I know this
+analysis is correct?” before AI tools existed:</p>
+<ul>
+<li>
+<strong>Know your data.</strong> Distributions, outliers, units,
+missingness, class balance. Look at the rows.</li>
+<li>
+<strong>Compare to a source of truth.</strong> A published baseline,
+a hand-computed subset, a control.</li>
+<li>
+<strong>Ask a colleague.</strong> “Does this number seem plausible
+to you?”</li>
+<li>
+<strong>Know what your model is responding to.</strong> If the
+strongest predictor makes no scientific sense, that is a finding about
+the pipeline, not about the phenomenon.</li>
+<li>
+<strong>Reproduce the result.</strong> Rerun it, change the seed,
+rerun on a fresh split. If it does not hold, something you are not
+controlling is driving it.</li>
+</ul>
+<p>None of this has changed. Only the typing, and some quick ideation,
+has moved to the agent. What has changed is speed: a plausible,
+clean-running, well-scoring analysis can now be produced in minutes,
+which means you can be misled in minutes as well. The checking has to
+keep pace. Agents can learn more about your project as you leave
+evidence in the repository (figures, metrics, notes), but they see a
+portion of the project at a time, never all of it.</p>
 </section><section><h2 class="section-heading" id="agents-as-data-science-assistants">Agents as data science assistants<a class="anchor" aria-label="anchor" href="#agents-as-data-science-assistants"></a>
 </h2>
 <hr class="half-width">
@@ -2692,74 +2710,56 @@ plot agree with the numbers? Propose the one experiment you would run
 next and say what result would change our plan. Do not run anything
 yet.</p>
 </blockquote>
-<div id="exercise-now-your-repository-10-minutes" class="callout challenge">
+</section><section><h2 class="section-heading" id="quick-checks-that-catch-common-mistakes">Quick checks that catch common mistakes<a class="anchor" aria-label="anchor" href="#quick-checks-that-catch-common-mistakes"></a>
+</h2>
+<hr class="half-width">
+<p>A small set of checks, each a few lines, exposes whole classes of
+silent failure. The agent can implement any of them quickly if
+asked:</p>
+<ul>
+<li>
+<strong>Shuffle the labels and rerun.</strong> A sound pipeline
+collapses to chance. If it does not, information is leaking.</li>
+<li>
+<strong>Print the baseline.</strong> 94% accuracy is not impressive
+when the majority class is 92% of the data.</li>
+<li>
+<strong>Assert that no sample appears in both splits.</strong>
+Repeated measures and tiles from one image belong on one side.</li>
+<li>
+<strong>Find duplicates before splitting.</strong> Duplicates across
+the split are leakage with no code bug.</li>
+<li>
+<strong>Vary the seed.</strong> A metric that moves substantially
+across seeds is a variance problem, not a result.</li>
+</ul>
+<div id="exercise-2-what-is-wrong-with-this-5-minutes" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <span class="callout-header">Challenge</span>
-<div id="exercise-now-your-repository-10-minutes" class="callout-inner">
-<h3 class="callout-title">Exercise: Now your repository (10
+<div id="exercise-2-what-is-wrong-with-this-5-minutes" class="callout-inner">
+<h3 class="callout-title">Exercise 2: What is wrong with this? (5
 minutes)</h3>
 <div class="callout-content">
-<p>The same question as the brain-decoding example, applied to your
-repository.</p>
-<ol style="list-style-type: decimal">
-<li>
-<p><strong>Ask, in plan mode:</strong></p>
-<blockquote>
-<p>Plan mode, do not edit. Read <code>plan.md</code> and the code. Where
-could this pipeline produce a confident wrong result without raising an
-error? Name the file and line for each. For each one, write the
-assertion that would catch it. Include the check for our project’s
-repeated unit (subject, image, document, site, …). Do not run anything
-yet.</p>
-</blockquote>
-</li>
-<li><p><strong>Choose one assertion</strong> and have the agent add it
-as a test.</p></li>
-<li>
-<p><strong>Make it automatic.</strong> Three items, each enforced
-rather than remembered:</p>
-<ul>
-<li>A workflow runs <code>pytest</code> on every push (<a href="https://docs.github.com/en/actions/use-cases-and-examples/building-and-testing/building-and-testing-python" class="external-link">GitHub
-Actions for Python</a>). Ask the agent to write it.</li>
-<li>The context file states: run <code>pytest</code> before opening a
-pull request; never commit failing tests.</li>
-<li>Protect <code>main</code> so that a failing check blocks the merge
-(<a href="https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches" class="external-link">about
-protected branches</a>).</li>
-</ul>
-</li>
-</ol>
-<div class="tabs">
-<nav><div id="nav-tab-1" class="nav nav-tabs" role="tablist">
-<button class="nav-link active" id="nav-tab-1-ClaudeCode" name="ClaudeCode" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-ClaudeCode" type="button" role="tab" aria-controls="nav-tabpanel-1-ClaudeCode" aria-selected="true">
-  <h3 class="tab-header" id="nav-tab-heading-1-ClaudeCode">
-  Claude Code
-  </h3>
-</button>
-<button class="nav-link" id="nav-tab-1-GitHubCopilot" name="GitHubCopilot" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-GitHubCopilot" type="button" role="tab" aria-controls="nav-tabpanel-1-GitHubCopilot" aria-selected="false">
-  <h3 class="tab-header" id="nav-tab-heading-1-GitHubCopilot">
-  GitHub Copilot
-  </h3>
-</button>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="co"># Brain decoding. 20 subjects, 400 trials each,</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="co"># one EEG window per trial.</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a>X, y, subject <span class="op">=</span> load_windows()      <span class="co"># X: (8000, ch, t)</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1" aria-label="code-block-1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1" aria-label="code-block-1-5"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1" aria-label="code-block-1-6"></a>    X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1" aria-label="code-block-1-7"></a></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1" aria-label="code-block-1-8"></a>clf <span class="op">=</span> make_pipeline(StandardScaler(), LogisticRegression())</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1" aria-label="code-block-1-9"></a>clf.fit(X_train.reshape(<span class="bu">len</span>(X_train), <span class="op">-</span><span class="dv">1</span>), y_train)</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1" aria-label="code-block-1-10"></a><span class="bu">print</span>(<span class="st">"accuracy"</span>, clf.score(</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1" aria-label="code-block-1-11"></a>    X_test.reshape(<span class="bu">len</span>(X_test), <span class="op">-</span><span class="dv">1</span>), y_test))</span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1" aria-label="code-block-1-12"></a><span class="co"># accuracy 0.91</span></span></code></pre>
 </div>
-</nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
-<p>Plan mode for step 1 (<kbd>Shift</kbd>+<kbd>Tab</kbd> locally; on the
-web, the “do not edit” line has the same effect). For steps 2 and 3
-switch to normal mode. Claude will run <code>pytest</code> itself
-(approve the command) and iterate until it passes.</p>
-</div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
-<p><strong>Ask</strong> mode with <code>@workspace</code> for step 1;
-<strong>Agent</strong> mode for steps 2 and 3. Copilot proposes the
-<code>pytest</code> run in the terminal and waits for approval. The
-Actions workflow and branch protection are configured on GitHub, not in
-the editor.</p>
-</div>
-</div>
-</div>
+<p>The code runs. The number is high. Find the bug. Then write the one
+assertion that would have caught it.</p>
 </div>
 </div>
 </div>
@@ -2767,23 +2767,37 @@ the editor.</p>
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">
-  Why this works
+  The bug, and the assertion that catches it
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
-<p>A methodological requirement that was previously implicit is now an
-executable contract. The agent has a feedback loop that fails when it
-reaches for the average-case pattern, and you have an artifact that
-continues to protect the project on every future change, whether the
-next edit comes from an agent, a colleague, or you in six months. With
-CI and a protected <code>main</code>, the check cannot be forgotten.</p>
-<p>One caution: an agent asked to “add tests” for existing code will
-often write tests that assert whatever the code currently does, which
-preserves bugs rather than catching them. That is why step 1 asks where
-the code could be wrong before asking for a test. You decide what must
-be true; the agent writes the repetitive parts; you review the tests
-with the same care as the implementation.</p>
+<p>Every subject appears in both splits. The model learned to identify
+each person, not what they were looking at. On a new subject the score
+drops:</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a>X, y, subject <span class="op">=</span> load_windows()   <span class="co"># subject: one ID per trial</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> GroupShuffleSplit</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1" aria-label="code-block-2-3"></a></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1" aria-label="code-block-2-4"></a>train_idx, test_idx <span class="op">=</span> <span class="bu">next</span>(GroupShuffleSplit(</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1" aria-label="code-block-2-5"></a>    test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>).split(X, y, groups<span class="op">=</span>subject))</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1" aria-label="code-block-2-6"></a><span class="cf">assert</span> <span class="bu">set</span>(subject[train_idx]).isdisjoint(subject[test_idx])</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1" aria-label="code-block-2-7"></a><span class="co"># accuracy on unseen subjects: 0.58</span></span></code></pre>
+</div>
+<p>Split by the unit that repeats, and assert it: subject in a
+brain-decoding study, camera burst in a wildlife-camera dataset, page in
+a document-transcription task, source document in a retrieval pipeline.
+The assertion runs every time, so it is never forgotten. Checks that
+must be remembered are eventually skipped.</p>
+<p>If you did not find it, that is the usual outcome. Nothing in this
+code looks wrong, no error is raised, and the score rewards not looking
+further. This is the plausible-average-case failure from the previous
+episode: <code>train_test_split</code> is the pattern in a million
+notebooks, and the agent optimized for apparent completion, a clean run
+and a high score. If your review consists of “does it run, is the score
+good”, you and the agent have the same blind spot.</p>
 </div>
 </div>
 </div>
@@ -2849,20 +2863,21 @@ releases, and unreviewed merges increase. Verification is the scarce
 skill.</li>
 <li>Established practice still applies: know your data, compare to a
 source of truth, ask a colleague, know what your model responds to,
-reproduce the result. Only the typing has moved.</li>
-<li>Inexpensive checks catch expensive mistakes: shuffle labels, print
-the baseline, assert no sample is in both splits, find duplicates, vary
-the seed.</li>
+reproduce the result. Only the typing and quick ideation have
+moved.</li>
+<li>Quick checks catch common mistakes: shuffle labels, print the
+baseline, assert no sample is in both splits, find duplicates, vary the
+seed.</li>
 <li>Split by the unit that repeats, and assert it. A clean-running 0.91
 can be 0.58 on unseen subjects.</li>
-<li>Review diffs by looking for decisions you did not make, and have the
-agent list its own assumptions.</li>
+<li>After every feature, before the next: have the agent list its
+assumptions, propose tests and edge cases, add them, and run them. Then
+commit.</li>
+<li>Make verification automatic: tests in CI and a protected
+<code>main</code>. Autonomy is purchased with verification.</li>
 <li>Leave evidence in the repository and direct the agent to it. It
 reads figures and metrics, but only those you name, and you check every
 number it cites.</li>
-<li>Make verification automatic: tests in CI, a context-file rule, a
-protected <code>main</code>. Autonomy is purchased with
-verification.</li>
 </ul>
 </div>
 </div>
@@ -3416,7 +3431,7 @@ benchmarks.</li>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
 <ul>
 <li>
 <code>/cost</code>: what the current session has consumed;
@@ -3434,7 +3449,7 @@ matters.</li>
 direction.</li>
 </ul>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
 <ul>
 <li>Check credit and premium-request usage on the <a href="https://github.com/settings/copilot" class="external-link">Copilot settings page</a>.
 Model choice changes the rate.</li>
@@ -3504,7 +3519,7 @@ most? Was it a vague prompt that produced a loop?</li>
   Typical findings
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Most workshop sessions come to a few watt-hours, a small percentage
 of a dishwasher cycle. The informative result is usually the third item:
@@ -3727,7 +3742,7 @@ fix the documentation, and state which you chose and why.</li>
   Typical findings
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Most participants find at least one surprise, usually an edge case
 the code handles by accident rather than by decision (what does it
@@ -3939,11 +3954,11 @@ chosen pattern explicit.</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
 <p>The file is <code>CLAUDE.md</code> at the repository root. Create it
 if the project has none.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
 <p>The file is <code>.github/copilot-instructions.md</code>. The
 cross-tool convention <code>AGENTS.md</code> also works in tools that
 support it.</p>
@@ -3972,7 +3987,7 @@ one about what the agent may never modify.</p>
   Why record it
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Two benefits. The agent reads it, so your posture, branch
 conventions, and forbidden paths shape every session without

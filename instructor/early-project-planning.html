@@ -553,19 +553,25 @@ you are building:</p>
 &lt;challenge&gt;. Every one of us is using a coding agent, so we will
 be generating more branches, more commits and bigger diffs than a normal
 class project.</p>
-<p>Propose collaboration conventions that keep <code>main</code> clean
-and reviewable. Cover branch naming, how small a pull request should be,
-who reviews, what an agent is allowed to touch without asking, how we
-avoid two agents editing the same file, and what goes in commit
-messages.</p>
-<p>Give me a <code>CONTRIBUTING.md</code> we can commit today. Short
+<p>We each work on a branch named for us and merge to <code>main</code>
+through a pull request. Propose the rest of the conventions that keep
+<code>main</code> clean and reviewable. Cover branch naming, how small a
+pull request should be, who reviews, what an agent may touch without
+asking, how we avoid two agents editing the same file, and what goes in
+commit messages.</p>
+<p>Write <code>CONTRIBUTING.md</code>. Commit it to a branch named for
+me, not to <code>main</code>, and open a pull request for it. Short
 enough that people read it.</p>
 </blockquote>
 </li>
 <li><p><strong>Edit what it produces.</strong> Keep the rules the team
 will follow and remove the rest.</p></li>
-<li><p><strong>Commit <code>CONTRIBUTING.md</code> to the team
-repository.</strong> Agents read it too.</p></li>
+<li><p><strong>Merge it through the process it describes.</strong>
+<code>CONTRIBUTING.md</code> goes on your own branch, not directly to
+<code>main</code>. Open a pull request, have a teammate review it, then
+merge. This is the first use of the rules you have just written. Most
+agents open a pull request by default; note that when it
+happens.</p></li>
 <li><p>Share the link with whoever advises the team, so they can see
 what was agreed.</p></li>
 </ol><p>If you are working alone, write the same thing for yourself in three
