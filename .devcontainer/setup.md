@@ -43,12 +43,6 @@ python -m venv .venv && source .venv/bin/activate
 pip install pandas scikit-learn pytest
 ```
 
-Verify the environment from the lesson repository:
-
-```bash
-python src/python/verify_environment.py
-```
-
 ## Choose an agentic coding tool
 
 ::::::::::::::::::::::::::::::::::::::: caution
