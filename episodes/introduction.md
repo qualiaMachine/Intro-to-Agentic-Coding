@@ -31,14 +31,14 @@ test, debug, and revise code with limited human intervention.
 
 ## "Agentic" is an overloaded term
 
-"Agent" now gets attached to almost anything with a chat box, so let's pin the word
-down. Computer science has long used it precisely: an agent is a system that **takes
-actions** in an environment and observes the results, in pursuit of a goal. An
-assistant or chatbot produces text and *you* act on it; an agentic tool acts for
+"Agent" is now attached to almost any product with a chat box, so the word needs
+a definition. Computer science has long used it precisely: an agent is a system that
+**takes actions** in an environment and observes the results, in pursuit of a goal.
+An assistant or chatbot produces text and *you* act on it; an agentic tool acts for
 itself — editing files, running commands, reading the output, deciding what to do
-next. The litmus test for any tool wearing the label: *does it act, or does it only
-advise?* In agentic coding, action is everywhere — which is both the point and, as
-this lesson explores, the risk.
+next. The test for any tool that uses the label: *does it act, or does it only
+advise?* In agentic coding, the tool acts constantly. That is its value, and, as this
+lesson explains, its risk.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -58,7 +58,7 @@ you run everything yourself. An agent can instead:
 
 So you can ask it to fix a bug, add a feature, refactor existing code, write and run
 tests, review a pull request, investigate a failing job, or build a small application
-from a specification. This is powerful. It also means the tool has real access to your
+from a specification. The same capabilities mean the tool has real access to your
 system — your files, your shell, your credentials if you leave them lying around — and
 the potential to do real damage if not managed carefully. That tension between
 capability and control is the subject of this whole lesson.
@@ -74,11 +74,11 @@ tightly directed to fully delegated:
 3. *"Build the whole service from scratch; do all the planning yourself."* — the agent
    invents dozens of decisions you never made, and you review a project.
 
-Notice the pattern: **the more autonomy you grant, the more of your judgment has to
-be encoded in advance** — in the prompt, in project context files, and in tests — and
-the more you have to review afterwards. That is the thread we pull on for the rest of
-this lesson. Nearly everything the workshop teaches lives in the middle of this
-spectrum: bounded tasks with a plan and a check.
+The pattern across the three: **the more autonomy you grant, the more of your
+judgment has to be encoded in advance** — in the prompt, in project context files, and
+in tests — and the more you have to review afterwards. That principle recurs through
+the rest of the lesson. Nearly everything the workshop teaches concerns the middle of
+this spectrum: bounded tasks with a plan and a check.
 
 ::::::::::::::::::::::::::::::::::::: callout
 
@@ -90,7 +90,7 @@ review burden *after* it. The right choice depends on the task:
 
 - Sensitive work or unfamiliar codebase → interactive, guardrails on. The
   interruptions are a feature.
-- Quick question, brainstorming, explaining an error → plain chat is hard to beat.
+- Quick question, brainstorming, explaining an error → plain chat is usually sufficient.
 - Well-scoped, clearly described task in a repo with good tests → hand it off, because
   the specification and the tests carry your intent for you.
 
@@ -112,7 +112,7 @@ two parts:
 The harness runs an **agent loop**: request → understand → plan → act → observe →
 revise → repeat. Each turn, the model decides what to do next, the harness executes
 it (edit a file, run the tests), and the result goes back into the model's context.
-An agent, in one line: **LLM + harness + tools + agent loop.**
+In summary: **agent = LLM + harness + tools + agent loop.**
 
 More advanced harnesses add an orchestrator–worker pattern: a primary agent breaks a
 larger problem into smaller tasks and delegates them to subagents that work in parallel
@@ -168,8 +168,8 @@ workshop returns to. Show three examples along the spectrum:
 3. A more autonomous, multi-agent workflow — *explain* this one but don't run it live;
    it takes longer and introduces variability.
 
-Ask the room: "Anyone want to share something impressive their agent did?" — it warms
-people up and surfaces the range of experience in the room.
+Ask participants whether anyone wants to share something impressive their agent did.
+It gives you a sense of the range of experience present.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 

@@ -6,7 +6,7 @@ exercises: 5
 
 :::::::::::::::::::::::::::::::::::::: questions
 
-- Who actually benefits from these tools, and on which kinds of work?
+- Who benefits from these tools, and on which kinds of work?
 - Is programming dead?
 - What should I do differently starting tomorrow?
 
@@ -30,8 +30,8 @@ The evidence base is young and shifting, but a few findings recur:
   still require expert review and verification, and that step doesn't speed up.
 - **Perceived speed and measured speed can diverge.** In one widely discussed 2025
   randomized trial (METR), experienced open-source developers *felt* about 20%
-  faster with AI tools on their own mature repositories while actually being ~19%
-  *slower*. Measure, don't vibe — the same rule we apply to model scores applies to
+  faster with AI tools on their own mature repositories while being ~19% *slower*.
+  Measure rather than estimate by feel; the rule we apply to model scores applies to
   our own productivity.
 - **Learning with AI can cost understanding.** In Anthropic's 2026 study, developers
   who learned an unfamiliar library with AI assistance scored **17% lower** on a quiz
@@ -44,7 +44,7 @@ The evidence base is young and shifting, but a few findings recur:
   novices are more likely to accept flawed results. Verification skill, not typing
   speed, is the bottleneck.
 
-The honest summary: these tools amplify expertise more than they replace it.
+The summary supported by the evidence: these tools amplify expertise more than they replace it.
 Everything in this lesson — scoping, specifying, verifying — is precisely the
 expertise being amplified. And the skill-formation question is open: if agents do the
 routine work, where do juniors build the debugging intuition seniors rely on to
@@ -75,18 +75,18 @@ It interprets your intent probabilistically, filling every unstated gap with the
 average case, and the same prompt can yield different code on different days.
 
 We correct for that non-determinism with the two practices this lesson keeps returning
-to: **good prompting** (specification narrows the space of outcomes — the whole point
-of the feature-based-development episode) and **a review process** (verification
+to: **good prompting** (specification narrows the space of outcomes, the subject of
+the feature-based-development episode) and **a review process** (verification
 catches the outcomes that specification didn't prevent). Never assume the AI will work
 100% of the time — not because the tools are bad, but because "usually right,
 occasionally plausibly wrong" is what a probabilistic abstraction *is*. Design your
-workflow for that, and it's just another layer; assume perfection, and it's a trap.
+workflow for that, and it is one more abstraction layer; assume perfection, and it is a trap.
 
 So: not dead. The job shifts from writing every line toward specifying intent,
-designing verification, and exercising judgment — which, conveniently, were always the
-hard parts of research computing. And that is also why **there is still no escaping
+designing verification, and exercising judgment — which were always the hard parts
+of research computing. And that is also why **there is still no escaping
 good data science practice**: exploring your data, knowing your features and
-distributions, and knowing what your models actually tell you were never typing tasks
+distributions, and knowing what your models tell you were never typing tasks
 that an agent could absorb. They are the judgment the whole workflow now leans on.
 
 ## Pass it on

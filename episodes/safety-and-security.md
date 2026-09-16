@@ -6,8 +6,8 @@ exercises: 8
 
 :::::::::::::::::::::::::::::::::::::: questions
 
-- What can an agent actually access on my machine, and why does that matter?
-- Which protections are real limits, and which are just requests the model may ignore?
+- What can an agent access on my machine, and why does that matter?
+- Which protections are enforced limits, and which are requests the model may ignore?
 - How do I keep credentials and sensitive or restricted data away from AI tools?
 - How do I get an agent running safely on my own project?
 
@@ -59,7 +59,7 @@ That last row is the one people underestimate. When you launch an agent from you
 terminal or IDE, it operates with your user account's full filesystem and shell
 access. It can read your SSH keys, your `.env` files, your notes — anything you can.
 And agents *automatically scan for context*: that is their job. A credentials file in
-your working directory is, from the agent's point of view, just more context.
+your working directory is, from the agent's point of view, more context.
 
 ## The threat: prompt injection
 
@@ -77,7 +77,8 @@ It is not hypothetical:
 - **Nx on npm, August 2025.** A compromised package's install script prompted the
   victim's *own* Claude Code, Gemini CLI, or Amazon Q to search the machine for
   secrets; thousands of credentials were leaked to public GitHub repositories. (Wiz's
-  analysis found Claude refused about a quarter of the time — a layer, not a wall.)
+  analysis found Claude refused about a quarter of the time; model refusals reduce
+  the risk but do not remove it.)
 
 Simon Willison's ["lethal trifecta"](https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/)
 names the combination to avoid: private data, exposure to untrusted content, and a way
@@ -109,8 +110,8 @@ permissions constrain it.** Prefer the second wherever you can get it.
 - **Use the web session and keep its defaults.** Claude Code on the web and Copilot's
   cloud agent limit network access to an allowlist and keep your keys out of the
   sandbox. **Do not turn the firewall off to fix a blocked request** — add the one
-  host you actually need.
-- **Review the PR before you merge.** The last wall of defense.
+  host you need.
+- **Review the PR before you merge.** This is the final control, after all the others.
 
 Where to set the allowlist:
 
@@ -134,9 +135,10 @@ pull request. Docs: [Copilot cloud agent firewall](https://docs.github.com/en/co
 
 ::::::::::::::::::::::::
 
-It is a layer, not a wall. Copilot's firewall covers only what the agent starts in
-Bash, not MCP servers or setup steps, and GitHub says sophisticated attacks may bypass
-it. An allowlist narrows the exfiltration path; it does not close it.
+An allowlist is a partial control. Copilot's firewall covers only what the agent
+starts in Bash, not MCP servers or setup steps, and GitHub states that sophisticated
+attacks may bypass it. An allowlist narrows the exfiltration path; it does not close
+it.
 
 ### 2. Prefer a cloud VM over your own machine
 
@@ -194,7 +196,7 @@ what the command does when run.** In January 2026, Cursor's allowlist was bypass
 ([CVE-2026-22708](https://github.com/cursor/cursor/security/advisories/GHSA-82wg-qcm4-fp2w),
 found by Pillar Security): prompt injection set an environment variable through a
 shell built-in the allowlist did not check, and the next approved `git` command ran
-the attacker's code. Deny rules are a layer. The VM is the wall.
+the attacker's code. Deny rules reduce risk; the VM boundary is what removes it.
 
 ::::::::::::::::::::::::::::::::::::: callout
 
@@ -218,8 +220,9 @@ constrain it.
 ### 4. Credentials: a password manager, never the repo
 
 **A secret that isn't on disk can't be read, echoed, committed, or exfiltrated** — by
-an agent, by malware, or by you at 11pm. Agents scan for context, and they may be able
-to read your local `.env` or JSON config files. Be proactive.
+an agent, by malware, or by a tired person late at night. Agents scan for context,
+and they may be able to read your local `.env` or JSON config files. Remove the
+secrets before the agent arrives.
 
 - Do not store passwords or API keys in `.env` files, JSON configs, or shell profiles.
 - Keep keys in a password manager and load them once per session. Every UW–Madison
@@ -325,13 +328,13 @@ real work. (Other routes, including free ones, are on the
 1. **Pick a cloud route with plan mode.**
    - *Claude users:* use the web, [claude.ai/code](https://claude.ai/code). Plan mode
      is already there and there is nothing to install. The desktop app is also fine —
-     just keep the session in a cloud-hosted VM.
+     provided the session runs in a cloud-hosted VM.
    - *Copilot users:* install the [GitHub Copilot app](https://docs.github.com/en/copilot/concepts/agents/github-copilot-app)
      for an explicit plan mode — the agent asks questions and waits for you to approve
      before it edits. Start a **cloud** session, not local: cloud runs in a
      GitHub-hosted VM; local runs on your machine with your access. No install? The
      web works too: ask for a plan in the prompt and you get the same review gate,
-     just less interactive.
+     with less interaction.
 2. **Confirm cloud before you prompt.** The session should be pointed at a cloud VM
    and a GitHub repo, not a folder on your laptop.
 3. **Use your project repository.** No project yet? Create one now.
@@ -348,7 +351,7 @@ real work. (Other routes, including free ones, are on the
 ## What to check
 
 If step 2 is wrong — the session is local — stop and switch before prompting; that is
-the single most common mistake with the desktop apps. Cloud sandboxes are usage-billed,
+the most common mistake with the desktop apps. Cloud sandboxes are usage-billed,
 so test your account before the real work. Branches rather than forks matter for a
 team: an agent can `git fetch` and read a teammate's branch, diff against it, and merge,
 but it cannot see a fork without someone adding remotes. The read-only prompt in step

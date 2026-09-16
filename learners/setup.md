@@ -103,7 +103,7 @@ the web route.
    workshop-provided credits.
 2. Go to [claude.ai/code](https://claude.ai/code), connect your GitHub account, and
    point it at a repository. Each session clones the repo into a fresh, ephemeral
-   cloud VM; your laptop is just a browser window. Results come back as branches/PRs
+   cloud VM; your laptop is only a browser window. Results come back as branches/PRs
    you review on GitHub.
 3. That's the whole setup — nothing to install.
 
@@ -284,7 +284,7 @@ The checklist from the *Get your agent running, safely* exercise:
    for an explicit plan mode (the agent asks questions and waits for your approval
    before it edits) and start a **cloud** session, not local. No install? The Copilot
    web works too: ask for a plan in the prompt and you get the same approve-or-exit
-   gate, just less interactive. The desktop apps are fine as long as the session is a
+   gate, with less interaction. The desktop apps are fine as long as the session is a
    cloud one.
 2. **Confirm cloud before you prompt.** The session should show a cloud VM and a
    GitHub repository, not a local folder. Cloud sandboxes are usage-billed; test your

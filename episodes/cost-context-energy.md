@@ -6,7 +6,7 @@ exercises: 5
 
 :::::::::::::::::::::::::::::::::::::: questions
 
-- How much energy does an agentic coding session actually use?
+- How much energy does an agentic coding session use?
 - Why do agentic sessions cost so much more than chat queries?
 - Which habits reduce token usage without reducing quality?
 
@@ -24,8 +24,8 @@ exercises: 5
 ## How much energy do AI models use?
 
 People arrive with a claim — a prompt costs gallons of water — so replace it with a
-number. Estimates vary wildly and no provider publishes per-query figures, but the
-order of magnitude is well established:
+number. Estimates vary by an order of magnitude and no provider publishes per-query
+figures, but the range is well established:
 
 | Activity | Energy | Source |
 |----------|--------|--------|
@@ -37,9 +37,9 @@ order of magnitude is well established:
 Couch scaled Epoch's per-token estimates against his real Claude Code token counts.
 Hausfather ran his own tokens through three published methods and got a number an
 order of magnitude higher, because he runs subagents on large analyses. Nobody outside
-the labs knows the true per-token energy. So the honest framing is **order of
-magnitude, not precision: tens of watt-hours per session, hundreds if you run agents
-hard.**
+the labs knows the true per-token energy. The defensible statement is an **order of
+magnitude, not a precise figure: tens of watt-hours per session, hundreds if you run
+agents heavily.**
 
 Two macro takeaways survive the uncertainty:
 
@@ -81,7 +81,7 @@ dynamics drive this:
 - **Minimize the context in each session.** As a session runs long, old context piles
   up and every future message re-pays for it. Start fresh between unrelated tasks;
   compact a long thread instead of letting it grow. Prefer search over reading whole
-  files — context is the thing you're paying for.
+  files — context is what you pay for.
 - **Use skills** to reduce input and output. A skill loads a short pointer instead of
   a long explanation every time; the [caveman](https://github.com/JuliusBrussee/caveman)
   skill from the previous episode cuts output tokens by design.
@@ -89,8 +89,8 @@ dynamics drive this:
   meter run on a foreground session.
 - **Compare real-world session cost across models before you commit to one, not just
   benchmark scores.** [OpenRouter's session-cost rankings](https://openrouter.ai/rankings#session-cost)
-  track what people actually spend per session across live agentic-coding traffic —
-  a gut check against marketing claims.
+  track what people spend per session across live agentic-coding traffic, which is
+  a useful check against vendor claims.
 
 :::::::::::::::: group-tab
 
@@ -99,7 +99,7 @@ dynamics drive this:
 - `/cost` — what the current session has consumed; `/context` — what's filling the
   window.
 - `/model` — switch models mid-session.
-- `/clear` — reset context between unrelated tasks. Cheapest single habit.
+- `/clear` — reset context between unrelated tasks. The cheapest habit to adopt.
 - `/compact` — summarize a long conversation, keeping what matters.
 - <kbd>Esc</kbd> — interrupt an agent that's heading the wrong way.
 
@@ -151,8 +151,8 @@ repeatedly, that's a script asking to be written.
 
 Most workshop sessions land in the low single-digit Wh — a few percent of a
 dishwasher run. The interesting result is usually #3: one underspecified prompt
-accounts for a disproportionate share of the total. The cheapest token is the one a
-clearer sentence made unnecessary.
+accounts for a disproportionate share of the total. A clearer sentence in the prompt
+would have made those tokens unnecessary.
 
 :::::::::::::::::::::::::::::::::
 
@@ -164,6 +164,6 @@ clearer sentence made unnecessary.
 - The issue is aggregate demand, and inference now dominates; your usage patterns are the lever.
 - Agentic sessions chain hundreds of model calls; context accumulation makes late messages far more expensive than early ones.
 - Watch usage, match the model to the task, keep sessions short and compact, use skills, and compare real session cost across models before committing.
-- Specific prompts in clean context are better, cheaper, and greener — the same discipline pays three times.
+- Specific prompts in clean context are better, cheaper, and greener: one discipline, three benefits.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::

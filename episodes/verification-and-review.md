@@ -123,8 +123,8 @@ Camera burst in a wildlife-camera dataset. Page in a document-transcription task
 Source document in a retrieval pipeline. The assertion runs every time, so it never
 gets forgotten — tests you have to remember to run get skipped.
 
-If you didn't spot it: that's the point. Nothing about this code *looks* wrong, no
-error fires, and the score rewards you for not looking harder. This is exactly the
+If you didn't spot it, you are in good company. Nothing about this code *looks*
+wrong, no error fires, and the score rewards you for not looking harder. This is the
 *plausible average case* failure from the previous episode: `train_test_split` is
 the pattern in a million notebooks, and the agent optimized for "task apparently
 completed" — clean run, high score. If your review process is also "does it run? is
@@ -152,7 +152,7 @@ add a test for each. The high-yield places to look:
 - **Suppressed problems**: warnings silenced, `try/except: pass`, an error "fixed" by
   deleting the check. An agent told to make it run sometimes does just that.
 
-One prompt that pays for itself, every time:
+One prompt worth adding to every review:
 
 > Summarize every choice you made that I did not specify, and flag the risky ones.
 
@@ -241,9 +241,8 @@ review tests with the same care as implementations.
 
 ## Autonomy is purchased with verification
 
-The single highest-leverage practice in agentic coding: **make verification
-executable.** Agents perform dramatically better when they can check their own
-output — running tests, comparing against known values, validating properties —
+The highest-leverage practice in agentic coding is to **make verification
+executable.** Agents perform markedly better when they can check their own output — running tests, comparing against known values, validating properties —
 instead of relying on you as the only feedback loop. Include test cases in the
 prompt; point at symptoms, not just fixes ("fix the root cause and verify — don't
 suppress the error"); for analyses, demand printed evidence. And tests are cheap now:

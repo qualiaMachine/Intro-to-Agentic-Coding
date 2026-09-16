@@ -61,7 +61,7 @@ for the average-case project. A plan is only as good as the context it's built f
 Examples of context worth handing over, in rough order of how often they're missing:
 
 - **The goal and constraints** — the research question, the challenge page, the
-  scoring rule, the compute you actually have.
+  scoring rule, the compute you have.
 - **`plan.md` from last time**, or the previous plan's discoveries and blockers.
 - **Skeleton code** — a stub of the function or module you want, so the shape is
   yours, not the agent's.
@@ -135,7 +135,7 @@ the rules before the first feature — and let the agent draft them.
    >
    > Give me a `CONTRIBUTING.md` we can commit today. Short enough that people read it.
 
-3. **Argue with what it gives you.** Keep the rules you will actually follow; cut the
+3. **Argue with what it gives you.** Keep the rules you will follow; cut the
    rest.
 4. **Commit `CONTRIBUTING.md` to the team repo.** Your agents read it too.
 5. Share the link with whoever advises your team, so they can see what you agreed.
@@ -147,7 +147,7 @@ a PR size, what the agent may never touch — and put them in your context file.
 
 ## What a usable answer looks like
 
-Short. A branch name pattern (`<name>/<feature>`), a PR size people will actually
+Short. A branch name pattern (`<name>/<feature>`), a PR size people will
 review (a few hundred lines at most), one named reviewer per PR, a list of paths the
 agent may not touch without asking (`data/raw/`, the scoring function, `main`), a
 rule for avoiding collisions (one feature per branch, claim it in the plan), and a
@@ -164,7 +164,7 @@ advisory for the agent — back the important ones with branch protection.
 Before the exercise, a framing you may have met in your project kickoff. A
 **minimum viable pipeline (MVP)** is whatever you can get running quickly and
 understand end to end. Not always the *simplest* model — a pretrained model you
-understand beats a from-scratch one you don't. The point is fewer friction and
+understand beats a from-scratch one you don't. The aim is fewer friction and
 failure points: a slice of the data, one model, your laptop. Every extra step or
 fancier setup is another place to break.
 
@@ -221,7 +221,7 @@ Three features, each one thing you can check — e.g. *(1) load and validate the
 slice: row count and class balance printed; (2) train one baseline: a scored number
 on a held-out split; (3) write the scoring function: matches the challenge metric on
 a hand-computed example.* If the agent's plan has a feature you can't describe a check
-for, it isn't a feature yet — split it or drop it. And notice what the agent
+for, it isn't a feature yet — split it or drop it. Note also what the agent
 *couldn't* know: which data is trustworthy, what compute you really have, what the
 kickoff decided. That's the context you supplied; without it the plan would have
 been someone else's.
@@ -241,7 +241,7 @@ debug, extend, or defend it in review (or peer review).
 
 So probe before you adopt. Ask "why this over the obvious alternative?", "what are the
 failure modes?", "what's the simplest version that could work?" — and push back; the
-agent folds quickly when an idea is weak, which is itself information. Be especially
+agent tends to abandon a weak idea under questioning, which is itself evidence. Be especially
 wary the further a suggestion sits outside your domain: a clever-looking method from a
 field you don't know is a place to consult a human expert or the literature, not a
 thing to build on because the chat sounded confident. If you can't explain it, you
