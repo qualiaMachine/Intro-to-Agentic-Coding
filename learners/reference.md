@@ -115,6 +115,12 @@ directly.
 : A reusable, on-demand instruction package for an agent (e.g., a deployment checklist
 or a lab's analysis conventions) that loads only when relevant.
 
+**Test-driven development (TDD)**
+: Writing a test that states the required behavior before writing the code, then
+writing (or having the agent write) code that makes it pass. With an agent, the test
+is both the specification and an executable feedback loop. For research code, the
+tests written first concern the data and the result rather than function signatures.
+
 **Test as contract**
 : Encoding a requirement — especially a data property — as an executable test the agent
 must satisfy, turning specification into verification.

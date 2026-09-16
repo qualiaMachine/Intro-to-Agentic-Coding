@@ -19,6 +19,7 @@ exercises: 15
 - Apply established data science verification practices (know your data, compare to a source of truth, ask a colleague, reproduce) to agent-generated analyses.
 - Review an agent's diff by looking for decisions you did not make, and have the agent list its own assumptions.
 - After each feature, have the agent propose and add tests, including edge cases, and run them before moving on.
+- Define test-driven development and apply it to research code: write the data or result test first, then have the agent implement against it.
 - Make verification automatic: tests in CI and a protected `main`.
 - Use an agent to reason over saved results and figures, and leave evidence in the repository for it to read.
 - Run quick checks (label shuffling, baselines, overlap and duplicate checks, seed variation) that expose broken evaluations.
@@ -157,6 +158,32 @@ review the tests with the same care as the implementation.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+## Test-driven development: write the test first
+
+The tests in Exercise 1 were written after the code. That is the common order, and it
+has a known weakness: a test written after the fact tends to describe what the code
+does, not what it should do, so it preserves whatever the agent decided. **Test-driven
+development (TDD)** reverses the order. You write a test that states the required
+behavior, watch it fail, and only then write (or have the agent write) the code that
+makes it pass. The test is the specification, and the code is judged against it
+rather than the other way round.
+
+With an agent, this order has a second benefit. A test the agent must make pass is an
+executable feedback loop: the agent runs it, reads the failure, and revises, without
+you as the only check. The prompt becomes "make `pytest tests/test_feature2.py`
+pass" instead of a paragraph of prose, and the acceptance criterion cannot drift.
+
+The alternative for the next feature, then, is: before prompting, write one test that
+encodes what "correct" means for this step, commit it, and ask the agent to
+implement against it. You decide what must be true; the agent does the work of
+satisfying it.
+
+For research code, the tests worth writing first are rarely about function
+signatures. They are about the data and the result: the row count and class balance
+you expect, a hand-checked subset the pipeline must reproduce, a metric that must be
+stable across seeds, a split that must not leak. Those are the tests in the next
+section, and they are this lesson's form of test-driven development.
+
 ## Agents speed up the code; good data science practice still applies
 
 Research computing already had an answer to "how do I know this analysis is correct?"
@@ -180,7 +207,8 @@ in minutes as well. The checking has to keep pace.
 ## Tests for good data science practice
 
 Each of the practices above can be written as a test the agent implements and CI
-runs. Prompts to start from:
+runs. Written before the feature they protect, they are test-driven development for
+research code. Prompts to start from:
 
 - **Know your data.** *Write a test that loads the raw data and asserts the row
   count, class balance and missing-value rate we expect. Print the majority-class
@@ -347,7 +375,8 @@ checking to the stakes, and choose the tier explicitly before starting:
 - Checking is the bottleneck. Agents multiply commits far more than releases, pull requests are larger and harder to review, and unreviewed merges increase. Verification is the scarce skill.
 - The pull request is the final human check. Review by eye alone does not scale, so it needs tests on every push and checks that fail loudly.
 - Established practice still applies: know your data, compare to a source of truth, know what your model responds to, reproduce the result, plot and review.
-- Each good-practice item can be a test the agent writes and CI runs: data expectations, a hand-checked subset, seed stability, sensible top predictors, no leakage.
+- Test-driven development reverses the usual order: write the test that states the required behavior first, then have the agent make it pass. The test is the specification.
+- For research code, the tests to write first are about the data and the result: data expectations, a hand-checked subset, seed stability, sensible top predictors, no leakage. Each can be a test the agent writes and CI runs.
 - Split by the unit that repeats, and assert it. A clean-running 0.91 can be 0.58 on unseen subjects.
 - After every feature, before the next: have the agent list its assumptions, propose tests and edge cases, add them, and run them. Then commit.
 - Make verification automatic: tests in CI and a protected `main`. Autonomy is purchased with verification.

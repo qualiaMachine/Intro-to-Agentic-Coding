@@ -24,7 +24,7 @@ Three principles run through the lesson:
    can check. An underspecified prompt does not produce random code; it produces the
    statistically typical code for the average project, and research data is rarely
    the average case.
-3. **Assume nothing; verify everything.** Rely on tests. Good data science practice
+3. **Assume nothing; verify everything.** Rely on test-driven development. Good data science practice
    still applies in full: examine the data, know the distributions, and know what the
    model is responding to. Code that runs without error and scores well can still be
    wrong.
