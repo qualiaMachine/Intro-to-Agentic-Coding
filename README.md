@@ -21,7 +21,7 @@ resource.
 
 ## Episodes
 
-The first eight episodes follow the two-hour workshop in order; the last three are
+The first eight episodes follow the two-hour workshop in order; the last two are
 asynchronous reading.
 
 1. What Is Agentic Coding?
@@ -33,8 +33,7 @@ asynchronous reading.
 7. MCP Tools and Skills: Extending Your Agent
 8. Cost, Context, and Energy
 9. Documentation: Notes to Your Future Self (and Your Agent)
-10. Common Workflows
-11. What the Research Shows, and Where This Leaves Us
+10. What the Research Shows, and Where This Leaves Us
 
 ## Building the lesson locally
 
