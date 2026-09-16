@@ -23,6 +23,15 @@ exercises: 15
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+## The agent is not a magic wand
+
+Most frustration with agents comes from using them as one: describe the whole
+project, wait, and receive something plausible and wrong. This style of use is
+sometimes called vibe coding. The remedy is a person in the loop who knows the
+domain. You decide what to build next; the agent builds that one thing; you check it
+before the next. Your expertise is what makes the arrangement work, not the prompt
+and not the model.
+
 ## Work feature by feature, not project by project
 
 A feature is one thing you can check: load and validate the data slice; train one
@@ -119,29 +128,9 @@ A checklist for research-code prompts:
 The last item leads into the next episode. A prompt that includes its own check is
 worth more than one that does not.
 
-## Maintenance tasks agents do well
+:::::::::::::::::::::::::::::::::::: challenge
 
-Not every feature is new analysis. Agents are reliably good at the routine work that
-keeps a research repository usable, provided each task is treated as a feature:
-small, specified, checkable, one pull request, reviewed by you.
-
-- **Refactoring.** Split the 400-line notebook into functions and a script. Tests
-  pass before and after, or the refactor is not complete.
-- **Docstrings and type hints** on every function. Ask for a diff that changes no
-  logic, then confirm that it did not.
-- **A README that matches the code.** "Read the repo and list what the README says
-  that is no longer true."
-- **Environment files.** Pin `requirements.txt` or `environment.yml` from what the
-  code imports.
-- **Weekly merge preparation.** "Summarize what changed on this branch since `main`,
-  for the teammates who were not here."
-
-The [documentation](documentation.md) episode covers the first three in more depth,
-and explains why documentation improves later agent sessions.
-
-::::::::::::::::::::::::::::::::::::: challenge
-
-## Exercise: Implement feature 1 from your plan (15 minutes)
+## Exercise: Implement feature (or step) 1 from your plan (15 minutes)
 
 Take feature 1 from your `plan.md`, or any feature you want to add.
 
@@ -215,8 +204,29 @@ complete, with choices you did not make and no list of them.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+:## Maintenance tasks agents do well
+
+Not every feature is new analysis. Agents are reliably good at the routine work that
+keeps a research repository usable, provided each task is treated as a feature:
+small, specified, checkable, one pull request, reviewed by you.
+
+- **Refactoring.** Split the 400-line notebook into functions and a script. Tests
+  pass before and after, or the refactor is not complete.
+- **Docstrings and type hints** on every function. Ask for a diff that changes no
+  logic, then confirm that it did not.
+- **A README that matches the code.** "Read the repo and list what the README says
+  that is no longer true."
+- **Environment files.** Pin `requirements.txt` or `environment.yml` from what the
+  code imports.
+- **Weekly merge preparation.** "Summarize what changed on this branch since `main`,
+  for the teammates who were not here."
+
+The [documentation](documentation.md) episode covers the first three in more depth,
+and explains why documentation improves later agent sessions.
+
 ::::::::::::::::::::::::::::::::::::: keypoints
 
+- The agent is not a magic wand. A person who knows the domain decides what to build next; the agent builds that one thing.
 - A feature is one thing you can check. Work through the plan one feature per session, with a small diff and one pull request.
 - Underspecified prompts receive average-case answers, and research data is rarely the average case. The failure mode is plausible-but-wrong.
 - Context engineering sets the standing rules (context file, standards, plan); prompt engineering phrases the specific request. Use both.

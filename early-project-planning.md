@@ -113,7 +113,7 @@ only when you are ready for it to edit.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Exercise: Agree how your team will work together (10 minutes)
+## Exercise: Agree how your team will collaborate (10 minutes)
 
 Every member of the team is about to use a coding agent on the same repository, which
 will produce more branches, more commits, and larger diffs than a typical project.
@@ -127,16 +127,16 @@ Decide the rules before the first feature, and have the agent draft them.
 
    > Our team of \<n\> is working in one GitHub repo on \<challenge\>. Every one of us
    > is using a coding agent, so we will be generating more branches, more commits
-   > and bigger diffs than a normal class project.
+   > and bigger diffs than a normal project.
    >
-   > We each work on a branch named for us and merge to `main` through a pull
-   > request. Propose the rest of the conventions that keep `main` clean and
-   > reviewable. Cover branch naming, how small a pull request should be, who
-   > reviews, what an agent may touch without asking, how we avoid two agents editing
-   > the same file, and what goes in commit messages.
+   > Propose contributing conventions that keep `main` clean and reviewable. Cover
+   > branch naming, how small a pull request should be, who reviews, what an agent
+   > may touch without asking, how we avoid two agents editing the same file, and
+   > what goes in commit messages. Also suggest how to organize the repo structure so
+   > any new files go in the correct spot.
    >
-   > Write `CONTRIBUTING.md`. Commit it to a branch named for me, not to `main`, and
-   > open a pull request for it. Short enough that people read it.
+   > Write `CONTRIBUTING.md`. Commit it to a development branch named for me, not to
+   > `main`, and open a pull request for it. Short enough that people read it.
 
 3. **Edit what it produces.** Keep the rules the team will follow and remove the
    rest.
@@ -290,7 +290,7 @@ safety-critical rules with permissions, hooks, or branch protection.
 
 - Plan before code. Planning measurably improves accuracy, and a good plan usually reduces token use. Keep planning proportional to the task.
 - A plan is only as good as its context. Provide the goal, constraints, compute, existing code, standards, and prior decisions; for long work, keep the plan in a file the agent updates.
-- Agree team conventions first (branches rather than forks, pull-request size, who reviews, what the agent may not modify) and commit them as a `CONTRIBUTING.md` that agents also read.
+- Agree team conventions first (branches rather than forks, pull-request size, who reviews, what the agent may not modify, where new files go) and commit them as a `CONTRIBUTING.md` that agents also read.
 - Use plan mode (read-only) to review a plan. The deliverable is a `plan.md` with ordered features and a check for each, committed before any code.
 - Start from a minimum viable pipeline: a slice of data, one model, something you understand end to end.
 - Question AI design suggestions before adopting them, most carefully where your domain knowledge is weakest. If you cannot explain it, you do not yet own it.
