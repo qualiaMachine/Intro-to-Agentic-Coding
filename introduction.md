@@ -1,7 +1,7 @@
 ---
 title: "What Is Agentic Coding?"
 teaching: 15
-exercises: 5
+exercises: 0
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions
@@ -96,6 +96,11 @@ task:
 - A well-scoped, clearly described task in a repository with good tests: delegation
   works, because the specification and the tests carry the intent.
 
+The tasks researchers are most reluctant to delegate are usually the ones whose
+results they would find hard to check, rather than the ones that are hardest to do.
+That judgment is sound. The autonomy you can grant is limited by how well you can
+verify the result, which is the subject of the verification episode.
+
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Inside an agent: model, harness, tools, loop
@@ -184,35 +189,7 @@ done. The answers indicate the range of experience in the group.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::: challenge
-
-## Exercise: Place your own work on the spectrum (5 minutes)
-
-Consider the last time you used AI for anything code-related. Pasting an error into a
-chatbot counts.
-
-1. Where does that use sit on the spectrum: a directed edit, a bounded task with a
-   plan, or a whole project?
-2. Name one task in your current research where you would want more autonomy from an
-   AI tool, and one where you would not. What distinguishes them?
-
-Compare with a neighbor.
-
-:::::::::::::::::::::::: solution
-
-## Typical answers
-
-Most researchers cluster at the chat end. The tasks people decline to delegate are
-usually the ones whose results they would find hard to check (their core analysis),
-rather than the ones that are hardest to do. That judgment is sound and is the central
-theme of the lesson: the autonomy you can grant is limited by how well you can verify
-the result.
-
-:::::::::::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-## Principles rather than one tool
+:## Principles rather than one tool
 
 Each practice in this lesson (limiting access, planning, specifying, verifying,
 managing cost) applies unchanged to whichever tool you or your group uses, so the main
