@@ -14,145 +14,145 @@ exercises: 5
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Give an order-of-magnitude energy figure for a chat query, a coding session, and a heavy agentic day — and say why the estimates spread.
-- Explain why tokens accumulate super-linearly over a long agentic session.
+- Give an order-of-magnitude energy figure for a chat query, a coding session, and a heavy agentic day, and explain why the estimates vary.
+- Explain why token use grows faster than linearly over a long agentic session.
 - Use `/cost`, `/compact`, model switching, and skills (or their equivalents) to manage context and spending.
-- Compare real-world session cost across models before committing to one.
+- Compare real session cost across models before committing to one.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## How much energy do AI models use?
+## Energy use of AI models
 
-People arrive with a claim — a prompt costs gallons of water — so replace it with a
-number. Estimates vary by an order of magnitude and no provider publishes per-query
-figures, but the range is well established:
+A common claim is that a single prompt consumes gallons of water. The estimates below
+replace that claim with numbers. They vary by an order of magnitude, and no provider
+publishes per-query figures, but the range is well established:
 
 | Activity | Energy | Source |
 |----------|--------|--------|
-| One chat query | ~0.3 Wh — an LED bulb for about two minutes | Epoch AI per-token estimates |
-| One median coding session (24 model calls, ~590k tokens) | ~41 Wh — roughly 130 chat queries | [Simon Couch, 2026](https://simonpcouch.com/blog/2026-01-20-cc-impact/) |
-| One heavy agentic day | ~one dishwasher cycle, or a refrigerator running for a day | Simon Willison, 2026 |
+| One chat query | ~0.3 Wh, about two minutes of an LED bulb | Epoch AI per-token estimates |
+| One median coding session (24 model calls, ~590k tokens) | ~41 Wh, roughly 130 chat queries | [Simon Couch, 2026](https://simonpcouch.com/blog/2026-01-20-cc-impact/) |
+| One heavy agentic day | About one dishwasher cycle, or a refrigerator for a day | Simon Willison, 2026 |
 | A median session on large analyses with subagents | ~600 Wh | [Zeke Hausfather, 2026](https://www.theclimatebrink.com/p/the-real-energy-use-of-agentic-ai) |
 
-Couch scaled Epoch's per-token estimates against his real Claude Code token counts.
-Hausfather ran his own tokens through three published methods and got a number an
+Couch scaled Epoch AI's per-token estimates by his own Claude Code token counts.
+Hausfather ran his own tokens through three published methods and obtained a figure an
 order of magnitude higher, because he runs subagents on large analyses. Nobody outside
-the labs knows the true per-token energy. The defensible statement is an **order of
-magnitude, not a precise figure: tens of watt-hours per session, hundreds if you run
-agents heavily.**
+the labs knows the true per-token energy. The defensible statement is an order of
+magnitude rather than a precise figure: tens of watt-hours per session, hundreds
+under heavy agent use.
 
-Two macro takeaways survive the uncertainty:
+Two conclusions hold regardless of the uncertainty:
 
-- **The real issue is aggregate demand.** Individual queries are lightweight, but
-  massive scaling drives significant overall power consumption. OpenAI's CEO once
-  noted that a single California almond takes as much water as tens of thousands of
-  ChatGPT queries — meant to downplay per-query impact, it mostly shows how micro-costs
-  scale when billions of queries a day are processed.
-- **Inference dominates training.** Operational inference, not model training, is
-  where most AI energy now goes — which means your usage patterns are the lever.
+- **The issue is aggregate demand.** Individual queries are light, but at scale they
+  add up. OpenAI's chief executive has noted that a single California almond requires
+  as much water as tens of thousands of ChatGPT queries. The comparison was meant to
+  minimize per-query impact; it also shows how small unit costs accumulate when
+  billions of queries are processed daily.
+- **Inference dominates training.** Most AI energy now goes to serving queries rather
+  than training models, so usage patterns are the variable within the user's
+  control.
 
-This is not an argument against the tools; the productivity per unit of energy may
-well beat the alternative. It is an argument for **intentionality**. Don't let an
-agent spin in loops that a well-scoped prompt would have avoided.
+This is not an argument against the tools; productivity per unit of energy may well
+exceed the alternative. It is an argument for deliberate use. An agent that loops
+because of a vague prompt spends energy a clear prompt would have saved.
 
-## Why agentic sessions burn tokens
+## Why agentic sessions use many tokens
 
 A chat query is one round trip. An agentic session chains hundreds: read files,
-reason, write code, run commands, read the output, iterate. A focused task might use
-50K–200K tokens; a sprawling underspecified session can burn over a million. Two
-dynamics drive this:
+reason, write code, run commands, read the output, repeat. A focused task might use
+50K–200K tokens; an underspecified session can exceed a million. Two mechanisms
+account for this:
 
-- **Agentic loops.** A vague prompt sends the agent into try–fail–read-more–try-again
-  cycles. (This is the *same* failure as in the feature-based-development episode —
-  vagueness costs quality *and* money *and* energy.)
-- **Context accumulation.** Every new message resends the accumulated conversation —
-  file contents, command output, all of it. The 50th message in a session costs far
-  more than the 1st.
+- **Agentic loops.** A vague prompt sends the agent into cycles of trying, failing,
+  reading more, and trying again. This is the same failure described in the
+  feature-based-development episode: vagueness costs quality, money, and energy.
+- **Context accumulation.** Every new message resends the accumulated conversation,
+  including file contents and command output. The fiftieth message in a session costs
+  far more than the first.
 
-## Techniques to reduce token usage
+## Reducing token use
 
-- **Pay attention to usage.** Look at what you're spending. It's also how you catch
-  a runaway agent burning tokens on retries.
-- **Police which model you are using and match it to the task's difficulty.** Not
-  every task needs your most expensive model. Keep a smaller model as the default
-  for mechanical work (renames, formatting, lookups) and switch up deliberately when
-  the task needs the reasoning. Providers won't route for you — they optimize for
-  spend, not efficiency.
-- **Minimize the context in each session.** As a session runs long, old context piles
-  up and every future message re-pays for it. Start fresh between unrelated tasks;
-  compact a long thread instead of letting it grow. Prefer search over reading whole
-  files — context is what you pay for.
-- **Use skills** to reduce input and output. A skill loads a short pointer instead of
-  a long explanation every time; the [caveman](https://github.com/JuliusBrussee/caveman)
-  skill from the previous episode cuts output tokens by design.
-- **Push long or independent tasks to a background agent** rather than watching a
-  meter run on a foreground session.
-- **Compare real-world session cost across models before you commit to one, not just
-  benchmark scores.** [OpenRouter's session-cost rankings](https://openrouter.ai/rankings#session-cost)
-  track what people spend per session across live agentic-coding traffic, which is
-  a useful check against vendor claims.
+- **Watch usage.** Knowing what you are spending is also how you detect an agent that
+  is retrying in a loop.
+- **Match the model to the task.** Not every task requires the most expensive model.
+  Use a smaller model by default for mechanical work (renames, formatting, lookups)
+  and switch to a larger one when the task requires the reasoning. Providers do not
+  route for you; they are optimized for spend rather than efficiency.
+- **Keep sessions short.** As a session grows, old context accumulates and every
+  subsequent message pays for it again. Start fresh between unrelated tasks; compact a
+  long thread rather than letting it grow. Prefer search over reading whole files,
+  since context is what you pay for.
+- **Use skills.** A skill loads a short pointer instead of a long explanation each
+  time. The [caveman](https://github.com/JuliusBrussee/caveman) skill from the
+  previous episode reduces output tokens by design.
+- **Run long or independent tasks in a background agent** rather than in a foreground
+  session you are watching.
+- **Compare real session cost across models before committing to one.**
+  [OpenRouter's session-cost rankings](https://openrouter.ai/rankings#session-cost)
+  report what people spend per session across live agentic-coding traffic, which is a
+  useful check against vendor benchmarks.
 
 :::::::::::::::: group-tab
 
 ### Claude Code
 
-- `/cost` — what the current session has consumed; `/context` — what's filling the
+- `/cost`: what the current session has consumed; `/context`: what is occupying the
   window.
-- `/model` — switch models mid-session.
-- `/clear` — reset context between unrelated tasks. The cheapest habit to adopt.
-- `/compact` — summarize a long conversation, keeping what matters.
-- <kbd>Esc</kbd> — interrupt an agent that's heading the wrong way.
+- `/model`: switch models mid-session.
+- `/clear`: reset context between unrelated tasks. The cheapest habit to adopt.
+- `/compact`: summarize a long conversation, retaining what matters.
+- <kbd>Esc</kbd>: interrupt an agent that is heading in the wrong direction.
 
 ### GitHub Copilot
 
-- Check credit/premium-request usage on your
-  [Copilot settings page](https://github.com/settings/copilot); model choice changes
-  the burn rate.
+- Check credit and premium-request usage on the
+  [Copilot settings page](https://github.com/settings/copilot). Model choice changes
+  the rate.
 - The model picker in the chat panel switches models.
-- **New chat** between unrelated tasks — the `/clear` equivalent.
+- **New chat** between unrelated tasks is the equivalent of `/clear`.
 - For a long thread, carry a short summary of key decisions into a fresh chat.
-- The **stop button** interrupts an agent-mode session mid-flight.
+- The **stop button** interrupts an agent-mode session.
 
 ::::::::::::::::::::::::
 
-Whichever tool: course-correct early. An agent heading the wrong way generates output
-you then pay to carry in context for the rest of the session. **A tight, specific
-prompt in a clean context is simultaneously higher-quality, cheaper, and greener.**
+In any tool, correct course early. An agent heading in the wrong direction generates
+output that is then carried in context, at cost, for the rest of the session. A
+specific prompt in a clean context is at once higher quality, cheaper, and lower in
+energy.
 
 ::::::::::::::::::::::::::::::::::::: callout
 
 ## Use the model to build tools, not to be the tool
 
-The wasteful pattern isn't agentic coding — it's reaching for a frontier model for
-*every single question*: pasting data into chat to eyeball it, re-asking it to
-convert units or check a threshold, day after day. Code generation inverts that.
-Spend the model's compute **once** to produce a good script, and that script then
-runs deterministically at a negligible fraction of the energy — forever, and
-reproducibly. If you find yourself asking an AI the same kind of question
-repeatedly, that's a script asking to be written.
+The wasteful pattern is not agentic coding but using a frontier model for every
+individual question: pasting data into chat to inspect it, asking it to convert units
+or check a threshold, repeatedly. Code generation reverses this. The model's compute
+is spent once to produce a script, and the script then runs deterministically at a
+negligible fraction of the energy, indefinitely and reproducibly. If you ask an AI the
+same kind of question repeatedly, that is a script that has not yet been written.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Exercise: What did tonight cost? (5 minutes)
+## Exercise: What did this session cost? (5 minutes)
 
 1. Check what your session has consumed (`/cost` in Claude Code; the usage dashboard
-   for Copilot) and note the number and the model.
-2. Back-of-napkin energy: if a median session ≈ 41 Wh, scale by how much of a
-   typical session you've used (tokens are a reasonable proxy). How many chat queries
-   is that? What fraction of a dishwasher run?
-3. Look back at your session history: which single interaction consumed the most? Was
-   it a vague prompt that triggered a loop?
+   for Copilot) and record the figure and the model.
+2. Estimate the energy: if a median session is about 41 Wh, scale by the fraction of
+   a typical session you have used (tokens are a reasonable proxy). How many chat
+   queries is that? What fraction of a dishwasher cycle?
+3. Review the session history. Which single interaction consumed the most? Was it a
+   vague prompt that produced a loop?
 
 :::::::::::::::::::::::: solution
 
 ## Typical findings
 
-Most workshop sessions land in the low single-digit Wh — a few percent of a
-dishwasher run. The interesting result is usually #3: one underspecified prompt
-accounts for a disproportionate share of the total. A clearer sentence in the prompt
-would have made those tokens unnecessary.
+Most workshop sessions come to a few watt-hours, a small percentage of a dishwasher
+cycle. The informative result is usually the third item: one underspecified prompt
+accounts for a disproportionate share of the total. A clearer sentence in that prompt
+would have avoided those tokens.
 
 :::::::::::::::::::::::::::::::::
 
@@ -160,10 +160,10 @@ would have made those tokens unnecessary.
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 
-- A chat query is ~0.3 Wh; a median coding session ~41 Wh; a heavy agentic day about a dishwasher cycle. Estimates spread by an order of magnitude — think tens to hundreds of Wh per session, not precision.
-- The issue is aggregate demand, and inference now dominates; your usage patterns are the lever.
-- Agentic sessions chain hundreds of model calls; context accumulation makes late messages far more expensive than early ones.
+- A chat query is about 0.3 Wh; a median coding session about 41 Wh; a heavy agentic day about a dishwasher cycle. Estimates vary by an order of magnitude, so think in tens to hundreds of watt-hours per session.
+- The issue is aggregate demand, and inference now dominates. Usage patterns are the variable you control.
+- Agentic sessions chain hundreds of model calls, and context accumulation makes late messages far more expensive than early ones.
 - Watch usage, match the model to the task, keep sessions short and compact, use skills, and compare real session cost across models before committing.
-- Specific prompts in clean context are better, cheaper, and greener: one discipline, three benefits.
+- A specific prompt in a clean context is better, cheaper, and lower in energy. One discipline, three benefits.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::

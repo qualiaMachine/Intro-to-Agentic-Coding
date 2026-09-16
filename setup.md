@@ -8,14 +8,14 @@ To follow along you need four things:
 
 1. A working **git** installation and a GitHub account.
 2. A **Python** environment with `pandas`, `scikit-learn`, and `pytest`.
-3. Access to at least one **agentic coding tool** ("bring your own agent" is
-   encouraged — the lesson is tool-agnostic).
-4. A **repository to work on** — ideally your own project — and a way to load any
-   API keys that keeps them off disk.
+3. Access to at least one **agentic coding tool**. The lesson is tool-agnostic, so
+   any agent is acceptable.
+4. A **repository to work on**, ideally your own project, and a way to load any API
+   keys that keeps them off disk.
 
-The safety episode's first exercise, *Get your agent running*, walks through the
-first session; the checklist at the [end of this page](#before-your-first-session)
-is the same steps in short form.
+The safety episode's exercise *Get your agent running, safely* covers the first
+session. The checklist at the [end of this page](#before-your-first-session) lists
+the same steps in short form.
 
 ## Git and GitHub
 
@@ -61,37 +61,36 @@ python src/python/verify_environment.py
 
 ## No agentic tools on machines holding sensitive or restricted data
 
-If the machine you're on stores restricted data (FERPA, HIPAA/PHI, CUI,
-export-controlled, unpublished sensitive research, or anything under a data-use
-agreement), **do not install or run any agentic tool on it — even inside a dev
-container.** The container requirement below protects a *clean* machine from the
-agent; it is not a license to run agents next to restricted data, where one
-mis-mounted folder exposes everything and institutional policy bars unvetted tools
-regardless. Use a different machine, or a browser-only web route against a repo with
-no restricted data in it. The safety episode explains why.
+If the machine stores restricted data (FERPA, HIPAA/PHI, CUI, export-controlled
+data, unpublished sensitive research, or anything under a data-use agreement), **do
+not install or run any agentic tool on it, including inside a dev container.** The
+container requirement below protects a clean machine from the agent. It does not make
+it acceptable to run agents alongside restricted data, where one mis-mounted folder
+exposes everything and institutional policy prohibits unvetted tools in any case. Use
+a different machine, or a browser-only web route against a repository containing no
+restricted data. The safety episode explains the reasoning.
 
 :::::::::::::::::::::::::::::::::::::::::::::::
 
 Any of the tools below works for every exercise. If your workshop provides cloud
-credits or a specific tool, use that; otherwise pick whichever you can access.
+credits or a specific tool, use that; otherwise use whichever you can access.
 
 ::::::::::::::::::::::::::::::::::::::: callout
 
 ## Access-route policy: web UI recommended; otherwise a dev container is required
 
-Agents run with the permissions of wherever they execute. For this workshop (and as
-good default practice):
+Agents run with the permissions of the environment they execute in. For this
+workshop, and as a general default:
 
-- **Recommended: use a web UI**, where the agent works on a **cloud copy of a GitHub
-  repo and has no access to your machine at all** — no local filesystem, no SSH keys,
-  no credentials. Nothing to isolate, because nothing runs locally.
-- **If you run an agent locally instead, you MUST run it inside a dev container** (or
-  a cloud workspace like GitHub Codespaces). A bare local agent has your full user
-  account's access; a container caps the blast radius at the project directory.
+- **Recommended: use a web UI**, in which the agent works on a cloud copy of a GitHub
+  repository and has no access to your machine: no local filesystem, no SSH keys, no
+  credentials. There is nothing to isolate because nothing runs locally.
+- **If you run an agent locally instead, run it inside a dev container** (or a cloud
+  workspace such as GitHub Codespaces). A bare local agent has your full user
+  account's access; a container limits it to the project directory.
 
 The [dev container setup](#dev-container-required-for-any-local-agent) below takes
-about five minutes. If that's friction you don't want, that's one more reason to take
-the web route.
+about five minutes. If you prefer to avoid it, use the web route.
 
 :::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -208,18 +207,18 @@ machine.
    containerized: `ls ~` inside the terminal should show a bare container home, not
    your real one.
 
-No Docker and no time? Use **GitHub Codespaces** — it's the same devcontainer.json
-running on a cloud machine, with a generous free tier, and it satisfies the
-requirement with zero local installs.
+If you cannot install Docker, use **GitHub Codespaces**. It runs the same
+`devcontainer.json` on a cloud machine, has a free tier, and satisfies the
+requirement with no local installation.
 
 ::::::::::::::::::::::::::::::::::::::: callout
 
 ## Before the workshop: check your data-privacy settings
 
-If you're on an individual/consumer AI plan, find the model-training toggle in your
-account settings and make a deliberate choice. And remember: no restricted or sensitive
-data (student records, health data, unpublished sensitive research) goes into any AI
-tool not covered by an institutional agreement. UW–Madison folks: see
+If you are on an individual or consumer AI plan, find the model-training setting in
+your account and make a deliberate choice. No restricted or sensitive data (student
+records, health data, unpublished sensitive research) goes into any AI tool not
+covered by an institutional agreement. UW–Madison users: see
 [it.wisc.edu/ai](https://it.wisc.edu/ai/).
 
 :::::::::::::::::::::::::::::::::::::::::::::::
@@ -229,27 +228,27 @@ tool not covered by an institutional agreement. UW–Madison folks: see
 The [MCP tools and skills](../episodes/skills-and-mcp.md) episode connects your agent
 to the GitHub MCP server. Create a
 [fine-grained personal access token](https://github.com/settings/personal-access-tokens/new)
-scoped to **read-only** access (Issues and Pull requests: read) on one repository you
-don't mind exposing — not a token with write, delete, or org-wide scope. Set it as an
-environment variable (`GH_TOKEN`) rather than pasting it into a config file you might
-commit.
+scoped to **read-only** access (Issues and Pull requests: read) on one repository
+you do not mind exposing, not a token with write, delete, or organization-wide scope.
+Set it as an environment variable (`GH_TOKEN`) rather than writing it into a
+configuration file that might be committed.
 
 ## A repository to work on
 
-The exercises run on **your own project repository** where possible — the team
-conventions, the plan, the first feature, the assertions, and the CI workflow all
-land in a repo you'll keep using. For a team project:
+The exercises run on **your own project repository** where possible. The team
+conventions, the plan, the first feature, the assertions, and the CI workflow are all
+committed to a repository you will continue to use. For a team project:
 
-- **One shared repo, branches not forks.** Everyone works on a branch named for
-  them. Teammates and their agents can `git fetch` and read a branch; they cannot see
-  a fork without adding remotes.
-- **No write access yet?** Ask the repo owner to add you as a collaborator before
-  the session, not during it.
-- **Protect `main`** so nothing lands without a pull request (the verification
-  episode adds a passing-check requirement).
+- **One shared repository, with branches rather than forks.** Each person works on a
+  branch named for them. Teammates and their agents can fetch and read a branch; they
+  cannot see a fork without adding remotes.
+- **Obtain write access before the session.** If you lack it, ask the repository
+  owner to add you as a collaborator.
+- **Protect `main`** so that nothing is merged without a pull request. The
+  verification episode adds a passing-check requirement.
 
-No project yet? Create a small repository now with a README and a slice of data you
-understand. The feature-based-development episode also provides a scikit-learn
+If you have no project, create a small repository now with a README and a slice of
+data you understand. The feature-based-development episode provides a scikit-learn
 starter for anyone without a dataset.
 
 ## API keys: a password manager, never a file
@@ -268,27 +267,27 @@ export OPENAI_API_KEY=$(op read 'op://Private/<item>/credential')     # bash/zsh
 $env:OPENAI_API_KEY = op read "op://Private/<item>/credential"        # PowerShell
 ```
 
-For JupyterLab, keep a `.env.op` file of `op://` *references* (safe to commit) and
+For JupyterLab, keep a `.env.op` file of `op://` references (safe to commit) and
 launch with `op run --env-file=.env.op -- jupyter lab`. The safety episode shows the
-full pattern. If you don't use 1Password, any secrets manager or your OS keyring
-works the same way — the rule is that no key lives in the repository or in a
+full pattern. If you do not use 1Password, any secrets manager or your OS keyring
+works the same way. The rule is that no key is stored in the repository or in a
 plaintext file an agent could read.
 
 ## Before your first session
 
 The checklist from the *Get your agent running, safely* exercise:
 
-1. **Pick a cloud route with plan mode.** Claude: [claude.ai/code](https://claude.ai/code),
-   nothing to install; plan mode is built in. Copilot: install the
+1. **Choose a cloud route with plan mode.** Claude: [claude.ai/code](https://claude.ai/code);
+   nothing to install, and plan mode is built in. Copilot: install the
    [GitHub Copilot app](https://docs.github.com/en/copilot/concepts/agents/github-copilot-app)
    for an explicit plan mode (the agent asks questions and waits for your approval
-   before it edits) and start a **cloud** session, not local. No install? The Copilot
-   web works too: ask for a plan in the prompt and you get the same approve-or-exit
-   gate, with less interaction. The desktop apps are fine as long as the session is a
-   cloud one.
-2. **Confirm cloud before you prompt.** The session should show a cloud VM and a
-   GitHub repository, not a local folder. Cloud sandboxes are usage-billed; test your
-   account first.
-3. **Point it at your project repo**, on a branch named for you.
-4. **Keys via `op read`**, no `.env` anywhere in the repo.
+   before editing) and start a **cloud** session, not a local one. If you cannot
+   install it, the Copilot web works too: ask for a plan in the prompt and you get
+   the same approve-or-exit gate, with less interaction. The desktop apps are
+   acceptable provided the session is cloud-hosted.
+2. **Confirm the session is cloud-hosted before you prompt.** It should show a cloud
+   VM and a GitHub repository, not a local folder. Cloud sandboxes are billed by
+   usage; confirm your account works first.
+3. **Point it at your project repository**, on a branch named for you.
+4. **Load keys with `op read`.** No `.env` in the repository.
 5. **Start from a clean git state.**

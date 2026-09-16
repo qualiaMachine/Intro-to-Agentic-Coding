@@ -6,7 +6,7 @@ exercises: 5
 
 :::::::::::::::::::::::::::::::::::::: questions
 
-- Why is documentation one of the best uses of agentic coding?
+- Why is documentation one of the better uses of agentic coding?
 - How does documentation feed back into agent performance?
 - Can asking an agent to explain code help verify it?
 
@@ -15,103 +15,98 @@ exercises: 5
 ::::::::::::::::::::::::::::::::::::: objectives
 
 - Use an agent to produce and maintain documentation: docstrings, comments, READMEs, and narrated notebooks.
-- Explain how documentation doubles as persistent context that improves future agent (and human) sessions.
-- Use "explain this code" as a verification technique, treating doc/code mismatches as bug reports.
-- Review generated documentation with the same skepticism as generated code.
+- Explain how documentation serves as persistent context that improves later agent (and human) sessions.
+- Use "explain this code" as a verification technique, treating mismatches between documentation and code as bug reports.
+- Review generated documentation with the same care as generated code.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## The chore that stopped being a chore
+## Why documentation suits agents
 
 The feature-based-development episode listed docstrings, README audits, and
-environment pins among the maintenance tasks agents do well. This episode — reading
-for after the workshop — explains why documentation deserves more than a bullet.
+environment pins among the maintenance tasks agents do well. This episode, intended
+for reading after the workshop, explains why documentation deserves more attention
+than that.
 
-Research code is famously under-documented, and the reason was never that anyone
-doubted documentation's value. It was cost: after the analysis finally works, writing
-up docstrings and updating the README is exactly the tedious, low-glamour work that
-loses to the next experiment. Agents change that economics completely — documentation
-is the task they are *best* suited to, because the source of truth (the code) is right
-there in context, and because you can review a paragraph of English far faster than
-you can review an implementation.
+Research code is under-documented, and the reason was never doubt about the value of
+documentation. It was cost. Once an analysis works, writing docstrings and updating
+the README is the low-priority task that loses to the next experiment. Agents change
+this. Documentation is the task they are best suited to, because the source of truth
+(the code) is in context, and because a paragraph of prose is faster to review than
+an implementation.
 
-Make it a habit to ask for documentation as part of every task, or as a cleanup pass:
+Request documentation as part of each task, or as a separate pass:
 
-- **Docstrings**: "Add NumPy-style docstrings to every public function in `src/io.py`,
-  including parameter types and the exceptions raised."
-- **Comments where they matter**: "Add comments explaining *why* the outlier threshold
-  is 3.5 here" — not line-by-line narration of *what* the code does.
-- **READMEs for your future self**: "Update the README: how to set up the environment,
-  run the pipeline end to end, and where outputs land. Note the raw data is read-only."
-- **Narrated notebooks**: "Add a markdown cell before each code cell explaining what it
-  does and why, at a level a new lab member could follow."
-- **Session notes**: at the end of a work session, "summarize what we changed, what's
-  still broken, and where to pick up" — pasted into the README, a `NOTES.md`, or your
-  lab notebook. Your future self is a stranger who will thank you.
+- **Docstrings**: "Add NumPy-style docstrings to every public function in
+  `src/io.py`, including parameter types and the exceptions raised."
+- **Comments where they matter**: "Add comments explaining why the outlier threshold
+  is 3.5 here." Not line-by-line narration of what the code does.
+- **READMEs**: "Update the README: how to set up the environment, run the pipeline
+  end to end, and where outputs are written. Note that the raw data is read-only."
+- **Narrated notebooks**: "Add a markdown cell before each code cell explaining what
+  it does and why, at a level a new group member could follow."
+- **Session notes**: at the end of a working session, "summarize what we changed,
+  what is still broken, and where to resume," saved to the README, a `NOTES.md`, or
+  a lab notebook.
 
-## Documentation is context — it compounds
+## Documentation is context
 
-What makes this more than good hygiene: **everything you document becomes
-context the agent reads back in later sessions.** Remember the planning episode — agents
-recover *what* and *how* from code, but not *why*, *for whom*, or *what the data
-means*. Documentation is precisely where the "why" gets written down:
+Everything you document becomes context the agent reads in later sessions. As the
+planning episode explained, agents recover *what* and *how* from code but not *why*,
+*for whom*, or *what the data means*. Documentation is where those are recorded:
 
-- A good README means next month's session starts with the agent already knowing how
-  to run your tests, instead of guessing.
+- A good README means the next session begins with the agent already knowing how to
+  run the tests, rather than guessing.
 - Docstrings carry intent ("assumes input is sorted by timestamp") that stops the
   agent from "fixing" deliberate behavior.
-- A data dictionary — column meanings, units, known quirks — is the difference between
-  an agent that treats `-999` as a measurement and one that knows it's your missing
-  code.
+- A data dictionary (column meanings, units, known quirks) is the difference between
+  an agent that treats `-999` as a measurement and one that knows it is the missing
+  value code.
 
-In other words, documentation gives LLMs useful added context that measurably improves
-what they produce — the same way it helps a new collaborator. Time spent documenting
-is not a tax on this workflow; it's an investment that pays out on every future
-session, human or agent.
+Documentation therefore improves what the model produces, in the same way it helps a
+new collaborator. Time spent documenting is repaid in every later session, whether
+the reader is a person or an agent.
 
-## Explaining as verification
+## Explanation as verification
 
-There is a second, less obvious benefit: **asking an agent to explain or document
-code is a verification act.** To write an accurate docstring, the model has to process
-what the code does — and mismatches between the explanation and your intent surface
-real problems:
+Asking an agent to explain or document code is also a check on the code. To write an
+accurate docstring the model has to process what the code does, and mismatches
+between its explanation and your intent point to problems:
 
-- Ask for a plain-English explanation of a pipeline you just built (or inherited). If
-  the explanation *surprises* you — "it then drops rows with missing labels before the
-  split" — you may have just found a bug, or at least an undocumented decision.
-- Ask the agent to document a function's edge-case behavior. "Returns 0 when the input
-  is empty" is either correct and worth writing down, or incorrect and worth fixing —
-  both outcomes are wins.
-- In a narrated notebook, a markdown cell that mis-describes its code cell is a red
-  flag for *you* — and, left uncorrected, a trap for the next reader. Fix one or the
-  other; never leave them disagreeing.
+- Ask for a plain-language explanation of a pipeline you built or inherited. If the
+  explanation surprises you ("it then drops rows with missing labels before the
+  split"), you may have found a bug or an undocumented decision.
+- Ask the agent to document a function's behavior on edge cases. "Returns 0 when the
+  input is empty" is either correct and worth recording, or incorrect and worth
+  fixing.
+- In a narrated notebook, a markdown cell that misdescribes its code cell is a
+  warning to you and, if left, a trap for the next reader. Correct one or the other;
+  never leave them in disagreement.
 
-This is rubber-duck debugging with a duck that answers. It doesn't replace the
-tests and checks from the verification episode — an explanation can be fluent and wrong —
-but it's a cheap extra verification layer, and it produces a durable artifact while
-verifying.
+This does not replace the tests and checks in the verification episode. An
+explanation can be fluent and wrong. But it is an inexpensive additional check that
+produces a durable artifact as a by-product.
 
 ::::::::::::::::::::::::::::::::::::: callout
 
-## Review docs like code — stale docs are worse than none
+## Review documentation as code; stale documentation is worse than none
 
-Generated documentation inherits the plausible-but-wrong failure mode: it reads
-confident, and it can be confidently mistaken. Read it before committing. And keep it
-current — documentation that contradicts the code misleads humans *and* poisons agent
-context, because agents trust what they read. When behavior changes, updating the
-docs is part of the change, not an optional follow-up. ("Update the docstring and
-README to match" is a fine thing to put in the same prompt as the change itself.)
+Generated documentation has the same failure mode as generated code: it reads as
+confident and can be confidently wrong. Read it before committing. Keep it current:
+documentation that contradicts the code misleads people and corrupts agent context,
+because agents trust what they read. When behavior changes, updating the
+documentation is part of the change. "Update the docstring and README to match" can
+go in the same prompt as the change itself.
 
-And don't rely on change-by-change discipline alone — **periodically run a full
-audit**:
+Do not rely on change-by-change discipline alone. Periodically run a full audit:
 
 > Go through the README, every docstring, and the comments, and verify each claim
-> against what the code does. Make no assumptions — read the code. List
-> every mismatch you find.
+> against what the code does. Make no assumptions — read the code. List every
+> mismatch you find.
 
-It's a cheap sweep (end of the week, before a release, before sharing the repo) that
-catches the drift that slips past you one edit at a time — and every mismatch it
-surfaces is either a doc fix or a bug found.
+This is inexpensive (end of week, before a release, before sharing the repository)
+and catches the drift that accumulates one edit at a time. Every mismatch it finds
+is either a documentation fix or a bug found.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -119,26 +114,25 @@ surfaces is either a doc fix or a bug found.
 
 ## Exercise: Document and cross-examine (5 minutes)
 
-Pick a function or notebook cell you (or an agent) wrote earlier today — or any
-undocumented piece of your own code.
+Choose a function or notebook cell you or an agent wrote today, or any undocumented
+piece of your own code.
 
 1. Ask the agent: "Write a docstring for this function, including behavior on edge
    cases (empty input, missing values). Then explain in two sentences what this
    function does and why it might exist."
 2. Read the result critically. Does the described behavior match your intent? Did it
-   claim an edge-case behavior you never decided on?
-3. If you find a mismatch, treat it as a bug report: fix the code or fix the doc, and
-   say which one you chose and why.
+   assert an edge-case behavior you never decided on?
+3. If you find a mismatch, treat it as a bug report: fix the code or fix the
+   documentation, and state which you chose and why.
 
 :::::::::::::::::::::::: solution
 
-## What people typically find
+## Typical findings
 
-Most participants find at least one surprise — usually an edge case the code handles
-by accident rather than by decision (what *does* it return for an empty DataFrame?).
-The docstring forced a decision that writing the code never did.
-And whichever way you resolve it, you leave behind both a checked behavior and a
-written record of it — verification and documentation in one pass.
+Most participants find at least one surprise, usually an edge case the code handles
+by accident rather than by decision (what does it return for an empty DataFrame?).
+The docstring forced a decision that writing the code never did. Either way of
+resolving it leaves both a checked behavior and a written record of it.
 
 :::::::::::::::::::::::::::::::::
 
@@ -146,10 +140,10 @@ written record of it — verification and documentation in one pass.
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 
-- Documentation is one of the best uses of agentic coding: the agent has the source of truth in context, and English is faster to review than code.
-- Ask for docstrings, why-comments, README updates, narrated notebooks, and end-of-session notes as a routine part of every task.
-- Documentation compounds: it becomes the context that makes future agent sessions (and future you) measurably better.
-- Explaining is verifying — a doc/code mismatch is a bug report; a surprising explanation is a lead worth chasing.
-- Review generated docs like code, and update them with the code: stale documentation misleads humans and poisons agent context. Periodically ask the agent to audit every doc claim against the actual code — no assumptions.
+- Documentation is one of the better uses of agentic coding: the source of truth is in context, and prose is faster to review than code.
+- Ask for docstrings, comments explaining why, README updates, narrated notebooks, and end-of-session notes as part of routine work.
+- Documentation compounds: it becomes the context that improves later agent sessions and helps your future self.
+- Explaining is verifying. A mismatch between documentation and code is a bug report; a surprising explanation is a lead.
+- Review generated documentation as you would code, and update it with the code. Periodically have the agent audit every documented claim against the code.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
