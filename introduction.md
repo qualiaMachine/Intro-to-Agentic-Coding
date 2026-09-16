@@ -18,7 +18,6 @@ exercises: 0
 - Define agentic coding and contrast it with chat-based and autocomplete-based AI assistance.
 - Describe an agent as a model plus a harness plus tools running an agent loop.
 - Place a request on the spectrum of autonomy, from a single edit to a whole project.
-- Explain why this lesson teaches principles rather than one tool.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -188,15 +187,6 @@ Ask participants whether anyone wants to describe something notable their agent 
 done. The answers indicate the range of experience in the group.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
-
-:## Principles rather than one tool
-
-Each practice in this lesson (limiting access, planning, specifying, verifying,
-managing cost) applies unchanged to whichever tool you or your group uses, so the main
-text is tool-agnostic. Where the mechanics differ (a command name, a mode toggle, a
-settings page), episodes give the equivalents for the two tools workshop participants
-most commonly have, **Claude Code** and **GitHub Copilot**. Other tools map
-one-to-one onto the same concepts.
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 

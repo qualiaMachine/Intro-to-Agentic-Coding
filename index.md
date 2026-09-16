@@ -10,10 +10,11 @@ between a mistake and a misleading result by the same amount.
 This lesson covers the working principles behind effective and safe agentic coding for
 researchers. It is about principles rather than one product: the practices of limiting
 access, planning, specifying, verifying, and managing cost apply unchanged across
-Claude Code, GitHub Copilot, Codex, Cursor, OpenCode, and their successors. Where the
-mechanics differ, episodes give the equivalents for the two tools researchers most
-commonly have access to, Claude Code and GitHub Copilot. Other tools translate
-directly.
+Claude Code, GitHub Copilot, Codex, Cursor, OpenCode, and their successors, so the
+main text is tool-agnostic. Where the mechanics differ (a command name, a mode
+toggle, a settings page), episodes give the equivalents for the two tools researchers
+most commonly have access to, Claude Code and GitHub Copilot. Other tools map
+one-to-one onto the same concepts.
 
 Three principles run through the lesson:
 
