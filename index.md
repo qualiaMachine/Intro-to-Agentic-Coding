@@ -39,7 +39,7 @@ the main points; the episodes here are the full reference. The
 
 - Comfort working at a command line and with git basics (clone, branch, commit, push).
 - Some experience writing Python and doing basic data analysis (pandas, scikit-learn or
-  similar).
+  similar). No local Python installation is needed; the agent's sandbox runs the code.
 - Access to at least one agentic coding tool. The [setup page](learners/setup.md)
   lists options, including free tiers.
 - Ideally, a small project of your own to point the agent at. The exercises work on
