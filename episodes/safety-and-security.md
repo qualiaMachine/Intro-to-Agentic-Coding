@@ -118,18 +118,30 @@ Where to set the allowlist:
 
 ### Claude Code
 
-On the web, per session: open the environment selector and set **Network access** to
-*No network*, *Trusted* (the default: Anthropic's allowlist of package registries and
-development services), or *All domains*. Account-wide additional domains are set at
-[claude.ai/settings/capabilities](https://claude.ai/settings/capabilities) under
-*Allow network egress*. Documentation: [Claude Code on the web](https://code.claude.com/docs/en/claude-code-on-the-web).
+The setting belongs to the **cloud environment**, not to your account. At
+[claude.ai/code](https://claude.ai/code) (or in the desktop app's prompt box), open the
+environment selector, edit the environment, and set **Network access** to one of four
+levels: *None*; *Trusted* (the default: Anthropic's allowlist of package registries,
+GitHub, and cloud SDKs); *Full* (any domain); or *Custom*, which takes your own list of
+allowed domains, one per line, with a checkbox to keep the default list as well.
+GitHub traffic and MCP connectors do not pass through this allowlist. Each environment
+has its own list; there is no organization-level allowlist.
+
+The *network egress* setting at claude.ai/settings/capabilities is a different control:
+it governs the code-execution sandbox used by Claude chat and Cowork, not Claude Code
+cloud environments. Documentation: [Configure cloud environments](https://code.claude.com/docs/en/cloud-environments#network-access).
 
 ### GitHub Copilot
 
-On a repository you administer: **Settings → Copilot → Cloud agent → Internet
-access**. There are three controls: *Enable firewall*, *Recommended allowlist*, and a
-*Custom allowlist* for your own hosts. Organization owners can set these for all
-repositories and lock them, in which case the repository page is read-only. A blocked
+The setting belongs to the **repository**, and you must be a repository administrator
+to see it: **Settings → Code, planning, and automation → Copilot → Cloud agent →
+Internet access** (older documentation calls the page *Coding agent*). There are three
+controls: *Enable firewall*, *Recommended allowlist*, and a *Custom allowlist* for your
+own hosts. If the page is absent, the usual reasons are that you are not an admin of
+the repository, or the cloud agent is not available to it: it requires a paid Copilot
+plan (Pro, Pro+, Business, or Enterprise), and on Business and Enterprise an
+administrator must enable it first. Organization owners can set the firewall for all
+repositories and lock it, in which case the repository page is read-only. A blocked
 request appears as a warning on the pull request. Documentation:
 [Copilot cloud agent firewall](https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/customize-the-agent-firewall).
 
