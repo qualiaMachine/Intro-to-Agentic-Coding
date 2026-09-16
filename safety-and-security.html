@@ -537,23 +537,38 @@ final control, applied after all the others.</li>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
-<p>On the web, per session: open the environment selector and set
-<strong>Network access</strong> to <em>No network</em>, <em>Trusted</em>
-(the default: Anthropic’s allowlist of package registries and
-development services), or <em>All domains</em>. Account-wide additional
-domains are set at <a href="https://claude.ai/settings/capabilities" class="external-link">claude.ai/settings/capabilities</a>
-under <em>Allow network egress</em>. Documentation: <a href="https://code.claude.com/docs/en/claude-code-on-the-web" class="external-link">Claude
-Code on the web</a>.</p>
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
+<p>The setting belongs to the <strong>cloud environment</strong>, not to
+your account. At <a href="https://claude.ai/code" class="external-link">claude.ai/code</a> (or
+in the desktop app’s prompt box), open the environment selector, edit
+the environment, and set <strong>Network access</strong> to one of four
+levels: <em>None</em>; <em>Trusted</em> (the default: Anthropic’s
+allowlist of package registries, GitHub, and cloud SDKs); <em>Full</em>
+(any domain); or <em>Custom</em>, which takes your own list of allowed
+domains, one per line, with a checkbox to keep the default list as well.
+GitHub traffic and MCP connectors do not pass through this allowlist.
+Each environment has its own list; there is no organization-level
+allowlist.</p>
+<p>The <em>network egress</em> setting at
+claude.ai/settings/capabilities is a different control: it governs the
+code-execution sandbox used by Claude chat and Cowork, not Claude Code
+cloud environments. Documentation: <a href="https://code.claude.com/docs/en/cloud-environments#network-access" class="external-link">Configure
+cloud environments</a>.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
-<p>On a repository you administer: <strong>Settings → Copilot → Cloud
-agent → Internet access</strong>. There are three controls: <em>Enable
-firewall</em>, <em>Recommended allowlist</em>, and a <em>Custom
-allowlist</em> for your own hosts. Organization owners can set these for
-all repositories and lock them, in which case the repository page is
-read-only. A blocked request appears as a warning on the pull request.
-Documentation: <a href="https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/customize-the-agent-firewall" class="external-link">Copilot
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
+<p>The setting belongs to the <strong>repository</strong>, and you must
+be a repository administrator to see it: <strong>Settings → Code,
+planning, and automation → Copilot → Cloud agent → Internet
+access</strong> (older documentation calls the page <em>Coding
+agent</em>). There are three controls: <em>Enable firewall</em>,
+<em>Recommended allowlist</em>, and a <em>Custom allowlist</em> for your
+own hosts. If the page is absent, the usual reasons are that you are not
+an admin of the repository, or the cloud agent is not available to it:
+it requires a paid Copilot plan (Pro, Pro+, Business, or Enterprise),
+and on Business and Enterprise an administrator must enable it first.
+Organization owners can set the firewall for all repositories and lock
+it, in which case the repository page is read-only. A blocked request
+appears as a warning on the pull request. Documentation: <a href="https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/customize-the-agent-firewall" class="external-link">Copilot
 cloud agent firewall</a>.</p>
 </div>
 </div>
@@ -841,7 +856,7 @@ and what it does not know that you do.</li>
   What to check
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>If step 2 fails (the session is local), stop and switch before
 prompting. This is the most common mistake with the desktop apps. Cloud
