@@ -10,13 +10,14 @@ resource.
 
 ## Core principles
 
-- **Stay in the driver's seat** — the agent types; you review, and you decide what
-  lands on `main`.
-- **Work feature by feature, not project by project** — a feature is one thing you can
-  check; whole-project prompts produce whole-project guesses.
-- **Assume nothing; verify everything** — lean on tests. There is no escaping good
-  data science: code that runs clean and scores great can still be wrong, and faster
-  iteration means faster results *and* faster misleading.
+- **Stay in the driver's seat.** The agent writes the code; you review it and decide
+  what is merged to `main`.
+- **Work feature by feature, not project by project.** A feature is one thing you can
+  check. A whole-project prompt produces whole-project guesses.
+- **Assume nothing; verify everything.** Rely on tests. Good data science practice
+  still applies in full: code that runs without error and scores well can still be
+  wrong, and faster iteration shortens the path to a misleading result as much as
+  to a correct one.
 
 ## Episodes
 
