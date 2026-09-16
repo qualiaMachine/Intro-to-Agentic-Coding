@@ -17,30 +17,117 @@ exercises: 15
 ::::::::::::::::::::::::::::::::::::: objectives
 
 - Apply established data science verification practices (know your data, compare to a source of truth, ask a colleague, reproduce) to agent-generated analyses.
-- Detect a group-leakage bug in code that runs cleanly and scores well, and write the assertion that catches it.
-- Run inexpensive sanity checks (label shuffling, baselines, overlap and duplicate checks, seed variation) that expose broken evaluations.
-- Review an agent's diff by looking for decisions you did not make.
+- Review an agent's diff by looking for decisions you did not make, and have the agent list its own assumptions.
+- After each feature, have the agent propose and add tests, including edge cases, and run them before moving on.
+- Make verification automatic: tests in CI and a protected `main`.
 - Use an agent to reason over saved results and figures, and leave evidence in the repository for it to read.
-- Make verification automatic: tests in CI, a context-file rule, and a protected `main`.
+- Run quick checks (label shuffling, baselines, overlap and duplicate checks, seed variation) that expose broken evaluations.
+- Detect a group-leakage bug in code that runs cleanly and scores well, and write the assertion that catches it.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## What the research shows about checking
 
-In research code, checking agent output is the bottleneck, not producing it:
+Checking agent output is the bottleneck, not producing it:
 
-- Agents could not judge scientific validity. In OpenAI's 2026 field report on
-  scientists using agents, the researchers still had to decide whether a result was
-  correct, not only whether it ran.
 - Agents multiply code written far more than code shipped: 240% more commits but only
   30% more releases across half a million GitHub developers (Demirer, Musolff & Yang,
-  2026). The gains attenuate at the human review step.
+  2026). Not all of the additional code is good code, and the gains attenuate at the
+  human review step.
 - Pull requests wait about five times longer for a human review under heavy AI use,
   and 31% more are merged without one (Faros AI telemetry, 22,000 developers, 2026).
 
 ![Adopting coding agents multiplies output far more than it multiplies shipped work, and the wait for human review grows most of all.](fig/agent-output-vs-review.png){alt='Bar chart of percent change after adopting coding agents. Commits, Demirer et al.: plus 240 percent. Releases shipped, Demirer et al.: plus 30 percent. Task throughput, Faros AI: plus 33.7 percent. PR wait for review, Faros AI, in red: plus 441.5 percent.'}
 
 The skill this episode teaches is the one in short supply.
+
+## Look for decisions you did not make
+
+When reviewing agent-written analysis code you are not checking syntax; the code
+runs. You are looking for decisions. Do this after every feature, before the next
+one: ask the agent for its assumptions, ask for tests and edge cases, run them, and
+then move on. The places most likely to contain unexamined decisions:
+
+- **Silently dropped or altered rows**: a default `dropna()`, an inner join that
+  shrinks the table, a type coercion that turns errors into NaNs. Require row counts
+  before and after every join and filter.
+- **Defaults treated as decisions**: imputation strategy, class weights,
+  regularization strength, thresholds. Every default the agent accepted is now a
+  choice you are responsible for. This is one reason to start with an MVP small
+  enough that you can own every choice in it.
+- **Substituted metrics**: you asked about accuracy and the report features F1
+  because the number was higher.
+- **Suppressed problems**: warnings silenced, `try/except: pass`, an error "fixed" by
+  deleting the check. An agent told to make the code run sometimes does exactly that.
+
+One prompt worth adding to every review:
+
+> Summarize every choice you made that I did not specify, and flag the risky ones.
+
+It surfaces the dropped-row and default-parameter decisions above more reliably than
+reading line by line.
+
+:::::::::::::::::::::::::::::::::::: challenge
+
+## Exercise 1: Test the feature you just built (10 minutes)
+
+Start from feature 1, the one you implemented in the previous episode. This is the
+step that follows every feature, before the next one begins.
+
+1. **Ask for its assumptions and proposed tests**, in plan mode:
+
+   > Read `plan.md` and the feature 1 code you just wrote.
+   >
+   > 1. List every choice you made that I did not specify, and flag the risky ones.
+   > 2. Propose tests for this feature, including edge cases: empty input, wrong
+   >    shape, duplicates, a sample that lands in both splits.
+   > 3. Say which three matter most and why.
+   >
+   > Do not edit anything yet.
+
+2. **Select the tests that matter.** Let the agent propose more than you would;
+   keep the ones that protect against a wrong result.
+3. **Have it add them and run `pytest`.** Fix what fails, then commit.
+4. **Make it automatic.** A workflow runs `pytest` on every push
+   ([GitHub Actions for Python](https://docs.github.com/en/actions/use-cases-and-examples/building-and-testing/building-and-testing-python));
+   ask the agent to write it. Protect `main` so that a failing check blocks the merge
+   ([about protected branches](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches)).
+
+:::::::::::::::: group-tab
+
+### Claude Code
+
+Plan mode for step 1 (<kbd>Shift</kbd>+<kbd>Tab</kbd> locally; on the web, the "do
+not edit" line has the same effect). For steps 3 and 4 switch to normal mode. Claude
+will run `pytest` itself (approve the command) and iterate until it passes.
+
+### GitHub Copilot
+
+**Ask** mode with `@workspace` for step 1; **Agent** mode for steps 3 and 4. Copilot
+proposes the `pytest` run in the terminal and waits for approval. The Actions workflow
+and branch protection are configured on GitHub, not in the editor.
+
+::::::::::::::::::::::::
+
+:::::::::::::::::::::::: solution
+
+## Why this works
+
+A methodological requirement that was previously implicit is now an executable
+contract. The agent has a feedback loop that fails when it reaches for the
+average-case pattern, and you have an artifact that continues to protect the project
+on every future change, whether the next edit comes from an agent, a colleague, or
+you in six months. With CI and a protected `main`, the check cannot be forgotten.
+
+One caution: an agent asked to "add tests" for existing code will often write tests
+that assert whatever the code currently does, which preserves bugs rather than
+catching them. That is why step 1 asks for assumptions and risks before asking for
+tests. You decide what must be true; the agent writes the repetitive parts; you
+review the tests with the same care as the implementation.
+
+:::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## No escaping good data science
 
@@ -57,17 +144,39 @@ before AI tools existed:
 - **Reproduce the result.** Rerun it, change the seed, rerun on a fresh split. If it
   does not hold, something you are not controlling is driving it.
 
-None of this has changed. Only the typing has moved to the agent. What has changed is
+None of this has changed. Only the typing, and some quick ideation, has moved to the agent. What has changed is
 speed: a plausible, clean-running, well-scoring analysis can now be produced in
 minutes, which means you can be misled in minutes as well. The checking has to keep
 pace. Agents can learn more about your project as you leave evidence in the
 repository (figures, metrics, notes), but they see a portion of the project at a
 time, never all of it.
 
-## Inexpensive checks that catch expensive mistakes
+## Agents as data science assistants
 
-A small set of checks, each a few lines an agent will write for you, exposes whole
-classes of silent failure:
+Verification is not only about finding bugs. The agent is also a fast second reader
+of your results, if it is given something to read.
+
+- **Ask it to reason over results, not only to write code.** What stands out, what
+  disagrees, what to try next.
+- **Leave evidence in the repository.** Metrics files, figures, run logs, a
+  `results.md`. What is not written down does not exist for the agent.
+- **Direct it to the evidence each time.** It does not remember the previous session
+  and will not open a file you did not name.
+- **It reads plots.** A saved figure is context.
+- **Iterate faster.** Get the result and examine it, rather than debugging convoluted
+  code late at night. Check as you go.
+- **It does not replace your own reading.** Check every number it cites against the
+  file. It sees a portion of the project, never all of it.
+
+> Read `results/feature1_metrics.json`, `figures/cv_by_fold.png` and `plan.md`.
+> What stands out? Which fold or class is driving the average, and does the plot
+> agree with the numbers? Propose the one experiment you would run next and say what
+> result would change our plan. Do not run anything yet.
+
+## Quick checks that catch common mistakes
+
+A small set of checks, each a few lines, exposes whole classes of silent failure. The
+agent can implement any of them quickly if asked:
 
 - **Shuffle the labels and rerun.** A sound pipeline collapses to chance. If it does
   not, information is leaking.
@@ -82,7 +191,7 @@ classes of silent failure:
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Exercise: What is wrong with this? (5 minutes)
+## Exercise 2: What is wrong with this? (5 minutes)
 
 ```python
 # Brain decoding. 20 subjects, 400 trials each,
@@ -110,6 +219,7 @@ Every subject appears in both splits. The model learned to identify each person,
 what they were looking at. On a new subject the score drops:
 
 ```python
+X, y, subject = load_windows()   # subject: one ID per trial
 from sklearn.model_selection import GroupShuffleSplit
 
 train_idx, test_idx = next(GroupShuffleSplit(
@@ -129,111 +239,6 @@ plausible-average-case failure from the previous episode: `train_test_split` is 
 pattern in a million notebooks, and the agent optimized for apparent completion, a
 clean run and a high score. If your review consists of "does it run, is the score
 good", you and the agent have the same blind spot.
-
-:::::::::::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-## Look for decisions you did not make
-
-When reviewing agent-written analysis code you are not checking syntax; the code
-runs. You are looking for decisions. Check the assumptions at each step and add a
-test for each. The places most likely to contain them:
-
-- **Silently dropped or altered rows**: a default `dropna()`, an inner join that
-  shrinks the table, a type coercion that turns errors into NaNs. Require row counts
-  before and after every join and filter.
-- **Defaults treated as decisions**: imputation strategy, class weights,
-  regularization strength, thresholds. Every default the agent accepted is now a
-  choice you are responsible for. This is one reason to start with an MVP small
-  enough that you can own every choice in it.
-- **Substituted metrics**: you asked about accuracy and the report features F1
-  because the number was higher.
-- **Suppressed problems**: warnings silenced, `try/except: pass`, an error "fixed" by
-  deleting the check. An agent told to make the code run sometimes does exactly that.
-
-One prompt worth adding to every review:
-
-> Summarize every choice you made that I did not specify, and flag the risky ones.
-
-It surfaces the dropped-row and default-parameter decisions above more reliably than
-reading line by line.
-
-## Agents as data science assistants
-
-Verification is not only about finding bugs. The agent is also a fast second reader
-of your results, if it is given something to read.
-
-- **Ask it to reason over results, not only to write code.** What stands out, what
-  disagrees, what to try next.
-- **Leave evidence in the repository.** Metrics files, figures, run logs, a
-  `results.md`. What is not written down does not exist for the agent.
-- **Direct it to the evidence each time.** It does not remember the previous session
-  and will not open a file you did not name.
-- **It reads plots.** A saved figure is context.
-- **Iterate faster.** Get the result and examine it, rather than debugging convoluted
-  code late at night. Check as you go.
-- **It does not replace your own reading.** Check every number it cites against the
-  file. It sees a portion of the project, never all of it.
-
-> Read `results/feature1_metrics.json`, `figures/cv_by_fold.png` and `plan.md`.
-> What stands out? Which fold or class is driving the average, and does the plot
-> agree with the numbers? Propose the one experiment you would run next and say what
-> result would change our plan. Do not run anything yet.
-
-::::::::::::::::::::::::::::::::::::: challenge
-
-## Exercise: Now your repository (10 minutes)
-
-The same question as the brain-decoding example, applied to your repository.
-
-1. **Ask, in plan mode:**
-
-   > Plan mode, do not edit. Read `plan.md` and the code. Where could this pipeline
-   > produce a confident wrong result without raising an error? Name the file and
-   > line for each. For each one, write the assertion that would catch it. Include
-   > the check for our project's repeated unit (subject, image, document, site, …).
-   > Do not run anything yet.
-
-2. **Choose one assertion** and have the agent add it as a test.
-3. **Make it automatic.** Three items, each enforced rather than remembered:
-   - A workflow runs `pytest` on every push ([GitHub Actions for Python](https://docs.github.com/en/actions/use-cases-and-examples/building-and-testing/building-and-testing-python)).
-     Ask the agent to write it.
-   - The context file states: run `pytest` before opening a pull request; never commit
-     failing tests.
-   - Protect `main` so that a failing check blocks the merge ([about protected branches](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches)).
-
-:::::::::::::::: group-tab
-
-### Claude Code
-
-Plan mode for step 1 (<kbd>Shift</kbd>+<kbd>Tab</kbd> locally; on the web, the "do
-not edit" line has the same effect). For steps 2 and 3 switch to normal mode. Claude
-will run `pytest` itself (approve the command) and iterate until it passes.
-
-### GitHub Copilot
-
-**Ask** mode with `@workspace` for step 1; **Agent** mode for steps 2 and 3. Copilot
-proposes the `pytest` run in the terminal and waits for approval. The Actions workflow
-and branch protection are configured on GitHub, not in the editor.
-
-::::::::::::::::::::::::
-
-:::::::::::::::::::::::: solution
-
-## Why this works
-
-A methodological requirement that was previously implicit is now an executable
-contract. The agent has a feedback loop that fails when it reaches for the
-average-case pattern, and you have an artifact that continues to protect the project
-on every future change, whether the next edit comes from an agent, a colleague, or
-you in six months. With CI and a protected `main`, the check cannot be forgotten.
-
-One caution: an agent asked to "add tests" for existing code will often write tests
-that assert whatever the code currently does, which preserves bugs rather than
-catching them. That is why step 1 asks where the code could be wrong before asking
-for a test. You decide what must be true; the agent writes the repetitive parts; you
-review the tests with the same care as the implementation.
 
 :::::::::::::::::::::::::::::::::
 
@@ -263,11 +268,11 @@ checking to the stakes, and choose the tier explicitly before starting:
 ::::::::::::::::::::::::::::::::::::: keypoints
 
 - Checking is the bottleneck. Agents multiply commits far more than releases, and unreviewed merges increase. Verification is the scarce skill.
-- Established practice still applies: know your data, compare to a source of truth, ask a colleague, know what your model responds to, reproduce the result. Only the typing has moved.
-- Inexpensive checks catch expensive mistakes: shuffle labels, print the baseline, assert no sample is in both splits, find duplicates, vary the seed.
+- Established practice still applies: know your data, compare to a source of truth, ask a colleague, know what your model responds to, reproduce the result. Only the typing and quick ideation have moved.
+- Quick checks catch common mistakes: shuffle labels, print the baseline, assert no sample is in both splits, find duplicates, vary the seed.
 - Split by the unit that repeats, and assert it. A clean-running 0.91 can be 0.58 on unseen subjects.
-- Review diffs by looking for decisions you did not make, and have the agent list its own assumptions.
+- After every feature, before the next: have the agent list its assumptions, propose tests and edge cases, add them, and run them. Then commit.
+- Make verification automatic: tests in CI and a protected `main`. Autonomy is purchased with verification.
 - Leave evidence in the repository and direct the agent to it. It reads figures and metrics, but only those you name, and you check every number it cites.
-- Make verification automatic: tests in CI, a context-file rule, a protected `main`. Autonomy is purchased with verification.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
