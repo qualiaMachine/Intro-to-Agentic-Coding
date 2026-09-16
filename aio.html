@@ -557,6 +557,11 @@ is sufficient.</li>
 tests: delegation works, because the specification and the tests carry
 the intent.</li>
 </ul>
+<p>The tasks researchers are most reluctant to delegate are usually the
+ones whose results they would find hard to check, rather than the ones
+that are hardest to do. That judgment is sound. The autonomy you can
+grant is limited by how well you can verify the result, which is the
+subject of the verification episode.</p>
 </div>
 </div>
 </div>
@@ -641,48 +646,7 @@ data-policy rules apply.</p>
 </section><section><h2 class="section-heading" id="demo-one-project-at-three-levels-of-autonomy">Demo: one project at three levels of autonomy<a class="anchor" aria-label="anchor" href="#demo-one-project-at-three-levels-of-autonomy"></a>
 </h2>
 <hr class="half-width">
-<div id="exercise-place-your-own-work-on-the-spectrum-5-minutes" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<span class="callout-header">Challenge</span>
-<div id="exercise-place-your-own-work-on-the-spectrum-5-minutes" class="callout-inner">
-<h3 class="callout-title">Exercise: Place your own work on the spectrum
-(5 minutes)</h3>
-<div class="callout-content">
-<p>Consider the last time you used AI for anything code-related. Pasting
-an error into a chatbot counts.</p>
-<ol style="list-style-type: decimal">
-<li>Where does that use sit on the spectrum: a directed edit, a bounded
-task with a plan, or a whole project?</li>
-<li>Name one task in your current research where you would want more
-autonomy from an AI tool, and one where you would not. What
-distinguishes them?</li>
-</ol>
-<p>Compare with a neighbor.</p>
-</div>
-</div>
-</div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1"> Typical answers </h4>
-</button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
-<div class="accordion-body">
-<p>Most researchers cluster at the chat end. The tasks people decline to
-delegate are usually the ones whose results they would find hard to
-check (their core analysis), rather than the ones that are hardest to
-do. That judgment is sound and is the central theme of the lesson: the
-autonomy you can grant is limited by how well you can verify the
-result.</p>
-</div>
-</div>
-</div>
-</div>
-</section><section><h2 class="section-heading" id="principles-rather-than-one-tool">Principles rather than one tool<a class="anchor" aria-label="anchor" href="#principles-rather-than-one-tool"></a>
-</h2>
-<hr class="half-width">
+<p>:## Principles rather than one tool</p>
 <p>Each practice in this lesson (limiting access, planning, specifying,
 verifying, managing cost) applies unchanged to whichever tool you or
 your group uses, so the main text is tool-agnostic. Where the mechanics
@@ -919,7 +883,7 @@ final control, applied after all the others.</li>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
 <p>On the web, per session: open the environment selector and set
 <strong>Network access</strong> to <em>No network</em>, <em>Trusted</em>
 (the default: Anthropic’s allowlist of package registries and
@@ -928,7 +892,7 @@ domains are set at <a href="https://claude.ai/settings/capabilities" class="exte
 under <em>Allow network egress</em>. Documentation: <a href="https://code.claude.com/docs/en/claude-code-on-the-web" class="external-link">Claude
 Code on the web</a>.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
 <p>On a repository you administer: <strong>Settings → Copilot → Cloud
 agent → Internet access</strong>. There are three controls: <em>Enable
 firewall</em>, <em>Recommended allowlist</em>, and a <em>Custom
@@ -1855,14 +1819,14 @@ reviewing a plan.</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
 <p>Press <kbd>Shift</kbd>+<kbd>Tab</kbd> until the status line shows
 <strong>plan mode</strong>. Claude can then read and answer but not edit
 or run anything. On the web, begin the prompt with “Plan mode, do not
 edit”, or ask for a plan and review it before approving
 implementation.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
 <p>Select <strong>Ask</strong> (or <strong>Plan</strong>) in the chat
 panel’s mode dropdown, and begin the message with
 <code>@workspace</code> so the question covers the whole repository.
@@ -1933,7 +1897,7 @@ may never modify) and put it in your context file.</p>
   What a usable result contains
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>It is short. A branch-name pattern
 (<code>&lt;name&gt;/&lt;feature&gt;</code>); a pull-request size people
@@ -2029,7 +1993,7 @@ together.</p></li>
   What a good plan.md contains
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Three features, each one thing you can check. For example: (1) load
 and validate the data slice, with row count and class balance printed;
@@ -2405,7 +2369,7 @@ printed majority-class baseline alongside the test accuracy.</p>
   Typical results
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The request to list unspecified choices is the most informative line
 in the template. Typical answers: a random seed, a default imputation,
@@ -3752,7 +3716,7 @@ fix the documentation, and state which you chose and why.</li>
   Typical findings
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Most participants find at least one surprise, usually an edge case
 the code handles by accident rather than by decision (what does it
@@ -3964,11 +3928,11 @@ chosen pattern explicit.</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
 <p>The file is <code>CLAUDE.md</code> at the repository root. Create it
 if the project has none.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
 <p>The file is <code>.github/copilot-instructions.md</code>. The
 cross-tool convention <code>AGENTS.md</code> also works in tools that
 support it.</p>
@@ -3997,7 +3961,7 @@ one about what the agent may never modify.</p>
   Why record it
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Two benefits. The agent reads it, so your posture, branch
 conventions, and forbidden paths shape every session without
