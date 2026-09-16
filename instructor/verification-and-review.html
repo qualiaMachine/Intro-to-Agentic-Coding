@@ -255,9 +255,9 @@
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#what-the-research-shows-about-checking">What the research shows about checking</a></li>
-<li><a href="#there-is-no-escaping-good-data-science">There is no escaping good data science</a></li>
-<li><a href="#cheap-checks-that-catch-expensive-mistakes">Cheap checks that catch expensive mistakes</a></li>
-<li><a href="#hunt-for-decisions-you-did-not-explicitly-make">Hunt for decisions you did not explicitly make</a></li>
+<li><a href="#no-escaping-good-data-science">No escaping good data science</a></li>
+<li><a href="#inexpensive-checks-that-catch-expensive-mistakes">Inexpensive checks that catch expensive mistakes</a></li>
+<li><a href="#look-for-decisions-you-did-not-make">Look for decisions you did not make</a></li>
 <li><a href="#agents-as-data-science-assistants">Agents as data science assistants</a></li>
 <li><a href="#autonomy-is-purchased-with-verification">Autonomy is purchased with verification</a></li>
         </ul></div><!--/div.accordion-body-->
@@ -390,12 +390,12 @@
 <div class="card-body">
 <div class="inner">
 <h3 class="card-title">Questions</h3>
-<ul><li>Why isn’t “the code runs and the score is high” enough?</li>
-<li>Which cheap checks catch the expensive mistakes?</li>
+<ul><li>Why is “the code runs and the score is high” not sufficient?</li>
+<li>Which inexpensive checks catch expensive mistakes?</li>
 <li>How do I review an agent’s work when the code runs?</li>
-<li>How can the agent help me reason about results, not just write
+<li>How can the agent help me reason about results, not only write
 code?</li>
-<li>How do I make checks run automatically so they never get
+<li>How do I make checks run automatically so they are never
 skipped?</li>
 </ul></div>
 </div>
@@ -409,12 +409,13 @@ data, compare to a source of truth, ask a colleague, reproduce) to
 agent-generated analyses.</li>
 <li>Detect a group-leakage bug in code that runs cleanly and scores
 well, and write the assertion that catches it.</li>
-<li>Run cheap sanity checks — label shuffling, baselines, overlap and
-duplicate checks, seed variation — that expose broken evaluations.</li>
-<li>Review an agent’s diff by hunting for decisions you didn’t
+<li>Run inexpensive sanity checks (label shuffling, baselines, overlap
+and duplicate checks, seed variation) that expose broken
+evaluations.</li>
+<li>Review an agent’s diff by looking for decisions you did not
 make.</li>
 <li>Use an agent to reason over saved results and figures, and leave
-evidence in the repo for it to read.</li>
+evidence in the repository for it to read.</li>
 <li>Make verification automatic: tests in CI, a context-file rule, and a
 protected <code>main</code>.</li>
 </ul></div>
@@ -423,29 +424,28 @@ protected <code>main</code>.</li>
 </div>
 </div>
 <section><h2 class="section-heading" id="what-the-research-shows-about-checking">What the research shows about checking<a class="anchor" aria-label="anchor" href="#what-the-research-shows-about-checking"></a></h2>
-<hr class="half-width"><p>In research code, <strong>checking agent output is the
-bottleneck</strong>, not producing it:</p>
+<hr class="half-width"><p>In research code, checking agent output is the bottleneck, not
+producing it:</p>
 <ul><li>Agents could not judge scientific validity. In OpenAI’s 2026 field
-report on scientists using agents, the humans still had to decide
-whether a result was <em>right</em>, not just whether it ran.</li>
-<li>Agents multiply code <em>written</em> far more than code
-<em>shipped</em>: <strong>240%</strong> more commits, but only
-<strong>30%</strong> more releases across half a million GitHub
-developers (Demirer, Musolff &amp; Yang, 2026). The human review step is
-where the gains attenuate.</li>
-<li>Pull requests wait about <strong>five times longer</strong> for a
-human review under heavy AI use — and <strong>31% more merge without
-one</strong> (Faros AI telemetry, 22,000 developers, 2026).</li>
+report on scientists using agents, the researchers still had to decide
+whether a result was correct, not only whether it ran.</li>
+<li>Agents multiply code written far more than code shipped: 240% more
+commits but only 30% more releases across half a million GitHub
+developers (Demirer, Musolff &amp; Yang, 2026). The gains attenuate at
+the human review step.</li>
+<li>Pull requests wait about five times longer for a human review under
+heavy AI use, and 31% more are merged without one (Faros AI telemetry,
+22,000 developers, 2026).</li>
 </ul><figure><img src="../fig/agent-output-vs-review.png" alt="Bar chart of percent change after adopting coding agents. Commits, Demirer et al.: plus 240 percent. Releases shipped, Demirer et al.: plus 30 percent. Task throughput, Faros AI: plus 33.7 percent. PR wait for review, Faros AI, in red: plus 441.5 percent." class="figure mx-auto d-block"><div class="figcaption">Adopting coding agents multiplies output far
 more than it multiplies shipped work, and the wait for human review
 grows most of all.</div>
-</figure><p>So the skill this episode teaches is the one that’s scarce.</p>
-</section><section><h2 class="section-heading" id="there-is-no-escaping-good-data-science">There is no escaping good data science<a class="anchor" aria-label="anchor" href="#there-is-no-escaping-good-data-science"></a></h2>
-<hr class="half-width"><p>Before AI enters the picture, research computing already had an
-answer to “how do I know this analysis is right?”:</p>
+</figure><p>The skill this episode teaches is the one in short supply.</p>
+</section><section><h2 class="section-heading" id="no-escaping-good-data-science">No escaping good data science<a class="anchor" aria-label="anchor" href="#no-escaping-good-data-science"></a></h2>
+<hr class="half-width"><p>Research computing already had an answer to “how do I know this
+analysis is correct?” before AI tools existed:</p>
 <ul><li>
 <strong>Know your data.</strong> Distributions, outliers, units,
-missingness, class balance. Look at actual rows.</li>
+missingness, class balance. Look at the rows.</li>
 <li>
 <strong>Compare to a source of truth.</strong> A published baseline,
 a hand-computed subset, a control.</li>
@@ -453,38 +453,37 @@ a hand-computed subset, a control.</li>
 <strong>Ask a colleague.</strong> “Does this number seem plausible
 to you?”</li>
 <li>
-<strong>Know what your model is telling you.</strong> If the top
-predictor makes no scientific sense, that is a finding about your
-pipeline, not about nature.</li>
+<strong>Know what your model is responding to.</strong> If the
+strongest predictor makes no scientific sense, that is a finding about
+the pipeline, not about the phenomenon.</li>
 <li>
 <strong>Reproduce the result.</strong> Rerun it, change the seed,
 rerun on a fresh split. If it does not hold, something you are not
 controlling is driving it.</li>
-</ul><p>None of this changed. <strong>Only code typing moved to the
-agent.</strong> What changed is speed: you can now generate a plausible,
-clean-running, well-scoring analysis in minutes — which means you can be
-<em>misled</em> faster too. Your skepticism has to keep pace. (Agents
-can learn more about your project as you leave evidence in the repo —
-figures, metrics, notes — but they see a slice of the project at a time,
-never all of it.)</p>
-</section><section><h2 class="section-heading" id="cheap-checks-that-catch-expensive-mistakes">Cheap checks that catch expensive mistakes<a class="anchor" aria-label="anchor" href="#cheap-checks-that-catch-expensive-mistakes"></a></h2>
-<hr class="half-width"><p>You don’t need a heavyweight process to catch most broken
-evaluations. A handful of checks — each a few lines an agent will
-happily write for you — expose whole classes of silent failure:</p>
+</ul><p>None of this has changed. Only the typing has moved to the agent.
+What has changed is speed: a plausible, clean-running, well-scoring
+analysis can now be produced in minutes, which means you can be misled
+in minutes as well. The checking has to keep pace. Agents can learn more
+about your project as you leave evidence in the repository (figures,
+metrics, notes), but they see a portion of the project at a time, never
+all of it.</p>
+</section><section><h2 class="section-heading" id="inexpensive-checks-that-catch-expensive-mistakes">Inexpensive checks that catch expensive mistakes<a class="anchor" aria-label="anchor" href="#inexpensive-checks-that-catch-expensive-mistakes"></a></h2>
+<hr class="half-width"><p>A small set of checks, each a few lines an agent will write for you,
+exposes whole classes of silent failure:</p>
 <ul><li>
-<strong>Shuffle the labels and re-run.</strong> A sound pipeline
-collapses to chance. If it does not, something leaks.</li>
+<strong>Shuffle the labels and rerun.</strong> A sound pipeline
+collapses to chance. If it does not, information is leaking.</li>
 <li>
-<strong>Print the baseline.</strong> 94% stops being impressive when
-the majority class is 92%.</li>
+<strong>Print the baseline.</strong> 94% accuracy is not impressive
+when the majority class is 92% of the data.</li>
 <li>
-<strong>Assert no sample is in both splits.</strong> Repeated
-measures and tiles from one image belong on one side.</li>
+<strong>Assert that no sample appears in both splits.</strong>
+Repeated measures and tiles from one image belong on one side.</li>
 <li>
-<strong>Hunt duplicates before splitting.</strong> Leakage with no
-code bug at all.</li>
+<strong>Find duplicates before splitting.</strong> Duplicates across
+the split are leakage with no code bug.</li>
 <li>
-<strong>Vary the seed.</strong> A metric that swings substantially
+<strong>Vary the seed.</strong> A metric that moves substantially
 across seeds is a variance problem, not a result.</li>
 </ul><div id="exercise-what-is-wrong-with-this-5-minutes" class="callout challenge">
 <div class="callout-square">
@@ -511,7 +510,7 @@ minutes)</h3>
 <span id="cb1-11"><a href="#cb1-11" tabindex="-1" aria-label="code-block-1-11"></a>    X_test.reshape(<span class="bu">len</span>(X_test), <span class="op">-</span><span class="dv">1</span>), y_test))</span>
 <span id="cb1-12"><a href="#cb1-12" tabindex="-1" aria-label="code-block-1-12"></a><span class="co"># accuracy 0.91</span></span></code></pre>
 </div>
-<p>The code runs. The number is good. Find the bug. Then write the one
+<p>The code runs. The number is high. Find the bug. Then write the one
 assertion that would have caught it.</p>
 </div>
 </div>
@@ -525,9 +524,9 @@ assertion that would have caught it.</p>
 </button>
 <div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
-<p><strong>Every subject is in both splits.</strong> The model learned
-who each person is, not what they were looking at. On a new subject, the
-score collapses:</p>
+<p>Every subject appears in both splits. The model learned to identify
+each person, not what they were looking at. On a new subject the score
+drops:</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -538,77 +537,76 @@ score collapses:</p>
 <span id="cb2-5"><a href="#cb2-5" tabindex="-1" aria-label="code-block-2-5"></a><span class="cf">assert</span> <span class="bu">set</span>(subject[train_idx]).isdisjoint(subject[test_idx])</span>
 <span id="cb2-6"><a href="#cb2-6" tabindex="-1" aria-label="code-block-2-6"></a><span class="co"># accuracy on unseen subjects: 0.58</span></span></code></pre>
 </div>
-<p><strong>Split by the unit that repeats, and assert it.</strong>
-Subject in a brain-decoding study. Camera burst in a wildlife-camera
-dataset. Page in a document-transcription task. Source document in a
-retrieval pipeline. The assertion runs every time, so it never gets
-forgotten — tests you have to remember to run get skipped.</p>
-<p>If you didn’t spot it, you are in good company. Nothing about this
-code <em>looks</em> wrong, no error fires, and the score rewards you for
-not looking harder. This is the <em>plausible average case</em> failure
-from the previous episode: <code>train_test_split</code> is the pattern
-in a million notebooks, and the agent optimized for “task apparently
-completed” — clean run, high score. If your review process is also “does
-it run? is the score good?”, you and the agent share the same blind
-spot.</p>
+<p>Split by the unit that repeats, and assert it: subject in a
+brain-decoding study, camera burst in a wildlife-camera dataset, page in
+a document-transcription task, source document in a retrieval pipeline.
+The assertion runs every time, so it is never forgotten. Checks that
+must be remembered are eventually skipped.</p>
+<p>If you did not find it, that is the usual outcome. Nothing in this
+code looks wrong, no error is raised, and the score rewards not looking
+further. This is the plausible-average-case failure from the previous
+episode: <code>train_test_split</code> is the pattern in a million
+notebooks, and the agent optimized for apparent completion, a clean run
+and a high score. If your review consists of “does it run, is the score
+good”, you and the agent have the same blind spot.</p>
 </div>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="hunt-for-decisions-you-did-not-explicitly-make">Hunt for decisions you did not explicitly make<a class="anchor" aria-label="anchor" href="#hunt-for-decisions-you-did-not-explicitly-make"></a></h2>
-<hr class="half-width"><p>When you review agent-written analysis code, you are not proofreading
-syntax — the code runs. You are <strong>hunting for decisions.</strong>
-Check assumptions at every step, and add a test for each. The high-yield
-places to look:</p>
+</section><section><h2 class="section-heading" id="look-for-decisions-you-did-not-make">Look for decisions you did not make<a class="anchor" aria-label="anchor" href="#look-for-decisions-you-did-not-make"></a></h2>
+<hr class="half-width"><p>When reviewing agent-written analysis code you are not checking
+syntax; the code runs. You are looking for decisions. Check the
+assumptions at each step and add a test for each. The places most likely
+to contain them:</p>
 <ul><li>
 <strong>Silently dropped or altered rows</strong>: a default
 <code>dropna()</code>, an inner join that shrinks the table, a type
-coercion that turns errors into NaNs. Demand row counts before and after
-every join and filter.</li>
+coercion that turns errors into NaNs. Require row counts before and
+after every join and filter.</li>
 <li>
 <strong>Defaults treated as decisions</strong>: imputation strategy,
-class weights, regularization strength, “reasonable” thresholds. Every
-default it accepted is now a choice you must own — which is why we start
-with an MVP small enough that you <em>can</em> own every choice in
-it.</li>
+class weights, regularization strength, thresholds. Every default the
+agent accepted is now a choice you are responsible for. This is one
+reason to start with an MVP small enough that you can own every choice
+in it.</li>
 <li>
-<strong>Metric switcheroos</strong>: you asked about accuracy, the
-report quietly features F1 because the number looked better.</li>
+<strong>Substituted metrics</strong>: you asked about accuracy and
+the report features F1 because the number was higher.</li>
 <li>
 <strong>Suppressed problems</strong>: warnings silenced,
 <code>try/except: pass</code>, an error “fixed” by deleting the check.
-An agent told to make it run sometimes does just that.</li>
+An agent told to make the code run sometimes does exactly that.</li>
 </ul><p>One prompt worth adding to every review:</p>
 <blockquote>
 <p>Summarize every choice you made that I did not specify, and flag the
 risky ones.</p>
 </blockquote>
-<p>It surfaces the dropped-rows and default-parameter decisions above
+<p>It surfaces the dropped-row and default-parameter decisions above
 more reliably than reading line by line.</p>
 </section><section><h2 class="section-heading" id="agents-as-data-science-assistants">Agents as data science assistants<a class="anchor" aria-label="anchor" href="#agents-as-data-science-assistants"></a></h2>
-<hr class="half-width"><p>Verification isn’t only about catching bugs. The agent is also a fast
-second reader of your <em>results</em> — if you give it something to
-read.</p>
+<hr class="half-width"><p>Verification is not only about finding bugs. The agent is also a fast
+second reader of your results, if it is given something to read.</p>
 <ul><li>
-<strong>Ask it to reason over results, not only write code.</strong>
-What stands out, what disagrees, what to try next.</li>
+<strong>Ask it to reason over results, not only to write
+code.</strong> What stands out, what disagrees, what to try next.</li>
 <li>
-<strong>Leave evidence in the repo.</strong> Metrics files, figures,
-run logs, a <code>results.md</code>. What is not written down does not
-exist to the agent.</li>
+<strong>Leave evidence in the repository.</strong> Metrics files,
+figures, run logs, a <code>results.md</code>. What is not written down
+does not exist for the agent.</li>
 <li>
-<strong>Point it at the evidence every time.</strong> It does not
-remember last session and will not open a file you did not name.</li>
+<strong>Direct it to the evidence each time.</strong> It does not
+remember the previous session and will not open a file you did not
+name.</li>
 <li>
-<strong>It reads plots.</strong> A saved figure is context, not
-decoration.</li>
+<strong>It reads plots.</strong> A saved figure is context.</li>
 <li>
-<strong>You iterate faster.</strong> Get the result and look at it,
-instead of debugging convoluted code past midnight. Vet as you go.</li>
+<strong>Iterate faster.</strong> Get the result and examine it,
+rather than debugging convoluted code late at night. Check as you
+go.</li>
 <li>
-<strong>It does not replace your eyes.</strong> Check every number
-it cites against the file. It sees a slice of the project, never all of
-it.</li>
+<strong>It does not replace your own reading.</strong> Check every
+number it cites against the file. It sees a portion of the project,
+never all of it.</li>
 </ul><blockquote>
 <p>Read <code>results/feature1_metrics.json</code>,
 <code>figures/cv_by_fold.png</code> and <code>plan.md</code>. What
@@ -617,15 +615,17 @@ plot agree with the numbers? Propose the one experiment you would run
 next and say what result would change our plan. Do not run anything
 yet.</p>
 </blockquote>
-<div id="exercise-now-your-repo-10-minutes" class="callout challenge">
+<div id="exercise-now-your-repository-10-minutes" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <span class="callout-header">Challenge</span>
-<div id="exercise-now-your-repo-10-minutes" class="callout-inner">
-<h3 class="callout-title">Exercise: Now your repo (10 minutes)</h3>
+<div id="exercise-now-your-repository-10-minutes" class="callout-inner">
+<h3 class="callout-title">Exercise: Now your repository (10
+minutes)</h3>
 <div class="callout-content">
-<p>Same question as the brain-decoding example — your repo.</p>
+<p>The same question as the brain-decoding example, applied to your
+repository.</p>
 <ol style="list-style-type: decimal"><li>
 <p><strong>Ask, in plan mode:</strong></p>
 <blockquote>
@@ -637,17 +637,17 @@ repeated unit (subject, image, document, site, …). Do not run anything
 yet.</p>
 </blockquote>
 </li>
-<li><p><strong>Pick one assertion</strong> and have the agent add it, as
-a test.</p></li>
+<li><p><strong>Choose one assertion</strong> and have the agent add it
+as a test.</p></li>
 <li>
-<p><strong>Make it automatic.</strong> Three things, each a
-permission rather than a habit:</p>
+<p><strong>Make it automatic.</strong> Three items, each enforced
+rather than remembered:</p>
 <ul><li>A workflow runs <code>pytest</code> on every push (<a href="https://docs.github.com/en/actions/use-cases-and-examples/building-and-testing/building-and-testing-python" class="external-link">GitHub
 Actions for Python</a>). Ask the agent to write it.</li>
-<li>Your context file says: <em>run <code>pytest</code> before opening a
-PR; never commit failing tests.</em>
-</li>
-<li>Protect <code>main</code> so a failing check blocks the merge (<a href="https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches" class="external-link">about
+<li>The context file states: run <code>pytest</code> before opening a
+pull request; never commit failing tests.</li>
+<li>Protect <code>main</code> so that a failing check blocks the merge
+(<a href="https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches" class="external-link">about
 protected branches</a>).</li>
 </ul></li>
 </ol><div class="tabs">
@@ -666,16 +666,16 @@ protected branches</a>).</li>
 </nav><div id="nav-tabContent-1" class="tab-content">
 <div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
 <p>Plan mode for step 1 (<kbd>Shift</kbd>+<kbd>Tab</kbd> locally; on the
-web, the “do not edit” line does the same job). For steps 2–3 switch to
-normal mode; Claude will run <code>pytest</code> itself — approve the
-command — and iterate until it passes.</p>
+web, the “do not edit” line has the same effect). For steps 2 and 3
+switch to normal mode. Claude will run <code>pytest</code> itself
+(approve the command) and iterate until it passes.</p>
 </div>
 <div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
 <p><strong>Ask</strong> mode with <code>@workspace</code> for step 1;
-<strong>Agent</strong> mode for steps 2–3. Copilot proposes the
-<code>pytest</code> run in the terminal and waits for your approval. The
-Actions workflow and branch protection are set on GitHub, not in the
-editor.</p>
+<strong>Agent</strong> mode for steps 2 and 3. Copilot proposes the
+<code>pytest</code> run in the terminal and waits for approval. The
+Actions workflow and branch protection are configured on GitHub, not in
+the editor.</p>
 </div>
 </div>
 </div>
@@ -691,51 +691,51 @@ editor.</p>
 </button>
 <div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
-<p>You’ve turned an invisible methodological requirement into an
-executable contract. The agent now has a feedback loop that fails loudly
-when it reaches for the average-case pattern — and you have an artifact
-that keeps protecting you on every future change, whether the next edit
-comes from an agent, a labmate, or you in six months. With CI and a
-protected <code>main</code>, it is no longer possible to forget.</p>
-<p>One trap to avoid: an agent asked to “add tests” for existing code
-will often write tests that simply <em>assert whatever the code
-currently does</em> — enshrining bugs rather than catching them. That is
-why step 1 asks <em>where could this be wrong</em> before asking for a
-test. <strong>You decide what must be true; the agent writes the tedious
-parts;</strong> you review tests with the same care as
-implementations.</p>
+<p>A methodological requirement that was previously implicit is now an
+executable contract. The agent has a feedback loop that fails when it
+reaches for the average-case pattern, and you have an artifact that
+continues to protect the project on every future change, whether the
+next edit comes from an agent, a colleague, or you in six months. With
+CI and a protected <code>main</code>, the check cannot be forgotten.</p>
+<p>One caution: an agent asked to “add tests” for existing code will
+often write tests that assert whatever the code currently does, which
+preserves bugs rather than catching them. That is why step 1 asks where
+the code could be wrong before asking for a test. You decide what must
+be true; the agent writes the repetitive parts; you review the tests
+with the same care as the implementation.</p>
 </div>
 </div>
 </div>
 </div>
 </section><section><h2 class="section-heading" id="autonomy-is-purchased-with-verification">Autonomy is purchased with verification<a class="anchor" aria-label="anchor" href="#autonomy-is-purchased-with-verification"></a></h2>
-<hr class="half-width"><p>The highest-leverage practice in agentic coding is to <strong>make
-verification executable.</strong> Agents perform markedly better when
-they can check their own output — running tests, comparing against known
-values, validating properties — instead of relying on you as the only
-feedback loop. Include test cases in the prompt; point at symptoms, not
-just fixes (“fix the root cause and verify — don’t suppress the error”);
-for analyses, demand printed evidence. And tests are cheap now: ask for
-them with every feature, ask for data-validation tests on your actual
-dataset (expected columns, value ranges, unique IDs, row counts across
-merges), ask the agent what inputs would break its own function.</p>
-<p>The more trustworthy your checks, the more autonomy you can safely
-grant. Scale the checking to the stakes — and choose the tier
-<em>explicitly</em>, before you start:</p>
+<hr class="half-width"><p>The highest-leverage practice in agentic coding is to make
+verification executable. Agents perform markedly better when they can
+check their own output by running tests, comparing against known values,
+and validating properties, rather than relying on you as the only
+feedback loop. Include test cases in the prompt. Point at symptoms
+rather than fixes (“fix the root cause and verify; do not suppress the
+error”). For analyses, require printed evidence. Tests are now
+inexpensive to write: ask for them with every feature, ask for
+data-validation tests on the actual dataset (expected columns, value
+ranges, unique identifiers, row counts across merges), and ask the agent
+what inputs would break its own function.</p>
+<p>The more trustworthy the checks, the more autonomy can safely be
+granted. Scale the checking to the stakes, and choose the tier
+explicitly before starting:</p>
 <table class="table"><colgroup><col width="16%"><col width="24%"><col width="59%"></colgroup><thead><tr><th>Tier</th>
 <th>Example</th>
 <th>Minimum verification</th>
 </tr></thead><tbody><tr><td>Throwaway</td>
 <td>one-off plot, scratch script</td>
-<td>Read the diff; eyeball the output</td>
+<td>Read the diff; inspect the output</td>
 </tr><tr><td>Working code</td>
-<td>lab-internal pipeline, reusable utils</td>
+<td>lab-internal pipeline, reusable utilities</td>
 <td>Tests pass in CI; you review the diff; data-property checks
 printed</td>
 </tr><tr><td>Load-bearing</td>
 <td>results in a paper, shared package, anything cited</td>
-<td>All of the above + comparison to a source of truth + a second
-human</td>
+<td>All of the above, plus comparison to a source of truth and a second
+reviewer</td>
 </tr></tbody></table><div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -743,21 +743,21 @@ human</td>
 <span class="callout-header">Key Points</span>
 <div class="callout-inner">
 <div class="callout-content">
-<ul><li>Checking is the bottleneck: agents multiply commits far more than
-releases, and unreviewed merges rise. The scarce skill is
-verification.</li>
-<li>Established practice still rules: know your data, compare to a
-source of truth, ask a colleague, know what your model is telling you,
-reproduce the result. Only the typing moved.</li>
-<li>Cheap checks catch expensive mistakes: shuffle labels, print the
-baseline, assert no sample in both splits, hunt duplicates, vary the
-seed.</li>
-<li>Split by the unit that repeats, and assert it. A confident,
-clean-running 0.91 can be a 0.58 on unseen subjects.</li>
-<li>Review diffs by hunting for decisions you didn’t make, and make the
+<ul><li>Checking is the bottleneck. Agents multiply commits far more than
+releases, and unreviewed merges increase. Verification is the scarce
+skill.</li>
+<li>Established practice still applies: know your data, compare to a
+source of truth, ask a colleague, know what your model responds to,
+reproduce the result. Only the typing has moved.</li>
+<li>Inexpensive checks catch expensive mistakes: shuffle labels, print
+the baseline, assert no sample is in both splits, find duplicates, vary
+the seed.</li>
+<li>Split by the unit that repeats, and assert it. A clean-running 0.91
+can be 0.58 on unseen subjects.</li>
+<li>Review diffs by looking for decisions you did not make, and have the
 agent list its own assumptions.</li>
-<li>Leave evidence in the repo and point the agent at it; it reads
-figures and metrics, but only the ones you name — and you check every
+<li>Leave evidence in the repository and direct the agent to it. It
+reads figures and metrics, but only those you name, and you check every
 number it cites.</li>
 <li>Make verification automatic: tests in CI, a context-file rule, a
 protected <code>main</code>. Autonomy is purchased with

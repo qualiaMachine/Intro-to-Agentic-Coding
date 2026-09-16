@@ -347,42 +347,38 @@
     </nav><main id="main-content" class="main-content"><h1 class="schedule-heading">Summary and Schedule</h1>
       
 
-<p>AI coding agents — tools that can read your repository, run commands,
-edit multiple files, and iterate on their own output — are rapidly
-changing how research software gets built. They make it much easier to
-iterate and faster to see results. They also make it faster to be misled
-if you aren’t careful.</p>
-<p>This lesson teaches the working principles behind effective, safe
-agentic coding for researchers. It is deliberately about
-<strong>principles, not one tool</strong>: the practices — limiting
-access, planning, specifying, verifying, managing cost — apply unchanged
-across Claude Code, GitHub Copilot, Codex, Cursor, OpenCode, and
-whatever ships next month. Where the mechanics differ, episodes show
-side-by-side equivalents for two tools researchers most commonly have
-access to (Claude Code and GitHub Copilot); if you use something else,
-everything translates readily.</p>
-<p>Three core principles run through the whole lesson:</p>
+<p>AI coding agents are tools that can read a repository, run commands,
+edit multiple files, and revise their own output. They are changing how
+research software is written. They shorten the time between an idea and
+a result, and they shorten the time between a mistake and a misleading
+result by the same amount.</p>
+<p>This lesson covers the working principles behind effective and safe
+agentic coding for researchers. It is about principles rather than one
+product: the practices of limiting access, planning, specifying,
+verifying, and managing cost apply unchanged across Claude Code, GitHub
+Copilot, Codex, Cursor, OpenCode, and their successors. Where the
+mechanics differ, episodes give the equivalents for the two tools
+researchers most commonly have access to, Claude Code and GitHub
+Copilot. Other tools translate directly.</p>
+<p>Three principles run through the lesson:</p>
 <ol style="list-style-type: decimal"><li>
-<strong>Stay in the driver’s seat.</strong> The agent types; you
-review, and you decide what lands on <code>main</code>. The suit
-multiplies what the pilot can do, but the pilot is still the one
-steering.</li>
+<strong>Stay in the driver’s seat.</strong> The agent writes the
+code. You review it, and you decide what is merged to
+<code>main</code>.</li>
 <li>
 <strong>Work feature by feature, not project by project.</strong> A
-feature is one thing you can check. Underspecified prompts don’t produce
-random code — they produce <em>plausible average-case</em> code, and
-your data is rarely the average case.</li>
+feature is one thing you can check. An underspecified prompt does not
+produce random code; it produces the statistically typical code for the
+average project, and research data is rarely the average case.</li>
 <li>
-<strong>Assume nothing; verify everything.</strong> Lean on tests.
-There is no escaping good data science practice: explore your data, know
-your distributions, know what your models are telling you. Code that
-runs clean and scores great can still be wrong — and iteration is
-cheaper now in <em>both</em> directions, so the discipline matters more,
-not less.</li>
-</ol><p>The lesson grew out of a two-hour workshop and keeps that shape: the
-live workshop covers the main points, and the full episodes here are the
-reference that stays online. The <a href="instructor-notes.html">instructor notes</a> map the workshop
-blocks onto episodes.</p>
+<strong>Assume nothing; verify everything.</strong> Rely on tests.
+Good data science practice still applies in full: examine the data, know
+the distributions, and know what the model is responding to. Code that
+runs without error and scores well can still be wrong.</li>
+</ol><p>The lesson grew out of a two-hour workshop and keeps that shape. The
+workshop presents the main points; the episodes here are the full
+reference. The <a href="instructor-notes.html">instructor notes</a> map
+workshop blocks onto episodes.</p>
 <div id="prerequisites" class="callout prereq">
 <div class="callout-square">
 <i class="callout-icon" data-feather="check"></i>
@@ -395,7 +391,8 @@ blocks onto episodes.</p>
 branch, commit, push).</li>
 <li>Some experience writing Python and doing basic data analysis
 (pandas, scikit-learn or similar).</li>
-<li>Access to at least one agentic coding tool — see the <a href="index.html#setup">setup page</a> for options, including free tiers.</li>
+<li>Access to at least one agentic coding tool. The <a href="index.html#setup">setup page</a> lists options, including free
+tiers.</li>
 <li>Ideally, a small project of your own to point the agent at. The
 exercises work on your repository; a fallback starter is provided where
 it matters.</li>
@@ -417,9 +414,9 @@ any links that you are not going to use.
 </td>
 <td>
 What distinguishes an agentic coding tool from autocomplete or a chat
-assistant?<br>What is inside an agent — and what does the “harness” do
-that the model doesn’t?<br>Which tool should I pick, and does the
-choice matter much?<br>Is more autonomy automatically better?
+assistant?<br>What is inside an agent, and what does the harness do
+that the model does not?<br>Which tool should I pick, and how much does
+the choice matter?<br>Is more autonomy better?
 </td>
 </tr><tr><td>
 <span class="visually-hidden">Duration: </span>00h 20m
@@ -432,8 +429,8 @@ the Agent Can Access</a>
 What can an agent access on my machine, and why does that
 matter?<br>Which protections are enforced limits, and which are
 requests the model may ignore?<br>How do I keep credentials and
-sensitive or restricted data away from AI tools?<br>How do I get an
-agent running safely on my own project?
+sensitive or restricted data away from AI tools?<br>How do I start an
+agent on my own project safely?
 </td>
 </tr><tr><td>
 <span class="visually-hidden">Duration: </span>00h 48m
@@ -454,11 +451,11 @@ prevented it?
  4. <a href="early-project-planning.html">Planning with Agents</a>
 </td>
 <td>
-Why plan before letting an agent write code — and what does the evidence
+Why plan before letting an agent write code, and what does the evidence
 say?<br>What goes into a plan, and where does the agent get the context
 to make one?<br>What is a minimum viable pipeline, and why start
-there?<br>How do I plan with an agent without being led somewhere I
-can’t follow?
+there?<br>How do I plan with an agent without adopting designs I cannot
+defend?
 </td>
 </tr><tr><td>
 <span class="visually-hidden">Duration: </span>01h 42m
@@ -468,7 +465,7 @@ can’t follow?
 Prompting</a>
 </td>
 <td>
-Why work feature by feature instead of asking for whole
+Why work feature by feature instead of requesting whole
 projects?<br>What happens when I give an agent a vague
 request?<br>What does a good prompt look like for research
 code?<br>Which routine tasks are agents reliably good at?
@@ -481,11 +478,11 @@ code?<br>Which routine tasks are agents reliably good at?
 Escaping Good Data Science</a>
 </td>
 <td>
-Why isn’t “the code runs and the score is high” enough?<br>Which cheap
-checks catch the expensive mistakes?<br>How do I review an agent’s work
-when the code runs?<br>How can the agent help me reason about results,
-not just write code?<br>How do I make checks run automatically so they
-never get skipped?
+Why is “the code runs and the score is high” not sufficient?<br>Which
+inexpensive checks catch expensive mistakes?<br>How do I review an
+agent’s work when the code runs?<br>How can the agent help me reason
+about results, not only write code?<br>How do I make checks run
+automatically so they are never skipped?
 </td>
 </tr><tr><td>
 <span class="visually-hidden">Duration: </span>02h 37m
@@ -495,10 +492,11 @@ never get skipped?
 Agent</a>
 </td>
 <td>
-How is MCP different from an API — and when do I want each?<br>What is
-an MCP server, and what happens when I connect one?<br>What is inside a
-skill, and how does an agent decide to use one?<br>What extra scrutiny
-does connecting an MCP server or installing a skill deserve?
+How does MCP differ from an API, and when is each appropriate?<br>What
+is an MCP server, and what happens when I connect one?<br>What is
+inside a skill, and how does an agent decide to use one?<br>What
+additional scrutiny does connecting an MCP server or installing a skill
+require?
 </td>
 </tr><tr><td>
 <span class="visually-hidden">Duration: </span>02h 57m
@@ -519,7 +517,7 @@ token usage without reducing quality?
 Self (and Your Agent)</a>
 </td>
 <td>
-Why is documentation one of the best uses of agentic coding?<br>How
+Why is documentation one of the better uses of agentic coding?<br>How
 does documentation feed back into agent performance?<br>Can asking an
 agent to explain code help verify it?
 </td>
@@ -532,8 +530,8 @@ agent to explain code help verify it?
 <td>
 How do experienced users structure day-to-day work with
 agents?<br>Should I review every commit, or review at the pull
-request?<br>How do agent workflows change when I’m contributing to (or
-maintaining) a shared project?<br>What are skills, hooks, and MCP, and
+request?<br>How do agent workflows change when I contribute to, or
+maintain, a shared project?<br>What are skills, hooks, and MCP, and
 when do I need them?
 </td>
 </tr><tr><td>
@@ -567,13 +565,13 @@ any links that you are not going to use.
 account.</li>
 <li>A <strong>Python</strong> environment with <code>pandas</code>,
 <code>scikit-learn</code>, and <code>pytest</code>.</li>
-<li>Access to at least one <strong>agentic coding tool</strong> (“bring
-your own agent” is encouraged — the lesson is tool-agnostic).</li>
-<li>A <strong>repository to work on</strong> — ideally your own project
-— and a way to load any API keys that keeps them off disk.</li>
-</ol><p>The safety episode’s first exercise, <em>Get your agent running</em>,
-walks through the first session; the checklist at the <a href="#before-your-first-session">end of this page</a> is the same steps
-in short form.</p>
+<li>Access to at least one <strong>agentic coding tool</strong>. The
+lesson is tool-agnostic, so any agent is acceptable.</li>
+<li>A <strong>repository to work on</strong>, ideally your own project,
+and a way to load any API keys that keeps them off disk.</li>
+</ol><p>The safety episode’s exercise <em>Get your agent running, safely</em>
+covers the first session. The checklist at the <a href="#before-your-first-session">end of this page</a> lists the same
+steps in short form.</p>
 </section><section><h2 class="section-heading" id="git-and-github">Git and GitHub<a class="anchor" aria-label="anchor" href="#git-and-github"></a></h2>
 <hr class="half-width"><p>Install git (<a href="https://git-scm.com/downloads" class="external-link">git-scm.com</a>)
 and make sure you can clone, branch, commit, and push. Create a free <a href="https://github.com/signup" class="external-link">GitHub account</a> if you don’t have
@@ -625,21 +623,21 @@ and <code>git restore</code> undoes it.</p>
 <h3 class="callout-title">No agentic tools on machines holding sensitive
 or restricted data</h3>
 <div class="callout-content">
-<p>If the machine you’re on stores restricted data (FERPA, HIPAA/PHI,
-CUI, export-controlled, unpublished sensitive research, or anything
+<p>If the machine stores restricted data (FERPA, HIPAA/PHI, CUI,
+export-controlled data, unpublished sensitive research, or anything
 under a data-use agreement), <strong>do not install or run any agentic
-tool on it — even inside a dev container.</strong> The container
-requirement below protects a <em>clean</em> machine from the agent; it
-is not a license to run agents next to restricted data, where one
-mis-mounted folder exposes everything and institutional policy bars
-unvetted tools regardless. Use a different machine, or a browser-only
-web route against a repo with no restricted data in it. The safety
-episode explains why.</p>
+tool on it, including inside a dev container.</strong> The container
+requirement below protects a clean machine from the agent. It does not
+make it acceptable to run agents alongside restricted data, where one
+mis-mounted folder exposes everything and institutional policy prohibits
+unvetted tools in any case. Use a different machine, or a browser-only
+web route against a repository containing no restricted data. The safety
+episode explains the reasoning.</p>
 </div>
 </div>
 </div>
 <p>Any of the tools below works for every exercise. If your workshop
-provides cloud credits or a specific tool, use that; otherwise pick
+provides cloud credits or a specific tool, use that; otherwise use
 whichever you can access.</p>
 <div id="access-route-policy-web-ui-recommended-otherwise-a-dev-container-is-required" class="callout">
 <div class="callout-square">
@@ -650,21 +648,21 @@ whichever you can access.</p>
 <h3 class="callout-title">Access-route policy: web UI recommended;
 otherwise a dev container is required</h3>
 <div class="callout-content">
-<p>Agents run with the permissions of wherever they execute. For this
-workshop (and as good default practice):</p>
+<p>Agents run with the permissions of the environment they execute in.
+For this workshop, and as a general default:</p>
 <ul><li>
-<strong>Recommended: use a web UI</strong>, where the agent works on
-a <strong>cloud copy of a GitHub repo and has no access to your machine
-at all</strong> — no local filesystem, no SSH keys, no credentials.
-Nothing to isolate, because nothing runs locally.</li>
+<strong>Recommended: use a web UI</strong>, in which the agent works
+on a cloud copy of a GitHub repository and has no access to your
+machine: no local filesystem, no SSH keys, no credentials. There is
+nothing to isolate because nothing runs locally.</li>
 <li>
-<strong>If you run an agent locally instead, you MUST run it inside
-a dev container</strong> (or a cloud workspace like GitHub Codespaces).
-A bare local agent has your full user account’s access; a container caps
-the blast radius at the project directory.</li>
+<strong>If you run an agent locally instead, run it inside a dev
+container</strong> (or a cloud workspace such as GitHub Codespaces). A
+bare local agent has your full user account’s access; a container limits
+it to the project directory.</li>
 </ul><p>The <a href="#dev-container-required-for-any-local-agent">dev
-container setup</a> below takes about five minutes. If that’s friction
-you don’t want, that’s one more reason to take the web route.</p>
+container setup</a> below takes about five minutes. If you prefer to
+avoid it, use the web route.</p>
 </div>
 </div>
 </div>
@@ -788,10 +786,10 @@ container terminal</em> (your command prompt will be something like
 <code>vscode@containerID:/workspaces/Intro-to-Agentic-Coding$</code>),
 and confirm it’s containerized: <code>ls ~</code> inside the terminal
 should show a bare container home, not your real one.</p></li>
-</ol><p>No Docker and no time? Use <strong>GitHub Codespaces</strong> — it’s
-the same devcontainer.json running on a cloud machine, with a generous
-free tier, and it satisfies the requirement with zero local
-installs.</p>
+</ol><p>If you cannot install Docker, use <strong>GitHub Codespaces</strong>.
+It runs the same <code>devcontainer.json</code> on a cloud machine, has
+a free tier, and satisfies the requirement with no local
+installation.</p>
 <div id="before-the-workshop-check-your-data-privacy-settings" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -801,11 +799,11 @@ installs.</p>
 <h3 class="callout-title">Before the workshop: check your data-privacy
 settings</h3>
 <div class="callout-content">
-<p>If you’re on an individual/consumer AI plan, find the model-training
-toggle in your account settings and make a deliberate choice. And
-remember: no restricted or sensitive data (student records, health data,
-unpublished sensitive research) goes into any AI tool not covered by an
-institutional agreement. UW–Madison folks: see <a href="https://it.wisc.edu/ai/" class="external-link">it.wisc.edu/ai</a>.</p>
+<p>If you are on an individual or consumer AI plan, find the
+model-training setting in your account and make a deliberate choice. No
+restricted or sensitive data (student records, health data, unpublished
+sensitive research) goes into any AI tool not covered by an
+institutional agreement. UW–Madison users: see <a href="https://it.wisc.edu/ai/" class="external-link">it.wisc.edu/ai</a>.</p>
 </div>
 </div>
 </div>
@@ -814,30 +812,31 @@ institutional agreement. UW–Madison folks: see <a href="https://it.wisc.edu/ai
 <hr class="half-width"><p>The <a href="skills-and-mcp.html">MCP tools and skills</a> episode
 connects your agent to the GitHub MCP server. Create a <a href="https://github.com/settings/personal-access-tokens/new" class="external-link">fine-grained
 personal access token</a> scoped to <strong>read-only</strong> access
-(Issues and Pull requests: read) on one repository you don’t mind
-exposing — not a token with write, delete, or org-wide scope. Set it as
-an environment variable (<code>GH_TOKEN</code>) rather than pasting it
-into a config file you might commit.</p>
+(Issues and Pull requests: read) on one repository you do not mind
+exposing, not a token with write, delete, or organization-wide scope.
+Set it as an environment variable (<code>GH_TOKEN</code>) rather than
+writing it into a configuration file that might be committed.</p>
 </section><section><h2 class="section-heading" id="a-repository-to-work-on">A repository to work on<a class="anchor" aria-label="anchor" href="#a-repository-to-work-on"></a></h2>
 <hr class="half-width"><p>The exercises run on <strong>your own project repository</strong>
-where possible — the team conventions, the plan, the first feature, the
-assertions, and the CI workflow all land in a repo you’ll keep using.
-For a team project:</p>
+where possible. The team conventions, the plan, the first feature, the
+assertions, and the CI workflow are all committed to a repository you
+will continue to use. For a team project:</p>
 <ul><li>
-<strong>One shared repo, branches not forks.</strong> Everyone works
-on a branch named for them. Teammates and their agents can
-<code>git fetch</code> and read a branch; they cannot see a fork without
-adding remotes.</li>
+<strong>One shared repository, with branches rather than
+forks.</strong> Each person works on a branch named for them. Teammates
+and their agents can fetch and read a branch; they cannot see a fork
+without adding remotes.</li>
 <li>
-<strong>No write access yet?</strong> Ask the repo owner to add you
-as a collaborator before the session, not during it.</li>
+<strong>Obtain write access before the session.</strong> If you lack
+it, ask the repository owner to add you as a collaborator.</li>
 <li>
-<strong>Protect <code>main</code></strong> so nothing lands without
-a pull request (the verification episode adds a passing-check
-requirement).</li>
-</ul><p>No project yet? Create a small repository now with a README and a
-slice of data you understand. The feature-based-development episode also
-provides a scikit-learn starter for anyone without a dataset.</p>
+<strong>Protect <code>main</code></strong> so that nothing is merged
+without a pull request. The verification episode adds a passing-check
+requirement.</li>
+</ul><p>If you have no project, create a small repository now with a README
+and a slice of data you understand. The feature-based-development
+episode provides a scikit-learn starter for anyone without a
+dataset.</p>
 </section><section><h2 class="section-heading" id="api-keys-a-password-manager-never-a-file">API keys: a password manager, never a file<a class="anchor" aria-label="anchor" href="#api-keys-a-password-manager-never-a-file"></a></h2>
 <hr class="half-width"><p>If your project calls a model API (for example a hosted open-weight
 model with an OpenAI-style endpoint), keep the key in a password manager
@@ -856,33 +855,35 @@ CLI</a> installed:</p>
 <pre class="sourceCode powershell" tabindex="0"><code class="sourceCode powershell"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="va">$env</span><span class="op">:</span><span class="va">OPENAI_API_KEY</span> <span class="op">=</span> op read <span class="st">"op://Private/&lt;item&gt;/credential"</span>        <span class="co"># PowerShell</span></span></code></pre>
 </div>
 <p>For JupyterLab, keep a <code>.env.op</code> file of
-<code>op://</code> <em>references</em> (safe to commit) and launch with
+<code>op://</code> references (safe to commit) and launch with
 <code>op run --env-file=.env.op -- jupyter lab</code>. The safety
-episode shows the full pattern. If you don’t use 1Password, any secrets
-manager or your OS keyring works the same way — the rule is that no key
-lives in the repository or in a plaintext file an agent could read.</p>
+episode shows the full pattern. If you do not use 1Password, any secrets
+manager or your OS keyring works the same way. The rule is that no key
+is stored in the repository or in a plaintext file an agent could
+read.</p>
 </section><section><h2 class="section-heading" id="before-your-first-session">Before your first session<a class="anchor" aria-label="anchor" href="#before-your-first-session"></a></h2>
 <hr class="half-width"><p>The checklist from the <em>Get your agent running, safely</em>
 exercise:</p>
 <ol style="list-style-type: decimal"><li>
-<strong>Pick a cloud route with plan mode.</strong> Claude: <a href="https://claude.ai/code" class="external-link">claude.ai/code</a>, nothing to install;
-plan mode is built in. Copilot: install the <a href="https://docs.github.com/en/copilot/concepts/agents/github-copilot-app" class="external-link">GitHub
+<strong>Choose a cloud route with plan mode.</strong> Claude: <a href="https://claude.ai/code" class="external-link">claude.ai/code</a>; nothing to install,
+and plan mode is built in. Copilot: install the <a href="https://docs.github.com/en/copilot/concepts/agents/github-copilot-app" class="external-link">GitHub
 Copilot app</a> for an explicit plan mode (the agent asks questions and
-waits for your approval before it edits) and start a
-<strong>cloud</strong> session, not local. No install? The Copilot web
-works too: ask for a plan in the prompt and you get the same
-approve-or-exit gate, with less interaction. The desktop apps are fine
-as long as the session is a cloud one.</li>
+waits for your approval before editing) and start a
+<strong>cloud</strong> session, not a local one. If you cannot install
+it, the Copilot web works too: ask for a plan in the prompt and you get
+the same approve-or-exit gate, with less interaction. The desktop apps
+are acceptable provided the session is cloud-hosted.</li>
 <li>
-<strong>Confirm cloud before you prompt.</strong> The session should
-show a cloud VM and a GitHub repository, not a local folder. Cloud
-sandboxes are usage-billed; test your account first.</li>
+<strong>Confirm the session is cloud-hosted before you
+prompt.</strong> It should show a cloud VM and a GitHub repository, not
+a local folder. Cloud sandboxes are billed by usage; confirm your
+account works first.</li>
 <li>
-<strong>Point it at your project repo</strong>, on a branch named
-for you.</li>
+<strong>Point it at your project repository</strong>, on a branch
+named for you.</li>
 <li>
-<strong>Keys via <code>op read</code></strong>, no <code>.env</code>
-anywhere in the repo.</li>
+<strong>Load keys with <code>op read</code>.</strong> No
+<code>.env</code> in the repository.</li>
 <li><strong>Start from a clean git state.</strong></li>
 </ol><!--
 Place links that you need to refer to multiple times across pages here. Delete

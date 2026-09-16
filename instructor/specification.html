@@ -388,7 +388,7 @@
 <div class="card-body">
 <div class="inner">
 <h3 class="card-title">Questions</h3>
-<ul><li>Why work feature by feature instead of asking for whole
+<ul><li>Why work feature by feature instead of requesting whole
 projects?</li>
 <li>What happens when I give an agent a vague request?</li>
 <li>What does a good prompt look like for research code?</li>
@@ -400,85 +400,80 @@ projects?</li>
 <div class="card-body">
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
-<ul><li>Decompose a plan into feature-sized, verifiable tasks and work them
-one per session.</li>
+<ul><li>Decompose a plan into feature-sized, verifiable tasks and work on
+them one per session.</li>
 <li>Predict how an agent fills gaps in an underspecified request.</li>
 <li>Distinguish context engineering (standing guidance) from prompt
-engineering (the specific ask).</li>
-<li>Write prompts that specify inputs, output, the check for “done”, and
-what not to touch.</li>
+engineering (the specific request).</li>
+<li>Write prompts that specify inputs, output, the check for completion,
+and what not to modify.</li>
 <li>Implement one feature from your plan and audit the decisions the
-agent made for you.</li>
+agent made on your behalf.</li>
 </ul></div>
 </div>
 </div>
 </div>
 </div>
 <section><h2 class="section-heading" id="work-feature-by-feature-not-project-by-project">Work feature by feature, not project by project<a class="anchor" aria-label="anchor" href="#work-feature-by-feature-not-project-by-project"></a></h2>
-<hr class="half-width"><p><strong>A feature is one thing you can check.</strong> Load and
-validate the data slice. Train one baseline. Write the scoring function.
-The <code>plan.md</code> you just wrote is the feature list — work down
-it in order.</p>
+<hr class="half-width"><p>A feature is one thing you can check: load and validate the data
+slice; train one baseline; write the scoring function. The
+<code>plan.md</code> from the previous episode is the feature list. Work
+through it in order.</p>
 <ul><li>
-<strong>One feature per chat session.</strong> Fresh context, a
-small diff, one pull request. (The cost episode explains why a fresh
-session matters: everything in a long session competes for the model’s
-attention.)</li>
+<strong>One feature per session.</strong> Fresh context, a small
+diff, one pull request. The cost episode explains why a fresh session
+matters: everything in a long session competes for the model’s
+attention.</li>
 <li>
-<strong>Specify each one.</strong> Inputs, output, how you will know
-it works, what not to touch.</li>
+<strong>Specify each feature</strong>: inputs, output, how you will
+know it works, what not to modify.</li>
 <li>
-<strong>Small scope means small diffs</strong> — which means you can
-review them, and stay in the driver’s seat. A project-sized prompt
-produces worse code and, worse, a diff too large to review, at which
-point you have handed over the wheel without deciding to.</li>
-</ul><p><strong>Whole-project prompts produce whole-project
-guesses.</strong></p>
+<strong>Small scope produces small diffs</strong>, which you can
+review in full. A project-sized prompt produces worse code and a diff
+too large to review, at which point you have given up control without
+deciding to.</li>
+</ul><p>A whole-project prompt produces whole-project guesses.</p>
 </section><section><h2 class="section-heading" id="underspecified-does-not-mean-random">Underspecified does not mean random<a class="anchor" aria-label="anchor" href="#underspecified-does-not-mean-random"></a></h2>
-<hr class="half-width"><p>When your request is ambiguous, the agent doesn’t fail and it doesn’t
-guess randomly. It does something more subtle and more dangerous:
-<strong>it fills every gap with the most statistically typical choice
-from its training data</strong> — the most common file layout, the
-default hyperparameters, the standard preprocessing for data that looks
-like yours.</p>
-<p>That’s why underspecified requests so often produce code that
-<em>runs</em> and <em>looks reasonable</em>: average-case answers
-usually do. The problem is that your data and code are rarely the
-average case. Your weird instrument artifact is not in the training
-data. Your field has a convention the average GitHub repo doesn’t
-follow. Your “duplicate rows” are repeated measures. Every unstated
-assumption gets resolved in favor of someone else’s typical project —
-silently.</p>
-<p>Two consequences:</p>
-<ol style="list-style-type: decimal"><li>
-<strong>Precision in, precision out.</strong> The specification work
-you’d have to do for a colleague doesn’t disappear; it moves into the
-prompt.</li>
-<li>
-<strong>The failure mode is plausible-but-wrong</strong>, not
-obviously-broken. Which is why the next episode, on verification, is the
-heart of this lesson.</li>
+<hr class="half-width"><p>When a request is ambiguous, the agent does not fail and does not
+choose at random. It fills each gap in the specification with the most
+statistically typical choice from its training data: the most common
+file layout, the default hyperparameters, the standard preprocessing for
+data that resembles yours.</p>
+<p>This is why underspecified requests usually produce code that runs
+and looks reasonable. Average-case answers generally do. Research data
+and code are rarely the average case. The instrument artifact specific
+to your equipment is not in the training data. Your field may follow a
+convention the average repository does not. Your “duplicate rows” may be
+repeated measures. Each unstated assumption is resolved in favor of
+someone else’s typical project, without any indication that a choice was
+made.</p>
+<p>Two consequences follow:</p>
+<ol style="list-style-type: decimal"><li>The specification work you would do for a human collaborator does
+not disappear. It moves into the prompt.</li>
+<li>The failure mode is plausible-but-wrong rather than visibly broken.
+This is why the next episode, on verification, is the core of the
+lesson.</li>
 </ol></section><section><h2 class="section-heading" id="guide-the-agent-with-clear-instructions">Guide the agent with clear instructions<a class="anchor" aria-label="anchor" href="#guide-the-agent-with-clear-instructions"></a></h2>
-<hr class="half-width"><p>Two levers, at two time scales:</p>
+<hr class="half-width"><p>There are two levers, operating at different time scales:</p>
 <ul><li>
-<strong>Context engineering</strong> defines the standing guidelines
-for generating code and what resources the agent can reach: the project
+<strong>Context engineering</strong> sets the standing guidelines
+for generating code and the resources the agent may use: the project
 context file (<code>CLAUDE.md</code>, <code>AGENTS.md</code>,
 <code>copilot-instructions.md</code>), coding-standards files,
-<code>plan.md</code>. Written once, read every session. Sharing a
-context file among collaborators is a cheap way to keep a team’s code
+<code>plan.md</code>. Written once, read in every session. A shared
+context file is an inexpensive way to keep a team’s code
 consistent.</li>
 <li>
 <strong>Prompt engineering</strong> phrases the specific request to
-get the best possible result for <em>this</em> task.</li>
-</ul><p>These aren’t competing approaches; they are concentric layers around
-the model, and each contains the one inside it. The harness (the loop,
-tools, memory, sandbox) is the outermost layer and mostly not yours to
-change; context and prompt are.</p>
+obtain the best result for the task at hand.</li>
+</ul><p>These are not alternatives. They are concentric layers around the
+model, and each contains the one inside it. The harness (the loop,
+tools, memory, sandbox) is the outermost layer and is mostly fixed by
+the tool; the context and the prompt are yours to set.</p>
 <figure><img src="../fig/prompt-context-harness.png" alt="Diagram of concentric circles. Innermost: Model. Around it: Prompt, the wording of a single instruction. Around that: Context, everything the model sees in its context window. Outermost: Harness, the whole system around the model: loop, tools, memory, sandbox. Caption: each layer contains the one inside it." class="figure mx-auto d-block"><div class="figcaption">Prompt, context, and harness engineering as
 three concentric layers around the model.</div>
 </figure><p>The same request at two levels of specification:</p>
-<p><strong>Bad prompt:</strong></p>
+<p><strong>Weak prompt:</strong></p>
 <blockquote>
 <p>Fix this bug.</p>
 </blockquote>
@@ -494,40 +489,39 @@ with&gt;</p>
 how you would confirm it. Wait for me to agree before you apply a
 fix.</p>
 </blockquote>
-<p>The better prompt supplies the <em>evidence</em> (traceback, code,
-input), asks for a <em>diagnosis before a change</em>, and keeps the
-decision with you. Consider what “fix” alone would have left to the
-average case: the agent would have to invent what “fixed” means — and an
-agent told to make an error go away sometimes does exactly that, by
-deleting the check that raised it.</p>
-<p>A checklist for research-code prompts — specify:</p>
+<p>The better prompt supplies the evidence (traceback, code, input),
+asks for a diagnosis before any change, and keeps the decision with you.
+“Fix this bug” alone leaves the meaning of “fixed” to the average case,
+and an agent told to make an error disappear sometimes does so by
+removing the check that raised it.</p>
+<p>A checklist for research-code prompts:</p>
 <ul><li>
-<strong>Where</strong>: which files or functions to touch, and which
-to leave alone.</li>
+<strong>Where</strong>: which files or functions to modify, and
+which to leave alone.</li>
 <li>
 <strong>What</strong>: the behavior you want, including the edge
 cases you know about.</li>
 <li>
-<strong>Constraints</strong>: conventions, dependencies allowed,
+<strong>Constraints</strong>: conventions, permitted dependencies,
 things to preserve.</li>
 <li>
 <strong>Verification</strong>: how the agent should check its own
-work — run the tests, confirm the row count is unchanged, print the
-class balance before and after.</li>
-</ul><p>That last item is the bridge to the next episode: a prompt that
-includes its own check is worth two that don’t.</p>
+work. Run the tests; confirm the row count is unchanged; print the class
+balance before and after.</li>
+</ul><p>The last item leads into the next episode. A prompt that includes its
+own check is worth more than one that does not.</p>
 </section><section><h2 class="section-heading" id="maintenance-tasks-agents-do-well">Maintenance tasks agents do well<a class="anchor" aria-label="anchor" href="#maintenance-tasks-agents-do-well"></a></h2>
-<hr class="half-width"><p>Not every feature is new science. Agents are reliably good at the
-routine work that keeps a research repository usable — provided you give
-each task the same treatment as a feature: small, specified, checkable,
-one pull request, and you review it.</p>
+<hr class="half-width"><p>Not every feature is new analysis. Agents are reliably good at the
+routine work that keeps a research repository usable, provided each task
+is treated as a feature: small, specified, checkable, one pull request,
+reviewed by you.</p>
 <ul><li>
 <strong>Refactoring.</strong> Split the 400-line notebook into
-functions and a script. Tests pass before and after, or it did not
-work.</li>
+functions and a script. Tests pass before and after, or the refactor is
+not complete.</li>
 <li>
 <strong>Docstrings and type hints</strong> on every function. Ask
-for a diff that changes no logic, then check that it didn’t.</li>
+for a diff that changes no logic, then confirm that it did not.</li>
 <li>
 <strong>A README that matches the code.</strong> “Read the repo and
 list what the README says that is no longer true.”</li>
@@ -536,12 +530,12 @@ list what the README says that is no longer true.”</li>
 <code>requirements.txt</code> or <code>environment.yml</code> from what
 the code imports.</li>
 <li>
-<strong>Weekly merge prep.</strong> “Summarize what changed on this
-branch since <code>main</code>, for the teammates who were not
+<strong>Weekly merge preparation.</strong> “Summarize what changed
+on this branch since <code>main</code>, for the teammates who were not
 here.”</li>
-</ul><p>(The <a href="documentation.html">documentation</a> episode goes
-deeper on the first three, and on why documentation feeds back into
-agent performance.)</p>
+</ul><p>The <a href="documentation.html">documentation</a> episode covers the
+first three in more depth, and explains why documentation improves later
+agent sessions.</p>
 <div id="exercise-implement-feature-1-from-your-plan-15-minutes" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -551,11 +545,11 @@ agent performance.)</p>
 <h3 class="callout-title">Exercise: Implement feature 1 from your plan
 (15 minutes)</h3>
 <div class="callout-content">
-<p>Take feature 1 from your <code>plan.md</code> — or any feature you
-want to try adding.</p>
+<p>Take feature 1 from your <code>plan.md</code>, or any feature you
+want to add.</p>
 <ol style="list-style-type: decimal"><li>
-<p><strong>Write the prompt.</strong> Fill in the template below.
-Point the agent at <code>plan.md</code> and your project’s goal
+<p><strong>Write the prompt</strong> using the template below.
+Direct the agent to <code>plan.md</code> and your project’s goal
 page.</p>
 <blockquote>
 <p>Implement feature 1 from <code>plan.md</code>.</p>
@@ -592,19 +586,19 @@ it decide that you did not specify?</p></li>
 </nav><div id="nav-tabContent-1" class="tab-content">
 <div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
 <p>Start a fresh session (or <code>/clear</code>) so the feature begins
-with a clean context. On the web, the work comes back as a branch;
-locally, confirm it created one before it edits.</p>
+with a clean context. On the web, the work is returned as a branch;
+locally, confirm that it created one before editing.</p>
 </div>
 <div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
 <p>Use <strong>Agent</strong> mode in a <strong>New Chat</strong>, or
-delegate the prompt to the cloud coding agent and review the draft PR it
-opens.</p>
+delegate the prompt to the cloud coding agent and review the draft pull
+request it opens.</p>
 </div>
 </div>
 </div>
-<p>No project handy? Use this starter and ask for one feature — a
+<p>If you have no project, use this starter and request one feature: a
 stratified 80/20 split, a standardized logistic regression, and a
-printed majority-class baseline next to the test accuracy:</p>
+printed majority-class baseline alongside the test accuracy.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -620,21 +614,20 @@ printed majority-class baseline next to the test accuracy:</p>
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">
-  What people typically observe
+  Typical results
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
-<p>The “list every choice you did not specify” line is the most valuable
-one in the template. Typical answers: a random seed, a default
-imputation, a metric it added “for context”, a file it created that you
-didn’t ask for, a dependency it installed. Each is now a decision you
-own. The ones that surprise you are exactly the ones to write into the
-next prompt — or into the context file, so you never specify them
-again.</p>
-<p>Contrast with what a bare “implement the model” prompt does:
-something impressive-looking with choices you never made, and no
-list.</p>
+<p>The request to list unspecified choices is the most informative line
+in the template. Typical answers: a random seed, a default imputation,
+an added metric, a file you did not ask for, an installed dependency.
+Each is now a decision you are responsible for. The ones that surprise
+you belong in the next prompt, or in the context file so they need not
+be specified again.</p>
+<p>A bare “implement the model” prompt, by contrast, produces something
+that looks complete, with choices you did not make and no list of
+them.</p>
 </div>
 </div>
 </div>
@@ -646,20 +639,21 @@ list.</p>
 <span class="callout-header">Key Points</span>
 <div class="callout-inner">
 <div class="callout-content">
-<ul><li>A feature is one thing you can check. Work the plan one feature per
-session, with a small diff and one pull request.</li>
-<li>Underspecified prompts get average-case answers; your data and your
-research are rarely the average case. The failure mode is
+<ul><li>A feature is one thing you can check. Work through the plan one
+feature per session, with a small diff and one pull request.</li>
+<li>Underspecified prompts receive average-case answers, and research
+data is rarely the average case. The failure mode is
 plausible-but-wrong.</li>
 <li>Context engineering sets the standing rules (context file,
-standards, plan); prompt engineering phrases the specific ask. Use
+standards, plan); prompt engineering phrases the specific request. Use
 both.</li>
-<li>Good prompts give evidence, ask for a diagnosis before a change, and
-specify inputs, output, “done when”, and “do not touch”.</li>
-<li>Maintenance tasks — refactors, docstrings, README audits,
-environment pins, merge summaries — are ideal agent work under the same
+<li>Good prompts provide evidence, ask for a diagnosis before a change,
+and specify inputs, output, the completion check, and what not to
+modify.</li>
+<li>Maintenance tasks (refactors, docstrings, README audits, environment
+pins, merge summaries) are well suited to agents under the same
 small-specified-checkable rules.</li>
-<li>Always ask the agent to list the choices you didn’t specify.</li>
+<li>Always ask the agent to list the choices you did not specify.</li>
 </ul></div>
 </div>
 </div>

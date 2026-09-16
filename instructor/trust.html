@@ -227,10 +227,10 @@
 
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
-        <ul><li><a href="#packages-the-agent-multiplies-your-supply-chain-surface">Packages: the agent multiplies your supply-chain surface</a></li>
+        <ul><li><a href="#packages-the-agent-multiplies-your-supply-chain-exposure">Packages: the agent multiplies your supply-chain exposure</a></li>
 <li><a href="#model-weights-are-code">Model weights are code</a></li>
-<li><a href="#the-tools-themselves-are-attack-surface">The tools themselves are attack surface</a></li>
-<li><a href="#vet-your-provider-like-youd-vet-a-data-source">Vet your provider like you’d vet a data source</a></li>
+<li><a href="#the-tools-themselves-are-an-attack-surface">The tools themselves are an attack surface</a></li>
+<li><a href="#vet-the-provider-as-you-would-vet-a-data-source">Vet the provider as you would vet a data source</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -400,216 +400,214 @@ it?</li>
 <div class="card-body">
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
-<ul><li>Review every dependency an agent adds, and verify packages exist and
-are official before installing.</li>
+<ul><li>Review every dependency an agent adds, and verify that packages
+exist and are official before installing.</li>
 <li>Treat downloaded model weights as executable code and apply
 provenance checks accordingly.</li>
-<li>Vet an AI provider’s data policy by answering four concrete
-questions before use.</li>
-<li>Connect each practice to a real, documented incident.</li>
+<li>Vet an AI provider’s data policy by answering four questions before
+use.</li>
+<li>Connect each practice to a documented incident.</li>
 </ul></div>
 </div>
 </div>
 </div>
 </div>
 <p>The safety episode ended with the one limit no setting enforces: whom
-you trust. Everything so far assumes the things you install and the
-services you call are what they claim to be. That assumption deserves
-the same scrutiny as your data. Agentic coding raises the stakes in a
-specific way: <strong>the agent installs packages, downloads models, and
-ships your code to a provider on your behalf</strong> — so decisions you
-used to make one at a time now happen at machine speed, in bulk, unless
-you deliberately stay in the loop.</p>
-<section><h2 class="section-heading" id="packages-the-agent-multiplies-your-supply-chain-surface">Packages: the agent multiplies your supply-chain surface<a class="anchor" aria-label="anchor" href="#packages-the-agent-multiplies-your-supply-chain-surface"></a></h2>
-<hr class="half-width"><p>Open-source package ecosystems have always carried supply-chain risk
-— even scrupulously maintained infrastructure can be compromised (the
-2024 <code>xz-utils</code> backdoor was inserted by a contributor who
-spent <em>years</em> building maintainer trust). Agents add a twist of
-their own:</p>
+you trust. The rest of this lesson assumes that the packages you install
+and the services you call are what they claim to be. That assumption
+deserves the same scrutiny as the data. Agentic coding raises the stakes
+in one specific way: the agent installs packages, downloads models, and
+sends your code to a provider on your behalf. Decisions that were once
+made one at a time are now made quickly and in bulk unless you
+deliberately stay involved.</p>
+<section><h2 class="section-heading" id="packages-the-agent-multiplies-your-supply-chain-exposure">Packages: the agent multiplies your supply-chain exposure<a class="anchor" aria-label="anchor" href="#packages-the-agent-multiplies-your-supply-chain-exposure"></a></h2>
+<hr class="half-width"><p>Open-source package ecosystems have always carried supply-chain risk.
+Even carefully maintained infrastructure can be compromised; the 2024
+<code>xz-utils</code> backdoor was inserted by a contributor who spent
+years building maintainer trust. Agents add two new problems:</p>
 <ul><li>
-<strong>Hallucinated packages (“slopsquatting”).</strong> LLMs
-sometimes recommend packages that don’t exist — in one large 2025 study,
-roughly a fifth of packages suggested by code-generating models were
-fabrications, and the same fake names recur across sessions. Attackers
-can register those names and wait. Security researcher Bar Lanyado
-demonstrated this by registering <code>huggingface-cli</code>, a package
-name LLMs kept inventing: his empty placeholder drew more than 15,000
-downloads in three months and even showed up in a major company’s repo
-install instructions.</li>
+<strong>Hallucinated packages (“slopsquatting”).</strong> Language
+models sometimes recommend packages that do not exist. In one large 2025
+study, roughly a fifth of packages suggested by code-generating models
+were fabrications, and the same invented names recur across sessions.
+Attackers can register those names. Security researcher Bar Lanyado
+demonstrated this by registering <code>huggingface-cli</code>, a name
+models repeatedly invented; the empty placeholder received more than
+15,000 downloads in three months and appeared in a major company’s
+installation instructions.</li>
 <li>
-<strong>Typosquatting and dependency confusion get a faster conveyor
-belt.</strong> In December 2022, a malicious <code>torchtriton</code>
+<strong>Typosquatting and dependency confusion happen
+faster.</strong> In December 2022, a malicious <code>torchtriton</code>
 package on PyPI shadowed a PyTorch-nightly internal dependency and
 exfiltrated SSH keys and files from thousands of machines. In December
 2024, compromised releases of <code>ultralytics</code> (the widely used
-YOLO library) shipped a cryptominer to anyone who installed during the
-affected window. Neither incident involved AI — but an agent that
-<code>pip install</code>s without you watching turns “I’d have noticed
-something off about that name” into “it was in the transcript I
-skimmed.”</li>
-</ul><p>What to do:</p>
+YOLO library) installed a cryptominer on any machine that installed
+during the affected window. Neither incident involved AI, but an agent
+that runs <code>pip install</code> unattended removes the moment at
+which a person might have noticed an unfamiliar name.</li>
+</ul><p>Practices that follow:</p>
 <ul><li>
-<strong>Never auto-approve package installation.</strong> Keep
-installs on the manually-approved list (or add “don’t add new
-dependencies without asking” to your project context file — and treat it
-as advisory, per the safety episode).</li>
+<strong>Do not auto-approve package installation.</strong> Keep
+installs on the list of actions that require approval, or add “do not
+add new dependencies without asking” to the project context file,
+remembering that context files are advisory.</li>
 <li>
-<strong>Before installing anything an agent suggests, verify it
-exists and is official</strong>: check the registry page, the linked
-source repo, download counts, and release history. A brief check defeats
-most slopsquatting.</li>
+<strong>Before installing anything an agent suggests, verify that it
+exists and is official.</strong> Check the registry page, the linked
+source repository, download counts, and release history. A brief check
+defeats most slopsquatting.</li>
 <li>
 <strong>Pin versions in a lockfile</strong> and prefer environments
-you can rebuild
-(<code>requirements.txt</code>/<code>environment.yml</code> under
-version control), so a bad install is a revert, not an archaeology
-project.</li>
+you can rebuild (<code>requirements.txt</code> or
+<code>environment.yml</code> under version control), so that a bad
+install is reverted rather than investigated.</li>
 </ul></section><section><h2 class="section-heading" id="model-weights-are-code">Model weights are code<a class="anchor" aria-label="anchor" href="#model-weights-are-code"></a></h2>
-<hr class="half-width"><p>Running open-weight models locally has a real privacy upside — your
-data never leaves your machine. But downloaded weights deserve the same
-suspicion as downloaded executables, because in the common formats they
-<em>are</em> executables. Four ways a model download can hurt you, each
-with a documented case:</p>
+<hr class="half-width"><p>Running open-weight models locally has a privacy advantage: the data
+never leaves your machine. But downloaded weights deserve the same
+caution as downloaded executables, because in the common formats they
+are executables. Four ways a model download can cause harm, each with a
+documented case:</p>
 <ul><li>
 <strong>Weights can carry code.</strong> Python’s pickle
 serialization, used by many model files, runs arbitrary code on load. In
 2024 JFrog found on the order of a hundred malicious models on Hugging
-Face whose payloads did things like open a reverse shell when loaded —
-and scanners haven’t caught everything since.</li>
+Face whose payloads included opening a reverse shell when loaded.
+Scanners have not caught everything since.</li>
 <li>
-<strong>Typosquats.</strong> Check the <em>organization</em>, not
-the model card. In 2026 HiddenLayer caught a fake “OpenAI” repository
-sitting at #1 trending on Hugging Face.</li>
+<strong>Typosquats.</strong> Check the organization, not the model
+card. In 2026 HiddenLayer identified a fake “OpenAI” repository at the
+top of Hugging Face’s trending list.</li>
 <li>
-<strong>Values get trained in.</strong> DeepSeek R1 ships with
-censorship of certain topics; Perplexity’s R1 1776 (2025) was
-post-trained specifically to strip it out. Whatever a model’s builders
-wanted it to do or avoid, it will do or avoid in your pipeline.</li>
+<strong>Values are trained in.</strong> DeepSeek R1 censors certain
+topics; Perplexity’s R1 1776
+(2025) was post-trained specifically to remove that behavior. Whatever a
+model’s builders trained it to do or avoid, it will do or avoid in your
+pipeline.</li>
 <li>
-<strong>Hidden backdoors work, and no reliable detector exists
-yet.</strong> Mithril’s PoisonGPT
-(2023) passed standard benchmarks while emitting specific false facts —
-more below.</li>
-</ul><p>Practical rules:</p>
-<ul><li>Prefer <strong><code>safetensors</code></strong> (a weights-only
-format that can’t execute code) over pickle formats when available.</li>
+<strong>Hidden backdoors work, and no reliable detector
+exists.</strong> Mithril’s PoisonGPT
+(2023) passed standard benchmarks while emitting specific false
+statements. More below.</li>
+</ul><p>Practices that follow:</p>
+<ul><li>Prefer <strong><code>safetensors</code></strong>, a weights-only
+format that cannot execute code, over pickle formats when
+available.</li>
 <li>Download from the <strong>verified official organization
-account</strong> (e.g., <code>meta-llama</code>,
-<code>mistralai</code>), not a lookalike re-upload, and check checksums
-where published.</li>
+account</strong> (for example <code>meta-llama</code> or
+<code>mistralai</code>), not a re-upload, and check checksums where
+published.</li>
 <li>
-<strong>Never set <code>trust_remote_code=True</code> by
+<strong>Do not set <code>trust_remote_code=True</code> by
 default.</strong> It runs whatever Python ships with the model. Tooling
-can get this wrong for you: InstructLab hardcoded it on
+can get this wrong on your behalf: InstructLab hardcoded it on
 (CVE-2026-6859).</li>
-<li>Remember that “open weights” ≠ audited: provenance tells you who
-built it, not that it’s good. Smaller local models also hallucinate more
-— including package names, which loops you back to the previous
+<li>“Open weights” does not mean audited. Provenance tells you who built
+the model, not that it is sound. Smaller local models also hallucinate
+more, including package names, which returns to the previous
 section.</li>
 </ul><div class="section level3">
-<h3 id="the-deeper-problem-backdoors-in-the-weights-themselves">The deeper problem: backdoors in the weights themselves<a class="anchor" aria-label="anchor" href="#the-deeper-problem-backdoors-in-the-weights-themselves"></a></h3>
-<p>Switching to safetensors closes the code-execution hole — but it does
-nothing about a scarier class of attack, where <strong>the malicious
-behavior lives in the parameters, not the file format</strong>. A model
-can be built (or modified) to behave normally almost always and
-misbehave only on a trigger, and this is not hypothetical:</p>
+<h3 id="backdoors-in-the-weights-themselves">Backdoors in the weights themselves<a class="anchor" aria-label="anchor" href="#backdoors-in-the-weights-themselves"></a></h3>
+<p>Using safetensors closes the code-execution route. It does nothing
+about a separate class of attack in which the malicious behavior is in
+the parameters rather than the file format. A model can be built or
+modified to behave normally in almost all cases and misbehave on a
+trigger:</p>
 <ul><li>
-<strong>Surgical weight edits.</strong> In the PoisonGPT
-proof-of-concept (2023), researchers edited an open model to emit
-specific false facts, re-uploaded it under a typosquatted organization
-name, and showed that standard benchmarks barely moved — you cannot
-benchmark your way to trust.</li>
+<strong>Surgical weight edits.</strong> In the PoisonGPT proof of
+concept (2023), researchers edited an open model to emit specific false
+facts, re-uploaded it under a typosquatted organization name, and showed
+that standard benchmarks barely changed. Benchmarks do not establish
+trust.</li>
 <li>
 <strong>Sleeper agents.</strong> Anthropic’s 2024 research trained
-models that wrote secure code when the prompt said the year was 2023 but
-inserted exploitable vulnerabilities when it said 2024 — and found that
-standard safety training <em>failed to remove</em> the behavior,
-sometimes just teaching the model to hide it better.</li>
+models that wrote secure code when the prompt said the year was 2023 and
+inserted exploitable vulnerabilities when it said 2024. Standard safety
+training failed to remove the behavior and sometimes taught the model to
+conceal it.</li>
 <li>
-<strong>Data poisoning is cheap.</strong> A 2025 study by Anthropic
-with the UK AI Security Institute found that on the order of a few
-hundred poisoned documents in a training corpus can implant a backdoor —
-roughly independent of model size. Earlier work (e.g., TrojanPuzzle)
-showed code-suggestion models specifically can be poisoned to emit
-insecure patterns.</li>
+<strong>Data poisoning is inexpensive.</strong> A 2025 study by
+Anthropic with the UK AI Security Institute found that a few hundred
+poisoned documents in a training corpus can implant a backdoor, roughly
+independent of model size. Earlier work (for example TrojanPuzzle)
+showed that code-suggestion models can be poisoned to emit insecure
+patterns.</li>
 <li>
-<strong>Graph-level backdoors.</strong> Techniques like ShadowLogic
-embed the backdoor in a model’s computational graph (e.g., ONNX), again
-with no code execution required.</li>
-</ul><p>Why this matters for <em>agentic</em> coding specifically: a
-backdoored code model doesn’t need to attack your machine — it just
-needs to write subtly vulnerable code that you trust, run, and ship. And
-in an agentic setup, the trigger can be <em>delivered</em>: prompt
-injection (a poisoned README or issue) plus a backdoored model with tool
-access is a much worse combination than either alone.</p>
-<p>Current status: <strong>detecting behavioral backdoors is an open
-research problem.</strong> No scanner finds them; benchmarks don’t
-reveal them. Which is why the defenses are the routine ones — provenance
-from heavily scrutinized official sources, extra caution before wiring a
-niche fine-tune into a pipeline with tool access or untrusted inputs,
-and treating model <em>output</em> as untrusted regardless of where the
-weights came from. That last one you already have: it’s this lesson’s
-review-everything discipline, which protects you whether the bad code
-comes from an average-case guess or a backdoor.</p>
+<strong>Graph-level backdoors.</strong> Techniques such as
+ShadowLogic embed the backdoor in a model’s computational graph (for
+example ONNX), again with no code execution.</li>
+</ul><p>This matters for agentic coding in particular because a backdoored
+code model does not need to attack your machine; it needs only to write
+subtly vulnerable code that you trust, run, and ship. In an agentic
+setup the trigger can also be delivered: prompt injection through a
+poisoned README or issue, combined with a backdoored model that has tool
+access, is worse than either alone.</p>
+<p>Detecting behavioral backdoors is an open research problem. No
+scanner finds them and benchmarks do not reveal them. The defenses are
+therefore the routine ones: provenance from heavily scrutinized official
+sources, extra caution before connecting a niche fine-tune to a pipeline
+with tool access or untrusted inputs, and treating model output as
+untrusted regardless of where the weights came from. The last of these
+is the review discipline this lesson already requires, and it protects
+you whether the bad code comes from an average-case guess or a
+backdoor.</p>
 </div>
-</section><section><h2 class="section-heading" id="the-tools-themselves-are-attack-surface">The tools themselves are attack surface<a class="anchor" aria-label="anchor" href="#the-tools-themselves-are-attack-surface"></a></h2>
-<hr class="half-width"><p>The agent’s harness — the extension, the CLI, its hooks and configs —
-is software too, and it’s a high-value target because it holds your
-permissions:</p>
-<ul><li>In July 2025, an attacker slipped a prompt into the <strong>Amazon
-Q</strong> VS Code extension via a GitHub pull request, instructing the
-embedded agent to wipe the user’s files and cloud resources; the
+</section><section><h2 class="section-heading" id="the-tools-themselves-are-an-attack-surface">The tools themselves are an attack surface<a class="anchor" aria-label="anchor" href="#the-tools-themselves-are-an-attack-surface"></a></h2>
+<hr class="half-width"><p>The agent’s harness (the extension, the CLI, its hooks and
+configuration) is software, and it is a valuable target because it holds
+your permissions:</p>
+<ul><li>In July 2025, an attacker inserted a prompt into the <strong>Amazon
+Q</strong> VS Code extension through a GitHub pull request, instructing
+the embedded agent to wipe the user’s files and cloud resources. The
 poisoned version shipped to users before it was caught.</li>
-<li>Security researchers in 2025 disclosed <strong>dozens of
-vulnerabilities across AI coding IDEs</strong> (reported as the
-“IDEsaster” findings) and multiple CVEs in individual tools.</li>
-<li>And agents can do damage with no attacker at all: in a widely
-publicized July 2025 incident, <strong>Replit’s coding agent deleted a
-production database</strong> during a “vibe-coding” experiment despite
-explicit instructions to freeze changes — then generated misleading
-output about what it had done.</li>
-</ul><p>The lessons: keep your agent tooling updated (patches for these are
-fast but only help if applied), install extensions only from official
-marketplaces, and <strong>never point an agent at production systems or
-irreplaceable data</strong> — dev/prod separation and backups are not
-optional just because the collaborator types quickly.</p>
-</section><section><h2 class="section-heading" id="vet-your-provider-like-youd-vet-a-data-source">Vet your provider like you’d vet a data source<a class="anchor" aria-label="anchor" href="#vet-your-provider-like-youd-vet-a-data-source"></a></h2>
-<hr class="half-width"><p>Whichever provider you choose — Anthropic, GitHub/Microsoft, Google,
-a startup, a model router — you are shipping your code and prompts to
-them. Before you commit, answer four questions from their actual policy
-documents, not their marketing page:</p>
+<li>Security researchers in 2025 disclosed dozens of vulnerabilities
+across AI coding IDEs (reported as the “IDEsaster” findings) and
+multiple CVEs in individual tools.</li>
+<li>Agents can also cause damage with no attacker. In July 2025,
+<strong>Replit’s</strong> coding agent deleted a production database
+during a “vibe-coding” experiment despite explicit instructions to
+freeze changes, then produced misleading output about what it had
+done.</li>
+</ul><p>Keep agent tooling updated, install extensions only from official
+marketplaces, and never point an agent at production systems or
+irreplaceable data. Separation of development and production, and
+backups, remain necessary.</p>
+</section><section><h2 class="section-heading" id="vet-the-provider-as-you-would-vet-a-data-source">Vet the provider as you would vet a data source<a class="anchor" aria-label="anchor" href="#vet-the-provider-as-you-would-vet-a-data-source"></a></h2>
+<hr class="half-width"><p>Whichever provider you choose (Anthropic, GitHub/Microsoft, Google, a
+startup, a model router), you are sending your code and prompts to them.
+Before committing, answer four questions from the provider’s policy
+documents rather than its marketing material:</p>
 <ol style="list-style-type: decimal"><li>
 <strong>Is my data used for training, and is that the
-default?</strong> Commercial/API terms typically prohibit it; consumer
-plans often make it a toggle — sometimes defaulted on. Find the setting
-and make a deliberate choice.</li>
+default?</strong> Commercial and API terms typically prohibit it.
+Consumer plans often make it a setting, sometimes enabled by default.
+Find the setting and decide.</li>
 <li>
 <strong>How long is it retained, and who can see it?</strong>
-Retention windows differ by an order of magnitude between plan tiers;
-feedback buttons and safety reviews often extend them.</li>
+Retention windows differ by an order of magnitude between plan tiers.
+Feedback buttons and safety reviews often extend them.</li>
 <li>
 <strong>Where does inference run, and under whose
 jurisdiction?</strong> In January 2025, researchers found a publicly
 exposed <strong>DeepSeek</strong> database leaking user chat histories
-and API keys — a reminder that provider security practices and legal
-jurisdiction are part of the deal, not a footnote.</li>
+and API keys. Provider security practice and legal jurisdiction are part
+of the arrangement.</li>
 <li>
-<strong>Does an institutional agreement cover this, or is it your
+<strong>Does an institutional agreement cover this, or is it a
 personal contract?</strong> In 2023, <strong>Samsung</strong> engineers
 pasted proprietary source code into ChatGPT while debugging; the company
 responded by banning generative AI tools internally. An individual
-subscription gives your institution no protections at all — which is why
-the safety episode’s rule (restricted data stays off unvetted tools)
+subscription gives your institution no protection, which is why the
+safety episode’s rule (restricted data stays off unvetted tools)
 exists.</li>
 </ol><div class="section level3">
-<h3 id="what-claude-and-copilot-do-by-default-as-of-september-2026">What Claude and Copilot do by default (as of September 2026)<a class="anchor" aria-label="anchor" href="#what-claude-and-copilot-do-by-default-as-of-september-2026"></a></h3>
-<p>The two tools this lesson uses most are a good illustration of how
-much the answers depend on <em>plan tier</em>, not just provider:</p>
+<h3 id="claude-and-copilot-defaults-as-of-september-2026">Claude and Copilot defaults (as of September 2026)<a class="anchor" aria-label="anchor" href="#claude-and-copilot-defaults-as-of-september-2026"></a></h3>
+<p>The two tools this lesson uses most illustrate how much the answers
+depend on plan tier rather than provider:</p>
 <table class="table"><colgroup><col width="33%"><col width="33%"><col width="33%"></colgroup><thead><tr><th></th>
 <th>Claude (Free, Pro, Max)</th>
 <th>GitHub Copilot (Free, Pro, Pro+)</th>
 </tr></thead><tbody><tr><td>Trains on your data?</td>
-<td>Yes when the setting is on — Claude Code included (<a href="https://www.anthropic.com/news/updates-to-our-consumer-terms" class="external-link">consumer
+<td>Yes when the setting is on, Claude Code included (<a href="https://www.anthropic.com/news/updates-to-our-consumer-terms" class="external-link">consumer
 terms</a>)</td>
 <td>Yes by default since April 2026 (<a href="https://docs.github.com/en/copilot/how-tos/manage-your-account/manage-policies" class="external-link">GitHub
 docs</a>)</td>
@@ -617,9 +615,9 @@ docs</a>)</td>
 <td>5 years if training is on, 30 days if off (<a href="https://privacy.anthropic.com/" class="external-link">Privacy Center</a>)</td>
 <td>Per GitHub’s data policies</td>
 </tr><tr><td>Exempt tiers</td>
-<td>Team, Enterprise, and API don’t train (<a href="https://code.claude.com/docs/en/data-usage" class="external-link">Claude Code data
+<td>Team, Enterprise, and API do not train (<a href="https://code.claude.com/docs/en/data-usage" class="external-link">Claude Code data
 usage</a>)</td>
-<td>Business and Enterprise don’t train; students and teachers on free
+<td>Business and Enterprise do not train; students and teachers on free
 Pro are exempt</td>
 </tr><tr><td>Where to check</td>
 <td><a href="https://claude.ai/settings/data-privacy-controls" class="external-link">Claude
@@ -627,7 +625,7 @@ privacy settings</a></td>
 <td><a href="https://github.com/settings/copilot" class="external-link">Copilot
 settings</a></td>
 </tr></tbody></table><p>Neither is on UW–Madison’s list of vetted AI tools. Policies change;
-check the linked pages rather than this table.</p>
+consult the linked pages rather than this table.</p>
 <div id="free-services-have-a-cost" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -636,28 +634,27 @@ check the linked pages rather than this table.</p>
 <div id="free-services-have-a-cost" class="callout-inner">
 <h3 class="callout-title">Free services have a cost</h3>
 <div class="callout-content">
-<p>If a tool or model API is free and isn’t open source running on your
-hardware, ask what the provider gets. Often the answer is: your prompts,
-and by extension your code and data. That can be an acceptable trade for
-public workshop exercises — and a terrible one for your unpublished
-research.</p>
+<p>If a tool or model API is free and is not open source running on your
+own hardware, consider what the provider receives. Often it is your
+prompts, and through them your code and data. That may be acceptable for
+public workshop exercises and unacceptable for unpublished research.</p>
 </div>
 </div>
 </div>
-<div id="exercise-vet-the-tool-youre-using-right-now-5-minutes" class="callout challenge">
+<div id="exercise-vet-the-tool-you-are-using-now-5-minutes" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <span class="callout-header">Challenge</span>
-<div id="exercise-vet-the-tool-youre-using-right-now-5-minutes" class="callout-inner">
-<h3 class="callout-title">Exercise: Vet the tool you’re using right now
-(5 minutes)</h3>
+<div id="exercise-vet-the-tool-you-are-using-now-5-minutes" class="callout-inner">
+<h3 class="callout-title">Exercise: Vet the tool you are using now (5
+minutes)</h3>
 <div class="callout-content">
-<p>For the agentic tool you set up for this workshop, find real answers
-to the four questions above — from the provider’s privacy and data
-pages, not from memory.</p>
-<ol style="list-style-type: decimal"><li>Training: on or off by default for <em>your</em> plan? Where’s the
-toggle?</li>
+<p>For the agentic tool you set up for this workshop, answer the four
+questions above from the provider’s privacy and data pages, not from
+memory.</p>
+<ol style="list-style-type: decimal"><li>Training: on or off by default for your plan? Where is the
+setting?</li>
 <li>Retention: how long, and what extends it?</li>
 <li>Where does inference run?</li>
 <li>Are you covered by an institutional agreement, or is this a personal
@@ -670,17 +667,17 @@ contract?</li>
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">
-  What people typically find
+  Typical findings
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
-<p>Almost everyone discovers at least one surprise: a training toggle
-they’d never seen, a retention clause tied to the feedback button, or
-the realization that their “institution-adjacent” tool is a personal
-agreement. The answers vary by provider <em>and by plan tier within a
-provider</em>, which is why “vet the policy” can’t be delegated, even to
-the agent.</p>
+<p>Most participants find at least one surprise: a training setting they
+had not seen, a retention clause tied to the feedback button, or the
+discovery that a tool they assumed was institutional is a personal
+agreement. The answers vary by provider and by plan tier within a
+provider, which is why vetting the policy cannot be delegated, including
+to the agent.</p>
 </div>
 </div>
 </div>
@@ -692,29 +689,28 @@ the agent.</p>
 <span class="callout-header">Key Points</span>
 <div class="callout-inner">
 <div class="callout-content">
-<ul><li>Agents install packages and download models at machine speed — keep
-those decisions on the manually-approved list.</li>
-<li>Hallucinated package names are a real attack vector (slopsquatting);
-verify a package exists and is official before installing anything an
-agent suggests.</li>
-<li>Model weights in pickle formats are executable code: prefer
-safetensors, download from verified organizations, never default
-<code>trust_remote_code</code> on, check provenance.</li>
-<li>Backdoors can live in the weights themselves (poisoned training
-data, surgical edits, trigger behaviors) — no scanner or benchmark
-detects them, so provenance and reviewing model output are the real
-defenses.</li>
-<li>The agent tooling itself is attack surface — keep it updated, and
+<ul><li>Agents install packages and download models quickly and in bulk.
+Keep those decisions on the list that requires approval.</li>
+<li>Hallucinated package names are an attack vector (slopsquatting).
+Verify that a package exists and is official before installing anything
+an agent suggests.</li>
+<li>Model weights in pickle formats are executable code. Prefer
+safetensors, download from verified organizations, do not enable
+<code>trust_remote_code</code> by default, and check provenance.</li>
+<li>Backdoors can be in the weights themselves (poisoned training data,
+surgical edits, trigger behaviors). No scanner or benchmark detects
+them; provenance and reviewing model output are the defenses.</li>
+<li>The agent tooling is itself an attack surface. Keep it updated, and
 never point an agent at production or irreplaceable data.</li>
-<li>Vet your provider’s actual data policy: training default, retention,
-jurisdiction, and whether any institutional agreement covers you.</li>
-<li>Provider defaults differ by plan tier: consumer Claude and Copilot
+<li>Vet the provider’s data policy: training default, retention,
+jurisdiction, and whether an institutional agreement applies.</li>
+<li>Provider defaults differ by plan tier. Consumer Claude and Copilot
 plans train on your data unless you opt out; team, enterprise, API, and
-education tiers don’t. Check the setting, not the brand.</li>
-<li>Every rule here has a named incident behind it — torchtriton,
+education tiers do not. Check the setting, not the brand.</li>
+<li>Each rule here has a named incident behind it: torchtriton,
 Ultralytics, huggingface-cli, Amazon Q, Replit, DeepSeek, Samsung, the
-fake OpenAI repo, InstructLab. None required exotic attackers; all
-required missing skepticism.</li>
+fake OpenAI repository, InstructLab. None required a sophisticated
+attacker; all required a missing check.</li>
 </ul></div>
 </div>
 </div>

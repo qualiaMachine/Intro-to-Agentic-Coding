@@ -263,10 +263,10 @@
 
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
-        <ul><li><a href="#mcp-vs-api">MCP vs API</a></li>
-<li><a href="#what-is-an-mcp-server">What is an MCP server?</a></li>
-<li><a href="#what-is-a-skill">What is a skill?</a></li>
-<li><a href="#where-to-find-more-of-both">Where to find more of both</a></li>
+        <ul><li><a href="#mcp-compared-with-an-api">MCP compared with an API</a></li>
+<li><a href="#what-an-mcp-server-is">What an MCP server is</a></li>
+<li><a href="#what-a-skill-is">What a skill is</a></li>
+<li><a href="#where-to-find-more">Where to find more</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -388,12 +388,12 @@
 <div class="card-body">
 <div class="inner">
 <h3 class="card-title">Questions</h3>
-<ul><li>How is MCP different from an API — and when do I want each?</li>
+<ul><li>How does MCP differ from an API, and when is each appropriate?</li>
 <li>What is an MCP server, and what happens when I connect one?</li>
 <li>What is inside a skill, and how does an agent decide to use
 one?</li>
-<li>What extra scrutiny does connecting an MCP server or installing a
-skill deserve?</li>
+<li>What additional scrutiny does connecting an MCP server or installing
+a skill require?</li>
 </ul></div>
 </div>
 </div>
@@ -403,60 +403,56 @@ skill deserve?</li>
 <h3 class="card-title">Objectives</h3>
 <ul><li>Explain the difference between an API (you write the calling code)
 and MCP (the agent discovers and calls tools itself).</li>
-<li>Connect an MCP server and use it for one real task without naming
-the tool.</li>
+<li>Connect an MCP server and use it for one task without naming the
+tool.</li>
 <li>Install a published skill, trigger it, and explain what
 changed.</li>
-<li>Apply the safety episode’s trust lens to a new MCP connection or
+<li>Apply the safety episode’s trust rules to a new MCP connection or
 skill.</li>
-<li>Locate community skill and MCP directories worth checking before you
-build your own.</li>
+<li>Locate community skill and MCP directories to check before building
+your own.</li>
 </ul></div>
 </div>
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="mcp-vs-api">MCP vs API<a class="anchor" aria-label="anchor" href="#mcp-vs-api"></a></h2>
-<hr class="half-width"><p>An <strong>API</strong> is a contract you write custom code against —
-one integration per service. You read the docs, write the request, parse
-the response.</p>
-<p><strong>MCP (Model Context Protocol)</strong> is a standard way to
-plug tools and data into any agent. Write the integration once and every
-MCP-compatible client can use it. With an API, <em>you</em> write the
-calling code. With MCP, <strong>the agent discovers the available tools
-itself and decides when to call them.</strong> Anthropic open-sourced
-MCP in November 2024; it is now supported by Claude, Copilot, and most
-other agents.</p>
-<p>Rule of thumb: <strong>MCP when the agent should reach a system on
-its own. Direct API when you’re writing the pipeline code
-yourself.</strong></p>
-<p>This is why MCP matters for agentic coding specifically: the agent
-decides when to reach for GitHub, a database, or a lab notebook — not
-you.</p>
-</section><section><h2 class="section-heading" id="what-is-an-mcp-server">What is an MCP server?<a class="anchor" aria-label="anchor" href="#what-is-an-mcp-server"></a></h2>
-<hr class="half-width"><p>A lightweight server that exposes <strong>tools</strong>,
-<strong>resources</strong>, and <strong>prompts</strong> to an agent
-over a standard protocol. It runs locally over stdio or remotely over
-HTTP. Examples: GitHub MCP, filesystem MCP, Slack MCP, Postgres MCP.
-When the session starts, the agent lists the server’s available tools —
-<code>search_issues</code>, <code>run_query</code> — and then calls them
-like any built-in tool.</p>
-<p>Connecting an MCP server is comparable to installing a plugin: you
-are not writing new agent code, you are giving the agent a new
-capability.</p>
-<p>And the safety flag, tying back to that episode: <strong>only add MCP
-servers you trust.</strong> Tool output goes straight into the agent’s
-context and it will act on it — an issue body or PR description fetched
-over MCP is exactly as untrusted as a README you didn’t write. Two rules
+<section><h2 class="section-heading" id="mcp-compared-with-an-api">MCP compared with an API<a class="anchor" aria-label="anchor" href="#mcp-compared-with-an-api"></a></h2>
+<hr class="half-width"><p>An <strong>API</strong> is a contract you write code against: one
+integration per service. You read the documentation, write the request,
+and parse the response.</p>
+<p><strong>MCP (Model Context Protocol)</strong> is a standard for
+connecting tools and data to any agent. The integration is written once,
+and every MCP-compatible client can use it. With an API, you write the
+calling code. With MCP, the agent discovers the available tools and
+decides when to call them. Anthropic open-sourced MCP in November 2024;
+it is now supported by Claude, Copilot, and most other agents.</p>
+<p>The rule of thumb: use MCP when the agent should reach a system on
+its own; use a direct API when you are writing the pipeline code
+yourself. MCP matters for agentic coding specifically because the agent,
+not the user, decides when to consult GitHub, a database, or a lab
+notebook.</p>
+</section><section><h2 class="section-heading" id="what-an-mcp-server-is">What an MCP server is<a class="anchor" aria-label="anchor" href="#what-an-mcp-server-is"></a></h2>
+<hr class="half-width"><p>An MCP server is a small program that exposes tools, resources, and
+prompts to an agent over a standard protocol. It runs locally over stdio
+or remotely over HTTP. Examples include the GitHub, filesystem, Slack,
+and Postgres servers. When a session starts, the agent lists the
+server’s tools (<code>search_issues</code>, <code>run_query</code>, and
+so on) and calls them like any built-in tool. Connecting a server is
+comparable to installing a plugin: it gives the agent a new capability
+without any change to the agent itself.</p>
+<p>The safety episode’s rules apply. Only add MCP servers you trust:
+tool output enters the agent’s context directly and the agent acts on
+it. An issue body or pull-request description fetched over MCP is
+exactly as untrusted as a README you did not write. Two rules
 follow:</p>
 <ul><li>
 <strong>Scope the token to the minimum the task needs.</strong> A
-read-only token for a “summarize these issues” task; never delete or
-admin scope, and never your everyday org-wide token wired into a
-workshop laptop.</li>
+read-only token for summarizing issues; never a token with delete or
+administrative scope, and never your everyday organization-wide token on
+a workshop laptop.</li>
 <li>
-<strong>Configure per-project, not globally</strong>, where your
-tool supports it.</li>
+<strong>Configure per project rather than globally</strong>, where
+the tool allows it.</li>
 </ul><div id="exercise-connect-an-mcp-server-5-minutes" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -466,9 +462,9 @@ tool supports it.</li>
 <h3 class="callout-title">Exercise: Connect an MCP server (5
 minutes)</h3>
 <div class="callout-content">
-<p>GitHub’s official MCP server is a good first connection — most people
-already have the account, and it can stay strictly read-only. Use a
-token with read-only scopes (see <a href="index.html#optional-github-token-for-the-mcp-exercise">setup</a>).</p>
+<p>GitHub’s official MCP server is a suitable first connection: most
+participants already have an account, and it can be kept read-only. Use
+a token with read-only scopes (see <a href="index.html#optional-github-token-for-the-mcp-exercise">setup</a>).</p>
 <div class="tabs">
 <nav><div id="nav-tab-1" class="nav nav-tabs" role="tablist">
 <button class="nav-link active" id="nav-tab-1-ClaudeCode" name="ClaudeCode" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-ClaudeCode" type="button" role="tab" aria-controls="nav-tabpanel-1-ClaudeCode" aria-selected="true">
@@ -483,7 +479,7 @@ token with read-only scopes (see <a href="index.html#optional-github-token-for-t
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -494,11 +490,10 @@ token with read-only scopes (see <a href="index.html#optional-github-token-for-t
 </div>
 <p>Restart the session so the tools load.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilotVSCode" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilotVSCode">
+<div id="nav-tabpanel-1-GitHubCopilotVSCode" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilotVSCode" role="tabpanel">
 <p>Command Palette → <strong>MCP: Open User Configuration</strong>, add
-an entry pointing at the same endpoint, then click
-<strong>Start</strong> and switch Copilot Chat to <strong>Agent</strong>
-mode:</p>
+an entry for the same endpoint, click <strong>Start</strong>, and switch
+Copilot Chat to <strong>Agent</strong> mode:</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">JSON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -515,15 +510,16 @@ mode:</p>
 </div>
 </div>
 </div>
-<p>Then give a natural-language prompt that <em>needs</em> the tool,
-without naming it:</p>
+<p>Then give a natural-language request that requires the tool, without
+naming it:</p>
 <blockquote>
 <p>What are the five most recently opened issues on
 <code>&lt;org&gt;/&lt;repo&gt;</code>, and which look stale?</p>
 </blockquote>
-<p>Watch for two things: the agent chose the tool — you did not name it
-— and the approval prompt when it first calls the server. That prompt is
-the same guardrail from the safety episode.</p>
+<p>Two things to observe: the agent chose the tool without being told
+which one, and an approval prompt appears when it first calls the
+server. That prompt is the same control described in the safety
+episode.</p>
 </div>
 </div>
 </div>
@@ -534,40 +530,39 @@ the same guardrail from the safety episode.</p>
   What this shows
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
-<p>The agent is now calling real GitHub API tools, not guessing from
-training data. Ask yourself the question this exercise is designed to
-surface: what <em>wider</em> access would it need to do the next thing
-you’d want (file a PR, close an issue, write to a database) — and would
-you grant it? Most people hesitate. That hesitation is the
-minimum-access instinct working.</p>
+<p>The agent is now calling GitHub’s API rather than answering from
+training data. Ask yourself what wider access it would need to do the
+next thing you would want (open a pull request, close an issue, write to
+a database), and whether you would grant it. Most people hesitate. That
+hesitation is the minimum-access principle applied correctly.</p>
 </div>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="what-is-a-skill">What is a skill?<a class="anchor" aria-label="anchor" href="#what-is-a-skill"></a></h2>
-<hr class="half-width"><p>A <strong>skill</strong> is a packaged, reusable set of instructions
-— a folder with a <code>SKILL.md</code> file, plus optional scripts —
-that the agent loads on demand. Unlike MCP, a skill needs no running
-server and no network call: it’s markdown and maybe a script, sitting in
-a folder. It’s triggered automatically when the task matches its
+</section><section><h2 class="section-heading" id="what-a-skill-is">What a skill is<a class="anchor" aria-label="anchor" href="#what-a-skill-is"></a></h2>
+<hr class="half-width"><p>A <strong>skill</strong> is a packaged, reusable set of instructions:
+a folder containing a <code>SKILL.md</code> file and optionally scripts,
+which the agent loads on demand. Unlike MCP, a skill needs no running
+server and no network call. It is markdown and possibly a script in a
+folder. It is triggered automatically when a task matches its
 description, or invoked directly with <code>/skill-name</code>.</p>
-<p>If MCP is a plugin that gives the agent a new tool, a skill is a
-<strong>playbook</strong> — written instructions for one job, that the
-agent loads without you re-explaining it every session. Good for
-repeatable workflows: a review checklist, a repo-specific release
-process, a data-format spec, your lab’s analysis conventions.</p>
-<p>A skill can’t make the agent do anything it couldn’t already do by
+<p>If an MCP server gives the agent a new tool, a skill gives it a
+procedure: written instructions for one job, loaded without
+re-explanation in each session. Skills suit repeatable workflows: a
+review checklist, a repository-specific release process, a data-format
+specification, a group’s analysis conventions.</p>
+<p>A skill cannot make the agent do anything it could not already do by
 reading files and running commands. The description is the important
-part: it’s what the agent matches against, so vague wording (“helps with
-releases”) triggers unreliably, while specific wording (“use when the
-user asks to cut a release, bump a version, or write release notes”)
-triggers when you intend it to.</p>
-<p>Skills also help with <strong>cost</strong>: the full skill content
-is only expanded when it’s relevant, instead of sitting in context the
-whole session the way an overgrown context file does. That’s one of the
-token-saving levers in the next episode.</p>
+component, because it is what the agent matches against. A vague
+description (“helps with releases”) triggers unreliably; a specific one
+(“use when the user asks to cut a release, bump a version, or write
+release notes”) triggers when intended.</p>
+<p>Skills also reduce cost. The full skill content is expanded only when
+relevant, rather than occupying context for the whole session as an
+overlong context file does. This is one of the token-saving measures in
+the next episode.</p>
 <div id="exercise-add-the-caveman-skill-5-minutes" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -577,12 +572,12 @@ token-saving levers in the next episode.</p>
 <h3 class="callout-title">Exercise: Add the caveman skill (5
 minutes)</h3>
 <div class="callout-content">
-<p>A deliberately silly, zero-risk skill is the fastest way to
-<em>see</em> the mechanism work. <a href="https://github.com/JuliusBrussee/caveman" class="external-link">Caveman</a> is a real,
-public plugin that rewrites the agent’s replies into terse “caveman
-speak” — the author measured about 65% fewer output tokens with
-technical accuracy intact. The effect is immediately visible, which
-makes the token saving concrete.</p>
+<p>A trivial, zero-risk skill is the quickest way to observe the
+mechanism. <a href="https://github.com/JuliusBrussee/caveman" class="external-link">Caveman</a> is a public
+plugin that rewrites the agent’s replies in a terse, telegraphic style.
+The author measured about 65% fewer output tokens with technical content
+intact. The effect is immediately visible, which makes the token saving
+concrete.</p>
 <div class="tabs">
 <nav><div id="nav-tab-2" class="nav nav-tabs" role="tablist">
 <button class="nav-link active" id="nav-tab-2-ClaudeCode" name="ClaudeCode" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-2-ClaudeCode" type="button" role="tab" aria-controls="nav-tabpanel-2-ClaudeCode" aria-selected="true">
@@ -597,26 +592,27 @@ makes the token saving concrete.</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-2" class="tab-content">
-<div id="nav-tabpanel-2-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-2-ClaudeCode">
+<div id="nav-tabpanel-2-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-2-ClaudeCode" role="tabpanel">
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="ex">claude</span> plugin marketplace add JuliusBrussee/caveman</span>
 <span id="cb3-2"><a href="#cb3-2" tabindex="-1" aria-label="code-block-3-2"></a><span class="ex">claude</span> plugin install caveman@caveman</span></code></pre>
 </div>
-<p>Restart the session. Ask an ordinary question — “what is a closure in
-Python?” — then type <code>/caveman</code> and ask it again. To prove
-it’s toggled rather than a fluke:</p>
+<p>Restart the session. Ask an ordinary question (“what is a closure in
+Python?”), then type <code>/caveman</code> and ask it again. To confirm
+the mode is set rather than coincidental:</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="fu">cat</span> ~/.claude/.caveman-active</span></code></pre>
 </div>
-<p>The VS Code extension reads the same <code>~/.claude</code> config:
-run the same two commands, then reload the chat panel.</p>
+<p>The VS Code extension reads the same <code>~/.claude</code>
+configuration: run the same two commands, then reload the chat
+panel.</p>
 </div>
-<div id="nav-tabpanel-2-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-2-GitHubCopilot">
-<p>Caveman ships rule files for Copilot too:</p>
+<div id="nav-tabpanel-2-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-2-GitHubCopilot" role="tabpanel">
+<p>Caveman provides rule files for Copilot:</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -625,16 +621,15 @@ run the same two commands, then reload the chat panel.</p>
 <p>Copilot’s closest native equivalent to a skill is a reusable
 <strong>prompt file</strong>
 (<code>.github/prompts/&lt;name&gt;.prompt.md</code>), invoked
-explicitly with <code>/&lt;name&gt;</code> — it never auto-triggers from
-a description match the way a Claude Code skill can.</p>
+explicitly with <code>/&lt;name&gt;</code>. It does not trigger
+automatically from a description match as a Claude Code skill can.</p>
 </div>
 </div>
 </div>
-<p>Note this is a <em>plugin install</em>, not a skill file you
-hand-wrote — the same underlying mechanism, packaged for distribution.
-To write your own, create
-<code>.claude/skills/&lt;name&gt;/SKILL.md</code> with a
-<code>name</code>, a <code>description</code> that says when to use it,
+<p>This is a plugin install rather than a hand-written skill file; the
+mechanism is the same, packaged for distribution. To write your own,
+create <code>.claude/skills/&lt;name&gt;/SKILL.md</code> with a
+<code>name</code>, a <code>description</code> stating when to use it,
 and the instructions:</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">MARKDOWN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -654,55 +649,54 @@ and the instructions:</p>
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">
-  Beyond the joke
+  From the demonstration to real use
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
-<p>The caveman skill demonstrates the mechanism; the practical use is
-packaging something you would otherwise repeat. Pick one instruction you
-find yourself re-typing in your own project — a commit-message
-convention, a data-checking routine, a report template — and turn it
-into a skill next. Skill-builders usually discover their first
-description is too vague to trigger reliably, which is useful practice
-in writing precise instructions generally.</p>
+<p>The caveman skill demonstrates the mechanism. The practical use is
+packaging an instruction you would otherwise repeat. Choose one thing
+you find yourself re-typing in your own project (a commit-message
+convention, a data-checking routine, a report template) and turn it into
+a skill. Most people find that their first description is too vague to
+trigger reliably, which is useful practice in writing precise
+instructions generally.</p>
 </div>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="where-to-find-more-of-both">Where to find more of both<a class="anchor" aria-label="anchor" href="#where-to-find-more-of-both"></a></h2>
-<hr class="half-width"><p>Before building your own, check what the community has already
-published:</p>
+</section><section><h2 class="section-heading" id="where-to-find-more">Where to find more<a class="anchor" aria-label="anchor" href="#where-to-find-more"></a></h2>
+<hr class="half-width"><p>Before building your own, check what has already been published:</p>
 <ul><li>
 <strong><a href="https://parse.bot/marketplace" class="external-link">Parse.bot MCP
-marketplace</a></strong> — turns arbitrary websites into typed, callable
-APIs and exposes them over MCP; thousands of prebuilt endpoints for
-sites with no purpose-built server of their own.</li>
+marketplace</a></strong>: turns websites into typed, callable APIs
+exposed over MCP, with thousands of prebuilt endpoints for sites that
+have no purpose-built server.</li>
 <li>
 <strong><a href="https://github.com/mattpocock/skills" class="external-link">Matt Pocock’s
-skills</a></strong> — workflow enforcement: TDD, planning, debugging,
-git guardrails.</li>
+skills</a></strong>: workflow enforcement, including test-driven
+development, planning, debugging, and git guardrails.</li>
 <li>
-<strong><a href="https://github.com/garrytan/gstack" class="external-link">gstack</a></strong> — Garry
-Tan’s Claude Code setup: plan review, code review, QA, and shipping
+<strong><a href="https://github.com/garrytan/gstack" class="external-link">gstack</a></strong>: Garry
+Tan’s Claude Code setup, with plan review, code review, QA, and shipping
 workflows as skills.</li>
 <li>
 <strong><a href="https://www.anthropic.com/news/claude-science-ai-workbench" class="external-link">Claude
-Science</a></strong> — Anthropic’s workbench for scientists, with
+Science</a></strong>: Anthropic’s workbench for scientists, with
 analysis specialists and access to scientific databases as skills and
 connectors.</li>
 <li>
-<strong><a href="https://github.com/mims-harvard/ToolUniverse" class="external-link">ToolUniverse</a></strong>
-— Harvard’s open platform of thousands of scientific tools (databases,
+<strong><a href="https://github.com/mims-harvard/ToolUniverse" class="external-link">ToolUniverse</a></strong>:
+Harvard’s open platform of thousands of scientific tools (databases,
 models, workflows), exposed over MCP with a Claude Code plugin.</li>
 <li>
-<strong><a href="https://github.com/modelcontextprotocol/servers" class="external-link">modelcontextprotocol/servers</a></strong>
-— the official reference MCP servers and the broader registry.</li>
-</ul><p>Treat these the way the <a href="trust.html">trust</a> episode treats
-a package: <strong>read before you install.</strong> A skill is
-instructions an agent will follow, and an MCP server is code that runs
-with whatever access you grant it — popularity and a well-known author
-are a reason to look first, not a substitute for looking.</p>
+<strong><a href="https://github.com/modelcontextprotocol/servers" class="external-link">modelcontextprotocol/servers</a></strong>:
+the official reference MCP servers and the wider registry.</li>
+</ul><p>Treat these as the <a href="trust.html">trust</a> episode treats a
+package: read before you install. A skill is a set of instructions the
+agent will follow, and an MCP server is code that runs with whatever
+access you grant it. A well-known author is a reason to look first, not
+a substitute for looking.</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -711,18 +705,19 @@ are a reason to look first, not a substitute for looking.</p>
 <div class="callout-inner">
 <div class="callout-content">
 <ul><li>API: you write the calling code. MCP: the agent discovers the tools
-and decides when to call them. MCP when the agent should reach a system
-on its own; direct API when you’re writing the pipeline.</li>
+and decides when to call them. Use MCP when the agent should reach a
+system on its own, and a direct API when you are writing the
+pipeline.</li>
 <li>An MCP server exposes tools, resources, and prompts over a standard
-protocol; connecting one is like installing a plugin.</li>
-<li>A skill is a playbook — packaged instructions loaded on demand, no
-server, no network — and it saves context because it expands only when
+protocol. Connecting one is comparable to installing a plugin.</li>
+<li>A skill is a procedure: packaged instructions loaded on demand, with
+no server and no network. It saves context because it expands only when
 relevant.</li>
-<li>Everything an MCP tool returns is untrusted input; scope tokens to
+<li>Everything an MCP tool returns is untrusted input. Scope tokens to
 the minimum and configure per project.</li>
-<li>Vet a skill or MCP server before installing it, even from a
-well-known author; Parse, Matt Pocock’s skills, gstack, Claude Science,
-and ToolUniverse are good places to start looking.</li>
+<li>Vet a skill or MCP server before installing it, regardless of the
+author. Parse, Matt Pocock’s skills, gstack, Claude Science, and
+ToolUniverse are reasonable starting points.</li>
 </ul></div>
 </div>
 </div>

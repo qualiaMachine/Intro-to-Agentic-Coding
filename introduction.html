@@ -209,12 +209,12 @@
 
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
-        <ul><li><a href="#a-definition">A definition</a></li>
-<li><a href="#the-spectrum-of-agentic-coding">The spectrum of agentic coding</a></li>
+        <ul><li><a href="#definition">Definition</a></li>
+<li><a href="#the-spectrum-of-autonomy">The spectrum of autonomy</a></li>
 <li><a href="#inside-an-agent-model-harness-tools-loop">Inside an agent: model, harness, tools, loop</a></li>
-<li><a href="#which-tool-less-important-than-youd-think">Which tool? Less important than you’d think</a></li>
-<li><a href="#demo-the-same-project-three-levels-of-autonomy">Demo: the same project, three levels of autonomy</a></li>
-<li><a href="#why-principles-not-one-tool">Why principles, not one tool</a></li>
+<li><a href="#choice-of-tool">Choice of tool</a></li>
+<li><a href="#demo-one-project-at-three-levels-of-autonomy">Demo: one project at three levels of autonomy</a></li>
+<li><a href="#principles-rather-than-one-tool">Principles rather than one tool</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -390,10 +390,10 @@
 <h3 class="card-title">Questions</h3>
 <ul><li>What distinguishes an agentic coding tool from autocomplete or a
 chat assistant?</li>
-<li>What is inside an agent — and what does the “harness” do that the
-model doesn’t?</li>
-<li>Which tool should I pick, and does the choice matter much?</li>
-<li>Is more autonomy automatically better?</li>
+<li>What is inside an agent, and what does the harness do that the model
+does not?</li>
+<li>Which tool should I pick, and how much does the choice matter?</li>
+<li>Is more autonomy better?</li>
 </ul></div>
 </div>
 </div>
@@ -405,81 +405,77 @@ model doesn’t?</li>
 autocomplete-based AI assistance.</li>
 <li>Describe an agent as a model plus a harness plus tools running an
 agent loop.</li>
-<li>Place a request on the spectrum of autonomy, from “write this loop”
-to “build the whole thing”.</li>
-<li>Explain why this lesson focuses on principles rather than any single
+<li>Place a request on the spectrum of autonomy, from a single edit to a
+whole project.</li>
+<li>Explain why this lesson teaches principles rather than one
 tool.</li>
 </ul></div>
 </div>
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="a-definition">A definition<a class="anchor" aria-label="anchor" href="#a-definition"></a></h2>
+<section><h2 class="section-heading" id="definition">Definition<a class="anchor" aria-label="anchor" href="#definition"></a></h2>
 <hr class="half-width"><p><strong>Agentic coding</strong> is a software-development approach in
 which AI agents plan, write, test, debug, and revise code with limited
 human intervention.</p>
-<div id="agentic-is-an-overloaded-term" class="callout">
+<div id="the-word-agent" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <span class="callout-header">Callout</span>
-<div id="agentic-is-an-overloaded-term" class="callout-inner">
-<h3 class="callout-title">“Agentic” is an overloaded term</h3>
+<div id="the-word-agent" class="callout-inner">
+<h3 class="callout-title">The word “agent”</h3>
 <div class="callout-content">
-<p>“Agent” is now attached to almost any product with a chat box, so the
-word needs a definition. Computer science has long used it precisely: an
-agent is a system that <strong>takes actions</strong> in an environment
-and observes the results, in pursuit of a goal. An assistant or chatbot
-produces text and <em>you</em> act on it; an agentic tool acts for
-itself — editing files, running commands, reading the output, deciding
-what to do next. The test for any tool that uses the label: <em>does it
-act, or does it only advise?</em> In agentic coding, the tool acts
-constantly. That is its value, and, as this lesson explains, its
-risk.</p>
+<p>The term is now applied to many products that only have a chat
+interface, so it needs a definition. In computer science an agent is a
+system that <strong>takes actions</strong> in an environment and
+observes the results, in pursuit of a goal. A chatbot produces text and
+the user acts on it. An agentic tool acts on its own: it edits files,
+runs commands, reads the output, and decides what to do next. The
+distinguishing question for any tool described as an agent is whether it
+acts or only advises. In agentic coding the tool acts continuously,
+which is the source of both its usefulness and its risk.</p>
 </div>
 </div>
 </div>
-<p>An AI coding agent is more than a chatbot. It is a persistent,
-tool-enabled process powered by a large language model. Traditional AI
-code assistants (early GitHub Copilot, ChatGPT in a browser tab) work in
-a simple loop: you ask, they suggest, you accept or reject. You are the
-middleware — you paste context in, you copy code out, you run everything
-yourself. An agent can instead:</p>
-<ul><li>Read and navigate a codebase — not just the snippet you pasted.</li>
+<p>An AI coding agent is a persistent, tool-enabled process driven by a
+large language model. Earlier AI code assistants (the first GitHub
+Copilot, ChatGPT in a browser tab) worked in a suggest-and-accept loop,
+with the user carrying context in and code out and running everything by
+hand. An agent can instead:</p>
+<ul><li>Read and navigate a codebase, rather than only the snippet it was
+given.</li>
 <li>Create and modify files, several at a time.</li>
 <li>Run terminal commands.</li>
-<li>Execute tests and inspect the failures — it sees the actual output,
-not your summary.</li>
+<li>Execute tests and inspect the failures directly.</li>
 <li>Search documentation.</li>
 <li>Develop and follow a plan.</li>
-<li>Iterate on its own work until the task is complete or it hits a
-blocker.</li>
-</ul><p>So you can ask it to fix a bug, add a feature, refactor existing
-code, write and run tests, review a pull request, investigate a failing
-job, or build a small application from a specification. The same
-capabilities mean the tool has real access to your system — your files,
-your shell, your credentials if you leave them lying around — and the
-potential to do real damage if not managed carefully. That tension
-between capability and control is the subject of this whole lesson.</p>
-</section><section><h2 class="section-heading" id="the-spectrum-of-agentic-coding">The spectrum of agentic coding<a class="anchor" aria-label="anchor" href="#the-spectrum-of-agentic-coding"></a></h2>
-<hr class="half-width"><p>The same tool can be used at very different levels of autonomy. Three
+<li>Iterate on its own work until the task is complete or it is
+blocked.</li>
+</ul><p>Typical requests include fixing a bug, adding a feature, refactoring
+existing code, writing and running tests, reviewing a pull request,
+investigating a failing job, and building a small application from a
+specification. The same capabilities give the tool access to the user’s
+files, shell, and any credentials left on disk, so an unmanaged agent
+can do real damage. The balance between capability and control is the
+subject of this lesson.</p>
+</section><section><h2 class="section-heading" id="the-spectrum-of-autonomy">The spectrum of autonomy<a class="anchor" aria-label="anchor" href="#the-spectrum-of-autonomy"></a></h2>
+<hr class="half-width"><p>The same tool can be used at different levels of autonomy. Three
 requests, from tightly directed to fully delegated:</p>
-<ol style="list-style-type: decimal"><li>
-<em>“Write this for loop for me.”</em> — one function, you watch
-every line.</li>
-<li>
-<em>“Implement the method stubs in this file.”</em> — a bounded task
-with a clear “done”; the agent plans a little, you review the diff.</li>
-<li>
-<em>“Build the whole service from scratch; do all the planning
-yourself.”</em> — the agent invents dozens of decisions you never made,
-and you review a project.</li>
-</ol><p>The pattern across the three: <strong>the more autonomy you grant,
-the more of your judgment has to be encoded in advance</strong> — in the
-prompt, in project context files, and in tests — and the more you have
-to review afterwards. That principle recurs through the rest of the
-lesson. Nearly everything the workshop teaches concerns the middle of
-this spectrum: bounded tasks with a plan and a check.</p>
+<ol style="list-style-type: decimal"><li>“Write this for loop for me.” One function; the user reads every
+line.</li>
+<li>“Implement the method stubs in this file.” A bounded task with a
+clear completion criterion; the agent does some planning and the user
+reviews the diff.</li>
+<li>“Build the whole service from scratch; do all the planning
+yourself.” The agent makes many decisions the user never considered, and
+the user reviews a project.</li>
+</ol><p>Across the three, <strong>the more autonomy you grant, the more of
+your judgment must be encoded in advance</strong>, in the prompt, in
+project context files, and in tests, and the more review is required
+afterwards. This principle recurs throughout the lesson. Most of the
+workshop concerns the middle of the spectrum: bounded tasks with a plan
+and a check.</p>
 <div id="more-autonomy-is-not-automatically-better" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -488,86 +484,85 @@ this spectrum: bounded tasks with a plan and a check.</p>
 <div id="more-autonomy-is-not-automatically-better" class="callout-inner">
 <h3 class="callout-title">More autonomy is not automatically better</h3>
 <div class="callout-content">
-<p>The same task — “add a utility function, write tests, open a PR” —
-can be done at any point on this spectrum. Moving right means less
-friction <em>during</em> the work and more review burden <em>after</em>
-it. The right choice depends on the task:</p>
-<ul><li>Sensitive work or unfamiliar codebase → interactive, guardrails on.
-The interruptions are a feature.</li>
-<li>Quick question, brainstorming, explaining an error → plain chat is
-usually sufficient.</li>
-<li>Well-scoped, clearly described task in a repo with good tests → hand
-it off, because the specification and the tests carry your intent for
-you.</li>
+<p>A given task (add a utility function, write tests, open a pull
+request) can be done at any point on this spectrum. Moving toward
+autonomy reduces interruptions during the work and increases the review
+burden after it. The appropriate level depends on the task:</p>
+<ul><li>Sensitive work or an unfamiliar codebase: interactive, with
+guardrails. The interruptions are useful.</li>
+<li>A quick question, brainstorming, or explaining an error: plain chat
+is sufficient.</li>
+<li>A well-scoped, clearly described task in a repository with good
+tests: delegation works, because the specification and the tests carry
+the intent.</li>
 </ul></div>
 </div>
 </div>
 </section><section><h2 class="section-heading" id="inside-an-agent-model-harness-tools-loop">Inside an agent: model, harness, tools, loop<a class="anchor" aria-label="anchor" href="#inside-an-agent-model-harness-tools-loop"></a></h2>
-<hr class="half-width"><p>There are now many tools designed for agentic coding — Claude Code,
-Codex, GitHub Copilot’s agent mode, OpenCode, Cursor, and a growing list
-of open-source harnesses. Most can drive several different underlying
-language models. It helps to separate the two parts:</p>
+<hr class="half-width"><p>Many tools are now built for agentic coding, including Claude Code,
+Codex, GitHub Copilot’s agent mode, OpenCode, Cursor, and a growing
+number of open-source harnesses. Most can use several underlying
+language models. Two components should be distinguished:</p>
 <ul><li>
-<strong>The model</strong> provides the reasoning and code
+<strong>The model</strong> provides reasoning and code
 generation.</li>
 <li>
-<strong>The harness</strong> — the application around the model —
-provides everything that lets that reasoning operate on a real codebase:
-file-system access, terminal and test execution, context management,
-planning and task tracking, tool integrations, memory, permission
-controls, and the loop that ties them together.</li>
-</ul><p>The harness runs an <strong>agent loop</strong>: request → understand
-→ plan → act → observe → revise → repeat. Each turn, the model decides
-what to do next, the harness executes it (edit a file, run the tests),
-and the result goes back into the model’s context. In summary:
-<strong>agent = LLM + harness + tools + agent loop.</strong></p>
-<p>More advanced harnesses add an orchestrator–worker pattern: a primary
-agent breaks a larger problem into smaller tasks and delegates them to
-subagents that work in parallel on research, implementation, testing,
-and review. Multi-agent workflows became prominent toward the end of
-2025. They are the far-right end of the spectrum above — powerful, and
-the hardest to review.</p>
-</section><section><h2 class="section-heading" id="which-tool-less-important-than-youd-think">Which tool? Less important than you’d think<a class="anchor" aria-label="anchor" href="#which-tool-less-important-than-youd-think"></a></h2>
-<hr class="half-width"><p>As of September 2026, the leading agents are close on capability. On
+<strong>The harness</strong> is the application around the model. It
+provides what the model needs to operate on a real codebase: file-system
+access, terminal and test execution, context management, planning and
+task tracking, tool integrations, memory, permission controls, and the
+loop that connects them.</li>
+</ul><p>The harness runs an <strong>agent loop</strong>: request, understand,
+plan, act, observe, revise, repeat. On each turn the model decides what
+to do next, the harness executes it (edits a file, runs the tests), and
+the result is added to the model’s context. In summary: <strong>agent =
+LLM + harness + tools + agent loop.</strong></p>
+<p>More advanced harnesses add an orchestrator–worker pattern, in which
+a primary agent divides a larger problem into tasks and delegates them
+to subagents that work in parallel on research, implementation, testing,
+and review. Multi-agent workflows became common toward the end of 2025.
+They occupy the far end of the autonomy spectrum and are the hardest to
+review.</p>
+</section><section><h2 class="section-heading" id="choice-of-tool">Choice of tool<a class="anchor" aria-label="anchor" href="#choice-of-tool"></a></h2>
+<hr class="half-width"><p>As of September 2026 the leading agents are close in capability. On
 <a href="https://www.tbench.ai/leaderboard/terminal-bench/2.1" class="external-link">Terminal-Bench
 2.1</a>, a benchmark of realistic command-line tasks, Claude Code and
-Codex land within about a point of each other, and GitHub Copilot runs
-the same Claude and GPT models underneath. The harness matters — the
-same model scores differently in different agents — but the gap between
-the top commercial tools is small.</p>
+Codex score within about a point of each other, and GitHub Copilot uses
+the same Claude and GPT models. The harness affects the result (the same
+model scores differently in different agents), but the gap between the
+leading commercial tools is small.</p>
 <figure><img src="fig/terminal-bench-2-1.png" alt="Horizontal bar chart of Terminal-Bench 2.1 scores, percent of 89 tasks solved. DeepSeek-V4.1-Flash, open weights at 763B parameters on many GPUs, 90.6. Claude Code with Claude Fable 5, 83.8. Codex CLI with GPT-5.5, 83.1. Claude Code with Claude Opus 4.8, 78.9. Open-weight models on one GPU, in red: Qwen3.8-27B 73.0, Muse Glimmer-30B 51.7, Granite 4.2 30B 29.2." class="figure mx-auto d-block"><div class="figcaption">Terminal-Bench 2.1 scores for agent and model
 pairs. Grey bars are commercial agents; red bars are open-weight models
 that fit on one GPU.</div>
-</figure><p>Open-weight models are a real option and improving every month. The
-top Terminal-Bench score at time of writing is an open-weight model
-(DeepSeek V4.1 Flash), but at hundreds of billions of parameters it
-needs a cluster to run. Open-weight models that fit on a single GPU
-trail the frontier by tens of points — closing that gap is an active
-research problem, and running your own model brings its own trust
-questions (the <a href="trust.html">trust</a> episode covers those).</p>
-<p>So don’t memorize a tool table; it will be out of date within months.
-The <a href="index.html#setup">setup page</a> lists routes to get an agent
-running — including free ones (Copilot’s education tier, OpenCode with
-free models) if you don’t have a paid plan or workshop credits.</p>
-<div id="using-gitlab-instead-of-github" class="callout">
+</figure><p>Open-weight models are a viable option and are improving. The top
+Terminal-Bench score at the time of writing belongs to an open-weight
+model (DeepSeek V4.1 Flash), but at several hundred billion parameters
+it requires a cluster. Open-weight models that fit on a single GPU trail
+the frontier by tens of points. Closing that gap is an active research
+problem, and running a model yourself raises trust questions covered in
+the <a href="trust.html">trust</a> episode.</p>
+<p>A table of tools would be out of date within months. The <a href="index.html#setup">setup page</a> lists routes to a working agent,
+including free ones (Copilot’s education tier, OpenCode with free
+models) for participants without a paid plan or workshop credits.</p>
+<div id="gitlab-and-other-hosts" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <span class="callout-header">Callout</span>
-<div id="using-gitlab-instead-of-github" class="callout-inner">
-<h3 class="callout-title">Using GitLab instead of GitHub?</h3>
+<div id="gitlab-and-other-hosts" class="callout-inner">
+<h3 class="callout-title">GitLab and other hosts</h3>
 <div class="callout-content">
-<p>Everything interactive in this lesson is host-agnostic — an agent on
-a checkout does ordinary git, so GitHub, GitLab (self-hosted included),
-and Bitbucket work identically. Only the cloud-agent surfaces are
-GitHub-centric today (assigning issues to agents, cloud sandboxes). One
-caution: self-hosted GitLab doesn’t change where inference happens —
-code still goes to the model provider, so the data-policy rules still
-apply.</p>
+<p>Everything interactive in this lesson is host-agnostic. An agent
+working on a checkout uses ordinary git, so GitHub, GitLab (including
+self-hosted), and Bitbucket behave the same. Only the cloud-agent
+surfaces (assigning issues to agents, cloud sandboxes) are
+GitHub-specific at present. Self-hosting the repository does not change
+where inference runs: code still goes to the model provider, so the
+data-policy rules apply.</p>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="demo-the-same-project-three-levels-of-autonomy">Demo: the same project, three levels of autonomy<a class="anchor" aria-label="anchor" href="#demo-the-same-project-three-levels-of-autonomy"></a></h2>
+</section><section><h2 class="section-heading" id="demo-one-project-at-three-levels-of-autonomy">Demo: one project at three levels of autonomy<a class="anchor" aria-label="anchor" href="#demo-one-project-at-three-levels-of-autonomy"></a></h2>
 <hr class="half-width"><div id="exercise-place-your-own-work-on-the-spectrum-5-minutes" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -577,13 +572,13 @@ apply.</p>
 <h3 class="callout-title">Exercise: Place your own work on the spectrum
 (5 minutes)</h3>
 <div class="callout-content">
-<p>Think about the last time you used AI for anything code-related
-(pasting an error into a chatbot counts).</p>
-<ol style="list-style-type: decimal"><li>Where does that use sit on the spectrum — a directed edit, a bounded
-task with a plan, or “build it all”?</li>
-<li>Name one task in your current research where you’d <em>want</em>
-more autonomy from an AI tool, and one where you absolutely wouldn’t.
-What’s different about them?</li>
+<p>Consider the last time you used AI for anything code-related. Pasting
+an error into a chatbot counts.</p>
+<ol style="list-style-type: decimal"><li>Where does that use sit on the spectrum: a directed edit, a bounded
+task with a plan, or a whole project?</li>
+<li>Name one task in your current research where you would want more
+autonomy from an AI tool, and one where you would not. What
+distinguishes them?</li>
 </ol><p>Compare with a neighbor.</p>
 </div>
 </div>
@@ -591,30 +586,28 @@ What’s different about them?</li>
 <div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1"> Typical patterns </h4>
+  <h4 class="accordion-header" id="headingSolution1"> Typical answers </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
-<p>Most researchers cluster at the chat end — and the tasks people
-refuse to delegate are almost always the ones where they’d struggle to
-<em>check</em> the result (their core analysis) rather than the ones
-that are hardest to do. That instinct is sound, and it’s the central
-theme of this lesson: how much autonomy you can grant is set by how well
-you can verify.</p>
+<p>Most researchers cluster at the chat end. The tasks people decline to
+delegate are usually the ones whose results they would find hard to
+check (their core analysis), rather than the ones that are hardest to
+do. That judgment is sound and is the central theme of the lesson: the
+autonomy you can grant is limited by how well you can verify the
+result.</p>
 </div>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="why-principles-not-one-tool">Why principles, not one tool<a class="anchor" aria-label="anchor" href="#why-principles-not-one-tool"></a></h2>
-<hr class="half-width"><p>Every practice in this lesson — limiting access, planning,
-specifying, verifying, managing cost — applies unchanged to whichever
-tool you or your lab ends up using, so the main text stays
-tool-agnostic. Where the mechanics differ (a command name, a mode
-toggle, a settings page), episodes give the equivalents for the two
-tools workshop participants most commonly have: <strong>Claude
-Code</strong> and <strong>GitHub Copilot</strong>. Translate freely if
-you brought something else — the concepts map one-to-one. The tools will
-churn; the discipline won’t.</p>
+</section><section><h2 class="section-heading" id="principles-rather-than-one-tool">Principles rather than one tool<a class="anchor" aria-label="anchor" href="#principles-rather-than-one-tool"></a></h2>
+<hr class="half-width"><p>Each practice in this lesson (limiting access, planning, specifying,
+verifying, managing cost) applies unchanged to whichever tool you or
+your group uses, so the main text is tool-agnostic. Where the mechanics
+differ (a command name, a mode toggle, a settings page), episodes give
+the equivalents for the two tools workshop participants most commonly
+have, <strong>Claude Code</strong> and <strong>GitHub Copilot</strong>.
+Other tools map one-to-one onto the same concepts.</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -625,12 +618,12 @@ churn; the discipline won’t.</p>
 <ul><li>Agentic coding: AI agents plan, write, test, debug, and revise code
 with limited human intervention. An agent acts; a chatbot advises.</li>
 <li>Agent = LLM + harness + tools + agent loop. The model reasons; the
-harness gives it files, a terminal, tests, permissions, and memory.</li>
-<li>Requests sit on a spectrum from “write this loop” to “build it all”.
-More autonomy shifts your effort from approving actions to specifying
-intent up front and reviewing results afterward.</li>
-<li>The leading tools are within a point or two of each other; pick what
-you can access and learn the principles.</li>
+harness supplies files, a terminal, tests, permissions, and memory.</li>
+<li>Requests range from a single edit to a whole project. More autonomy
+shifts effort from approving actions to specifying intent in advance and
+reviewing results afterwards.</li>
+<li>The leading tools are within a point or two of each other. Use what
+you have access to, and learn the principles.</li>
 </ul></div>
 </div>
 </div>

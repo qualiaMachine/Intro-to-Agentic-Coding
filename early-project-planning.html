@@ -237,10 +237,10 @@
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#start-with-a-plan">Start with a plan</a></li>
-<li><a href="#how-to-make-a-plan-add-context">How to make a plan: add context</a></li>
-<li><a href="#plan-mode-read-dont-write">Plan mode: read, don’t write</a></li>
+<li><a href="#supply-context">Supply context</a></li>
+<li><a href="#plan-mode-read-without-writing">Plan mode: read without writing</a></li>
 <li><a href="#start-from-a-minimum-viable-pipeline">Start from a minimum viable pipeline</a></li>
-<li><a href="#ready-to-begin-write-the-context-file">Ready to begin: write the context file</a></li>
+<li><a href="#before-the-first-feature-write-the-context-file">Before the first feature: write the context file</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -387,13 +387,13 @@
 <div class="card-body">
 <div class="inner">
 <h3 class="card-title">Questions</h3>
-<ul><li>Why plan before letting an agent write code — and what does the
+<ul><li>Why plan before letting an agent write code, and what does the
 evidence say?</li>
 <li>What goes into a plan, and where does the agent get the context to
 make one?</li>
 <li>What is a minimum viable pipeline, and why start there?</li>
-<li>How do I plan with an agent without being led somewhere I can’t
-follow?</li>
+<li>How do I plan with an agent without adopting designs I cannot
+defend?</li>
 </ul></div>
 </div>
 </div>
@@ -405,78 +405,81 @@ follow?</li>
 tokens.</li>
 <li>Supply the context an agent needs to plan: goal, constraints,
 existing code, standards, prior decisions.</li>
-<li>Use an agent in a read-only/plan mode to review and improve a plan
-before any code exists.</li>
+<li>Use an agent in a read-only or plan mode to review and improve a
+plan before any code exists.</li>
 <li>Agree team collaboration conventions with an agent’s help and commit
 them as a <code>CONTRIBUTING.md</code> that people and agents both
 read.</li>
 <li>Produce a <code>plan.md</code> with ordered features and a check for
 each, and commit it before implementing anything.</li>
-<li>Evaluate AI design suggestions critically: probe what you don’t
-understand, and don’t build on ideas you can’t defend.</li>
+<li>Evaluate AI design suggestions critically: question what you do not
+understand, and do not build on ideas you cannot defend.</li>
 </ul></div>
 </div>
 </div>
 </div>
 </div>
 <section><h2 class="section-heading" id="start-with-a-plan">Start with a plan<a class="anchor" aria-label="anchor" href="#start-with-a-plan"></a></h2>
-<hr class="half-width"><p>The most common agentic failure mode is letting the agent write code
-before either of you understands the problem. The research on planning
-is consistent:</p>
+<hr class="half-width"><p>The most common failure in agentic work is letting the agent write
+code before either party understands the problem. The research on
+planning is consistent:</p>
 <ul><li>Structured planning before implementation improved coding success by
-up to <strong>26.7%</strong>, reducing failed generations and repeated
-implementation attempts (Jiang et al., 2023).</li>
+up to 26.7%, reducing failed generations and repeated implementation
+attempts (Jiang et al., 2023).</li>
 <li>Removing the blueprint-planning agent from a structured coding
-pipeline reduced accuracy by <strong>14.8 percentage points</strong>
-(Mao et al., 2025).</li>
-<li>Runs on the <em>same</em> coding task varied by up to
-<strong>30×</strong> in total token usage, and higher token consumption
-did not produce greater accuracy (Bai et al., 2026).</li>
-</ul><p>Those studies measured accuracy, not token savings, but the mechanism
-is easy to see. No plan → exploratory and redundant tool calls → often
-<em>more</em> tokens for <em>worse</em> accuracy. A good plan → fewer
-wasted turns and less rework → often fewer tokens with better accuracy.
-A bad plan → anchoring to incorrect assumptions → the worst of both.</p>
+pipeline reduced accuracy by 14.8 percentage points (Mao et al.,
+2025).</li>
+<li>Runs on the same coding task varied by up to 30× in total token
+usage, and higher token consumption did not produce greater accuracy
+(Bai et al., 2026).</li>
+</ul><p>These studies measured accuracy rather than token use, but the
+mechanism is straightforward. Without a plan, the agent makes
+exploratory and redundant tool calls, which usually means more tokens
+for lower accuracy. With a good plan, it makes fewer wasted turns and
+less rework, which usually means fewer tokens and higher accuracy. With
+a bad plan, it anchors on incorrect assumptions, which produces both
+lower accuracy and higher token use.</p>
 <p>Without a plan, an agent tends to make unnecessary repository
 searches, re-read the same files, modify the wrong layer, expand beyond
 the requested scope, make contradictory edits, loop on debugging, and
-claim completion prematurely. With one, it searches purposefully, reads
-only the relevant files, understands constraints before implementing,
-detects missing information early, sequences dependent changes
-correctly, tracks what’s done, verifies the acceptance criteria, and
-<em>stops</em> when the task is complete.</p>
-<p>A plan gives the agent direction. It gives you a review point
-<em>before</em> implementation. And it gives both sides a shared
-definition of “done.” The goal is <strong>proportional</strong> planning
-— a three-line plan for a three-line task — not maximum planning.</p>
-</section><section><h2 class="section-heading" id="how-to-make-a-plan-add-context">How to make a plan: add context<a class="anchor" aria-label="anchor" href="#how-to-make-a-plan-add-context"></a></h2>
-<hr class="half-width"><p>Ask an agent to “make a plan” with nothing else and you get the
-average-case plan for the average-case project. A plan is only as good
-as the context it’s built from. Examples of context worth handing over,
-in rough order of how often they’re missing:</p>
+report completion prematurely. With a plan, it searches purposefully,
+reads only the relevant files, understands constraints before
+implementing, detects missing information early, sequences dependent
+changes correctly, tracks what is done, verifies the acceptance
+criteria, and stops when the task is complete.</p>
+<p>A plan gives the agent direction. It gives you a review point before
+implementation. It gives both parties a shared definition of done.
+Planning should be proportional to the task: a three-line plan for a
+three-line task.</p>
+</section><section><h2 class="section-heading" id="supply-context">Supply context<a class="anchor" aria-label="anchor" href="#supply-context"></a></h2>
+<hr class="half-width"><p>An agent asked to “make a plan” with no other input produces the
+average plan for the average project. The plan is only as good as the
+context it is built from. Context worth providing, in rough order of how
+often it is missing:</p>
 <ul><li>
-<strong>The goal and constraints</strong> — the research question,
-the challenge page, the scoring rule, the compute you have.</li>
+<strong>The goal and constraints</strong>: the research question,
+the challenge page, the scoring rule, the compute available.</li>
 <li>
-<strong><code>plan.md</code> from last time</strong>, or the
-previous plan’s discoveries and blockers.</li>
+<strong>The previous <code>plan.md</code></strong>, or its
+discoveries and blockers.</li>
 <li>
-<strong>Skeleton code</strong> — a stub of the function or module
-you want, so the shape is yours, not the agent’s.</li>
+<strong>Skeleton code</strong>: a stub of the function or module you
+want, so the shape is yours.</li>
 <li>
 <strong>A GitHub issue or story</strong> describing the feature in
 your words.</li>
 <li>
-<strong><code>future-work.md</code></strong> — what’s deliberately
+<strong><code>future-work.md</code></strong>: what is deliberately
 out of scope.</li>
 <li>
-<strong>Rules and coding-standards files</strong> — the project
-context file below, plus any style guide your lab follows.</li>
-</ul><p>For long tasks — multi-hour work, anything spanning several sessions,
-handoffs between people or agents — keep the plan in a file the agent
-updates as it goes. Aaron Friel’s <a href="https://developers.openai.com/cookbook/articles/codex_exec_plans" class="external-link">Using
-PLANS.md for multi-hour problem solving</a> describes the pattern; a
-persistent plan file typically holds:</p>
+<strong>Rules and coding-standards files</strong>: the project
+context file described below, plus any style guide your group
+follows.</li>
+</ul><p>For long tasks (multi-hour work, anything spanning several sessions,
+handoffs between people or agents), keep the plan in a file the agent
+updates as it works. Aaron Friel’s <a href="https://developers.openai.com/cookbook/articles/codex_exec_plans" class="external-link">Using
+PLANS.md for multi-hour problem solving</a> describes the pattern. A
+persistent plan file typically contains:</p>
 <ul><li>Goal and context</li>
 <li>Scope and acceptance criteria</li>
 <li>Architectural decisions</li>
@@ -485,13 +488,13 @@ persistent plan file typically holds:</p>
 <li>Discoveries, assumptions, and blockers</li>
 <li>Test commands and results</li>
 <li>Final outcome</li>
-</ul><p>Planning is iterative. The first plan is a draft you argue with; a
-plan you’d sign is the deliverable.</p>
-</section><section><h2 class="section-heading" id="plan-mode-read-dont-write">Plan mode: read, don’t write<a class="anchor" aria-label="anchor" href="#plan-mode-read-dont-write"></a></h2>
-<hr class="half-width"><p>Most tools have a read-only mode built for exactly this stage, in
-which the agent reads files and answers questions <strong>without making
-any changes</strong>. It’s the safest possible first contact with a
-repository — and the right mode for reviewing a plan.</p>
+</ul><p>Planning is iterative. The first plan is a draft to be questioned;
+the deliverable is a plan you would sign.</p>
+</section><section><h2 class="section-heading" id="plan-mode-read-without-writing">Plan mode: read without writing<a class="anchor" aria-label="anchor" href="#plan-mode-read-without-writing"></a></h2>
+<hr class="half-width"><p>Most tools have a read-only mode for this stage, in which the agent
+reads files and answers questions without making changes. It is the
+safest first contact with a repository and the appropriate mode for
+reviewing a plan.</p>
 <div class="tabs">
 <nav><div id="nav-tab-1" class="nav nav-tabs" role="tablist">
 <button class="nav-link active" id="nav-tab-1-ClaudeCode" name="ClaudeCode" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-ClaudeCode" type="button" role="tab" aria-controls="nav-tabpanel-1-ClaudeCode" aria-selected="true">
@@ -508,16 +511,17 @@ repository — and the right mode for reviewing a plan.</p>
 </nav><div id="nav-tabContent-1" class="tab-content">
 <div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
 <p>Press <kbd>Shift</kbd>+<kbd>Tab</kbd> until the status line shows
-<strong>plan mode</strong>. Claude can now read and answer, but not edit
-or run anything. On the web, start the prompt with “Plan mode, do not
-edit” — or ask for a plan and review it before approving
+<strong>plan mode</strong>. Claude can then read and answer but not edit
+or run anything. On the web, begin the prompt with “Plan mode, do not
+edit”, or ask for a plan and review it before approving
 implementation.</p>
 </div>
 <div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
-<p>Pick <strong>Ask</strong> (or <strong>Plan</strong>) in the chat
-panel’s mode dropdown, and start your message with
-<code>@workspace</code> so the question covers the whole repo. Switch to
-<strong>Agent</strong> only when you’re ready for it to edit.</p>
+<p>Select <strong>Ask</strong> (or <strong>Plan</strong>) in the chat
+panel’s mode dropdown, and begin the message with
+<code>@workspace</code> so the question covers the whole repository.
+Switch to <strong>Agent</strong> only when you are ready for it to
+edit.</p>
 </div>
 </div>
 </div>
@@ -530,17 +534,17 @@ panel’s mode dropdown, and start your message with
 <h3 class="callout-title">Exercise: Agree how your team will work
 together (10 minutes)</h3>
 <div class="callout-content">
-<p>Every one of you is about to use a coding agent on the same
-repository, so you will generate more branches, more commits, and bigger
-diffs than a normal project. Decide the rules before the first feature —
-and let the agent draft them.</p>
-<ol style="list-style-type: decimal"><li><p><strong>Decide branches or forks first.</strong> One shared repo
-and branches is the usual answer for a team that trusts each other:
-every teammate’s work is a <code>git fetch</code> away, so an agent can
-read another branch, diff against it, and merge without anyone adding
-remotes.</p></li>
+<p>Every member of the team is about to use a coding agent on the same
+repository, which will produce more branches, more commits, and larger
+diffs than a typical project. Decide the rules before the first feature,
+and have the agent draft them.</p>
+<ol style="list-style-type: decimal"><li><p><strong>Decide between branches and forks.</strong> One shared
+repository with branches is the usual choice for a team that trusts each
+other: every teammate’s work is a <code>git fetch</code> away, so an
+agent can read another branch, compare against it, and merge without
+anyone adding remotes.</p></li>
 <li>
-<p><strong>Ask the agent.</strong> Give it your team size and what
+<p><strong>Ask the agent</strong>, giving it your team size and what
 you are building:</p>
 <blockquote>
 <p>Our team of &lt;n&gt; is working in one GitHub repo on
@@ -556,15 +560,15 @@ messages.</p>
 enough that people read it.</p>
 </blockquote>
 </li>
-<li><p><strong>Argue with what it gives you.</strong> Keep the rules you
-will follow; cut the rest.</p></li>
+<li><p><strong>Edit what it produces.</strong> Keep the rules the team
+will follow and remove the rest.</p></li>
 <li><p><strong>Commit <code>CONTRIBUTING.md</code> to the team
-repo.</strong> Your agents read it too.</p></li>
-<li><p>Share the link with whoever advises your team, so they can see
-what you agreed.</p></li>
-</ol><p>Working solo? Do the same for yourself in three to five lines — a
-branch convention, a PR size, what the agent may never touch — and put
-them in your context file.</p>
+repository.</strong> Agents read it too.</p></li>
+<li><p>Share the link with whoever advises the team, so they can see
+what was agreed.</p></li>
+</ol><p>If you are working alone, write the same thing for yourself in three
+to five lines (a branch convention, a pull-request size, what the agent
+may never modify) and put it in your context file.</p>
 </div>
 </div>
 </div>
@@ -572,44 +576,46 @@ them in your context file.</p>
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">
-  What a usable answer looks like
+  What a usable result contains
   </h4>
 </button>
 <div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
-<p>Short. A branch name pattern
-(<code>&lt;name&gt;/&lt;feature&gt;</code>), a PR size people will
-review (a few hundred lines at most), one named reviewer per PR, a list
-of paths the agent may not touch without asking (<code>data/raw/</code>,
-the scoring function, <code>main</code>), a rule for avoiding collisions
-(one feature per branch, claim it in the plan), and a commit-message
-shape. Agents draft a good first version because conventions are the
-average case; the value you add is deleting what your team won’t do. The
-rules are advisory for the agent — back the important ones with branch
+<p>It is short. A branch-name pattern
+(<code>&lt;name&gt;/&lt;feature&gt;</code>); a pull-request size people
+will review in full (a few hundred lines at most); one named reviewer
+per pull request; a list of paths the agent may not modify without
+asking (<code>data/raw/</code>, the scoring function,
+<code>main</code>); a rule for avoiding collisions (one feature per
+branch, claimed in the plan); and a commit-message format. Agents draft
+a reasonable first version because conventions are the average case.
+Your contribution is removing what the team will not do. The rules are
+advisory for the agent; back the important ones with branch
 protection.</p>
 </div>
 </div>
 </div>
 </div>
 </section><section><h2 class="section-heading" id="start-from-a-minimum-viable-pipeline">Start from a minimum viable pipeline<a class="anchor" aria-label="anchor" href="#start-from-a-minimum-viable-pipeline"></a></h2>
-<hr class="half-width"><p>Before the exercise, a framing you may have met in your project
-kickoff. A <strong>minimum viable pipeline (MVP)</strong> is whatever
-you can get running quickly and understand end to end. Not always the
-<em>simplest</em> model — a pretrained model you understand beats a
-from-scratch one you don’t. The aim is fewer friction and failure
-points: a slice of the data, one model, your laptop. Every extra step or
-fancier setup is another place to break.</p>
+<hr class="half-width"><p>A <strong>minimum viable pipeline (MVP)</strong> is whatever you can
+get running quickly and understand end to end. It is not necessarily the
+simplest model: a pretrained model you understand is preferable to a
+from-scratch model you do not. The aim is to minimize points of friction
+and failure: a slice of the data, one model, your laptop. Each
+additional step or more elaborate setup is another place for the
+pipeline to break.</p>
 <ul><li>
-<strong>Functional, not perfect.</strong> Borrowed code is fine if
-you can explain what it does. Skip the edge cases for now.</li>
+<strong>Functional, not polished.</strong> Borrowed code is
+acceptable if you can explain what it does. Defer the edge cases.</li>
 <li>
-<strong>Don’t skip the understanding.</strong> A pipeline you
-understand shows you the real relationships, the processing bugs, and
-the data problems that a system you don’t understand would hide.</li>
-</ul><p>The MVP is the baseline you A/B new components against, before you
-invest in solutions that take time to build. It is also the ideal first
-plan for an agent: small enough to specify fully, and every feature in
-it is something you can check.</p>
+<strong>Do not defer the understanding.</strong> A pipeline you
+understand reveals the real relationships in the data, the processing
+bugs, and the data problems that a system you do not understand would
+conceal.</li>
+</ul><p>The MVP is the baseline against which new components are compared,
+before investing in solutions that take time to build. It is also the
+appropriate first plan for an agent: small enough to specify fully, with
+every feature something you can check.</p>
 <div id="exercise-plan-your-mvp-with-an-agent-15-minutes" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -619,14 +625,14 @@ it is something you can check.</p>
 <h3 class="callout-title">Exercise: Plan your MVP with an agent (15
 minutes)</h3>
 <div class="callout-content">
-<ol style="list-style-type: decimal"><li><p><strong>Open your project’s MVP plan.</strong> No plan yet? Write
-three lines now: the data slice, one model, how you score it. (No
-project? Pick a public dataset or competition you know and plan an MVP
-for it.)</p></li>
+<ol style="list-style-type: decimal"><li><p><strong>Open your project’s MVP plan.</strong> If there is none,
+write three lines now: the data slice, one model, and how you score it.
+If you have no project, choose a public dataset or competition you know
+and plan an MVP for it.</p></li>
 <li>
-<p><strong>Ask the agent to review it</strong>, in plan mode,
-against your project’s goal — the challenge page, the paper’s research
-question, or your grant aim:</p>
+<p><strong>Ask the agent to review it</strong> in plan mode, against
+your project’s goal (the challenge page, the paper’s research question,
+or the grant aim):</p>
 <blockquote>
 <p>Review our Minimum Viable Pipeline (MVP) plan against the challenge
 page. The MVP should be something we can get running quickly and
@@ -643,16 +649,16 @@ one works. If it is not, propose a better starting point and do the same
 for that. Do not write any code yet.</p>
 </blockquote>
 </li>
-<li><p><strong>Argue with the plan until you would sign it.</strong>
-Push back on anything you can’t explain; ask why this over the obvious
-alternative.</p></li>
-<li><p><strong>Commit <code>plan.md</code> to your repo.</strong> No
-code until the plan is in.</p></li>
-<li><p><strong>Finished early?</strong> Interrogate your pre-modeling
-steps the same way — loading, cleaning, splitting, feature construction
-— and save the result as <code>prep.md</code>. Then ask the agent to
-review <code>plan.md</code> and <code>prep.md</code> together,
-holistically.</p></li>
+<li><p><strong>Question the plan until you would sign it.</strong>
+Challenge anything you cannot explain, and ask why a given choice is
+preferable to the obvious alternative.</p></li>
+<li><p><strong>Commit <code>plan.md</code> to your repository.</strong>
+No code until the plan is committed.</p></li>
+<li><p><strong>If you finish early</strong>, apply the same review to
+your pre-modeling steps (loading, cleaning, splitting, feature
+construction) and save the result as <code>prep.md</code>. Then ask the
+agent to review <code>plan.md</code> and <code>prep.md</code>
+together.</p></li>
 </ol></div>
 </div>
 </div>
@@ -660,57 +666,57 @@ holistically.</p></li>
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">
-  What a good plan.md looks like
+  What a good plan.md contains
   </h4>
 </button>
 <div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
-<p>Three features, each one thing you can check — e.g. <em>(1) load and
-validate the data slice: row count and class balance printed; (2) train
-one baseline: a scored number on a held-out split; (3) write the scoring
-function: matches the challenge metric on a hand-computed example.</em>
-If the agent’s plan has a feature you can’t describe a check for, it
-isn’t a feature yet — split it or drop it. Note also what the agent
-<em>couldn’t</em> know: which data is trustworthy, what compute you
-really have, what the kickoff decided. That’s the context you supplied;
-without it the plan would have been someone else’s.</p>
+<p>Three features, each one thing you can check. For example: (1) load
+and validate the data slice, with row count and class balance printed;
+(2) train one baseline, with a score on a held-out split; (3) write the
+scoring function, matching the challenge metric on a hand-computed
+example. If the agent’s plan contains a feature for which you cannot
+describe a check, it is not yet a feature; split it or remove it. Note
+also what the agent could not know: which data is trustworthy, what
+compute you have, what the kickoff decided. You supplied that context;
+without it the plan would have been for a different project.</p>
 </div>
 </div>
 </div>
 </div>
-<div id="dont-build-on-ideas-you-cant-defend" class="callout">
+<div id="do-not-build-on-ideas-you-cannot-defend" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <span class="callout-header">Callout</span>
-<div id="dont-build-on-ideas-you-cant-defend" class="callout-inner">
-<h3 class="callout-title">Don’t build on ideas you can’t defend</h3>
+<div id="do-not-build-on-ideas-you-cannot-defend" class="callout-inner">
+<h3 class="callout-title">Do not build on ideas you cannot defend</h3>
 <div class="callout-content">
-<p>AI design advice is fluent even when it’s wrong, and it is most
-persuasive exactly where your own domain knowledge is thinnest. An
-architecture, statistical approach, or library choice you don’t
-understand is a liability even if it’s good — you can’t debug, extend,
-or defend it in review (or peer review).</p>
-<p>So probe before you adopt. Ask “why this over the obvious
-alternative?”, “what are the failure modes?”, “what’s the simplest
-version that could work?” — and push back; the agent tends to abandon a
-weak idea under questioning, which is itself evidence. Be especially
-wary the further a suggestion sits outside your domain: a clever-looking
-method from a field you don’t know is a place to consult a human expert
-or the literature, not a thing to build on because the chat sounded
-confident. If you can’t explain it, you don’t own it yet.</p>
+<p>AI design advice is fluent whether or not it is correct, and it is
+most persuasive where your own domain knowledge is weakest. An
+architecture, statistical approach, or library choice you do not
+understand is a liability even if it is good, because you cannot debug,
+extend, or defend it in review or in peer review.</p>
+<p>Question a suggestion before adopting it. Ask why this rather than
+the obvious alternative, what the failure modes are, and what the
+simplest workable version would be. An agent tends to abandon a weak
+idea under questioning, which is itself evidence. Be most cautious about
+suggestions from outside your field: a method from a discipline you do
+not know is a reason to consult a human expert or the literature, not
+something to adopt because the response sounded confident. If you cannot
+explain it, you do not yet own it.</p>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="ready-to-begin-write-the-context-file">Ready to begin: write the context file<a class="anchor" aria-label="anchor" href="#ready-to-begin-write-the-context-file"></a></h2>
-<hr class="half-width"><p>Planning surfaces the knowledge that lives only in your head — the
-<em>why</em>, the conventions, what the data means. Before the first
-real feature, capture it in a <strong>project context file</strong>, the
-rules file from the safety episode. Claude Code reads
-<code>CLAUDE.md</code> from your project root at the start of every
+</section><section><h2 class="section-heading" id="before-the-first-feature-write-the-context-file">Before the first feature: write the context file<a class="anchor" aria-label="anchor" href="#before-the-first-feature-write-the-context-file"></a></h2>
+<hr class="half-width"><p>Planning surfaces knowledge that exists only in your head: the
+reasons for decisions, the conventions, what the data means. Before the
+first feature, record it in a <strong>project context file</strong>, the
+rules file introduced in the safety episode. Claude Code reads
+<code>CLAUDE.md</code> from the project root at the start of every
 session; Copilot reads <code>.github/copilot-instructions.md</code>;
-nearly everything also reads <code>AGENTS.md</code>. Think of it as a
-README for the agent:</p>
+nearly every tool also reads <code>AGENTS.md</code>. It is a README
+addressed to the agent:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">MARKDOWN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -726,12 +732,12 @@ README for the agent:</p>
 <span id="cb1-10"><a href="#cb1-10" tabindex="-1" aria-label="code-block-1-10"></a><span class="ss">- </span>Never force-push; never commit directly to main</span>
 <span id="cb1-11"><a href="#cb1-11" tabindex="-1" aria-label="code-block-1-11"></a><span class="ss">- </span>The <span class="in">`results/`</span> directory is generated — edit the code, not the outputs</span></code></pre>
 </div>
-<p>Keep it short and operational (aim well under 300 lines): it is
-injected into every session, so everything in it competes for the
-model’s attention with the actual task. If a linter can enforce a rule
-deterministically, use the linter and save the context budget. And
-remember from the safety episode: context files are advisory — back
-safety-critical rules with permissions, hooks, or branch protection.</p>
+<p>Keep it short and operational (well under 300 lines). It is injected
+into every session, so everything in it competes for the model’s
+attention with the task at hand. If a linter can enforce a rule
+deterministically, use the linter and save the context. As the safety
+episode explained, context files are advisory; back safety-critical
+rules with permissions, hooks, or branch protection.</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -739,26 +745,28 @@ safety-critical rules with permissions, hooks, or branch protection.</p>
 <span class="callout-header">Key Points</span>
 <div class="callout-inner">
 <div class="callout-content">
-<ul><li>Plan before code: planning measurably improves accuracy, and a good
-plan usually costs fewer tokens, not more. Proportional, not
-maximal.</li>
-<li>A plan is only as good as its context — hand over the goal,
+<ul><li>Plan before code. Planning measurably improves accuracy, and a good
+plan usually reduces token use. Keep planning proportional to the
+task.</li>
+<li>A plan is only as good as its context. Provide the goal,
 constraints, compute, existing code, standards, and prior decisions; for
-long work keep the plan in a file the agent updates.</li>
-<li>Agree team conventions first — branches not forks, PR size, who
-reviews, what the agent may not touch — and commit them as a
-<code>CONTRIBUTING.md</code> your agents read too.</li>
-<li>Use plan mode (read-only) to review a plan; the deliverable is a
+long work, keep the plan in a file the agent updates.</li>
+<li>Agree team conventions first (branches rather than forks,
+pull-request size, who reviews, what the agent may not modify) and
+commit them as a <code>CONTRIBUTING.md</code> that agents also
+read.</li>
+<li>Use plan mode (read-only) to review a plan. The deliverable is a
 <code>plan.md</code> with ordered features and a check for each,
 committed before any code.</li>
 <li>Start from a minimum viable pipeline: a slice of data, one model,
 something you understand end to end.</li>
-<li>Probe AI design ideas before adopting them, hardest where your
-domain knowledge is thinnest: if you can’t explain it, you don’t own it
-yet.</li>
-<li>Write the project context file (<code>CLAUDE.md</code> /
-<code>AGENTS.md</code> / <code>copilot-instructions.md</code>) at
-project birth — short, operational, advisory-aware.</li>
+<li>Question AI design suggestions before adopting them, most carefully
+where your domain knowledge is weakest. If you cannot explain it, you do
+not yet own it.</li>
+<li>Write the project context file (<code>CLAUDE.md</code>,
+<code>AGENTS.md</code>, <code>copilot-instructions.md</code>) at the
+start of the project. Keep it short, operational, and backed by
+permissions where it matters.</li>
 </ul></div>
 </div>
 </div>

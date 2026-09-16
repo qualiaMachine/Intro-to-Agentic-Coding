@@ -272,9 +272,9 @@
 
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
-        <ul><li><a href="#how-much-energy-do-ai-models-use">How much energy do AI models use?</a></li>
-<li><a href="#why-agentic-sessions-burn-tokens">Why agentic sessions burn tokens</a></li>
-<li><a href="#techniques-to-reduce-token-usage">Techniques to reduce token usage</a></li>
+        <ul><li><a href="#energy-use-of-ai-models">Energy use of AI models</a></li>
+<li><a href="#why-agentic-sessions-use-many-tokens">Why agentic sessions use many tokens</a></li>
+<li><a href="#reducing-token-use">Reducing token use</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -398,110 +398,107 @@
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
 <ul><li>Give an order-of-magnitude energy figure for a chat query, a coding
-session, and a heavy agentic day — and say why the estimates
-spread.</li>
-<li>Explain why tokens accumulate super-linearly over a long agentic
+session, and a heavy agentic day, and explain why the estimates
+vary.</li>
+<li>Explain why token use grows faster than linearly over a long agentic
 session.</li>
 <li>Use <code>/cost</code>, <code>/compact</code>, model switching, and
 skills (or their equivalents) to manage context and spending.</li>
-<li>Compare real-world session cost across models before committing to
+<li>Compare real session cost across models before committing to
 one.</li>
 </ul></div>
 </div>
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="how-much-energy-do-ai-models-use">How much energy do AI models use?<a class="anchor" aria-label="anchor" href="#how-much-energy-do-ai-models-use"></a></h2>
-<hr class="half-width"><p>People arrive with a claim — a prompt costs gallons of water — so
-replace it with a number. Estimates vary by an order of magnitude and no
-provider publishes per-query figures, but the range is well
-established:</p>
+<section><h2 class="section-heading" id="energy-use-of-ai-models">Energy use of AI models<a class="anchor" aria-label="anchor" href="#energy-use-of-ai-models"></a></h2>
+<hr class="half-width"><p>A common claim is that a single prompt consumes gallons of water. The
+estimates below replace that claim with numbers. They vary by an order
+of magnitude, and no provider publishes per-query figures, but the range
+is well established:</p>
 <table class="table"><colgroup><col width="38%"><col width="30%"><col width="30%"></colgroup><thead><tr><th>Activity</th>
 <th>Energy</th>
 <th>Source</th>
 </tr></thead><tbody><tr><td>One chat query</td>
-<td>~0.3 Wh — an LED bulb for about two minutes</td>
+<td>~0.3 Wh, about two minutes of an LED bulb</td>
 <td>Epoch AI per-token estimates</td>
 </tr><tr><td>One median coding session (24 model calls, ~590k tokens)</td>
-<td>~41 Wh — roughly 130 chat queries</td>
+<td>~41 Wh, roughly 130 chat queries</td>
 <td><a href="https://simonpcouch.com/blog/2026-01-20-cc-impact/" class="external-link">Simon
 Couch, 2026</a></td>
 </tr><tr><td>One heavy agentic day</td>
-<td>~one dishwasher cycle, or a refrigerator running for a day</td>
+<td>About one dishwasher cycle, or a refrigerator for a day</td>
 <td>Simon Willison, 2026</td>
 </tr><tr><td>A median session on large analyses with subagents</td>
 <td>~600 Wh</td>
 <td><a href="https://www.theclimatebrink.com/p/the-real-energy-use-of-agentic-ai" class="external-link">Zeke
 Hausfather, 2026</a></td>
-</tr></tbody></table><p>Couch scaled Epoch’s per-token estimates against his real Claude Code
+</tr></tbody></table><p>Couch scaled Epoch AI’s per-token estimates by his own Claude Code
 token counts. Hausfather ran his own tokens through three published
-methods and got a number an order of magnitude higher, because he runs
-subagents on large analyses. Nobody outside the labs knows the true
-per-token energy. The defensible statement is an <strong>order of
-magnitude, not a precise figure: tens of watt-hours per session,
-hundreds if you run agents heavily.</strong></p>
-<p>Two macro takeaways survive the uncertainty:</p>
+methods and obtained a figure an order of magnitude higher, because he
+runs subagents on large analyses. Nobody outside the labs knows the true
+per-token energy. The defensible statement is an order of magnitude
+rather than a precise figure: tens of watt-hours per session, hundreds
+under heavy agent use.</p>
+<p>Two conclusions hold regardless of the uncertainty:</p>
 <ul><li>
-<strong>The real issue is aggregate demand.</strong> Individual
-queries are lightweight, but massive scaling drives significant overall
-power consumption. OpenAI’s CEO once noted that a single California
-almond takes as much water as tens of thousands of ChatGPT queries —
-meant to downplay per-query impact, it mostly shows how micro-costs
-scale when billions of queries a day are processed.</li>
+<strong>The issue is aggregate demand.</strong> Individual queries
+are light, but at scale they add up. OpenAI’s chief executive has noted
+that a single California almond requires as much water as tens of
+thousands of ChatGPT queries. The comparison was meant to minimize
+per-query impact; it also shows how small unit costs accumulate when
+billions of queries are processed daily.</li>
 <li>
-<strong>Inference dominates training.</strong> Operational
-inference, not model training, is where most AI energy now goes — which
-means your usage patterns are the lever.</li>
-</ul><p>This is not an argument against the tools; the productivity per unit
-of energy may well beat the alternative. It is an argument for
-<strong>intentionality</strong>. Don’t let an agent spin in loops that a
-well-scoped prompt would have avoided.</p>
-</section><section><h2 class="section-heading" id="why-agentic-sessions-burn-tokens">Why agentic sessions burn tokens<a class="anchor" aria-label="anchor" href="#why-agentic-sessions-burn-tokens"></a></h2>
+<strong>Inference dominates training.</strong> Most AI energy now
+goes to serving queries rather than training models, so usage patterns
+are the variable within the user’s control.</li>
+</ul><p>This is not an argument against the tools; productivity per unit of
+energy may well exceed the alternative. It is an argument for deliberate
+use. An agent that loops because of a vague prompt spends energy a clear
+prompt would have saved.</p>
+</section><section><h2 class="section-heading" id="why-agentic-sessions-use-many-tokens">Why agentic sessions use many tokens<a class="anchor" aria-label="anchor" href="#why-agentic-sessions-use-many-tokens"></a></h2>
 <hr class="half-width"><p>A chat query is one round trip. An agentic session chains hundreds:
-read files, reason, write code, run commands, read the output, iterate.
-A focused task might use 50K–200K tokens; a sprawling underspecified
-session can burn over a million. Two dynamics drive this:</p>
+read files, reason, write code, run commands, read the output, repeat. A
+focused task might use 50K–200K tokens; an underspecified session can
+exceed a million. Two mechanisms account for this:</p>
 <ul><li>
 <strong>Agentic loops.</strong> A vague prompt sends the agent into
-try–fail–read-more–try-again cycles. (This is the <em>same</em> failure
-as in the feature-based-development episode — vagueness costs quality
-<em>and</em> money <em>and</em> energy.)</li>
+cycles of trying, failing, reading more, and trying again. This is the
+same failure described in the feature-based-development episode:
+vagueness costs quality, money, and energy.</li>
 <li>
 <strong>Context accumulation.</strong> Every new message resends the
-accumulated conversation — file contents, command output, all of it. The
-50th message in a session costs far more than the 1st.</li>
-</ul></section><section><h2 class="section-heading" id="techniques-to-reduce-token-usage">Techniques to reduce token usage<a class="anchor" aria-label="anchor" href="#techniques-to-reduce-token-usage"></a></h2>
+accumulated conversation, including file contents and command output.
+The fiftieth message in a session costs far more than the first.</li>
+</ul></section><section><h2 class="section-heading" id="reducing-token-use">Reducing token use<a class="anchor" aria-label="anchor" href="#reducing-token-use"></a></h2>
 <hr class="half-width"><ul><li>
-<strong>Pay attention to usage.</strong> Look at what you’re
-spending. It’s also how you catch a runaway agent burning tokens on
-retries.</li>
+<strong>Watch usage.</strong> Knowing what you are spending is also
+how you detect an agent that is retrying in a loop.</li>
 <li>
-<strong>Police which model you are using and match it to the task’s
-difficulty.</strong> Not every task needs your most expensive model.
-Keep a smaller model as the default for mechanical work (renames,
-formatting, lookups) and switch up deliberately when the task needs the
-reasoning. Providers won’t route for you — they optimize for spend, not
-efficiency.</li>
+<strong>Match the model to the task.</strong> Not every task
+requires the most expensive model. Use a smaller model by default for
+mechanical work (renames, formatting, lookups) and switch to a larger
+one when the task requires the reasoning. Providers do not route for
+you; they are optimized for spend rather than efficiency.</li>
 <li>
-<strong>Minimize the context in each session.</strong> As a session
-runs long, old context piles up and every future message re-pays for it.
-Start fresh between unrelated tasks; compact a long thread instead of
-letting it grow. Prefer search over reading whole files — context is
-what you pay for.</li>
+<strong>Keep sessions short.</strong> As a session grows, old
+context accumulates and every subsequent message pays for it again.
+Start fresh between unrelated tasks; compact a long thread rather than
+letting it grow. Prefer search over reading whole files, since context
+is what you pay for.</li>
 <li>
-<strong>Use skills</strong> to reduce input and output. A skill
-loads a short pointer instead of a long explanation every time; the <a href="https://github.com/JuliusBrussee/caveman" class="external-link">caveman</a> skill from
-the previous episode cuts output tokens by design.</li>
+<strong>Use skills.</strong> A skill loads a short pointer instead
+of a long explanation each time. The <a href="https://github.com/JuliusBrussee/caveman" class="external-link">caveman</a> skill from
+the previous episode reduces output tokens by design.</li>
 <li>
-<strong>Push long or independent tasks to a background
-agent</strong> rather than watching a meter run on a foreground
-session.</li>
+<strong>Run long or independent tasks in a background agent</strong>
+rather than in a foreground session you are watching.</li>
 <li>
-<strong>Compare real-world session cost across models before you
-commit to one, not just benchmark scores.</strong> <a href="https://openrouter.ai/rankings#session-cost" class="external-link">OpenRouter’s
-session-cost rankings</a> track what people spend per session across
+<strong>Compare real session cost across models before committing to
+one.</strong> <a href="https://openrouter.ai/rankings#session-cost" class="external-link">OpenRouter’s
+session-cost rankings</a> report what people spend per session across
 live agentic-coding traffic, which is a useful check against vendor
-claims.</li>
+benchmarks.</li>
 </ul><div class="tabs">
 <nav><div id="nav-tab-1" class="nav nav-tabs" role="tablist">
 <button class="nav-link active" id="nav-tab-1-ClaudeCode" name="ClaudeCode" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-ClaudeCode" type="button" role="tab" aria-controls="nav-tabpanel-1-ClaudeCode" aria-selected="true">
@@ -518,38 +515,38 @@ claims.</li>
 </nav><div id="nav-tabContent-1" class="tab-content">
 <div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
 <ul><li>
-<code>/cost</code> — what the current session has consumed;
-<code>/context</code> — what’s filling the window.</li>
+<code>/cost</code>: what the current session has consumed;
+<code>/context</code>: what is occupying the window.</li>
 <li>
-<code>/model</code> — switch models mid-session.</li>
+<code>/model</code>: switch models mid-session.</li>
 <li>
-<code>/clear</code> — reset context between unrelated tasks. The
+<code>/clear</code>: reset context between unrelated tasks. The
 cheapest habit to adopt.</li>
 <li>
-<code>/compact</code> — summarize a long conversation, keeping what
+<code>/compact</code>: summarize a long conversation, retaining what
 matters.</li>
 <li>
-<kbd>Esc</kbd> — interrupt an agent that’s heading the wrong
-way.</li>
+<kbd>Esc</kbd>: interrupt an agent that is heading in the wrong
+direction.</li>
 </ul></div>
 <div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
-<ul><li>Check credit/premium-request usage on your <a href="https://github.com/settings/copilot" class="external-link">Copilot settings page</a>;
-model choice changes the burn rate.</li>
+<ul><li>Check credit and premium-request usage on the <a href="https://github.com/settings/copilot" class="external-link">Copilot settings page</a>.
+Model choice changes the rate.</li>
 <li>The model picker in the chat panel switches models.</li>
 <li>
-<strong>New chat</strong> between unrelated tasks — the
-<code>/clear</code> equivalent.</li>
+<strong>New chat</strong> between unrelated tasks is the equivalent
+of <code>/clear</code>.</li>
 <li>For a long thread, carry a short summary of key decisions into a
 fresh chat.</li>
-<li>The <strong>stop button</strong> interrupts an agent-mode session
-mid-flight.</li>
+<li>The <strong>stop button</strong> interrupts an agent-mode
+session.</li>
 </ul></div>
 </div>
 </div>
-<p>Whichever tool: course-correct early. An agent heading the wrong way
-generates output you then pay to carry in context for the rest of the
-session. <strong>A tight, specific prompt in a clean context is
-simultaneously higher-quality, cheaper, and greener.</strong></p>
+<p>In any tool, correct course early. An agent heading in the wrong
+direction generates output that is then carried in context, at cost, for
+the rest of the session. A specific prompt in a clean context is at once
+higher quality, cheaper, and lower in energy.</p>
 <div id="use-the-model-to-build-tools-not-to-be-the-tool" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -559,34 +556,35 @@ simultaneously higher-quality, cheaper, and greener.</strong></p>
 <h3 class="callout-title">Use the model to build tools, not to be the
 tool</h3>
 <div class="callout-content">
-<p>The wasteful pattern isn’t agentic coding — it’s reaching for a
-frontier model for <em>every single question</em>: pasting data into
-chat to eyeball it, re-asking it to convert units or check a threshold,
-day after day. Code generation inverts that. Spend the model’s compute
-<strong>once</strong> to produce a good script, and that script then
-runs deterministically at a negligible fraction of the energy — forever,
-and reproducibly. If you find yourself asking an AI the same kind of
-question repeatedly, that’s a script asking to be written.</p>
+<p>The wasteful pattern is not agentic coding but using a frontier model
+for every individual question: pasting data into chat to inspect it,
+asking it to convert units or check a threshold, repeatedly. Code
+generation reverses this. The model’s compute is spent once to produce a
+script, and the script then runs deterministically at a negligible
+fraction of the energy, indefinitely and reproducibly. If you ask an AI
+the same kind of question repeatedly, that is a script that has not yet
+been written.</p>
 </div>
 </div>
 </div>
-<div id="exercise-what-did-tonight-cost-5-minutes" class="callout challenge">
+<div id="exercise-what-did-this-session-cost-5-minutes" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <span class="callout-header">Challenge</span>
-<div id="exercise-what-did-tonight-cost-5-minutes" class="callout-inner">
-<h3 class="callout-title">Exercise: What did tonight cost? (5
+<div id="exercise-what-did-this-session-cost-5-minutes" class="callout-inner">
+<h3 class="callout-title">Exercise: What did this session cost? (5
 minutes)</h3>
 <div class="callout-content">
 <ol style="list-style-type: decimal"><li>Check what your session has consumed (<code>/cost</code> in Claude
-Code; the usage dashboard for Copilot) and note the number and the
+Code; the usage dashboard for Copilot) and record the figure and the
 model.</li>
-<li>Back-of-napkin energy: if a median session ≈ 41 Wh, scale by how
-much of a typical session you’ve used (tokens are a reasonable proxy).
-How many chat queries is that? What fraction of a dishwasher run?</li>
-<li>Look back at your session history: which single interaction consumed
-the most? Was it a vague prompt that triggered a loop?</li>
+<li>Estimate the energy: if a median session is about 41 Wh, scale by
+the fraction of a typical session you have used (tokens are a reasonable
+proxy). How many chat queries is that? What fraction of a dishwasher
+cycle?</li>
+<li>Review the session history. Which single interaction consumed the
+most? Was it a vague prompt that produced a loop?</li>
 </ol></div>
 </div>
 </div>
@@ -597,13 +595,13 @@ the most? Was it a vague prompt that triggered a loop?</li>
   Typical findings
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
-<p>Most workshop sessions land in the low single-digit Wh — a few
-percent of a dishwasher run. The interesting result is usually #3: one
-underspecified prompt accounts for a disproportionate share of the
-total. A clearer sentence in the prompt would have made those tokens
-unnecessary.</p>
+<p>Most workshop sessions come to a few watt-hours, a small percentage
+of a dishwasher cycle. The informative result is usually the third item:
+one underspecified prompt accounts for a disproportionate share of the
+total. A clearer sentence in that prompt would have avoided those
+tokens.</p>
 </div>
 </div>
 </div>
@@ -615,19 +613,20 @@ unnecessary.</p>
 <span class="callout-header">Key Points</span>
 <div class="callout-inner">
 <div class="callout-content">
-<ul><li>A chat query is ~0.3 Wh; a median coding session ~41 Wh; a heavy
-agentic day about a dishwasher cycle. Estimates spread by an order of
-magnitude — think tens to hundreds of Wh per session, not
-precision.</li>
-<li>The issue is aggregate demand, and inference now dominates; your
-usage patterns are the lever.</li>
-<li>Agentic sessions chain hundreds of model calls; context accumulation
-makes late messages far more expensive than early ones.</li>
+<ul><li>A chat query is about 0.3 Wh; a median coding session about 41 Wh; a
+heavy agentic day about a dishwasher cycle. Estimates vary by an order
+of magnitude, so think in tens to hundreds of watt-hours per
+session.</li>
+<li>The issue is aggregate demand, and inference now dominates. Usage
+patterns are the variable you control.</li>
+<li>Agentic sessions chain hundreds of model calls, and context
+accumulation makes late messages far more expensive than early
+ones.</li>
 <li>Watch usage, match the model to the task, keep sessions short and
 compact, use skills, and compare real session cost across models before
 committing.</li>
-<li>Specific prompts in clean context are better, cheaper, and greener:
-one discipline, three benefits.</li>
+<li>A specific prompt in a clean context is better, cheaper, and lower
+in energy. One discipline, three benefits.</li>
 </ul></div>
 </div>
 </div>
