@@ -356,10 +356,11 @@ result by the same amount.</p>
 agentic coding for researchers. It is about principles rather than one
 product: the practices of limiting access, planning, specifying,
 verifying, and managing cost apply unchanged across Claude Code, GitHub
-Copilot, Codex, Cursor, OpenCode, and their successors. Where the
-mechanics differ, episodes give the equivalents for the two tools
-researchers most commonly have access to, Claude Code and GitHub
-Copilot. Other tools translate directly.</p>
+Copilot, Codex, Cursor, OpenCode, and their successors, so the main text
+is tool-agnostic. Where the mechanics differ (a command name, a mode
+toggle, a settings page), episodes give the equivalents for the two
+tools researchers most commonly have access to, Claude Code and GitHub
+Copilot. Other tools map one-to-one onto the same concepts.</p>
 <p>Three principles run through the lesson:</p>
 <ol style="list-style-type: decimal"><li>
 <strong>Stay in the driver’s seat.</strong> The agent writes the
@@ -390,7 +391,8 @@ workshop blocks onto episodes.</p>
 <ul><li>Comfort working at a command line and with git basics (clone,
 branch, commit, push).</li>
 <li>Some experience writing Python and doing basic data analysis
-(pandas, scikit-learn or similar).</li>
+(pandas, scikit-learn or similar). No local Python installation is
+needed; the agent’s sandbox runs the code.</li>
 <li>Access to at least one agentic coding tool. The <a href="index.html#setup">setup page</a> lists options, including free
 tiers.</li>
 <li>Ideally, a small project of your own to point the agent at. The
@@ -560,16 +562,17 @@ any links that you are not going to use.
       The actual schedule may vary slightly depending on the topics and exercises chosen by the instructor.
       </p>
       </section><section id="setup"><section><h2 class="section-heading" id="summary">Summary<a class="anchor" aria-label="anchor" href="#summary"></a></h2>
-<hr class="half-width"><p>To follow along you need four things:</p>
-<ol style="list-style-type: decimal"><li>A working <strong>git</strong> installation and a GitHub
-account.</li>
-<li>A <strong>Python</strong> environment with <code>pandas</code>,
-<code>scikit-learn</code>, and <code>pytest</code>.</li>
+<hr class="half-width"><p>To follow along you need three things:</p>
+<ol style="list-style-type: decimal"><li>A <strong>GitHub account</strong> and, if you work locally, a
+working <strong>git</strong> installation.</li>
 <li>Access to at least one <strong>agentic coding tool</strong>. The
 lesson is tool-agnostic, so any agent is acceptable.</li>
 <li>A <strong>repository to work on</strong>, ideally your own project,
 and a way to load any API keys that keeps them off disk.</li>
-</ol><p>The safety episode’s exercise <em>Get your agent running, safely</em>
+</ol><p>You do not need to install Python. On the recommended web route the
+agent runs code in its own cloud sandbox and installs what the project
+needs; on the local route the dev container image provides Python.</p>
+<p>The safety episode’s exercise <em>Get your agent running, safely</em>
 covers the first session. The checklist at the <a href="#before-your-first-session">end of this page</a> lists the same
 steps in short form.</p>
 </section><section><h2 class="section-heading" id="git-and-github">Git and GitHub<a class="anchor" aria-label="anchor" href="#git-and-github"></a></h2>
@@ -591,27 +594,6 @@ your safety net: <code>git diff</code> shows exactly what an agent did,
 and <code>git restore</code> undoes it.</p>
 </div>
 </div>
-</div>
-</section><section><h2 class="section-heading" id="python-environment">Python environment<a class="anchor" aria-label="anchor" href="#python-environment"></a></h2>
-<hr class="half-width"><p>Any Python ≥ 3.10 environment works. With conda/mamba:</p>
-<div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="ex">conda</span> create <span class="at">-n</span> agentic python=3.12 pandas scikit-learn pytest</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="ex">conda</span> activate agentic</span></code></pre>
-</div>
-<p>or with pip in a virtual environment:</p>
-<div class="codewrapper sourceCode" id="cb2">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="ex">python</span> <span class="at">-m</span> venv .venv <span class="kw">&amp;&amp;</span> <span class="bu">source</span> .venv/bin/activate</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a><span class="ex">pip</span> install pandas scikit-learn pytest</span></code></pre>
-</div>
-<p>Verify the environment from the lesson repository:</p>
-<div class="codewrapper sourceCode" id="cb3">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="ex">python</span> src/python/verify_environment.py</span></code></pre>
 </div>
 </section><section><h2 class="section-heading" id="choose-an-agentic-coding-tool">Choose an agentic coding tool<a class="anchor" aria-label="anchor" href="#choose-an-agentic-coding-tool"></a></h2>
 <hr class="half-width"><div id="no-agentic-tools-on-machines-holding-sensitive-or-restricted-data" class="callout caution">
@@ -745,29 +727,29 @@ open the Command Palette, choose <strong>Preferences: Open User Settings
 (JSON)</strong>, and add this setting to configure the Dev Containers
 extension to run <code>podman</code> rather than
 <code>docker</code>:</p>
-<div class="codewrapper sourceCode" id="cb4">
+<div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">JSON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode json" tabindex="0"><code class="sourceCode json"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="fu">{</span></span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1" aria-label="code-block-4-2"></a>  <span class="dt">"dev.containers.dockerPath"</span><span class="fu">:</span> <span class="st">"podman"</span></span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1" aria-label="code-block-4-3"></a><span class="fu">}</span></span></code></pre>
+<pre class="sourceCode json" tabindex="0"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="fu">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a>  <span class="dt">"dev.containers.dockerPath"</span><span class="fu">:</span> <span class="st">"podman"</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a><span class="fu">}</span></span></code></pre>
 </div>
 </li>
 <li>
 <p>In your project root, create
 <code>.devcontainer/devcontainer.json</code>:</p>
-<div class="codewrapper sourceCode" id="cb5">
+<div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">JSON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode json" tabindex="0"><code class="sourceCode json"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="fu">{</span></span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1" aria-label="code-block-5-2"></a>  <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"agentic-workshop"</span><span class="fu">,</span></span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1" aria-label="code-block-5-3"></a>  <span class="dt">"image"</span><span class="fu">:</span> <span class="st">"mcr.microsoft.com/devcontainers/python:3.12"</span><span class="fu">,</span></span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1" aria-label="code-block-5-4"></a>  <span class="dt">"remoteUser"</span><span class="fu">:</span> <span class="st">"vscode"</span><span class="fu">,</span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1" aria-label="code-block-5-5"></a>  <span class="dt">"runArgs"</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1" aria-label="code-block-5-6"></a>    <span class="st">"--userns=keep-id"</span></span>
-<span id="cb5-7"><a href="#cb5-7" tabindex="-1" aria-label="code-block-5-7"></a>  <span class="ot">]</span><span class="fu">,</span></span>
-<span id="cb5-8"><a href="#cb5-8" tabindex="-1" aria-label="code-block-5-8"></a>  <span class="dt">"postCreateCommand"</span><span class="fu">:</span> <span class="st">"python -m pip install pandas scikit-learn pytest"</span></span>
-<span id="cb5-9"><a href="#cb5-9" tabindex="-1" aria-label="code-block-5-9"></a><span class="fu">}</span></span></code></pre>
+<pre class="sourceCode json" tabindex="0"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="fu">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a>  <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"agentic-workshop"</span><span class="fu">,</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1" aria-label="code-block-2-3"></a>  <span class="dt">"image"</span><span class="fu">:</span> <span class="st">"mcr.microsoft.com/devcontainers/python:3.12"</span><span class="fu">,</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1" aria-label="code-block-2-4"></a>  <span class="dt">"remoteUser"</span><span class="fu">:</span> <span class="st">"vscode"</span><span class="fu">,</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1" aria-label="code-block-2-5"></a>  <span class="dt">"runArgs"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1" aria-label="code-block-2-6"></a>    <span class="st">"--userns=keep-id"</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1" aria-label="code-block-2-7"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1" aria-label="code-block-2-8"></a>  <span class="dt">"postCreateCommand"</span><span class="fu">:</span> <span class="st">"python -m pip install pandas scikit-learn pytest"</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1" aria-label="code-block-2-9"></a><span class="fu">}</span></span></code></pre>
 </div>
 <h3 id="podman-desktop-optional">Podman Desktop (optional)</h3>
 <p><a href="https://podman-desktop.io/" class="external-link">Podman Desktop</a> is a
@@ -844,15 +826,15 @@ and load it per session instead of writing a <code>.env</code>. Every
 UW–Madison NetID can request a free <a href="https://it.wisc.edu/services/1password/" class="external-link">1Password account</a>;
 with the <a href="https://developer.1password.com/docs/cli/get-started/" class="external-link">1Password
 CLI</a> installed:</p>
-<div class="codewrapper sourceCode" id="cb6">
+<div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="bu">export</span> <span class="va">OPENAI_API_KEY</span><span class="op">=</span><span class="va">$(</span><span class="ex">op</span> read <span class="st">'op://Private/&lt;item&gt;/credential'</span><span class="va">)</span>     <span class="co"># bash/zsh</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="bu">export</span> <span class="va">OPENAI_API_KEY</span><span class="op">=</span><span class="va">$(</span><span class="ex">op</span> read <span class="st">'op://Private/&lt;item&gt;/credential'</span><span class="va">)</span>     <span class="co"># bash/zsh</span></span></code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb7">
+<div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">POWERSHELL<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode powershell" tabindex="0"><code class="sourceCode powershell"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="va">$env</span><span class="op">:</span><span class="va">OPENAI_API_KEY</span> <span class="op">=</span> op read <span class="st">"op://Private/&lt;item&gt;/credential"</span>        <span class="co"># PowerShell</span></span></code></pre>
+<pre class="sourceCode powershell" tabindex="0"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="va">$env</span><span class="op">:</span><span class="va">OPENAI_API_KEY</span> <span class="op">=</span> op read <span class="st">"op://Private/&lt;item&gt;/credential"</span>        <span class="co"># PowerShell</span></span></code></pre>
 </div>
 <p>For JupyterLab, keep a <code>.env.op</code> file of
 <code>op://</code> references (safe to commit) and launch with
