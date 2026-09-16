@@ -644,33 +644,6 @@ data-policy rules apply.</p>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="demo-one-project-at-three-levels-of-autonomy">Demo: one project at three levels of autonomy<a class="anchor" aria-label="anchor" href="#demo-one-project-at-three-levels-of-autonomy"></a>
-</h2>
-<hr class="half-width">
-<div id="accordionInstructor1" class="accordion instructor-note accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
-  <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
-</button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
-<div class="accordion-body">
-<p>Run this live with Claude Code in VS Code (or OpenCode) on the
-project the rest of the workshop uses. Show three examples along the
-spectrum:</p>
-<ol style="list-style-type: decimal">
-<li>A tightly directed coding task: one function.</li>
-<li>A task in which the agent creates and follows a plan: use plan mode
-first, then let it implement.</li>
-<li>A more autonomous, multi-agent workflow: describe it, but do not run
-it live. It takes longer and its outcome varies between runs.</li>
-</ol>
-<p>Ask participants whether anyone wants to describe something notable
-their agent has done. The answers indicate the range of experience in
-the group.</p>
-</div>
-</div>
-</div>
-</div>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -2400,12 +2373,12 @@ it decide that you did not specify?</p></li>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
 <p>Start a fresh session (or <code>/clear</code>) so the feature begins
 with a clean context. On the web, the work is returned as a branch;
 locally, confirm that it created one before editing.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
 <p>Use <strong>Agent</strong> mode in a <strong>New Chat</strong>, or
 delegate the prompt to the cloud coding agent and review the draft pull
 request it opens.</p>
@@ -2433,7 +2406,7 @@ printed majority-class baseline alongside the test accuracy.</p>
   Typical results
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The request to list unspecified choices is the most informative line
 in the template. Typical answers: a random seed, a default imputation,
@@ -2707,7 +2680,7 @@ the editor.</p>
   Why this works
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>A methodological requirement that was previously implicit is now an
 executable contract. The agent has a feedback loop that fails when it
@@ -2858,7 +2831,7 @@ assertion that would have caught it.</p>
   The bug, and the assertion that catches it
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Every subject appears in both splits. The model learned to identify
 each person, not what they were looking at. On a new subject the score
@@ -3090,7 +3063,7 @@ a token with read-only scopes (see <a href="index.html#optional-github-token-for
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -3101,7 +3074,7 @@ a token with read-only scopes (see <a href="index.html#optional-github-token-for
 </div>
 <p>Restart the session so the tools load.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilotVSCode" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilotVSCode">
+<div id="nav-tabpanel-1-GitHubCopilotVSCode" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilotVSCode" role="tabpanel">
 <p>Command Palette → <strong>MCP: Open User Configuration</strong>, add
 an entry for the same endpoint, click <strong>Start</strong>, and switch
 Copilot Chat to <strong>Agent</strong> mode:</p>
@@ -3205,7 +3178,7 @@ concrete.</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-2" class="tab-content">
-<div id="nav-tabpanel-2-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-2-ClaudeCode">
+<div id="nav-tabpanel-2-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-2-ClaudeCode" role="tabpanel">
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -3224,7 +3197,7 @@ the mode is set rather than coincidental:</p>
 configuration: run the same two commands, then reload the chat
 panel.</p>
 </div>
-<div id="nav-tabpanel-2-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-2-GitHubCopilot">
+<div id="nav-tabpanel-2-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-2-GitHubCopilot" role="tabpanel">
 <p>Caveman provides rule files for Copilot:</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3520,7 +3493,7 @@ benchmarks.</li>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
 <ul>
 <li>
 <code>/cost</code>: what the current session has consumed;
@@ -3538,7 +3511,7 @@ matters.</li>
 direction.</li>
 </ul>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
 <ul>
 <li>Check credit and premium-request usage on the <a href="https://github.com/settings/copilot" class="external-link">Copilot settings page</a>.
 Model choice changes the rate.</li>
@@ -3608,7 +3581,7 @@ most? Was it a vague prompt that produced a loop?</li>
   Typical findings
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Most workshop sessions come to a few watt-hours, a small percentage
 of a dishwasher cycle. The informative result is usually the third item:
@@ -3832,7 +3805,7 @@ fix the documentation, and state which you chose and why.</li>
   Typical findings
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Most participants find at least one surprise, usually an edge case
 the code handles by accident rather than by decision (what does it
@@ -4078,7 +4051,7 @@ one about what the agent may never modify.</p>
   Why record it
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Two benefits. The agent reads it, so your posture, branch
 conventions, and forbidden paths shape every session without
