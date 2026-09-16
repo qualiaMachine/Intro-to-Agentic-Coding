@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="240" viewBox="0 0 900 240" font-family="Arial, Helvetica, sans-serif">
+  <title>Spectrum of agentic coding</title>
+  <rect width="900" height="240" fill="#ffffff"/>
+  <text x="450" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="#222222">Spectrum of agentic coding</text>
+  <g font-size="14" fill="#555555">
+    <text x="140" y="78" text-anchor="middle">less autonomy</text>
+    <text x="760" y="78" text-anchor="middle">more autonomy</text>
+  </g>
+  <!-- double-headed arrow -->
+  <polygon points="60,122 120,90 120,108 780,108 780,90 840,122 780,154 780,136 120,136 120,154"
+          fill="#d9d9d9" stroke="#444444" stroke-width="2" stroke-linejoin="round"/>
+  <!-- tick marks -->
+  <g stroke="#444444" stroke-width="2">
+    <line x1="140" y1="154" x2="140" y2="174"/>
+    <line x1="450" y1="154" x2="450" y2="174"/>
+    <line x1="760" y1="154" x2="760" y2="174"/>
+  </g>
+  <!-- three example requests -->
+  <g font-size="16" fill="#222222">
+    <text x="140" y="200" text-anchor="middle">“Make this for loop</text>
+    <text x="140" y="222" text-anchor="middle">for me.”</text>
+    <text x="450" y="200" text-anchor="middle">“Implement the method stubs</text>
+    <text x="450" y="222" text-anchor="middle">in this file.”</text>
+    <text x="760" y="200" text-anchor="middle">“Build the whole service from scratch;</text>
+    <text x="760" y="222" text-anchor="middle">do all the planning yourself.”</text>
+  </g>
+</svg>

@@ -531,7 +531,9 @@ reviews the diff.</li>
 yourself.” The agent makes many decisions the user never considered, and
 the user reviews a project.</li>
 </ol>
-<p>Across the three, <strong>the more autonomy you grant, the more of
+<figure><img src="../fig/spectrum-of-agentic-coding.svg" alt='A horizontal double-headed arrow labelled less autonomy on the left and more autonomy on the right, with three example requests beneath it. Left: "Make this for loop for me." Middle: "Implement the method stubs in this file." Right: "Build the whole service from scratch; do all the planning yourself."' class="figure mx-auto d-block"><div class="figcaption">The spectrum of agentic coding, from a single
+directed edit to a whole delegated project.</div>
+</figure><p>Across the three, <strong>the more autonomy you grant, the more of
 your judgment must be encoded in advance</strong>, in the prompt, in
 project context files, and in tests, and the more review is required
 afterwards. This principle recurs throughout the lesson. Most of the
@@ -584,7 +586,15 @@ plan, act, observe, revise, repeat. On each turn the model decides what
 to do next, the harness executes it (edits a file, runs the tests), and
 the result is added to the model’s context. In summary: <strong>agent =
 LLM + harness + tools + agent loop.</strong></p>
-<p>More advanced harnesses add an orchestrator–worker pattern, in which
+<p>The same structure describes what you can influence. The prompt is
+the wording of a single instruction. The context is everything the model
+sees in its window, including the project’s instruction files. The
+harness is the system around both. Each layer contains the one inside
+it; the later episodes on prompting and context work at the two inner
+layers, and the safety episode’s limits are set at the outermost.</p>
+<figure><img src="../fig/prompt-context-harness.png" alt="Diagram of concentric circles. Innermost: Model. Around it: Prompt, the wording of a single instruction. Around that: Context, everything the model sees in its context window. Outermost: Harness, the whole system around the model: loop, tools, memory, sandbox. Caption: each layer contains the one inside it." class="figure mx-auto d-block"><div class="figcaption">Prompt, context, and harness as three concentric
+layers around the model.</div>
+</figure><p>More advanced harnesses add an orchestrator–worker pattern, in which
 a primary agent divides a larger problem into tasks and delegates them
 to subagents that work in parallel on research, implementation, testing,
 and review. Multi-agent workflows became common toward the end of 2025.
@@ -1953,7 +1963,7 @@ may never modify) and put it in your context file.</p>
   What a usable result contains
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>It is short. A branch-name pattern
 (<code>&lt;name&gt;/&lt;feature&gt;</code>); a pull-request size people
@@ -2049,7 +2059,7 @@ together.</p></li>
   What a good plan.md contains
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Three features, each one thing you can check. For example: (1) load
 and validate the data slice, with row count and class balance printed;
@@ -2393,12 +2403,12 @@ it decide that you did not specify?</p></li>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
 <p>Start a fresh session (or <code>/clear</code>) so the feature begins
 with a clean context. On the web, the work is returned as a branch;
 locally, confirm that it created one before editing.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
 <p>Use <strong>Agent</strong> mode in a <strong>New Chat</strong>, or
 delegate the prompt to the cloud coding agent and review the draft pull
 request it opens.</p>
@@ -2426,7 +2436,7 @@ printed majority-class baseline alongside the test accuracy.</p>
   Typical results
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The request to list unspecified choices is the most informative line
 in the template. Typical answers: a random seed, a default imputation,
@@ -2632,13 +2642,13 @@ protected branches</a>).</p></li>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
 <p>Plan mode for step 1 (<kbd>Shift</kbd>+<kbd>Tab</kbd> locally; on the
 web, the “do not edit” line has the same effect). For steps 3 and 4
 switch to normal mode. Claude will run <code>pytest</code> itself
 (approve the command) and iterate until it passes.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
 <p><strong>Ask</strong> mode with <code>@workspace</code> for step 1;
 <strong>Agent</strong> mode for steps 3 and 4. Copilot proposes the
 <code>pytest</code> run in the terminal and waits for approval. The
@@ -2657,7 +2667,7 @@ the editor.</p>
   Why this works
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>A methodological requirement that was previously implicit is now an
 executable contract. The agent has a feedback loop that fails when it
@@ -2802,7 +2812,7 @@ assertion that would have caught it.</p>
   The bug, and the assertion that catches it
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Every subject appears in both splits. The model learned to identify
 each person, not what they were looking at. On a new subject the score
@@ -3035,7 +3045,7 @@ a token with read-only scopes (see <a href="index.html#optional-github-token-for
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -3046,7 +3056,7 @@ a token with read-only scopes (see <a href="index.html#optional-github-token-for
 </div>
 <p>Restart the session so the tools load.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilotVSCode" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilotVSCode" role="tabpanel">
+<div id="nav-tabpanel-1-GitHubCopilotVSCode" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilotVSCode">
 <p>Command Palette → <strong>MCP: Open User Configuration</strong>, add
 an entry for the same endpoint, click <strong>Start</strong>, and switch
 Copilot Chat to <strong>Agent</strong> mode:</p>
@@ -3086,7 +3096,7 @@ episode.</p>
   What this shows
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The agent is now calling GitHub’s API rather than answering from
 training data. Ask yourself what wider access it would need to do the
@@ -3150,7 +3160,7 @@ concrete.</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-2" class="tab-content">
-<div id="nav-tabpanel-2-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-2-ClaudeCode" role="tabpanel">
+<div id="nav-tabpanel-2-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-2-ClaudeCode">
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -3169,7 +3179,7 @@ the mode is set rather than coincidental:</p>
 configuration: run the same two commands, then reload the chat
 panel.</p>
 </div>
-<div id="nav-tabpanel-2-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-2-GitHubCopilot" role="tabpanel">
+<div id="nav-tabpanel-2-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-2-GitHubCopilot">
 <p>Caveman provides rule files for Copilot:</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3210,7 +3220,7 @@ and the instructions:</p>
   From the demonstration to real use
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>The caveman skill demonstrates the mechanism. The practical use is
 packaging an instruction you would otherwise repeat. Choose one thing
@@ -3553,7 +3563,7 @@ most? Was it a vague prompt that produced a loop?</li>
   Typical findings
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Most workshop sessions come to a few watt-hours, a small percentage
 of a dishwasher cycle. The informative result is usually the third item:
@@ -3777,7 +3787,7 @@ fix the documentation, and state which you chose and why.</li>
   Typical findings
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Most participants find at least one surprise, usually an edge case
 the code handles by accident rather than by decision (what does it

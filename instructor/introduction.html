@@ -472,7 +472,9 @@ reviews the diff.</li>
 <li>“Build the whole service from scratch; do all the planning
 yourself.” The agent makes many decisions the user never considered, and
 the user reviews a project.</li>
-</ol><p>Across the three, <strong>the more autonomy you grant, the more of
+</ol><figure><img src="../fig/spectrum-of-agentic-coding.svg" alt='A horizontal double-headed arrow labelled less autonomy on the left and more autonomy on the right, with three example requests beneath it. Left: "Make this for loop for me." Middle: "Implement the method stubs in this file." Right: "Build the whole service from scratch; do all the planning yourself."' class="figure mx-auto d-block"><div class="figcaption">The spectrum of agentic coding, from a single
+directed edit to a whole delegated project.</div>
+</figure><p>Across the three, <strong>the more autonomy you grant, the more of
 your judgment must be encoded in advance</strong>, in the prompt, in
 project context files, and in tests, and the more review is required
 afterwards. This principle recurs throughout the lesson. Most of the
@@ -519,7 +521,15 @@ plan, act, observe, revise, repeat. On each turn the model decides what
 to do next, the harness executes it (edits a file, runs the tests), and
 the result is added to the model’s context. In summary: <strong>agent =
 LLM + harness + tools + agent loop.</strong></p>
-<p>More advanced harnesses add an orchestrator–worker pattern, in which
+<p>The same structure describes what you can influence. The prompt is
+the wording of a single instruction. The context is everything the model
+sees in its window, including the project’s instruction files. The
+harness is the system around both. Each layer contains the one inside
+it; the later episodes on prompting and context work at the two inner
+layers, and the safety episode’s limits are set at the outermost.</p>
+<figure><img src="../fig/prompt-context-harness.png" alt="Diagram of concentric circles. Innermost: Model. Around it: Prompt, the wording of a single instruction. Around that: Context, everything the model sees in its context window. Outermost: Harness, the whole system around the model: loop, tools, memory, sandbox. Caption: each layer contains the one inside it." class="figure mx-auto d-block"><div class="figcaption">Prompt, context, and harness as three concentric
+layers around the model.</div>
+</figure><p>More advanced harnesses add an orchestrator–worker pattern, in which
 a primary agent divides a larger problem into tasks and delegates them
 to subagents that work in parallel on research, implementation, testing,
 and review. Multi-agent workflows became common toward the end of 2025.
