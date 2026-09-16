@@ -26,10 +26,10 @@ three.
 |------|-----|-------|---------|
 | 0:00 | 30 | **Intro & getting started (safely).** Before we start (any access requests participants must file now); three principles; what agentic coding is (spectrum, harness, loop); live demo at three autonomy levels; safety: policies, prompt injection, the six limits (network allowlist demo, 2 min), providers, recap; **Exercise: Get your agent running, safely** (8 min) | Episodes 1–2 (3 compressed) |
 | 0:30 | 15 | **Planning with agents.** Research on planning; add context; **Exercise: Agree how your team will work together** (10 min); MVP; **Exercise: Plan your MVP with an agent** (15 min) — this block overruns its slot in the pilot agenda; see below | Episode 4 |
-| 0:45 | 10 | **Feature-based dev and good prompting.** Feature by feature; bad/better prompt; underspecified ≠ random; maintenance tasks | Episode 5 |
+| 0:45 | 10 | **Feature-based dev and good prompting.** The agent is not a magic wand; feature by feature; bad/better prompt; underspecified ≠ random | Episode 5 |
 | 0:55 | 8 | Break | — |
-| 1:03 | 20 | **Exercise: Implement feature 1** (15 min) then debrief on "choices you did not specify" — or run it before the break if the room is fast | Episode 5 |
-| 1:23 | 20 | **Verification and testing.** Research on checking; look for decisions you did not make; **Exercise 1: Test the feature you just built** (10 min); no escaping good data science; agents as data science assistants; quick checks; **Exercise 2: What is wrong with this?** (5 min) | Episode 6 |
+| 1:03 | 20 | **Exercise: Implement feature (or step) 1** (15 min) then debrief on "choices you did not specify"; maintenance tasks slide as the transition | Episode 5 |
+| 1:23 | 20 | **Verification and testing.** Research on checking; look for decisions you did not make; **Exercise 1: Test the feature you just built** (10 min); good data science practice still applies; tests for good data science practice; agents as data scientists | Episode 6 |
 | 1:43 | 12 | **MCP tools and skills.** MCP vs API; **Demo: connect an MCP server** (5 min); what a skill is; **Demo: caveman skill** (4–5 min); resources | Episode 7 |
 | 1:55 | 5 | **Cost, energy, and wrap-up.** Energy numbers; token techniques with `/cost`, `/model`, `/compact` demos; is programming dead?; feedback survey | Episodes 8, 11 |
 
@@ -96,19 +96,24 @@ finish early interrogate their pre-modeling steps into `prep.md`. Note the plann
 studies measured accuracy, not tokens; the token argument is a mechanism, not a
 measured result.
 
-**Feature-based dev.** The "list every choice you made that I did not specify" line
-is the key step: ask two or three people to read theirs out. Participants reliably discover
-that everyone got *different* unaccounted decisions.
+**Feature-based dev.** Open with "the agent is not a magic wand": the frustration
+people arrive with comes from whole-project prompts, and the remedy is a domain
+expert in the loop driving one feature at a time. The "list every choice you made
+that I did not specify" line is the key step of the exercise: ask two or three people
+to read theirs out. Participants reliably discover that everyone got *different*
+unaccounted decisions.
 
-**Verification.** The block opens with the after-every-feature routine: ask for
-assumptions, ask for tests and edge cases, run them, commit. *Exercise 1: Test the
-feature you just built* applies it to feature 1 from before the break; insist on plan
-mode for the first prompt, and timebox. The CI workflow and branch protection can be
-completed after the session. The brain-decoding leak (*Exercise 2*) is the central
-example of the lesson. Show the clean run and the 0.91 first, then ask "so are we
-done?" before revealing the bug, then show the 0.58 on unseen subjects. Translate
-"the unit that repeats" to each team's project (subject, camera burst, page, source
-document).
+**Verification.** Open with the research figures and Faros AI's explanation (larger
+pull requests, code that reads well but is often wrong). Then the before-and-after-
+every-feature routine: ask for assumptions, ask for tests and edge cases, run them,
+commit. *Exercise 1: Test the feature you just built* applies it to feature 1 from
+before the break; insist on plan mode for the first prompt, and timebox. The CI
+workflow and branch protection can be completed after the session. Close the block
+with the five test prompts for good data science practice and the agents-as-data-
+scientists prompt. The brain-decoding leakage exercise was cut from the live workshop
+for time; it remains in the episode as an optional exercise and works well as
+homework, or as the example when a team's project has repeated units (subject, camera
+burst, page, source document).
 
 **MCP and skills.** Pre-test the MCP server and the caveman install beforehand so
 auth and npm aren't what the room watches. Run `claude mcp list` before and after.
@@ -121,11 +126,16 @@ water) and replace it with a number. State the spread plainly (Couch ~41 Wh,
 Hausfather ~600 Wh). Three live demos in order: `/cost`, `/model`, `/compact`; then
 pull up the OpenRouter session-cost rankings. Loop back to skills as a cost lever.
 
-**Close.** Is programming dead? Put the question to the room first — discuss with a
-neighbor, then share — before giving the evidence: coding speed is one bottleneck,
-and the Anthropic skill-formation result (17% lower, biggest gap in debugging) is the
-one to leave people with: use the agent to ask *why*. Feedback survey, materials link,
-and ask people to send resources they find useful.
+**Close.** Put the question to the room first (discuss with a neighbor, then share)
+before giving the answer: agentic coding is another abstraction layer, like assembly
+to Python, but a non-deterministic one. The craft is making it deterministic enough
+through specification and verification without spending more time prompting than
+coding would take; at the feature level the gains are substantial, and they scale
+with expertise. Agents amplify expertise; they are not a magic wand (a callback to
+the feature-based block). The Anthropic skill-formation result (17% lower, biggest
+gap in debugging) is the caution to leave people with: use the agent to ask *why*.
+Feedback survey and materials link; note the lesson will keep changing through the
+fall.
 
 ## Logistics that matter
 

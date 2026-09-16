@@ -15,7 +15,7 @@ exercises: 5
 ::::::::::::::::::::::::::::::::::::: objectives
 
 - Summarize what early research says about productivity effects and who gains most.
-- Explain why agentic coding is another abstraction layer, and the first non-deterministic one.
+- Explain why agentic coding is another abstraction layer, and the first non-deterministic one, and what follows for how much specification and verification it needs.
 - Commit to three concrete practices for your next project.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -64,30 +64,27 @@ session, and what did not?
 Programming has been declared obsolete before. Assembly gave way to compilers and
 then to languages such as Python; manual memory management gave way to garbage
 collection; servers gave way to the cloud. Each time, the work moved up a level of
-abstraction and the discipline adapted.
+abstraction and the discipline adapted. Agentic coding is the same transition, with
+one difference: the new layer is not deterministic. Compiling the same C source twice
+yields the same program, which is why nobody audits compiler output. The same prompt
+can yield different code on different days, and every unstated decision is filled in
+with the average case.
 
-Agentic coding is the same transition with one difference: it is the first
-non-deterministic abstraction. Every previous layer was a deterministic translation,
-one request producing one outcome. Compiling the same C source twice yields the same
-program, which is why compiler output is not audited. An agent breaks that contract.
-One request leads to many possible outcomes. It interprets intent probabilistically,
-fills each unstated gap with the average case, and can produce different code from
-the same prompt on different days.
+The craft of agentic coding is therefore making the layer deterministic enough. That
+means specifying and verifying at the level this lesson has practiced: a plan with a
+check for each step, one feature per prompt, tests the agent must pass, a review of
+every diff. Too little of this and the output is plausible and wrong. Too much, and
+the time spent writing prompts approaches the time it would have taken to write the
+code. The balance sits between those, and the evidence is that at the feature level
+the productivity gains are substantial.
 
-Two practices compensate for the non-determinism, and the lesson has returned to them
-repeatedly: good prompting (specification narrows the space of outcomes, the subject
-of the feature-based-development episode) and a review process (verification catches
-the outcomes that specification did not prevent). Do not assume the agent will be
-correct every time. "Usually right, occasionally plausibly wrong" is what a
-probabilistic abstraction is. A workflow designed for that treats the agent as one
-more layer; a workflow that assumes perfection will eventually fail.
-
-Programming is therefore not dead. The work shifts from writing every line toward
-specifying intent, designing verification, and exercising judgment, which were
-always the difficult parts of research computing. This is also why good data science
-practice still applies in full. Examining the data, knowing the features and their
-distributions, and understanding what the model responds to were never typing tasks.
-They are the judgment the workflow now depends on.
+Those gains are a function of prior expertise. Deciding what to build next,
+recognizing a plausible-but-wrong result, knowing which check matters for this data:
+these come from the person, not the prompt or the model. Agents amplify expertise;
+they are not a substitute for it, and they are not a magic wand. Programming is not
+dead. The work has shifted toward specifying intent, designing verification, and
+exercising judgment, which were always its difficult parts, and good data science
+practice still applies in full.
 
 ## Pass it on
 
@@ -129,7 +126,8 @@ Before your next project session, commit to:
 - Agentic tools amplify expertise. Verification skill, not typing speed, is the limiting factor, and perceived speedups can be illusory, so measure.
 - Learning with AI can cost understanding (17% lower quiz scores, largest gap in debugging). Use the agent to ask why, not only to produce code.
 - How novices build supervisory expertise in an agentic setting is an open and serious question.
-- Agentic coding is another abstraction layer, and the first non-deterministic one: one request, many possible outcomes. Good prompting narrows the outcomes; review catches the rest; never assume the agent is always correct.
+- Agentic coding is another abstraction layer, like the move from assembly to Python, but a non-deterministic one. The craft is making it deterministic enough through specification and verification, without spending more time prompting than writing the code would take.
+- At the feature level the productivity gains are substantial, and they scale with prior expertise. Agents amplify expertise; they are not a magic wand.
 - The work shifts toward specifying intent, designing verification, and exercising judgment, and good data science practice still applies in full.
 - When AI teaches you something at some cost, write it up (blog, notebook, lesson) so the next person starts from the verified version.
 

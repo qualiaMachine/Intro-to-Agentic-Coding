@@ -31,11 +31,21 @@ exercises: 15
 Checking agent output is the bottleneck, not producing it:
 
 - Agents multiply code written far more than code shipped: 240% more commits but only
-  30% more releases across half a million GitHub developers (Demirer, Musolff & Yang,
-  2026). Not all of the additional code is good code, and the gains attenuate at the
-  human review step.
+  30% more releases across 500,000 GitHub developers (Demirer, Musolff & Yang, 2026).
+  Not all of the additional code is good code, and the gains attenuate at the human
+  review step.
 - Pull requests wait about five times longer for a human review under heavy AI use,
-  and 31% more are merged without one (Faros AI telemetry, 22,000 developers, 2026).
+  and 31% more are merged without one (Faros AI, two years of telemetry from 22,000
+  developers at 4,000 companies, 2026).
+
+Faros AI's explanation has two parts. There is more to read: average pull-request
+size is up 51% and files touched per pull request up 60%, and the median wait before
+anyone starts a review is up 157%. And it is harder to review once started: median
+time in review is up 441%, because AI-written code is superficially convincing
+(idiomatic, well named, stylistically consistent with its surroundings), so its
+failures are structural rather than obvious. Reviewers have to reconstruct what the
+code was meant to do instead of scanning for errors. In their phrase, the code
+arriving for review was never review-ready.
 
 ![Adopting coding agents multiplies output far more than it multiplies shipped work, and the wait for human review grows most of all.](fig/agent-output-vs-review.png){alt='Bar chart of percent change after adopting coding agents. Commits, Demirer et al.: plus 240 percent. Releases shipped, Demirer et al.: plus 30 percent. Task throughput, Faros AI: plus 33.7 percent. PR wait for review, Faros AI, in red: plus 441.5 percent.'}
 
@@ -43,10 +53,11 @@ The skill this episode teaches is the one in short supply.
 
 ## Look for decisions you did not make
 
-When reviewing agent-written analysis code you are not checking syntax; the code
-runs. You are looking for decisions. Do this after every feature, before the next
-one: ask the agent for its assumptions, ask for tests and edge cases, run them, and
-then move on. The places most likely to contain unexamined decisions:
+A well-specified prompt still has unintended consequences. When reviewing
+agent-written analysis code you are not checking syntax; the code runs. You are
+looking for decisions. Do this before and after every feature: ask the agent for its
+assumptions, ask for tests and edge cases, run them and confirm the results look
+right, then move on. The places most likely to contain unexamined decisions:
 
 - **Silently dropped or altered rows**: a default `dropna()`, an inner join that
   shrinks the table, a type coercion that turns errors into NaNs. Require row counts
@@ -60,12 +71,14 @@ then move on. The places most likely to contain unexamined decisions:
 - **Suppressed problems**: warnings silenced, `try/except: pass`, an error "fixed" by
   deleting the check. An agent told to make the code run sometimes does exactly that.
 
-One prompt worth adding to every review:
+Two prompts worth using at every review:
 
 > Summarize every choice you made that I did not specify, and flag the risky ones.
 
-It surfaces the dropped-row and default-parameter decisions above more reliably than
-reading line by line.
+> Propose tests for our latest feature, including edge cases.
+
+The first surfaces the dropped-row and default-parameter decisions above more
+reliably than reading line by line.
 
 :::::::::::::::::::::::::::::::::::: challenge
 
@@ -79,16 +92,16 @@ step that follows every feature, before the next one begins.
    > Read `plan.md` and the feature 1 code you just wrote.
    >
    > 1. List every choice you made that I did not specify, and flag the risky ones.
-   > 2. Propose tests for this feature, including edge cases: empty input, wrong
-   >    shape, duplicates, a sample that lands in both splits.
-   > 3. Say which three matter most and why.
+   > 2. Propose tests for this feature to ensure robustness as we develop the full
+   >    pipeline, including edge cases: empty input, wrong shape, duplicates, a
+   >    sample that lands in both splits, etc. Say which tests matter most and why.
    >
    > Do not edit anything yet.
 
 2. **Select the tests that matter.** Let the agent propose more than you would;
    keep the ones that protect against a wrong result.
 3. **Have it add them and run `pytest`.** Fix what fails, then commit.
-4. **Make it automatic.** A workflow runs `pytest` on every push
+4. **Make it automatic.** A GitHub Actions workflow can run `pytest` on every push
    ([GitHub Actions for Python](https://docs.github.com/en/actions/use-cases-and-examples/building-and-testing/building-and-testing-python));
    ask the agent to write it. Protect `main` so that a failing check blocks the merge
    ([about protected branches](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches)).
@@ -129,7 +142,7 @@ review the tests with the same care as the implementation.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## No escaping good data science
+## Agents speed up the code; good data science practice still applies
 
 Research computing already had an answer to "how do I know this analysis is correct?"
 before AI tools existed:
@@ -138,33 +151,49 @@ before AI tools existed:
   Look at the rows.
 - **Compare to a source of truth.** A published baseline, a hand-computed subset, a
   control.
-- **Ask a colleague.** "Does this number seem plausible to you?"
 - **Know what your model is responding to.** If the strongest predictor makes no
   scientific sense, that is a finding about the pipeline, not about the phenomenon.
 - **Reproduce the result.** Rerun it, change the seed, rerun on a fresh split. If it
   does not hold, something you are not controlling is driving it.
+- **Plot the results and review them.** Agents can sometimes help, but expert eyes
+  are often needed.
 
-None of this has changed. Only the typing, and some quick ideation, has moved to the agent. What has changed is
-speed: a plausible, clean-running, well-scoring analysis can now be produced in
-minutes, which means you can be misled in minutes as well. The checking has to keep
-pace. Agents can learn more about your project as you leave evidence in the
-repository (figures, metrics, notes), but they see a portion of the project at a
-time, never all of it.
+None of this has changed. What has changed is speed: a plausible, clean-running,
+well-scoring analysis can now be produced in minutes, which means you can be misled
+in minutes as well. The checking has to keep pace.
 
-## Agents as data science assistants
+## Tests for good data science practice
+
+Each of the practices above can be written as a test the agent implements and CI
+runs. Prompts to start from:
+
+- **Know your data.** *Write a test that loads the raw data and asserts the row
+  count, class balance and missing-value rate we expect. Print the majority-class
+  baseline next to our metric.*
+- **Compare to a source of truth.** *Add a test that runs our pipeline on the 20 rows
+  in `hand_checked.csv` and asserts every output matches the values I computed by
+  hand.*
+- **Reproduce the result.** *Write a test that trains twice with different seeds on a
+  fresh split and asserts the metric moves less than 2 points. If it moves more, the
+  result is noise.*
+- **Know what your model is telling you.** *Write a test that fails if any of the top
+  five predictors is an ID column, a timestamp, or anything derived from the label.*
+- **No leakage.** *Assert no subject, image, page or source document is in both
+  splits, and no duplicate rows either. Then shuffle the labels and retrain. If the
+  score does not collapse to chance, something leaks.*
+
+## Agents as data scientists
 
 Verification is not only about finding bugs. The agent is also a fast second reader
 of your results, if it is given something to read.
 
 - **Ask it to reason over results, not only to write code.** What stands out, what
   disagrees, what to try next.
-- **Leave evidence in the repository.** Metrics files, figures, run logs, a
+- **Leave evidence in the repository.** Metrics files, metadata, figures, run logs, a
   `results.md`. What is not written down does not exist for the agent.
+- **It can also read plots.** A saved figure is context.
 - **Direct it to the evidence each time.** It does not remember the previous session
   and will not open a file you did not name.
-- **It reads plots.** A saved figure is context.
-- **Iterate faster.** Get the result and examine it, rather than debugging convoluted
-  code late at night. Check as you go.
 - **It does not replace your own reading.** Check every number it cites against the
   file. It sees a portion of the project, never all of it.
 
@@ -173,25 +202,12 @@ of your results, if it is given something to read.
 > agree with the numbers? Propose the one experiment you would run next and say what
 > result would change our plan. Do not run anything yet.
 
-## Quick checks that catch common mistakes
+:::::::::::::::::::::::::::::::::::: challenge
 
-A small set of checks, each a few lines, exposes whole classes of silent failure. The
-agent can implement any of them quickly if asked:
+## Exercise 2 (optional): What is wrong with this? (5 minutes)
 
-- **Shuffle the labels and rerun.** A sound pipeline collapses to chance. If it does
-  not, information is leaking.
-- **Print the baseline.** 94% accuracy is not impressive when the majority class is
-  92% of the data.
-- **Assert that no sample appears in both splits.** Repeated measures and tiles from
-  one image belong on one side.
-- **Find duplicates before splitting.** Duplicates across the split are leakage with
-  no code bug.
-- **Vary the seed.** A metric that moves substantially across seeds is a variance
-  problem, not a result.
-
-::::::::::::::::::::::::::::::::::::: challenge
-
-## Exercise 2: What is wrong with this? (5 minutes)
+The no-leakage test above is the general form of a common failure. This exercise
+shows the specific case.
 
 ```python
 # Brain decoding. 20 subjects, 400 trials each,
@@ -267,9 +283,9 @@ checking to the stakes, and choose the tier explicitly before starting:
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 
-- Checking is the bottleneck. Agents multiply commits far more than releases, and unreviewed merges increase. Verification is the scarce skill.
-- Established practice still applies: know your data, compare to a source of truth, ask a colleague, know what your model responds to, reproduce the result. Only the typing and quick ideation have moved.
-- Quick checks catch common mistakes: shuffle labels, print the baseline, assert no sample is in both splits, find duplicates, vary the seed.
+- Checking is the bottleneck. Agents multiply commits far more than releases, pull requests are larger and harder to review, and unreviewed merges increase. Verification is the scarce skill.
+- Established practice still applies: know your data, compare to a source of truth, know what your model responds to, reproduce the result, plot and review.
+- Each good-practice item can be a test the agent writes and CI runs: data expectations, a hand-checked subset, seed stability, sensible top predictors, no leakage.
 - Split by the unit that repeats, and assert it. A clean-running 0.91 can be 0.58 on unseen subjects.
 - After every feature, before the next: have the agent list its assumptions, propose tests and edge cases, add them, and run them. Then commit.
 - Make verification automatic: tests in CI and a protected `main`. Autonomy is purchased with verification.

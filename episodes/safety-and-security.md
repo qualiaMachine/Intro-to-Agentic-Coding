@@ -51,7 +51,7 @@ Risk management starts from an accurate picture of the tool:
 | Write or translate code | Work safely with sensitive or restricted data or secrets |
 | Explain basic logic | Explain human logic, such as why your field does something a particular way |
 | Execute validation steps you specify | Determine all the necessary validation steps |
-| Run commands from your terminal | Prevent all harmful commands from running |
+| Run commands from your terminal, with the attendant risk of prompt injection and leaked credentials | Prevent all harmful commands from running (hence the VM) |
 
 The last row is the one most often underestimated. An agent launched from a terminal
 or IDE runs with the user account's full filesystem and shell access. It can read SSH
@@ -97,7 +97,8 @@ One distinction applies to all six. An *instruction* (a rules file, a line in a
 prompt) asks the model to behave in a certain way. A *permission* (a VM boundary, a
 deny rule, branch protection, a firewall) removes the ability to do otherwise.
 **Instructions influence behavior; permissions constrain it.** Prefer permissions
-wherever they are available.
+wherever they are available. None of the six eliminates risk; together they reduce
+it.
 
 ### 1. Network: an allowlist
 
@@ -203,6 +204,36 @@ of `.env` and `~/.ssh`. Claude Code's documentation on
 [permissions versus sandboxing](https://code.claude.com/docs/en/permissions) describes
 the two mechanisms.
 
+Rules can be committed with the project so that cloud sessions read them:
+
+:::::::::::::::: group-tab
+
+### Claude Code
+
+```json
+// .claude/settings.json, committed. Cloud sessions read it
+{ "permissions": {
+    "allow": ["Bash(pytest:*)", "Bash(git diff:*)"],
+    "deny":  ["Bash(rm -rf:*)", "Bash(git push --force:*)",
+              "Read(.env)", "Read(~/.ssh/**)"]
+} }
+```
+
+### GitHub Copilot
+
+The Copilot CLI has the same idea with its own syntax
+([allowing and denying tool use](https://docs.github.com/en/copilot/how-tos/copilot-cli/use-copilot-cli/allowing-tools)):
+
+```bash
+copilot --allow-tool 'shell(pytest:*)' \
+        --deny-tool  'shell(git push --force:*)'
+```
+
+The Copilot cloud agent has no allow/deny list. There, the sandbox and the firewall
+are the controls.
+
+::::::::::::::::::::::::
+
 A permission rule inspects the command text, not what the command does when it runs.
 In January 2026, Cursor's allowlist was bypassed
 ([CVE-2026-22708](https://github.com/cursor/cursor/security/advisories/GHSA-82wg-qcm4-fp2w),
@@ -222,7 +253,8 @@ also reads `AGENTS.md`. Commit it to the repository and keep it short: the test
 command, the data location, what not to modify. The [planning](early-project-planning.md)
 episode gives an example.
 
-An instruction file is not a permission. In April 2026 a Cursor agent working on a
+An instruction file is not a permission, and agents also lose track of instructions
+as the context grows long. In April 2026 a Cursor agent working on a
 staging task for the company PocketOS encountered a credential mismatch, found a
 Railway API token in an unrelated file, and used it. The production database and its
 backups were deleted in nine seconds. The rules file occupies the same context window
@@ -358,7 +390,8 @@ work begins. Other routes, including free ones, are on the
      install, the web works too: ask for a plan in the prompt and you get the same
      review gate, with less interaction.
 2. **Confirm the session is cloud-hosted before you prompt.** It should be pointed at
-   a cloud VM and a GitHub repository, not a folder on your laptop.
+   a cloud VM and a GitHub repository, not a folder on your laptop. Check the
+   environment's network access setting (limit 1 above) while you are there.
 3. **Use your project repository.** If you have none, create one now.
 4. **Work on a branch named for you.** Use branches rather than forks, so teammates
    and their agents can see your work. If you lack write access, ask the repository
