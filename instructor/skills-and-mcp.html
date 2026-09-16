@@ -367,7 +367,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>MCP Tools and Skills: Extending Your Agent</h1>
-        <p>Last updated on 2026-09-15 |
+        <p>Last updated on 2026-09-16 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/skills-and-mcp.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -390,7 +390,7 @@
 <h3 class="card-title">Questions</h3>
 <ul><li>How is MCP different from an API — and when do I want each?</li>
 <li>What is an MCP server, and what happens when I connect one?</li>
-<li>What’s actually inside a skill, and how does an agent decide to use
+<li>What is inside a skill, and how does an agent decide to use
 one?</li>
 <li>What extra scrutiny does connecting an MCP server or installing a
 skill deserve?</li>
@@ -441,8 +441,9 @@ HTTP. Examples: GitHub MCP, filesystem MCP, Slack MCP, Postgres MCP.
 When the session starts, the agent lists the server’s available tools —
 <code>search_issues</code>, <code>run_query</code> — and then calls them
 like any built-in tool.</p>
-<p>The analogy that lands: it’s like installing a plugin. You are not
-writing new agent code; you are handing the agent a new capability.</p>
+<p>Connecting an MCP server is comparable to installing a plugin: you
+are not writing new agent code, you are giving the agent a new
+capability.</p>
 <p>And the safety flag, tying back to that episode: <strong>only add MCP
 servers you trust.</strong> Tool output goes straight into the agent’s
 context and it will act on it — an issue body or PR description fetched
@@ -530,7 +531,7 @@ the same guardrail from the safety episode.</p>
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">
-  What just happened
+  What this shows
   </h4>
 </button>
 <div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
@@ -562,7 +563,7 @@ reading files and running commands. The description is the important
 part: it’s what the agent matches against, so vague wording (“helps with
 releases”) triggers unreliably, while specific wording (“use when the
 user asks to cut a release, bump a version, or write release notes”)
-triggers when you actually mean it.</p>
+triggers when you intend it to.</p>
 <p>Skills also help with <strong>cost</strong>: the full skill content
 is only expanded when it’s relevant, instead of sitting in context the
 whole session the way an overgrown context file does. That’s one of the
@@ -581,7 +582,7 @@ minutes)</h3>
 public plugin that rewrites the agent’s replies into terse “caveman
 speak” — the author measured about 65% fewer output tokens with
 technical accuracy intact. The effect is immediately visible, which
-makes the token-savings point land.</p>
+makes the token saving concrete.</p>
 <div class="tabs">
 <nav><div id="nav-tab-2" class="nav nav-tabs" role="tablist">
 <button class="nav-link active" id="nav-tab-2-ClaudeCode" name="ClaudeCode" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-2-ClaudeCode" type="button" role="tab" aria-controls="nav-tabpanel-2-ClaudeCode" aria-selected="true">
@@ -644,7 +645,7 @@ and the instructions:</p>
 <span id="cb6-4"><a href="#cb6-4" tabindex="-1" aria-label="code-block-6-4"></a><span class="co">---</span></span>
 <span id="cb6-5"><a href="#cb6-5" tabindex="-1" aria-label="code-block-6-5"></a></span>
 <span id="cb6-6"><a href="#cb6-6" tabindex="-1" aria-label="code-block-6-6"></a>Respond in short grunts. Drop articles. Present tense only. Keep code, commands, and</span>
-<span id="cb6-7"><a href="#cb6-7" tabindex="-1" aria-label="code-block-6-7"></a>exact errors intact. Stay accurate — just say it like a caveman would.</span></code></pre>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1" aria-label="code-block-6-7"></a>exact errors intact. Stay accurate; only the phrasing changes.</span></code></pre>
 </div>
 </div>
 </div>
@@ -658,13 +659,13 @@ and the instructions:</p>
 </button>
 <div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
-<p>The caveman skill proves the mechanism; the payoff is packaging
-something you’d otherwise repeat. Pick one instruction you find yourself
-re-typing in your own project — a commit-message convention, a
-data-checking routine, a report template — and turn it into a skill
-next. Skill-builders usually discover their first description is too
-vague to trigger reliably, which is a good forcing function for writing
-precise instructions in general.</p>
+<p>The caveman skill demonstrates the mechanism; the practical use is
+packaging something you would otherwise repeat. Pick one instruction you
+find yourself re-typing in your own project — a commit-message
+convention, a data-checking routine, a report template — and turn it
+into a skill next. Skill-builders usually discover their first
+description is too vague to trigger reliably, which is useful practice
+in writing precise instructions generally.</p>
 </div>
 </div>
 </div>
@@ -789,7 +790,7 @@ any links that you are not going to use.
   "url": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/instructor/skills-and-mcp.html",
   "identifier": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/instructor/skills-and-mcp.html",
   "dateCreated": "2026-08-10",
-  "dateModified": "2026-09-15",
+  "dateModified": "2026-09-16",
   "datePublished": "2026-09-16"
 }
 

@@ -369,7 +369,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>What Is Agentic Coding?</h1>
-        <p>Last updated on 2026-09-15 |
+        <p>Last updated on 2026-09-16 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/introduction.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -428,16 +428,16 @@ human intervention.</p>
 <div id="agentic-is-an-overloaded-term" class="callout-inner">
 <h3 class="callout-title">“Agentic” is an overloaded term</h3>
 <div class="callout-content">
-<p>“Agent” now gets attached to almost anything with a chat box, so
-let’s pin the word down. Computer science has long used it precisely: an
+<p>“Agent” is now attached to almost any product with a chat box, so the
+word needs a definition. Computer science has long used it precisely: an
 agent is a system that <strong>takes actions</strong> in an environment
 and observes the results, in pursuit of a goal. An assistant or chatbot
 produces text and <em>you</em> act on it; an agentic tool acts for
 itself — editing files, running commands, reading the output, deciding
-what to do next. The litmus test for any tool wearing the label:
-<em>does it act, or does it only advise?</em> In agentic coding, action
-is everywhere — which is both the point and, as this lesson explores,
-the risk.</p>
+what to do next. The test for any tool that uses the label: <em>does it
+act, or does it only advise?</em> In agentic coding, the tool acts
+constantly. That is its value, and, as this lesson explains, its
+risk.</p>
 </div>
 </div>
 </div>
@@ -458,10 +458,10 @@ not your summary.</li>
 blocker.</li>
 </ul><p>So you can ask it to fix a bug, add a feature, refactor existing
 code, write and run tests, review a pull request, investigate a failing
-job, or build a small application from a specification. This is
-powerful. It also means the tool has real access to your system — your
-files, your shell, your credentials if you leave them lying around — and
-the potential to do real damage if not managed carefully. That tension
+job, or build a small application from a specification. The same
+capabilities mean the tool has real access to your system — your files,
+your shell, your credentials if you leave them lying around — and the
+potential to do real damage if not managed carefully. That tension
 between capability and control is the subject of this whole lesson.</p>
 </section><section><h2 class="section-heading" id="the-spectrum-of-agentic-coding">The spectrum of agentic coding<a class="anchor" aria-label="anchor" href="#the-spectrum-of-agentic-coding"></a></h2>
 <hr class="half-width"><p>The same tool can be used at very different levels of autonomy. Three
@@ -476,12 +476,12 @@ with a clear “done”; the agent plans a little, you review the diff.</li>
 <em>“Build the whole service from scratch; do all the planning
 yourself.”</em> — the agent invents dozens of decisions you never made,
 and you review a project.</li>
-</ol><p>Notice the pattern: <strong>the more autonomy you grant, the more of
-your judgment has to be encoded in advance</strong> — in the prompt, in
-project context files, and in tests — and the more you have to review
-afterwards. That is the thread we pull on for the rest of this lesson.
-Nearly everything the workshop teaches lives in the middle of this
-spectrum: bounded tasks with a plan and a check.</p>
+</ol><p>The pattern across the three: <strong>the more autonomy you grant,
+the more of your judgment has to be encoded in advance</strong> — in the
+prompt, in project context files, and in tests — and the more you have
+to review afterwards. That principle recurs through the rest of the
+lesson. Nearly everything the workshop teaches concerns the middle of
+this spectrum: bounded tasks with a plan and a check.</p>
 <div id="more-autonomy-is-not-automatically-better" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -497,7 +497,7 @@ it. The right choice depends on the task:</p>
 <ul><li>Sensitive work or unfamiliar codebase → interactive, guardrails on.
 The interruptions are a feature.</li>
 <li>Quick question, brainstorming, explaining an error → plain chat is
-hard to beat.</li>
+usually sufficient.</li>
 <li>Well-scoped, clearly described task in a repo with good tests → hand
 it off, because the specification and the tests carry your intent for
 you.</li>
@@ -521,8 +521,8 @@ controls, and the loop that ties them together.</li>
 </ul><p>The harness runs an <strong>agent loop</strong>: request → understand
 → plan → act → observe → revise → repeat. Each turn, the model decides
 what to do next, the harness executes it (edit a file, run the tests),
-and the result goes back into the model’s context. An agent, in one
-line: <strong>LLM + harness + tools + agent loop.</strong></p>
+and the result goes back into the model’s context. In summary:
+<strong>agent = LLM + harness + tools + agent loop.</strong></p>
 <p>More advanced harnesses add an orchestrator–worker pattern: a primary
 agent breaks a larger problem into smaller tasks and delegates them to
 subagents that work in parallel on research, implementation, testing,
@@ -575,7 +575,7 @@ apply.</p>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
 <p>Run this live with Claude Code in VS Code (or OpenCode) on the
 project the rest of the workshop returns to. Show three examples along
@@ -585,9 +585,9 @@ the spectrum:</p>
 first, then let it implement.</li>
 <li>A more autonomous, multi-agent workflow — <em>explain</em> this one
 but don’t run it live; it takes longer and introduces variability.</li>
-</ol><p>Ask the room: “Anyone want to share something impressive their agent
-did?” — it warms people up and surfaces the range of experience in the
-room.</p>
+</ol><p>Ask participants whether anyone wants to share something impressive
+their agent did. It gives you a sense of the range of experience
+present.</p>
 </div>
 </div>
 </div>
@@ -617,7 +617,7 @@ What’s different about them?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Typical patterns </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Most researchers cluster at the chat end — and the tasks people
 refuse to delegate are almost always the ones where they’d struggle to
@@ -722,7 +722,7 @@ any links that you are not going to use.
   "url": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/instructor/introduction.html",
   "identifier": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/instructor/introduction.html",
   "dateCreated": "2026-08-10",
-  "dateModified": "2026-09-15",
+  "dateModified": "2026-09-16",
   "datePublished": "2026-09-16"
 }
 

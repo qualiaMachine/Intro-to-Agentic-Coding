@@ -367,7 +367,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Feature-Based Development and Good Prompting</h1>
-        <p>Last updated on 2026-09-15 |
+        <p>Last updated on 2026-09-16 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/specification.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -390,7 +390,7 @@
 <h3 class="card-title">Questions</h3>
 <ul><li>Why work feature by feature instead of asking for whole
 projects?</li>
-<li>What actually happens when I give an agent a vague request?</li>
+<li>What happens when I give an agent a vague request?</li>
 <li>What does a good prompt look like for research code?</li>
 <li>Which routine tasks are agents reliably good at?</li>
 </ul></div>
@@ -422,17 +422,16 @@ it in order.</p>
 <ul><li>
 <strong>One feature per chat session.</strong> Fresh context, a
 small diff, one pull request. (The cost episode explains why a fresh
-session matters; the short version is that everything in a long session
-competes for the model’s attention.)</li>
+session matters: everything in a long session competes for the model’s
+attention.)</li>
 <li>
 <strong>Specify each one.</strong> Inputs, output, how you will know
 it works, what not to touch.</li>
 <li>
 <strong>Small scope means small diffs</strong> — which means you can
-actually review them, and stay in the driver’s seat. A project-sized
-prompt doesn’t just produce worse code; it produces a diff too large to
-meaningfully review, at which point you’ve silently handed over the
-wheel.</li>
+review them, and stay in the driver’s seat. A project-sized prompt
+produces worse code and, worse, a diff too large to review, at which
+point you have handed over the wheel without deciding to.</li>
 </ul><p><strong>Whole-project prompts produce whole-project
 guesses.</strong></p>
 </section><section><h2 class="section-heading" id="underspecified-does-not-mean-random">Underspecified does not mean random<a class="anchor" aria-label="anchor" href="#underspecified-does-not-mean-random"></a></h2>
@@ -447,9 +446,9 @@ like yours.</p>
 usually do. The problem is that your data and code are rarely the
 average case. Your weird instrument artifact is not in the training
 data. Your field has a convention the average GitHub repo doesn’t
-follow. Your “duplicate rows” are actually repeated measures. Every
-unstated assumption gets resolved in favor of someone else’s typical
-project — silently.</p>
+follow. Your “duplicate rows” are repeated measures. Every unstated
+assumption gets resolved in favor of someone else’s typical project —
+silently.</p>
 <p>Two consequences:</p>
 <ol style="list-style-type: decimal"><li>
 <strong>Precision in, precision out.</strong> The specification work
@@ -497,10 +496,10 @@ fix.</p>
 </blockquote>
 <p>The better prompt supplies the <em>evidence</em> (traceback, code,
 input), asks for a <em>diagnosis before a change</em>, and keeps the
-decision with you. Notice what “fix” would have left to the average
-case: the agent would have to invent what “fixed” means — and an agent
-told to make an error go away sometimes does exactly that, by deleting
-the check that raised it.</p>
+decision with you. Consider what “fix” alone would have left to the
+average case: the agent would have to invent what “fixed” means — and an
+agent told to make an error go away sometimes does exactly that, by
+deleting the check that raised it.</p>
 <p>A checklist for research-code prompts — specify:</p>
 <ul><li>
 <strong>Where</strong>: which files or functions to touch, and which
@@ -519,7 +518,7 @@ class balance before and after.</li>
 includes its own check is worth two that don’t.</p>
 </section><section><h2 class="section-heading" id="maintenance-tasks-agents-do-well">Maintenance tasks agents do well<a class="anchor" aria-label="anchor" href="#maintenance-tasks-agents-do-well"></a></h2>
 <hr class="half-width"><p>Not every feature is new science. Agents are reliably good at the
-unglamorous work that keeps a research repo usable — provided you give
+routine work that keeps a research repository usable — provided you give
 each task the same treatment as a feature: small, specified, checkable,
 one pull request, and you review it.</p>
 <ul><li>
@@ -535,7 +534,7 @@ list what the README says that is no longer true.”</li>
 <li>
 <strong>Environment files.</strong> Pin
 <code>requirements.txt</code> or <code>environment.yml</code> from what
-the code actually imports.</li>
+the code imports.</li>
 <li>
 <strong>Weekly merge prep.</strong> “Summarize what changed on this
 branch since <code>main</code>, for the teammates who were not
@@ -728,7 +727,7 @@ any links that you are not going to use.
   "url": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/instructor/specification.html",
   "identifier": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/instructor/specification.html",
   "dateCreated": "2026-08-10",
-  "dateModified": "2026-09-15",
+  "dateModified": "2026-09-16",
   "datePublished": "2026-09-16"
 }
 

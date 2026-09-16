@@ -432,9 +432,9 @@ the dev container setup). The first eight episodes follow the workshop’s
 blocks in order; the last three (documentation, common workflows,
 research and outlook) are asynchronous reading, with the outlook’s
 headline landing in the close.</p>
-<p>Say up front: <strong>the deck is the highlights reel.</strong> The
-full lesson is online and stays online, so nobody needs to take notes on
-the details.</p>
+<p>Say at the start that <strong>the slides cover the main points
+only.</strong> The full lesson is online and stays online, so nobody
+needs to take notes on the details.</p>
 </section><section><h2 class="section-heading" id="suggested-2-hour-schedule">Suggested 2-hour schedule<a class="anchor" aria-label="anchor" href="#suggested-2-hour-schedule"></a>
 </h2>
 <hr class="half-width">
@@ -554,32 +554,33 @@ session.</p>
 <p><strong>Intro.</strong> Callback to the mech suit from kickoff: the
 suit multiplies what the pilot can do, but the pilot is still steering —
 that’s the driver’s-seat principle. Ask “anyone want to share something
-impressive their agent did?” to warm the room. For the demo, use Claude
-Code in VS Code (or OpenCode) on the project the rest of the workshop
-returns to: a tightly directed task, a plan-then-implement task, and an
+impressive their agent did?” as an opener. For the demo, use Claude Code
+in VS Code (or OpenCode) on the project the rest of the workshop returns
+to: a tightly directed task, a plan-then-implement task, and an
 <em>explained but not run</em> multi-agent workflow. Point out the setup
 page has free routes (Copilot education tier, OpenCode) for anyone whose
 credits didn’t work.</p>
 <p><strong>Safety.</strong> Prompt injection first (the Nx incident
-lands it), then signpost the six limits in order — “injection was the
-threat; these six cap what it can do” — and say that an instruction file
-<em>asks</em> while everything else <em>removes the ability</em>. The
-PocketOS and Cursor CVE stories land the “instructions vs. permissions”
-distinction. The network-allowlist demo is two minutes in the browser:
-Claude Code on the web’s environment selector (No network / Trusted /
-All domains), then a repo’s Settings → Copilot → Cloud agent → Internet
-access; the point to make while clicking is that a blocked request is
-fixed by adding the host, not by switching the firewall off. The
-1Password CLI slides are worth showing live if your institution provides
-it. End with a one-slide recap. For <strong>Get your agent running,
-safely</strong>: helpers circulate; the failure to watch for is a
-desktop app in local mode. Copilot’s app has an explicit plan mode,
-which is clearer to teach; on the Copilot web, planning is done via the
-prompt and gives the same approve-or-exit gate with no toggle, so it is
-acceptable for anyone who can’t install. Team repos: one shared repo,
-everyone on a branch named for them, branches not forks; anyone without
-write access gets added as a collaborator now. Cloud sandboxes are
-usage-billed, so have people confirm their account works.</p>
+makes it concrete), then signpost the six limits in order — “injection
+was the threat; these six cap what it can do” — and say that an
+instruction file <em>asks</em> while everything else <em>removes the
+ability</em>. The PocketOS and Cursor CVE incidents illustrate the
+“instructions vs. permissions” distinction. The network-allowlist demo
+is two minutes in the browser: Claude Code on the web’s environment
+selector (No network / Trusted / All domains), then a repo’s Settings →
+Copilot → Cloud agent → Internet access; the point to make while
+clicking is that a blocked request is fixed by adding the host, not by
+switching the firewall off. The 1Password CLI slides are worth showing
+live if your institution provides it. End with a one-slide recap. For
+<strong>Get your agent running, safely</strong>: helpers circulate; the
+failure to watch for is a desktop app in local mode. Copilot’s app has
+an explicit plan mode, which is clearer to teach; on the Copilot web,
+planning is done via the prompt and gives the same approve-or-exit gate
+with no toggle, so it is acceptable for anyone who can’t install. Team
+repos: one shared repo, everyone on a branch named for them, branches
+not forks; anyone without write access gets added as a collaborator now.
+Cloud sandboxes are usage-billed, so have people confirm their account
+works.</p>
 <p><strong>Trust (Episode 3) has no dedicated slot.</strong> Its
 headline content — vet the provider (the Claude/Copilot defaults table),
 and model weights are code — is the sixth limit in the safety block.
@@ -600,17 +601,16 @@ that finish early interrogate their pre-modeling steps into
 <code>prep.md</code>. Note the planning studies measured accuracy, not
 tokens; the token argument is a mechanism, not a measured result.</p>
 <p><strong>Feature-based dev.</strong> The “list every choice you made
-that I did not specify” line is the hook — ask two or three people to
-read theirs out. The room reliably discovers that everyone got
+that I did not specify” line is the key step: ask two or three people to
+read theirs out. Participants reliably discover that everyone got
 <em>different</em> unaccounted decisions.</p>
-<p><strong>Verification.</strong> The brain-decoding leak is the
-emotional core of the lesson. Let the clean run and 0.91 land first,
-then ask “so are we done?” before revealing the bug, then show the 0.58
-on unseen subjects. Translate “the unit that repeats” to each team’s
-project (subject, camera burst, page, source document). For <strong>Now
-your repo</strong>, insist on plan mode for step 1 and timebox firmly;
-the CI workflow and branch protection can be finished after the
-session.</p>
+<p><strong>Verification.</strong> The brain-decoding leak is the central
+example of the lesson. Show the clean run and the 0.91 first, then ask
+“so are we done?” before revealing the bug, then show the 0.58 on unseen
+subjects. Translate “the unit that repeats” to each team’s project
+(subject, camera burst, page, source document). For <strong>Now your
+repo</strong>, insist on plan mode for step 1 and timebox firmly; the CI
+workflow and branch protection can be finished after the session.</p>
 <p><strong>MCP and skills.</strong> Pre-test the MCP server and the
 caveman install beforehand so auth and npm aren’t what the room watches.
 Run <code>claude mcp list</code> before and after. For the caveman demo,
@@ -619,9 +619,9 @@ ask the same question before and after <code>/caveman</code>, and
 extension users: the same two install commands work; reload the chat
 panel afterward.</p>
 <p><strong>Cost and energy.</strong> Name the claim people arrive with
-(a prompt costs gallons of water) and replace it with a number. Be
-honest about the spread (Couch ~41 Wh, Hausfather ~600 Wh). Three live
-demos in order: <code>/cost</code>, <code>/model</code>,
+(a prompt costs gallons of water) and replace it with a number. State
+the spread plainly (Couch ~41 Wh, Hausfather ~600 Wh). Three live demos
+in order: <code>/cost</code>, <code>/model</code>,
 <code>/compact</code>; then pull up the OpenRouter session-cost
 rankings. Loop back to skills as a cost lever.</p>
 <p><strong>Close.</strong> Is programming dead? Put the question to the
@@ -691,9 +691,9 @@ first, then let it implement.</li>
 <li>A more autonomous, multi-agent workflow — <em>explain</em> this one
 but don’t run it live; it takes longer and introduces variability.</li>
 </ol>
-<p>Ask the room: “Anyone want to share something impressive their agent
-did?” — it warms people up and surfaces the range of experience in the
-room.</p>
+<p>Ask participants whether anyone wants to share something impressive
+their agent did. It gives you a sense of the range of experience
+present.</p>
 <hr>
 <br></section><section id="safety-and-security"><h2 class="section-heading"><a href="safety-and-security.html">Safety and Security: Limit What the Agent Can Access</a></h2>
 <hr class="half-width"></section><section id="trust"><h2 class="section-heading"><a href="trust.html">Trust: Packages, Models, and Providers</a></h2>

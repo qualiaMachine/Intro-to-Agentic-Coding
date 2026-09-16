@@ -369,7 +369,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Verification and Testing: No Escaping Good Data Science</h1>
-        <p>Last updated on 2026-09-15 |
+        <p>Last updated on 2026-09-16 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/verification-and-review.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -543,14 +543,14 @@ Subject in a brain-decoding study. Camera burst in a wildlife-camera
 dataset. Page in a document-transcription task. Source document in a
 retrieval pipeline. The assertion runs every time, so it never gets
 forgotten — tests you have to remember to run get skipped.</p>
-<p>If you didn’t spot it: that’s the point. Nothing about this code
-<em>looks</em> wrong, no error fires, and the score rewards you for not
-looking harder. This is exactly the <em>plausible average case</em>
-failure from the previous episode: <code>train_test_split</code> is the
-pattern in a million notebooks, and the agent optimized for “task
-apparently completed” — clean run, high score. If your review process is
-also “does it run? is the score good?”, you and the agent share the same
-blind spot.</p>
+<p>If you didn’t spot it, you are in good company. Nothing about this
+code <em>looks</em> wrong, no error fires, and the score rewards you for
+not looking harder. This is the <em>plausible average case</em> failure
+from the previous episode: <code>train_test_split</code> is the pattern
+in a million notebooks, and the agent optimized for “task apparently
+completed” — clean run, high score. If your review process is also “does
+it run? is the score good?”, you and the agent share the same blind
+spot.</p>
 </div>
 </div>
 </div>
@@ -578,7 +578,7 @@ report quietly features F1 because the number looked better.</li>
 <strong>Suppressed problems</strong>: warnings silenced,
 <code>try/except: pass</code>, an error “fixed” by deleting the check.
 An agent told to make it run sometimes does just that.</li>
-</ul><p>One prompt that pays for itself, every time:</p>
+</ul><p>One prompt worth adding to every review:</p>
 <blockquote>
 <p>Summarize every choice you made that I did not specify, and flag the
 risky ones.</p>
@@ -664,13 +664,13 @@ protected branches</a>).</li>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
 <p>Plan mode for step 1 (<kbd>Shift</kbd>+<kbd>Tab</kbd> locally; on the
 web, the “do not edit” line does the same job). For steps 2–3 switch to
 normal mode; Claude will run <code>pytest</code> itself — approve the
 command — and iterate until it passes.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
 <p><strong>Ask</strong> mode with <code>@workspace</code> for step 1;
 <strong>Agent</strong> mode for steps 2–3. Copilot proposes the
 <code>pytest</code> run in the terminal and waits for your approval. The
@@ -709,17 +709,16 @@ implementations.</p>
 </div>
 </div>
 </section><section><h2 class="section-heading" id="autonomy-is-purchased-with-verification">Autonomy is purchased with verification<a class="anchor" aria-label="anchor" href="#autonomy-is-purchased-with-verification"></a></h2>
-<hr class="half-width"><p>The single highest-leverage practice in agentic coding: <strong>make
-verification executable.</strong> Agents perform dramatically better
-when they can check their own output — running tests, comparing against
-known values, validating properties — instead of relying on you as the
-only feedback loop. Include test cases in the prompt; point at symptoms,
-not just fixes (“fix the root cause and verify — don’t suppress the
-error”); for analyses, demand printed evidence. And tests are cheap now:
-ask for them with every feature, ask for data-validation tests on your
-actual dataset (expected columns, value ranges, unique IDs, row counts
-across merges), ask the agent what inputs would break its own
-function.</p>
+<hr class="half-width"><p>The highest-leverage practice in agentic coding is to <strong>make
+verification executable.</strong> Agents perform markedly better when
+they can check their own output — running tests, comparing against known
+values, validating properties — instead of relying on you as the only
+feedback loop. Include test cases in the prompt; point at symptoms, not
+just fixes (“fix the root cause and verify — don’t suppress the error”);
+for analyses, demand printed evidence. And tests are cheap now: ask for
+them with every feature, ask for data-validation tests on your actual
+dataset (expected columns, value ranges, unique IDs, row counts across
+merges), ask the agent what inputs would break its own function.</p>
 <p>The more trustworthy your checks, the more autonomy you can safely
 grant. Scale the checking to the stakes — and choose the tier
 <em>explicitly</em>, before you start:</p>
@@ -830,7 +829,7 @@ any links that you are not going to use.
   "url": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/instructor/verification-and-review.html",
   "identifier": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/instructor/verification-and-review.html",
   "dateCreated": "2026-08-10",
-  "dateModified": "2026-09-15",
+  "dateModified": "2026-09-16",
   "datePublished": "2026-09-16"
 }
 

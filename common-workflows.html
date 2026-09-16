@@ -367,7 +367,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Common Workflows</h1>
-        <p>Last updated on 2026-09-15 |
+        <p>Last updated on 2026-09-16 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/common-workflows.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -386,8 +386,7 @@
 <div class="card-body">
 <div class="inner">
 <h3 class="card-title">Questions</h3>
-<ul><li>How do experienced users actually structure day-to-day work with
-agents?</li>
+<ul><li>How do experienced users structure day-to-day work with agents?</li>
 <li>Should I review every commit, or review at the pull request?</li>
 <li>How do agent workflows change when I’m contributing to (or
 maintaining) a shared project?</li>
@@ -414,7 +413,7 @@ file.</li>
 </div>
 <p>The workshop episodes gave you principles; this one — asynchronous
 reading, not a live block — collects the recurring <em>shapes</em> of
-day-to-day agentic work. None of them is the one true way — the point is
+day-to-day agentic work. None of them is the one correct way; the aim is
 to pick your pattern deliberately and write it down, rather than
 improvising it fresh every session.</p>
 <section><h2 class="section-heading" id="two-review-postures">Two review postures<a class="anchor" aria-label="anchor" href="#two-review-postures"></a></h2>
@@ -431,8 +430,8 @@ than the classic human <code>wip</code>, <code>fix</code>,
 the full PR diff, exactly as you’d review a human collaborator’s branch.
 This posture keeps momentum high and concentrates your attention where
 it’s most effective — but it leans on safety nets: a real test suite, CI
-checks gating the merge, and PR diffs kept small enough to genuinely
-read (feature-sized, per the feature-based-development episode).</p>
+checks gating the merge, and PR diffs kept small enough to read in full
+(feature-sized, per the feature-based-development episode).</p>
 <p><strong>Posture B: review every change as it happens.</strong>
 Approve each edit or commit yourself, staying close to the work in real
 time. Slower, but right for the situations where posture A’s safety nets
@@ -468,18 +467,17 @@ review on their own time; an agent makes it easy to generate large
 diffs, and large diffs are how goodwill dies. One focused change, well
 described, tests included.</li>
 </ul></section><section><h2 class="section-heading" id="maintaining-a-project-others-contribute-to">Maintaining a project others contribute to<a class="anchor" aria-label="anchor" href="#maintaining-a-project-others-contribute-to"></a></h2>
-<hr class="half-width"><p>On the receiving side, agents are useful for the unglamorous middle
-of maintenance: summarizing and triaging issues, drafting release notes
-and changelogs from the commit history, dependency-update PRs,
-doc-freshness sweeps, and a first-pass review of incoming PRs (“what
-does this change, and what should a human look hardest at?”). The human
-still owns the merge button — an agent’s review is a <em>brief</em> for
-your judgment, not a substitute (remember the trust episode: incoming
-PRs are untrusted input, and prompt injection via PR content is a real
-pattern).</p>
+<hr class="half-width"><p>On the receiving side, agents are useful for routine maintenance:
+summarizing and triaging issues, drafting release notes and changelogs
+from the commit history, dependency-update PRs, doc-freshness sweeps,
+and a first-pass review of incoming PRs (“what does this change, and
+what should a human look hardest at?”). The human still owns the merge
+button — an agent’s review is a <em>brief</em> for your judgment, not a
+substitute (remember the trust episode: incoming PRs are untrusted
+input, and prompt injection via PR content is a real pattern).</p>
 </section><section><h2 class="section-heading" id="codifying-workflows-skills-hooks-and-mcp">Codifying workflows: skills, hooks, and MCP<a class="anchor" aria-label="anchor" href="#codifying-workflows-skills-hooks-and-mcp"></a></h2>
-<hr class="half-width"><p>When you notice the same workflow recurring, the tools give you ways
-to write it down once instead of re-prompting it forever:</p>
+<hr class="half-width"><p>When the same workflow recurs, the tools give you ways to write it
+down once instead of re-prompting it forever:</p>
 <ul><li>
 <strong>Skills</strong> — reusable, on-demand instruction packages:
 a release checklist, your lab’s analysis conventions, a “new episode”
@@ -500,8 +498,8 @@ flows back through it as untrusted input. (The <a href="skills-and-mcp.html">MCP
 exercises for both.)</li>
 </ul><p>A sensible progression: context file first, skills when you catch
 yourself repeating instructions, hooks when a rule needs enforcement
-rather than encouragement, MCP when the agent genuinely needs an
-external system.</p>
+rather than encouragement, MCP when the agent needs an external
+system.</p>
 <div id="exercise-write-your-workflow-contract-6-minutes" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -531,11 +529,11 @@ three to five rules that make your chosen pattern explicit.</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
 <p>The file is <code>CLAUDE.md</code> at the repository root — create it
 if the project doesn’t have one yet.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
 <p>The file is <code>.github/copilot-instructions.md</code>. (The
 emerging cross-tool convention <code>AGENTS.md</code> also works in
 tools that support it.)</p>
@@ -566,7 +564,7 @@ and one about what the agent may never touch.</p>
 </button>
 <div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
-<p>Two payoffs. The agent reads it — your posture, branch conventions,
+<p>Two benefits. The agent reads it — your posture, branch conventions,
 and forbidden paths now shape every session without re-prompting. And
 <em>collaborators</em> read it — the lab’s workflow stops being
 folklore. If a rule is safety-critical (“never touch
@@ -663,7 +661,7 @@ any links that you are not going to use.
   "url": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/common-workflows.html",
   "identifier": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/common-workflows.html",
   "dateCreated": "2026-08-10",
-  "dateModified": "2026-09-15",
+  "dateModified": "2026-09-16",
   "datePublished": "2026-09-16"
 }
 

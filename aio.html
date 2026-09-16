@@ -421,7 +421,7 @@
         
 <section id="aio-introduction"><p>Content from <a href="introduction.html">What Is Agentic Coding?</a></p>
 <hr>
-<p>Last updated on 2026-09-15 |
+<p>Last updated on 2026-09-16 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/introduction.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -478,16 +478,16 @@ human intervention.</p>
 <div id="agentic-is-an-overloaded-term" class="callout-inner">
 <h3 class="callout-title">“Agentic” is an overloaded term</h3>
 <div class="callout-content">
-<p>“Agent” now gets attached to almost anything with a chat box, so
-let’s pin the word down. Computer science has long used it precisely: an
+<p>“Agent” is now attached to almost any product with a chat box, so the
+word needs a definition. Computer science has long used it precisely: an
 agent is a system that <strong>takes actions</strong> in an environment
 and observes the results, in pursuit of a goal. An assistant or chatbot
 produces text and <em>you</em> act on it; an agentic tool acts for
 itself — editing files, running commands, reading the output, deciding
-what to do next. The litmus test for any tool wearing the label:
-<em>does it act, or does it only advise?</em> In agentic coding, action
-is everywhere — which is both the point and, as this lesson explores,
-the risk.</p>
+what to do next. The test for any tool that uses the label: <em>does it
+act, or does it only advise?</em> In agentic coding, the tool acts
+constantly. That is its value, and, as this lesson explains, its
+risk.</p>
 </div>
 </div>
 </div>
@@ -510,10 +510,10 @@ blocker.</li>
 </ul>
 <p>So you can ask it to fix a bug, add a feature, refactor existing
 code, write and run tests, review a pull request, investigate a failing
-job, or build a small application from a specification. This is
-powerful. It also means the tool has real access to your system — your
-files, your shell, your credentials if you leave them lying around — and
-the potential to do real damage if not managed carefully. That tension
+job, or build a small application from a specification. The same
+capabilities mean the tool has real access to your system — your files,
+your shell, your credentials if you leave them lying around — and the
+potential to do real damage if not managed carefully. That tension
 between capability and control is the subject of this whole lesson.</p>
 </section><section><h2 class="section-heading" id="the-spectrum-of-agentic-coding">The spectrum of agentic coding<a class="anchor" aria-label="anchor" href="#the-spectrum-of-agentic-coding"></a>
 </h2>
@@ -532,12 +532,12 @@ with a clear “done”; the agent plans a little, you review the diff.</li>
 yourself.”</em> — the agent invents dozens of decisions you never made,
 and you review a project.</li>
 </ol>
-<p>Notice the pattern: <strong>the more autonomy you grant, the more of
-your judgment has to be encoded in advance</strong> — in the prompt, in
-project context files, and in tests — and the more you have to review
-afterwards. That is the thread we pull on for the rest of this lesson.
-Nearly everything the workshop teaches lives in the middle of this
-spectrum: bounded tasks with a plan and a check.</p>
+<p>The pattern across the three: <strong>the more autonomy you grant,
+the more of your judgment has to be encoded in advance</strong> — in the
+prompt, in project context files, and in tests — and the more you have
+to review afterwards. That principle recurs through the rest of the
+lesson. Nearly everything the workshop teaches concerns the middle of
+this spectrum: bounded tasks with a plan and a check.</p>
 <div id="more-autonomy-is-not-automatically-better" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -554,7 +554,7 @@ it. The right choice depends on the task:</p>
 <li>Sensitive work or unfamiliar codebase → interactive, guardrails on.
 The interruptions are a feature.</li>
 <li>Quick question, brainstorming, explaining an error → plain chat is
-hard to beat.</li>
+usually sufficient.</li>
 <li>Well-scoped, clearly described task in a repo with good tests → hand
 it off, because the specification and the tests carry your intent for
 you.</li>
@@ -583,8 +583,8 @@ controls, and the loop that ties them together.</li>
 <p>The harness runs an <strong>agent loop</strong>: request → understand
 → plan → act → observe → revise → repeat. Each turn, the model decides
 what to do next, the harness executes it (edit a file, run the tests),
-and the result goes back into the model’s context. An agent, in one
-line: <strong>LLM + harness + tools + agent loop.</strong></p>
+and the result goes back into the model’s context. In summary:
+<strong>agent = LLM + harness + tools + agent loop.</strong></p>
 <p>More advanced harnesses add an orchestrator–worker pattern: a primary
 agent breaks a larger problem into smaller tasks and delegates them to
 subagents that work in parallel on research, implementation, testing,
@@ -663,7 +663,7 @@ What’s different about them?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Typical patterns </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Most researchers cluster at the chat end — and the tasks people
 refuse to delegate are almost always the ones where they’d struggle to
@@ -714,7 +714,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-safety-and-security"><p>Content from <a href="safety-and-security.html">Safety and Security: Limit What the Agent Can Access</a></p>
 <hr>
-<p>Last updated on 2026-09-15 |
+<p>Last updated on 2026-09-16 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/safety-and-security.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -728,9 +728,9 @@ any links that you are not going to use.
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>What can an agent actually access on my machine, and why does that
+<li>What can an agent access on my machine, and why does that
 matter?</li>
-<li>Which protections are real limits, and which are just requests the
+<li>Which protections are enforced limits, and which are requests the
 model may ignore?</li>
 <li>How do I keep credentials and sensitive or restricted data away from
 AI tools?</li>
@@ -827,7 +827,7 @@ full filesystem and shell access. It can read your SSH keys, your
 <code>.env</code> files, your notes — anything you can. And agents
 <em>automatically scan for context</em>: that is their job. A
 credentials file in your working directory is, from the agent’s point of
-view, just more context.</p>
+view, more context.</p>
 </section><section><h2 class="section-heading" id="the-threat-prompt-injection">The threat: prompt injection<a class="anchor" aria-label="anchor" href="#the-threat-prompt-injection"></a>
 </h2>
 <hr class="half-width">
@@ -847,8 +847,8 @@ access into leaking data from the user’s private repositories.</li>
 install script prompted the victim’s <em>own</em> Claude Code, Gemini
 CLI, or Amazon Q to search the machine for secrets; thousands of
 credentials were leaked to public GitHub repositories. (Wiz’s analysis
-found Claude refused about a quarter of the time — a layer, not a
-wall.)</li>
+found Claude refused about a quarter of the time; model refusals reduce
+the risk but do not remove it.)</li>
 </ul>
 <p>Simon Willison’s <a href="https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/" class="external-link">“lethal
 trifecta”</a> names the combination to avoid: private data, exposure to
@@ -902,10 +902,10 @@ back whatever the page says.</li>
 Code on the web and Copilot’s cloud agent limit network access to an
 allowlist and keep your keys out of the sandbox. <strong>Do not turn the
 firewall off to fix a blocked request</strong> — add the one host you
-actually need.</li>
+need.</li>
 <li>
-<strong>Review the PR before you merge.</strong> The last wall of
-defense.</li>
+<strong>Review the PR before you merge.</strong> This is the final
+control, after all the others.</li>
 </ul>
 <p>Where to set the allowlist:</p>
 <div class="tabs">
@@ -942,10 +942,10 @@ cloud agent firewall</a>.</p>
 </div>
 </div>
 </div>
-<p>It is a layer, not a wall. Copilot’s firewall covers only what the
-agent starts in Bash, not MCP servers or setup steps, and GitHub says
-sophisticated attacks may bypass it. An allowlist narrows the
-exfiltration path; it does not close it.</p>
+<p>An allowlist is a partial control. Copilot’s firewall covers only
+what the agent starts in Bash, not MCP servers or setup steps, and
+GitHub states that sophisticated attacks may bypass it. An allowlist
+narrows the exfiltration path; it does not close it.</p>
 </div>
 <div class="section level3">
 <h3 id="prefer-a-cloud-vm-over-your-own-machine">2. Prefer a cloud VM over your own machine<a class="anchor" aria-label="anchor" href="#prefer-a-cloud-vm-over-your-own-machine"></a>
@@ -1047,7 +1047,7 @@ January 2026, Cursor’s allowlist was bypassed (<a href="https://github.com/cur
 found by Pillar Security): prompt injection set an environment variable
 through a shell built-in the allowlist did not check, and the next
 approved <code>git</code> command ran the attacker’s code. Deny rules
-are a layer. The VM is the wall.</p>
+reduce risk; the VM boundary is what removes it.</p>
 <div id="agent-instruction-files-do-a-lot-of-work-for-you-but-they-ask-they-do-not-constrain" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -1078,9 +1078,10 @@ permissions constrain it.</p>
 <h3 id="credentials-a-password-manager-never-the-repo">4. Credentials: a password manager, never the repo<a class="anchor" aria-label="anchor" href="#credentials-a-password-manager-never-the-repo"></a>
 </h3>
 <p><strong>A secret that isn’t on disk can’t be read, echoed, committed,
-or exfiltrated</strong> — by an agent, by malware, or by you at 11pm.
-Agents scan for context, and they may be able to read your local
-<code>.env</code> or JSON config files. Be proactive.</p>
+or exfiltrated</strong> — by an agent, by malware, or by a tired person
+late at night. Agents scan for context, and they may be able to read
+your local <code>.env</code> or JSON config files. Remove the secrets
+before the agent arrives.</p>
 <ul>
 <li>Do not store passwords or API keys in <code>.env</code> files, JSON
 configs, or shell profiles.</li>
@@ -1214,15 +1215,15 @@ on the <a href="index.html#setup">setup page</a>.)</p>
 <li>
 <em>Claude users:</em> use the web, <a href="https://claude.ai/code" class="external-link">claude.ai/code</a>. Plan mode is already
 there and there is nothing to install. The desktop app is also fine —
-just keep the session in a cloud-hosted VM.</li>
+provided the session runs in a cloud-hosted VM.</li>
 <li>
 <em>Copilot users:</em> install the <a href="https://docs.github.com/en/copilot/concepts/agents/github-copilot-app" class="external-link">GitHub
 Copilot app</a> for an explicit plan mode — the agent asks questions and
 waits for you to approve before it edits. Start a <strong>cloud</strong>
 session, not local: cloud runs in a GitHub-hosted VM; local runs on your
 machine with your access. No install? The web works too: ask for a plan
-in the prompt and you get the same review gate, just less
-interactive.</li>
+in the prompt and you get the same review gate, with less
+interaction.</li>
 </ul>
 </li>
 <li>
@@ -1254,12 +1255,12 @@ and what it doesn’t know that you do.</li>
   What to check
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>If step 2 is wrong — the session is local — stop and switch before
-prompting; that is the single most common mistake with the desktop apps.
-Cloud sandboxes are usage-billed, so test your account before the real
-work. Branches rather than forks matter for a team: an agent can
+prompting; that is the most common mistake with the desktop apps. Cloud
+sandboxes are usage-billed, so test your account before the real work.
+Branches rather than forks matter for a team: an agent can
 <code>git fetch</code> and read a teammate’s branch, diff against it,
 and merge, but it cannot see a fork without someone adding remotes. The
 read-only prompt in step 6 previews the planning episode: agents are
@@ -1305,7 +1306,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-trust"><p>Content from <a href="trust.html">Trust: Packages, Models, and Providers</a></p>
 <hr>
-<p>Last updated on 2026-09-15 |
+<p>Last updated on 2026-09-16 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/trust.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -1322,7 +1323,8 @@ any links that you are not going to use.
 <li>How do I decide whether to trust a package, a model, or an AI
 provider?</li>
 <li>What new supply-chain risks does agentic coding introduce?</li>
-<li>What has actually gone wrong, and what would have prevented it?</li>
+<li>What has gone wrong in practice, and what would have prevented
+it?</li>
 </ul>
 </div>
 </div>
@@ -1377,11 +1379,11 @@ install instructions.</li>
 belt.</strong> In December 2022, a malicious <code>torchtriton</code>
 package on PyPI shadowed a PyTorch-nightly internal dependency and
 exfiltrated SSH keys and files from thousands of machines. In December
-2024, compromised releases of <code>ultralytics</code> (the hugely
-popular YOLO library) shipped a cryptominer to anyone who installed
-during the affected window. Neither incident involved AI — but an agent
-that <code>pip install</code>s without you watching turns “I’d have
-noticed something off about that name” into “it was in the transcript I
+2024, compromised releases of <code>ultralytics</code> (the widely used
+YOLO library) shipped a cryptominer to anyone who installed during the
+affected window. Neither incident involved AI — but an agent that
+<code>pip install</code>s without you watching turns “I’d have noticed
+something off about that name” into “it was in the transcript I
 skimmed.”</li>
 </ul>
 <p>What to do:</p>
@@ -1394,8 +1396,8 @@ as advisory, per the safety episode).</li>
 <li>
 <strong>Before installing anything an agent suggests, verify it
 exists and is official</strong>: check the registry page, the linked
-source repo, download counts, and release history. Thirty seconds of
-looking defeats most slopsquatting.</li>
+source repo, download counts, and release history. A brief check defeats
+most slopsquatting.</li>
 <li>
 <strong>Pin versions in a lockfile</strong> and prefer environments
 you can rebuild
@@ -1489,16 +1491,15 @@ needs to write subtly vulnerable code that you trust, run, and ship. And
 in an agentic setup, the trigger can be <em>delivered</em>: prompt
 injection (a poisoned README or issue) plus a backdoored model with tool
 access is a much worse combination than either alone.</p>
-<p>Honest status: <strong>detecting behavioral backdoors is an open
+<p>Current status: <strong>detecting behavioral backdoors is an open
 research problem.</strong> No scanner finds them; benchmarks don’t
-reveal them. Which is why the defenses are the unglamorous ones —
-provenance from heavily scrutinized official sources, extra caution
-before wiring a niche fine-tune into a pipeline with tool access or
-untrusted inputs, and treating model <em>output</em> as untrusted
-regardless of where the weights came from. That last one you already
-have: it’s this lesson’s review-everything discipline, which protects
-you whether the bad code comes from an average-case guess or a
-backdoor.</p>
+reveal them. Which is why the defenses are the routine ones — provenance
+from heavily scrutinized official sources, extra caution before wiring a
+niche fine-tune into a pipeline with tool access or untrusted inputs,
+and treating model <em>output</em> as untrusted regardless of where the
+weights came from. That last one you already have: it’s this lesson’s
+review-everything discipline, which protects you whether the bad code
+comes from an average-case guess or a backdoor.</p>
 </div>
 </section><section><h2 class="section-heading" id="the-tools-themselves-are-attack-surface">The tools themselves are attack surface<a class="anchor" aria-label="anchor" href="#the-tools-themselves-are-attack-surface"></a>
 </h2>
@@ -1550,12 +1551,12 @@ and API keys — a reminder that provider security practices and legal
 jurisdiction are part of the deal, not a footnote.</li>
 <li>
 <strong>Does an institutional agreement cover this, or is it your
-personal contract?</strong> The classic cautionary tale: in 2023,
-<strong>Samsung</strong> engineers pasted proprietary source code into
-ChatGPT while debugging; the company responded by banning generative AI
-tools internally. An individual subscription gives your institution no
-protections at all — which is why the safety episode’s rule (restricted
-data stays off unvetted tools) exists.</li>
+personal contract?</strong> In 2023, <strong>Samsung</strong> engineers
+pasted proprietary source code into ChatGPT while debugging; the company
+responded by banning generative AI tools internally. An individual
+subscription gives your institution no protections at all — which is why
+the safety episode’s rule (restricted data stays off unvetted tools)
+exists.</li>
 </ol>
 <div class="section level3">
 <h3 id="what-claude-and-copilot-do-by-default-as-of-september-2026">What Claude and Copilot do by default (as of September 2026)<a class="anchor" aria-label="anchor" href="#what-claude-and-copilot-do-by-default-as-of-september-2026"></a>
@@ -1604,13 +1605,13 @@ settings</a></td>
 </table>
 <p>Neither is on UW–Madison’s list of vetted AI tools. Policies change;
 check the linked pages rather than this table.</p>
-<div id="free-is-a-price" class="callout">
+<div id="free-services-have-a-cost" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <span class="callout-header">Callout</span>
-<div id="free-is-a-price" class="callout-inner">
-<h3 class="callout-title">Free is a price</h3>
+<div id="free-services-have-a-cost" class="callout-inner">
+<h3 class="callout-title">Free services have a cost</h3>
 <div class="callout-content">
 <p>If a tool or model API is free and isn’t open source running on your
 hardware, ask what the provider gets. Often the answer is: your prompts,
@@ -1630,8 +1631,8 @@ research.</p>
 (5 minutes)</h3>
 <div class="callout-content">
 <p>For the agentic tool you set up for this workshop, find real answers
-to the four questions above — from the provider’s privacy/data pages,
-not from memory or vibes.</p>
+to the four questions above — from the provider’s privacy and data
+pages, not from memory.</p>
 <ol style="list-style-type: decimal">
 <li>Training: on or off by default for <em>your</em> plan? Where’s the
 toggle?</li>
@@ -1651,14 +1652,14 @@ contract?</li>
   What people typically find
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Almost everyone discovers at least one surprise: a training toggle
 they’d never seen, a retention clause tied to the feedback button, or
-the realization that their “institution-adjacent” tool is actually a
-personal agreement. That’s the point — the answers vary by provider
-<em>and by plan tier within a provider</em>, which is why “vet the
-policy” can’t be delegated, even to the agent.</p>
+the realization that their “institution-adjacent” tool is a personal
+agreement. The answers vary by provider <em>and by plan tier within a
+provider</em>, which is why “vet the policy” can’t be delegated, even to
+the agent.</p>
 </div>
 </div>
 </div>
@@ -1705,7 +1706,7 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-early-project-planning"><p>Content from <a href="early-project-planning.html">Planning with Agents</a></p>
 <hr>
-<p>Last updated on 2026-09-15 |
+<p>Last updated on 2026-09-16 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/early-project-planning.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -1798,8 +1799,7 @@ in rough order of how often they’re missing:</p>
 <ul>
 <li>
 <strong>The goal and constraints</strong> — the research question,
-the challenge page, the scoring rule, the compute you actually
-have.</li>
+the challenge page, the scoring rule, the compute you have.</li>
 <li>
 <strong><code>plan.md</code> from last time</strong>, or the
 previous plan’s discoveries and blockers.</li>
@@ -1854,14 +1854,14 @@ repository — and the right mode for reviewing a plan.</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
 <p>Press <kbd>Shift</kbd>+<kbd>Tab</kbd> until the status line shows
 <strong>plan mode</strong>. Claude can now read and answer, but not edit
 or run anything. On the web, start the prompt with “Plan mode, do not
 edit” — or ask for a plan and review it before approving
 implementation.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
 <p>Pick <strong>Ask</strong> (or <strong>Plan</strong>) in the chat
 panel’s mode dropdown, and start your message with
 <code>@workspace</code> so the question covers the whole repo. Switch to
@@ -1906,7 +1906,7 @@ enough that people read it.</p>
 </blockquote>
 </li>
 <li><p><strong>Argue with what it gives you.</strong> Keep the rules you
-will actually follow; cut the rest.</p></li>
+will follow; cut the rest.</p></li>
 <li><p><strong>Commit <code>CONTRIBUTING.md</code> to the team
 repo.</strong> Your agents read it too.</p></li>
 <li><p>Share the link with whoever advises your team, so they can see
@@ -1929,14 +1929,14 @@ them in your context file.</p>
 <div class="accordion-body">
 <p>Short. A branch name pattern
 (<code>&lt;name&gt;/&lt;feature&gt;</code>), a PR size people will
-actually review (a few hundred lines at most), one named reviewer per
-PR, a list of paths the agent may not touch without asking
-(<code>data/raw/</code>, the scoring function, <code>main</code>), a
-rule for avoiding collisions (one feature per branch, claim it in the
-plan), and a commit-message shape. Agents draft a good first version
-because conventions are the average case; the value you add is deleting
-what your team won’t do. The rules are advisory for the agent — back the
-important ones with branch protection.</p>
+review (a few hundred lines at most), one named reviewer per PR, a list
+of paths the agent may not touch without asking (<code>data/raw/</code>,
+the scoring function, <code>main</code>), a rule for avoiding collisions
+(one feature per branch, claim it in the plan), and a commit-message
+shape. Agents draft a good first version because conventions are the
+average case; the value you add is deleting what your team won’t do. The
+rules are advisory for the agent — back the important ones with branch
+protection.</p>
 </div>
 </div>
 </div>
@@ -1948,7 +1948,7 @@ important ones with branch protection.</p>
 kickoff. A <strong>minimum viable pipeline (MVP)</strong> is whatever
 you can get running quickly and understand end to end. Not always the
 <em>simplest</em> model — a pretrained model you understand beats a
-from-scratch one you don’t. The point is fewer friction and failure
+from-scratch one you don’t. The aim is fewer friction and failure
 points: a slice of the data, one model, your laptop. Every extra step or
 fancier setup is another place to break.</p>
 <ul>
@@ -2026,7 +2026,7 @@ validate the data slice: row count and class balance printed; (2) train
 one baseline: a scored number on a held-out split; (3) write the scoring
 function: matches the challenge metric on a hand-computed example.</em>
 If the agent’s plan has a feature you can’t describe a check for, it
-isn’t a feature yet — split it or drop it. And notice what the agent
+isn’t a feature yet — split it or drop it. Note also what the agent
 <em>couldn’t</em> know: which data is trustworthy, what compute you
 really have, what the kickoff decided. That’s the context you supplied;
 without it the plan would have been someone else’s.</p>
@@ -2049,12 +2049,12 @@ understand is a liability even if it’s good — you can’t debug, extend,
 or defend it in review (or peer review).</p>
 <p>So probe before you adopt. Ask “why this over the obvious
 alternative?”, “what are the failure modes?”, “what’s the simplest
-version that could work?” — and push back; the agent folds quickly when
-an idea is weak, which is itself information. Be especially wary the
-further a suggestion sits outside your domain: a clever-looking method
-from a field you don’t know is a place to consult a human expert or the
-literature, not a thing to build on because the chat sounded confident.
-If you can’t explain it, you don’t own it yet.</p>
+version that could work?” — and push back; the agent tends to abandon a
+weak idea under questioning, which is itself evidence. Be especially
+wary the further a suggestion sits outside your domain: a clever-looking
+method from a field you don’t know is a place to consult a human expert
+or the literature, not a thing to build on because the chat sounded
+confident. If you can’t explain it, you don’t own it yet.</p>
 </div>
 </div>
 </div>
@@ -2128,7 +2128,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-specification"><p>Content from <a href="specification.html">Feature-Based Development and Good Prompting</a></p>
 <hr>
-<p>Last updated on 2026-09-15 |
+<p>Last updated on 2026-09-16 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/specification.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -2144,7 +2144,7 @@ any links that you are not going to use.
 <ul>
 <li>Why work feature by feature instead of asking for whole
 projects?</li>
-<li>What actually happens when I give an agent a vague request?</li>
+<li>What happens when I give an agent a vague request?</li>
 <li>What does a good prompt look like for research code?</li>
 <li>Which routine tasks are agents reliably good at?</li>
 </ul>
@@ -2182,17 +2182,16 @@ it in order.</p>
 <li>
 <strong>One feature per chat session.</strong> Fresh context, a
 small diff, one pull request. (The cost episode explains why a fresh
-session matters; the short version is that everything in a long session
-competes for the model’s attention.)</li>
+session matters: everything in a long session competes for the model’s
+attention.)</li>
 <li>
 <strong>Specify each one.</strong> Inputs, output, how you will know
 it works, what not to touch.</li>
 <li>
 <strong>Small scope means small diffs</strong> — which means you can
-actually review them, and stay in the driver’s seat. A project-sized
-prompt doesn’t just produce worse code; it produces a diff too large to
-meaningfully review, at which point you’ve silently handed over the
-wheel.</li>
+review them, and stay in the driver’s seat. A project-sized prompt
+produces worse code and, worse, a diff too large to review, at which
+point you have handed over the wheel without deciding to.</li>
 </ul>
 <p><strong>Whole-project prompts produce whole-project
 guesses.</strong></p>
@@ -2210,9 +2209,9 @@ like yours.</p>
 usually do. The problem is that your data and code are rarely the
 average case. Your weird instrument artifact is not in the training
 data. Your field has a convention the average GitHub repo doesn’t
-follow. Your “duplicate rows” are actually repeated measures. Every
-unstated assumption gets resolved in favor of someone else’s typical
-project — silently.</p>
+follow. Your “duplicate rows” are repeated measures. Every unstated
+assumption gets resolved in favor of someone else’s typical project —
+silently.</p>
 <p>Two consequences:</p>
 <ol style="list-style-type: decimal">
 <li>
@@ -2265,10 +2264,10 @@ fix.</p>
 </blockquote>
 <p>The better prompt supplies the <em>evidence</em> (traceback, code,
 input), asks for a <em>diagnosis before a change</em>, and keeps the
-decision with you. Notice what “fix” would have left to the average
-case: the agent would have to invent what “fixed” means — and an agent
-told to make an error go away sometimes does exactly that, by deleting
-the check that raised it.</p>
+decision with you. Consider what “fix” alone would have left to the
+average case: the agent would have to invent what “fixed” means — and an
+agent told to make an error go away sometimes does exactly that, by
+deleting the check that raised it.</p>
 <p>A checklist for research-code prompts — specify:</p>
 <ul>
 <li>
@@ -2291,7 +2290,7 @@ includes its own check is worth two that don’t.</p>
 </h2>
 <hr class="half-width">
 <p>Not every feature is new science. Agents are reliably good at the
-unglamorous work that keeps a research repo usable — provided you give
+routine work that keeps a research repository usable — provided you give
 each task the same treatment as a feature: small, specified, checkable,
 one pull request, and you review it.</p>
 <ul>
@@ -2308,7 +2307,7 @@ list what the README says that is no longer true.”</li>
 <li>
 <strong>Environment files.</strong> Pin
 <code>requirements.txt</code> or <code>environment.yml</code> from what
-the code actually imports.</li>
+the code imports.</li>
 <li>
 <strong>Weekly merge prep.</strong> “Summarize what changed on this
 branch since <code>main</code>, for the teammates who were not
@@ -2448,7 +2447,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-verification-and-review"><p>Content from <a href="verification-and-review.html">Verification and Testing: No Escaping Good Data Science</a></p>
 <hr>
-<p>Last updated on 2026-09-15 |
+<p>Last updated on 2026-09-16 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/verification-and-review.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -2630,14 +2629,14 @@ Subject in a brain-decoding study. Camera burst in a wildlife-camera
 dataset. Page in a document-transcription task. Source document in a
 retrieval pipeline. The assertion runs every time, so it never gets
 forgotten — tests you have to remember to run get skipped.</p>
-<p>If you didn’t spot it: that’s the point. Nothing about this code
-<em>looks</em> wrong, no error fires, and the score rewards you for not
-looking harder. This is exactly the <em>plausible average case</em>
-failure from the previous episode: <code>train_test_split</code> is the
-pattern in a million notebooks, and the agent optimized for “task
-apparently completed” — clean run, high score. If your review process is
-also “does it run? is the score good?”, you and the agent share the same
-blind spot.</p>
+<p>If you didn’t spot it, you are in good company. Nothing about this
+code <em>looks</em> wrong, no error fires, and the score rewards you for
+not looking harder. This is the <em>plausible average case</em> failure
+from the previous episode: <code>train_test_split</code> is the pattern
+in a million notebooks, and the agent optimized for “task apparently
+completed” — clean run, high score. If your review process is also “does
+it run? is the score good?”, you and the agent share the same blind
+spot.</p>
 </div>
 </div>
 </div>
@@ -2669,7 +2668,7 @@ report quietly features F1 because the number looked better.</li>
 <code>try/except: pass</code>, an error “fixed” by deleting the check.
 An agent told to make it run sometimes does just that.</li>
 </ul>
-<p>One prompt that pays for itself, every time:</p>
+<p>One prompt worth adding to every review:</p>
 <blockquote>
 <p>Summarize every choice you made that I did not specify, and flag the
 risky ones.</p>
@@ -2763,13 +2762,13 @@ protected branches</a>).</li>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
 <p>Plan mode for step 1 (<kbd>Shift</kbd>+<kbd>Tab</kbd> locally; on the
 web, the “do not edit” line does the same job). For steps 2–3 switch to
 normal mode; Claude will run <code>pytest</code> itself — approve the
 command — and iterate until it passes.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
 <p><strong>Ask</strong> mode with <code>@workspace</code> for step 1;
 <strong>Agent</strong> mode for steps 2–3. Copilot proposes the
 <code>pytest</code> run in the terminal and waits for your approval. The
@@ -2810,17 +2809,16 @@ implementations.</p>
 </section><section><h2 class="section-heading" id="autonomy-is-purchased-with-verification">Autonomy is purchased with verification<a class="anchor" aria-label="anchor" href="#autonomy-is-purchased-with-verification"></a>
 </h2>
 <hr class="half-width">
-<p>The single highest-leverage practice in agentic coding: <strong>make
-verification executable.</strong> Agents perform dramatically better
-when they can check their own output — running tests, comparing against
-known values, validating properties — instead of relying on you as the
-only feedback loop. Include test cases in the prompt; point at symptoms,
-not just fixes (“fix the root cause and verify — don’t suppress the
-error”); for analyses, demand printed evidence. And tests are cheap now:
-ask for them with every feature, ask for data-validation tests on your
-actual dataset (expected columns, value ranges, unique IDs, row counts
-across merges), ask the agent what inputs would break its own
-function.</p>
+<p>The highest-leverage practice in agentic coding is to <strong>make
+verification executable.</strong> Agents perform markedly better when
+they can check their own output — running tests, comparing against known
+values, validating properties — instead of relying on you as the only
+feedback loop. Include test cases in the prompt; point at symptoms, not
+just fixes (“fix the root cause and verify — don’t suppress the error”);
+for analyses, demand printed evidence. And tests are cheap now: ask for
+them with every feature, ask for data-validation tests on your actual
+dataset (expected columns, value ranges, unique IDs, row counts across
+merges), ask the agent what inputs would break its own function.</p>
 <p>The more trustworthy your checks, the more autonomy you can safely
 grant. Scale the checking to the stakes — and choose the tier
 <em>explicitly</em>, before you start:</p>
@@ -2892,7 +2890,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-skills-and-mcp"><p>Content from <a href="skills-and-mcp.html">MCP Tools and Skills: Extending Your Agent</a></p>
 <hr>
-<p>Last updated on 2026-09-15 |
+<p>Last updated on 2026-09-16 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/skills-and-mcp.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -2908,7 +2906,7 @@ any links that you are not going to use.
 <ul>
 <li>How is MCP different from an API — and when do I want each?</li>
 <li>What is an MCP server, and what happens when I connect one?</li>
-<li>What’s actually inside a skill, and how does an agent decide to use
+<li>What is inside a skill, and how does an agent decide to use
 one?</li>
 <li>What extra scrutiny does connecting an MCP server or installing a
 skill deserve?</li>
@@ -2966,8 +2964,9 @@ HTTP. Examples: GitHub MCP, filesystem MCP, Slack MCP, Postgres MCP.
 When the session starts, the agent lists the server’s available tools —
 <code>search_issues</code>, <code>run_query</code> — and then calls them
 like any built-in tool.</p>
-<p>The analogy that lands: it’s like installing a plugin. You are not
-writing new agent code; you are handing the agent a new capability.</p>
+<p>Connecting an MCP server is comparable to installing a plugin: you
+are not writing new agent code, you are giving the agent a new
+capability.</p>
 <p>And the safety flag, tying back to that episode: <strong>only add MCP
 servers you trust.</strong> Tool output goes straight into the agent’s
 context and it will act on it — an issue body or PR description fetched
@@ -3057,7 +3056,7 @@ the same guardrail from the safety episode.</p>
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">
-  What just happened
+  What this shows
   </h4>
 </button>
 <div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
@@ -3091,7 +3090,7 @@ reading files and running commands. The description is the important
 part: it’s what the agent matches against, so vague wording (“helps with
 releases”) triggers unreliably, while specific wording (“use when the
 user asks to cut a release, bump a version, or write release notes”)
-triggers when you actually mean it.</p>
+triggers when you intend it to.</p>
 <p>Skills also help with <strong>cost</strong>: the full skill content
 is only expanded when it’s relevant, instead of sitting in context the
 whole session the way an overgrown context file does. That’s one of the
@@ -3110,7 +3109,7 @@ minutes)</h3>
 public plugin that rewrites the agent’s replies into terse “caveman
 speak” — the author measured about 65% fewer output tokens with
 technical accuracy intact. The effect is immediately visible, which
-makes the token-savings point land.</p>
+makes the token saving concrete.</p>
 <div class="tabs">
 <nav><div id="nav-tab-2" class="nav nav-tabs" role="tablist">
 <button class="nav-link active" id="nav-tab-2-ClaudeCode" name="ClaudeCode" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-2-ClaudeCode" type="button" role="tab" aria-controls="nav-tabpanel-2-ClaudeCode" aria-selected="true">
@@ -3173,7 +3172,7 @@ and the instructions:</p>
 <span id="cb6-4"><a href="#cb6-4" tabindex="-1" aria-label="code-block-6-4"></a><span class="co">---</span></span>
 <span id="cb6-5"><a href="#cb6-5" tabindex="-1" aria-label="code-block-6-5"></a></span>
 <span id="cb6-6"><a href="#cb6-6" tabindex="-1" aria-label="code-block-6-6"></a>Respond in short grunts. Drop articles. Present tense only. Keep code, commands, and</span>
-<span id="cb6-7"><a href="#cb6-7" tabindex="-1" aria-label="code-block-6-7"></a>exact errors intact. Stay accurate — just say it like a caveman would.</span></code></pre>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1" aria-label="code-block-6-7"></a>exact errors intact. Stay accurate; only the phrasing changes.</span></code></pre>
 </div>
 </div>
 </div>
@@ -3187,13 +3186,13 @@ and the instructions:</p>
 </button>
 <div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
-<p>The caveman skill proves the mechanism; the payoff is packaging
-something you’d otherwise repeat. Pick one instruction you find yourself
-re-typing in your own project — a commit-message convention, a
-data-checking routine, a report template — and turn it into a skill
-next. Skill-builders usually discover their first description is too
-vague to trigger reliably, which is a good forcing function for writing
-precise instructions in general.</p>
+<p>The caveman skill demonstrates the mechanism; the practical use is
+packaging something you would otherwise repeat. Pick one instruction you
+find yourself re-typing in your own project — a commit-message
+convention, a data-checking routine, a report template — and turn it
+into a skill next. Skill-builders usually discover their first
+description is too vague to trigger reliably, which is useful practice
+in writing precise instructions generally.</p>
 </div>
 </div>
 </div>
@@ -3266,7 +3265,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-cost-context-energy"><p>Content from <a href="cost-context-energy.html">Cost, Context, and Energy</a></p>
 <hr>
-<p>Last updated on 2026-09-15 |
+<p>Last updated on 2026-09-16 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/cost-context-energy.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -3280,7 +3279,7 @@ any links that you are not going to use.
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>How much energy does an agentic coding session actually use?</li>
+<li>How much energy does an agentic coding session use?</li>
 <li>Why do agentic sessions cost so much more than chat queries?</li>
 <li>Which habits reduce token usage without reducing quality?</li>
 </ul>
@@ -3311,8 +3310,8 @@ one.</li>
 </h2>
 <hr class="half-width">
 <p>People arrive with a claim — a prompt costs gallons of water — so
-replace it with a number. Estimates vary wildly and no provider
-publishes per-query figures, but the order of magnitude is well
+replace it with a number. Estimates vary by an order of magnitude and no
+provider publishes per-query figures, but the range is well
 established:</p>
 <table class="table">
 <colgroup>
@@ -3354,9 +3353,9 @@ Hausfather, 2026</a></td>
 token counts. Hausfather ran his own tokens through three published
 methods and got a number an order of magnitude higher, because he runs
 subagents on large analyses. Nobody outside the labs knows the true
-per-token energy. So the honest framing is <strong>order of magnitude,
-not precision: tens of watt-hours per session, hundreds if you run
-agents hard.</strong></p>
+per-token energy. The defensible statement is an <strong>order of
+magnitude, not a precise figure: tens of watt-hours per session,
+hundreds if you run agents heavily.</strong></p>
 <p>Two macro takeaways survive the uncertainty:</p>
 <ul>
 <li>
@@ -3411,8 +3410,8 @@ efficiency.</li>
 <strong>Minimize the context in each session.</strong> As a session
 runs long, old context piles up and every future message re-pays for it.
 Start fresh between unrelated tasks; compact a long thread instead of
-letting it grow. Prefer search over reading whole files — context is the
-thing you’re paying for.</li>
+letting it grow. Prefer search over reading whole files — context is
+what you pay for.</li>
 <li>
 <strong>Use skills</strong> to reduce input and output. A skill
 loads a short pointer instead of a long explanation every time; the <a href="https://github.com/JuliusBrussee/caveman" class="external-link">caveman</a> skill from
@@ -3424,8 +3423,8 @@ session.</li>
 <li>
 <strong>Compare real-world session cost across models before you
 commit to one, not just benchmark scores.</strong> <a href="https://openrouter.ai/rankings#session-cost" class="external-link">OpenRouter’s
-session-cost rankings</a> track what people actually spend per session
-across live agentic-coding traffic — a gut check against marketing
+session-cost rankings</a> track what people spend per session across
+live agentic-coding traffic, which is a useful check against vendor
 claims.</li>
 </ul>
 <div class="tabs">
@@ -3442,7 +3441,7 @@ claims.</li>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
 <ul>
 <li>
 <code>/cost</code> — what the current session has consumed;
@@ -3450,8 +3449,8 @@ claims.</li>
 <li>
 <code>/model</code> — switch models mid-session.</li>
 <li>
-<code>/clear</code> — reset context between unrelated tasks.
-Cheapest single habit.</li>
+<code>/clear</code> — reset context between unrelated tasks. The
+cheapest habit to adopt.</li>
 <li>
 <code>/compact</code> — summarize a long conversation, keeping what
 matters.</li>
@@ -3460,7 +3459,7 @@ matters.</li>
 way.</li>
 </ul>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
 <ul>
 <li>Check credit/premium-request usage on your <a href="https://github.com/settings/copilot" class="external-link">Copilot settings page</a>;
 model choice changes the burn rate.</li>
@@ -3534,7 +3533,7 @@ the most? Was it a vague prompt that triggered a loop?</li>
 <p>Most workshop sessions land in the low single-digit Wh — a few
 percent of a dishwasher run. The interesting result is usually #3: one
 underspecified prompt accounts for a disproportionate share of the
-total. The cheapest token is the one a clearer sentence made
+total. A clearer sentence in the prompt would have made those tokens
 unnecessary.</p>
 </div>
 </div>
@@ -3559,8 +3558,8 @@ makes late messages far more expensive than early ones.</li>
 <li>Watch usage, match the model to the task, keep sessions short and
 compact, use skills, and compare real session cost across models before
 committing.</li>
-<li>Specific prompts in clean context are better, cheaper, and greener —
-the same discipline pays three times.</li>
+<li>Specific prompts in clean context are better, cheaper, and greener:
+one discipline, three benefits.</li>
 </ul>
 </div>
 </div>
@@ -3571,7 +3570,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-documentation"><p>Content from <a href="documentation.html">Documentation: Notes to Your Future Self (and Your Agent)</a></p>
 <hr>
-<p>Last updated on 2026-09-15 |
+<p>Last updated on 2026-09-16 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/documentation.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -3587,7 +3586,7 @@ any links that you are not going to use.
 <ul>
 <li>Why is documentation one of the best uses of agentic coding?</li>
 <li>How does documentation feed back into agent performance?</li>
-<li>Can asking an agent to explain code actually help verify it?</li>
+<li>Can asking an agent to explain code help verify it?</li>
 </ul>
 </div>
 </div>
@@ -3653,8 +3652,8 @@ Your future self is a stranger who will thank you.</li>
 </ul></section><section><h2 class="section-heading" id="documentation-is-context-it-compounds">Documentation is context — it compounds<a class="anchor" aria-label="anchor" href="#documentation-is-context-it-compounds"></a>
 </h2>
 <hr class="half-width">
-<p>Here is what makes this more than good hygiene: <strong>everything
-you document becomes context the agent reads back in later
+<p>What makes this more than good hygiene: <strong>everything you
+document becomes context the agent reads back in later
 sessions.</strong> Remember the planning episode — agents recover
 <em>what</em> and <em>how</em> from code, but not <em>why</em>, <em>for
 whom</em>, or <em>what the data means</em>. Documentation is precisely
@@ -3675,9 +3674,9 @@ an investment that pays out on every future session, human or agent.</p>
 </section><section><h2 class="section-heading" id="explaining-as-verification">Explaining as verification<a class="anchor" aria-label="anchor" href="#explaining-as-verification"></a>
 </h2>
 <hr class="half-width">
-<p>There’s a second, subtler payoff: <strong>asking an agent to explain
-or document code is a verification act.</strong> To write an accurate
-docstring, the model has to actually process what the code does — and
+<p>There is a second, less obvious benefit: <strong>asking an agent to
+explain or document code is a verification act.</strong> To write an
+accurate docstring, the model has to process what the code does — and
 mismatches between the explanation and your intent surface real
 problems:</p>
 <ul>
@@ -3693,8 +3692,8 @@ cell is a red flag for <em>you</em> — and, left uncorrected, a trap for
 the next reader. Fix one or the other; never leave them
 disagreeing.</li>
 </ul>
-<p>This is the rubber-duck effect with a duck that talks back. It
-doesn’t replace the tests and checks from the verification episode — an
+<p>This is rubber-duck debugging with a duck that answers. It doesn’t
+replace the tests and checks from the verification episode — an
 explanation can be fluent and wrong — but it’s a cheap extra
 verification layer, and it produces a durable artifact while
 verifying.</p>
@@ -3719,8 +3718,8 @@ change itself.)</p>
 <strong>periodically run a full audit</strong>:</p>
 <blockquote>
 <p>Go through the README, every docstring, and the comments, and verify
-each claim against what the code actually does. Make no assumptions —
-read the code. List every mismatch you find.</p>
+each claim against what the code does. Make no assumptions — read the
+code. List every mismatch you find.</p>
 </blockquote>
 <p>It’s a cheap sweep (end of the week, before a release, before sharing
 the repo) that catches the drift that slips past you one edit at a time
@@ -3762,10 +3761,10 @@ fix the doc, and say which one you chose and why.</li>
 <div class="accordion-body">
 <p>Most participants find at least one surprise — usually an edge case
 the code handles by accident rather than by decision (what <em>does</em>
-it return for an empty DataFrame?). That’s the point: the docstring
-forced a decision that writing the code never did. And whichever way you
-resolve it, you leave behind both a checked behavior and a written
-record of it — verification and documentation in one pass.</p>
+it return for an empty DataFrame?). The docstring forced a decision that
+writing the code never did. And whichever way you resolve it, you leave
+behind both a checked behavior and a written record of it — verification
+and documentation in one pass.</p>
 </div>
 </div>
 </div>
@@ -3802,7 +3801,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-common-workflows"><p>Content from <a href="common-workflows.html">Common Workflows</a></p>
 <hr>
-<p>Last updated on 2026-09-15 |
+<p>Last updated on 2026-09-16 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/common-workflows.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -3816,8 +3815,7 @@ any links that you are not going to use.
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>How do experienced users actually structure day-to-day work with
-agents?</li>
+<li>How do experienced users structure day-to-day work with agents?</li>
 <li>Should I review every commit, or review at the pull request?</li>
 <li>How do agent workflows change when I’m contributing to (or
 maintaining) a shared project?</li>
@@ -3847,7 +3845,7 @@ file.</li>
 </div>
 <p>The workshop episodes gave you principles; this one — asynchronous
 reading, not a live block — collects the recurring <em>shapes</em> of
-day-to-day agentic work. None of them is the one true way — the point is
+day-to-day agentic work. None of them is the one correct way; the aim is
 to pick your pattern deliberately and write it down, rather than
 improvising it fresh every session.</p>
 <section><h2 class="section-heading" id="two-review-postures">Two review postures<a class="anchor" aria-label="anchor" href="#two-review-postures"></a>
@@ -3866,8 +3864,8 @@ than the classic human <code>wip</code>, <code>fix</code>,
 the full PR diff, exactly as you’d review a human collaborator’s branch.
 This posture keeps momentum high and concentrates your attention where
 it’s most effective — but it leans on safety nets: a real test suite, CI
-checks gating the merge, and PR diffs kept small enough to genuinely
-read (feature-sized, per the feature-based-development episode).</p>
+checks gating the merge, and PR diffs kept small enough to read in full
+(feature-sized, per the feature-based-development episode).</p>
 <p><strong>Posture B: review every change as it happens.</strong>
 Approve each edit or commit yourself, staying close to the work in real
 time. Slower, but right for the situations where posture A’s safety nets
@@ -3908,20 +3906,19 @@ described, tests included.</li>
 </ul></section><section><h2 class="section-heading" id="maintaining-a-project-others-contribute-to">Maintaining a project others contribute to<a class="anchor" aria-label="anchor" href="#maintaining-a-project-others-contribute-to"></a>
 </h2>
 <hr class="half-width">
-<p>On the receiving side, agents are useful for the unglamorous middle
-of maintenance: summarizing and triaging issues, drafting release notes
-and changelogs from the commit history, dependency-update PRs,
-doc-freshness sweeps, and a first-pass review of incoming PRs (“what
-does this change, and what should a human look hardest at?”). The human
-still owns the merge button — an agent’s review is a <em>brief</em> for
-your judgment, not a substitute (remember the trust episode: incoming
-PRs are untrusted input, and prompt injection via PR content is a real
-pattern).</p>
+<p>On the receiving side, agents are useful for routine maintenance:
+summarizing and triaging issues, drafting release notes and changelogs
+from the commit history, dependency-update PRs, doc-freshness sweeps,
+and a first-pass review of incoming PRs (“what does this change, and
+what should a human look hardest at?”). The human still owns the merge
+button — an agent’s review is a <em>brief</em> for your judgment, not a
+substitute (remember the trust episode: incoming PRs are untrusted
+input, and prompt injection via PR content is a real pattern).</p>
 </section><section><h2 class="section-heading" id="codifying-workflows-skills-hooks-and-mcp">Codifying workflows: skills, hooks, and MCP<a class="anchor" aria-label="anchor" href="#codifying-workflows-skills-hooks-and-mcp"></a>
 </h2>
 <hr class="half-width">
-<p>When you notice the same workflow recurring, the tools give you ways
-to write it down once instead of re-prompting it forever:</p>
+<p>When the same workflow recurs, the tools give you ways to write it
+down once instead of re-prompting it forever:</p>
 <ul>
 <li>
 <strong>Skills</strong> — reusable, on-demand instruction packages:
@@ -3944,8 +3941,8 @@ exercises for both.)</li>
 </ul>
 <p>A sensible progression: context file first, skills when you catch
 yourself repeating instructions, hooks when a rule needs enforcement
-rather than encouragement, MCP when the agent genuinely needs an
-external system.</p>
+rather than encouragement, MCP when the agent needs an external
+system.</p>
 <div id="exercise-write-your-workflow-contract-6-minutes" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -3975,11 +3972,11 @@ three to five rules that make your chosen pattern explicit.</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
 <p>The file is <code>CLAUDE.md</code> at the repository root — create it
 if the project doesn’t have one yet.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
 <p>The file is <code>.github/copilot-instructions.md</code>. (The
 emerging cross-tool convention <code>AGENTS.md</code> also works in
 tools that support it.)</p>
@@ -4010,7 +4007,7 @@ and one about what the agent may never touch.</p>
 </button>
 <div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
-<p>Two payoffs. The agent reads it — your posture, branch conventions,
+<p>Two benefits. The agent reads it — your posture, branch conventions,
 and forbidden paths now shape every session without re-prompting. And
 <em>collaborators</em> read it — the lab’s workflow stops being
 folklore. If a rule is safety-critical (“never touch
@@ -4051,7 +4048,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-research-and-outlook"><p>Content from <a href="research-and-outlook.html">What the Research Shows, and Where This Leaves Us</a></p>
 <hr>
-<p>Last updated on 2026-09-15 |
+<p>Last updated on 2026-09-16 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/research-and-outlook.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -4065,8 +4062,7 @@ any links that you are not going to use.
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>Who actually benefits from these tools, and on which kinds of
-work?</li>
+<li>Who benefits from these tools, and on which kinds of work?</li>
 <li>Is programming dead?</li>
 <li>What should I do differently starting tomorrow?</li>
 </ul>
@@ -4106,9 +4102,9 @@ up.</li>
 <strong>Perceived speed and measured speed can diverge.</strong> In
 one widely discussed 2025 randomized trial (METR), experienced
 open-source developers <em>felt</em> about 20% faster with AI tools on
-their own mature repositories while actually being ~19% <em>slower</em>.
-Measure, don’t vibe — the same rule we apply to model scores applies to
-our own productivity.</li>
+their own mature repositories while being ~19% <em>slower</em>. Measure
+rather than estimate by feel; the rule we apply to model scores applies
+to our own productivity.</li>
 <li>
 <strong>Learning with AI can cost understanding.</strong> In
 Anthropic’s 2026 study, developers who learned an unfamiliar library
@@ -4125,12 +4121,13 @@ output — extract more value, while novices are more likely to accept
 flawed results. Verification skill, not typing speed, is the
 bottleneck.</li>
 </ul>
-<p>The honest summary: these tools amplify expertise more than they
-replace it. Everything in this lesson — scoping, specifying, verifying —
-is precisely the expertise being amplified. And the skill-formation
-question is open: if agents do the routine work, where do juniors build
-the debugging intuition seniors rely on to supervise agents? Deliberate
-practice may need to be scheduled where it used to happen for free.</p>
+<p>The summary supported by the evidence: these tools amplify expertise
+more than they replace it. Everything in this lesson — scoping,
+specifying, verifying — is precisely the expertise being amplified. And
+the skill-formation question is open: if agents do the routine work,
+where do juniors build the debugging intuition seniors rely on to
+supervise agents? Deliberate practice may need to be scheduled where it
+used to happen for free.</p>
 <div id="is-programming-dead" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
@@ -4162,22 +4159,22 @@ filling every unstated gap with the average case, and the same prompt
 can yield different code on different days.</p>
 <p>We correct for that non-determinism with the two practices this
 lesson keeps returning to: <strong>good prompting</strong>
-(specification narrows the space of outcomes — the whole point of the
+(specification narrows the space of outcomes, the subject of the
 feature-based-development episode) and <strong>a review process</strong>
 (verification catches the outcomes that specification didn’t prevent).
 Never assume the AI will work 100% of the time — not because the tools
 are bad, but because “usually right, occasionally plausibly wrong” is
 what a probabilistic abstraction <em>is</em>. Design your workflow for
-that, and it’s just another layer; assume perfection, and it’s a
-trap.</p>
+that, and it is one more abstraction layer; assume perfection, and it is
+a trap.</p>
 <p>So: not dead. The job shifts from writing every line toward
 specifying intent, designing verification, and exercising judgment —
-which, conveniently, were always the hard parts of research computing.
-And that is also why <strong>there is still no escaping good data
-science practice</strong>: exploring your data, knowing your features
-and distributions, and knowing what your models actually tell you were
-never typing tasks that an agent could absorb. They are the judgment the
-whole workflow now leans on.</p>
+which were always the hard parts of research computing. And that is also
+why <strong>there is still no escaping good data science
+practice</strong>: exploring your data, knowing your features and
+distributions, and knowing what your models tell you were never typing
+tasks that an agent could absorb. They are the judgment the whole
+workflow now leans on.</p>
 </section><section><h2 class="section-heading" id="pass-it-on">Pass it on<a class="anchor" aria-label="anchor" href="#pass-it-on"></a>
 </h2>
 <hr class="half-width">

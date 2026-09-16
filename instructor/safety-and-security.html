@@ -368,7 +368,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Safety and Security: Limit What the Agent Can Access</h1>
-        <p>Last updated on 2026-09-15 |
+        <p>Last updated on 2026-09-16 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/safety-and-security.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -389,9 +389,9 @@
 <div class="card-body">
 <div class="inner">
 <h3 class="card-title">Questions</h3>
-<ul><li>What can an agent actually access on my machine, and why does that
+<ul><li>What can an agent access on my machine, and why does that
 matter?</li>
-<li>Which protections are real limits, and which are just requests the
+<li>Which protections are enforced limits, and which are requests the
 model may ignore?</li>
 <li>How do I keep credentials and sensitive or restricted data away from
 AI tools?</li>
@@ -461,7 +461,7 @@ full filesystem and shell access. It can read your SSH keys, your
 <code>.env</code> files, your notes — anything you can. And agents
 <em>automatically scan for context</em>: that is their job. A
 credentials file in your working directory is, from the agent’s point of
-view, just more context.</p>
+view, more context.</p>
 </section><section><h2 class="section-heading" id="the-threat-prompt-injection">The threat: prompt injection<a class="anchor" aria-label="anchor" href="#the-threat-prompt-injection"></a></h2>
 <hr class="half-width"><p>An agent treats the text it reads as instructions. A README, an
 issue, a web page, or a dependency’s install script can carry commands
@@ -478,8 +478,8 @@ access into leaking data from the user’s private repositories.</li>
 install script prompted the victim’s <em>own</em> Claude Code, Gemini
 CLI, or Amazon Q to search the machine for secrets; thousands of
 credentials were leaked to public GitHub repositories. (Wiz’s analysis
-found Claude refused about a quarter of the time — a layer, not a
-wall.)</li>
+found Claude refused about a quarter of the time; model refusals reduce
+the risk but do not remove it.)</li>
 </ul><p>Simon Willison’s <a href="https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/" class="external-link">“lethal
 trifecta”</a> names the combination to avoid: private data, exposure to
 untrusted content, and a way to send data out. Remove any one leg and
@@ -526,10 +526,10 @@ back whatever the page says.</li>
 Code on the web and Copilot’s cloud agent limit network access to an
 allowlist and keep your keys out of the sandbox. <strong>Do not turn the
 firewall off to fix a blocked request</strong> — add the one host you
-actually need.</li>
+need.</li>
 <li>
-<strong>Review the PR before you merge.</strong> The last wall of
-defense.</li>
+<strong>Review the PR before you merge.</strong> This is the final
+control, after all the others.</li>
 </ul><p>Where to set the allowlist:</p>
 <div class="tabs">
 <nav><div id="nav-tab-1" class="nav nav-tabs" role="tablist">
@@ -565,10 +565,10 @@ cloud agent firewall</a>.</p>
 </div>
 </div>
 </div>
-<p>It is a layer, not a wall. Copilot’s firewall covers only what the
-agent starts in Bash, not MCP servers or setup steps, and GitHub says
-sophisticated attacks may bypass it. An allowlist narrows the
-exfiltration path; it does not close it.</p>
+<p>An allowlist is a partial control. Copilot’s firewall covers only
+what the agent starts in Bash, not MCP servers or setup steps, and
+GitHub states that sophisticated attacks may bypass it. An allowlist
+narrows the exfiltration path; it does not close it.</p>
 </div>
 <div class="section level3">
 <h3 id="prefer-a-cloud-vm-over-your-own-machine">2. Prefer a cloud VM over your own machine<a class="anchor" aria-label="anchor" href="#prefer-a-cloud-vm-over-your-own-machine"></a></h3>
@@ -648,7 +648,7 @@ January 2026, Cursor’s allowlist was bypassed (<a href="https://github.com/cur
 found by Pillar Security): prompt injection set an environment variable
 through a shell built-in the allowlist did not check, and the next
 approved <code>git</code> command ran the attacker’s code. Deny rules
-are a layer. The VM is the wall.</p>
+reduce risk; the VM boundary is what removes it.</p>
 <div id="agent-instruction-files-do-a-lot-of-work-for-you-but-they-ask-they-do-not-constrain" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -678,9 +678,10 @@ permissions constrain it.</p>
 <div class="section level3">
 <h3 id="credentials-a-password-manager-never-the-repo">4. Credentials: a password manager, never the repo<a class="anchor" aria-label="anchor" href="#credentials-a-password-manager-never-the-repo"></a></h3>
 <p><strong>A secret that isn’t on disk can’t be read, echoed, committed,
-or exfiltrated</strong> — by an agent, by malware, or by you at 11pm.
-Agents scan for context, and they may be able to read your local
-<code>.env</code> or JSON config files. Be proactive.</p>
+or exfiltrated</strong> — by an agent, by malware, or by a tired person
+late at night. Agents scan for context, and they may be able to read
+your local <code>.env</code> or JSON config files. Remove the secrets
+before the agent arrives.</p>
 <ul><li>Do not store passwords or API keys in <code>.env</code> files, JSON
 configs, or shell profiles.</li>
 <li>Keep keys in a password manager and load them once per session.
@@ -804,15 +805,15 @@ on the <a href="index.html#setup">setup page</a>.)</p>
 <ul><li>
 <em>Claude users:</em> use the web, <a href="https://claude.ai/code" class="external-link">claude.ai/code</a>. Plan mode is already
 there and there is nothing to install. The desktop app is also fine —
-just keep the session in a cloud-hosted VM.</li>
+provided the session runs in a cloud-hosted VM.</li>
 <li>
 <em>Copilot users:</em> install the <a href="https://docs.github.com/en/copilot/concepts/agents/github-copilot-app" class="external-link">GitHub
 Copilot app</a> for an explicit plan mode — the agent asks questions and
 waits for you to approve before it edits. Start a <strong>cloud</strong>
 session, not local: cloud runs in a GitHub-hosted VM; local runs on your
 machine with your access. No install? The web works too: ask for a plan
-in the prompt and you get the same review gate, just less
-interactive.</li>
+in the prompt and you get the same review gate, with less
+interaction.</li>
 </ul></li>
 <li>
 <strong>Confirm cloud before you prompt.</strong> The session should
@@ -842,12 +843,12 @@ and what it doesn’t know that you do.</li>
   What to check
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>If step 2 is wrong — the session is local — stop and switch before
-prompting; that is the single most common mistake with the desktop apps.
-Cloud sandboxes are usage-billed, so test your account before the real
-work. Branches rather than forks matter for a team: an agent can
+prompting; that is the most common mistake with the desktop apps. Cloud
+sandboxes are usage-billed, so test your account before the real work.
+Branches rather than forks matter for a team: an agent can
 <code>git fetch</code> and read a teammate’s branch, diff against it,
 and merge, but it cannot see a fork without someone adding remotes. The
 read-only prompt in step 6 previews the planning episode: agents are
@@ -949,7 +950,7 @@ any links that you are not going to use.
   "url": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/instructor/safety-and-security.html",
   "identifier": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/instructor/safety-and-security.html",
   "dateCreated": "2026-08-10",
-  "dateModified": "2026-09-15",
+  "dateModified": "2026-09-16",
   "datePublished": "2026-09-16"
 }
 

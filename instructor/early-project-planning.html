@@ -368,7 +368,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Planning with Agents</h1>
-        <p>Last updated on 2026-09-15 |
+        <p>Last updated on 2026-09-16 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/early-project-planning.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -458,8 +458,7 @@ as the context it’s built from. Examples of context worth handing over,
 in rough order of how often they’re missing:</p>
 <ul><li>
 <strong>The goal and constraints</strong> — the research question,
-the challenge page, the scoring rule, the compute you actually
-have.</li>
+the challenge page, the scoring rule, the compute you have.</li>
 <li>
 <strong><code>plan.md</code> from last time</strong>, or the
 previous plan’s discoveries and blockers.</li>
@@ -509,14 +508,14 @@ repository — and the right mode for reviewing a plan.</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
 <p>Press <kbd>Shift</kbd>+<kbd>Tab</kbd> until the status line shows
 <strong>plan mode</strong>. Claude can now read and answer, but not edit
 or run anything. On the web, start the prompt with “Plan mode, do not
 edit” — or ask for a plan and review it before approving
 implementation.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
 <p>Pick <strong>Ask</strong> (or <strong>Plan</strong>) in the chat
 panel’s mode dropdown, and start your message with
 <code>@workspace</code> so the question covers the whole repo. Switch to
@@ -560,7 +559,7 @@ enough that people read it.</p>
 </blockquote>
 </li>
 <li><p><strong>Argue with what it gives you.</strong> Keep the rules you
-will actually follow; cut the rest.</p></li>
+will follow; cut the rest.</p></li>
 <li><p><strong>Commit <code>CONTRIBUTING.md</code> to the team
 repo.</strong> Your agents read it too.</p></li>
 <li><p>Share the link with whoever advises your team, so they can see
@@ -582,14 +581,14 @@ them in your context file.</p>
 <div class="accordion-body">
 <p>Short. A branch name pattern
 (<code>&lt;name&gt;/&lt;feature&gt;</code>), a PR size people will
-actually review (a few hundred lines at most), one named reviewer per
-PR, a list of paths the agent may not touch without asking
-(<code>data/raw/</code>, the scoring function, <code>main</code>), a
-rule for avoiding collisions (one feature per branch, claim it in the
-plan), and a commit-message shape. Agents draft a good first version
-because conventions are the average case; the value you add is deleting
-what your team won’t do. The rules are advisory for the agent — back the
-important ones with branch protection.</p>
+review (a few hundred lines at most), one named reviewer per PR, a list
+of paths the agent may not touch without asking (<code>data/raw/</code>,
+the scoring function, <code>main</code>), a rule for avoiding collisions
+(one feature per branch, claim it in the plan), and a commit-message
+shape. Agents draft a good first version because conventions are the
+average case; the value you add is deleting what your team won’t do. The
+rules are advisory for the agent — back the important ones with branch
+protection.</p>
 </div>
 </div>
 </div>
@@ -599,7 +598,7 @@ important ones with branch protection.</p>
 kickoff. A <strong>minimum viable pipeline (MVP)</strong> is whatever
 you can get running quickly and understand end to end. Not always the
 <em>simplest</em> model — a pretrained model you understand beats a
-from-scratch one you don’t. The point is fewer friction and failure
+from-scratch one you don’t. The aim is fewer friction and failure
 points: a slice of the data, one model, your laptop. Every extra step or
 fancier setup is another place to break.</p>
 <ul><li>
@@ -673,7 +672,7 @@ validate the data slice: row count and class balance printed; (2) train
 one baseline: a scored number on a held-out split; (3) write the scoring
 function: matches the challenge metric on a hand-computed example.</em>
 If the agent’s plan has a feature you can’t describe a check for, it
-isn’t a feature yet — split it or drop it. And notice what the agent
+isn’t a feature yet — split it or drop it. Note also what the agent
 <em>couldn’t</em> know: which data is trustworthy, what compute you
 really have, what the kickoff decided. That’s the context you supplied;
 without it the plan would have been someone else’s.</p>
@@ -696,12 +695,12 @@ understand is a liability even if it’s good — you can’t debug, extend,
 or defend it in review (or peer review).</p>
 <p>So probe before you adopt. Ask “why this over the obvious
 alternative?”, “what are the failure modes?”, “what’s the simplest
-version that could work?” — and push back; the agent folds quickly when
-an idea is weak, which is itself information. Be especially wary the
-further a suggestion sits outside your domain: a clever-looking method
-from a field you don’t know is a place to consult a human expert or the
-literature, not a thing to build on because the chat sounded confident.
-If you can’t explain it, you don’t own it yet.</p>
+version that could work?” — and push back; the agent tends to abandon a
+weak idea under questioning, which is itself evidence. Be especially
+wary the further a suggestion sits outside your domain: a clever-looking
+method from a field you don’t know is a place to consult a human expert
+or the literature, not a thing to build on because the chat sounded
+confident. If you can’t explain it, you don’t own it yet.</p>
 </div>
 </div>
 </div>
@@ -829,7 +828,7 @@ any links that you are not going to use.
   "url": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/instructor/early-project-planning.html",
   "identifier": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/instructor/early-project-planning.html",
   "dateCreated": "2026-08-10",
-  "dateModified": "2026-09-15",
+  "dateModified": "2026-09-16",
   "datePublished": "2026-09-16"
 }
 

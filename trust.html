@@ -367,7 +367,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Trust: Packages, Models, and Providers</h1>
-        <p>Last updated on 2026-09-15 |
+        <p>Last updated on 2026-09-16 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/trust.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -389,7 +389,8 @@
 <ul><li>How do I decide whether to trust a package, a model, or an AI
 provider?</li>
 <li>What new supply-chain risks does agentic coding introduce?</li>
-<li>What has actually gone wrong, and what would have prevented it?</li>
+<li>What has gone wrong in practice, and what would have prevented
+it?</li>
 </ul></div>
 </div>
 </div>
@@ -438,11 +439,11 @@ install instructions.</li>
 belt.</strong> In December 2022, a malicious <code>torchtriton</code>
 package on PyPI shadowed a PyTorch-nightly internal dependency and
 exfiltrated SSH keys and files from thousands of machines. In December
-2024, compromised releases of <code>ultralytics</code> (the hugely
-popular YOLO library) shipped a cryptominer to anyone who installed
-during the affected window. Neither incident involved AI — but an agent
-that <code>pip install</code>s without you watching turns “I’d have
-noticed something off about that name” into “it was in the transcript I
+2024, compromised releases of <code>ultralytics</code> (the widely used
+YOLO library) shipped a cryptominer to anyone who installed during the
+affected window. Neither incident involved AI — but an agent that
+<code>pip install</code>s without you watching turns “I’d have noticed
+something off about that name” into “it was in the transcript I
 skimmed.”</li>
 </ul><p>What to do:</p>
 <ul><li>
@@ -453,8 +454,8 @@ as advisory, per the safety episode).</li>
 <li>
 <strong>Before installing anything an agent suggests, verify it
 exists and is official</strong>: check the registry page, the linked
-source repo, download counts, and release history. Thirty seconds of
-looking defeats most slopsquatting.</li>
+source repo, download counts, and release history. A brief check defeats
+most slopsquatting.</li>
 <li>
 <strong>Pin versions in a lockfile</strong> and prefer environments
 you can rebuild
@@ -539,16 +540,15 @@ needs to write subtly vulnerable code that you trust, run, and ship. And
 in an agentic setup, the trigger can be <em>delivered</em>: prompt
 injection (a poisoned README or issue) plus a backdoored model with tool
 access is a much worse combination than either alone.</p>
-<p>Honest status: <strong>detecting behavioral backdoors is an open
+<p>Current status: <strong>detecting behavioral backdoors is an open
 research problem.</strong> No scanner finds them; benchmarks don’t
-reveal them. Which is why the defenses are the unglamorous ones —
-provenance from heavily scrutinized official sources, extra caution
-before wiring a niche fine-tune into a pipeline with tool access or
-untrusted inputs, and treating model <em>output</em> as untrusted
-regardless of where the weights came from. That last one you already
-have: it’s this lesson’s review-everything discipline, which protects
-you whether the bad code comes from an average-case guess or a
-backdoor.</p>
+reveal them. Which is why the defenses are the routine ones — provenance
+from heavily scrutinized official sources, extra caution before wiring a
+niche fine-tune into a pipeline with tool access or untrusted inputs,
+and treating model <em>output</em> as untrusted regardless of where the
+weights came from. That last one you already have: it’s this lesson’s
+review-everything discipline, which protects you whether the bad code
+comes from an average-case guess or a backdoor.</p>
 </div>
 </section><section><h2 class="section-heading" id="the-tools-themselves-are-attack-surface">The tools themselves are attack surface<a class="anchor" aria-label="anchor" href="#the-tools-themselves-are-attack-surface"></a></h2>
 <hr class="half-width"><p>The agent’s harness — the extension, the CLI, its hooks and configs —
@@ -593,12 +593,12 @@ and API keys — a reminder that provider security practices and legal
 jurisdiction are part of the deal, not a footnote.</li>
 <li>
 <strong>Does an institutional agreement cover this, or is it your
-personal contract?</strong> The classic cautionary tale: in 2023,
-<strong>Samsung</strong> engineers pasted proprietary source code into
-ChatGPT while debugging; the company responded by banning generative AI
-tools internally. An individual subscription gives your institution no
-protections at all — which is why the safety episode’s rule (restricted
-data stays off unvetted tools) exists.</li>
+personal contract?</strong> In 2023, <strong>Samsung</strong> engineers
+pasted proprietary source code into ChatGPT while debugging; the company
+responded by banning generative AI tools internally. An individual
+subscription gives your institution no protections at all — which is why
+the safety episode’s rule (restricted data stays off unvetted tools)
+exists.</li>
 </ol><div class="section level3">
 <h3 id="what-claude-and-copilot-do-by-default-as-of-september-2026">What Claude and Copilot do by default (as of September 2026)<a class="anchor" aria-label="anchor" href="#what-claude-and-copilot-do-by-default-as-of-september-2026"></a></h3>
 <p>The two tools this lesson uses most are a good illustration of how
@@ -626,13 +626,13 @@ privacy settings</a></td>
 settings</a></td>
 </tr></tbody></table><p>Neither is on UW–Madison’s list of vetted AI tools. Policies change;
 check the linked pages rather than this table.</p>
-<div id="free-is-a-price" class="callout">
+<div id="free-services-have-a-cost" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <span class="callout-header">Callout</span>
-<div id="free-is-a-price" class="callout-inner">
-<h3 class="callout-title">Free is a price</h3>
+<div id="free-services-have-a-cost" class="callout-inner">
+<h3 class="callout-title">Free services have a cost</h3>
 <div class="callout-content">
 <p>If a tool or model API is free and isn’t open source running on your
 hardware, ask what the provider gets. Often the answer is: your prompts,
@@ -652,8 +652,8 @@ research.</p>
 (5 minutes)</h3>
 <div class="callout-content">
 <p>For the agentic tool you set up for this workshop, find real answers
-to the four questions above — from the provider’s privacy/data pages,
-not from memory or vibes.</p>
+to the four questions above — from the provider’s privacy and data
+pages, not from memory.</p>
 <ol style="list-style-type: decimal"><li>Training: on or off by default for <em>your</em> plan? Where’s the
 toggle?</li>
 <li>Retention: how long, and what extends it?</li>
@@ -671,14 +671,14 @@ contract?</li>
   What people typically find
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Almost everyone discovers at least one surprise: a training toggle
 they’d never seen, a retention clause tied to the feedback button, or
-the realization that their “institution-adjacent” tool is actually a
-personal agreement. That’s the point — the answers vary by provider
-<em>and by plan tier within a provider</em>, which is why “vet the
-policy” can’t be delegated, even to the agent.</p>
+the realization that their “institution-adjacent” tool is a personal
+agreement. The answers vary by provider <em>and by plan tier within a
+provider</em>, which is why “vet the policy” can’t be delegated, even to
+the agent.</p>
 </div>
 </div>
 </div>
@@ -781,7 +781,7 @@ any links that you are not going to use.
   "url": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/trust.html",
   "identifier": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/trust.html",
   "dateCreated": "2026-08-10",
-  "dateModified": "2026-09-15",
+  "dateModified": "2026-09-16",
   "datePublished": "2026-09-16"
 }
 
