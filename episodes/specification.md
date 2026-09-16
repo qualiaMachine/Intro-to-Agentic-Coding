@@ -222,8 +222,29 @@ specified, checkable, one pull request, reviewed by you.
 - **Weekly merge preparation.** "Summarize what changed on this branch since `main`,
   for the teammates who were not here."
 
-The [documentation](documentation.md) episode covers the first three in more depth,
-and explains why documentation improves later agent sessions.
+### Documentation: notes to your future self and your agent
+
+Documentation deserves more than a place on that list, for three reasons.
+
+- **It is now cheap.** Research code is under-documented because writing docstrings
+  and READMEs lost to the next experiment. The agent has the source of truth in
+  context, and a paragraph of prose is faster to review than an implementation.
+  Ask for docstrings, comments that explain why (not what), a README that says how
+  to run the pipeline end to end, narrated notebooks, and a short end-of-session
+  note on what changed and where to resume.
+- **It becomes context.** Everything you document is read by the agent in later
+  sessions. Agents recover *what* and *how* from code but not *why*, *for whom*, or
+  what the data means. A data dictionary is the difference between an agent that
+  treats `-999` as a measurement and one that knows it is the missing-value code.
+- **Explaining is a check.** To write an accurate docstring the model has to process
+  what the code does, and a mismatch between its explanation and your intent points
+  to a bug or an undocumented decision. Asking "explain in two sentences what this
+  function does and why it exists" is an inexpensive review step.
+
+Generated documentation has the same failure mode as generated code: it reads as
+confident and can be wrong. Read it before committing, update it with the code, and
+periodically ask the agent to verify every claim in the README, docstrings, and
+comments against what the code does, and list every mismatch.
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 
