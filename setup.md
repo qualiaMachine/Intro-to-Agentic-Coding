@@ -4,14 +4,17 @@ title: Setup
 
 ## Summary
 
-To follow along you need four things:
+To follow along you need three things:
 
-1. A working **git** installation and a GitHub account.
-2. A **Python** environment with `pandas`, `scikit-learn`, and `pytest`.
-3. Access to at least one **agentic coding tool**. The lesson is tool-agnostic, so
+1. A **GitHub account** and, if you work locally, a working **git** installation.
+2. Access to at least one **agentic coding tool**. The lesson is tool-agnostic, so
    any agent is acceptable.
-4. A **repository to work on**, ideally your own project, and a way to load any API
+3. A **repository to work on**, ideally your own project, and a way to load any API
    keys that keeps them off disk.
+
+You do not need to install Python. On the recommended web route the agent runs code
+in its own cloud sandbox and installs what the project needs; on the local route the
+dev container image provides Python.
 
 The safety episode's exercise *Get your agent running, safely* covers the first
 session. The checklist at the [end of this page](#before-your-first-session) lists
@@ -32,28 +35,6 @@ on a branch that is not `main`. This is your safety net: `git diff` shows exactl
 an agent did, and `git restore` undoes it.
 
 :::::::::::::::::::::::::::::::::::::::::::::::
-
-## Python environment
-
-Any Python ≥ 3.10 environment works. With conda/mamba:
-
-```bash
-conda create -n agentic python=3.12 pandas scikit-learn pytest
-conda activate agentic
-```
-
-or with pip in a virtual environment:
-
-```bash
-python -m venv .venv && source .venv/bin/activate
-pip install pandas scikit-learn pytest
-```
-
-Verify the environment from the lesson repository:
-
-```bash
-python src/python/verify_environment.py
-```
 
 ## Choose an agentic coding tool
 
