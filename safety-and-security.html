@@ -222,7 +222,6 @@
 <li><a href="#what-an-agent-can-and-cannot-do">What an agent can and cannot do</a></li>
 <li><a href="#the-threat-prompt-injection">The threat: prompt injection</a></li>
 <li><a href="#six-limits-on-what-the-agent-can-access">Six limits on what the agent can access</a></li>
-<li><a href="#summary">Summary</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -479,7 +478,7 @@ allowlist, not the whole internet.</li>
 <strong>Where it runs.</strong> A disposable cloud VM, not your
 laptop.</li>
 <li>
-<strong>Which commands it may run.</strong> Allow and deny
+<strong>Which commands it may run.</strong> Allow, ask, and deny
 rules.</li>
 <li>
 <strong>Which credentials it can see.</strong> A password manager,
@@ -530,7 +529,7 @@ final control, applied after all the others.</li>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
 <p>The setting belongs to the <strong>cloud environment</strong>, not to
 your account. At <a href="https://claude.ai/code" class="external-link">claude.ai/code</a> (or
 in the desktop app’s prompt box), open the environment selector, edit
@@ -548,7 +547,7 @@ code-execution sandbox used by Claude chat and Cowork, not Claude Code
 cloud environments. Documentation: <a href="https://code.claude.com/docs/en/cloud-environments#network-access" class="external-link">Configure
 cloud environments</a>.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
 <p>The setting belongs to the <strong>repository</strong>, and you must
 be a repository administrator to see it: <strong>Settings → Code,
 planning, and automation → Copilot → Cloud agent → Internet
@@ -635,7 +634,7 @@ then a bare local agent (full user access).</p>
 </div>
 </div>
 <div class="section level3">
-<h3 id="command-permissions-are-necessary-but-not-sufficient">3. Command permissions are necessary but not sufficient<a class="anchor" aria-label="anchor" href="#command-permissions-are-necessary-but-not-sufficient"></a></h3>
+<h3 id="set-command-rules-but-beware-loopholes">3. Set command rules, but beware loopholes<a class="anchor" aria-label="anchor" href="#set-command-rules-but-beware-loopholes"></a></h3>
 <p>Allow, ask, and deny rules determine which commands run without
 confirmation. The defaults usually deny nothing, so configure them: deny
 <code>rm -rf</code>, force-push, and reads of <code>.env</code> and
@@ -657,7 +656,7 @@ them:</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-2" class="tab-content">
-<div id="nav-tabpanel-2-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-2-ClaudeCode" role="tabpanel">
+<div id="nav-tabpanel-2-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-2-ClaudeCode">
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">JSON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -669,7 +668,7 @@ them:</p>
 <span id="cb1-6"><a href="#cb1-6" tabindex="-1" aria-label="code-block-1-6"></a><span class="fu">}</span> <span class="fu">}</span></span></code></pre>
 </div>
 </div>
-<div id="nav-tabpanel-2-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-2-GitHubCopilot" role="tabpanel">
+<div id="nav-tabpanel-2-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-2-GitHubCopilot">
 <p>The Copilot CLI has the same idea with its own syntax (<a href="https://docs.github.com/en/copilot/how-tos/copilot-cli/use-copilot-cli/allowing-tools" class="external-link">allowing
 and denying tool use</a>):</p>
 <div class="codewrapper sourceCode" id="cb2">
@@ -689,14 +688,14 @@ reported by Pillar Security): prompt injection set an environment
 variable through a shell built-in that the allowlist did not check, and
 the next approved <code>git</code> command executed the attacker’s code.
 Deny rules reduce risk; the VM boundary is what removes it.</p>
-<div id="instruction-files-influence-the-agent-they-do-not-constrain-it" class="callout">
+<div id="instruction-files-help-but-agents-forget-context-and-find-loopholes" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <span class="callout-header">Callout</span>
-<div id="instruction-files-influence-the-agent-they-do-not-constrain-it" class="callout-inner">
-<h3 class="callout-title">Instruction files influence the agent; they do
-not constrain it</h3>
+<div id="instruction-files-help-but-agents-forget-context-and-find-loopholes" class="callout-inner">
+<h3 class="callout-title">Instruction files help, but agents forget
+context and find loopholes</h3>
 <div class="callout-content">
 <p>An instruction file is a markdown file the agent reads at the start
 of every session containing project context, commands, and conventions.
@@ -783,8 +782,8 @@ CLI documentation</a>.</p>
 <ul><li>Always use version control (GitHub, GitLab, Bitbucket).</li>
 <li>Do not let an agent commit to <code>main</code>. The agent creates a
 feature branch and opens a pull request; you review and merge.</li>
-<li>Review and test code before committing. Make small, frequent
-commits; each is a restore point.</li>
+<li>Review and test code before merging to <code>main</code>. Make
+small, frequent commits; each is a restore point.</li>
 <li>Start from a clean git state, so that <code>git diff</code> shows
 exactly what the agent changed and <code>git restore</code> reverts
 it.</li>
@@ -796,21 +795,13 @@ merge. The verification episode sets this up.</p>
 <h3 id="whom-you-trust-providers-models-repositories">6. Whom you trust: providers, models, repositories<a class="anchor" aria-label="anchor" href="#whom-you-trust-providers-models-repositories"></a></h3>
 <p>The final limit is not enforced by any setting: which providers,
 packages, and model weights you admit into the workflow. Vet a
-provider’s data policy (is my data used for training, and is that the
-default? how long is it retained, and who can see it? where does
-inference run, and under whose jurisdiction? does an institutional
+provider’s data policy (are my data and code used for training, and is
+that the default? how long is it retained, and who can see it? where
+does inference run, and under whose jurisdiction? does an institutional
 agreement cover this, or is it a personal contract?). Treat downloaded
 weights and packages with the caution you would apply to any executable.
 The next episode, <a href="trust.html">trust</a>, covers each with the
 incidents behind the rules.</p>
-</div>
-</section><section><h2 class="section-heading" id="summary">Summary<a class="anchor" aria-label="anchor" href="#summary"></a></h2>
-<hr class="half-width"><p>Follow institutional policy. Know what an agent can and cannot do.
-Anything it reads can carry instructions, so limit what it can do:
-allowlist the network, run it in a cloud VM, set command rules, keep
-keys in a password manager, have it work on a branch you review, and vet
-whom you trust. Instructions influence behavior; permissions constrain
-it.</p>
 <div id="no-agents-on-machines-that-hold-sensitive-or-restricted-data" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -869,16 +860,17 @@ prompt.</strong> It should be pointed at a cloud VM and a GitHub
 repository, not a folder on your laptop. Check the environment’s network
 access setting (limit 1 above) while you are there.</li>
 <li>
-<strong>Use your project repository.</strong> If you have none,
-create one now.</li>
+<strong>Use your project repository.</strong> If your team does not
+have one yet, create your own for today.</li>
 <li>
 <strong>Work on a branch named for you.</strong> Use branches rather
 than forks, so teammates and their agents can see your work. If you lack
 write access, ask the repository owner to add you as a
 collaborator.</li>
 <li>
-<strong>No <code>.env</code> in the repository.</strong> Use
-<code>op read</code> from the 1Password CLI instead.</li>
+<strong>No <code>.env</code> in the repository.</strong> If you use
+one, add it to <code>.gitignore</code>. Prefer <code>op read</code> from
+the 1Password CLI to storing keys anywhere.</li>
 <li>Prompt: <em>“Read this repo and tell me what it’s doing, or
 attempting to do. Do not change anything.”</em> While it works, note
 what it gets right, what it states confidently that you cannot verify,
@@ -939,6 +931,7 @@ cloud-hosted, a branch named for you, no <code>.env</code>.</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
+</div>
 </section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter Bottom"><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="introduction.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>

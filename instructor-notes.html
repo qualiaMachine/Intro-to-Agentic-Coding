@@ -536,7 +536,8 @@ instructor’s screen rather than a hands-on.</p>
 campus-hosted model or compute (the pilot used BadgerBrain, UW–Madison’s
 hosted open-weight models), put the request link on the first slide:
 approvals take days, so file tonight to have it for the next working
-session.</p>
+session. Announce the next working session (time, place, who will be
+there) and that participants should bring what they build tonight.</p>
 <p><strong>Intro.</strong> Callback to the mech suit from kickoff: the
 suit multiplies what the pilot can do, but the pilot is still steering,
 which is the driver’s-seat principle. Ask “anyone want to share
@@ -558,16 +559,16 @@ Claude Code environments, and that the Copilot page is visible only to
 repository admins on a paid plan. The point to make while clicking is
 that a blocked request is fixed by adding the host, not by switching the
 firewall off. The 1Password CLI slides are worth showing live if your
-institution provides it. End with a one-slide recap. For <strong>Get
-your agent running, safely</strong>: helpers circulate; the failure to
-watch for is a desktop app in local mode. Copilot’s app has an explicit
-plan mode, which is clearer to teach; on the Copilot web, planning is
-done via the prompt and gives the same approve-or-exit gate with no
-toggle, so it is acceptable for anyone who can’t install. Team repos:
-one shared repo, everyone on a branch named for them, branches not
-forks; anyone without write access gets added as a collaborator now.
-Cloud sandboxes are usage-billed, so have people confirm their account
-works.</p>
+institution provides it; the JupyterLab detail can be skimmed if time is
+short. For <strong>Get your agent running, safely</strong>: helpers
+circulate; the failure to watch for is a desktop app in local mode.
+Copilot’s app has an explicit plan mode, which is clearer to teach; on
+the Copilot web, planning is done via the prompt and gives the same
+approve-or-exit gate with no toggle, so it is acceptable for anyone who
+can’t install. Team repos: one shared repo, everyone on a branch named
+for them, branches not forks; anyone without write access gets added as
+a collaborator now. Cloud sandboxes are usage-billed, so have people
+confirm their account works.</p>
 <p><strong>Trust (Episode 3) has no dedicated slot.</strong> Its
 headline content — vet the provider (the Claude/Copilot defaults table),
 and model weights are code — is the sixth limit in the safety block.
@@ -599,17 +600,20 @@ to read theirs out. Participants reliably discover that everyone got
 <em>different</em> unaccounted decisions.</p>
 <p><strong>Verification.</strong> Open with the research figures and
 Faros AI’s explanation (larger pull requests, code that reads well but
-is often wrong). Then the before-and-after- every-feature routine: ask
-for assumptions, ask for tests and edge cases, run them, commit.
-<em>Exercise 1: Test the feature you just built</em> applies it to
-feature 1 from before the break; insist on plan mode for the first
-prompt, and timebox. The CI workflow and branch protection can be
-completed after the session. Close the block with the five test prompts
-for good data science practice and the agents-as-data- scientists
-prompt. The brain-decoding leakage exercise was cut from the live
-workshop for time; it remains in the episode as an optional exercise and
-works well as homework, or as the example when a team’s project has
-repeated units (subject, camera burst, page, source document).</p>
+is often wrong), then the pull request as the final human check: it is
+where verification happens, and review by eye does not scale, so the
+rest of the block supplies the tests and checks. Then the
+before-and-after-every-feature routine: ask for assumptions, ask for
+tests and edge cases, run them, commit. <em>Exercise 1: Test the feature
+you just built</em> applies it to feature 1 from before the break;
+insist on plan mode for the first prompt, and timebox. The CI workflow
+and branch protection can be completed after the session. Close the
+block with the five test prompts for good data science practice and the
+agents-as-data- scientists prompt. The brain-decoding leakage exercise
+was cut from the live workshop for time; it remains in the episode as an
+optional exercise and works well as homework, or as the example when a
+team’s project has repeated units (subject, camera burst, page, source
+document).</p>
 <p><strong>MCP and skills.</strong> Pre-test the MCP server and the
 caveman install beforehand so auth and npm aren’t what the room watches.
 Run <code>claude mcp list</code> before and after. For the caveman demo,

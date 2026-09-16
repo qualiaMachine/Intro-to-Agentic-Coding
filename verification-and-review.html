@@ -255,12 +255,14 @@
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#what-the-research-shows-about-checking">What the research shows about checking</a></li>
+<li><a href="#the-pull-request-as-the-final-human-check">The pull request as the final human check</a></li>
+<li><a href="#where-the-review-happens-two-postures">Where the review happens: two postures</a></li>
 <li><a href="#look-for-decisions-you-did-not-make">Look for decisions you did not make</a></li>
+<li><a href="#test-driven-development-write-the-test-first">Test-driven development: write the test first</a></li>
 <li><a href="#agents-speed-up-the-code-good-data-science-practice-still-applies">Agents speed up the code; good data science practice still
 applies</a></li>
 <li><a href="#tests-for-good-data-science-practice">Tests for good data science practice</a></li>
 <li><a href="#agents-as-data-scientists">Agents as data scientists</a></li>
-<li><a href="#where-the-review-happens-two-postures">Where the review happens: two postures</a></li>
 <li><a href="#autonomy-is-purchased-with-verification">Autonomy is purchased with verification</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
@@ -402,6 +404,9 @@ agent-generated analyses.</li>
 and have the agent list its own assumptions.</li>
 <li>After each feature, have the agent propose and add tests, including
 edge cases, and run them before moving on.</li>
+<li>Define test-driven development and apply it to research code: write
+the data or result test first, then have the agent implement against
+it.</li>
 <li>Make verification automatic: tests in CI and a protected
 <code>main</code>.</li>
 <li>Use an agent to reason over saved results and figures, and leave
@@ -437,6 +442,68 @@ the code arriving for review was never review-ready.</p>
 more than it multiplies shipped work, and the wait for human review
 grows most of all.</div>
 </figure><p>The skill this episode teaches is the one in short supply.</p>
+</section><section><h2 class="section-heading" id="the-pull-request-as-the-final-human-check">The pull request as the final human check<a class="anchor" aria-label="anchor" href="#the-pull-request-as-the-final-human-check"></a></h2>
+<hr class="half-width"><p>Every feature comes back as a pull request on a branch. That is the
+git arrangement from the safety episode, and it is where verification
+happens: nothing the agent did reaches <code>main</code> until a person
+approves the diff. The pull-request review is the last control, applied
+after all the others.</p>
+<p>A review done by eye alone does not scale. Pull requests are 51%
+larger under heavy agent use, and the code reads cleanly while being
+wrong. The review therefore needs support: tests that run on every push
+and checks that fail loudly. That support is the subject of the rest of
+this episode.</p>
+</section><section><h2 class="section-heading" id="where-the-review-happens-two-postures">Where the review happens: two postures<a class="anchor" aria-label="anchor" href="#where-the-review-happens-two-postures"></a></h2>
+<hr class="half-width"><p>Agents work on branches, never on <code>main</code>, and someone
+(you, a colleague, or CI) reads the code before it is merged. Within
+those rules, two workable postures differ on when the human review
+happens.</p>
+<p><strong>The pull request is the review gate.</strong> The agent
+commits freely and often to its feature branch as it works. The commit
+log becomes verbose; that is acceptable, because frequent small commits
+are restore points, and an agent’s granular history is more useful than
+the usual human sequence of <code>wip</code>, <code>fix</code>,
+<code>fix again</code>. Your review happens once, on the full
+pull-request diff, as it would for a human collaborator’s branch. This
+posture maintains momentum and concentrates attention where it is most
+effective. It depends on safety nets: a real test suite, CI checks
+gating the merge, and diffs small enough to read in full.</p>
+<p><strong>Review every change as it happens.</strong> You approve each
+edit or commit, staying close to the work in real time. This is slower,
+and appropriate where the safety nets are absent: you are new to the
+tool, the code is sensitive, the tests are thin, or you are still
+establishing what the agent does with your codebase.</p>
+<p>The choice is a calibration, and it maps onto the verification tiers
+at the end of this episode. Throwaway and well-tested working code
+tolerate the pull-request gate; load-bearing code with weak tests calls
+for per-change review, or the gate with a second reviewer. Many people
+use both: the gate for routine feature work, per-change review when
+modifying anything expensive to get wrong. Record the choice in
+<code>CONTRIBUTING.md</code> or the context file so the agent and your
+collaborators both know it.</p>
+<div class="section level3">
+<h3 id="reviewing-in-shared-projects">Reviewing in shared projects<a class="anchor" aria-label="anchor" href="#reviewing-in-shared-projects"></a></h3>
+<p>Two situations change the rules slightly:</p>
+<ul><li>
+<strong>Contributing to a project you do not own.</strong> Read the
+contribution guidelines first (“summarize CONTRIBUTING.md and any
+pull-request conventions in this repo” is a good first prompt), work
+from a fork when you lack write access so no agent has push access to
+the canonical repository, disclose AI assistance where the project
+requires it (The Carpentries has a Generative AI contributions policy,
+for example), and keep pull requests small. Maintainers review in their
+own time, and large diffs are a common reason contributions are
+declined.</li>
+<li>
+<strong>Maintaining a project others contribute to.</strong> Agents
+are useful for triaging issues, drafting release notes from the commit
+history, dependency updates, documentation sweeps, and a first-pass
+review of incoming pull requests (“what does this change, and what
+should a human examine most closely?”). The human retains the merge
+decision. An agent’s review is a brief for your judgment, and incoming
+pull requests are untrusted input: prompt injection through pull-request
+content is a documented pattern.</li>
+</ul></div>
 </section><section><h2 class="section-heading" id="look-for-decisions-you-did-not-make">Look for decisions you did not make<a class="anchor" aria-label="anchor" href="#look-for-decisions-you-did-not-make"></a></h2>
 <hr class="half-width"><p>A well-specified prompt still has unintended consequences. When
 reviewing agent-written analysis code you are not checking syntax; the
@@ -495,6 +562,8 @@ risky ones.</li>
 the full pipeline, including edge cases: empty input, wrong shape,
 duplicates, a sample that lands in both splits, etc. Say which tests
 matter most and why.</li>
+<li>Do not edit anything yet. After I review, implement the tests as an
+automated GitHub Action that will run on each push.</li>
 </ol><p>Do not edit anything yet.</p>
 </blockquote>
 </li>
@@ -505,8 +574,9 @@ result.</p></li>
 Fix what fails, then commit.</p></li>
 <li><p><strong>Make it automatic.</strong> A GitHub Actions workflow can
 run <code>pytest</code> on every push (<a href="https://docs.github.com/en/actions/use-cases-and-examples/building-and-testing/building-and-testing-python" class="external-link">GitHub
-Actions for Python</a>); ask the agent to write it. Protect
-<code>main</code> so that a failing check blocks the merge (<a href="https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches" class="external-link">about
+Actions for Python</a>); the prompt’s third step asks the agent to write
+it. Protect <code>main</code> so that a failing check blocks the merge
+(<a href="https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches" class="external-link">about
 protected branches</a>).</p></li>
 </ol><div class="tabs">
 <nav><div id="nav-tab-1" class="nav nav-tabs" role="tablist">
@@ -547,7 +617,7 @@ the editor.</p>
   Why this works
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>A methodological requirement that was previously implicit is now an
 executable contract. The agent has a feedback loop that fails when it
@@ -565,6 +635,30 @@ the same care as the implementation.</p>
 </div>
 </div>
 </div>
+</section><section><h2 class="section-heading" id="test-driven-development-write-the-test-first">Test-driven development: write the test first<a class="anchor" aria-label="anchor" href="#test-driven-development-write-the-test-first"></a></h2>
+<hr class="half-width"><p>The tests in Exercise 1 were written after the code. That is the
+common order, and it has a known weakness: a test written after the fact
+tends to describe what the code does, not what it should do, so it
+preserves whatever the agent decided. <strong>Test-driven development
+(TDD)</strong> reverses the order. You write a test that states the
+required behavior, watch it fail, and only then write (or have the agent
+write) the code that makes it pass. The test is the specification, and
+the code is judged against it rather than the other way round.</p>
+<p>With an agent, this order has a second benefit. A test the agent must
+make pass is an executable feedback loop: the agent runs it, reads the
+failure, and revises, without you as the only check. The prompt becomes
+“make <code>pytest tests/test_feature2.py</code> pass” instead of a
+paragraph of prose, and the acceptance criterion cannot drift.</p>
+<p>The alternative for the next feature, then, is: before prompting,
+write one test that encodes what “correct” means for this step, commit
+it, and ask the agent to implement against it. You decide what must be
+true; the agent does the work of satisfying it.</p>
+<p>For research code, the tests worth writing first are rarely about
+function signatures. They are about the data and the result: the row
+count and class balance you expect, a hand-checked subset the pipeline
+must reproduce, a metric that must be stable across seeds, a split that
+must not leak. Those are the tests in the next section, and they are
+this lesson’s form of test-driven development.</p>
 </section><section><h2 class="section-heading" id="agents-speed-up-the-code-good-data-science-practice-still-applies">Agents speed up the code; good data science practice still
 applies<a class="anchor" aria-label="anchor" href="#agents-speed-up-the-code-good-data-science-practice-still-applies"></a></h2>
 <hr class="half-width"><p>Research computing already had an answer to “how do I know this
@@ -592,7 +686,9 @@ which means you can be misled in minutes as well. The checking has to
 keep pace.</p>
 </section><section><h2 class="section-heading" id="tests-for-good-data-science-practice">Tests for good data science practice<a class="anchor" aria-label="anchor" href="#tests-for-good-data-science-practice"></a></h2>
 <hr class="half-width"><p>Each of the practices above can be written as a test the agent
-implements and CI runs. Prompts to start from:</p>
+implements and CI runs. Written before the feature they protect, they
+are test-driven development for research code. Prompts to start
+from:</p>
 <ul><li>
 <strong>Know your data.</strong> <em>Write a test that loads the raw
 data and asserts the row count, class balance and missing-value rate we
@@ -687,7 +783,7 @@ assertion that would have caught it.</p>
   The bug, and the assertion that catches it
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Every subject appears in both splits. The model learned to identify
 each person, not what they were looking at. On a new subject the score
@@ -719,57 +815,6 @@ good”, you and the agent have the same blind spot.</p>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="where-the-review-happens-two-postures">Where the review happens: two postures<a class="anchor" aria-label="anchor" href="#where-the-review-happens-two-postures"></a></h2>
-<hr class="half-width"><p>Agents work on branches, never on <code>main</code>, and someone
-(you, a colleague, or CI) reads the code before it is merged. Within
-those rules, two workable postures differ on when the human review
-happens.</p>
-<p><strong>The pull request is the review gate.</strong> The agent
-commits freely and often to its feature branch as it works. The commit
-log becomes verbose; that is acceptable, because frequent small commits
-are restore points, and an agent’s granular history is more useful than
-the usual human sequence of <code>wip</code>, <code>fix</code>,
-<code>fix again</code>. Your review happens once, on the full
-pull-request diff, as it would for a human collaborator’s branch. This
-posture maintains momentum and concentrates attention where it is most
-effective. It depends on safety nets: a real test suite, CI checks
-gating the merge, and diffs small enough to read in full.</p>
-<p><strong>Review every change as it happens.</strong> You approve each
-edit or commit, staying close to the work in real time. This is slower,
-and appropriate where the safety nets are absent: you are new to the
-tool, the code is sensitive, the tests are thin, or you are still
-establishing what the agent does with your codebase.</p>
-<p>The choice is a calibration, and it maps onto the verification tiers
-below. Throwaway and well-tested working code tolerate the pull-request
-gate; load-bearing code with weak tests calls for per-change review, or
-the gate with a second reviewer. Many people use both: the gate for
-routine feature work, per-change review when modifying anything
-expensive to get wrong. Record the choice in
-<code>CONTRIBUTING.md</code> or the context file so the agent and your
-collaborators both know it.</p>
-<div class="section level3">
-<h3 id="reviewing-in-shared-projects">Reviewing in shared projects<a class="anchor" aria-label="anchor" href="#reviewing-in-shared-projects"></a></h3>
-<p>Two situations change the rules slightly:</p>
-<ul><li>
-<strong>Contributing to a project you do not own.</strong> Read the
-contribution guidelines first (“summarize CONTRIBUTING.md and any
-pull-request conventions in this repo” is a good first prompt), work
-from a fork when you lack write access so no agent has push access to
-the canonical repository, disclose AI assistance where the project
-requires it (The Carpentries has a Generative AI contributions policy,
-for example), and keep pull requests small. Maintainers review in their
-own time, and large diffs are a common reason contributions are
-declined.</li>
-<li>
-<strong>Maintaining a project others contribute to.</strong> Agents
-are useful for triaging issues, drafting release notes from the commit
-history, dependency updates, documentation sweeps, and a first-pass
-review of incoming pull requests (“what does this change, and what
-should a human examine most closely?”). The human retains the merge
-decision. An agent’s review is a brief for your judgment, and incoming
-pull requests are untrusted input: prompt injection through pull-request
-content is a documented pattern.</li>
-</ul></div>
 </section><section><h2 class="section-heading" id="autonomy-is-purchased-with-verification">Autonomy is purchased with verification<a class="anchor" aria-label="anchor" href="#autonomy-is-purchased-with-verification"></a></h2>
 <hr class="half-width"><p>The highest-leverage practice in agentic coding is to make
 verification executable. Agents perform markedly better when they can
@@ -809,12 +854,19 @@ reviewer</td>
 <ul><li>Checking is the bottleneck. Agents multiply commits far more than
 releases, pull requests are larger and harder to review, and unreviewed
 merges increase. Verification is the scarce skill.</li>
+<li>The pull request is the final human check. Review by eye alone does
+not scale, so it needs tests on every push and checks that fail
+loudly.</li>
 <li>Established practice still applies: know your data, compare to a
 source of truth, know what your model responds to, reproduce the result,
 plot and review.</li>
-<li>Each good-practice item can be a test the agent writes and CI runs:
-data expectations, a hand-checked subset, seed stability, sensible top
-predictors, no leakage.</li>
+<li>Test-driven development reverses the usual order: write the test
+that states the required behavior first, then have the agent make it
+pass. The test is the specification.</li>
+<li>For research code, the tests to write first are about the data and
+the result: data expectations, a hand-checked subset, seed stability,
+sensible top predictors, no leakage. Each can be a test the agent writes
+and CI runs.</li>
 <li>Split by the unit that repeats, and assert it. A clean-running 0.91
 can be 0.58 on unseen subjects.</li>
 <li>After every feature, before the next: have the agent list its

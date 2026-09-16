@@ -514,12 +514,19 @@ small-specified-checkable rules.</li>
 <li>Checking is the bottleneck. Agents multiply commits far more than
 releases, pull requests are larger and harder to review, and unreviewed
 merges increase. Verification is the scarce skill.</li>
+<li>The pull request is the final human check. Review by eye alone does
+not scale, so it needs tests on every push and checks that fail
+loudly.</li>
 <li>Established practice still applies: know your data, compare to a
 source of truth, know what your model responds to, reproduce the result,
 plot and review.</li>
-<li>Each good-practice item can be a test the agent writes and CI runs:
-data expectations, a hand-checked subset, seed stability, sensible top
-predictors, no leakage.</li>
+<li>Test-driven development reverses the usual order: write the test
+that states the required behavior first, then have the agent make it
+pass. The test is the specification.</li>
+<li>For research code, the tests to write first are about the data and
+the result: data expectations, a hand-checked subset, seed stability,
+sensible top predictors, no leakage. Each can be a test the agent writes
+and CI runs.</li>
 <li>Split by the unit that repeats, and assert it. A clean-running 0.91
 can be 0.58 on unseen subjects.</li>
 <li>After every feature, before the next: have the agent list its

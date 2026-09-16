@@ -247,7 +247,7 @@
       <div class="accordion-body">
         <ul><li><a href="#the-agent-is-not-a-magic-wand">The agent is not a magic wand</a></li>
 <li><a href="#work-feature-by-feature-not-project-by-project">Work feature by feature, not project by project</a></li>
-<li><a href="#underspecified-does-not-mean-random">Underspecified does not mean random</a></li>
+<li><a href="#a-bad-prompt-does-not-return-random-results">A bad prompt does not return random results</a></li>
 <li><a href="#guide-the-agent-with-clear-instructions">Guide the agent with clear instructions</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
@@ -404,7 +404,7 @@ agent made on your behalf.</li>
 </div>
 </div>
 <section><h2 class="section-heading" id="the-agent-is-not-a-magic-wand">The agent is not a magic wand<a class="anchor" aria-label="anchor" href="#the-agent-is-not-a-magic-wand"></a></h2>
-<hr class="half-width"><p>Most frustration with agents comes from using them as one: describe
+<hr class="half-width"><p>Some frustration with agents comes from using them as one: describe
 the whole project, wait, and receive something plausible and wrong. This
 style of use is sometimes called vibe coding. The remedy is a person in
 the loop who knows the domain. You decide what to build next; the agent
@@ -429,7 +429,7 @@ review in full. A project-sized prompt produces worse code and a diff
 too large to review, at which point you have given up control without
 deciding to.</li>
 </ul><p>A whole-project prompt produces whole-project guesses.</p>
-</section><section><h2 class="section-heading" id="underspecified-does-not-mean-random">Underspecified does not mean random<a class="anchor" aria-label="anchor" href="#underspecified-does-not-mean-random"></a></h2>
+</section><section><h2 class="section-heading" id="a-bad-prompt-does-not-return-random-results">A bad prompt does not return random results<a class="anchor" aria-label="anchor" href="#a-bad-prompt-does-not-return-random-results"></a></h2>
 <hr class="half-width"><p>When a request is ambiguous, the agent does not fail and does not
 choose at random. It fills each gap in the specification with the most
 statistically typical choice from its training data: the most common
@@ -506,14 +506,14 @@ work. Run the tests; confirm the row count is unchanged; print the class
 balance before and after.</li>
 </ul><p>The last item leads into the next episode. A prompt that includes its
 own check is worth more than one that does not.</p>
-<div id="exercise-implement-feature-or-step-1-from-your-plan-15-minutes" class="callout challenge">
+<div id="exercise-implement-feature-1-from-your-plan-15-minutes" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <span class="callout-header">Challenge</span>
-<div id="exercise-implement-feature-or-step-1-from-your-plan-15-minutes" class="callout-inner">
-<h3 class="callout-title">Exercise: Implement feature (or step) 1 from
-your plan (15 minutes)</h3>
+<div id="exercise-implement-feature-1-from-your-plan-15-minutes" class="callout-inner">
+<h3 class="callout-title">Exercise: Implement feature 1 from your plan
+(15 minutes)</h3>
 <div class="callout-content">
 <p>Take feature 1 from your <code>plan.md</code>, or any feature you
 want to add.</p>
@@ -554,12 +554,12 @@ it decide that you did not specify?</p></li>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
 <p>Start a fresh session (or <code>/clear</code>) so the feature begins
 with a clean context. On the web, the work is returned as a branch;
 locally, confirm that it created one before editing.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
 <p>Use <strong>Agent</strong> mode in a <strong>New Chat</strong>, or
 delegate the prompt to the cloud coding agent and review the draft pull
 request it opens.</p>
@@ -587,7 +587,7 @@ printed majority-class baseline alongside the test accuracy.</p>
   Typical results
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The request to list unspecified choices is the most informative line
 in the template. Typical answers: a random seed, a default imputation,
@@ -602,11 +602,12 @@ them.</p>
 </div>
 </div>
 </div>
-<p>:## Maintenance tasks agents do well</p>
-<p>Not every feature is new analysis. Agents are reliably good at the
-routine work that keeps a research repository usable, provided each task
-is treated as a feature: small, specified, checkable, one pull request,
-reviewed by you.</p>
+<p>:## Give your agent maintenance tasks</p>
+<p>If you are new to agentic workflows, as most people are, consider
+starting with maintenance tasks, which agents do particularly well. They
+are the routine work that keeps a research repository usable, and each
+should be treated as a feature: small, specified, checkable, one pull
+request, reviewed by you.</p>
 <ul><li>
 <strong>Refactoring.</strong> Split the 400-line notebook into
 functions and a script. Tests pass before and after, or the refactor is
