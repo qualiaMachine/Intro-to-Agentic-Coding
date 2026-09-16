@@ -345,19 +345,7 @@
 <div class="accordion accordion-flush" id="accordionFlush11">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading11">
-        <a href="common-workflows.html">10. Common Workflows</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush12">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading12">
-        <a href="research-and-outlook.html">11. What the Research Shows, and Where This Leaves Us</a>
+        <a href="research-and-outlook.html">10. What the Research Shows, and Where This Leaves Us</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -876,7 +864,7 @@ final control, applied after all the others.</li>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
 <p>The setting belongs to the <strong>cloud environment</strong>, not to
 your account. At <a href="https://claude.ai/code" class="external-link">claude.ai/code</a> (or
 in the desktop app’s prompt box), open the environment selector, edit
@@ -894,7 +882,7 @@ code-execution sandbox used by Claude chat and Cowork, not Claude Code
 cloud environments. Documentation: <a href="https://code.claude.com/docs/en/cloud-environments#network-access" class="external-link">Configure
 cloud environments</a>.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
 <p>The setting belongs to the <strong>repository</strong>, and you must
 be a repository administrator to see it: <strong>Settings → Code,
 planning, and automation → Copilot → Cloud agent → Internet
@@ -1025,7 +1013,7 @@ them:</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-2" class="tab-content">
-<div id="nav-tabpanel-2-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-2-ClaudeCode">
+<div id="nav-tabpanel-2-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-2-ClaudeCode" role="tabpanel">
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">JSON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1037,7 +1025,7 @@ them:</p>
 <span id="cb1-6"><a href="#cb1-6" tabindex="-1" aria-label="code-block-1-6"></a><span class="fu">}</span> <span class="fu">}</span></span></code></pre>
 </div>
 </div>
-<div id="nav-tabpanel-2-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-2-GitHubCopilot">
+<div id="nav-tabpanel-2-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-2-GitHubCopilot" role="tabpanel">
 <p>The Copilot CLI has the same idea with its own syntax (<a href="https://docs.github.com/en/copilot/how-tos/copilot-cli/use-copilot-cli/allowing-tools" class="external-link">allowing
 and denying tool use</a>):</p>
 <div class="codewrapper sourceCode" id="cb2">
@@ -1959,14 +1947,15 @@ may never modify) and put it in your context file.</p>
 <p>It is short. A branch-name pattern
 (<code>&lt;name&gt;/&lt;feature&gt;</code>); a pull-request size people
 will review in full (a few hundred lines at most); one named reviewer
-per pull request; a list of paths the agent may not modify without
-asking (<code>data/raw/</code>, the scoring function,
-<code>main</code>); a rule for avoiding collisions (one feature per
-branch, claimed in the plan); and a commit-message format. Agents draft
-a reasonable first version because conventions are the average case.
-Your contribution is removing what the team will not do. The rules are
-advisory for the agent; back the important ones with branch
-protection.</p>
+per pull request, and whether review happens at the pull request or on
+every change (the verification episode compares the two); a list of
+paths the agent may not modify without asking (<code>data/raw/</code>,
+the scoring function, <code>main</code>); a rule for avoiding collisions
+(one feature per branch, claimed in the plan); and a commit-message
+format. Agents draft a reasonable first version because conventions are
+the average case. Your contribution is removing what the team will not
+do. The rules are advisory for the agent; back the important ones with
+branch protection.</p>
 </div>
 </div>
 </div>
@@ -2406,7 +2395,7 @@ printed majority-class baseline alongside the test accuracy.</p>
   Typical results
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The request to list unspecified choices is the most informative line
 in the template. Typical answers: a random seed, a default imputation,
@@ -2655,13 +2644,13 @@ protected branches</a>).</p></li>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
 <p>Plan mode for step 1 (<kbd>Shift</kbd>+<kbd>Tab</kbd> locally; on the
 web, the “do not edit” line has the same effect). For steps 3 and 4
 switch to normal mode. Claude will run <code>pytest</code> itself
 (approve the command) and iterate until it passes.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
 <p><strong>Ask</strong> mode with <code>@workspace</code> for step 1;
 <strong>Agent</strong> mode for steps 3 and 4. Copilot proposes the
 <code>pytest</code> run in the terminal and waits for approval. The
@@ -2680,7 +2669,7 @@ the editor.</p>
   Why this works
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>A methodological requirement that was previously implicit is now an
 executable contract. The agent has a feedback loop that fails when it
@@ -2831,7 +2820,7 @@ assertion that would have caught it.</p>
   The bug, and the assertion that catches it
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Every subject appears in both splits. The model learned to identify
 each person, not what they were looking at. On a new subject the score
@@ -2862,6 +2851,62 @@ good”, you and the agent have the same blind spot.</p>
 </div>
 </div>
 </div>
+</div>
+</section><section><h2 class="section-heading" id="where-the-review-happens-two-postures">Where the review happens: two postures<a class="anchor" aria-label="anchor" href="#where-the-review-happens-two-postures"></a>
+</h2>
+<hr class="half-width">
+<p>Agents work on branches, never on <code>main</code>, and someone
+(you, a colleague, or CI) reads the code before it is merged. Within
+those rules, two workable postures differ on when the human review
+happens.</p>
+<p><strong>The pull request is the review gate.</strong> The agent
+commits freely and often to its feature branch as it works. The commit
+log becomes verbose; that is acceptable, because frequent small commits
+are restore points, and an agent’s granular history is more useful than
+the usual human sequence of <code>wip</code>, <code>fix</code>,
+<code>fix again</code>. Your review happens once, on the full
+pull-request diff, as it would for a human collaborator’s branch. This
+posture maintains momentum and concentrates attention where it is most
+effective. It depends on safety nets: a real test suite, CI checks
+gating the merge, and diffs small enough to read in full.</p>
+<p><strong>Review every change as it happens.</strong> You approve each
+edit or commit, staying close to the work in real time. This is slower,
+and appropriate where the safety nets are absent: you are new to the
+tool, the code is sensitive, the tests are thin, or you are still
+establishing what the agent does with your codebase.</p>
+<p>The choice is a calibration, and it maps onto the verification tiers
+below. Throwaway and well-tested working code tolerate the pull-request
+gate; load-bearing code with weak tests calls for per-change review, or
+the gate with a second reviewer. Many people use both: the gate for
+routine feature work, per-change review when modifying anything
+expensive to get wrong. Record the choice in
+<code>CONTRIBUTING.md</code> or the context file so the agent and your
+collaborators both know it.</p>
+<div class="section level3">
+<h3 id="reviewing-in-shared-projects">Reviewing in shared projects<a class="anchor" aria-label="anchor" href="#reviewing-in-shared-projects"></a>
+</h3>
+<p>Two situations change the rules slightly:</p>
+<ul>
+<li>
+<strong>Contributing to a project you do not own.</strong> Read the
+contribution guidelines first (“summarize CONTRIBUTING.md and any
+pull-request conventions in this repo” is a good first prompt), work
+from a fork when you lack write access so no agent has push access to
+the canonical repository, disclose AI assistance where the project
+requires it (The Carpentries has a Generative AI contributions policy,
+for example), and keep pull requests small. Maintainers review in their
+own time, and large diffs are a common reason contributions are
+declined.</li>
+<li>
+<strong>Maintaining a project others contribute to.</strong> Agents
+are useful for triaging issues, drafting release notes from the commit
+history, dependency updates, documentation sweeps, and a first-pass
+review of incoming pull requests (“what does this change, and what
+should a human examine most closely?”). The human retains the merge
+decision. An agent’s review is a brief for your judgment, and incoming
+pull requests are untrusted input: prompt injection through pull-request
+content is a documented pattern.</li>
+</ul>
 </div>
 </section><section><h2 class="section-heading" id="autonomy-is-purchased-with-verification">Autonomy is purchased with verification<a class="anchor" aria-label="anchor" href="#autonomy-is-purchased-with-verification"></a>
 </h2>
@@ -2935,6 +2980,11 @@ assumptions, propose tests and edge cases, add them, and run them. Then
 commit.</li>
 <li>Make verification automatic: tests in CI and a protected
 <code>main</code>. Autonomy is purchased with verification.</li>
+<li>Choose a review posture deliberately: the pull request as the gate
+(the agent commits freely; one full review of the diff) when tests and
+CI support it; per-change review when they do not. Incoming pull
+requests on a shared project are untrusted input, and the human makes
+the merge decision.</li>
 <li>Leave evidence in the repository and direct the agent to it. It
 reads figures and metrics, but only those you name, and you check every
 number it cites.</li>
@@ -2984,6 +3034,8 @@ and MCP (the agent discovers and calls tools itself).</li>
 tool.</li>
 <li>Install a published skill, trigger it, and explain what
 changed.</li>
+<li>Distinguish a context file, a skill, a hook, and an MCP server, and
+choose the right one for a recurring workflow.</li>
 <li>Apply the safety episode’s trust rules to a new MCP connection or
 skill.</li>
 <li>Locate community skill and MCP directories to check before building
@@ -3114,7 +3166,7 @@ episode.</p>
   What this shows
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The agent is now calling GitHub’s API rather than answering from
 training data. Ask yourself what wider access it would need to do the
@@ -3238,7 +3290,7 @@ and the instructions:</p>
   From the demonstration to real use
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>The caveman skill demonstrates the mechanism. The practical use is
 packaging an instruction you would otherwise repeat. Choose one thing
@@ -3251,6 +3303,27 @@ instructions generally.</p>
 </div>
 </div>
 </div>
+</section><section><h2 class="section-heading" id="hooks-and-when-to-codify-what">Hooks, and when to codify what<a class="anchor" aria-label="anchor" href="#hooks-and-when-to-codify-what"></a>
+</h2>
+<hr class="half-width">
+<p>Skills and MCP are two of four ways to record a recurring workflow
+instead of re-prompting it. The other two:</p>
+<ul>
+<li>
+<strong>The project context file</strong> (<code>CLAUDE.md</code>,
+<code>AGENTS.md</code>, <code>copilot-instructions.md</code>) holds
+standing instructions the agent reads every session. It is
+advisory.</li>
+<li>
+<strong>Hooks</strong> are deterministic scripts that run at fixed
+points, such as after every edit or before every commit. Unlike
+context-file instructions and skills, which the model may or may not
+follow, hooks always run. Use them for rules that must never be skipped:
+run the linter, block writes to <code>data/raw/</code>.</li>
+</ul>
+<p>A reasonable progression: context file first; a skill when you notice
+yourself repeating instructions; a hook when a rule needs enforcement
+rather than a reminder; MCP when the agent needs an external system.</p>
 </section><section><h2 class="section-heading" id="where-to-find-more">Where to find more<a class="anchor" aria-label="anchor" href="#where-to-find-more"></a>
 </h2>
 <hr class="half-width">
@@ -3304,6 +3377,8 @@ protocol. Connecting one is comparable to installing a plugin.</li>
 <li>A skill is a procedure: packaged instructions loaded on demand, with
 no server and no network. It saves context because it expands only when
 relevant.</li>
+<li>Context file, then skills, then hooks (which always run), then MCP:
+codify a workflow at the lowest level that enforces what you need.</li>
 <li>Everything an MCP tool returns is untrusted input. Scope tokens to
 the minimum and configure per project.</li>
 <li>Vet a skill or MCP server before installing it, regardless of the
@@ -3493,7 +3568,7 @@ benchmarks.</li>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
 <ul>
 <li>
 <code>/cost</code>: what the current session has consumed;
@@ -3511,7 +3586,7 @@ matters.</li>
 direction.</li>
 </ul>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
 <ul>
 <li>Check credit and premium-request usage on the <a href="https://github.com/settings/copilot" class="external-link">Copilot settings page</a>.
 Model choice changes the rate.</li>
@@ -3581,7 +3656,7 @@ most? Was it a vague prompt that produced a loop?</li>
   Typical findings
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Most workshop sessions come to a few watt-hours, a small percentage
 of a dishwasher cycle. The informative result is usually the third item:
@@ -3837,253 +3912,6 @@ is a bug report; a surprising explanation is a lead.</li>
 <li>Review generated documentation as you would code, and update it with
 the code. Periodically have the agent audit every documented claim
 against the code.</li>
-</ul>
-</div>
-</div>
-</div>
-<!--
-Place links that you need to refer to multiple times across pages here. Delete
-any links that you are not going to use.
- -->
-</section></section><section id="aio-common-workflows"><p>Content from <a href="common-workflows.html">Common Workflows</a></p>
-<hr>
-<p>Last updated on 2026-09-16 |
-
-        <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/common-workflows.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 16 minutes</p>
-<div class="text-end">
-          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
-        </div>
-<div class="overview card">
-<h2 class="card-header">Overview</h2>
-<div class="row g-0">
-<div class="col-md-4">
-<div class="card-body">
-<div class="inner">
-<h3 class="card-title">Questions</h3>
-<ul>
-<li>How do experienced users structure day-to-day work with agents?</li>
-<li>Should I review every commit, or review at the pull request?</li>
-<li>How do agent workflows change when I contribute to, or maintain, a
-shared project?</li>
-<li>What are skills, hooks, and MCP, and when do I need them?</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="col-md-8">
-<div class="card-body">
-<div class="inner bordered">
-<h3 class="card-title">Objectives</h3>
-<ul>
-<li>Choose a review posture (per-commit or pull-request-as-gate)
-deliberately, matched to stakes and safety nets.</li>
-<li>Adapt agent workflows for contributing to projects you do not own
-and for maintaining projects others contribute to.</li>
-<li>Recognize when to codify a recurring workflow as a skill, a hook, or
-an MCP integration.</li>
-<li>Write a short workflow contract into your project context file.</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
-<p>The workshop episodes covered principles. This episode, intended for
-reading after the workshop, describes the recurring shapes of day-to-day
-agentic work. None is the single correct approach. The aim is to choose
-a pattern deliberately and record it, rather than improvise it in each
-session.</p>
-<section><h2 class="section-heading" id="two-review-postures">Two review postures<a class="anchor" aria-label="anchor" href="#two-review-postures"></a>
-</h2>
-<hr class="half-width">
-<p>The non-negotiable rules are that agents work on branches, never on
-<code>main</code>, and that someone (you, a colleague, or CI) reads the
-code before it is merged. Within those rules, two workable postures
-differ on when the human review happens.</p>
-<p><strong>Posture A: the pull request is the review gate.</strong> The
-agent commits freely and often to its feature branch as it works. The
-commit log becomes verbose; that is acceptable, because frequent small
-commits are restore points, and an agent’s granular history is more
-useful than the usual human sequence of <code>wip</code>,
-<code>fix</code>, <code>fix again</code>. Your review happens once, on
-the full pull-request diff, as it would for a human collaborator’s
-branch. This posture maintains momentum and concentrates attention where
-it is most effective. It depends on safety nets: a real test suite, CI
-checks gating the merge, and diffs small enough to read in full
-(feature-sized, as described in the feature-based-development
-episode).</p>
-<p><strong>Posture B: review every change as it happens.</strong> You
-approve each edit or commit, staying close to the work in real time.
-This is slower, and appropriate where posture A’s safety nets are
-absent: you are new to the tool, the code is sensitive, the tests are
-thin, or you are still establishing what the agent does with your
-codebase.</p>
-<p>The choice is a calibration, and it maps onto the verification tiers.
-Throwaway and well-tested working code tolerate posture A; load-bearing
-code with weak tests calls for posture B, or A with a second reviewer.
-Many people use both: A for routine feature work, B when modifying
-anything expensive to get wrong.</p>
-</section><section><h2 class="section-heading" id="contributing-to-projects-you-do-not-own">Contributing to projects you do not own<a class="anchor" aria-label="anchor" href="#contributing-to-projects-you-do-not-own"></a>
-</h2>
-<hr class="half-width">
-<p>Agent workflows change when the repository belongs to a
-community:</p>
-<ul>
-<li>
-<strong>Read the contribution guidelines first.</strong> The agent
-can help: “summarize CONTRIBUTING.md and any pull-request conventions in
-this repo” is a good first prompt. Then follow them, including
-commit-message and branch-naming conventions.</li>
-<li>
-<strong>Work from a fork</strong> when you lack write access. That
-is the intended flow for most community projects, and it means no agent
-has push access to the canonical repository.</li>
-<li>
-<strong>Disclose AI assistance when the project requires
-it.</strong> Many projects now have explicit policies; The Carpentries
-has a Generative AI contributions policy, for example. Disclosure is
-inexpensive; a discovered violation is not.</li>
-<li>
-<strong>Keep pull requests small and self-explanatory.</strong>
-Maintainers review in their own time. An agent makes large diffs easy to
-produce, and large diffs are a common reason contributions are declined.
-One focused change, well described, with tests.</li>
-</ul></section><section><h2 class="section-heading" id="maintaining-a-project-others-contribute-to">Maintaining a project others contribute to<a class="anchor" aria-label="anchor" href="#maintaining-a-project-others-contribute-to"></a>
-</h2>
-<hr class="half-width">
-<p>On the receiving side, agents are useful for routine maintenance:
-summarizing and triaging issues, drafting release notes and changelogs
-from the commit history, dependency-update pull requests,
-documentation-freshness sweeps, and a first-pass review of incoming pull
-requests (“what does this change, and what should a human examine most
-closely?”). The human retains the merge decision. An agent’s review is a
-brief for your judgment, not a substitute for it. As the trust episode
-noted, incoming pull requests are untrusted input, and prompt injection
-through pull-request content is a documented pattern.</p>
-</section><section><h2 class="section-heading" id="codifying-workflows-skills-hooks-and-mcp">Codifying workflows: skills, hooks, and MCP<a class="anchor" aria-label="anchor" href="#codifying-workflows-skills-hooks-and-mcp"></a>
-</h2>
-<hr class="half-width">
-<p>When the same workflow recurs, the tools provide ways to record it
-once instead of re-prompting it:</p>
-<ul>
-<li>
-<strong>Skills</strong> are reusable, on-demand instruction
-packages: a release checklist, a group’s analysis conventions, a “new
-episode” template. They load only when relevant, so they do not enlarge
-every session the way an overgrown context file does.</li>
-<li>
-<strong>Hooks</strong> are deterministic scripts that run at fixed
-points (after every edit, before every commit). Unlike context-file
-instructions, which are advisory, hooks always run. Use them for rules
-that must never be skipped, such as running the linter or blocking
-writes to <code>data/raw/</code>.</li>
-<li>
-<strong>MCP (Model Context Protocol)</strong> connects the agent to
-external systems: an issue tracker, a database, a lab notebook. Each
-connection widens what the agent can reach, so apply the trust episode’s
-rules before adding one: minimum access, and treat what comes back as
-untrusted input. The <a href="skills-and-mcp.html">MCP and skills</a>
-episode has hands-on exercises for both.</li>
-</ul>
-<p>A reasonable progression: context file first; skills when you notice
-yourself repeating instructions; hooks when a rule needs enforcement
-rather than a reminder; MCP when the agent needs an external system.</p>
-<div id="exercise-write-your-workflow-contract-6-minutes" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<span class="callout-header">Challenge</span>
-<div id="exercise-write-your-workflow-contract-6-minutes" class="callout-inner">
-<h3 class="callout-title">Exercise: Write your workflow contract (6
-minutes)</h3>
-<div class="callout-content">
-<p>If your team completed the planning episode’s exercise on working
-together, you already have a <code>CONTRIBUTING.md</code>. This is the
-individual version, and an opportunity to add the review-posture
-decision to it. Add a short “Workflow” section to a project context file
-(or draft one in a scratch file): three to five rules that make your
-chosen pattern explicit.</p>
-<div class="tabs">
-<nav><div id="nav-tab-1" class="nav nav-tabs" role="tablist">
-<button class="nav-link active" id="nav-tab-1-ClaudeCode" name="ClaudeCode" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-ClaudeCode" type="button" role="tab" aria-controls="nav-tabpanel-1-ClaudeCode" aria-selected="true">
-  <h3 class="tab-header" id="nav-tab-heading-1-ClaudeCode">
-  Claude Code
-  </h3>
-</button>
-<button class="nav-link" id="nav-tab-1-GitHubCopilot" name="GitHubCopilot" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-GitHubCopilot" type="button" role="tab" aria-controls="nav-tabpanel-1-GitHubCopilot" aria-selected="false">
-  <h3 class="tab-header" id="nav-tab-heading-1-GitHubCopilot">
-  GitHub Copilot
-  </h3>
-</button>
-</div>
-</nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
-<p>The file is <code>CLAUDE.md</code> at the repository root. Create it
-if the project has none.</p>
-</div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
-<p>The file is <code>.github/copilot-instructions.md</code>. The
-cross-tool convention <code>AGENTS.md</code> also works in tools that
-support it.</p>
-</div>
-</div>
-</div>
-<p>For example:</p>
-<div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">MARKDOWN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode markdown" tabindex="0"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="fu">## Workflow</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="ss">- </span>Agents work on feature branches (<span class="in">`feat/&lt;name&gt;`</span>); never commit to main</span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a><span class="ss">- </span>Commit freely on the branch; review happens at the PR (Posture A)</span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1" aria-label="code-block-1-4"></a><span class="ss">- </span>Every PR: tests pass locally, diff under ~300 lines, description says how to verify</span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1" aria-label="code-block-1-5"></a><span class="ss">- </span>Never modify <span class="in">`data/raw/`</span> or <span class="in">`results/`</span>; never force-push</span></code></pre>
-</div>
-<p>Include at least one rule about review (who reads what, and when) and
-one about what the agent may never modify.</p>
-</div>
-</div>
-</div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1">
-  Why record it
-  </h4>
-</button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
-<div class="accordion-body">
-<p>Two benefits. The agent reads it, so your posture, branch
-conventions, and forbidden paths shape every session without
-re-prompting. Collaborators read it, so the group’s workflow is
-documented rather than assumed. If a rule is safety-critical (“never
-modify <code>data/raw/</code>”), it is advisory here; back it with a
-hook or a deny rule.</p>
-</div>
-</div>
-</div>
-</div>
-<div id="keypoints1" class="callout keypoints">
-<div class="callout-square">
-<i class="callout-icon" data-feather="key"></i>
-</div>
-<span class="callout-header">Key Points</span>
-<div class="callout-inner">
-<div class="callout-content">
-<ul>
-<li>Choose a review posture deliberately: pull-request-as-gate (the
-agent commits freely; one full review of the diff) when tests and CI
-support it; per-commit review when they do not. Verbose agent commit
-logs are useful, since small commits are restore points.</li>
-<li>Contributing: read the project’s guidelines (or have the agent
-summarize them), work from forks, disclose AI use where required, keep
-pull requests small.</li>
-<li>Maintaining: agents draft triage, changelogs, and first-pass
-reviews, but incoming pull requests are untrusted input and the human
-makes the merge decision.</li>
-<li>Codify recurring workflows: context file, then skills (reusable
-instructions), then hooks (guaranteed enforcement), then MCP (external
-systems, minimum access).</li>
 </ul>
 </div>
 </div>

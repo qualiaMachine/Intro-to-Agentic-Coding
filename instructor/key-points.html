@@ -345,19 +345,7 @@
 <div class="accordion accordion-flush" id="accordionFlush11">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading11">
-        <a href="common-workflows.html">10. Common Workflows</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush12">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading12">
-        <a href="research-and-outlook.html">11. What the Research Shows, and Where This Leaves Us</a>
+        <a href="research-and-outlook.html">10. What the Research Shows, and Where This Leaves Us</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -541,6 +529,11 @@ assumptions, propose tests and edge cases, add them, and run them. Then
 commit.</li>
 <li>Make verification automatic: tests in CI and a protected
 <code>main</code>. Autonomy is purchased with verification.</li>
+<li>Choose a review posture deliberately: the pull request as the gate
+(the agent commits freely; one full review of the diff) when tests and
+CI support it; per-change review when they do not. Incoming pull
+requests on a shared project are untrusted input, and the human makes
+the merge decision.</li>
 <li>Leave evidence in the repository and direct the agent to it. It
 reads figures and metrics, but only those you name, and you check every
 number it cites.</li>
@@ -556,6 +549,8 @@ protocol. Connecting one is comparable to installing a plugin.</li>
 <li>A skill is a procedure: packaged instructions loaded on demand, with
 no server and no network. It saves context because it expands only when
 relevant.</li>
+<li>Context file, then skills, then hooks (which always run), then MCP:
+codify a workflow at the lowest level that enforces what you need.</li>
 <li>Everything an MCP tool returns is untrusted input. Scope tokens to
 the minimum and configure per project.</li>
 <li>Vet a skill or MCP server before installing it, regardless of the
@@ -594,22 +589,6 @@ is a bug report; a surprising explanation is a lead.</li>
 <li>Review generated documentation as you would code, and update it with
 the code. Periodically have the agent audit every documented claim
 against the code.</li>
-</ul></section><section id="common-workflows"><h2 class="section-heading"><a href="common-workflows.html">Common Workflows</a></h2>
-<hr class="half-width">
-<ul>
-<li>Choose a review posture deliberately: pull-request-as-gate (the
-agent commits freely; one full review of the diff) when tests and CI
-support it; per-commit review when they do not. Verbose agent commit
-logs are useful, since small commits are restore points.</li>
-<li>Contributing: read the project’s guidelines (or have the agent
-summarize them), work from forks, disclose AI use where required, keep
-pull requests small.</li>
-<li>Maintaining: agents draft triage, changelogs, and first-pass
-reviews, but incoming pull requests are untrusted input and the human
-makes the merge decision.</li>
-<li>Codify recurring workflows: context file, then skills (reusable
-instructions), then hooks (guaranteed enforcement), then MCP (external
-systems, minimum access).</li>
 </ul></section><section id="research-and-outlook"><h2 class="section-heading"><a href="research-and-outlook.html">What the Research Shows, and Where This Leaves Us</a></h2>
 <hr class="half-width">
 <ul>
