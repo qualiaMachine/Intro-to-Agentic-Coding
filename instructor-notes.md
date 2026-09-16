@@ -59,10 +59,14 @@ routes (Copilot education tier, OpenCode) for anyone whose credits didn't work.
 six limits in order — "injection was the threat; these six cap what it can do" — and
 say that an instruction file *asks* while everything else *removes the ability*. The
 PocketOS and Cursor CVE incidents illustrate the "instructions vs. permissions" distinction.
-The network-allowlist demo is two minutes in the browser: Claude Code on the web's
-environment selector (No network / Trusted / All domains), then a repo's Settings →
-Copilot → Cloud agent → Internet access; the point to make while clicking is that a
-blocked request is fixed by adding the host, not by switching the firewall off. The
+The network-allowlist demo is two minutes in the browser: edit a Claude Code cloud
+environment and show the four Network access levels (None / Trusted / Full / Custom
+with its Allowed domains list), then a repo's Settings → Copilot → Cloud agent →
+Internet access. Note that the claude.ai *capabilities* page's network-egress setting
+is for chat and Cowork code execution, not Claude Code environments, and that the
+Copilot page is visible only to repository admins on a paid plan. The point to make
+while clicking is that a blocked request is fixed by adding the host, not by switching
+the firewall off. The
 1Password CLI slides are worth showing live if your institution provides it. End with
 a one-slide recap. For **Get your agent running, safely**: helpers circulate; the
 failure to watch for is a desktop app in local mode. Copilot's app has an explicit
