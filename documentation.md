@@ -8,7 +8,7 @@ exercises: 5
 
 - Why is documentation one of the best uses of agentic coding?
 - How does documentation feed back into agent performance?
-- Can asking an agent to explain code actually help verify it?
+- Can asking an agent to explain code help verify it?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -51,7 +51,7 @@ Make it a habit to ask for documentation as part of every task, or as a cleanup 
 
 ## Documentation is context — it compounds
 
-Here is what makes this more than good hygiene: **everything you document becomes
+What makes this more than good hygiene: **everything you document becomes
 context the agent reads back in later sessions.** Remember the planning episode — agents
 recover *what* and *how* from code, but not *why*, *for whom*, or *what the data
 means*. Documentation is precisely where the "why" gets written down:
@@ -71,8 +71,8 @@ session, human or agent.
 
 ## Explaining as verification
 
-There's a second, subtler payoff: **asking an agent to explain or document code is a
-verification act.** To write an accurate docstring, the model has to actually process
+There is a second, less obvious benefit: **asking an agent to explain or document
+code is a verification act.** To write an accurate docstring, the model has to process
 what the code does — and mismatches between the explanation and your intent surface
 real problems:
 
@@ -86,7 +86,7 @@ real problems:
   flag for *you* — and, left uncorrected, a trap for the next reader. Fix one or the
   other; never leave them disagreeing.
 
-This is the rubber-duck effect with a duck that talks back. It doesn't replace the
+This is rubber-duck debugging with a duck that answers. It doesn't replace the
 tests and checks from the verification episode — an explanation can be fluent and wrong —
 but it's a cheap extra verification layer, and it produces a durable artifact while
 verifying.
@@ -106,7 +106,7 @@ And don't rely on change-by-change discipline alone — **periodically run a ful
 audit**:
 
 > Go through the README, every docstring, and the comments, and verify each claim
-> against what the code actually does. Make no assumptions — read the code. List
+> against what the code does. Make no assumptions — read the code. List
 > every mismatch you find.
 
 It's a cheap sweep (end of the week, before a release, before sharing the repo) that
@@ -136,7 +136,7 @@ undocumented piece of your own code.
 
 Most participants find at least one surprise — usually an edge case the code handles
 by accident rather than by decision (what *does* it return for an empty DataFrame?).
-That's the point: the docstring forced a decision that writing the code never did.
+The docstring forced a decision that writing the code never did.
 And whichever way you resolve it, you leave behind both a checked behavior and a
 written record of it — verification and documentation in one pass.
 

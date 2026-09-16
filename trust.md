@@ -8,7 +8,7 @@ exercises: 5
 
 - How do I decide whether to trust a package, a model, or an AI provider?
 - What new supply-chain risks does agentic coding introduce?
-- What has actually gone wrong, and what would have prevented it?
+- What has gone wrong in practice, and what would have prevented it?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -46,7 +46,7 @@ Agents add a twist of their own:
 - **Typosquatting and dependency confusion get a faster conveyor belt.** In December
   2022, a malicious `torchtriton` package on PyPI shadowed a PyTorch-nightly internal
   dependency and exfiltrated SSH keys and files from thousands of machines. In December
-  2024, compromised releases of `ultralytics` (the hugely popular YOLO library) shipped
+  2024, compromised releases of `ultralytics` (the widely used YOLO library) shipped
   a cryptominer to anyone who installed during the affected window. Neither incident
   involved AI — but an agent that `pip install`s without you watching turns "I'd have
   noticed something off about that name" into "it was in the transcript I skimmed."
@@ -58,7 +58,7 @@ What to do:
   project context file — and treat it as advisory, per the safety episode).
 - **Before installing anything an agent suggests, verify it exists and is official**:
   check the registry page, the linked source repo, download counts, and release
-  history. Thirty seconds of looking defeats most slopsquatting.
+  history. A brief check defeats most slopsquatting.
 - **Pin versions in a lockfile** and prefer environments you can rebuild
   (`requirements.txt`/`environment.yml` under version control), so a bad install is a
   revert, not an archaeology project.
@@ -124,9 +124,9 @@ trust, run, and ship. And in an agentic setup, the trigger can be *delivered*: p
 injection (a poisoned README or issue) plus a backdoored model with tool access is a
 much worse combination than either alone.
 
-Honest status: **detecting behavioral backdoors is an open research problem.** No
+Current status: **detecting behavioral backdoors is an open research problem.** No
 scanner finds them; benchmarks don't reveal them. Which is why the defenses are the
-unglamorous ones — provenance from heavily scrutinized official sources, extra caution
+routine ones — provenance from heavily scrutinized official sources, extra caution
 before wiring a niche fine-tune into a pipeline with tool access or untrusted inputs,
 and treating model *output* as untrusted regardless of where the weights came from.
 That last one you already have: it's this lesson's review-everything discipline, which
@@ -168,8 +168,8 @@ answer four questions from their actual policy documents, not their marketing pa
    researchers found a publicly exposed **DeepSeek** database leaking user chat
    histories and API keys — a reminder that provider security practices and legal
    jurisdiction are part of the deal, not a footnote.
-4. **Does an institutional agreement cover this, or is it your personal contract?** The
-   classic cautionary tale: in 2023, **Samsung** engineers pasted proprietary
+4. **Does an institutional agreement cover this, or is it your personal contract?**
+   In 2023, **Samsung** engineers pasted proprietary
    source code into ChatGPT while debugging; the company responded by banning
    generative AI tools internally. An individual subscription gives your institution
    no protections at all — which is why the safety episode's rule (restricted data
@@ -192,7 +192,7 @@ pages rather than this table.
 
 ::::::::::::::::::::::::::::::::::::: callout
 
-## Free is a price
+## Free services have a cost
 
 If a tool or model API is free and isn't open source running on your hardware, ask
 what the provider gets. Often the answer is: your prompts, and by extension your
@@ -206,7 +206,7 @@ terrible one for your unpublished research.
 ## Exercise: Vet the tool you're using right now (5 minutes)
 
 For the agentic tool you set up for this workshop, find real answers to the four
-questions above — from the provider's privacy/data pages, not from memory or vibes.
+questions above — from the provider's privacy and data pages, not from memory.
 
 1. Training: on or off by default for *your* plan? Where's the toggle?
 2. Retention: how long, and what extends it?
@@ -221,8 +221,7 @@ Compare notes with a neighbor using a different tool.
 
 Almost everyone discovers at least one surprise: a training toggle they'd never seen,
 a retention clause tied to the feedback button, or the realization that their
-"institution-adjacent" tool is actually a personal agreement. That's the point — the
-answers vary by provider *and by plan tier within a provider*, which is why "vet the
+"institution-adjacent" tool is a personal agreement. The answers vary by provider *and by plan tier within a provider*, which is why "vet the
 policy" can't be delegated, even to the agent.
 
 :::::::::::::::::::::::::::::::::

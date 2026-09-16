@@ -7,7 +7,7 @@ exercises: 15
 :::::::::::::::::::::::::::::::::::::: questions
 
 - Why work feature by feature instead of asking for whole projects?
-- What actually happens when I give an agent a vague request?
+- What happens when I give an agent a vague request?
 - What does a good prompt look like for research code?
 - Which routine tasks are agents reliably good at?
 
@@ -30,13 +30,12 @@ baseline. Write the scoring function. The `plan.md` you just wrote is the featur
 list — work down it in order.
 
 - **One feature per chat session.** Fresh context, a small diff, one pull request.
-  (The cost episode explains why a fresh session matters; the short version is that
-  everything in a long session competes for the model's attention.)
+  (The cost episode explains why a fresh session matters: everything in a long
+  session competes for the model's attention.)
 - **Specify each one.** Inputs, output, how you will know it works, what not to touch.
-- **Small scope means small diffs** — which means you can actually review them, and
-  stay in the driver's seat. A project-sized prompt doesn't just produce worse code;
-  it produces a diff too large to meaningfully review, at which point you've silently
-  handed over the wheel.
+- **Small scope means small diffs** — which means you can review them, and stay in
+  the driver's seat. A project-sized prompt produces worse code and, worse, a diff too
+  large to review, at which point you have handed over the wheel without deciding to.
 
 **Whole-project prompts produce whole-project guesses.**
 
@@ -52,7 +51,7 @@ That's why underspecified requests so often produce code that *runs* and *looks
 reasonable*: average-case answers usually do. The problem is that your data and code
 are rarely the average case. Your weird instrument artifact is not in the training
 data. Your field has a convention the average GitHub repo doesn't follow. Your
-"duplicate rows" are actually repeated measures. Every unstated assumption gets
+"duplicate rows" are repeated measures. Every unstated assumption gets
 resolved in favor of someone else's typical project — silently.
 
 Two consequences:
@@ -103,8 +102,8 @@ The same request at two levels of specification:
 > confirm it. Wait for me to agree before you apply a fix.
 
 The better prompt supplies the *evidence* (traceback, code, input), asks for a
-*diagnosis before a change*, and keeps the decision with you. Notice what "fix" would
-have left to the average case: the agent would have to invent what "fixed" means —
+*diagnosis before a change*, and keeps the decision with you. Consider what "fix"
+alone would have left to the average case: the agent would have to invent what "fixed" means —
 and an agent told to make an error go away sometimes does exactly that, by deleting
 the check that raised it.
 
@@ -121,8 +120,8 @@ check is worth two that don't.
 
 ## Maintenance tasks agents do well
 
-Not every feature is new science. Agents are reliably good at the unglamorous work
-that keeps a research repo usable — provided you give each task the same treatment
+Not every feature is new science. Agents are reliably good at the routine work
+that keeps a research repository usable — provided you give each task the same treatment
 as a feature: small, specified, checkable, one pull request, and you review it.
 
 - **Refactoring.** Split the 400-line notebook into functions and a script. Tests
@@ -132,7 +131,7 @@ as a feature: small, specified, checkable, one pull request, and you review it.
 - **A README that matches the code.** "Read the repo and list what the README says
   that is no longer true."
 - **Environment files.** Pin `requirements.txt` or `environment.yml` from what the
-  code actually imports.
+  code imports.
 - **Weekly merge prep.** "Summarize what changed on this branch since `main`, for
   the teammates who were not here."
 

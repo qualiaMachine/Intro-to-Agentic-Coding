@@ -6,7 +6,7 @@ exercises: 6
 
 :::::::::::::::::::::::::::::::::::::: questions
 
-- How do experienced users actually structure day-to-day work with agents?
+- How do experienced users structure day-to-day work with agents?
 - Should I review every commit, or review at the pull request?
 - How do agent workflows change when I'm contributing to (or maintaining) a shared project?
 - What are skills, hooks, and MCP, and when do I need them?
@@ -23,7 +23,7 @@ exercises: 6
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 The workshop episodes gave you principles; this one — asynchronous reading, not a
-live block — collects the recurring *shapes* of day-to-day agentic work. None of them is the one true way — the point is to pick your
+live block — collects the recurring *shapes* of day-to-day agentic work. None of them is the one correct way; the aim is to pick your
 pattern deliberately and write it down, rather than improvising it fresh every session.
 
 ## Two review postures
@@ -39,7 +39,7 @@ is more useful than the classic human `wip`, `fix`, `actually fix` sequence. You
 serious review happens once, on the full PR diff, exactly as you'd review a human
 collaborator's branch. This posture keeps momentum high and concentrates your
 attention where it's most effective — but it leans on safety nets: a real test suite,
-CI checks gating the merge, and PR diffs kept small enough to genuinely read
+CI checks gating the merge, and PR diffs kept small enough to read in full
 (feature-sized, per the feature-based-development episode).
 
 **Posture B: review every change as it happens.** Approve each edit or commit
@@ -73,7 +73,7 @@ Agent workflows change when the repository belongs to a community:
 
 ## Maintaining a project others contribute to
 
-On the receiving side, agents are useful for the unglamorous middle of maintenance:
+On the receiving side, agents are useful for routine maintenance:
 summarizing and triaging issues, drafting release notes and changelogs from the
 commit history, dependency-update PRs, doc-freshness sweeps, and a first-pass review
 of incoming PRs ("what does this change, and what should a human look hardest at?").
@@ -83,7 +83,7 @@ untrusted input, and prompt injection via PR content is a real pattern).
 
 ## Codifying workflows: skills, hooks, and MCP
 
-When you notice the same workflow recurring, the tools give you ways to write it down
+When the same workflow recurs, the tools give you ways to write it down
 once instead of re-prompting it forever:
 
 - **Skills** — reusable, on-demand instruction packages: a release checklist, your
@@ -101,7 +101,7 @@ once instead of re-prompting it forever:
 
 A sensible progression: context file first, skills when you catch yourself repeating
 instructions, hooks when a rule needs enforcement rather than encouragement, MCP when
-the agent genuinely needs an external system.
+the agent needs an external system.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
@@ -144,7 +144,7 @@ agent may never touch.
 
 ## Why write it down?
 
-Two payoffs. The agent reads it — your posture, branch conventions, and forbidden
+Two benefits. The agent reads it — your posture, branch conventions, and forbidden
 paths now shape every session without re-prompting. And *collaborators* read it — the
 lab's workflow stops being folklore. If a rule is safety-critical ("never touch
 `data/raw/`"), remember it's advisory here: back it with a hook or deny rule.

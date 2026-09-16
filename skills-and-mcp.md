@@ -8,7 +8,7 @@ exercises: 10
 
 - How is MCP different from an API — and when do I want each?
 - What is an MCP server, and what happens when I connect one?
-- What's actually inside a skill, and how does an agent decide to use one?
+- What is inside a skill, and how does an agent decide to use one?
 - What extra scrutiny does connecting an MCP server or installing a skill deserve?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -48,8 +48,8 @@ GitHub MCP, filesystem MCP, Slack MCP, Postgres MCP. When the session starts, th
 agent lists the server's available tools — `search_issues`, `run_query` — and then
 calls them like any built-in tool.
 
-The analogy that lands: it's like installing a plugin. You are not writing new agent
-code; you are handing the agent a new capability.
+Connecting an MCP server is comparable to installing a plugin: you are not writing
+new agent code, you are giving the agent a new capability.
 
 And the safety flag, tying back to that episode: **only add MCP servers you trust.**
 Tool output goes straight into the agent's context and it will act on it — an issue
@@ -112,7 +112,7 @@ from the safety episode.
 
 :::::::::::::::::::::::: solution
 
-## What just happened
+## What this shows
 
 The agent is now calling real GitHub API tools, not guessing from training data.
 Ask yourself the question this exercise is designed to surface: what *wider* access
@@ -141,7 +141,7 @@ A skill can't make the agent do anything it couldn't already do by reading files
 running commands. The description is the important part: it's what the agent
 matches against, so vague wording ("helps with releases") triggers unreliably, while
 specific wording ("use when the user asks to cut a release, bump a version, or write
-release notes") triggers when you actually mean it.
+release notes") triggers when you intend it to.
 
 Skills also help with **cost**: the full skill content is only expanded when it's
 relevant, instead of sitting in context the whole session the way an overgrown
@@ -155,7 +155,7 @@ A deliberately silly, zero-risk skill is the fastest way to *see* the mechanism 
 [Caveman](https://github.com/JuliusBrussee/caveman) is a real, public plugin that
 rewrites the agent's replies into terse "caveman speak" — the author measured about
 65% fewer output tokens with technical accuracy intact. The effect is immediately
-visible, which makes the token-savings point land.
+visible, which makes the token saving concrete.
 
 :::::::::::::::: group-tab
 
@@ -202,19 +202,19 @@ description: Use when the user asks to talk like a caveman, or wants "caveman mo
 ---
 
 Respond in short grunts. Drop articles. Present tense only. Keep code, commands, and
-exact errors intact. Stay accurate — just say it like a caveman would.
+exact errors intact. Stay accurate; only the phrasing changes.
 ```
 
 :::::::::::::::::::::::: solution
 
 ## Beyond the joke
 
-The caveman skill proves the mechanism; the payoff is packaging something you'd
-otherwise repeat. Pick one instruction you find yourself re-typing in your own
+The caveman skill demonstrates the mechanism; the practical use is packaging
+something you would otherwise repeat. Pick one instruction you find yourself re-typing in your own
 project — a commit-message convention, a data-checking routine, a report template —
 and turn it into a skill next. Skill-builders usually discover their first
-description is too vague to trigger reliably, which is a good forcing function for
-writing precise instructions in general.
+description is too vague to trigger reliably, which is useful practice in writing
+precise instructions generally.
 
 :::::::::::::::::::::::::::::::::
 

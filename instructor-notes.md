@@ -11,7 +11,7 @@ episodes follow the workshop's
 blocks in order; the last three (documentation, common workflows, research and
 outlook) are asynchronous reading, with the outlook's headline landing in the close.
 
-Say up front: **the deck is the highlights reel.** The full lesson is online and stays
+Say at the start that **the slides cover the main points only.** The full lesson is online and stays
 online, so nobody needs to take notes on the details.
 
 ## Suggested 2-hour schedule
@@ -49,16 +49,16 @@ for the next working session.
 
 **Intro.** Callback to the mech suit from kickoff: the suit multiplies what the pilot
 can do, but the pilot is still steering — that's the driver's-seat principle. Ask
-"anyone want to share something impressive their agent did?" to warm the room. For
+"anyone want to share something impressive their agent did?" as an opener. For
 the demo, use Claude Code in VS Code (or OpenCode) on the project the rest of the
 workshop returns to: a tightly directed task, a plan-then-implement task, and an
 *explained but not run* multi-agent workflow. Point out the setup page has free
 routes (Copilot education tier, OpenCode) for anyone whose credits didn't work.
 
-**Safety.** Prompt injection first (the Nx incident lands it), then signpost the
+**Safety.** Prompt injection first (the Nx incident makes it concrete), then signpost the
 six limits in order — "injection was the threat; these six cap what it can do" — and
 say that an instruction file *asks* while everything else *removes the ability*. The
-PocketOS and Cursor CVE stories land the "instructions vs. permissions" distinction.
+PocketOS and Cursor CVE incidents illustrate the "instructions vs. permissions" distinction.
 The network-allowlist demo is two minutes in the browser: Claude Code on the web's
 environment selector (No network / Trusted / All domains), then a repo's Settings →
 Copilot → Cloud agent → Internet access; the point to make while clicking is that a
@@ -90,11 +90,11 @@ studies measured accuracy, not tokens; the token argument is a mechanism, not a
 measured result.
 
 **Feature-based dev.** The "list every choice you made that I did not specify" line
-is the hook — ask two or three people to read theirs out. The room reliably discovers
+is the key step: ask two or three people to read theirs out. Participants reliably discover
 that everyone got *different* unaccounted decisions.
 
-**Verification.** The brain-decoding leak is the emotional core of the lesson. Let
-the clean run and 0.91 land first, then ask "so are we done?" before revealing the
+**Verification.** The brain-decoding leak is the central example of the lesson. Show
+the clean run and the 0.91 first, then ask "so are we done?" before revealing the
 bug, then show the 0.58 on unseen subjects. Translate "the unit that repeats" to each
 team's project (subject, camera burst, page, source document). For **Now your repo**,
 insist on plan mode for step 1 and timebox firmly; the CI workflow and branch
@@ -107,7 +107,7 @@ the state file to prove it's toggled. Note for VS Code extension users: the same
 install commands work; reload the chat panel afterward.
 
 **Cost and energy.** Name the claim people arrive with (a prompt costs gallons of
-water) and replace it with a number. Be honest about the spread (Couch ~41 Wh,
+water) and replace it with a number. State the spread plainly (Couch ~41 Wh,
 Hausfather ~600 Wh). Three live demos in order: `/cost`, `/model`, `/compact`; then
 pull up the OpenRouter session-cost rankings. Loop back to skills as a cost lever.
 
