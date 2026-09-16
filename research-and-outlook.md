@@ -96,7 +96,8 @@ person start from your verified version rather than repeating the attempts.
 
 This is the community-scale version of the energy argument in the previous episode:
 the compute is amortized across every reader instead of being spent again by each.
-It also follows from the documentation episode: the notes you leave for your future
+It also follows from the note on documentation in the feature-based-development
+episode: the notes you leave for your future
 self are usually a short edit away from being useful to a stranger. At UW–Madison, the
 [ML+X Nexus](https://uw-madison-datascience.github.io/ML-X-Nexus/) exists for this
 purpose (guides, notebooks, workshop materials, and posts from the community,
