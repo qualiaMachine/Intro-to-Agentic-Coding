@@ -260,6 +260,52 @@ good", you and the agent have the same blind spot.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+## Where the review happens: two postures
+
+Agents work on branches, never on `main`, and someone (you, a colleague, or CI)
+reads the code before it is merged. Within those rules, two workable postures differ
+on when the human review happens.
+
+**The pull request is the review gate.** The agent commits freely and often to its
+feature branch as it works. The commit log becomes verbose; that is acceptable,
+because frequent small commits are restore points, and an agent's granular history
+is more useful than the usual human sequence of `wip`, `fix`, `fix again`. Your
+review happens once, on the full pull-request diff, as it would for a human
+collaborator's branch. This posture maintains momentum and concentrates attention
+where it is most effective. It depends on safety nets: a real test suite, CI checks
+gating the merge, and diffs small enough to read in full.
+
+**Review every change as it happens.** You approve each edit or commit, staying close
+to the work in real time. This is slower, and appropriate where the safety nets are
+absent: you are new to the tool, the code is sensitive, the tests are thin, or you
+are still establishing what the agent does with your codebase.
+
+The choice is a calibration, and it maps onto the verification tiers below.
+Throwaway and well-tested working code tolerate the pull-request gate; load-bearing
+code with weak tests calls for per-change review, or the gate with a second reviewer.
+Many people use both: the gate for routine feature work, per-change review when
+modifying anything expensive to get wrong. Record the choice in `CONTRIBUTING.md` or
+the context file so the agent and your collaborators both know it.
+
+### Reviewing in shared projects
+
+Two situations change the rules slightly:
+
+- **Contributing to a project you do not own.** Read the contribution guidelines
+  first ("summarize CONTRIBUTING.md and any pull-request conventions in this repo"
+  is a good first prompt), work from a fork when you lack write access so no agent
+  has push access to the canonical repository, disclose AI assistance where the
+  project requires it (The Carpentries has a Generative AI contributions policy, for
+  example), and keep pull requests small. Maintainers review in their own time, and
+  large diffs are a common reason contributions are declined.
+- **Maintaining a project others contribute to.** Agents are useful for triaging
+  issues, drafting release notes from the commit history, dependency updates,
+  documentation sweeps, and a first-pass review of incoming pull requests ("what does
+  this change, and what should a human examine most closely?"). The human retains
+  the merge decision. An agent's review is a brief for your judgment, and incoming
+  pull requests are untrusted input: prompt injection through pull-request content
+  is a documented pattern.
+
 ## Autonomy is purchased with verification
 
 The highest-leverage practice in agentic coding is to make verification executable.
@@ -289,6 +335,7 @@ checking to the stakes, and choose the tier explicitly before starting:
 - Split by the unit that repeats, and assert it. A clean-running 0.91 can be 0.58 on unseen subjects.
 - After every feature, before the next: have the agent list its assumptions, propose tests and edge cases, add them, and run them. Then commit.
 - Make verification automatic: tests in CI and a protected `main`. Autonomy is purchased with verification.
+- Choose a review posture deliberately: the pull request as the gate (the agent commits freely; one full review of the diff) when tests and CI support it; per-change review when they do not. Incoming pull requests on a shared project are untrusted input, and the human makes the merge decision.
 - Leave evidence in the repository and direct the agent to it. It reads figures and metrics, but only those you name, and you check every number it cites.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::

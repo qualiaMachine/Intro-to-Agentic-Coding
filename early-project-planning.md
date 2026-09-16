@@ -156,7 +156,8 @@ in your context file.
 
 It is short. A branch-name pattern (`<name>/<feature>`); a pull-request size people
 will review in full (a few hundred lines at most); one named reviewer per pull
-request; a list of paths the agent may not modify without asking (`data/raw/`, the
+request, and whether review happens at the pull request or on every change (the
+verification episode compares the two); a list of paths the agent may not modify without asking (`data/raw/`, the
 scoring function, `main`); a rule for avoiding collisions (one feature per branch,
 claimed in the plan); and a commit-message format. Agents draft a reasonable first
 version because conventions are the average case. Your contribution is removing what

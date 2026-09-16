@@ -18,6 +18,7 @@ exercises: 10
 - Explain the difference between an API (you write the calling code) and MCP (the agent discovers and calls tools itself).
 - Connect an MCP server and use it for one task without naming the tool.
 - Install a published skill, trigger it, and explain what changed.
+- Distinguish a context file, a skill, a hook, and an MCP server, and choose the right one for a recurring workflow.
 - Apply the safety episode's trust rules to a new MCP connection or skill.
 - Locate community skill and MCP directories to check before building your own.
 
@@ -217,6 +218,22 @@ instructions generally.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+## Hooks, and when to codify what
+
+Skills and MCP are two of four ways to record a recurring workflow instead of
+re-prompting it. The other two:
+
+- **The project context file** (`CLAUDE.md`, `AGENTS.md`, `copilot-instructions.md`)
+  holds standing instructions the agent reads every session. It is advisory.
+- **Hooks** are deterministic scripts that run at fixed points, such as after every
+  edit or before every commit. Unlike context-file instructions and skills, which the
+  model may or may not follow, hooks always run. Use them for rules that must never
+  be skipped: run the linter, block writes to `data/raw/`.
+
+A reasonable progression: context file first; a skill when you notice yourself
+repeating instructions; a hook when a rule needs enforcement rather than a reminder;
+MCP when the agent needs an external system.
+
 ## Where to find more
 
 Before building your own, check what has already been published:
@@ -248,6 +265,7 @@ look first, not a substitute for looking.
 - API: you write the calling code. MCP: the agent discovers the tools and decides when to call them. Use MCP when the agent should reach a system on its own, and a direct API when you are writing the pipeline.
 - An MCP server exposes tools, resources, and prompts over a standard protocol. Connecting one is comparable to installing a plugin.
 - A skill is a procedure: packaged instructions loaded on demand, with no server and no network. It saves context because it expands only when relevant.
+- Context file, then skills, then hooks (which always run), then MCP: codify a workflow at the lowest level that enforces what you need.
 - Everything an MCP tool returns is untrusted input. Scope tokens to the minimum and configure per project.
 - Vet a skill or MCP server before installing it, regardless of the author. Parse, Matt Pocock's skills, gstack, Claude Science, and ToolUniverse are reasonable starting points.
 

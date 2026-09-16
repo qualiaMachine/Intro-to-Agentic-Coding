@@ -8,8 +8,8 @@ This lesson began as a 2-hour evening workshop ("Agentic Coding: (Developing) Be
 Practices," ML Marathon 2026, UW–Madison, developed by Chris Endemann, Tracy Reuter,
 and Tejvir Mann; Zekai Otles contributed the dev container setup). The first eight
 episodes follow the workshop's
-blocks in order; the last three (documentation, common workflows, research and
-outlook) are asynchronous reading, with the outlook's headline landing in the close.
+blocks in order; the last two (documentation, and research and outlook) are
+asynchronous reading, with the outlook's headline landing in the close.
 
 Say at the start that **the slides cover the main points only.** The full lesson is online and stays
 online, so nobody needs to take notes on the details.
