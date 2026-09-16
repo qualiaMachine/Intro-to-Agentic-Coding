@@ -51,6 +51,18 @@ arriving for review was never review-ready.
 
 The skill this episode teaches is the one in short supply.
 
+## The pull request as the final human check
+
+Every feature comes back as a pull request on a branch. That is the git arrangement
+from the safety episode, and it is where verification happens: nothing the agent did
+reaches `main` until a person approves the diff. The pull-request review is the last
+control, applied after all the others.
+
+A review done by eye alone does not scale. Pull requests are 51% larger under heavy
+agent use, and the code reads cleanly while being wrong. The review therefore needs
+support: tests that run on every push and checks that fail loudly. That support is
+the subject of the rest of this episode.
+
 ## Look for decisions you did not make
 
 A well-specified prompt still has unintended consequences. When reviewing
@@ -95,6 +107,8 @@ step that follows every feature, before the next one begins.
    > 2. Propose tests for this feature to ensure robustness as we develop the full
    >    pipeline, including edge cases: empty input, wrong shape, duplicates, a
    >    sample that lands in both splits, etc. Say which tests matter most and why.
+   > 3. Do not edit anything yet. After I review, implement the tests as an
+   >    automated GitHub Action that will run on each push.
    >
    > Do not edit anything yet.
 
@@ -103,7 +117,8 @@ step that follows every feature, before the next one begins.
 3. **Have it add them and run `pytest`.** Fix what fails, then commit.
 4. **Make it automatic.** A GitHub Actions workflow can run `pytest` on every push
    ([GitHub Actions for Python](https://docs.github.com/en/actions/use-cases-and-examples/building-and-testing/building-and-testing-python));
-   ask the agent to write it. Protect `main` so that a failing check blocks the merge
+   the prompt's third step asks the agent to write it. Protect `main` so that a
+   failing check blocks the merge
    ([about protected branches](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches)).
 
 :::::::::::::::: group-tab
@@ -330,6 +345,7 @@ checking to the stakes, and choose the tier explicitly before starting:
 ::::::::::::::::::::::::::::::::::::: keypoints
 
 - Checking is the bottleneck. Agents multiply commits far more than releases, pull requests are larger and harder to review, and unreviewed merges increase. Verification is the scarce skill.
+- The pull request is the final human check. Review by eye alone does not scale, so it needs tests on every push and checks that fail loudly.
 - Established practice still applies: know your data, compare to a source of truth, know what your model responds to, reproduce the result, plot and review.
 - Each good-practice item can be a test the agent writes and CI runs: data expectations, a hand-checked subset, seed stability, sensible top predictors, no leakage.
 - Split by the unit that repeats, and assert it. A clean-running 0.91 can be 0.58 on unseen subjects.

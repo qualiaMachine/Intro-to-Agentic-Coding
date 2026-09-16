@@ -87,7 +87,7 @@ can do.
 
 1. **What it can reach on the network.** An egress allowlist, not the whole internet.
 2. **Where it runs.** A disposable cloud VM, not your laptop.
-3. **Which commands it may run.** Allow and deny rules.
+3. **Which commands it may run.** Allow, ask, and deny rules.
 4. **Which credentials it can see.** A password manager, never the repository.
 5. **What it can commit.** A feature branch and a pull request; you merge.
 6. **Whom you trust.** Providers, their data policies, and downloaded repositories and
@@ -196,7 +196,7 @@ runs locally), then dev container (contained local access), then a bare local ag
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-### 3. Command permissions are necessary but not sufficient
+### 3. Set command rules, but beware loopholes
 
 Allow, ask, and deny rules determine which commands run without confirmation. The
 defaults usually deny nothing, so configure them: deny `rm -rf`, force-push, and reads
@@ -244,7 +244,7 @@ it.
 
 ::::::::::::::::::::::::::::::::::::: callout
 
-## Instruction files influence the agent; they do not constrain it
+## Instruction files help, but agents forget context and find loopholes
 
 An instruction file is a markdown file the agent reads at the start of every session
 containing project context, commands, and conventions. Claude Code reads `CLAUDE.md`;
@@ -325,8 +325,8 @@ Version control makes agent mistakes recoverable.
 - Always use version control (GitHub, GitLab, Bitbucket).
 - Do not let an agent commit to `main`. The agent creates a feature branch and opens
   a pull request; you review and merge.
-- Review and test code before committing. Make small, frequent commits; each is a
-  restore point.
+- Review and test code before merging to `main`. Make small, frequent commits; each
+  is a restore point.
 - Start from a clean git state, so that `git diff` shows exactly what the agent
   changed and `git restore` reverts it.
 
@@ -337,22 +337,14 @@ sets this up.
 ### 6. Whom you trust: providers, models, repositories
 
 The final limit is not enforced by any setting: which providers, packages, and model
-weights you admit into the workflow. Vet a provider's data policy (is my data used for
-training, and is that the default? how long is it retained, and who can see it? where
+weights you admit into the workflow. Vet a provider's data policy (are my data and
+code used for training, and is that the default? how long is it retained, and who can see it? where
 does inference run, and under whose jurisdiction? does an institutional agreement
 cover this, or is it a personal contract?). Treat downloaded weights and packages with
 the caution you would apply to any executable. The next episode, [trust](trust.md),
 covers each with the incidents behind the rules.
 
-## Summary
-
-Follow institutional policy. Know what an agent can and cannot do. Anything it reads
-can carry instructions, so limit what it can do: allowlist the network, run it in a
-cloud VM, set command rules, keep keys in a password manager, have it work on a
-branch you review, and vet whom you trust. Instructions influence behavior;
-permissions constrain it.
-
-::::::::::::::::::::::::::::::::::::: callout
+:::::::::::::::::::::::::::::::::::: callout
 
 ## No agents on machines that hold sensitive or restricted data
 
@@ -392,11 +384,13 @@ work begins. Other routes, including free ones, are on the
 2. **Confirm the session is cloud-hosted before you prompt.** It should be pointed at
    a cloud VM and a GitHub repository, not a folder on your laptop. Check the
    environment's network access setting (limit 1 above) while you are there.
-3. **Use your project repository.** If you have none, create one now.
+3. **Use your project repository.** If your team does not have one yet, create your
+   own for today.
 4. **Work on a branch named for you.** Use branches rather than forks, so teammates
    and their agents can see your work. If you lack write access, ask the repository
    owner to add you as a collaborator.
-5. **No `.env` in the repository.** Use `op read` from the 1Password CLI instead.
+5. **No `.env` in the repository.** If you use one, add it to `.gitignore`. Prefer
+   `op read` from the 1Password CLI to storing keys anywhere.
 6. Prompt: *"Read this repo and tell me what it's doing, or attempting to do. Do not
    change anything."* While it works, note what it gets right, what it states
    confidently that you cannot verify, and what it does not know that you do.

@@ -45,7 +45,8 @@ into a narrated demo from the instructor's screen rather than a hands-on.
 **Before we start.** If participants need access to a campus-hosted model or
 compute (the pilot used BadgerBrain, UW–Madison's hosted open-weight models), put
 the request link on the first slide: approvals take days, so file tonight to have it
-for the next working session.
+for the next working session. Announce the next working session (time, place, who
+will be there) and that participants should bring what they build tonight.
 
 **Intro.** Callback to the mech suit from kickoff: the suit multiplies what the pilot
 can do, but the pilot is still steering, which is the driver's-seat principle. Ask
@@ -65,8 +66,9 @@ is for chat and Cowork code execution, not Claude Code environments, and that th
 Copilot page is visible only to repository admins on a paid plan. The point to make
 while clicking is that a blocked request is fixed by adding the host, not by switching
 the firewall off. The
-1Password CLI slides are worth showing live if your institution provides it. End with
-a one-slide recap. For **Get your agent running, safely**: helpers circulate; the
+1Password CLI slides are worth showing live if your institution provides it; the
+JupyterLab detail can be skimmed if time is short. For **Get your agent running,
+safely**: helpers circulate; the
 failure to watch for is a desktop app in local mode. Copilot's app has an explicit
 plan mode, which is clearer to teach; on the Copilot web, planning is done via the
 prompt and gives the same approve-or-exit gate with no toggle, so it is acceptable for
@@ -102,8 +104,10 @@ to read theirs out. Participants reliably discover that everyone got *different*
 unaccounted decisions.
 
 **Verification.** Open with the research figures and Faros AI's explanation (larger
-pull requests, code that reads well but is often wrong). Then the before-and-after-
-every-feature routine: ask for assumptions, ask for tests and edge cases, run them,
+pull requests, code that reads well but is often wrong), then the pull request as the
+final human check: it is where verification happens, and review by eye does not
+scale, so the rest of the block supplies the tests and checks. Then the
+before-and-after-every-feature routine: ask for assumptions, ask for tests and edge cases, run them,
 commit. *Exercise 1: Test the feature you just built* applies it to feature 1 from
 before the break; insist on plan mode for the first prompt, and timebox. The CI
 workflow and branch protection can be completed after the session. Close the block
