@@ -24,7 +24,7 @@ three.
 
 | Time | Min | Block | Episode |
 |------|-----|-------|---------|
-| 0:00 | 30 | **Intro & getting started (safely).** Before we start (any access requests participants must file now); three principles; what agentic coding is (spectrum, harness, loop); live demo at three autonomy levels; safety: policies, prompt injection, the six limits (network allowlist demo, 2 min), providers, recap; **Exercise: Get your agent running, safely** (8 min) | Episodes 1–2 (3 compressed) |
+| 0:00 | 30 | **Intro & getting started (safely).** Before we start (any access requests participants must file now); three principles; what agentic coding is (spectrum, harness, loop); safety: policies, prompt injection, the six limits (network allowlist demo, 2 min), providers, recap; **Exercise: Get your agent running, safely** (8 min) | Episodes 1–2 (3 compressed) |
 | 0:30 | 15 | **Planning with agents.** Research on planning; add context; **Exercise: Agree how your team will work together** (10 min); MVP; **Exercise: Plan your MVP with an agent** (15 min) — this block overruns its slot in the pilot agenda; see below | Episode 4 |
 | 0:45 | 10 | **Feature-based dev and good prompting.** The agent is not a magic wand; feature by feature; bad/better prompt; underspecified ≠ random | Episode 5 |
 | 0:55 | 8 | Break | — |
@@ -48,12 +48,10 @@ the request link on the first slide: approvals take days, so file tonight to hav
 for the next working session.
 
 **Intro.** Callback to the mech suit from kickoff: the suit multiplies what the pilot
-can do, but the pilot is still steering — that's the driver's-seat principle. Ask
-"anyone want to share something impressive their agent did?" as an opener. For
-the demo, use Claude Code in VS Code (or OpenCode) on the project the rest of the
-workshop returns to: a tightly directed task, a plan-then-implement task, and an
-*explained but not run* multi-agent workflow. Point out the setup page has free
-routes (Copilot education tier, OpenCode) for anyone whose credits didn't work.
+can do, but the pilot is still steering, which is the driver's-seat principle. Ask
+"anyone want to share something impressive their agent did?" as an opener. Point
+out the setup page has free routes (Copilot education tier, OpenCode) for anyone
+whose credits didn't work.
 
 **Safety.** Prompt injection first (the Nx incident makes it concrete), then signpost the
 six limits in order — "injection was the threat; these six cap what it can do" — and
