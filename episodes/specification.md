@@ -25,7 +25,7 @@ exercises: 15
 
 ## The agent is not a magic wand
 
-Most frustration with agents comes from using them as one: describe the whole
+Some frustration with agents comes from using them as one: describe the whole
 project, wait, and receive something plausible and wrong. This style of use is
 sometimes called vibe coding. The remedy is a person in the loop who knows the
 domain. You decide what to build next; the agent builds that one thing; you check it
@@ -49,7 +49,7 @@ feature list. Work through it in order.
 
 A whole-project prompt produces whole-project guesses.
 
-## Underspecified does not mean random
+## A bad prompt does not return random results
 
 When a request is ambiguous, the agent does not fail and does not choose at random.
 It fills each gap in the specification with the most statistically typical choice
@@ -130,7 +130,7 @@ worth more than one that does not.
 
 :::::::::::::::::::::::::::::::::::: challenge
 
-## Exercise: Implement feature (or step) 1 from your plan (15 minutes)
+## Exercise: Implement feature 1 from your plan (15 minutes)
 
 Take feature 1 from your `plan.md`, or any feature you want to add.
 
@@ -204,11 +204,12 @@ complete, with choices you did not make and no list of them.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-:## Maintenance tasks agents do well
+:## Give your agent maintenance tasks
 
-Not every feature is new analysis. Agents are reliably good at the routine work that
-keeps a research repository usable, provided each task is treated as a feature:
-small, specified, checkable, one pull request, reviewed by you.
+If you are new to agentic workflows, as most people are, consider starting with
+maintenance tasks, which agents do particularly well. They are the routine work that
+keeps a research repository usable, and each should be treated as a feature: small,
+specified, checkable, one pull request, reviewed by you.
 
 - **Refactoring.** Split the 400-line notebook into functions and a script. Tests
   pass before and after, or the refactor is not complete.

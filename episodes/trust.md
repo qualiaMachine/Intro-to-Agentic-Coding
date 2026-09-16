@@ -162,7 +162,7 @@ Whichever provider you choose (Anthropic, GitHub/Microsoft, Google, a startup, a
 router), you are sending your code and prompts to them. Before committing, answer four
 questions from the provider's policy documents rather than its marketing material:
 
-1. **Is my data used for training, and is that the default?** Commercial and API
+1. **Are my data and code used for training, and is that the default?** Commercial and API
    terms typically prohibit it. Consumer plans often make it a setting, sometimes
    enabled by default. Find the setting and decide.
 2. **How long is it retained, and who can see it?** Retention windows differ by an
