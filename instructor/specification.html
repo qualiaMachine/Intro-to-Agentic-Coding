@@ -245,10 +245,10 @@
 
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
-        <ul><li><a href="#work-feature-by-feature-not-project-by-project">Work feature by feature, not project by project</a></li>
+        <ul><li><a href="#the-agent-is-not-a-magic-wand">The agent is not a magic wand</a></li>
+<li><a href="#work-feature-by-feature-not-project-by-project">Work feature by feature, not project by project</a></li>
 <li><a href="#underspecified-does-not-mean-random">Underspecified does not mean random</a></li>
 <li><a href="#guide-the-agent-with-clear-instructions">Guide the agent with clear instructions</a></li>
-<li><a href="#maintenance-tasks-agents-do-well">Maintenance tasks agents do well</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -414,7 +414,14 @@ agent made on your behalf.</li>
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="work-feature-by-feature-not-project-by-project">Work feature by feature, not project by project<a class="anchor" aria-label="anchor" href="#work-feature-by-feature-not-project-by-project"></a></h2>
+<section><h2 class="section-heading" id="the-agent-is-not-a-magic-wand">The agent is not a magic wand<a class="anchor" aria-label="anchor" href="#the-agent-is-not-a-magic-wand"></a></h2>
+<hr class="half-width"><p>Most frustration with agents comes from using them as one: describe
+the whole project, wait, and receive something plausible and wrong. This
+style of use is sometimes called vibe coding. The remedy is a person in
+the loop who knows the domain. You decide what to build next; the agent
+builds that one thing; you check it before the next. Your expertise is
+what makes the arrangement work, not the prompt and not the model.</p>
+</section><section><h2 class="section-heading" id="work-feature-by-feature-not-project-by-project">Work feature by feature, not project by project<a class="anchor" aria-label="anchor" href="#work-feature-by-feature-not-project-by-project"></a></h2>
 <hr class="half-width"><p>A feature is one thing you can check: load and validate the data
 slice; train one baseline; write the scoring function. The
 <code>plan.md</code> from the previous episode is the feature list. Work
@@ -510,40 +517,14 @@ work. Run the tests; confirm the row count is unchanged; print the class
 balance before and after.</li>
 </ul><p>The last item leads into the next episode. A prompt that includes its
 own check is worth more than one that does not.</p>
-</section><section><h2 class="section-heading" id="maintenance-tasks-agents-do-well">Maintenance tasks agents do well<a class="anchor" aria-label="anchor" href="#maintenance-tasks-agents-do-well"></a></h2>
-<hr class="half-width"><p>Not every feature is new analysis. Agents are reliably good at the
-routine work that keeps a research repository usable, provided each task
-is treated as a feature: small, specified, checkable, one pull request,
-reviewed by you.</p>
-<ul><li>
-<strong>Refactoring.</strong> Split the 400-line notebook into
-functions and a script. Tests pass before and after, or the refactor is
-not complete.</li>
-<li>
-<strong>Docstrings and type hints</strong> on every function. Ask
-for a diff that changes no logic, then confirm that it did not.</li>
-<li>
-<strong>A README that matches the code.</strong> “Read the repo and
-list what the README says that is no longer true.”</li>
-<li>
-<strong>Environment files.</strong> Pin
-<code>requirements.txt</code> or <code>environment.yml</code> from what
-the code imports.</li>
-<li>
-<strong>Weekly merge preparation.</strong> “Summarize what changed
-on this branch since <code>main</code>, for the teammates who were not
-here.”</li>
-</ul><p>The <a href="documentation.html">documentation</a> episode covers the
-first three in more depth, and explains why documentation improves later
-agent sessions.</p>
-<div id="exercise-implement-feature-1-from-your-plan-15-minutes" class="callout challenge">
+<div id="exercise-implement-feature-or-step-1-from-your-plan-15-minutes" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <span class="callout-header">Challenge</span>
-<div id="exercise-implement-feature-1-from-your-plan-15-minutes" class="callout-inner">
-<h3 class="callout-title">Exercise: Implement feature 1 from your plan
-(15 minutes)</h3>
+<div id="exercise-implement-feature-or-step-1-from-your-plan-15-minutes" class="callout-inner">
+<h3 class="callout-title">Exercise: Implement feature (or step) 1 from
+your plan (15 minutes)</h3>
 <div class="callout-content">
 <p>Take feature 1 from your <code>plan.md</code>, or any feature you
 want to add.</p>
@@ -617,7 +598,7 @@ printed majority-class baseline alongside the test accuracy.</p>
   Typical results
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The request to list unspecified choices is the most informative line
 in the template. Typical answers: a random seed, a default imputation,
@@ -632,6 +613,32 @@ them.</p>
 </div>
 </div>
 </div>
+<p>:## Maintenance tasks agents do well</p>
+<p>Not every feature is new analysis. Agents are reliably good at the
+routine work that keeps a research repository usable, provided each task
+is treated as a feature: small, specified, checkable, one pull request,
+reviewed by you.</p>
+<ul><li>
+<strong>Refactoring.</strong> Split the 400-line notebook into
+functions and a script. Tests pass before and after, or the refactor is
+not complete.</li>
+<li>
+<strong>Docstrings and type hints</strong> on every function. Ask
+for a diff that changes no logic, then confirm that it did not.</li>
+<li>
+<strong>A README that matches the code.</strong> “Read the repo and
+list what the README says that is no longer true.”</li>
+<li>
+<strong>Environment files.</strong> Pin
+<code>requirements.txt</code> or <code>environment.yml</code> from what
+the code imports.</li>
+<li>
+<strong>Weekly merge preparation.</strong> “Summarize what changed
+on this branch since <code>main</code>, for the teammates who were not
+here.”</li>
+</ul><p>The <a href="documentation.html">documentation</a> episode covers the
+first three in more depth, and explains why documentation improves later
+agent sessions.</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -639,7 +646,9 @@ them.</p>
 <span class="callout-header">Key Points</span>
 <div class="callout-inner">
 <div class="callout-content">
-<ul><li>A feature is one thing you can check. Work through the plan one
+<ul><li>The agent is not a magic wand. A person who knows the domain decides
+what to build next; the agent builds that one thing.</li>
+<li>A feature is one thing you can check. Work through the plan one
 feature per session, with a small diff and one pull request.</li>
 <li>Underspecified prompts receive average-case answers, and research
 data is rarely the average case. The failure mode is

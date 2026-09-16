@@ -472,9 +472,11 @@ serialization, used by many model files, runs arbitrary code on load. In
 Face whose payloads included opening a reverse shell when loaded.
 Scanners have not caught everything since.</li>
 <li>
-<strong>Typosquats.</strong> Check the organization, not the model
-card. In 2026 HiddenLayer identified a fake “OpenAI” repository at the
-top of Hugging Face’s trending list.</li>
+<strong>Fake repositories.</strong> Check the organization, not the
+model card. In 2026 HiddenLayer identified
+<code>Open-OSS/privacy-filter</code>, posing as an OpenAI release with a
+copied model card and a loader that installed an infostealer, at the top
+of Hugging Face’s trending list.</li>
 <li>
 <strong>Values are trained in.</strong> DeepSeek R1 censors certain
 topics; Perplexity’s R1 1776
@@ -483,9 +485,10 @@ model’s builders trained it to do or avoid, it will do or avoid in your
 pipeline.</li>
 <li>
 <strong>Hidden backdoors work, and no reliable detector
-exists.</strong> Mithril’s PoisonGPT
-(2023) passed standard benchmarks while emitting specific false
-statements. More below.</li>
+exists.</strong> In Mithril’s PoisonGPT demonstration (2023), an edited
+GPT-J spread a specific false fact, kept its benchmark scores, and was
+uploaded under a lookalike organization. No detector caught it. More
+below.</li>
 </ul><p>Practices that follow:</p>
 <ul><li>Prefer <strong><code>safetensors</code></strong>, a weights-only
 format that cannot execute code, over pickle formats when
@@ -602,28 +605,28 @@ exists.</li>
 <p>The two tools this lesson uses most illustrate how much the answers
 depend on plan tier rather than provider:</p>
 <table class="table"><colgroup><col width="33%"><col width="33%"><col width="33%"></colgroup><thead><tr><th></th>
-<th>Claude (Free, Pro, Max)</th>
+<th>Claude Code (Free, Pro, Max)</th>
 <th>GitHub Copilot (Free, Pro, Pro+)</th>
-</tr></thead><tbody><tr><td>Trains on your data?</td>
-<td>Yes when the setting is on, Claude Code included (<a href="https://www.anthropic.com/news/updates-to-our-consumer-terms" class="external-link">consumer
-terms</a>)</td>
-<td>Yes by default since April 2026 (<a href="https://docs.github.com/en/copilot/how-tos/manage-your-account/manage-policies" class="external-link">GitHub
-docs</a>)</td>
-</tr><tr><td>Retention</td>
-<td>5 years if training is on, 30 days if off (<a href="https://privacy.anthropic.com/" class="external-link">Privacy Center</a>)</td>
-<td>Per GitHub’s data policies</td>
-</tr><tr><td>Exempt tiers</td>
-<td>Team, Enterprise, and API do not train (<a href="https://code.claude.com/docs/en/data-usage" class="external-link">Claude Code data
+</tr></thead><tbody><tr><td>Trains by default?</td>
+<td>Yes; opt out under Settings → Privacy (<a href="https://www.anthropic.com/news/updates-to-our-consumer-terms" class="external-link">consumer
+terms</a>). Team, Enterprise, API, and Bedrock: no (<a href="https://code.claude.com/docs/en/data-usage" class="external-link">Claude Code data
 usage</a>)</td>
-<td>Business and Enterprise do not train; students and teachers on free
-Pro are exempt</td>
-</tr><tr><td>Where to check</td>
-<td><a href="https://claude.ai/settings/data-privacy-controls" class="external-link">Claude
-privacy settings</a></td>
-<td><a href="https://github.com/settings/copilot" class="external-link">Copilot
-settings</a></td>
-</tr></tbody></table><p>Neither is on UW–Madison’s list of vetted AI tools. Policies change;
-consult the linked pages rather than this table.</p>
+<td>Yes, since April 2026; opt out in <a href="https://github.com/settings/copilot" class="external-link">Copilot settings</a> (<a href="https://docs.github.com/en/copilot/how-tos/manage-your-account/manage-policies" class="external-link">GitHub
+docs</a>). Business, Enterprise, and students: no</td>
+</tr><tr><td>Retained how long?</td>
+<td>5 years if training is on, 30 days if off (<a href="https://privacy.anthropic.com/" class="external-link">Privacy Center</a>)</td>
+<td>28 days</td>
+</tr><tr><td>Where does it run?</td>
+<td>Anthropic VMs in the US, or Amazon Bedrock on the university’s AWS
+account</td>
+<td>GitHub’s Azure in the US; Claude and Gemini models via AWS,
+Anthropic, and Google Cloud</td>
+</tr><tr><td>Institutional or personal?</td>
+<td>Personal. The Bedrock route is institutional, with zero data
+retention through 2026</td>
+<td>Personal, via GitHub Education. Not on UW–Madison’s vetted list</td>
+</tr></tbody></table><p>Neither consumer route is on UW–Madison’s list of vetted AI tools.
+Policies change; consult the linked pages rather than this table.</p>
 <div id="free-services-have-a-cost" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>

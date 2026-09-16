@@ -771,8 +771,9 @@ particular way</td>
 <td>Determine all the necessary validation steps</td>
 </tr>
 <tr>
-<td>Run commands from your terminal</td>
-<td>Prevent all harmful commands from running</td>
+<td>Run commands from your terminal, with the attendant risk of prompt
+injection and leaked credentials</td>
+<td>Prevent all harmful commands from running (hence the VM)</td>
 </tr>
 </tbody>
 </table>
@@ -836,7 +837,8 @@ file, a line in a prompt) asks the model to behave in a certain way. A
 <em>permission</em> (a VM boundary, a deny rule, branch protection, a
 firewall) removes the ability to do otherwise. <strong>Instructions
 influence behavior; permissions constrain it.</strong> Prefer
-permissions wherever they are available.</p>
+permissions wherever they are available. None of the six eliminates
+risk; together they reduce it.</p>
 <div class="section level3">
 <h3 id="network-an-allowlist">1. Network: an allowlist<a class="anchor" aria-label="anchor" href="#network-an-allowlist"></a>
 </h3>
@@ -1006,6 +1008,48 @@ confirmation. The defaults usually deny nothing, so configure them: deny
 <code>rm -rf</code>, force-push, and reads of <code>.env</code> and
 <code>~/.ssh</code>. Claude Code’s documentation on <a href="https://code.claude.com/docs/en/permissions" class="external-link">permissions versus
 sandboxing</a> describes the two mechanisms.</p>
+<p>Rules can be committed with the project so that cloud sessions read
+them:</p>
+<div class="tabs">
+<nav><div id="nav-tab-2" class="nav nav-tabs" role="tablist">
+<button class="nav-link active" id="nav-tab-2-ClaudeCode" name="ClaudeCode" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-2-ClaudeCode" type="button" role="tab" aria-controls="nav-tabpanel-2-ClaudeCode" aria-selected="true">
+  <h3 class="tab-header" id="nav-tab-heading-2-ClaudeCode">
+  Claude Code
+  </h3>
+</button>
+<button class="nav-link" id="nav-tab-2-GitHubCopilot" name="GitHubCopilot" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-2-GitHubCopilot" type="button" role="tab" aria-controls="nav-tabpanel-2-GitHubCopilot" aria-selected="false">
+  <h3 class="tab-header" id="nav-tab-heading-2-GitHubCopilot">
+  GitHub Copilot
+  </h3>
+</button>
+</div>
+</nav><div id="nav-tabContent-2" class="tab-content">
+<div id="nav-tabpanel-2-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-2-ClaudeCode">
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">JSON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode json" tabindex="0"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="er">//</span> <span class="er">.claude/settings.json,</span> <span class="er">committed.</span> <span class="er">Cloud</span> <span class="er">sessions</span> <span class="er">read</span> <span class="er">it</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="fu">{</span> <span class="dt">"permissions"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a>    <span class="dt">"allow"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"Bash(pytest:*)"</span><span class="ot">,</span> <span class="st">"Bash(git diff:*)"</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1" aria-label="code-block-1-4"></a>    <span class="dt">"deny"</span><span class="fu">:</span>  <span class="ot">[</span><span class="st">"Bash(rm -rf:*)"</span><span class="ot">,</span> <span class="st">"Bash(git push --force:*)"</span><span class="ot">,</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1" aria-label="code-block-1-5"></a>              <span class="st">"Read(.env)"</span><span class="ot">,</span> <span class="st">"Read(~/.ssh/**)"</span><span class="ot">]</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1" aria-label="code-block-1-6"></a><span class="fu">}</span> <span class="fu">}</span></span></code></pre>
+</div>
+</div>
+<div id="nav-tabpanel-2-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-2-GitHubCopilot">
+<p>The Copilot CLI has the same idea with its own syntax (<a href="https://docs.github.com/en/copilot/how-tos/copilot-cli/use-copilot-cli/allowing-tools" class="external-link">allowing
+and denying tool use</a>):</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="ex">copilot</span> <span class="at">--allow-tool</span> <span class="st">'shell(pytest:*)'</span> <span class="dt">\</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a>        <span class="at">--deny-tool</span>  <span class="st">'shell(git push --force:*)'</span></span></code></pre>
+</div>
+<p>The Copilot cloud agent has no allow/deny list. There, the sandbox
+and the firewall are the controls.</p>
+</div>
+</div>
+</div>
 <p>A permission rule inspects the command text, not what the command
 does when it runs. In January 2026, Cursor’s allowlist was bypassed (<a href="https://github.com/cursor/cursor/security/advisories/GHSA-82wg-qcm4-fp2w" class="external-link">CVE-2026-22708</a>,
 reported by Pillar Security): prompt injection set an environment
@@ -1029,7 +1073,8 @@ included, also reads <code>AGENTS.md</code>. Commit it to the repository
 and keep it short: the test command, the data location, what not to
 modify. The <a href="early-project-planning.html">planning</a> episode
 gives an example.</p>
-<p>An instruction file is not a permission. In April 2026 a Cursor agent
+<p>An instruction file is not a permission, and agents also lose track
+of instructions as the context grows long. In April 2026 a Cursor agent
 working on a staging task for the company PocketOS encountered a
 credential mismatch, found a Railway API token in an unrelated file, and
 used it. The production database and its backups were deleted in nine
@@ -1055,20 +1100,20 @@ configuration files, or shell profiles.</li>
 UW–Madison NetID can request a free <a href="https://it.wisc.edu/services/1password/" class="external-link">1Password account</a>.
 The 1Password CLI (<code>op</code>) reads a secret by reference:</li>
 </ul>
-<div class="codewrapper sourceCode" id="cb1">
+<div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="co"># The op:// reference is a pointer, not a secret. It is safe to commit.</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="ex">op</span> read <span class="st">"op://Private/bbadger/credential"</span></span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a><span class="co">#         vault   item     field</span></span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1" aria-label="code-block-1-4"></a></span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1" aria-label="code-block-1-5"></a><span class="co"># Into the environment for this shell only</span></span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1" aria-label="code-block-1-6"></a><span class="bu">export</span> <span class="va">OPENAI_API_KEY</span><span class="op">=</span><span class="va">$(</span><span class="ex">op</span> read <span class="st">'op://Private/bbadger/credential'</span><span class="va">)</span>   <span class="co"># bash / zsh</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="co"># The op:// reference is a pointer, not a secret. It is safe to commit.</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1" aria-label="code-block-3-2"></a><span class="ex">op</span> read <span class="st">"op://Private/bbadger/credential"</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1" aria-label="code-block-3-3"></a><span class="co">#         vault   item     field</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1" aria-label="code-block-3-4"></a></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1" aria-label="code-block-3-5"></a><span class="co"># Into the environment for this shell only</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1" aria-label="code-block-3-6"></a><span class="bu">export</span> <span class="va">OPENAI_API_KEY</span><span class="op">=</span><span class="va">$(</span><span class="ex">op</span> read <span class="st">'op://Private/bbadger/credential'</span><span class="va">)</span>   <span class="co"># bash / zsh</span></span></code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb2">
+<div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">POWERSHELL<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode powershell" tabindex="0"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="va">$env</span><span class="op">:</span><span class="va">OPENAI_API_KEY</span> <span class="op">=</span> op read <span class="st">"op://Private/bbadger/credential"</span>     <span class="co"># PowerShell</span></span></code></pre>
+<pre class="sourceCode powershell" tabindex="0"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="va">$env</span><span class="op">:</span><span class="va">OPENAI_API_KEY</span> <span class="op">=</span> op read <span class="st">"op://Private/bbadger/credential"</span>     <span class="co"># PowerShell</span></span></code></pre>
 </div>
 <p>An <code>op://</code> reference names a vault, an item, and a field.
 It is a pointer, not a key: it is safe in a repository, a script, or a
@@ -1078,23 +1123,23 @@ it when you need it; nothing is stored on disk.</p>
 since an <code>op://</code> path is not a secret) and launch through
 <code>op run</code>. Every kernel inherits the variables and no key
 appears in a notebook:</p>
-<div class="codewrapper sourceCode" id="cb3">
+<div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="co"># .env.op  (references, not secrets; safe to commit)</span></span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1" aria-label="code-block-3-2"></a><span class="va">OPENAI_API_KEY</span><span class="op">=</span>op://Private/BadgerBrain/credential</span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1" aria-label="code-block-3-3"></a><span class="va">OPENAI_BASE_URL</span><span class="op">=</span>https://deepthought.doit.wisc.edu/v1</span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1" aria-label="code-block-3-4"></a></span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1" aria-label="code-block-3-5"></a><span class="co"># launch JupyterLab through 1Password</span></span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1" aria-label="code-block-3-6"></a><span class="ex">op</span> run <span class="at">--env-file</span><span class="op">=</span>.env.op <span class="at">--</span> jupyter lab</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="co"># .env.op  (references, not secrets; safe to commit)</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1" aria-label="code-block-5-2"></a><span class="va">OPENAI_API_KEY</span><span class="op">=</span>op://Private/BadgerBrain/credential</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1" aria-label="code-block-5-3"></a><span class="va">OPENAI_BASE_URL</span><span class="op">=</span>https://deepthought.doit.wisc.edu/v1</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1" aria-label="code-block-5-4"></a></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1" aria-label="code-block-5-5"></a><span class="co"># launch JupyterLab through 1Password</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1" aria-label="code-block-5-6"></a><span class="ex">op</span> run <span class="at">--env-file</span><span class="op">=</span>.env.op <span class="at">--</span> jupyter lab</span></code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb4">
+<div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="co"># in any notebook, in any kernel</span></span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1" aria-label="code-block-4-2"></a><span class="im">import</span> os</span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1" aria-label="code-block-4-3"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1" aria-label="code-block-4-4"></a>client <span class="op">=</span> OpenAI(api_key<span class="op">=</span>os.environ[<span class="st">"OPENAI_API_KEY"</span>])</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="co"># in any notebook, in any kernel</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1" aria-label="code-block-6-2"></a><span class="im">import</span> os</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1" aria-label="code-block-6-3"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1" aria-label="code-block-6-4"></a>client <span class="op">=</span> OpenAI(api_key<span class="op">=</span>os.environ[<span class="st">"OPENAI_API_KEY"</span>])</span></code></pre>
 </div>
 <p>Do not print the key or paste it into a cell. 1Password prompts on
 each read, whereas an OS keychain releases secrets to any process
@@ -1200,7 +1245,8 @@ get the same review gate, with less interaction.</li>
 <li>
 <strong>Confirm the session is cloud-hosted before you
 prompt.</strong> It should be pointed at a cloud VM and a GitHub
-repository, not a folder on your laptop.</li>
+repository, not a folder on your laptop. Check the environment’s network
+access setting (limit 1 above) while you are there.</li>
 <li>
 <strong>Use your project repository.</strong> If you have none,
 create one now.</li>
@@ -1227,7 +1273,7 @@ and what it does not know that you do.</li>
   What to check
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>If step 2 fails (the session is local), stop and switch before
 prompting. This is the most common mistake with the desktop apps. Cloud
@@ -1388,9 +1434,11 @@ serialization, used by many model files, runs arbitrary code on load. In
 Face whose payloads included opening a reverse shell when loaded.
 Scanners have not caught everything since.</li>
 <li>
-<strong>Typosquats.</strong> Check the organization, not the model
-card. In 2026 HiddenLayer identified a fake “OpenAI” repository at the
-top of Hugging Face’s trending list.</li>
+<strong>Fake repositories.</strong> Check the organization, not the
+model card. In 2026 HiddenLayer identified
+<code>Open-OSS/privacy-filter</code>, posing as an OpenAI release with a
+copied model card and a loader that installed an infostealer, at the top
+of Hugging Face’s trending list.</li>
 <li>
 <strong>Values are trained in.</strong> DeepSeek R1 censors certain
 topics; Perplexity’s R1 1776
@@ -1399,9 +1447,10 @@ model’s builders trained it to do or avoid, it will do or avoid in your
 pipeline.</li>
 <li>
 <strong>Hidden backdoors work, and no reliable detector
-exists.</strong> Mithril’s PoisonGPT
-(2023) passed standard benchmarks while emitting specific false
-statements. More below.</li>
+exists.</strong> In Mithril’s PoisonGPT demonstration (2023), an edited
+GPT-J spread a specific false fact, kept its benchmark scores, and was
+uploaded under a lookalike organization. No detector caught it. More
+below.</li>
 </ul>
 <p>Practices that follow:</p>
 <ul>
@@ -1540,40 +1589,40 @@ depend on plan tier rather than provider:</p>
 </colgroup>
 <thead><tr>
 <th></th>
-<th>Claude (Free, Pro, Max)</th>
+<th>Claude Code (Free, Pro, Max)</th>
 <th>GitHub Copilot (Free, Pro, Pro+)</th>
 </tr></thead>
 <tbody>
 <tr>
-<td>Trains on your data?</td>
-<td>Yes when the setting is on, Claude Code included (<a href="https://www.anthropic.com/news/updates-to-our-consumer-terms" class="external-link">consumer
-terms</a>)</td>
-<td>Yes by default since April 2026 (<a href="https://docs.github.com/en/copilot/how-tos/manage-your-account/manage-policies" class="external-link">GitHub
-docs</a>)</td>
-</tr>
-<tr>
-<td>Retention</td>
-<td>5 years if training is on, 30 days if off (<a href="https://privacy.anthropic.com/" class="external-link">Privacy Center</a>)</td>
-<td>Per GitHub’s data policies</td>
-</tr>
-<tr>
-<td>Exempt tiers</td>
-<td>Team, Enterprise, and API do not train (<a href="https://code.claude.com/docs/en/data-usage" class="external-link">Claude Code data
+<td>Trains by default?</td>
+<td>Yes; opt out under Settings → Privacy (<a href="https://www.anthropic.com/news/updates-to-our-consumer-terms" class="external-link">consumer
+terms</a>). Team, Enterprise, API, and Bedrock: no (<a href="https://code.claude.com/docs/en/data-usage" class="external-link">Claude Code data
 usage</a>)</td>
-<td>Business and Enterprise do not train; students and teachers on free
-Pro are exempt</td>
+<td>Yes, since April 2026; opt out in <a href="https://github.com/settings/copilot" class="external-link">Copilot settings</a> (<a href="https://docs.github.com/en/copilot/how-tos/manage-your-account/manage-policies" class="external-link">GitHub
+docs</a>). Business, Enterprise, and students: no</td>
 </tr>
 <tr>
-<td>Where to check</td>
-<td><a href="https://claude.ai/settings/data-privacy-controls" class="external-link">Claude
-privacy settings</a></td>
-<td><a href="https://github.com/settings/copilot" class="external-link">Copilot
-settings</a></td>
+<td>Retained how long?</td>
+<td>5 years if training is on, 30 days if off (<a href="https://privacy.anthropic.com/" class="external-link">Privacy Center</a>)</td>
+<td>28 days</td>
+</tr>
+<tr>
+<td>Where does it run?</td>
+<td>Anthropic VMs in the US, or Amazon Bedrock on the university’s AWS
+account</td>
+<td>GitHub’s Azure in the US; Claude and Gemini models via AWS,
+Anthropic, and Google Cloud</td>
+</tr>
+<tr>
+<td>Institutional or personal?</td>
+<td>Personal. The Bedrock route is institutional, with zero data
+retention through 2026</td>
+<td>Personal, via GitHub Education. Not on UW–Madison’s vetted list</td>
 </tr>
 </tbody>
 </table>
-<p>Neither is on UW–Madison’s list of vetted AI tools. Policies change;
-consult the linked pages rather than this table.</p>
+<p>Neither consumer route is on UW–Madison’s list of vetted AI tools.
+Policies change; consult the linked pages rather than this table.</p>
 <div id="free-services-have-a-cost" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -1840,14 +1889,14 @@ edit.</p>
 </div>
 </div>
 </div>
-<div id="exercise-agree-how-your-team-will-work-together-10-minutes" class="callout challenge">
+<div id="exercise-agree-how-your-team-will-collaborate-10-minutes" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <span class="callout-header">Challenge</span>
-<div id="exercise-agree-how-your-team-will-work-together-10-minutes" class="callout-inner">
-<h3 class="callout-title">Exercise: Agree how your team will work
-together (10 minutes)</h3>
+<div id="exercise-agree-how-your-team-will-collaborate-10-minutes" class="callout-inner">
+<h3 class="callout-title">Exercise: Agree how your team will collaborate
+(10 minutes)</h3>
 <div class="callout-content">
 <p>Every member of the team is about to use a coding agent on the same
 repository, which will produce more branches, more commits, and larger
@@ -1866,16 +1915,16 @@ you are building:</p>
 <p>Our team of &lt;n&gt; is working in one GitHub repo on
 &lt;challenge&gt;. Every one of us is using a coding agent, so we will
 be generating more branches, more commits and bigger diffs than a normal
-class project.</p>
-<p>We each work on a branch named for us and merge to <code>main</code>
-through a pull request. Propose the rest of the conventions that keep
-<code>main</code> clean and reviewable. Cover branch naming, how small a
-pull request should be, who reviews, what an agent may touch without
-asking, how we avoid two agents editing the same file, and what goes in
-commit messages.</p>
-<p>Write <code>CONTRIBUTING.md</code>. Commit it to a branch named for
-me, not to <code>main</code>, and open a pull request for it. Short
-enough that people read it.</p>
+project.</p>
+<p>Propose contributing conventions that keep <code>main</code> clean
+and reviewable. Cover branch naming, how small a pull request should be,
+who reviews, what an agent may touch without asking, how we avoid two
+agents editing the same file, and what goes in commit messages. Also
+suggest how to organize the repo structure so any new files go in the
+correct spot.</p>
+<p>Write <code>CONTRIBUTING.md</code>. Commit it to a development branch
+named for me, not to <code>main</code>, and open a pull request for it.
+Short enough that people read it.</p>
 </blockquote>
 </li>
 <li><p><strong>Edit what it produces.</strong> Keep the rules the team
@@ -2084,9 +2133,9 @@ task.</li>
 constraints, compute, existing code, standards, and prior decisions; for
 long work, keep the plan in a file the agent updates.</li>
 <li>Agree team conventions first (branches rather than forks,
-pull-request size, who reviews, what the agent may not modify) and
-commit them as a <code>CONTRIBUTING.md</code> that agents also
-read.</li>
+pull-request size, who reviews, what the agent may not modify, where new
+files go) and commit them as a <code>CONTRIBUTING.md</code> that agents
+also read.</li>
 <li>Use plan mode (read-only) to review a plan. The deliverable is a
 <code>plan.md</code> with ordered features and a check for each,
 committed before any code.</li>
@@ -2152,7 +2201,16 @@ agent made on your behalf.</li>
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="work-feature-by-feature-not-project-by-project">Work feature by feature, not project by project<a class="anchor" aria-label="anchor" href="#work-feature-by-feature-not-project-by-project"></a>
+<section><h2 class="section-heading" id="the-agent-is-not-a-magic-wand">The agent is not a magic wand<a class="anchor" aria-label="anchor" href="#the-agent-is-not-a-magic-wand"></a>
+</h2>
+<hr class="half-width">
+<p>Most frustration with agents comes from using them as one: describe
+the whole project, wait, and receive something plausible and wrong. This
+style of use is sometimes called vibe coding. The remedy is a person in
+the loop who knows the domain. You decide what to build next; the agent
+builds that one thing; you check it before the next. Your expertise is
+what makes the arrangement work, not the prompt and not the model.</p>
+</section><section><h2 class="section-heading" id="work-feature-by-feature-not-project-by-project">Work feature by feature, not project by project<a class="anchor" aria-label="anchor" href="#work-feature-by-feature-not-project-by-project"></a>
 </h2>
 <hr class="half-width">
 <p>A feature is one thing you can check: load and validate the data
@@ -2261,44 +2319,14 @@ balance before and after.</li>
 </ul>
 <p>The last item leads into the next episode. A prompt that includes its
 own check is worth more than one that does not.</p>
-</section><section><h2 class="section-heading" id="maintenance-tasks-agents-do-well">Maintenance tasks agents do well<a class="anchor" aria-label="anchor" href="#maintenance-tasks-agents-do-well"></a>
-</h2>
-<hr class="half-width">
-<p>Not every feature is new analysis. Agents are reliably good at the
-routine work that keeps a research repository usable, provided each task
-is treated as a feature: small, specified, checkable, one pull request,
-reviewed by you.</p>
-<ul>
-<li>
-<strong>Refactoring.</strong> Split the 400-line notebook into
-functions and a script. Tests pass before and after, or the refactor is
-not complete.</li>
-<li>
-<strong>Docstrings and type hints</strong> on every function. Ask
-for a diff that changes no logic, then confirm that it did not.</li>
-<li>
-<strong>A README that matches the code.</strong> “Read the repo and
-list what the README says that is no longer true.”</li>
-<li>
-<strong>Environment files.</strong> Pin
-<code>requirements.txt</code> or <code>environment.yml</code> from what
-the code imports.</li>
-<li>
-<strong>Weekly merge preparation.</strong> “Summarize what changed
-on this branch since <code>main</code>, for the teammates who were not
-here.”</li>
-</ul>
-<p>The <a href="documentation.html">documentation</a> episode covers the
-first three in more depth, and explains why documentation improves later
-agent sessions.</p>
-<div id="exercise-implement-feature-1-from-your-plan-15-minutes" class="callout challenge">
+<div id="exercise-implement-feature-or-step-1-from-your-plan-15-minutes" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <span class="callout-header">Challenge</span>
-<div id="exercise-implement-feature-1-from-your-plan-15-minutes" class="callout-inner">
-<h3 class="callout-title">Exercise: Implement feature 1 from your plan
-(15 minutes)</h3>
+<div id="exercise-implement-feature-or-step-1-from-your-plan-15-minutes" class="callout-inner">
+<h3 class="callout-title">Exercise: Implement feature (or step) 1 from
+your plan (15 minutes)</h3>
 <div class="callout-content">
 <p>Take feature 1 from your <code>plan.md</code>, or any feature you
 want to add.</p>
@@ -2374,7 +2402,7 @@ printed majority-class baseline alongside the test accuracy.</p>
   Typical results
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The request to list unspecified choices is the most informative line
 in the template. Typical answers: a random seed, a default imputation,
@@ -2389,6 +2417,34 @@ them.</p>
 </div>
 </div>
 </div>
+<p>:## Maintenance tasks agents do well</p>
+<p>Not every feature is new analysis. Agents are reliably good at the
+routine work that keeps a research repository usable, provided each task
+is treated as a feature: small, specified, checkable, one pull request,
+reviewed by you.</p>
+<ul>
+<li>
+<strong>Refactoring.</strong> Split the 400-line notebook into
+functions and a script. Tests pass before and after, or the refactor is
+not complete.</li>
+<li>
+<strong>Docstrings and type hints</strong> on every function. Ask
+for a diff that changes no logic, then confirm that it did not.</li>
+<li>
+<strong>A README that matches the code.</strong> “Read the repo and
+list what the README says that is no longer true.”</li>
+<li>
+<strong>Environment files.</strong> Pin
+<code>requirements.txt</code> or <code>environment.yml</code> from what
+the code imports.</li>
+<li>
+<strong>Weekly merge preparation.</strong> “Summarize what changed
+on this branch since <code>main</code>, for the teammates who were not
+here.”</li>
+</ul>
+<p>The <a href="documentation.html">documentation</a> episode covers the
+first three in more depth, and explains why documentation improves later
+agent sessions.</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -2397,6 +2453,8 @@ them.</p>
 <div class="callout-inner">
 <div class="callout-content">
 <ul>
+<li>The agent is not a magic wand. A person who knows the domain decides
+what to build next; the agent builds that one thing.</li>
 <li>A feature is one thing you can check. Work through the plan one
 feature per session, with a small diff and one pull request.</li>
 <li>Underspecified prompts receive average-case answers, and research
@@ -2479,14 +2537,22 @@ well, and write the assertion that catches it.</li>
 <p>Checking agent output is the bottleneck, not producing it:</p>
 <ul>
 <li>Agents multiply code written far more than code shipped: 240% more
-commits but only 30% more releases across half a million GitHub
-developers (Demirer, Musolff &amp; Yang, 2026). Not all of the
-additional code is good code, and the gains attenuate at the human
-review step.</li>
+commits but only 30% more releases across 500,000 GitHub developers
+(Demirer, Musolff &amp; Yang, 2026). Not all of the additional code is
+good code, and the gains attenuate at the human review step.</li>
 <li>Pull requests wait about five times longer for a human review under
-heavy AI use, and 31% more are merged without one (Faros AI telemetry,
-22,000 developers, 2026).</li>
+heavy AI use, and 31% more are merged without one (Faros AI, two years
+of telemetry from 22,000 developers at 4,000 companies, 2026).</li>
 </ul>
+<p>Faros AI’s explanation has two parts. There is more to read: average
+pull-request size is up 51% and files touched per pull request up 60%,
+and the median wait before anyone starts a review is up 157%. And it is
+harder to review once started: median time in review is up 441%, because
+AI-written code is superficially convincing (idiomatic, well named,
+stylistically consistent with its surroundings), so its failures are
+structural rather than obvious. Reviewers have to reconstruct what the
+code was meant to do instead of scanning for errors. In their phrase,
+the code arriving for review was never review-ready.</p>
 <figure><img src="fig/agent-output-vs-review.png" alt="Bar chart of percent change after adopting coding agents. Commits, Demirer et al.: plus 240 percent. Releases shipped, Demirer et al.: plus 30 percent. Task throughput, Faros AI: plus 33.7 percent. PR wait for review, Faros AI, in red: plus 441.5 percent." class="figure mx-auto d-block"><div class="figcaption">Adopting coding agents multiplies output far
 more than it multiplies shipped work, and the wait for human review
 grows most of all.</div>
@@ -2494,11 +2560,12 @@ grows most of all.</div>
 </section><section><h2 class="section-heading" id="look-for-decisions-you-did-not-make">Look for decisions you did not make<a class="anchor" aria-label="anchor" href="#look-for-decisions-you-did-not-make"></a>
 </h2>
 <hr class="half-width">
-<p>When reviewing agent-written analysis code you are not checking
-syntax; the code runs. You are looking for decisions. Do this after
-every feature, before the next one: ask the agent for its assumptions,
-ask for tests and edge cases, run them, and then move on. The places
-most likely to contain unexamined decisions:</p>
+<p>A well-specified prompt still has unintended consequences. When
+reviewing agent-written analysis code you are not checking syntax; the
+code runs. You are looking for decisions. Do this before and after every
+feature: ask the agent for its assumptions, ask for tests and edge
+cases, run them and confirm the results look right, then move on. The
+places most likely to contain unexamined decisions:</p>
 <ul>
 <li>
 <strong>Silently dropped or altered rows</strong>: a default
@@ -2519,13 +2586,16 @@ the report features F1 because the number was higher.</li>
 <code>try/except: pass</code>, an error “fixed” by deleting the check.
 An agent told to make the code run sometimes does exactly that.</li>
 </ul>
-<p>One prompt worth adding to every review:</p>
+<p>Two prompts worth using at every review:</p>
 <blockquote>
 <p>Summarize every choice you made that I did not specify, and flag the
 risky ones.</p>
 </blockquote>
-<p>It surfaces the dropped-row and default-parameter decisions above
-more reliably than reading line by line.</p>
+<blockquote>
+<p>Propose tests for our latest feature, including edge cases.</p>
+</blockquote>
+<p>The first surfaces the dropped-row and default-parameter decisions
+above more reliably than reading line by line.</p>
 <div id="exercise-1-test-the-feature-you-just-built-10-minutes" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -2547,9 +2617,10 @@ plan mode:</p>
 <ol style="list-style-type: decimal">
 <li>List every choice you made that I did not specify, and flag the
 risky ones.</li>
-<li>Propose tests for this feature, including edge cases: empty input,
-wrong shape, duplicates, a sample that lands in both splits.</li>
-<li>Say which three matter most and why.</li>
+<li>Propose tests for this feature to ensure robustness as we develop
+the full pipeline, including edge cases: empty input, wrong shape,
+duplicates, a sample that lands in both splits, etc. Say which tests
+matter most and why.</li>
 </ol>
 <p>Do not edit anything yet.</p>
 </blockquote>
@@ -2559,8 +2630,8 @@ propose more than you would; keep the ones that protect against a wrong
 result.</p></li>
 <li><p><strong>Have it add them and run <code>pytest</code>.</strong>
 Fix what fails, then commit.</p></li>
-<li><p><strong>Make it automatic.</strong> A workflow runs
-<code>pytest</code> on every push (<a href="https://docs.github.com/en/actions/use-cases-and-examples/building-and-testing/building-and-testing-python" class="external-link">GitHub
+<li><p><strong>Make it automatic.</strong> A GitHub Actions workflow can
+run <code>pytest</code> on every push (<a href="https://docs.github.com/en/actions/use-cases-and-examples/building-and-testing/building-and-testing-python" class="external-link">GitHub
 Actions for Python</a>); ask the agent to write it. Protect
 <code>main</code> so that a failing check blocks the merge (<a href="https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches" class="external-link">about
 protected branches</a>).</p></li>
@@ -2579,13 +2650,13 @@ protected branches</a>).</p></li>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
 <p>Plan mode for step 1 (<kbd>Shift</kbd>+<kbd>Tab</kbd> locally; on the
 web, the “do not edit” line has the same effect). For steps 3 and 4
 switch to normal mode. Claude will run <code>pytest</code> itself
 (approve the command) and iterate until it passes.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
 <p><strong>Ask</strong> mode with <code>@workspace</code> for step 1;
 <strong>Agent</strong> mode for steps 3 and 4. Copilot proposes the
 <code>pytest</code> run in the terminal and waits for approval. The
@@ -2622,7 +2693,8 @@ the same care as the implementation.</p>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="no-escaping-good-data-science">No escaping good data science<a class="anchor" aria-label="anchor" href="#no-escaping-good-data-science"></a>
+</section><section><h2 class="section-heading" id="agents-speed-up-the-code-good-data-science-practice-still-applies">Agents speed up the code; good data science practice still
+applies<a class="anchor" aria-label="anchor" href="#agents-speed-up-the-code-good-data-science-practice-still-applies"></a>
 </h2>
 <hr class="half-width">
 <p>Research computing already had an answer to “how do I know this
@@ -2635,9 +2707,6 @@ missingness, class balance. Look at the rows.</li>
 <strong>Compare to a source of truth.</strong> A published baseline,
 a hand-computed subset, a control.</li>
 <li>
-<strong>Ask a colleague.</strong> “Does this number seem plausible
-to you?”</li>
-<li>
 <strong>Know what your model is responding to.</strong> If the
 strongest predictor makes no scientific sense, that is a finding about
 the pipeline, not about the phenomenon.</li>
@@ -2645,15 +2714,47 @@ the pipeline, not about the phenomenon.</li>
 <strong>Reproduce the result.</strong> Rerun it, change the seed,
 rerun on a fresh split. If it does not hold, something you are not
 controlling is driving it.</li>
+<li>
+<strong>Plot the results and review them.</strong> Agents can
+sometimes help, but expert eyes are often needed.</li>
 </ul>
-<p>None of this has changed. Only the typing, and some quick ideation,
-has moved to the agent. What has changed is speed: a plausible,
+<p>None of this has changed. What has changed is speed: a plausible,
 clean-running, well-scoring analysis can now be produced in minutes,
 which means you can be misled in minutes as well. The checking has to
-keep pace. Agents can learn more about your project as you leave
-evidence in the repository (figures, metrics, notes), but they see a
-portion of the project at a time, never all of it.</p>
-</section><section><h2 class="section-heading" id="agents-as-data-science-assistants">Agents as data science assistants<a class="anchor" aria-label="anchor" href="#agents-as-data-science-assistants"></a>
+keep pace.</p>
+</section><section><h2 class="section-heading" id="tests-for-good-data-science-practice">Tests for good data science practice<a class="anchor" aria-label="anchor" href="#tests-for-good-data-science-practice"></a>
+</h2>
+<hr class="half-width">
+<p>Each of the practices above can be written as a test the agent
+implements and CI runs. Prompts to start from:</p>
+<ul>
+<li>
+<strong>Know your data.</strong> <em>Write a test that loads the raw
+data and asserts the row count, class balance and missing-value rate we
+expect. Print the majority-class baseline next to our metric.</em>
+</li>
+<li>
+<strong>Compare to a source of truth.</strong> <em>Add a test that
+runs our pipeline on the 20 rows in <code>hand_checked.csv</code> and
+asserts every output matches the values I computed by hand.</em>
+</li>
+<li>
+<strong>Reproduce the result.</strong> <em>Write a test that trains
+twice with different seeds on a fresh split and asserts the metric moves
+less than 2 points. If it moves more, the result is noise.</em>
+</li>
+<li>
+<strong>Know what your model is telling you.</strong> <em>Write a
+test that fails if any of the top five predictors is an ID column, a
+timestamp, or anything derived from the label.</em>
+</li>
+<li>
+<strong>No leakage.</strong> <em>Assert no subject, image, page or
+source document is in both splits, and no duplicate rows either. Then
+shuffle the labels and retrain. If the score does not collapse to
+chance, something leaks.</em>
+</li>
+</ul></section><section><h2 class="section-heading" id="agents-as-data-scientists">Agents as data scientists<a class="anchor" aria-label="anchor" href="#agents-as-data-scientists"></a>
 </h2>
 <hr class="half-width">
 <p>Verification is not only about finding bugs. The agent is also a fast
@@ -2664,18 +2765,15 @@ second reader of your results, if it is given something to read.</p>
 code.</strong> What stands out, what disagrees, what to try next.</li>
 <li>
 <strong>Leave evidence in the repository.</strong> Metrics files,
-figures, run logs, a <code>results.md</code>. What is not written down
-does not exist for the agent.</li>
+metadata, figures, run logs, a <code>results.md</code>. What is not
+written down does not exist for the agent.</li>
+<li>
+<strong>It can also read plots.</strong> A saved figure is
+context.</li>
 <li>
 <strong>Direct it to the evidence each time.</strong> It does not
 remember the previous session and will not open a file you did not
 name.</li>
-<li>
-<strong>It reads plots.</strong> A saved figure is context.</li>
-<li>
-<strong>Iterate faster.</strong> Get the result and examine it,
-rather than debugging convoluted code late at night. Check as you
-go.</li>
 <li>
 <strong>It does not replace your own reading.</strong> Check every
 number it cites against the file. It sees a portion of the project,
@@ -2689,38 +2787,17 @@ plot agree with the numbers? Propose the one experiment you would run
 next and say what result would change our plan. Do not run anything
 yet.</p>
 </blockquote>
-</section><section><h2 class="section-heading" id="quick-checks-that-catch-common-mistakes">Quick checks that catch common mistakes<a class="anchor" aria-label="anchor" href="#quick-checks-that-catch-common-mistakes"></a>
-</h2>
-<hr class="half-width">
-<p>A small set of checks, each a few lines, exposes whole classes of
-silent failure. The agent can implement any of them quickly if
-asked:</p>
-<ul>
-<li>
-<strong>Shuffle the labels and rerun.</strong> A sound pipeline
-collapses to chance. If it does not, information is leaking.</li>
-<li>
-<strong>Print the baseline.</strong> 94% accuracy is not impressive
-when the majority class is 92% of the data.</li>
-<li>
-<strong>Assert that no sample appears in both splits.</strong>
-Repeated measures and tiles from one image belong on one side.</li>
-<li>
-<strong>Find duplicates before splitting.</strong> Duplicates across
-the split are leakage with no code bug.</li>
-<li>
-<strong>Vary the seed.</strong> A metric that moves substantially
-across seeds is a variance problem, not a result.</li>
-</ul>
-<div id="exercise-2-what-is-wrong-with-this-5-minutes" class="callout challenge">
+<div id="exercise-2-optional-what-is-wrong-with-this-5-minutes" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <span class="callout-header">Challenge</span>
-<div id="exercise-2-what-is-wrong-with-this-5-minutes" class="callout-inner">
-<h3 class="callout-title">Exercise 2: What is wrong with this? (5
-minutes)</h3>
+<div id="exercise-2-optional-what-is-wrong-with-this-5-minutes" class="callout-inner">
+<h3 class="callout-title">Exercise 2 (optional): What is wrong with
+this? (5 minutes)</h3>
 <div class="callout-content">
+<p>The no-leakage test above is the general form of a common failure.
+This exercise shows the specific case.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -2838,15 +2915,14 @@ reviewer</td>
 <div class="callout-content">
 <ul>
 <li>Checking is the bottleneck. Agents multiply commits far more than
-releases, and unreviewed merges increase. Verification is the scarce
-skill.</li>
+releases, pull requests are larger and harder to review, and unreviewed
+merges increase. Verification is the scarce skill.</li>
 <li>Established practice still applies: know your data, compare to a
-source of truth, ask a colleague, know what your model responds to,
-reproduce the result. Only the typing and quick ideation have
-moved.</li>
-<li>Quick checks catch common mistakes: shuffle labels, print the
-baseline, assert no sample is in both splits, find duplicates, vary the
-seed.</li>
+source of truth, know what your model responds to, reproduce the result,
+plot and review.</li>
+<li>Each good-practice item can be a test the agent writes and CI runs:
+data expectations, a hand-checked subset, seed stability, sensible top
+predictors, no leakage.</li>
 <li>Split by the unit that repeats, and assert it. A clean-running 0.91
 can be 0.58 on unseen subjects.</li>
 <li>After every feature, before the next: have the agent list its
@@ -3032,7 +3108,7 @@ episode.</p>
   What this shows
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The agent is now calling GitHub’s API rather than answering from
 training data. Ask yourself what wider access it would need to do the
@@ -3156,7 +3232,7 @@ and the instructions:</p>
   From the demonstration to real use
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>The caveman skill demonstrates the mechanism. The practical use is
 packaging an instruction you would otherwise repeat. Choose one thing
@@ -3410,7 +3486,7 @@ benchmarks.</li>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
 <ul>
 <li>
 <code>/cost</code>: what the current session has consumed;
@@ -3428,7 +3504,7 @@ matters.</li>
 direction.</li>
 </ul>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
 <ul>
 <li>Check credit and premium-request usage on the <a href="https://github.com/settings/copilot" class="external-link">Copilot settings page</a>.
 Model choice changes the rate.</li>
@@ -3721,7 +3797,7 @@ fix the documentation, and state which you chose and why.</li>
   Typical findings
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Most participants find at least one surprise, usually an edge case
 the code handles by accident rather than by decision (what does it
@@ -3966,7 +4042,7 @@ one about what the agent may never modify.</p>
   Why record it
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Two benefits. The agent reads it, so your posture, branch
 conventions, and forbidden paths shape every session without
@@ -4038,7 +4114,8 @@ any links that you are not going to use.
 <li>Summarize what early research says about productivity effects and
 who gains most.</li>
 <li>Explain why agentic coding is another abstraction layer, and the
-first non-deterministic one.</li>
+first non-deterministic one, and what follows for how much specification
+and verification it needs.</li>
 <li>Commit to three concrete practices for your next project.</li>
 </ul>
 </div>
@@ -4105,31 +4182,27 @@ became faster this session, and what did not?</p>
 compilers and then to languages such as Python; manual memory management
 gave way to garbage collection; servers gave way to the cloud. Each
 time, the work moved up a level of abstraction and the discipline
-adapted.</p>
-<p>Agentic coding is the same transition with one difference: it is the
-first non-deterministic abstraction. Every previous layer was a
-deterministic translation, one request producing one outcome. Compiling
-the same C source twice yields the same program, which is why compiler
-output is not audited. An agent breaks that contract. One request leads
-to many possible outcomes. It interprets intent probabilistically, fills
-each unstated gap with the average case, and can produce different code
-from the same prompt on different days.</p>
-<p>Two practices compensate for the non-determinism, and the lesson has
-returned to them repeatedly: good prompting (specification narrows the
-space of outcomes, the subject of the feature-based-development episode)
-and a review process (verification catches the outcomes that
-specification did not prevent). Do not assume the agent will be correct
-every time. “Usually right, occasionally plausibly wrong” is what a
-probabilistic abstraction is. A workflow designed for that treats the
-agent as one more layer; a workflow that assumes perfection will
-eventually fail.</p>
-<p>Programming is therefore not dead. The work shifts from writing every
-line toward specifying intent, designing verification, and exercising
-judgment, which were always the difficult parts of research computing.
-This is also why good data science practice still applies in full.
-Examining the data, knowing the features and their distributions, and
-understanding what the model responds to were never typing tasks. They
-are the judgment the workflow now depends on.</p>
+adapted. Agentic coding is the same transition, with one difference: the
+new layer is not deterministic. Compiling the same C source twice yields
+the same program, which is why nobody audits compiler output. The same
+prompt can yield different code on different days, and every unstated
+decision is filled in with the average case.</p>
+<p>The craft of agentic coding is therefore making the layer
+deterministic enough. That means specifying and verifying at the level
+this lesson has practiced: a plan with a check for each step, one
+feature per prompt, tests the agent must pass, a review of every diff.
+Too little of this and the output is plausible and wrong. Too much, and
+the time spent writing prompts approaches the time it would have taken
+to write the code. The balance sits between those, and the evidence is
+that at the feature level the productivity gains are substantial.</p>
+<p>Those gains are a function of prior expertise. Deciding what to build
+next, recognizing a plausible-but-wrong result, knowing which check
+matters for this data: these come from the person, not the prompt or the
+model. Agents amplify expertise; they are not a substitute for it, and
+they are not a magic wand. Programming is not dead. The work has shifted
+toward specifying intent, designing verification, and exercising
+judgment, which were always its difficult parts, and good data science
+practice still applies in full.</p>
 </section><section><h2 class="section-heading" id="pass-it-on">Pass it on<a class="anchor" aria-label="anchor" href="#pass-it-on"></a>
 </h2>
 <hr class="half-width">
@@ -4194,10 +4267,13 @@ largest gap in debugging). Use the agent to ask why, not only to produce
 code.</li>
 <li>How novices build supervisory expertise in an agentic setting is an
 open and serious question.</li>
-<li>Agentic coding is another abstraction layer, and the first
-non-deterministic one: one request, many possible outcomes. Good
-prompting narrows the outcomes; review catches the rest; never assume
-the agent is always correct.</li>
+<li>Agentic coding is another abstraction layer, like the move from
+assembly to Python, but a non-deterministic one. The craft is making it
+deterministic enough through specification and verification, without
+spending more time prompting than writing the code would take.</li>
+<li>At the feature level the productivity gains are substantial, and
+they scale with prior expertise. Agents amplify expertise; they are not
+a magic wand.</li>
 <li>The work shifts toward specifying intent, designing verification,
 and exercising judgment, and good data science practice still applies in
 full.</li>

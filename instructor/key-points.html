@@ -487,9 +487,9 @@ task.</li>
 constraints, compute, existing code, standards, and prior decisions; for
 long work, keep the plan in a file the agent updates.</li>
 <li>Agree team conventions first (branches rather than forks,
-pull-request size, who reviews, what the agent may not modify) and
-commit them as a <code>CONTRIBUTING.md</code> that agents also
-read.</li>
+pull-request size, who reviews, what the agent may not modify, where new
+files go) and commit them as a <code>CONTRIBUTING.md</code> that agents
+also read.</li>
 <li>Use plan mode (read-only) to review a plan. The deliverable is a
 <code>plan.md</code> with ordered features and a check for each,
 committed before any code.</li>
@@ -505,6 +505,8 @@ permissions where it matters.</li>
 </ul></section><section id="specification"><h2 class="section-heading"><a href="specification.html">Feature-Based Development and Good Prompting</a></h2>
 <hr class="half-width">
 <ul>
+<li>The agent is not a magic wand. A person who knows the domain decides
+what to build next; the agent builds that one thing.</li>
 <li>A feature is one thing you can check. Work through the plan one
 feature per session, with a small diff and one pull request.</li>
 <li>Underspecified prompts receive average-case answers, and research
@@ -524,15 +526,14 @@ small-specified-checkable rules.</li>
 <hr class="half-width">
 <ul>
 <li>Checking is the bottleneck. Agents multiply commits far more than
-releases, and unreviewed merges increase. Verification is the scarce
-skill.</li>
+releases, pull requests are larger and harder to review, and unreviewed
+merges increase. Verification is the scarce skill.</li>
 <li>Established practice still applies: know your data, compare to a
-source of truth, ask a colleague, know what your model responds to,
-reproduce the result. Only the typing and quick ideation have
-moved.</li>
-<li>Quick checks catch common mistakes: shuffle labels, print the
-baseline, assert no sample is in both splits, find duplicates, vary the
-seed.</li>
+source of truth, know what your model responds to, reproduce the result,
+plot and review.</li>
+<li>Each good-practice item can be a test the agent writes and CI runs:
+data expectations, a hand-checked subset, seed stability, sensible top
+predictors, no leakage.</li>
 <li>Split by the unit that repeats, and assert it. A clean-running 0.91
 can be 0.58 on unseen subjects.</li>
 <li>After every feature, before the next: have the agent list its
@@ -620,10 +621,13 @@ largest gap in debugging). Use the agent to ask why, not only to produce
 code.</li>
 <li>How novices build supervisory expertise in an agentic setting is an
 open and serious question.</li>
-<li>Agentic coding is another abstraction layer, and the first
-non-deterministic one: one request, many possible outcomes. Good
-prompting narrows the outcomes; review catches the rest; never assume
-the agent is always correct.</li>
+<li>Agentic coding is another abstraction layer, like the move from
+assembly to Python, but a non-deterministic one. The craft is making it
+deterministic enough through specification and verification, without
+spending more time prompting than writing the code would take.</li>
+<li>At the feature level the productivity gains are substantial, and
+they scale with prior expertise. Agents amplify expertise; they are not
+a magic wand.</li>
 <li>The work shifts toward specifying intent, designing verification,
 and exercising judgment, and good data science practice still applies in
 full.</li>

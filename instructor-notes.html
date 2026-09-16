@@ -482,9 +482,9 @@ agenda; see below</td>
 <td>0:45</td>
 <td>10</td>
 <td>
-<strong>Feature-based dev and good prompting.</strong> Feature by
-feature; bad/better prompt; underspecified ≠ random; maintenance
-tasks</td>
+<strong>Feature-based dev and good prompting.</strong> The agent is
+not a magic wand; feature by feature; bad/better prompt; underspecified
+≠ random</td>
 <td>Episode 5</td>
 </tr>
 <tr>
@@ -497,9 +497,9 @@ tasks</td>
 <td>1:03</td>
 <td>20</td>
 <td>
-<strong>Exercise: Implement feature 1</strong> (15 min) then debrief
-on “choices you did not specify” — or run it before the break if the
-room is fast</td>
+<strong>Exercise: Implement feature (or step) 1</strong> (15 min)
+then debrief on “choices you did not specify”; maintenance tasks slide
+as the transition</td>
 <td>Episode 5</td>
 </tr>
 <tr>
@@ -508,9 +508,9 @@ room is fast</td>
 <td>
 <strong>Verification and testing.</strong> Research on checking;
 look for decisions you did not make; <strong>Exercise 1: Test the
-feature you just built</strong> (10 min); no escaping good data science;
-agents as data science assistants; quick checks; <strong>Exercise 2:
-What is wrong with this?</strong> (5 min)</td>
+feature you just built</strong> (10 min); good data science practice
+still applies; tests for good data science practice; agents as data
+scientists</td>
 <td>Episode 6</td>
 </tr>
 <tr>
@@ -605,21 +605,26 @@ A/B new components against. The deliverable is a committed
 early interrogate their pre-modeling steps into <code>prep.md</code>.
 Note the planning studies measured accuracy, not tokens; the token
 argument is a mechanism, not a measured result.</p>
-<p><strong>Feature-based dev.</strong> The “list every choice you made
-that I did not specify” line is the key step: ask two or three people to
-read theirs out. Participants reliably discover that everyone got
+<p><strong>Feature-based dev.</strong> Open with “the agent is not a
+magic wand”: the frustration people arrive with comes from whole-project
+prompts, and the remedy is a domain expert in the loop driving one
+feature at a time. The “list every choice you made that I did not
+specify” line is the key step of the exercise: ask two or three people
+to read theirs out. Participants reliably discover that everyone got
 <em>different</em> unaccounted decisions.</p>
-<p><strong>Verification.</strong> The block opens with the
-after-every-feature routine: ask for assumptions, ask for tests and edge
-cases, run them, commit. <em>Exercise 1: Test the feature you just
-built</em> applies it to feature 1 from before the break; insist on plan
-mode for the first prompt, and timebox. The CI workflow and branch
-protection can be completed after the session. The brain-decoding leak
-(<em>Exercise 2</em>) is the central example of the lesson. Show the
-clean run and the 0.91 first, then ask “so are we done?” before
-revealing the bug, then show the 0.58 on unseen subjects. Translate “the
-unit that repeats” to each team’s project (subject, camera burst, page,
-source document).</p>
+<p><strong>Verification.</strong> Open with the research figures and
+Faros AI’s explanation (larger pull requests, code that reads well but
+is often wrong). Then the before-and-after- every-feature routine: ask
+for assumptions, ask for tests and edge cases, run them, commit.
+<em>Exercise 1: Test the feature you just built</em> applies it to
+feature 1 from before the break; insist on plan mode for the first
+prompt, and timebox. The CI workflow and branch protection can be
+completed after the session. Close the block with the five test prompts
+for good data science practice and the agents-as-data- scientists
+prompt. The brain-decoding leakage exercise was cut from the live
+workshop for time; it remains in the episode as an optional exercise and
+works well as homework, or as the example when a team’s project has
+repeated units (subject, camera burst, page, source document).</p>
 <p><strong>MCP and skills.</strong> Pre-test the MCP server and the
 caveman install beforehand so auth and npm aren’t what the room watches.
 Run <code>claude mcp list</code> before and after. For the caveman demo,
@@ -633,13 +638,18 @@ the spread plainly (Couch ~41 Wh, Hausfather ~600 Wh). Three live demos
 in order: <code>/cost</code>, <code>/model</code>,
 <code>/compact</code>; then pull up the OpenRouter session-cost
 rankings. Loop back to skills as a cost lever.</p>
-<p><strong>Close.</strong> Is programming dead? Put the question to the
-room first — discuss with a neighbor, then share — before giving the
-evidence: coding speed is one bottleneck, and the Anthropic
-skill-formation result (17% lower, biggest gap in debugging) is the one
-to leave people with: use the agent to ask <em>why</em>. Feedback
-survey, materials link, and ask people to send resources they find
-useful.</p>
+<p><strong>Close.</strong> Put the question to the room first (discuss
+with a neighbor, then share) before giving the answer: agentic coding is
+another abstraction layer, like assembly to Python, but a
+non-deterministic one. The craft is making it deterministic enough
+through specification and verification without spending more time
+prompting than coding would take; at the feature level the gains are
+substantial, and they scale with expertise. Agents amplify expertise;
+they are not a magic wand (a callback to the feature-based block). The
+Anthropic skill-formation result (17% lower, biggest gap in debugging)
+is the caution to leave people with: use the agent to ask <em>why</em>.
+Feedback survey and materials link; note the lesson will keep changing
+through the fall.</p>
 </section><section><h2 class="section-heading" id="logistics-that-matter">Logistics that matter<a class="anchor" aria-label="anchor" href="#logistics-that-matter"></a>
 </h2>
 <hr class="half-width">
