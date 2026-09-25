@@ -50,8 +50,8 @@ To (re)generate the standard Workbench GitHub Actions workflows, run
 ## Contributing
 
 Contributions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md). This lesson is in
-**pre-alpha**: content is under active development and feedback via issues is
-especially valuable.
+**alpha**: it was piloted at the UW–Madison ML Marathon in September 2026 and is being
+revised from that experience, so feedback via issues is especially valuable.
 
 ## Authors and contributors
 
