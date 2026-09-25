@@ -24,13 +24,13 @@
   <div class="container-fluid top-nav-container">
     <div class="col-md-8">
       <div class="large-logo">
-        <img id="incubator-logo" alt="Introduction to Agentic Coding" src="assets/images/incubator-logo.svg"><span class="badge text-bg-danger">
-          <abbr title="This lesson is in the pre-alpha phase, which means that it is in early development, but has not yet been taught.">
+        <img id="incubator-logo" alt="Introduction to Agentic Coding" src="assets/images/incubator-logo.svg"><span class="badge text-bg-warning">
+          <abbr title="This lesson is in the alpha phase, which means that it has been taught once and lesson authors are iterating on feedback.">
             <a href="https://docs.carpentries.org/resources/curriculum/lesson-life-cycle.html" class="external-link alert-link">
-              <i aria-hidden="true" class="icon" data-feather="alert-octagon" style="border-radius: 5px"></i>
-              Pre-Alpha
+              <i aria-hidden="true" class="icon" data-feather="alert-triangle" style="border-radius: 5px"></i>
+              Alpha
             </a>
-            <span class="visually-hidden">This lesson is in the pre-alpha phase, which means that it is in early development, but has not yet been taught.</span>
+            <span class="visually-hidden">This lesson is in the alpha phase, which means that it has been taught once and lesson authors are iterating on feedback.</span>
           </abbr>
         </span>
 
@@ -584,13 +584,13 @@ protected branches</a>).</p></li>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
 <p>Plan mode for step 1 (<kbd>Shift</kbd>+<kbd>Tab</kbd> locally; on the
 web, the “do not edit” line has the same effect). For steps 3 and 4
 switch to normal mode. Claude will run <code>pytest</code> itself
 (approve the command) and iterate until it passes.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
 <p><strong>Ask</strong> mode with <code>@workspace</code> for step 1;
 <strong>Agent</strong> mode for steps 3 and 4. Copilot proposes the
 <code>pytest</code> run in the terminal and waits for approval. The
@@ -609,7 +609,7 @@ the editor.</p>
   Why this works
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>A methodological requirement that was previously implicit is now an
 executable contract. The agent has a feedback loop that fails when it
@@ -775,7 +775,7 @@ assertion that would have caught it.</p>
   The bug, and the assertion that catches it
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Every subject appears in both splits. The model learned to identify
 each person, not what they were looking at. On a new subject the score
