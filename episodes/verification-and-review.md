@@ -32,12 +32,14 @@ exercises: 15
 Checking agent output is the bottleneck, not producing it:
 
 - Agents multiply code written far more than code shipped: 240% more commits but only
-  30% more releases across 500,000 GitHub developers (Demirer, Musolff & Yang, 2026).
+  30% more releases across 500,000 GitHub developers
+  ([Demirer, Musolff & Yang, 2026](https://www.nber.org/papers/w35275)).
   Not all of the additional code is good code, and the gains attenuate at the human
   review step.
 - Pull requests wait about five times longer for a human review under heavy AI use,
-  and 31% more are merged without one (Faros AI, two years of telemetry from 22,000
-  developers at 4,000 companies, 2026).
+  and 31% more are merged without one
+  ([Faros AI, 2026](https://pages.faros.ai/hubfs/AI_Engineering_Report_2026_The_Acceleration_Whiplash_Faros.pdf),
+  two years of telemetry from 22,000 developers at 4,000 companies).
 
 Faros AI's explanation has two parts. There is more to read: average pull-request
 size is up 51% and files touched per pull request up 60%, and the median wait before

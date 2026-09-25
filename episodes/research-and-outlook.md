@@ -28,7 +28,7 @@ The evidence base is young, but several findings recur:
   than releases (+30%), and pull requests wait about five times longer for human
   review under heavy AI use (the verification episode's figures). Analyses still
   require expert review and verification, and that step does not accelerate.
-- **Perceived and measured speed can diverge.** In a 2025 randomized trial (METR),
+- **Perceived and measured speed can diverge.** In a [2025 randomized trial](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/) (METR),
   experienced open-source developers believed they were about 20% faster with AI
   tools on their own mature repositories while measuring about 19% slower. The rule
   applied to model scores applies to one's own productivity: measure it.
