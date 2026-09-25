@@ -122,8 +122,7 @@ For the caveman demo, ask the same question before and after `/caveman`, and `ca
 the state file to prove it's toggled. Note for VS Code extension users: the same two
 install commands work; reload the chat panel afterward.
 
-**Cost and energy.** Name the claim people arrive with (a prompt costs gallons of
-water) and replace it with a number. State the spread plainly (Couch ~41 Wh,
+**Cost and energy.** Give the numbers first. State the spread plainly (Couch ~41 Wh,
 Hausfather ~600 Wh). Three live demos in order: `/cost`, `/model`, `/compact`; then
 pull up the OpenRouter session-cost rankings. Loop back to skills as a cost lever.
 

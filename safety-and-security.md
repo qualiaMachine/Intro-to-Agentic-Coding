@@ -68,14 +68,16 @@ a dependency's install script can contain commands the agent will follow. This i
 
 Two documented cases:
 
-- **GitHub MCP, May 2025.** Invariant Labs showed that a malicious issue in a public
-  repository could direct an agent with GitHub access to leak data from the user's
-  private repositories.
+- **GitHub MCP, May 2025.** [Invariant Labs](https://invariantlabs.ai/blog/mcp-github-vulnerability)
+  showed that a malicious issue in a public repository could direct an agent with
+  GitHub access to leak data from the user's private repositories.
 - **Nx on npm, August 2025.** A compromised package's install script prompted the
   victim's own Claude Code, Gemini CLI, or Amazon Q to search the machine for
-  secrets. Thousands of credentials were leaked to public GitHub repositories. Wiz's
-  analysis found that Claude refused about a quarter of the time; model refusals
-  reduce the risk but do not remove it.
+  secrets. Thousands of credentials were leaked to public GitHub repositories
+  ([Nx postmortem](https://nx.dev/blog/s1ngularity-postmortem)).
+  [Wiz's analysis](https://www.wiz.io/blog/s1ngularitys-aftermath) found that Claude
+  refused about a quarter of the time; model refusals reduce the risk but do not
+  remove it.
 
 Simon Willison's ["lethal trifecta"](https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/)
 identifies the combination to avoid: access to private data, exposure to untrusted
@@ -257,7 +259,8 @@ An instruction file is not a permission, and agents also lose track of instructi
 as the context grows long. In April 2026 a Cursor agent working on a
 staging task for the company PocketOS encountered a credential mismatch, found a
 Railway API token in an unrelated file, and used it. The production database and its
-backups were deleted in nine seconds. The rules file occupies the same context window
+backups were deleted in nine seconds
+([The Register](https://www.theregister.com/2026/04/27/cursoropus_agent_snuffs_out_pocketos/)). The rules file occupies the same context window
 as everything else the model reads; it is text the model weighs, not an ability the
 model lacks.
 

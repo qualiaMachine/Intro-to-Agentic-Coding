@@ -30,12 +30,14 @@ The most common failure in agentic work is letting the agent write code before e
 party understands the problem. The research on planning is consistent:
 
 - Structured planning before implementation improved coding success by up to 26.7%,
-  reducing failed generations and repeated implementation attempts (Jiang et al.,
-  2023).
+  reducing failed generations and repeated implementation attempts
+  ([Jiang et al., 2023](https://arxiv.org/abs/2303.06689)).
 - Removing the blueprint-planning agent from a structured coding pipeline reduced
-  accuracy by 14.8 percentage points (Mao et al., 2025).
+  accuracy by 14.8 percentage points
+  ([Mao et al., 2025](https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2025.1660912/full)).
 - Runs on the same coding task varied by up to 30× in total token usage, and higher
-  token consumption did not produce greater accuracy (Bai et al., 2026).
+  token consumption did not produce greater accuracy
+  ([Bai et al., 2026](https://arxiv.org/abs/2604.22750)).
 
 These studies measured accuracy rather than token use, but the mechanism is
 straightforward. Without a plan, the agent makes exploratory and redundant tool calls,
