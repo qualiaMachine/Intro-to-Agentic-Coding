@@ -394,49 +394,65 @@ one.</li>
 </div>
 </div>
 <section><h2 class="section-heading" id="energy-use-of-ai-models">Energy use of AI models<a class="anchor" aria-label="anchor" href="#energy-use-of-ai-models"></a></h2>
-<hr class="half-width"><p>Estimates of the energy used by AI models vary by an order of
-magnitude, and no provider publishes per-query figures. The range is
-nonetheless well established:</p>
+<hr class="half-width"><p>A single LLM chat query now uses roughly 0.3 Wh, about the same as a
+web search. An agentic coding session chains hundreds of such calls as
+the agent reads files, reasons, writes code, runs commands, and
+iterates. Estimates for a session vary by an order of magnitude, and no
+provider publishes per-query figures, but the range is well
+established:</p>
 <table class="table"><colgroup><col width="38%"><col width="30%"><col width="30%"></colgroup><thead><tr><th>Activity</th>
 <th>Energy</th>
 <th>Source</th>
-</tr></thead><tbody><tr><td>One chat query</td>
-<td>~0.3 Wh, about two minutes of an LED bulb</td>
-<td>Epoch AI per-token estimates</td>
+</tr></thead><tbody><tr><td>One chat query or web search</td>
+<td>~0.3 Wh</td>
+<td><a href="https://epoch.ai/gradient-updates/how-much-energy-does-chatgpt-use" class="external-link">Epoch
+AI</a></td>
+</tr><tr><td>LED bulb for one hour</td>
+<td>~10 Wh</td>
+<td></td>
 </tr><tr><td>One median coding session (24 model calls, ~590k tokens)</td>
 <td>~41 Wh, roughly 130 chat queries</td>
 <td><a href="https://simonpcouch.com/blog/2026-01-20-cc-impact/" class="external-link">Simon
 Couch, 2026</a></td>
-</tr><tr><td>One heavy agentic day</td>
-<td>About one dishwasher cycle, or a refrigerator for a day</td>
-<td>Simon Willison, 2026</td>
+</tr><tr><td>Streaming one hour of video, including the device</td>
+<td>~36–80 Wh</td>
+<td></td>
 </tr><tr><td>A median session on large analyses with subagents</td>
 <td>~600 Wh</td>
 <td><a href="https://www.theclimatebrink.com/p/the-real-energy-use-of-agentic-ai" class="external-link">Zeke
 Hausfather, 2026</a></td>
+</tr><tr><td>One heavy agentic day (multiple sessions, parallel agents)</td>
+<td>~1,300 Wh</td>
+<td><a href="https://simonwillison.net/tags/ai-energy-usage/" class="external-link">Simon
+Willison, 2026</a></td>
+</tr><tr><td>One dishwasher cycle</td>
+<td>~1,300 Wh</td>
+<td></td>
+</tr><tr><td>A refrigerator for one day</td>
+<td>~1,200–1,500 Wh</td>
+<td></td>
 </tr></tbody></table><p>Couch scaled Epoch AI’s per-token estimates by his own Claude Code
 token counts. Hausfather ran his own tokens through three published
 methods and obtained a figure an order of magnitude higher, because he
-runs subagents on large analyses. Nobody outside the labs knows the true
-per-token energy. The defensible statement is an order of magnitude
-rather than a precise figure: tens of watt-hours per session, hundreds
-under heavy agent use.</p>
-<p>Two conclusions hold regardless of the uncertainty:</p>
-<ul><li>
-<strong>The issue is aggregate demand.</strong> Individual queries
-are light, but at scale they add up. OpenAI’s chief executive has noted
-that a single California almond requires as much water as tens of
-thousands of ChatGPT queries. The comparison was meant to minimize
-per-query impact; it also shows how small unit costs accumulate when
-billions of queries are processed daily.</li>
-<li>
-<strong>Inference dominates training.</strong> Most AI energy now
-goes to serving queries rather than training models, so usage patterns
-are the variable within the user’s control.</li>
-</ul><p>This is not an argument against the tools; productivity per unit of
-energy may well exceed the alternative. It is an argument for deliberate
-use. An agent that loops because of a vague prompt spends energy a clear
-prompt would have saved.</p>
+runs subagents on large analyses. The defensible statement is an order
+of magnitude rather than a precise figure: tens of watt-hours per
+session, hundreds under heavy agent use, and a heavy day roughly equal
+to running a dishwasher.</p>
+<p>The aggregate picture:</p>
+<ul><li>The <a href="https://www.iea.org/reports/energy-and-ai" class="external-link">IEA
+projects</a> that global data center electricity use will roughly
+double, from about 415 TWh in 2024 to more than 945 TWh by 2030, driven
+largely by AI workloads.</li>
+<li>An estimated 60–90% of AI computing energy goes to inference rather
+than training. Every agentic session and chat query is part of that
+ongoing cost, which means usage patterns are the variable within the
+user’s control.</li>
+</ul><p>This is not an argument against the tools; the productivity gains can
+be substantial, and the energy per unit of useful output may compare
+favorably with the alternative. It is an argument for deliberate use. An
+agent that loops on a vague prompt spends energy that a well-scoped
+prompt would have avoided. Efficient prompting is both cheaper and lower
+in energy.</p>
 </section><section><h2 class="section-heading" id="why-agentic-sessions-use-many-tokens">Why agentic sessions use many tokens<a class="anchor" aria-label="anchor" href="#why-agentic-sessions-use-many-tokens"></a></h2>
 <hr class="half-width"><p>A chat query is one round trip. An agentic session chains hundreds:
 read files, reason, write code, run commands, read the output, repeat. A
@@ -576,7 +592,7 @@ most? Was it a vague prompt that produced a loop?</li>
   Typical findings
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Most workshop sessions come to a few watt-hours, a small percentage
 of a dishwasher cycle. The informative result is usually the third item:
@@ -598,7 +614,8 @@ tokens.</p>
 heavy agentic day about a dishwasher cycle. Estimates vary by an order
 of magnitude, so think in tens to hundreds of watt-hours per
 session.</li>
-<li>The issue is aggregate demand, and inference now dominates. Usage
+<li>Data center electricity use is projected to roughly double by 2030,
+and most AI energy now goes to inference rather than training. Usage
 patterns are the variable you control.</li>
 <li>Agentic sessions chain hundreds of model calls, and context
 accumulation makes late messages far more expensive than early

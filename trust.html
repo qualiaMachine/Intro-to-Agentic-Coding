@@ -349,7 +349,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Trust: Packages, Models, and Providers</h1>
-        <p>Last updated on 2026-09-16 |
+        <p>Last updated on 2026-09-25 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/trust.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -402,29 +402,29 @@ made one at a time are now made quickly and in bulk unless you
 deliberately stay involved.</p>
 <section><h2 class="section-heading" id="packages-the-agent-multiplies-your-supply-chain-exposure">Packages: the agent multiplies your supply-chain exposure<a class="anchor" aria-label="anchor" href="#packages-the-agent-multiplies-your-supply-chain-exposure"></a></h2>
 <hr class="half-width"><p>Open-source package ecosystems have always carried supply-chain risk.
-Even carefully maintained infrastructure can be compromised; the 2024
-<code>xz-utils</code> backdoor was inserted by a contributor who spent
-years building maintainer trust. Agents add two new problems:</p>
+Even carefully maintained infrastructure can be compromised; the 2024 <a href="https://en.wikipedia.org/wiki/XZ_Utils_backdoor" class="external-link"><code>xz-utils</code>
+backdoor</a> was inserted by a contributor who spent years building
+maintainer trust. Agents add two new problems:</p>
 <ul><li>
 <strong>Hallucinated packages (“slopsquatting”).</strong> Language
-models sometimes recommend packages that do not exist. In one large 2025
-study, roughly a fifth of packages suggested by code-generating models
-were fabrications, and the same invented names recur across sessions.
-Attackers can register those names. Security researcher Bar Lanyado
-demonstrated this by registering <code>huggingface-cli</code>, a name
-models repeatedly invented; the empty placeholder received more than
-15,000 downloads in three months and appeared in a major company’s
-installation instructions.</li>
+models sometimes recommend packages that do not exist. In one <a href="https://arxiv.org/abs/2406.10279" class="external-link">large 2025 study</a>, roughly a
+fifth of packages suggested by code-generating models were fabrications,
+and the same invented names recur across sessions. Attackers can
+register those names. Security researcher Bar Lanyado <a href="https://www.lasso.security/blog/ai-package-hallucinations" class="external-link">demonstrated
+this</a> by registering <code>huggingface-cli</code>, a name models
+repeatedly invented; the empty placeholder received more than 15,000
+downloads in three months and appeared in a major company’s installation
+instructions.</li>
 <li>
 <strong>Typosquatting and dependency confusion happen
-faster.</strong> In December 2022, a malicious <code>torchtriton</code>
+faster.</strong> In December 2022, a malicious <a href="https://pytorch.org/blog/compromised-nightly-dependency/" class="external-link"><code>torchtriton</code></a>
 package on PyPI shadowed a PyTorch-nightly internal dependency and
 exfiltrated SSH keys and files from thousands of machines. In December
-2024, compromised releases of <code>ultralytics</code> (the widely used
-YOLO library) installed a cryptominer on any machine that installed
-during the affected window. Neither incident involved AI, but an agent
-that runs <code>pip install</code> unattended removes the moment at
-which a person might have noticed an unfamiliar name.</li>
+2024, compromised releases of <a href="https://blog.pypi.org/posts/2024-12-11-ultralytics-attack-analysis/" class="external-link"><code>ultralytics</code></a>
+(the widely used YOLO library) installed a cryptominer on any machine
+that installed during the affected window. Neither incident involved AI,
+but an agent that runs <code>pip install</code> unattended removes the
+moment at which a person might have noticed an unfamiliar name.</li>
 </ul><p>Practices that follow:</p>
 <ul><li>
 <strong>Do not auto-approve package installation.</strong> Keep
@@ -450,27 +450,28 @@ documented case:</p>
 <ul><li>
 <strong>Weights can carry code.</strong> Python’s pickle
 serialization, used by many model files, runs arbitrary code on load. In
-2024 JFrog found on the order of a hundred malicious models on Hugging
-Face whose payloads included opening a reverse shell when loaded.
-Scanners have not caught everything since.</li>
+2024 <a href="https://jfrog.com/blog/data-scientists-targeted-by-malicious-hugging-face-ml-models-with-silent-backdoor/" class="external-link">JFrog
+found</a> on the order of a hundred malicious models on Hugging Face
+whose payloads included opening a reverse shell when loaded. Scanners
+have not caught everything since.</li>
 <li>
 <strong>Fake repositories.</strong> Check the organization, not the
-model card. In 2026 HiddenLayer identified
-<code>Open-OSS/privacy-filter</code>, posing as an OpenAI release with a
-copied model card and a loader that installed an infostealer, at the top
-of Hugging Face’s trending list.</li>
+model card. In 2026 <a href="https://www.hiddenlayer.com/research/malware-found-in-trending-hugging-face-repository-open-oss-privacy-filter" class="external-link">HiddenLayer
+identified</a> <code>Open-OSS/privacy-filter</code>, posing as an OpenAI
+release with a copied model card and a loader that installed an
+infostealer, at the top of Hugging Face’s trending list.</li>
 <li>
 <strong>Values are trained in.</strong> DeepSeek R1 censors certain
-topics; Perplexity’s R1 1776
-(2025) was post-trained specifically to remove that behavior. Whatever a
-model’s builders trained it to do or avoid, it will do or avoid in your
-pipeline.</li>
+topics; Perplexity’s <a href="https://www.perplexity.ai/hub/blog/open-sourcing-r1-1776" class="external-link">R1
+1776</a> (2025) was post-trained specifically to remove that behavior.
+Whatever a model’s builders trained it to do or avoid, it will do or
+avoid in your pipeline.</li>
 <li>
 <strong>Hidden backdoors work, and no reliable detector
-exists.</strong> In Mithril’s PoisonGPT demonstration (2023), an edited
-GPT-J spread a specific false fact, kept its benchmark scores, and was
-uploaded under a lookalike organization. No detector caught it. More
-below.</li>
+exists.</strong> In Mithril’s <a href="https://blog.mithrilsecurity.io/poisongpt-how-we-hid-a-lobotomized-llm-on-hugging-face-to-spread-fake-news/" class="external-link">PoisonGPT</a>
+demonstration (2023), an edited GPT-J spread a specific false fact, kept
+its benchmark scores, and was uploaded under a lookalike organization.
+No detector caught it. More below.</li>
 </ul><p>Practices that follow:</p>
 <ul><li>Prefer <strong><code>safetensors</code></strong>, a weights-only
 format that cannot execute code, over pickle formats when
@@ -482,8 +483,7 @@ published.</li>
 <li>
 <strong>Do not set <code>trust_remote_code=True</code> by
 default.</strong> It runs whatever Python ships with the model. Tooling
-can get this wrong on your behalf: InstructLab hardcoded it on
-(CVE-2026-6859).</li>
+can get this wrong on your behalf: InstructLab hardcoded it on (<a href="https://github.com/advisories/GHSA-rxpq-xgqx-fr7p" class="external-link">CVE-2026-6859</a>).</li>
 <li>“Open weights” does not mean audited. Provenance tells you who built
 the model, not that it is sound. Smaller local models also hallucinate
 more, including package names, which returns to the previous
@@ -502,22 +502,22 @@ facts, re-uploaded it under a typosquatted organization name, and showed
 that standard benchmarks barely changed. Benchmarks do not establish
 trust.</li>
 <li>
-<strong>Sleeper agents.</strong> Anthropic’s 2024 research trained
-models that wrote secure code when the prompt said the year was 2023 and
-inserted exploitable vulnerabilities when it said 2024. Standard safety
-training failed to remove the behavior and sometimes taught the model to
-conceal it.</li>
+<strong>Sleeper agents.</strong> Anthropic’s <a href="https://www.anthropic.com/research/sleeper-agents-training-deceptive-llms-that-persist-through-safety-training" class="external-link">2024
+research</a> trained models that wrote secure code when the prompt said
+the year was 2023 and inserted exploitable vulnerabilities when it said
+2024. Standard safety training failed to remove the behavior and
+sometimes taught the model to conceal it.</li>
 <li>
-<strong>Data poisoning is inexpensive.</strong> A 2025 study by
-Anthropic with the UK AI Security Institute found that a few hundred
-poisoned documents in a training corpus can implant a backdoor, roughly
-independent of model size. Earlier work (for example TrojanPuzzle)
-showed that code-suggestion models can be poisoned to emit insecure
-patterns.</li>
+<strong>Data poisoning is inexpensive.</strong> A <a href="https://www.anthropic.com/research/small-samples-poison" class="external-link">2025
+study</a> by Anthropic with the UK AI Security Institute found that a
+few hundred poisoned documents in a training corpus can implant a
+backdoor, roughly independent of model size. Earlier work (for example
+<a href="https://arxiv.org/abs/2301.02344" class="external-link">TrojanPuzzle</a>) showed that
+code-suggestion models can be poisoned to emit insecure patterns.</li>
 <li>
-<strong>Graph-level backdoors.</strong> Techniques such as
-ShadowLogic embed the backdoor in a model’s computational graph (for
-example ONNX), again with no code execution.</li>
+<strong>Graph-level backdoors.</strong> Techniques such as <a href="https://hiddenlayer.com/research/shadowlogic/" class="external-link">ShadowLogic</a>
+embed the backdoor in a model’s computational graph (for example ONNX),
+again with no code execution.</li>
 </ul><p>This matters for agentic coding in particular because a backdoored
 code model does not need to attack your machine; it needs only to write
 subtly vulnerable code that you trust, run, and ship. In an agentic
@@ -541,15 +541,16 @@ your permissions:</p>
 <ul><li>In July 2025, an attacker inserted a prompt into the <strong>Amazon
 Q</strong> VS Code extension through a GitHub pull request, instructing
 the embedded agent to wipe the user’s files and cloud resources. The
-poisoned version shipped to users before it was caught.</li>
-<li>Security researchers in 2025 disclosed dozens of vulnerabilities
-across AI coding IDEs (reported as the “IDEsaster” findings) and
-multiple CVEs in individual tools.</li>
+poisoned version shipped to users before it was caught (<a href="https://www.404media.co/hacker-plants-computer-wiping-commands-in-amazons-ai-coding-agent/" class="external-link">404
+Media</a>).</li>
+<li>In December 2025 a researcher disclosed more than 30 vulnerabilities
+across AI coding IDEs, with 24 CVEs assigned (the <a href="https://thehackernews.com/2025/12/researchers-uncover-30-flaws-in-ai.html" class="external-link">“IDEsaster”</a>
+findings).</li>
 <li>Agents can also cause damage with no attacker. In July 2025,
 <strong>Replit’s</strong> coding agent deleted a production database
 during a “vibe-coding” experiment despite explicit instructions to
-freeze changes, then produced misleading output about what it had
-done.</li>
+freeze changes, then produced misleading output about what it had done
+(<a href="https://fortune.com/2025/07/23/ai-coding-tool-replit-wiped-database-called-it-a-catastrophic-failure/" class="external-link">Fortune</a>).</li>
 </ul><p>Keep agent tooling updated, install extensions only from official
 marketplaces, and never point an agent at production systems or
 irreplaceable data. Separation of development and production, and
@@ -570,18 +571,18 @@ Retention windows differ by an order of magnitude between plan tiers.
 Feedback buttons and safety reviews often extend them.</li>
 <li>
 <strong>Where does inference run, and under whose
-jurisdiction?</strong> In January 2025, researchers found a publicly
-exposed <strong>DeepSeek</strong> database leaking user chat histories
-and API keys. Provider security practice and legal jurisdiction are part
-of the arrangement.</li>
+jurisdiction?</strong> In January 2025, <a href="https://www.wiz.io/blog/wiz-research-uncovers-exposed-deepseek-database-leak" class="external-link">Wiz
+researchers found</a> a publicly exposed <strong>DeepSeek</strong>
+database leaking user chat histories and API keys. Provider security
+practice and legal jurisdiction are part of the arrangement.</li>
 <li>
 <strong>Does an institutional agreement cover this, or is it a
 personal contract?</strong> In 2023, <strong>Samsung</strong> engineers
 pasted proprietary source code into ChatGPT while debugging; the company
-responded by banning generative AI tools internally. An individual
-subscription gives your institution no protection, which is why the
-safety episode’s rule (restricted data stays off unvetted tools)
-exists.</li>
+responded by <a href="https://www.bloomberg.com/news/articles/2023-05-02/samsung-bans-chatgpt-and-other-generative-ai-use-by-staff-after-leak" class="external-link">banning
+generative AI tools internally</a>. An individual subscription gives
+your institution no protection, which is why the safety episode’s rule
+(restricted data stays off unvetted tools) exists.</li>
 </ol><div class="section level3">
 <h3 id="claude-and-copilot-defaults-as-of-september-2026">Claude and Copilot defaults (as of September 2026)<a class="anchor" aria-label="anchor" href="#claude-and-copilot-defaults-as-of-september-2026"></a></h3>
 <p>The two tools this lesson uses most illustrate how much the answers
@@ -762,7 +763,7 @@ any links that you are not going to use.
   "url": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/trust.html",
   "identifier": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/trust.html",
   "dateCreated": "2026-08-10",
-  "dateModified": "2026-09-16",
+  "dateModified": "2026-09-25",
   "datePublished": "2026-09-25"
 }
 

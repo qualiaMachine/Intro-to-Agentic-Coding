@@ -647,7 +647,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-safety-and-security"><p>Content from <a href="safety-and-security.html">Safety and Security: Limit What the Agent Can Access</a></p>
 <hr>
-<p>Last updated on 2026-09-16 |
+<p>Last updated on 2026-09-25 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/safety-and-security.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 28 minutes</p>
@@ -770,16 +770,17 @@ ordinary request.</div>
 </figure><p>Two documented cases:</p>
 <ul>
 <li>
-<strong>GitHub MCP, May 2025.</strong> Invariant Labs showed that a
-malicious issue in a public repository could direct an agent with GitHub
-access to leak data from the user’s private repositories.</li>
+<strong>GitHub MCP, May 2025.</strong> <a href="https://invariantlabs.ai/blog/mcp-github-vulnerability" class="external-link">Invariant
+Labs</a> showed that a malicious issue in a public repository could
+direct an agent with GitHub access to leak data from the user’s private
+repositories.</li>
 <li>
 <strong>Nx on npm, August 2025.</strong> A compromised package’s
 install script prompted the victim’s own Claude Code, Gemini CLI, or
 Amazon Q to search the machine for secrets. Thousands of credentials
-were leaked to public GitHub repositories. Wiz’s analysis found that
-Claude refused about a quarter of the time; model refusals reduce the
-risk but do not remove it.</li>
+were leaked to public GitHub repositories (<a href="https://nx.dev/blog/s1ngularity-postmortem" class="external-link">Nx postmortem</a>). <a href="https://www.wiz.io/blog/s1ngularitys-aftermath" class="external-link">Wiz’s analysis</a>
+found that Claude refused about a quarter of the time; model refusals
+reduce the risk but do not remove it.</li>
 </ul>
 <p>Simon Willison’s <a href="https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/" class="external-link">“lethal
 trifecta”</a> identifies the combination to avoid: access to private
@@ -1055,9 +1056,10 @@ of instructions as the context grows long. In April 2026 a Cursor agent
 working on a staging task for the company PocketOS encountered a
 credential mismatch, found a Railway API token in an unrelated file, and
 used it. The production database and its backups were deleted in nine
-seconds. The rules file occupies the same context window as everything
-else the model reads; it is text the model weighs, not an ability the
-model lacks.</p>
+seconds (<a href="https://www.theregister.com/2026/04/27/cursoropus_agent_snuffs_out_pocketos/" class="external-link">The
+Register</a>). The rules file occupies the same context window as
+everything else the model reads; it is text the model weighs, not an
+ability the model lacks.</p>
 </div>
 </div>
 </div>
@@ -1241,7 +1243,7 @@ and what it does not know that you do.</li>
   What to check
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>If step 2 fails (the session is local), stop and switch before
 prompting. This is the most common mistake with the desktop apps. Cloud
@@ -1292,7 +1294,7 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-trust"><p>Content from <a href="trust.html">Trust: Packages, Models, and Providers</a></p>
 <hr>
-<p>Last updated on 2026-09-16 |
+<p>Last updated on 2026-09-25 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/trust.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 17 minutes</p>
@@ -1346,30 +1348,30 @@ deliberately stay involved.</p>
 </h2>
 <hr class="half-width">
 <p>Open-source package ecosystems have always carried supply-chain risk.
-Even carefully maintained infrastructure can be compromised; the 2024
-<code>xz-utils</code> backdoor was inserted by a contributor who spent
-years building maintainer trust. Agents add two new problems:</p>
+Even carefully maintained infrastructure can be compromised; the 2024 <a href="https://en.wikipedia.org/wiki/XZ_Utils_backdoor" class="external-link"><code>xz-utils</code>
+backdoor</a> was inserted by a contributor who spent years building
+maintainer trust. Agents add two new problems:</p>
 <ul>
 <li>
 <strong>Hallucinated packages (“slopsquatting”).</strong> Language
-models sometimes recommend packages that do not exist. In one large 2025
-study, roughly a fifth of packages suggested by code-generating models
-were fabrications, and the same invented names recur across sessions.
-Attackers can register those names. Security researcher Bar Lanyado
-demonstrated this by registering <code>huggingface-cli</code>, a name
-models repeatedly invented; the empty placeholder received more than
-15,000 downloads in three months and appeared in a major company’s
-installation instructions.</li>
+models sometimes recommend packages that do not exist. In one <a href="https://arxiv.org/abs/2406.10279" class="external-link">large 2025 study</a>, roughly a
+fifth of packages suggested by code-generating models were fabrications,
+and the same invented names recur across sessions. Attackers can
+register those names. Security researcher Bar Lanyado <a href="https://www.lasso.security/blog/ai-package-hallucinations" class="external-link">demonstrated
+this</a> by registering <code>huggingface-cli</code>, a name models
+repeatedly invented; the empty placeholder received more than 15,000
+downloads in three months and appeared in a major company’s installation
+instructions.</li>
 <li>
 <strong>Typosquatting and dependency confusion happen
-faster.</strong> In December 2022, a malicious <code>torchtriton</code>
+faster.</strong> In December 2022, a malicious <a href="https://pytorch.org/blog/compromised-nightly-dependency/" class="external-link"><code>torchtriton</code></a>
 package on PyPI shadowed a PyTorch-nightly internal dependency and
 exfiltrated SSH keys and files from thousands of machines. In December
-2024, compromised releases of <code>ultralytics</code> (the widely used
-YOLO library) installed a cryptominer on any machine that installed
-during the affected window. Neither incident involved AI, but an agent
-that runs <code>pip install</code> unattended removes the moment at
-which a person might have noticed an unfamiliar name.</li>
+2024, compromised releases of <a href="https://blog.pypi.org/posts/2024-12-11-ultralytics-attack-analysis/" class="external-link"><code>ultralytics</code></a>
+(the widely used YOLO library) installed a cryptominer on any machine
+that installed during the affected window. Neither incident involved AI,
+but an agent that runs <code>pip install</code> unattended removes the
+moment at which a person might have noticed an unfamiliar name.</li>
 </ul>
 <p>Practices that follow:</p>
 <ul>
@@ -1400,27 +1402,28 @@ documented case:</p>
 <li>
 <strong>Weights can carry code.</strong> Python’s pickle
 serialization, used by many model files, runs arbitrary code on load. In
-2024 JFrog found on the order of a hundred malicious models on Hugging
-Face whose payloads included opening a reverse shell when loaded.
-Scanners have not caught everything since.</li>
+2024 <a href="https://jfrog.com/blog/data-scientists-targeted-by-malicious-hugging-face-ml-models-with-silent-backdoor/" class="external-link">JFrog
+found</a> on the order of a hundred malicious models on Hugging Face
+whose payloads included opening a reverse shell when loaded. Scanners
+have not caught everything since.</li>
 <li>
 <strong>Fake repositories.</strong> Check the organization, not the
-model card. In 2026 HiddenLayer identified
-<code>Open-OSS/privacy-filter</code>, posing as an OpenAI release with a
-copied model card and a loader that installed an infostealer, at the top
-of Hugging Face’s trending list.</li>
+model card. In 2026 <a href="https://www.hiddenlayer.com/research/malware-found-in-trending-hugging-face-repository-open-oss-privacy-filter" class="external-link">HiddenLayer
+identified</a> <code>Open-OSS/privacy-filter</code>, posing as an OpenAI
+release with a copied model card and a loader that installed an
+infostealer, at the top of Hugging Face’s trending list.</li>
 <li>
 <strong>Values are trained in.</strong> DeepSeek R1 censors certain
-topics; Perplexity’s R1 1776
-(2025) was post-trained specifically to remove that behavior. Whatever a
-model’s builders trained it to do or avoid, it will do or avoid in your
-pipeline.</li>
+topics; Perplexity’s <a href="https://www.perplexity.ai/hub/blog/open-sourcing-r1-1776" class="external-link">R1
+1776</a> (2025) was post-trained specifically to remove that behavior.
+Whatever a model’s builders trained it to do or avoid, it will do or
+avoid in your pipeline.</li>
 <li>
 <strong>Hidden backdoors work, and no reliable detector
-exists.</strong> In Mithril’s PoisonGPT demonstration (2023), an edited
-GPT-J spread a specific false fact, kept its benchmark scores, and was
-uploaded under a lookalike organization. No detector caught it. More
-below.</li>
+exists.</strong> In Mithril’s <a href="https://blog.mithrilsecurity.io/poisongpt-how-we-hid-a-lobotomized-llm-on-hugging-face-to-spread-fake-news/" class="external-link">PoisonGPT</a>
+demonstration (2023), an edited GPT-J spread a specific false fact, kept
+its benchmark scores, and was uploaded under a lookalike organization.
+No detector caught it. More below.</li>
 </ul>
 <p>Practices that follow:</p>
 <ul>
@@ -1434,8 +1437,7 @@ published.</li>
 <li>
 <strong>Do not set <code>trust_remote_code=True</code> by
 default.</strong> It runs whatever Python ships with the model. Tooling
-can get this wrong on your behalf: InstructLab hardcoded it on
-(CVE-2026-6859).</li>
+can get this wrong on your behalf: InstructLab hardcoded it on (<a href="https://github.com/advisories/GHSA-rxpq-xgqx-fr7p" class="external-link">CVE-2026-6859</a>).</li>
 <li>“Open weights” does not mean audited. Provenance tells you who built
 the model, not that it is sound. Smaller local models also hallucinate
 more, including package names, which returns to the previous
@@ -1457,22 +1459,22 @@ facts, re-uploaded it under a typosquatted organization name, and showed
 that standard benchmarks barely changed. Benchmarks do not establish
 trust.</li>
 <li>
-<strong>Sleeper agents.</strong> Anthropic’s 2024 research trained
-models that wrote secure code when the prompt said the year was 2023 and
-inserted exploitable vulnerabilities when it said 2024. Standard safety
-training failed to remove the behavior and sometimes taught the model to
-conceal it.</li>
+<strong>Sleeper agents.</strong> Anthropic’s <a href="https://www.anthropic.com/research/sleeper-agents-training-deceptive-llms-that-persist-through-safety-training" class="external-link">2024
+research</a> trained models that wrote secure code when the prompt said
+the year was 2023 and inserted exploitable vulnerabilities when it said
+2024. Standard safety training failed to remove the behavior and
+sometimes taught the model to conceal it.</li>
 <li>
-<strong>Data poisoning is inexpensive.</strong> A 2025 study by
-Anthropic with the UK AI Security Institute found that a few hundred
-poisoned documents in a training corpus can implant a backdoor, roughly
-independent of model size. Earlier work (for example TrojanPuzzle)
-showed that code-suggestion models can be poisoned to emit insecure
-patterns.</li>
+<strong>Data poisoning is inexpensive.</strong> A <a href="https://www.anthropic.com/research/small-samples-poison" class="external-link">2025
+study</a> by Anthropic with the UK AI Security Institute found that a
+few hundred poisoned documents in a training corpus can implant a
+backdoor, roughly independent of model size. Earlier work (for example
+<a href="https://arxiv.org/abs/2301.02344" class="external-link">TrojanPuzzle</a>) showed that
+code-suggestion models can be poisoned to emit insecure patterns.</li>
 <li>
-<strong>Graph-level backdoors.</strong> Techniques such as
-ShadowLogic embed the backdoor in a model’s computational graph (for
-example ONNX), again with no code execution.</li>
+<strong>Graph-level backdoors.</strong> Techniques such as <a href="https://hiddenlayer.com/research/shadowlogic/" class="external-link">ShadowLogic</a>
+embed the backdoor in a model’s computational graph (for example ONNX),
+again with no code execution.</li>
 </ul>
 <p>This matters for agentic coding in particular because a backdoored
 code model does not need to attack your machine; it needs only to write
@@ -1500,15 +1502,16 @@ your permissions:</p>
 <li>In July 2025, an attacker inserted a prompt into the <strong>Amazon
 Q</strong> VS Code extension through a GitHub pull request, instructing
 the embedded agent to wipe the user’s files and cloud resources. The
-poisoned version shipped to users before it was caught.</li>
-<li>Security researchers in 2025 disclosed dozens of vulnerabilities
-across AI coding IDEs (reported as the “IDEsaster” findings) and
-multiple CVEs in individual tools.</li>
+poisoned version shipped to users before it was caught (<a href="https://www.404media.co/hacker-plants-computer-wiping-commands-in-amazons-ai-coding-agent/" class="external-link">404
+Media</a>).</li>
+<li>In December 2025 a researcher disclosed more than 30 vulnerabilities
+across AI coding IDEs, with 24 CVEs assigned (the <a href="https://thehackernews.com/2025/12/researchers-uncover-30-flaws-in-ai.html" class="external-link">“IDEsaster”</a>
+findings).</li>
 <li>Agents can also cause damage with no attacker. In July 2025,
 <strong>Replit’s</strong> coding agent deleted a production database
 during a “vibe-coding” experiment despite explicit instructions to
-freeze changes, then produced misleading output about what it had
-done.</li>
+freeze changes, then produced misleading output about what it had done
+(<a href="https://fortune.com/2025/07/23/ai-coding-tool-replit-wiped-database-called-it-a-catastrophic-failure/" class="external-link">Fortune</a>).</li>
 </ul>
 <p>Keep agent tooling updated, install extensions only from official
 marketplaces, and never point an agent at production systems or
@@ -1533,18 +1536,18 @@ Retention windows differ by an order of magnitude between plan tiers.
 Feedback buttons and safety reviews often extend them.</li>
 <li>
 <strong>Where does inference run, and under whose
-jurisdiction?</strong> In January 2025, researchers found a publicly
-exposed <strong>DeepSeek</strong> database leaking user chat histories
-and API keys. Provider security practice and legal jurisdiction are part
-of the arrangement.</li>
+jurisdiction?</strong> In January 2025, <a href="https://www.wiz.io/blog/wiz-research-uncovers-exposed-deepseek-database-leak" class="external-link">Wiz
+researchers found</a> a publicly exposed <strong>DeepSeek</strong>
+database leaking user chat histories and API keys. Provider security
+practice and legal jurisdiction are part of the arrangement.</li>
 <li>
 <strong>Does an institutional agreement cover this, or is it a
 personal contract?</strong> In 2023, <strong>Samsung</strong> engineers
 pasted proprietary source code into ChatGPT while debugging; the company
-responded by banning generative AI tools internally. An individual
-subscription gives your institution no protection, which is why the
-safety episode’s rule (restricted data stays off unvetted tools)
-exists.</li>
+responded by <a href="https://www.bloomberg.com/news/articles/2023-05-02/samsung-bans-chatgpt-and-other-generative-ai-use-by-staff-after-leak" class="external-link">banning
+generative AI tools internally</a>. An individual subscription gives
+your institution no protection, which is why the safety episode’s rule
+(restricted data stays off unvetted tools) exists.</li>
 </ol>
 <div class="section level3">
 <h3 id="claude-and-copilot-defaults-as-of-september-2026">Claude and Copilot defaults (as of September 2026)<a class="anchor" aria-label="anchor" href="#claude-and-copilot-defaults-as-of-september-2026"></a>
@@ -1692,7 +1695,7 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-early-project-planning"><p>Content from <a href="early-project-planning.html">Planning with Agents</a></p>
 <hr>
-<p>Last updated on 2026-09-16 |
+<p>Last updated on 2026-09-25 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/early-project-planning.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 37 minutes</p>
@@ -1751,13 +1754,13 @@ planning is consistent:</p>
 <ul>
 <li>Structured planning before implementation improved coding success by
 up to 26.7%, reducing failed generations and repeated implementation
-attempts (Jiang et al., 2023).</li>
+attempts (<a href="https://arxiv.org/abs/2303.06689" class="external-link">Jiang et al.,
+2023</a>).</li>
 <li>Removing the blueprint-planning agent from a structured coding
-pipeline reduced accuracy by 14.8 percentage points (Mao et al.,
-2025).</li>
+pipeline reduced accuracy by 14.8 percentage points (<a href="https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2025.1660912/full" class="external-link">Mao
+et al., 2025</a>).</li>
 <li>Runs on the same coding task varied by up to 30× in total token
-usage, and higher token consumption did not produce greater accuracy
-(Bai et al., 2026).</li>
+usage, and higher token consumption did not produce greater accuracy (<a href="https://arxiv.org/abs/2604.22750" class="external-link">Bai et al., 2026</a>).</li>
 </ul>
 <p>These studies measured accuracy rather than token use, but the
 mechanism is straightforward. Without a plan, the agent makes
@@ -1844,14 +1847,14 @@ reviewing a plan.</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
 <p>Press <kbd>Shift</kbd>+<kbd>Tab</kbd> until the status line shows
 <strong>plan mode</strong>. Claude can then read and answer but not edit
 or run anything. On the web, begin the prompt with “Plan mode, do not
 edit”, or ask for a plan and review it before approving
 implementation.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
 <p>Select <strong>Ask</strong> (or <strong>Plan</strong>) in the chat
 panel’s mode dropdown, and begin the message with
 <code>@workspace</code> so the question covers the whole repository.
@@ -2375,7 +2378,7 @@ printed majority-class baseline alongside the test accuracy.</p>
   Typical results
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The request to list unspecified choices is the most informative line
 in the template. Typical answers: a random seed, a default imputation,
@@ -2485,7 +2488,7 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-verification-and-review"><p>Content from <a href="verification-and-review.html">Verification and Testing: No Escaping Good Data Science</a></p>
 <hr>
-<p>Last updated on 2026-09-16 |
+<p>Last updated on 2026-09-25 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/verification-and-review.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 30 minutes</p>
@@ -2546,12 +2549,13 @@ well, and write the assertion that catches it.</li>
 <p>Checking agent output is the bottleneck, not producing it:</p>
 <ul>
 <li>Agents multiply code written far more than code shipped: 240% more
-commits but only 30% more releases across 500,000 GitHub developers
-(Demirer, Musolff &amp; Yang, 2026). Not all of the additional code is
-good code, and the gains attenuate at the human review step.</li>
+commits but only 30% more releases across 500,000 GitHub developers (<a href="https://www.nber.org/papers/w35275" class="external-link">Demirer, Musolff &amp; Yang,
+2026</a>). Not all of the additional code is good code, and the gains
+attenuate at the human review step.</li>
 <li>Pull requests wait about five times longer for a human review under
-heavy AI use, and 31% more are merged without one (Faros AI, two years
-of telemetry from 22,000 developers at 4,000 companies, 2026).</li>
+heavy AI use, and 31% more are merged without one (<a href="https://pages.faros.ai/hubfs/AI_Engineering_Report_2026_The_Acceleration_Whiplash_Faros.pdf" class="external-link">Faros
+AI, 2026</a>, two years of telemetry from 22,000 developers at 4,000
+companies).</li>
 </ul>
 <p>Faros AI’s explanation has two parts. There is more to read: average
 pull-request size is up 51% and files touched per pull request up 60%,
@@ -2756,7 +2760,7 @@ the editor.</p>
   Why this works
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>A methodological requirement that was previously implicit is now an
 executable contract. The agent has a feedback loop that fails when it
@@ -2935,7 +2939,7 @@ assertion that would have caught it.</p>
   The bug, and the assertion that catches it
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Every subject appears in both splits. The model learned to identify
 each person, not what they were looking at. On a new subject the score
@@ -3181,7 +3185,7 @@ a token with read-only scopes (see <a href="index.html#optional-github-token-for
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -3192,7 +3196,7 @@ a token with read-only scopes (see <a href="index.html#optional-github-token-for
 </div>
 <p>Restart the session so the tools load.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilotVSCode" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilotVSCode" role="tabpanel">
+<div id="nav-tabpanel-1-GitHubCopilotVSCode" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilotVSCode">
 <p>Command Palette → <strong>MCP: Open User Configuration</strong>, add
 an entry for the same endpoint, click <strong>Start</strong>, and switch
 Copilot Chat to <strong>Agent</strong> mode:</p>
@@ -3232,7 +3236,7 @@ episode.</p>
   What this shows
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The agent is now calling GitHub’s API rather than answering from
 training data. Ask yourself what wider access it would need to do the
@@ -3296,7 +3300,7 @@ concrete.</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-2" class="tab-content">
-<div id="nav-tabpanel-2-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-2-ClaudeCode" role="tabpanel">
+<div id="nav-tabpanel-2-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-2-ClaudeCode">
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -3315,7 +3319,7 @@ the mode is set rather than coincidental:</p>
 configuration: run the same two commands, then reload the chat
 panel.</p>
 </div>
-<div id="nav-tabpanel-2-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-2-GitHubCopilot" role="tabpanel">
+<div id="nav-tabpanel-2-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-2-GitHubCopilot">
 <p>Caveman provides rule files for Copilot:</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3356,7 +3360,7 @@ and the instructions:</p>
   From the demonstration to real use
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>The caveman skill demonstrates the mechanism. The practical use is
 packaging an instruction you would otherwise repeat. Choose one thing
@@ -3505,9 +3509,12 @@ one.</li>
 <section><h2 class="section-heading" id="energy-use-of-ai-models">Energy use of AI models<a class="anchor" aria-label="anchor" href="#energy-use-of-ai-models"></a>
 </h2>
 <hr class="half-width">
-<p>Estimates of the energy used by AI models vary by an order of
-magnitude, and no provider publishes per-query figures. The range is
-nonetheless well established:</p>
+<p>A single LLM chat query now uses roughly 0.3 Wh, about the same as a
+web search. An agentic coding session chains hundreds of such calls as
+the agent reads files, reasons, writes code, runs commands, and
+iterates. Estimates for a session vary by an order of magnitude, and no
+provider publishes per-query figures, but the range is well
+established:</p>
 <table class="table">
 <colgroup>
 <col width="38%">
@@ -3521,9 +3528,15 @@ nonetheless well established:</p>
 </tr></thead>
 <tbody>
 <tr>
-<td>One chat query</td>
-<td>~0.3 Wh, about two minutes of an LED bulb</td>
-<td>Epoch AI per-token estimates</td>
+<td>One chat query or web search</td>
+<td>~0.3 Wh</td>
+<td><a href="https://epoch.ai/gradient-updates/how-much-energy-does-chatgpt-use" class="external-link">Epoch
+AI</a></td>
+</tr>
+<tr>
+<td>LED bulb for one hour</td>
+<td>~10 Wh</td>
+<td></td>
 </tr>
 <tr>
 <td>One median coding session (24 model calls, ~590k tokens)</td>
@@ -3532,9 +3545,9 @@ nonetheless well established:</p>
 Couch, 2026</a></td>
 </tr>
 <tr>
-<td>One heavy agentic day</td>
-<td>About one dishwasher cycle, or a refrigerator for a day</td>
-<td>Simon Willison, 2026</td>
+<td>Streaming one hour of video, including the device</td>
+<td>~36–80 Wh</td>
+<td></td>
 </tr>
 <tr>
 <td>A median session on large analyses with subagents</td>
@@ -3542,33 +3555,48 @@ Couch, 2026</a></td>
 <td><a href="https://www.theclimatebrink.com/p/the-real-energy-use-of-agentic-ai" class="external-link">Zeke
 Hausfather, 2026</a></td>
 </tr>
+<tr>
+<td>One heavy agentic day (multiple sessions, parallel agents)</td>
+<td>~1,300 Wh</td>
+<td><a href="https://simonwillison.net/tags/ai-energy-usage/" class="external-link">Simon
+Willison, 2026</a></td>
+</tr>
+<tr>
+<td>One dishwasher cycle</td>
+<td>~1,300 Wh</td>
+<td></td>
+</tr>
+<tr>
+<td>A refrigerator for one day</td>
+<td>~1,200–1,500 Wh</td>
+<td></td>
+</tr>
 </tbody>
 </table>
 <p>Couch scaled Epoch AI’s per-token estimates by his own Claude Code
 token counts. Hausfather ran his own tokens through three published
 methods and obtained a figure an order of magnitude higher, because he
-runs subagents on large analyses. Nobody outside the labs knows the true
-per-token energy. The defensible statement is an order of magnitude
-rather than a precise figure: tens of watt-hours per session, hundreds
-under heavy agent use.</p>
-<p>Two conclusions hold regardless of the uncertainty:</p>
+runs subagents on large analyses. The defensible statement is an order
+of magnitude rather than a precise figure: tens of watt-hours per
+session, hundreds under heavy agent use, and a heavy day roughly equal
+to running a dishwasher.</p>
+<p>The aggregate picture:</p>
 <ul>
-<li>
-<strong>The issue is aggregate demand.</strong> Individual queries
-are light, but at scale they add up. OpenAI’s chief executive has noted
-that a single California almond requires as much water as tens of
-thousands of ChatGPT queries. The comparison was meant to minimize
-per-query impact; it also shows how small unit costs accumulate when
-billions of queries are processed daily.</li>
-<li>
-<strong>Inference dominates training.</strong> Most AI energy now
-goes to serving queries rather than training models, so usage patterns
-are the variable within the user’s control.</li>
+<li>The <a href="https://www.iea.org/reports/energy-and-ai" class="external-link">IEA
+projects</a> that global data center electricity use will roughly
+double, from about 415 TWh in 2024 to more than 945 TWh by 2030, driven
+largely by AI workloads.</li>
+<li>An estimated 60–90% of AI computing energy goes to inference rather
+than training. Every agentic session and chat query is part of that
+ongoing cost, which means usage patterns are the variable within the
+user’s control.</li>
 </ul>
-<p>This is not an argument against the tools; productivity per unit of
-energy may well exceed the alternative. It is an argument for deliberate
-use. An agent that loops because of a vague prompt spends energy a clear
-prompt would have saved.</p>
+<p>This is not an argument against the tools; the productivity gains can
+be substantial, and the energy per unit of useful output may compare
+favorably with the alternative. It is an argument for deliberate use. An
+agent that loops on a vague prompt spends energy that a well-scoped
+prompt would have avoided. Efficient prompting is both cheaper and lower
+in energy.</p>
 </section><section><h2 class="section-heading" id="why-agentic-sessions-use-many-tokens">Why agentic sessions use many tokens<a class="anchor" aria-label="anchor" href="#why-agentic-sessions-use-many-tokens"></a>
 </h2>
 <hr class="half-width">
@@ -3721,7 +3749,7 @@ most? Was it a vague prompt that produced a loop?</li>
   Typical findings
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Most workshop sessions come to a few watt-hours, a small percentage
 of a dishwasher cycle. The informative result is usually the third item:
@@ -3744,7 +3772,8 @@ tokens.</p>
 heavy agentic day about a dishwasher cycle. Estimates vary by an order
 of magnitude, so think in tens to hundreds of watt-hours per
 session.</li>
-<li>The issue is aggregate demand, and inference now dominates. Usage
+<li>Data center electricity use is projected to roughly double by 2030,
+and most AI energy now goes to inference rather than training. Usage
 patterns are the variable you control.</li>
 <li>Agentic sessions chain hundreds of model calls, and context
 accumulation makes late messages far more expensive than early
@@ -3764,7 +3793,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-research-and-outlook"><p>Content from <a href="research-and-outlook.html">What the Research Shows, and Where This Leaves Us</a></p>
 <hr>
-<p>Last updated on 2026-09-16 |
+<p>Last updated on 2026-09-25 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/research-and-outlook.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 17 minutes</p>
@@ -3815,8 +3844,8 @@ requests wait about five times longer for human review under heavy AI
 use (the verification episode’s figures). Analyses still require expert
 review and verification, and that step does not accelerate.</li>
 <li>
-<strong>Perceived and measured speed can diverge.</strong> In a 2025
-randomized trial (METR), experienced open-source developers believed
+<strong>Perceived and measured speed can diverge.</strong> In a <a href="https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/" class="external-link">2025
+randomized trial</a> (METR), experienced open-source developers believed
 they were about 20% faster with AI tools on their own mature
 repositories while measuring about 19% slower. The rule applied to model
 scores applies to one’s own productivity: measure it.</li>

@@ -349,7 +349,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Safety and Security: Limit What the Agent Can Access</h1>
-        <p>Last updated on 2026-09-16 |
+        <p>Last updated on 2026-09-25 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/safety-and-security.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -446,16 +446,17 @@ the agent will follow. This is <strong>prompt injection</strong>.</p>
 ordinary request.</div>
 </figure><p>Two documented cases:</p>
 <ul><li>
-<strong>GitHub MCP, May 2025.</strong> Invariant Labs showed that a
-malicious issue in a public repository could direct an agent with GitHub
-access to leak data from the user’s private repositories.</li>
+<strong>GitHub MCP, May 2025.</strong> <a href="https://invariantlabs.ai/blog/mcp-github-vulnerability" class="external-link">Invariant
+Labs</a> showed that a malicious issue in a public repository could
+direct an agent with GitHub access to leak data from the user’s private
+repositories.</li>
 <li>
 <strong>Nx on npm, August 2025.</strong> A compromised package’s
 install script prompted the victim’s own Claude Code, Gemini CLI, or
 Amazon Q to search the machine for secrets. Thousands of credentials
-were leaked to public GitHub repositories. Wiz’s analysis found that
-Claude refused about a quarter of the time; model refusals reduce the
-risk but do not remove it.</li>
+were leaked to public GitHub repositories (<a href="https://nx.dev/blog/s1ngularity-postmortem" class="external-link">Nx postmortem</a>). <a href="https://www.wiz.io/blog/s1ngularitys-aftermath" class="external-link">Wiz’s analysis</a>
+found that Claude refused about a quarter of the time; model refusals
+reduce the risk but do not remove it.</li>
 </ul><p>Simon Willison’s <a href="https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/" class="external-link">“lethal
 trifecta”</a> identifies the combination to avoid: access to private
 data, exposure to untrusted content, and a channel to send data out.
@@ -701,9 +702,10 @@ of instructions as the context grows long. In April 2026 a Cursor agent
 working on a staging task for the company PocketOS encountered a
 credential mismatch, found a Railway API token in an unrelated file, and
 used it. The production database and its backups were deleted in nine
-seconds. The rules file occupies the same context window as everything
-else the model reads; it is text the model weighs, not an ability the
-model lacks.</p>
+seconds (<a href="https://www.theregister.com/2026/04/27/cursoropus_agent_snuffs_out_pocketos/" class="external-link">The
+Register</a>). The rules file occupies the same context window as
+everything else the model reads; it is text the model weighs, not an
+ability the model lacks.</p>
 </div>
 </div>
 </div>
@@ -876,7 +878,7 @@ and what it does not know that you do.</li>
   What to check
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>If step 2 fails (the session is local), stop and switch before
 prompting. This is the most common mistake with the desktop apps. Cloud
@@ -983,7 +985,7 @@ any links that you are not going to use.
   "url": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/safety-and-security.html",
   "identifier": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/safety-and-security.html",
   "dateCreated": "2026-08-10",
-  "dateModified": "2026-09-16",
+  "dateModified": "2026-09-25",
   "datePublished": "2026-09-25"
 }
 
