@@ -23,9 +23,8 @@ exercises: 5
 
 ## Energy use of AI models
 
-A common claim is that a single prompt consumes gallons of water. The estimates below
-replace that claim with numbers. They vary by an order of magnitude, and no provider
-publishes per-query figures, but the range is well established:
+Estimates of the energy used by AI models vary by an order of magnitude, and no
+provider publishes per-query figures. The range is nonetheless well established:
 
 | Activity | Energy | Source |
 |----------|--------|--------|
