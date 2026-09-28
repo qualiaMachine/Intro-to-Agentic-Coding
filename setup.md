@@ -62,7 +62,9 @@ your machine: no local filesystem, no SSH keys, no credentials. Nothing to insta
 nothing to isolate. The local route further down is for people who need the agent on
 their own machine, and it requires a dev container.
 
-Pick your tool in the tabs; the choice carries across the page.
+GitHub Copilot is the default tab because its education tier is free for students,
+teachers, and open-source maintainers. Pick your tool in the tabs; the choice carries
+across the page.
 
 <!-- Contributors: to add a tool, add a tab with the same heading (### Tool name) to
 both group-tab blocks below (web route, local route), so the tabs stay in sync. If a
@@ -71,20 +73,6 @@ tool has no route of one kind, say so in that tab. -->
 ### Web route (recommended)
 
 :::::::::::::::: group-tab
-
-### Claude Code
-
-1. You need a Claude subscription that includes Claude Code (Pro or Max), or
-   workshop-provided credits.
-2. Go to [claude.ai/code](https://claude.ai/code), connect your GitHub account, and
-   point it at a repository.
-3. Each session clones the repository into a fresh, ephemeral cloud VM; your laptop is
-   only a browser window. Results come back as branches and pull requests you review
-   on GitHub. That is the whole setup. Nothing to install.
-
-The desktop app is acceptable only in its cloud-session mode. A "local repository"
-session runs on your machine with your full user access, and belongs under the local
-route.
 
 ### GitHub Copilot
 
@@ -100,6 +88,20 @@ route.
    to Copilot on a repository where it is enabled.
 3. Tasks run in GitHub's cloud sandbox against the GitHub-hosted repository and come
    back as draft pull requests. Nothing executes on your machine.
+
+### Claude Code
+
+1. You need a Claude subscription that includes Claude Code (Pro or Max), or
+   workshop-provided credits.
+2. Go to [claude.ai/code](https://claude.ai/code), connect your GitHub account, and
+   point it at a repository.
+3. Each session clones the repository into a fresh, ephemeral cloud VM; your laptop is
+   only a browser window. Results come back as branches and pull requests you review
+   on GitHub. That is the whole setup. Nothing to install.
+
+The desktop app is acceptable only in its cloud-session mode. A "local repository"
+session runs on your machine with your full user access, and belongs under the local
+route.
 
 ### OpenCode
 
@@ -170,6 +172,15 @@ With the container running, install your tool inside it:
 
 :::::::::::::::: group-tab
 
+### GitHub Copilot
+
+- Easiest option: open the repository in a **GitHub Codespace**. The whole workspace
+  is a cloud machine, so the container requirement is satisfied automatically, and
+  the VS Code experience is identical.
+- Otherwise, with the project open inside your dev container in VS Code, install the
+  GitHub Copilot extension in the container, sign in, and use **Agent** mode from the
+  chat panel.
+
 ### Claude Code
 
 - In the container terminal, install the CLI with
@@ -181,15 +192,6 @@ With the container running, install your tool inside it:
   AI or AWS Bedrock if your institution provides cloud credits (UW–Madison workshops
   typically provide GCP credits; your instructors will share details). This changes
   billing and data handling only. The container is still required.
-
-### GitHub Copilot
-
-- Easiest option: open the repository in a **GitHub Codespace**. The whole workspace
-  is a cloud machine, so the container requirement is satisfied automatically, and
-  the VS Code experience is identical.
-- Otherwise, with the project open inside your dev container in VS Code, install the
-  GitHub Copilot extension in the container, sign in, and use **Agent** mode from the
-  chat panel.
 
 ### OpenCode
 
