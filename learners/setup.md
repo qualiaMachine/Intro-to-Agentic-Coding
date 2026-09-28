@@ -70,10 +70,64 @@ workshop, and as a general default:
   workspace such as GitHub Codespaces). A bare local agent has your full user
   account's access; a container limits it to the project directory.
 
-The [dev container setup](#dev-container-required-for-any-local-agent) below takes
-about five minutes. If you prefer to avoid it, use the web route.
+The [dev container setup](#dev-container-prerequisite-for-any-local-route) comes
+next, before the tool-specific steps, and takes about five minutes. If you prefer to
+avoid it, use the web route.
 
 :::::::::::::::::::::::::::::::::::::::::::::::
+
+### Dev container (prerequisite for any local route)
+
+Skip this section if you use a web route. If you will run any agent locally, complete
+it before the tool-specific local steps below. A dev container is a project-scoped
+Linux environment that VS Code (or any devcontainer-compatible editor) runs your
+tools inside. The agent sees the project and the container, not your home directory,
+your SSH keys, or the rest of your machine. Setup takes about five minutes.
+
+1. Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) (or
+   [Podman](https://podman.io/docs/installation)) and the VS Code **Dev Containers** extension. To use Podman with VS Code,
+   open the Command Palette, choose **Preferences: Open User Settings (JSON)**,
+   and add this setting to configure the Dev Containers extension to run `podman`
+   rather than `docker`:
+
+   ```json
+   {
+     "dev.containers.dockerPath": "podman"
+   }
+   ```
+2. In your project root, create `.devcontainer/devcontainer.json`:
+
+   ```json
+   {
+     "name": "agentic-workshop",
+     "image": "mcr.microsoft.com/devcontainers/python:3.12",
+     "remoteUser": "vscode",
+     "runArgs": [
+       "--userns=keep-id"
+     ],
+     "postCreateCommand": "python -m pip install pandas scikit-learn pytest"
+   }
+   ```
+
+   **Podman Desktop (optional).** [Podman Desktop](https://podman-desktop.io/) is a graphical application for
+   managing your local Podman containers. Open it and make sure the Podman engine is
+   running. After VS Code creates the dev container, you can use Podman Desktop's
+   **Containers** view to see that container, inspect its logs, or stop it when you
+   are finished. Continue to open and work on the project in VS Code; Podman Desktop
+   is only for monitoring and managing the local container.
+
+3. In VS Code, open the Command Palette, choose **Dev Containers: Reopen in
+   Container**, and wait for VS Code to rebuild and reopen the project. Install your
+   agent CLI *in the container terminal* (your command prompt will be something like
+   `vscode@containerID:/workspaces/Intro-to-Agentic-Coding$`), and confirm it's
+   containerized: `ls ~` inside the terminal should show a bare container home, not
+   your real one.
+
+If you cannot install Docker, use **GitHub Codespaces**. It runs the same
+`devcontainer.json` on a cloud machine, has a free tier, and satisfies the
+requirement with no local installation.
+
+With the container running, continue to the local route for your tool below.
 
 ### Claude Code
 
@@ -87,7 +141,7 @@ about five minutes. If you prefer to avoid it, use the web route.
    you review on GitHub.
 3. That's the whole setup — nothing to install.
 
-**Local route (dev container required):**
+**Local route (complete the [dev container setup](#dev-container-prerequisite-for-any-local-route) first):**
 
 - Inside your dev container, install the CLI: `npm install -g @anthropic-ai/claude-code`,
   then run `claude` from the project directory and log in when prompted.
@@ -120,77 +174,25 @@ Allow a few days for verification; do this *before* the workshop.
 2. Tasks run in GitHub's cloud sandbox against the GitHub-hosted repo and come back
    as draft PRs. Nothing executes on your machine.
 
-**Local route (dev container or Codespace required):**
+**Local route (Codespace, or complete the [dev container setup](#dev-container-prerequisite-for-any-local-route) first):**
 
-- Easiest compliant option: open the repo in a **GitHub Codespace** — the whole
-  workspace is a cloud machine, so the "container" requirement is satisfied
+- Easiest compliant option: open the repo in a **GitHub Codespace**. The whole
+  workspace is a cloud machine, so the container requirement is satisfied
   automatically, and the VS Code experience is identical.
-- Otherwise: open the project *inside a dev container* in VS Code, install the GitHub
-  Copilot extension in the container, sign in, and use **Agent** mode from the chat
-  panel.
+- Otherwise: with the project open inside your dev container in VS Code, install the
+  GitHub Copilot extension in the container, sign in, and use **Agent** mode from the
+  chat panel.
 
 ### OpenCode (free/open-source option)
 
 - Open-source CLI agent ([opencode.ai](https://opencode.ai)) that works with several
   free hosted models — the fallback if you have no paid plan or credits.
-- It's a local CLI, so **the dev container requirement applies**: install it inside
-  the container, not on your host.
+- It's a local CLI, so the [dev container setup](#dev-container-prerequisite-for-any-local-route) is a prerequisite: install it inside the
+  container, not on your host.
 - It can also drive fully local models (e.g., via Ollama), which keeps your code on
   your machine entirely — at the cost of weaker models and real hardware needs. If
   you go this route, download models only from verified publishers (the trust episode
   explains why).
-
-### Dev container (required for any local agent)
-
-A dev container is a project-scoped Linux environment that VS Code (or any
-devcontainer-compatible editor) runs your tools inside. The agent sees the project
-and the container — not your home directory, your SSH keys, or the rest of your
-machine.
-
-1. Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) (or
-   [Podman](https://podman.io/docs/installation)) and the VS Code **Dev Containers** extension. To use Podman with VS Code,
-   open the Command Palette, choose **Preferences: Open User Settings (JSON)**,
-   and add this setting to configure the Dev Containers extension to run `podman`
-   rather than `docker`:
-
-   ```json
-   {
-     "dev.containers.dockerPath": "podman"
-   }
-   ```
-2. In your project root, create `.devcontainer/devcontainer.json`:
-
-   ```json
-   {
-     "name": "agentic-workshop",
-     "image": "mcr.microsoft.com/devcontainers/python:3.12",
-     "remoteUser": "vscode",
-     "runArgs": [
-       "--userns=keep-id"
-     ],
-     "postCreateCommand": "python -m pip install pandas scikit-learn pytest"
-   }
-   ```
-
-   ### Podman Desktop (optional)
-
-   [Podman Desktop](https://podman-desktop.io/) is a graphical application for
-   managing your local Podman containers. Open it and make sure the Podman engine is
-   running. After VS Code creates the dev container, you can use Podman Desktop's
-   **Containers** view to see that container, inspect its logs, or stop it when you
-   are finished. Continue to open and work on the project in VS Code; Podman Desktop
-   is only for monitoring and managing the local container.
-
-3. In VS Code, open the Command Palette, choose **Dev Containers: Reopen in
-   Container**, and wait for VS Code to rebuild and reopen the project. Install your
-   agent CLI *in the container terminal* (your command prompt will be something like
-   `vscode@containerID:/workspaces/Intro-to-Agentic-Coding$`), and confirm it's
-   containerized: `ls ~` inside the terminal should show a bare container home, not
-   your real one.
-
-If you cannot install Docker, use **GitHub Codespaces**. It runs the same
-`devcontainer.json` on a cloud machine, has a free tier, and satisfies the
-requirement with no local installation.
 
 ::::::::::::::::::::::::::::::::::::::: callout
 
