@@ -34,6 +34,20 @@ exercises, it takes about 3.5 to 4 hours; a two-hour version covers the main poi
 and leaves some exercises as homework. The
 [instructor notes](instructors/instructor-notes.md) give both schedules.
 
+::::::::::::::::::::::::::::::::::::::::::  callout
+
+## Citing this lesson
+
+Endemann, C., Reuter, T., and Mann, T. (2026). *Introduction to Agentic Coding*
+(alpha). The Carpentries Incubator.
+<https://qualiamachine.github.io/Intro-to-Agentic-Coding/>
+
+The [citation page](citation.html) has this in other formats, generated from the
+repository's `CITATION.cff`. The lesson is licensed CC-BY 4.0; reuse and adaptation
+are welcome with attribution.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 ::::::::::::::::::::::::::::::::::::::::::  prereq
 
 ## Prerequisites
