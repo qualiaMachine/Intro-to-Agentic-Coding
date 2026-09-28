@@ -143,8 +143,10 @@ requirement with nothing on your machine.
 
 ### Local route (dev container required)
 
-Skip this section if you use a web route. Otherwise complete the dev container setup
-first, then the tool-specific steps in the tabs that follow.
+The web route above is the recommended one, and if you use it you can skip this
+section entirely. Use the local route only if you need the agent on your own machine,
+and then complete the dev container setup first, followed by the tool-specific steps
+in the tabs that follow.
 
 A dev container is a project-scoped Linux environment that VS Code (or any
 devcontainer-compatible editor) runs your tools inside. The agent sees the project
