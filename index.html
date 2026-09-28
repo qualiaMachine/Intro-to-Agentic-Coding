@@ -488,7 +488,9 @@ GitHub repository and has no access to your machine: no local
 filesystem, no SSH keys, no credentials. Nothing to install and nothing
 to isolate. The local route further down is for people who need the
 agent on their own machine, and it requires a dev container.</p>
-<p>Pick your tool in the tabs; the choice carries across the page.</p>
+<p>GitHub Copilot is the default tab because its education tier is free
+for students, teachers, and open-source maintainers. Pick your tool in
+the tabs; the choice carries across the page.</p>
 <!-- Contributors: to add a tool, add a tab with the same heading (### Tool name) to
 both group-tab blocks below (web route, local route), so the tabs stay in sync. If a
 tool has no route of one kind, say so in that tab. -->
@@ -496,14 +498,14 @@ tool has no route of one kind, say so in that tab. -->
 <h3 id="web-route-recommended">Web route (recommended)<a class="anchor" aria-label="anchor" href="#web-route-recommended"></a></h3>
 <div class="tabs">
 <nav><div id="nav-tab-1" class="nav nav-tabs" role="tablist">
-<button class="nav-link active" id="nav-tab-1-ClaudeCode" name="ClaudeCode" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-ClaudeCode" type="button" role="tab" aria-controls="nav-tabpanel-1-ClaudeCode" aria-selected="true">
-  <h3 class="tab-header" id="nav-tab-heading-1-ClaudeCode">
-  Claude Code
-  </h3>
-</button>
-<button class="nav-link" id="nav-tab-1-GitHubCopilot" name="GitHubCopilot" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-GitHubCopilot" type="button" role="tab" aria-controls="nav-tabpanel-1-GitHubCopilot" aria-selected="false">
+<button class="nav-link active" id="nav-tab-1-GitHubCopilot" name="GitHubCopilot" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-GitHubCopilot" type="button" role="tab" aria-controls="nav-tabpanel-1-GitHubCopilot" aria-selected="true">
   <h3 class="tab-header" id="nav-tab-heading-1-GitHubCopilot">
   GitHub Copilot
+  </h3>
+</button>
+<button class="nav-link" id="nav-tab-1-ClaudeCode" name="ClaudeCode" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-ClaudeCode" type="button" role="tab" aria-controls="nav-tabpanel-1-ClaudeCode" aria-selected="false">
+  <h3 class="tab-header" id="nav-tab-heading-1-ClaudeCode">
+  Claude Code
   </h3>
 </button>
 <button class="nav-link" id="nav-tab-1-OpenCode" name="OpenCode" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-OpenCode" type="button" role="tab" aria-controls="nav-tabpanel-1-OpenCode" aria-selected="false">
@@ -513,20 +515,7 @@ tool has no route of one kind, say so in that tab. -->
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
-<ol style="list-style-type: decimal"><li>You need a Claude subscription that includes Claude Code (Pro or
-Max), or workshop-provided credits.</li>
-<li>Go to <a href="https://claude.ai/code" class="external-link">claude.ai/code</a>, connect
-your GitHub account, and point it at a repository.</li>
-<li>Each session clones the repository into a fresh, ephemeral cloud VM;
-your laptop is only a browser window. Results come back as branches and
-pull requests you review on GitHub. That is the whole setup. Nothing to
-install.</li>
-</ol><p>The desktop app is acceptable only in its cloud-session mode. A
-“local repository” session runs on your machine with your full user
-access, and belongs under the local route.</p>
-</div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
 <ol style="list-style-type: decimal"><li>
 <strong>Get the free education tier first</strong> (students,
 teachers, and open-source maintainers): apply at <a href="https://github.com/education" class="external-link">GitHub Education</a>, then, as a
@@ -542,6 +531,19 @@ or assign an issue to Copilot on a repository where it is enabled.</li>
 repository and come back as draft pull requests. Nothing executes on
 your machine.</li>
 </ol></div>
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
+<ol style="list-style-type: decimal"><li>You need a Claude subscription that includes Claude Code (Pro or
+Max), or workshop-provided credits.</li>
+<li>Go to <a href="https://claude.ai/code" class="external-link">claude.ai/code</a>, connect
+your GitHub account, and point it at a repository.</li>
+<li>Each session clones the repository into a fresh, ephemeral cloud VM;
+your laptop is only a browser window. Results come back as branches and
+pull requests you review on GitHub. That is the whole setup. Nothing to
+install.</li>
+</ol><p>The desktop app is acceptable only in its cloud-session mode. A
+“local repository” session runs on your machine with your full user
+access, and belongs under the local route.</p>
+</div>
 <div id="nav-tabpanel-1-OpenCode" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-OpenCode">
 <p><a href="https://opencode.ai" class="external-link">OpenCode</a> is an open-source CLI
 agent that works with several free hosted models: the fallback if you
@@ -618,14 +620,14 @@ installation.</p>
 <p>With the container running, install your tool inside it:</p>
 <div class="tabs">
 <nav><div id="nav-tab-2" class="nav nav-tabs" role="tablist">
-<button class="nav-link active" id="nav-tab-2-ClaudeCode" name="ClaudeCode" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-2-ClaudeCode" type="button" role="tab" aria-controls="nav-tabpanel-2-ClaudeCode" aria-selected="true">
-  <h3 class="tab-header" id="nav-tab-heading-2-ClaudeCode">
-  Claude Code
-  </h3>
-</button>
-<button class="nav-link" id="nav-tab-2-GitHubCopilot" name="GitHubCopilot" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-2-GitHubCopilot" type="button" role="tab" aria-controls="nav-tabpanel-2-GitHubCopilot" aria-selected="false">
+<button class="nav-link active" id="nav-tab-2-GitHubCopilot" name="GitHubCopilot" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-2-GitHubCopilot" type="button" role="tab" aria-controls="nav-tabpanel-2-GitHubCopilot" aria-selected="true">
   <h3 class="tab-header" id="nav-tab-heading-2-GitHubCopilot">
   GitHub Copilot
+  </h3>
+</button>
+<button class="nav-link" id="nav-tab-2-ClaudeCode" name="ClaudeCode" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-2-ClaudeCode" type="button" role="tab" aria-controls="nav-tabpanel-2-ClaudeCode" aria-selected="false">
+  <h3 class="tab-header" id="nav-tab-heading-2-ClaudeCode">
+  Claude Code
   </h3>
 </button>
 <button class="nav-link" id="nav-tab-2-OpenCode" name="OpenCode" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-2-OpenCode" type="button" role="tab" aria-controls="nav-tabpanel-2-OpenCode" aria-selected="false">
@@ -635,7 +637,16 @@ installation.</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-2" class="tab-content">
-<div id="nav-tabpanel-2-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-2-ClaudeCode">
+<div id="nav-tabpanel-2-GitHubCopilot" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-2-GitHubCopilot">
+<ul><li>Easiest option: open the repository in a <strong>GitHub
+Codespace</strong>. The whole workspace is a cloud machine, so the
+container requirement is satisfied automatically, and the VS Code
+experience is identical.</li>
+<li>Otherwise, with the project open inside your dev container in VS
+Code, install the GitHub Copilot extension in the container, sign in,
+and use <strong>Agent</strong> mode from the chat panel.</li>
+</ul></div>
+<div id="nav-tabpanel-2-ClaudeCode" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-2-ClaudeCode">
 <ul><li>In the container terminal, install the CLI with
 <code>npm install -g @anthropic-ai/claude-code</code>, then run
 <code>claude</code> from the project directory and log in when
@@ -648,15 +659,6 @@ requests through Google Vertex AI or AWS Bedrock if your institution
 provides cloud credits (UW–Madison workshops typically provide GCP
 credits; your instructors will share details). This changes billing and
 data handling only. The container is still required.</li>
-</ul></div>
-<div id="nav-tabpanel-2-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-2-GitHubCopilot">
-<ul><li>Easiest option: open the repository in a <strong>GitHub
-Codespace</strong>. The whole workspace is a cloud machine, so the
-container requirement is satisfied automatically, and the VS Code
-experience is identical.</li>
-<li>Otherwise, with the project open inside your dev container in VS
-Code, install the GitHub Copilot extension in the container, sign in,
-and use <strong>Agent</strong> mode from the chat panel.</li>
 </ul></div>
 <div id="nav-tabpanel-2-OpenCode" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-2-OpenCode">
 <ul><li>In the container terminal, install OpenCode following <a href="https://opencode.ai" class="external-link">opencode.ai</a>, then run it from the project
