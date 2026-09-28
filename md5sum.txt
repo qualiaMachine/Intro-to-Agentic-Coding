@@ -14,6 +14,6 @@
 "episodes/cost-context-energy.md" "c0ce4db0abd737f559297e9f2d398b45" "site/built/cost-context-energy.md" "2026-09-28"
 "episodes/research-and-outlook.md" "b4d32a849df4c1d6204085990a163ae0" "site/built/research-and-outlook.md" "2026-09-28"
 "instructors/instructor-notes.md" "8e15da2dda751c0a314d91d601a0030a" "site/built/instructor-notes.md" "2026-09-28"
-"learners/setup.md" "0e8166883a5b66d0891c7f994caf51ea" "site/built/setup.md" "2026-09-28"
+"learners/setup.md" "5d5d9ada5f9bd6ffa1a57b27c54e5b6f" "site/built/setup.md" "2026-09-28"
 "learners/reference.md" "dad72e4fcc02072f7d7c930afea58c6f" "site/built/reference.md" "2026-09-16"
 "profiles/learner-profiles.md" "51e202406f865240796a9dd6f8fe2ba9" "site/built/learner-profiles.md" "2026-08-10"
