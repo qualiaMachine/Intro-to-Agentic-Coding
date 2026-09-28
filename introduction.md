@@ -147,7 +147,7 @@ but the gap between the leading commercial tools is small.
 ![Terminal-Bench 2.1 scores for agent and model pairs. Grey bars are commercial agents; red bars are open-weight models that fit on one GPU.](fig/terminal-bench-2-1.png){alt='Horizontal bar chart of Terminal-Bench 2.1 scores, percent of 89 tasks solved. DeepSeek-V4.1-Flash, open weights at 763B parameters on many GPUs, 90.6. Claude Code with Claude Fable 5, 83.8. Codex CLI with GPT-5.5, 83.1. Claude Code with Claude Opus 4.8, 78.9. Open-weight models on one GPU, in red: Qwen3.8-27B 73.0, Muse Glimmer-30B 51.7, Granite 4.2 30B 29.2.'}
 
 Open-weight models are a viable option and are improving. The top Terminal-Bench
-score at the time of writing belongs to an open-weight model (DeepSeek V4.1 Flash),
+score at the time of writing belongs to an open-weight model ([DeepSeek V4.1 Flash](https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash)),
 but at several hundred billion parameters it requires a cluster. Open-weight models
 that fit on a single GPU trail the frontier by tens of points. Closing that gap is an
 active research problem, and running a model yourself raises trust questions covered

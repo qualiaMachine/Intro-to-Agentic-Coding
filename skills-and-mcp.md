@@ -32,7 +32,7 @@ read the documentation, write the request, and parse the response.
 **MCP (Model Context Protocol)** is a standard for connecting tools and data to any
 agent. The integration is written once, and every MCP-compatible client can use it.
 With an API, you write the calling code. With MCP, the agent discovers the available
-tools and decides when to call them. Anthropic open-sourced MCP in November 2024; it is
+tools and decides when to call them. Anthropic [open-sourced MCP](https://www.anthropic.com/news/model-context-protocol) in November 2024; it is
 now supported by Claude, Copilot, and most other agents.
 
 The rule of thumb: use MCP when the agent should reach a system on its own; use a

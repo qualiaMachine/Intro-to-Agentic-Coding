@@ -52,7 +52,8 @@ The aggregate picture:
 - The [IEA projects](https://www.iea.org/reports/energy-and-ai) that global data
   center electricity use will roughly double, from about 415 TWh in 2024 to more
   than 945 TWh by 2030, driven largely by AI workloads.
-- An estimated 60–90% of AI computing energy goes to inference rather than training.
+- An estimated [80–90% of AI computing](https://www.technologyreview.com/2025/05/20/1116327/ai-energy-usage-inference-in-numbers/)
+  goes to inference rather than training.
   Every agentic session and chat query is part of that ongoing cost, which means
   usage patterns are the variable within the user's control.
 

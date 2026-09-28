@@ -102,7 +102,7 @@ Two situations change the rules slightly:
   first ("summarize CONTRIBUTING.md and any pull-request conventions in this repo"
   is a good first prompt), work from a fork when you lack write access so no agent
   has push access to the canonical repository, disclose AI assistance where the
-  project requires it (The Carpentries has a Generative AI contributions policy, for
+  project requires it (The Carpentries has a [Generative AI contributions policy](https://docs.carpentries.org/policies/genai-policy.html), for
   example), and keep pull requests small. Maintainers review in their own time, and
   large diffs are a common reason contributions are declined.
 - **Maintaining a project others contribute to.** Agents are useful for triaging
