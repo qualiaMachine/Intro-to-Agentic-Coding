@@ -482,50 +482,95 @@ episode explains the reasoning.</p>
 <p>Any of the tools below works for every exercise. If your workshop
 provides cloud credits or a specific tool, use that; otherwise use
 whichever you can access.</p>
-<div id="access-route-policy-web-ui-recommended-otherwise-a-dev-container-is-required" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<span class="callout-header">Callout</span>
-<div id="access-route-policy-web-ui-recommended-otherwise-a-dev-container-is-required" class="callout-inner">
-<h3 class="callout-title">Access-route policy: web UI recommended;
-otherwise a dev container is required</h3>
-<div class="callout-content">
 <p>Agents run with the permissions of the environment they execute in.
-For this workshop, and as a general default:</p>
-<ul><li>
-<strong>Recommended: use a web UI</strong>, in which the agent works
-on a cloud copy of a GitHub repository and has no access to your
-machine: no local filesystem, no SSH keys, no credentials. There is
-nothing to isolate because nothing runs locally.</li>
-<li>
-<strong>If you run an agent locally instead, run it inside a dev
-container</strong> (or a cloud workspace such as GitHub Codespaces). A
-bare local agent has your full user account’s access; a container limits
-it to the project directory.</li>
-</ul><p>The <a href="#dev-container-prerequisite-for-any-local-route">dev
-container setup</a> comes next, before the tool-specific steps, and
-takes about five minutes. If you prefer to avoid it, use the web
-route.</p>
+<strong>Use the web route.</strong> The agent works on a cloud copy of a
+GitHub repository and has no access to your machine: no local
+filesystem, no SSH keys, no credentials. Nothing to install and nothing
+to isolate. The local route further down is for people who need the
+agent on their own machine, and it requires a dev container.</p>
+<p>Pick your tool in the tabs; the choice carries across the page.</p>
+<!-- Contributors: to add a tool, add a tab with the same heading (### Tool name) to
+both group-tab blocks below (web route, local route), so the tabs stay in sync. If a
+tool has no route of one kind, say so in that tab. -->
+<div class="section level3">
+<h3 id="web-route-recommended">Web route (recommended)<a class="anchor" aria-label="anchor" href="#web-route-recommended"></a></h3>
+<div class="tabs">
+<nav><div id="nav-tab-1" class="nav nav-tabs" role="tablist">
+<button class="nav-link active" id="nav-tab-1-ClaudeCode" name="ClaudeCode" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-ClaudeCode" type="button" role="tab" aria-controls="nav-tabpanel-1-ClaudeCode" aria-selected="true">
+  <h3 class="tab-header" id="nav-tab-heading-1-ClaudeCode">
+  Claude Code
+  </h3>
+</button>
+<button class="nav-link" id="nav-tab-1-GitHubCopilot" name="GitHubCopilot" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-GitHubCopilot" type="button" role="tab" aria-controls="nav-tabpanel-1-GitHubCopilot" aria-selected="false">
+  <h3 class="tab-header" id="nav-tab-heading-1-GitHubCopilot">
+  GitHub Copilot
+  </h3>
+</button>
+<button class="nav-link" id="nav-tab-1-OpenCode" name="OpenCode" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-OpenCode" type="button" role="tab" aria-controls="nav-tabpanel-1-OpenCode" aria-selected="false">
+  <h3 class="tab-header" id="nav-tab-heading-1-OpenCode">
+  OpenCode
+  </h3>
+</button>
+</div>
+</nav><div id="nav-tabContent-1" class="tab-content">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
+<ol style="list-style-type: decimal"><li>You need a Claude subscription that includes Claude Code (Pro or
+Max), or workshop-provided credits.</li>
+<li>Go to <a href="https://claude.ai/code" class="external-link">claude.ai/code</a>, connect
+your GitHub account, and point it at a repository.</li>
+<li>Each session clones the repository into a fresh, ephemeral cloud VM;
+your laptop is only a browser window. Results come back as branches and
+pull requests you review on GitHub. That is the whole setup. Nothing to
+install.</li>
+</ol><p>The desktop app is acceptable only in its cloud-session mode. A
+“local repository” session runs on your machine with your full user
+access, and belongs under the local route.</p>
+</div>
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
+<ol style="list-style-type: decimal"><li>
+<strong>Get the free education tier first</strong> (students,
+teachers, and open-source maintainers): apply at <a href="https://github.com/education" class="external-link">GitHub Education</a>, then, as a
+<strong>separate second step</strong>, redeem the Copilot benefit at the
+<a href="https://github.com/github-copilot/free_signup" class="external-link">Copilot signup
+page</a>. This grants the paid tier including agent mode and the cloud
+coding agent, not just autocomplete. Allow a few days for verification;
+do this <em>before</em> the workshop.</li>
+<li>Use the chat UI at <a href="https://github.com/copilot" class="external-link">github.com/copilot</a> and delegate
+tasks to the <strong>cloud coding agent</strong> at <a href="https://github.com/copilot/agents" class="external-link">github.com/copilot/agents</a>,
+or assign an issue to Copilot on a repository where it is enabled.</li>
+<li>Tasks run in GitHub’s cloud sandbox against the GitHub-hosted
+repository and come back as draft pull requests. Nothing executes on
+your machine.</li>
+</ol></div>
+<div id="nav-tabpanel-1-OpenCode" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-OpenCode">
+<p><a href="https://opencode.ai" class="external-link">OpenCode</a> is an open-source CLI
+agent that works with several free hosted models: the fallback if you
+have no paid plan or credits. It has no hosted web route. The closest
+equivalent is to open the repository in a GitHub Codespace and install
+OpenCode there, which keeps everything off your machine; otherwise use
+the local route below.</p>
+</div>
 </div>
 </div>
 </div>
 <div class="section level3">
-<h3 id="dev-container-prerequisite-for-any-local-route">Dev container (prerequisite for any local route)<a class="anchor" aria-label="anchor" href="#dev-container-prerequisite-for-any-local-route"></a></h3>
-<p>Skip this section if you use a web route. If you will run any agent
-locally, complete it before the tool-specific local steps below. A dev
-container is a project-scoped Linux environment that VS Code (or any
-devcontainer-compatible editor) runs your tools inside. The agent sees
-the project and the container, not your home directory, your SSH keys,
-or the rest of your machine. Setup takes about five minutes.</p>
+<h3 id="local-route-dev-container-required">Local route (dev container required)<a class="anchor" aria-label="anchor" href="#local-route-dev-container-required"></a></h3>
+<p>The web route above is the recommended one, and if you use it you can
+skip this section entirely. Use the local route only if you need the
+agent on your own machine, and then complete the dev container setup
+first, followed by the tool-specific steps in the tabs that follow.</p>
+<p>A dev container is a project-scoped Linux environment that VS Code
+(or any devcontainer-compatible editor) runs your tools inside. The
+agent sees the project and the container, not your home directory, your
+SSH keys, or the rest of your machine. Setup takes about five
+minutes.</p>
 <ol style="list-style-type: decimal"><li>
 <p>Install <a href="https://www.docker.com/products/docker-desktop/" class="external-link">Docker
 Desktop</a> (or <a href="https://podman.io/docs/installation" class="external-link">Podman</a>) and the VS Code
 <strong>Dev Containers</strong> extension. To use Podman with VS Code,
 open the Command Palette, choose <strong>Preferences: Open User Settings
-(JSON)</strong>, and add this setting to configure the Dev Containers
-extension to run <code>podman</code> rather than
-<code>docker</code>:</p>
+(JSON)</strong>, and add this setting so the Dev Containers extension
+runs <code>podman</code> rather than <code>docker</code>:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">JSON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -564,81 +609,67 @@ Containers: Reopen in Container</strong>, and wait for VS Code to
 rebuild and reopen the project. Install your agent CLI <em>in the
 container terminal</em> (your command prompt will be something like
 <code>vscode@containerID:/workspaces/Intro-to-Agentic-Coding$</code>),
-and confirm it’s containerized: <code>ls ~</code> inside the terminal
+and confirm it is containerized: <code>ls ~</code> inside the terminal
 should show a bare container home, not your real one.</p></li>
 </ol><p>If you cannot install Docker, use <strong>GitHub Codespaces</strong>.
 It runs the same <code>devcontainer.json</code> on a cloud machine, has
 a free tier, and satisfies the requirement with no local
 installation.</p>
-<p>With the container running, continue to the local route for your tool
-below.</p>
+<p>With the container running, install your tool inside it:</p>
+<div class="tabs">
+<nav><div id="nav-tab-2" class="nav nav-tabs" role="tablist">
+<button class="nav-link active" id="nav-tab-2-ClaudeCode" name="ClaudeCode" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-2-ClaudeCode" type="button" role="tab" aria-controls="nav-tabpanel-2-ClaudeCode" aria-selected="true">
+  <h3 class="tab-header" id="nav-tab-heading-2-ClaudeCode">
+  Claude Code
+  </h3>
+</button>
+<button class="nav-link" id="nav-tab-2-GitHubCopilot" name="GitHubCopilot" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-2-GitHubCopilot" type="button" role="tab" aria-controls="nav-tabpanel-2-GitHubCopilot" aria-selected="false">
+  <h3 class="tab-header" id="nav-tab-heading-2-GitHubCopilot">
+  GitHub Copilot
+  </h3>
+</button>
+<button class="nav-link" id="nav-tab-2-OpenCode" name="OpenCode" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-2-OpenCode" type="button" role="tab" aria-controls="nav-tabpanel-2-OpenCode" aria-selected="false">
+  <h3 class="tab-header" id="nav-tab-heading-2-OpenCode">
+  OpenCode
+  </h3>
+</button>
 </div>
-<div class="section level3">
-<h3 id="claude-code">Claude Code<a class="anchor" aria-label="anchor" href="#claude-code"></a></h3>
-<p><strong>Recommended route — web (no local access):</strong></p>
-<ol style="list-style-type: decimal"><li>You need a Claude subscription that includes Claude Code (Pro or
-Max), or workshop-provided credits.</li>
-<li>Go to <a href="https://claude.ai/code" class="external-link">claude.ai/code</a>, connect
-your GitHub account, and point it at a repository. Each session clones
-the repo into a fresh, ephemeral cloud VM; your laptop is only a browser
-window. Results come back as branches/PRs you review on GitHub.</li>
-<li>That’s the whole setup — nothing to install.</li>
-</ol><p><strong>Local route (complete the <a href="#dev-container-prerequisite-for-any-local-route">dev container
-setup</a> first):</strong></p>
-<ul><li>Inside your dev container, install the CLI:
+</nav><div id="nav-tabContent-2" class="tab-content">
+<div id="nav-tabpanel-2-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-2-ClaudeCode">
+<ul><li>In the container terminal, install the CLI with
 <code>npm install -g @anthropic-ai/claude-code</code>, then run
 <code>claude</code> from the project directory and log in when
 prompted.</li>
 <li>The VS Code extension gives the same engine an in-editor UI; make
 sure VS Code is attached to the container, not your host.</li>
 <li>
-<strong>Institutional cloud routing</strong>: the CLI can route
+<strong>Institutional cloud routing.</strong> The CLI can route
 requests through Google Vertex AI or AWS Bedrock if your institution
 provides cloud credits (UW–Madison workshops typically provide GCP
-credits — your instructors will share details). This changes billing and
-data handling, not the local-access picture — the container is still
-required.</li>
-<li>The desktop app is <strong>not</strong> recommended for this
-workshop unless you use its cloud-session mode: a “local repository”
-session runs on your machine with your full user access.</li>
+credits; your instructors will share details). This changes billing and
+data handling only. The container is still required.</li>
 </ul></div>
-<div class="section level3">
-<h3 id="github-copilot">GitHub Copilot<a class="anchor" aria-label="anchor" href="#github-copilot"></a></h3>
-<p><strong>Get the free education tier first</strong> (students,
-teachers, and open-source maintainers): apply at <a href="https://github.com/education" class="external-link">GitHub Education</a>, then — a
-<strong>separate second step</strong> — redeem the Copilot benefit at
-the <a href="https://github.com/github-copilot/free_signup" class="external-link">Copilot
-signup page</a>. This grants the paid tier including agent mode and the
-cloud coding agent, not just autocomplete. Allow a few days for
-verification; do this <em>before</em> the workshop.</p>
-<p><strong>Recommended route — web (no local access):</strong></p>
-<ol style="list-style-type: decimal"><li>Use the chat UI at <a href="https://github.com/copilot" class="external-link">github.com/copilot</a> and delegate
-tasks to the <strong>cloud coding agent</strong> at <a href="https://github.com/copilot/agents" class="external-link">github.com/copilot/agents</a>
-(or by assigning an issue to Copilot on a repo where it’s enabled).</li>
-<li>Tasks run in GitHub’s cloud sandbox against the GitHub-hosted repo
-and come back as draft PRs. Nothing executes on your machine.</li>
-</ol><p><strong>Local route (Codespace, or complete the <a href="#dev-container-prerequisite-for-any-local-route">dev container
-setup</a> first):</strong></p>
-<ul><li>Easiest compliant option: open the repo in a <strong>GitHub
+<div id="nav-tabpanel-2-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-2-GitHubCopilot">
+<ul><li>Easiest option: open the repository in a <strong>GitHub
 Codespace</strong>. The whole workspace is a cloud machine, so the
 container requirement is satisfied automatically, and the VS Code
 experience is identical.</li>
-<li>Otherwise: with the project open inside your dev container in VS
+<li>Otherwise, with the project open inside your dev container in VS
 Code, install the GitHub Copilot extension in the container, sign in,
 and use <strong>Agent</strong> mode from the chat panel.</li>
 </ul></div>
-<div class="section level3">
-<h3 id="opencode-freeopen-source-option">OpenCode (free/open-source option)<a class="anchor" aria-label="anchor" href="#opencode-freeopen-source-option"></a></h3>
-<ul><li>Open-source CLI agent (<a href="https://opencode.ai" class="external-link">opencode.ai</a>) that works with several free
-hosted models — the fallback if you have no paid plan or credits.</li>
-<li>It’s a local CLI, so the <a href="#dev-container-prerequisite-for-any-local-route">dev container
-setup</a> is a prerequisite: install it inside the container, not on
-your host.</li>
-<li>It can also drive fully local models (e.g., via Ollama), which keeps
-your code on your machine entirely — at the cost of weaker models and
-real hardware needs. If you go this route, download models only from
-verified publishers (the trust episode explains why).</li>
-</ul><div id="before-the-workshop-check-your-data-privacy-settings" class="callout">
+<div id="nav-tabpanel-2-OpenCode" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-2-OpenCode">
+<ul><li>In the container terminal, install OpenCode following <a href="https://opencode.ai" class="external-link">opencode.ai</a>, then run it from the project
+directory. Install it inside the container, not on your host.</li>
+<li>OpenCode can also drive fully local models (for example via Ollama),
+which keeps your code on your machine entirely, at the cost of weaker
+models and real hardware needs. The model server then needs to be
+reachable from inside the container, and you should download models only
+from verified publishers (the trust episode explains why).</li>
+</ul></div>
+</div>
+</div>
+<div id="before-the-workshop-check-your-data-privacy-settings" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
