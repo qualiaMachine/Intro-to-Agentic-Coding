@@ -56,56 +56,17 @@ restricted data. The safety episode explains the reasoning.
 Any of the tools below works for every exercise. If your workshop provides cloud
 credits or a specific tool, use that; otherwise use whichever you can access.
 
-Agents run with the permissions of the environment they execute in, so the setup is
-organized by **where the agent runs** rather than by tool:
+Agents run with the permissions of the environment they execute in. **Use the web
+route.** The agent works on a cloud copy of a GitHub repository and has no access to
+your machine: no local filesystem, no SSH keys, no credentials. Nothing to install and
+nothing to isolate. The local route further down is for people who need the agent on
+their own machine, and it requires a dev container.
 
-- **Web route (recommended).** The agent works on a cloud copy of a GitHub
-  repository and has no access to your machine: no local filesystem, no SSH keys, no
-  credentials. Nothing to install and nothing to isolate.
-- **Local route.** The agent runs on your machine, and a bare local agent has your
-  full user account's access. For this workshop, and as a general default, a local
-  agent runs **inside a dev container** (or a cloud workspace such as GitHub
-  Codespaces), which limits it to the project directory.
-
-Pick your tool in the tabs below; the choice carries across the page.
+Pick your tool in the tabs; the choice carries across the page.
 
 <!-- Contributors: to add a tool, add a tab with the same heading (### Tool name) to
-each of the three group-tab blocks below (accounts, web route, local route), so the
-tabs stay in sync. If a tool has no route of one kind, say so in that tab. -->
-
-### Accounts and access
-
-:::::::::::::::: group-tab
-
-### Claude Code
-
-You need a Claude subscription that includes Claude Code (Pro or Max), or
-workshop-provided credits.
-
-**Institutional cloud routing.** The CLI can route requests through Google Vertex AI
-or AWS Bedrock if your institution provides cloud credits (UW–Madison workshops
-typically provide GCP credits; your instructors will share details). This changes
-billing and data handling only, not where the agent runs.
-
-### GitHub Copilot
-
-**Get the free education tier first** (students, teachers, and open-source
-maintainers): apply at [GitHub Education](https://github.com/education), then, as a
-**separate second step**, redeem the Copilot benefit at the
-[Copilot signup page](https://github.com/github-copilot/free_signup). This grants the
-paid tier including agent mode and the cloud coding agent, not just autocomplete.
-Allow a few days for verification; do this *before* the workshop.
-
-### OpenCode
-
-[OpenCode](https://opencode.ai) is an open-source CLI agent that works with several
-free hosted models: the fallback if you have no paid plan or credits. No account is
-required for the free models. It can also drive fully local models (for example via
-Ollama), which keeps your code on your machine entirely, at the cost of weaker models
-and real hardware needs. If you go this route, download models only from verified
-publishers (the trust episode explains why).
-
-::::::::::::::::::::::::
+both group-tab blocks below (web route, local route), so the tabs stay in sync. If a
+tool has no route of one kind, say so in that tab. -->
 
 ### Web route (recommended)
 
@@ -113,12 +74,13 @@ publishers (the trust episode explains why).
 
 ### Claude Code
 
-1. Go to [claude.ai/code](https://claude.ai/code), connect your GitHub account, and
+1. You need a Claude subscription that includes Claude Code (Pro or Max), or
+   workshop-provided credits.
+2. Go to [claude.ai/code](https://claude.ai/code), connect your GitHub account, and
    point it at a repository.
-2. Each session clones the repository into a fresh, ephemeral cloud VM; your laptop is
+3. Each session clones the repository into a fresh, ephemeral cloud VM; your laptop is
    only a browser window. Results come back as branches and pull requests you review
-   on GitHub.
-3. That is the whole setup. Nothing to install.
+   on GitHub. That is the whole setup. Nothing to install.
 
 The desktop app is acceptable only in its cloud-session mode. A "local repository"
 session runs on your machine with your full user access, and belongs under the local
@@ -126,18 +88,26 @@ route.
 
 ### GitHub Copilot
 
-1. Use the chat UI at [github.com/copilot](https://github.com/copilot) and delegate
+1. **Get the free education tier first** (students, teachers, and open-source
+   maintainers): apply at [GitHub Education](https://github.com/education), then, as
+   a **separate second step**, redeem the Copilot benefit at the
+   [Copilot signup page](https://github.com/github-copilot/free_signup). This grants
+   the paid tier including agent mode and the cloud coding agent, not just
+   autocomplete. Allow a few days for verification; do this *before* the workshop.
+2. Use the chat UI at [github.com/copilot](https://github.com/copilot) and delegate
    tasks to the **cloud coding agent** at
    [github.com/copilot/agents](https://github.com/copilot/agents), or assign an issue
    to Copilot on a repository where it is enabled.
-2. Tasks run in GitHub's cloud sandbox against the GitHub-hosted repository and come
+3. Tasks run in GitHub's cloud sandbox against the GitHub-hosted repository and come
    back as draft pull requests. Nothing executes on your machine.
 
 ### OpenCode
 
-OpenCode has no hosted web route. Use the local route, or open the repository in a
-GitHub Codespace and install OpenCode there, which satisfies the container
-requirement with nothing on your machine.
+[OpenCode](https://opencode.ai) is an open-source CLI agent that works with several
+free hosted models: the fallback if you have no paid plan or credits. It has no hosted
+web route. The closest equivalent is to open the repository in a GitHub Codespace and
+install OpenCode there, which keeps everything off your machine; otherwise use the
+local route below.
 
 ::::::::::::::::::::::::
 
@@ -207,8 +177,10 @@ With the container running, install your tool inside it:
   directory and log in when prompted.
 - The VS Code extension gives the same engine an in-editor UI; make sure VS Code is
   attached to the container, not your host.
-- Institutional cloud routing (Vertex AI or Bedrock, above) changes billing and data
-  handling only. The container is still required.
+- **Institutional cloud routing.** The CLI can route requests through Google Vertex
+  AI or AWS Bedrock if your institution provides cloud credits (UW–Madison workshops
+  typically provide GCP credits; your instructors will share details). This changes
+  billing and data handling only. The container is still required.
 
 ### GitHub Copilot
 
@@ -224,8 +196,11 @@ With the container running, install your tool inside it:
 - In the container terminal, install OpenCode following
   [opencode.ai](https://opencode.ai), then run it from the project directory. Install
   it inside the container, not on your host.
-- For fully local models, the model server (for example Ollama) also needs to be
-  reachable from inside the container.
+- OpenCode can also drive fully local models (for example via Ollama), which keeps
+  your code on your machine entirely, at the cost of weaker models and real hardware
+  needs. The model server then needs to be reachable from inside the container, and
+  you should download models only from verified publishers (the trust episode
+  explains why).
 
 ::::::::::::::::::::::::
 
