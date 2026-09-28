@@ -1,6 +1,6 @@
 ---
 title: "Verification and Testing: No Escaping Good Data Science"
-teaching: 15
+teaching: 25
 exercises: 15
 ---
 

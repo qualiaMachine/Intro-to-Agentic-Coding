@@ -4,7 +4,7 @@ title: 'Instructor Notes'
 
 ## Origin and format
 
-This lesson began as a 2-hour evening workshop ("Agentic Coding: (Developing) Best
+This lesson began as an evening workshop ("Agentic Coding: (Developing) Best
 Practices," ML Marathon 2026, UW–Madison, developed by Chris Endemann, Tracy Reuter,
 and Tejvir Mann; Zekai Otles contributed the dev container setup). The first eight
 episodes follow the workshop's blocks in order; the ninth, research and outlook, is
@@ -13,31 +13,48 @@ the close.
 Say at the start that **the slides cover the main points only.** The full lesson is online and stays
 online, so nobody needs to take notes on the details.
 
-## Suggested 2-hour schedule
+## Time required
 
-Two hours, five short exercises plus two demos, one break. Everything runs on the
-participants' own repositories where possible. The 2026 pilot split blocks among the
-presenters (Chris: intro, trust, getting started, close; Tejvir: what agentic coding
-is, planning; Tracy: safety, prompting), which is a workable division for any team of
-three.
+The full lesson takes **3.5 to 4 hours** with all exercises. The September 2026
+pilot ran it as a 2-hour evening session and overran: the planning block alone has
+25 minutes of exercises in a 15-minute slot, and the verification block lost its
+second exercise. Plan a half day, or use the 2-hour cut list below.
+
+## Suggested half-day schedule (3.5 hours)
+
+Five exercises plus two demos, two breaks. Everything runs on the participants' own
+repositories where possible. The pilot split blocks among three presenters (intro,
+trust, getting started, and close; what agentic coding is and planning; safety and
+prompting), which is a workable division for any team of three.
 
 | Time | Min | Block | Episode |
 |------|-----|-------|---------|
-| 0:00 | 30 | **Intro & getting started (safely).** Before we start (any access requests participants must file now); three principles; what agentic coding is (spectrum, harness, loop); safety: policies, prompt injection, the six limits (network allowlist demo, 2 min), providers, recap; **Exercise: Get your agent running, safely** (8 min) | Episodes 1–2 (3 compressed) |
-| 0:30 | 15 | **Planning with agents.** Research on planning; add context; **Exercise: Agree how your team will work together** (10 min); MVP; **Exercise: Plan your MVP with an agent** (15 min) — this block overruns its slot in the pilot agenda; see below | Episode 4 |
-| 0:45 | 10 | **Feature-based dev and good prompting.** The agent is not a magic wand; feature by feature; bad/better prompt; underspecified ≠ random | Episode 5 |
-| 0:55 | 8 | Break | — |
-| 1:03 | 20 | **Exercise: Implement feature (or step) 1** (15 min) then debrief on "choices you did not specify"; maintenance tasks slide as the transition | Episode 5 |
-| 1:23 | 20 | **Verification and testing.** Research on checking; look for decisions you did not make; **Exercise 1: Test the feature you just built** (10 min); good data science practice still applies; tests for good data science practice; agents as data scientists | Episode 6 |
-| 1:43 | 12 | **MCP tools and skills.** MCP vs API; **Demo: connect an MCP server** (5 min); what a skill is; **Demo: caveman skill** (4–5 min); resources | Episode 7 |
-| 1:55 | 5 | **Cost, energy, and wrap-up.** Energy numbers; token techniques with `/cost`, `/model`, `/compact` demos; is programming dead?; feedback survey | Episodes 8, 11 |
+| 0:00 | 15 | **What is agentic coding.** Before we start (any access requests to file now); three principles; definition, spectrum, harness, loop; choice of tool | Episode 1 |
+| 0:15 | 35 | **Safety and security.** Policies; what an agent can and cannot do; prompt injection; the six limits (network allowlist demo, 2 min); providers and models (Episode 3 compressed); **Exercise: Get your agent running, safely** (8 min) | Episodes 2–3 |
+| 0:50 | 40 | **Planning with agents.** Research on planning; add context; **Exercise: Agree how your team will collaborate** (10 min); MVP; **Exercise: Plan your MVP with an agent** (15 min) | Episode 4 |
+| 1:30 | 10 | Break | — |
+| 1:40 | 35 | **Feature-based development and good prompting.** Not a magic wand; feature by feature; bad/better prompt; a bad prompt does not return random results; **Exercise: Implement feature 1** (15 min) and debrief; maintenance tasks | Episode 5 |
+| 2:15 | 40 | **Verification and testing.** Research on checking; the pull request as the final check; review postures; the review routine; **Exercise 1: Test the feature you just built** (10 min); test-driven development; tests for good data science practice; agents as data scientists; **Exercise 2 (optional): What is wrong with this?** (5 min) | Episode 6 |
+| 2:55 | 10 | Break | — |
+| 3:05 | 20 | **MCP tools and skills.** MCP vs API; **Demo: connect an MCP server** (5 min); what a skill is; **Demo: caveman skill** (5 min); hooks and when to codify; resources | Episode 7 |
+| 3:25 | 10 | **Cost, context, and energy.** Energy numbers; token techniques with `/cost`, `/model`, `/compact` demos; **Exercise: What did this session cost?** (5 min) | Episode 8 |
+| 3:35 | 10 | **Close.** Is programming dead? (neighbor discussion, then the argument); three things before your next sprint; feedback | Episode 9 |
 
-The live agenda is tight — the pilot agenda gave planning 15 minutes but its two
-exercises alone total 25. Options: run the team-conventions exercise as homework
-announced at the start (teams commit `CONTRIBUTING.md` before the next session), cap
-the MVP exercise at 10 minutes and make the `prep.md` follow-up homework, shorten the
-feature-1 exercise to 10 minutes (stop at "read the diff"), or turn the MCP connect
-into a narrated demo from the instructor's screen rather than a hands-on.
+## Cutting to 2 hours
+
+If only two hours are available, keep the exercises that produce artifacts the
+participants will reuse (a running agent, `plan.md`, feature 1, its tests) and move
+the rest out of the room:
+
+- Assign the team-conventions exercise as homework announced at the start; teams
+  commit `CONTRIBUTING.md` before the next session.
+- Cap the MVP exercise at 10 minutes; `prep.md` becomes homework.
+- Shorten the feature-1 exercise to 10 minutes (stop at "read the diff").
+- Skip the optional brain-decoding exercise and the test-driven-development section
+  (point to the episode).
+- Turn the MCP connect into a narrated demo from the instructor's screen; keep the
+  caveman demo, which is fast.
+- Compress trust to two incidents and the provider table; the episode covers the rest.
 
 ## Block-by-block notes
 

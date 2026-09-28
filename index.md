@@ -29,9 +29,10 @@ Three principles run through the lesson:
    model is responding to. Code that runs without error and scores well can still be
    wrong.
 
-The lesson grew out of a two-hour workshop and keeps that shape. The workshop presents
-the main points; the episodes here are the full reference. The
-[instructor notes](instructors/instructor-notes.md) map workshop blocks onto episodes.
+The lesson grew out of a workshop and keeps that shape. Taught in full, with all
+exercises, it takes about 3.5 to 4 hours; a two-hour version covers the main points
+and leaves some exercises as homework. The
+[instructor notes](instructors/instructor-notes.md) give both schedules.
 
 ::::::::::::::::::::::::::::::::::::::::::  prereq
 
