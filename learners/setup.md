@@ -2,7 +2,7 @@
 title: Setup
 ---
 
-## Summary
+## Setup
 
 To follow along you need three things:
 

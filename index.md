@@ -29,9 +29,10 @@ Three principles run through the lesson:
    model is responding to. Code that runs without error and scores well can still be
    wrong.
 
-The lesson grew out of a workshop and keeps that shape. Taught in full, with all
-exercises, it takes about 3.5 to 4 hours; a two-hour version covers the main points
-and leaves some exercises as homework. The
+This lesson is the workshop "Agentic Coding: (Developing) Best Practices", developed
+for the [ML Marathon](https://ml-marathon.wisc.edu/) at UW–Madison. Taught in full,
+with all exercises, it takes about 3.5 to 4 hours; a two-hour version covers the main
+points and leaves some exercises as homework. The
 [instructor notes](instructors/instructor-notes.md) give both schedules.
 
 ::::::::::::::::::::::::::::::::::::::::::  callout

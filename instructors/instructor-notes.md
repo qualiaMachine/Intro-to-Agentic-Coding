@@ -2,13 +2,12 @@
 title: 'Instructor Notes'
 ---
 
-## Origin and format
+## Format
 
-This lesson began as an evening workshop ("Agentic Coding: (Developing) Best
-Practices," ML Marathon 2026, UW–Madison, developed by Chris Endemann, Tracy Reuter,
-and Tejvir Mann; Zekai Otles contributed the dev container setup). The first eight
-episodes follow the workshop's blocks in order; the ninth, research and outlook, is
-the close.
+This lesson is the workshop "Agentic Coding: (Developing) Best Practices" (ML
+Marathon 2026, UW–Madison, developed by Chris Endemann, Tracy Reuter, and Tejvir
+Mann; Zekai Otles contributed the dev container setup). The first eight episodes are
+the workshop's blocks in order; the ninth, research and outlook, is the close.
 
 Say at the start that **the slides cover the main points only.** The full lesson is online and stays
 online, so nobody needs to take notes on the details.

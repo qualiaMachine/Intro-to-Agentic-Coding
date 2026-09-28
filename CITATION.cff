@@ -27,9 +27,9 @@ abstract: >-
   verification and testing (including test-driven
   development for research code), MCP tools and skills,
   cost, context, and energy, and what the research shows.
-  Developed from the "Agentic Coding: (Developing) Best
-  Practices" workshop at the UW-Madison ML Marathon and
-  piloted there in September 2026. Zekai Otles contributed
+  This lesson is the "Agentic Coding: (Developing) Best
+  Practices" workshop at the UW-Madison ML Marathon, first
+  taught there in September 2026. Zekai Otles contributed
   the dev container setup.
 license: CC-BY-4.0
 url: https://qualiamachine.github.io/Intro-to-Agentic-Coding/
