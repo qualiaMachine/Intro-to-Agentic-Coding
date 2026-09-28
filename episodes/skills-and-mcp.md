@@ -1,6 +1,6 @@
 ---
 title: "MCP Tools and Skills: Extending Your Agent"
-teaching: 10
+teaching: 15
 exercises: 10
 ---
 

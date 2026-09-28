@@ -1,6 +1,6 @@
 ---
 title: "What the Research Shows, and Where This Leaves Us"
-teaching: 12
+teaching: 15
 exercises: 5
 ---
 

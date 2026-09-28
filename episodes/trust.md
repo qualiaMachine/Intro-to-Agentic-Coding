@@ -1,6 +1,6 @@
 ---
 title: "Trust: Packages, Models, and Providers"
-teaching: 12
+teaching: 15
 exercises: 5
 ---
 

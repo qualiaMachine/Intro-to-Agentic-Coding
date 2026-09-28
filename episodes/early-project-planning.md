@@ -1,6 +1,6 @@
 ---
 title: "Planning with Agents"
-teaching: 12
+teaching: 15
 exercises: 25
 ---
 

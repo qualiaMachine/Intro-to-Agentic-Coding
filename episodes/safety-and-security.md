@@ -1,7 +1,7 @@
 ---
 title: "Safety and Security: Limit What the Agent Can Access"
-teaching: 20
-exercises: 8
+teaching: 25
+exercises: 10
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions
