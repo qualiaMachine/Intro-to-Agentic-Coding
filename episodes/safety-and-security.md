@@ -17,7 +17,7 @@ exercises: 10
 
 - Apply institutional data policies before pointing an agent at any project.
 - Explain prompt injection and why anything an agent reads is untrusted input.
-- Limit an agent along six axes: what it can reach on the network, where it runs, which commands it may run, which credentials it can see, what it can commit, and whom you trust.
+- Bound what an agent can do with six controls: what it can reach on the network, where it runs, which commands it may run, which credentials it can see, what it can commit, and what you let into the workflow.
 - Distinguish instructions, which influence behavior, from permissions, which constrain it.
 - Keep secrets out of local plaintext files, loading them at runtime from a password manager.
 - Start an agent session on your own repository using a cloud VM, plan mode, a branch named for you, and no keys on disk.
@@ -82,18 +82,18 @@ Two documented cases:
 Simon Willison's ["lethal trifecta"](https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/)
 identifies the combination to avoid: access to private data, exposure to untrusted
 content, and a channel to send data out. Removing any one of the three defeats the
-attack. Injection is the threat; the six limits below determine how much damage it
+attack. Injection is the threat; the six controls below determine how much damage it
 can do.
 
-## Six limits on what the agent can access
+## Six controls on what the agent can do
 
 1. **What it can reach on the network.** An egress allowlist, not the whole internet.
 2. **Where it runs.** A disposable cloud VM, not your laptop.
 3. **Which commands it may run.** Allow, ask, and deny rules.
 4. **Which credentials it can see.** A password manager, never the repository.
 5. **What it can commit.** A feature branch and a pull request; you merge.
-6. **Whom you trust.** Providers, their data policies, and downloaded repositories and
-   weights.
+6. **What you let in.** The providers, downloaded repositories, and model weights you
+   admit into the workflow. The first five are settings; this one is a judgment.
 
 One distinction applies to all six. An *instruction* (a rules file, a line in a
 prompt) asks the model to behave in a certain way. A *permission* (a VM boundary, a
@@ -337,9 +337,9 @@ Protect `main` on the hosting service so this is enforced rather than habitual:
 require a pull request and a passing check before merge. The verification episode
 sets this up.
 
-### 6. Whom you trust: providers, models, repositories
+### 6. What you let in: providers, models, repositories
 
-The final limit is not enforced by any setting: which providers, packages, and model
+The final control is not enforced by any setting: which providers, packages, and model
 weights you admit into the workflow. Vet a provider's data policy (are my data and
 code used for training, and is that the default? how long is it retained, and who can see it? where
 does inference run, and under whose jurisdiction? does an institutional agreement
@@ -386,7 +386,7 @@ work begins. Other routes, including free ones, are on the
      review gate, with less interaction.
 2. **Confirm the session is cloud-hosted before you prompt.** It should be pointed at
    a cloud VM and a GitHub repository, not a folder on your laptop. Check the
-   environment's network access setting (limit 1 above) while you are there.
+   environment's network access setting (control 1 above) while you are there.
 3. **Use your project repository.** If your team does not have one yet, create your
    own for today.
 4. **Work on a branch named for you.** Use branches rather than forks, so teammates
@@ -420,7 +420,7 @@ whom*; that is the knowledge a plan and an instruction file must supply.
 - Institutional data policies apply unchanged: sensitive or restricted data stays away from unvetted AI services, on every route.
 - Agents run with your permissions and scan your workspace for context. Assume anything on disk in plaintext can be read.
 - Prompt injection is the threat: anything the agent reads can carry instructions. Treat it all as untrusted, keep the web session's firewall on, and review the pull request before merging.
-- Six limits determine how much damage injection can do: network allowlist, cloud VM, command rules, password-manager credentials, branch plus pull request, and whom you trust.
+- Six controls determine how much damage injection can do: network allowlist, cloud VM, command rules, password-manager credentials, branch plus pull request, and what you let into the workflow.
 - Instructions influence behavior; permissions constrain it. A rules file is text the model weighs, not an ability it lacks.
 - The only secret an agent cannot leak is one that is not there. Load keys at runtime with `op read`.
 - First session: a cloud route with plan mode, confirm the session is cloud-hosted, a branch named for you, no `.env`.
