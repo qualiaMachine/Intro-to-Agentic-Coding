@@ -10,6 +10,7 @@ exercises: 20
 - What happens when I give an agent a vague request?
 - What does a good prompt look like for research code?
 - Which routine tasks are agents reliably good at?
+- What documentation should you ask an agent for, and what can it not write?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -20,6 +21,7 @@ exercises: 20
 - Distinguish context engineering (standing guidance) from prompt engineering (the specific request).
 - Write prompts that specify inputs, output, the check for completion, and what not to modify.
 - Implement one feature from your plan and audit the decisions the agent made on your behalf.
+- Use an agent to document a repository, and check the result the way you would check code.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -223,9 +225,9 @@ specified, checkable, one pull request, reviewed by you.
 - **Weekly merge preparation.** "Summarize what changed on this branch since `main`,
   for collaborators who were not at this week's lab meeting."
 
-### Documentation: notes to your future self and your agent
+## Documentation: notes to your future self and your agent
 
-Documentation deserves more than a place on that list, for three reasons.
+Documentation is a maintenance task with three properties the others lack.
 
 - **It is now cheap.** Research code is under-documented because writing docstrings
   and READMEs lost to the next experiment. The agent has the source of truth in
@@ -256,6 +258,7 @@ comments against what the code does, and list every mismatch.
 - Context engineering sets the standing rules (context file, standards, plan); prompt engineering phrases the specific request. Use both.
 - Good prompts provide evidence, ask for a diagnosis before a change, and specify inputs, output, the completion check, and what not to modify.
 - Maintenance tasks (refactors, docstrings, README audits, environment pins, merge summaries) are well suited to agents under the same small-specified-checkable rules.
+- Documentation is cheap to generate, becomes context for later sessions, and doubles as a check on the code. The agent cannot write the why; that comes from you. Read generated documentation as critically as generated code.
 - Always ask the agent to list the choices you did not specify.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
