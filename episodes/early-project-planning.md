@@ -330,7 +330,7 @@ Keep it short and operational (well under 300 lines). It is injected into every
 session, so everything in it competes for the model's attention with the task at
 hand. If a linter can enforce a rule deterministically, use the linter and save the
 context. As the safety episode explained, context files are advisory; back
-safety-critical rules with permissions, hooks, or branch protection.
+safety-critical rules with permissions, hooks, and branch protection.
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 
