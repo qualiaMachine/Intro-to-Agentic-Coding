@@ -6,7 +6,7 @@ exercises: 25
 
 :::::::::::::::::::::::::::::::::::::: questions
 
-- Why should you plan the project yourself before an agent writes any code?
+- Why should you plan the analysis yourself before an agent writes any code?
 - What goes into a plan, and where does the agent get the context to make one?
 - What is a minimum viable pipeline, and why start there?
 - How do I plan with an agent without adopting designs I cannot defend?
@@ -15,34 +15,43 @@ exercises: 25
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Plan a software project yourself, using an agent to research options and critique the plan rather than to originate it.
+- Plan a research software project yourself, from the research question down, using an agent to research options and critique the plan rather than to originate it.
 - Explain how a plan changes what an agent does with its context and tokens.
 - Supply the context an agent needs to plan: goal, constraints, existing code, standards, prior decisions.
-- Use an agent in a read-only or plan mode to review and improve a plan before any code exists.
+- Use plan mode to have the agent critique the plan, propose the structure of the code it will write, and surface open questions before any code exists.
 - Agree team collaboration conventions with an agent's help and commit them as a `CONTRIBUTING.md` that people and agents both read.
 - Produce a `plan.md` with ordered features and a check for each, and commit it before implementing anything.
 - Evaluate AI design suggestions critically: question what you do not understand, and do not build on ideas you cannot defend.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Plan the project yourself
+## Plan the research software yourself
 
-Planning a software project is the same work it was before agents: decide what the
-project is for, what it must produce, what it will not do, what order to build things
-in, and how you will know each piece works. That thinking is yours. The ideas should
-mostly come from you, from the research question, and from the people you work with,
-because you are the ones who will have to defend them in a lab meeting, a review, or a
-paper. An agent is useful at this stage as a research assistant and a critic: it can
-summarize the options, point out a gap in the plan, ask a question you had not
-considered, and keep the plan file current as work proceeds.
+Research software exists to answer a question, and the plan for it is the analysis
+design. Before an agent writes any code, you should be able to state the research
+question, the claim a result would support, the data and what you already know about
+it, the comparison or baseline that makes the result meaningful, and the figures,
+tables, or numbers that will end up in the paper. You should also be able to say what
+would show the approach is wrong. None of that is programming, and none of it should
+be delegated. The ideas come from you, from the literature, and from the people you
+work with, because you are the ones who will defend them in a lab meeting, in peer
+review, and in the methods section.
+
+An agent is useful at this stage in two roles. As a research assistant it can
+summarize the options for a step, find the library that implements a method, and keep
+the plan file current as work proceeds. As a critic it can point out a gap in the
+plan, ask a question you had not considered, or notice that a step assumes something
+the data description does not support. In both roles it works from the context you
+give it, and it does not know your field's standards unless you state them.
 
 Agents will also propose ideas of their own, and some are good. Treat each one as a
 suggestion from a fluent but unaccountable colleague: ask why this rather than the
-obvious alternative, what the failure modes are, and what the simplest workable
-version would be, and adopt it only when the reasoning holds up and you could explain
-it without the agent. The section [below](#do-not-build-on-ideas-you-cannot-defend)
-covers this in more detail. This is what staying in the driver's seat means before any
-code exists.
+obvious alternative, what the failure modes are, whether it is standard practice in
+your field, and what the simplest workable version would be. Adopt it only when the
+reasoning holds up and you could explain it without the agent. A method you cannot
+explain cannot go in a methods section. The section
+[below](#do-not-build-on-ideas-you-cannot-defend) covers this in more detail. This is
+what staying in the driver's seat means before any code exists.
 
 The most common failure in agentic work is skipping this step and letting the agent
 write code before you understand the problem. Planning first also changes how the
@@ -64,15 +73,22 @@ the task: a three-line plan for a three-line task.
 ## Supply context
 
 An agent asked to "make a plan" with no other input produces the average plan for the
-average project. The plan is only as good as the context it is built from. Context
-worth providing, in rough order of how often it is missing:
+average project, and research projects are rarely the average case. The plan is only
+as good as the context it is built from. Context worth providing, in rough order of
+how often it is missing:
 
-- **The goal and constraints**: the research question, the challenge page, the scoring
-  rule, the compute available.
+- **The research question and the constraints**: what a result has to show, the
+  scoring rule or evaluation metric, the compute available (a laptop, a cluster
+  allocation, cloud credits), and any deadline.
+- **What you know about the data**: provenance, units, sampling, known artifacts,
+  missingness, and which subsets are trustworthy. Nobody but you and your
+  collaborators knows this.
+- **The analysis you would have done by hand**: the splits, the controls, the
+  baseline, and the statistics your field expects.
 - **The previous `plan.md`**, or its discoveries and blockers.
 - **Skeleton code**: a stub of the function or module you want, so the shape is yours.
-- **A GitHub issue or story** describing the feature in your words.
-- **`future-work.md`**: what is deliberately out of scope.
+- **A GitHub issue** describing the feature in your words.
+- **`future-work.md`**: what is deliberately out of scope for this paper or release.
 - **Rules and coding-standards files**: the project context file described below,
   plus any style guide your group follows.
 
@@ -93,11 +109,33 @@ describes the pattern. A persistent plan file typically contains:
 Planning is iterative. The first plan is a draft to be questioned; the deliverable is
 a plan you would sign.
 
-## Plan mode: read without writing
+## Plan mode: the agent plans the implementation
 
-Most tools have a read-only mode for this stage, in which the agent reads files and
-answers questions without making changes. It is the safest first contact with a
-repository and the appropriate mode for reviewing a plan.
+Plan mode is a different activity from the planning above, and the two are easy to
+confuse because the tools use the same word. The analysis design is yours. Plan mode
+is where the agent, given that design, works out how it will build the code: which
+files it will create or change, in what order, what it needs to know before it starts,
+and where it is uncertain. Most tools provide it as a read-only mode in which the
+agent reads the repository and answers questions without editing or running anything,
+which also makes it the safest first contact with an unfamiliar codebase.
+
+Used well, plan mode does three things before any code exists:
+
+- **Feedback on your plan.** The agent reads `plan.md` and the repository together and
+  reports what does not line up: a feature with no check, a step that assumes data in
+  a format the repository does not contain, a dependency that is not installed.
+- **A structure for the code it will write.** It proposes the modules, functions, and
+  tests it intends to produce, so you can correct the shape (where the scoring
+  function lives, what the data loader returns) while it is still cheap to change.
+- **Loose ends surfaced first.** Anything it would otherwise have guessed at during
+  implementation becomes a question now: which column is the label, which split is
+  held out, what to do with missing values. Answer these before approving the plan,
+  because an agent that guesses mid-implementation guesses the average case.
+
+The output of plan mode is an implementation plan you approve, edit, or reject. It is
+not the analysis design, and it should not change the analysis design without you
+noticing. If the agent's implementation plan quietly substitutes a different model,
+metric, or split, that is a plan to reject.
 
 :::::::::::::::: group-tab
 
@@ -294,10 +332,11 @@ safety-critical rules with permissions, hooks, or branch protection.
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 
+- The plan is the analysis design, and it is yours: research question, data, baseline, outputs, and what would show the approach is wrong. The agent assists and critiques; ideas it proposes are adopted only when you can defend the reasoning.
 - Plan before code. Planning measurably improves accuracy, and a good plan usually reduces token use. Keep planning proportional to the task.
-- A plan is only as good as its context. Provide the goal, constraints, compute, existing code, standards, and prior decisions; for long work, keep the plan in a file the agent updates.
+- A plan is only as good as its context. Provide the research question, what you know about the data, the analysis you would do by hand, compute, existing code, and standards; for long work, keep the plan in a file the agent updates.
 - Agree team conventions first (branches rather than forks, pull-request size, who reviews, what the agent may not modify, where new files go) and commit them as a `CONTRIBUTING.md` that agents also read.
-- Use plan mode (read-only) to review a plan. The deliverable is a `plan.md` with ordered features and a check for each, committed before any code.
+- Plan mode is distinct from planning the analysis: the agent critiques your plan, proposes the code structure, and raises loose ends for you to settle before it implements. The deliverable is a `plan.md` with ordered features and a check for each, committed before any code.
 - Start from a minimum viable pipeline: a slice of data, one model, something you understand end to end.
 - Question AI design suggestions before adopting them, most carefully where your domain knowledge is weakest. If you cannot explain it, you do not yet own it.
 - Write the project context file (`CLAUDE.md`, `AGENTS.md`, `copilot-instructions.md`) at the start of the project. Keep it short, operational, and backed by permissions where it matters.
