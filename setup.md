@@ -24,17 +24,9 @@ the same steps in short form.
 
 Install git ([git-scm.com](https://git-scm.com/downloads)) and make sure you can clone,
 branch, commit, and push. Create a free [GitHub account](https://github.com/signup) if
-you don't have one.
-
-::::::::::::::::::::::::::::::::::::::: callout
-
-## Start every exercise from a clean git state
-
-The exercises assume you are working in a git repository with no uncommitted changes,
-on a branch that is not `main`. This is your safety net: `git diff` shows exactly what
-an agent did, and `git restore` undoes it.
-
-:::::::::::::::::::::::::::::::::::::::::::::::
+you don't have one. The exercises assume a repository with no uncommitted changes, on
+a branch that is not `main`, so that `git diff` shows what the agent did and
+`git restore` undoes it.
 
 ## Choose an agentic coding tool
 
