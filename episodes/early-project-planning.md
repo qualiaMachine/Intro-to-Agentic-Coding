@@ -105,10 +105,10 @@ would build it, and you correct the description until the structure it proposes
 matches the result you intend. Only then do you switch plan mode off and let it
 write code.
 
-This is a different activity from the planning above, and the two are easy to confuse
-because the tools use the same word. The analysis design is yours and is settled
-before plan mode starts. Plan mode is about the prompt: making sure what you are
-asking for is specific enough that the code the agent writes is the code you meant.
+This is a different activity from the planning above, although the tools use the
+same word. The analysis design is yours and is settled before plan mode starts. Plan
+mode is about the prompt: making sure what you are asking for is specific enough that
+the code the agent writes is the code you meant.
 
 The refinement is worth the extra turns. Structured planning before implementation
 improved coding success by up to 26.7%, reducing failed generations and repeated
