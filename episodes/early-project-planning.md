@@ -60,11 +60,16 @@ document.
 ### Start from a minimum viable pipeline
 
 The first version of that design should be small. A **minimum viable pipeline
-(MVP)** is whatever you can get running quickly and understand end to end. It is not necessarily the simplest model: a pretrained model
-you understand is preferable to a from-scratch model you do not. The aim is to
-minimize points of friction and failure: a slice of the data, one model, your laptop.
-Each additional step or more elaborate setup is another place for the pipeline to
-break.
+(MVP)** is whatever you can get running quickly and understand end to end. It is not
+necessarily the simplest model: a pretrained model you understand is preferable to a
+from-scratch model you do not. The aim is to minimize points of friction and failure:
+a slice of the data, one model, your laptop. Each additional step or more elaborate
+setup is another place for the pipeline to break.
+
+This is ordinary good data science practice, and it predates agents. You look at the
+data before you model it, establish a baseline before you try to beat it, and get one
+end-to-end result you can trust before you add anything. The verification episode
+returns to these habits as checks; here they set the order of the first plan.
 
 - **Functional, not polished.** Borrowed code is acceptable if you can explain what it
   does. Defer the edge cases.
@@ -73,7 +78,10 @@ break.
   system you do not understand would conceal.
 
 The MVP is the baseline against which new components are compared, before investing
-in solutions that take time to build. It is also the first thing you will ask an
+in solutions that take time to build. With an agent the practice matters more, not
+less: an agent will produce a complete, elaborate pipeline on request, and it will
+run, and you will not know whether its number means anything because there is no
+simpler result to compare it with. The MVP is also the first thing you will ask an
 agent to build: small enough to specify fully, with every feature something you can
 check. The last part of this episode is about getting from the MVP plan to that
 request.
@@ -367,7 +375,7 @@ yet own it.
 
 - The plan is the analysis design, and it is yours: research question, data, methods, baseline, outputs, constraints, and what would show the approach is wrong. The agent assists and critiques. Record the plan as a `plan.md` with ordered features and a check for each, committed before any code.
 - Give the agent that design plus what already exists: the previous plan, skeleton code, issues, out-of-scope notes, and rules files. For long work, keep the plan in a file the agent updates.
-- Start from a minimum viable pipeline: a slice of data, one model, something you understand end to end. It is the baseline for everything after it and the first thing you ask an agent to build.
+- Start from a minimum viable pipeline: a slice of data, one model, something you understand end to end. This is ordinary good data science practice, and it matters more with an agent, which will otherwise produce an elaborate pipeline with nothing to compare it to. The MVP is the baseline for everything after it and the first thing you ask an agent to build.
 - Plan mode is distinct from planning the analysis. It is where you refine the request: the agent critiques it, proposes the structure of the intended result, and raises loose ends for you to settle, and you approve the outline before any code is written.
 - Agree collaboration conventions before the first feature (branches rather than forks, pull-request size, who reviews, what the agent may not modify, where new files go) and commit them as a `CONTRIBUTING.md` that agents also read.
 - Question AI design suggestions before adopting them, most carefully where your domain knowledge is weakest. If you cannot explain it, you do not yet own it.
