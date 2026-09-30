@@ -15,48 +15,34 @@ exercises: 25
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Plan a research software project yourself, from the research question down, using an agent to research options and critique the plan rather than to originate it.
-- Explain how a plan changes what an agent does with its context and tokens.
-- Supply the context an agent needs to plan: goal, constraints, existing code, standards, prior decisions.
-- Use plan mode to refine a request before any code exists: the agent critiques it, proposes the structure of the result, and surfaces open questions for you to answer.
-- Agree team collaboration conventions with an agent's help and commit them as a `CONTRIBUTING.md` that people and agents both read.
-- Produce a `plan.md` with ordered features and a check for each, and commit it before implementing anything.
-- Evaluate AI design suggestions critically: question what you do not understand, and do not build on ideas you cannot defend.
+- Plan a research software project yourself, using an agent to research options and critique the plan rather than to originate it.
+- Supply the context an agent needs: the research question, the data, the analysis you would do by hand, existing code, and standards.
+- Use plan mode to refine a request until the structure the agent proposes matches the result you intend.
+- Agree collaboration conventions and commit them as a `CONTRIBUTING.md`; produce a `plan.md` with ordered features and a check for each before implementing anything.
+- Question AI design suggestions, and do not build on ideas you cannot defend.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Plan the research software yourself
 
-Research software exists to answer a question, and the plan for it is the analysis
-design. Before an agent writes any code, you should be able to state the research
-question, the claim a result would support, the data and what you already know about
-it, the comparison or baseline that makes the result meaningful, and the figures,
-tables, or numbers that will end up in the paper. You should also be able to say what
+Research software exists to answer a question, so the plan for it is the analysis
+design: the research question, what you know about the data, the baseline that makes
+a result meaningful, the figures and numbers that will go in the paper, and what
 would show the approach is wrong. None of that is programming, and none of it should
-be delegated. The ideas come from you, from the literature, and from the people you
-work with, because you are the ones who will defend them in a lab meeting, in peer
-review, and in the methods section.
+be delegated. You will defend these choices in lab meetings, in peer review, and in
+the methods section, so they have to be yours.
 
-An agent is useful at this stage in two roles. As a research assistant it can
-summarize the options for a step, find the library that implements a method, and keep
-the plan file current as work proceeds. As a critic it can point out a gap in the
-plan, ask a question you had not considered, or notice that a step assumes something
-the data description does not support. In both roles it works from the context you
-give it, and it does not know your field's standards unless you state them.
+The agent's role at this stage is research assistant and critic: summarize the
+options for a step, find the library that implements a method, point out a gap in the
+plan, ask the question you had not considered. It will also propose ideas of its own.
+Treat each as a suggestion from a fluent but unaccountable colleague. Ask why this
+rather than the obvious alternative, what the failure modes are, and whether it is
+standard in your field, and adopt it only when you could explain it without the
+agent. A method you cannot explain cannot go in a methods section.
 
-Agents will also propose ideas of their own, and some are good. Treat each one as a
-suggestion from a fluent but unaccountable colleague: ask why this rather than the
-obvious alternative, what the failure modes are, whether it is standard practice in
-your field, and what the simplest workable version would be. Adopt it only when the
-reasoning holds up and you could explain it without the agent. A method you cannot
-explain cannot go in a methods section. The section
-[below](#do-not-build-on-ideas-you-cannot-defend) covers this in more detail. This is
-what staying in the driver's seat means before any code exists.
-
-The most common failure in agentic work is skipping this step and letting the agent
-write code before you understand the problem. A plan gives you a review point before
-implementation and gives both you and the agent a shared definition of done. Planning
-should be proportional to the task: a three-line plan for a three-line task.
+Skipping this step and letting the agent write code before you understand the
+problem is the most common failure in agentic work. Keep the plan proportional to the
+task: a three-line plan for a three-line task.
 
 ## Supply context
 
