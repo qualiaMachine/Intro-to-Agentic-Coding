@@ -61,7 +61,9 @@ Practices that follow:
 
 - **Do not auto-approve package installation.** Keep installs on the list of actions
   that require approval, or add "do not add new dependencies without asking" to the
-  project context file, remembering that context files are advisory.
+  project context file, remembering that context files are advisory. Choosing a
+  dependency is a design decision you own: the agent can list candidates and their
+  trade-offs, and you choose.
 - **Before installing anything an agent suggests, verify that it exists and is
   official.** Check the registry page, the linked source repository, download counts,
   and release history. A brief check defeats most slopsquatting.
@@ -133,8 +135,8 @@ and misbehave on a trigger:
   a model's computational graph (for example ONNX), again with no code execution.
 
 This matters for agentic coding in particular because a backdoored code model does
-not need to attack your machine; it needs only to write subtly vulnerable code that
-you trust, run, and ship. In an agentic setup the trigger can also be delivered:
+not need to attack your machine; it needs only to write subtly wrong or vulnerable code
+that you trust, run on your data, and publish results from. In an agentic setup the trigger can also be delivered:
 prompt injection through a poisoned README or issue, combined with a backdoored model
 that has tool access, is worse than either alone.
 
@@ -164,8 +166,8 @@ and it is a valuable target because it holds your permissions:
   it had done ([Fortune](https://fortune.com/2025/07/23/ai-coding-tool-replit-wiped-database-called-it-a-catastrophic-failure/)).
 
 Keep agent tooling updated, install extensions only from official marketplaces, and
-never point an agent at production systems or irreplaceable data. Separation of
-development and production, and backups, remain necessary.
+never point an agent at raw data, shared lab storage, or anything else irreplaceable.
+Work on copies, keep raw data read-only, and keep backups.
 
 ## Vet the provider as you would vet a data source
 
@@ -188,7 +190,9 @@ questions from the provider's policy documents rather than its marketing materia
    debugging; the company responded by
    [banning generative AI tools internally](https://www.bloomberg.com/news/articles/2023-05-02/samsung-bans-chatgpt-and-other-generative-ai-use-by-staff-after-leak). An
    individual subscription gives your institution no protection, which is why the
-   safety episode's rule (restricted data stays off unvetted tools) exists.
+   safety episode's rule (restricted data stays off unvetted tools) exists. The
+   research equivalent is pasting unpublished data, or a manuscript or proposal you
+   were asked to review, into a personal account.
 
 ### Claude and Copilot defaults (as of September 2026)
 
@@ -250,7 +254,7 @@ including to the agent.
 - Hallucinated package names are an attack vector (slopsquatting). Verify that a package exists and is official before installing anything an agent suggests.
 - Model weights in pickle formats are executable code. Prefer safetensors, download from verified organizations, do not enable `trust_remote_code` by default, and check provenance.
 - Backdoors can be in the weights themselves (poisoned training data, surgical edits, trigger behaviors). No scanner or benchmark detects them; provenance and reviewing model output are the defenses.
-- The agent tooling is itself an attack surface. Keep it updated, and never point an agent at production or irreplaceable data.
+- The agent tooling is itself an attack surface. Keep it updated, and never point an agent at raw data, shared lab storage, or anything else irreplaceable.
 - Vet the provider's data policy: training default, retention, jurisdiction, and whether an institutional agreement applies.
 - Provider defaults differ by plan tier. Consumer Claude and Copilot plans train on your data unless you opt out; team, enterprise, API, and education tiers do not. Check the setting, not the brand.
 - Each rule here has a named incident behind it: torchtriton, Ultralytics, huggingface-cli, Amazon Q, Replit, DeepSeek, Samsung, the fake OpenAI repository, InstructLab. None required a sophisticated attacker; all required a missing check.

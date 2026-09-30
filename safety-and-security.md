@@ -55,7 +55,8 @@ Risk management starts from an accurate picture of the tool:
 
 The last row is the one most often underestimated. An agent launched from a terminal
 or IDE runs with the user account's full filesystem and shell access. It can read SSH
-keys, `.env` files, and notes. Agents also scan for context as part of their normal
+keys (including cluster logins), `.env` files, notes, and any research data on the
+machine. Agents also scan for context as part of their normal
 operation, so a credentials file in the working directory is simply more context.
 
 ## The threat: prompt injection
@@ -241,8 +242,8 @@ In January 2026, Cursor's allowlist was bypassed
 ([CVE-2026-22708](https://github.com/cursor/cursor/security/advisories/GHSA-82wg-qcm4-fp2w),
 reported by Pillar Security): prompt injection set an environment variable through a
 shell built-in that the allowlist did not check, and the next approved `git` command
-executed the attacker's code. Deny rules reduce risk; the VM boundary is what removes
-it.
+executed the attacker's code. Deny rules reduce risk; the VM boundary limits what a bypass
+can reach.
 
 ::::::::::::::::::::::::::::::::::::: callout
 
@@ -382,15 +383,16 @@ work begins. Other routes, including free ones, are on the
      for an explicit plan mode, in which the agent asks questions and waits for your
      approval before editing. Start a **cloud** session, not a local one: cloud runs
      in a GitHub-hosted VM; local runs on your machine with your access. If you cannot
-     install, the web works too: ask for a plan in the prompt and you get the same
-     review gate, with less interaction.
+     install, the web works too: state your goal and constraints, ask the agent to
+     propose a plan and wait for your approval, and you get the same review gate, with
+     less interaction.
 2. **Confirm the session is cloud-hosted before you prompt.** It should be pointed at
    a cloud VM and a GitHub repository, not a folder on your laptop. Check the
    environment's network access setting (control 1 above) while you are there.
-3. **Use your project repository.** If your team does not have one yet, create your
-   own for today.
-4. **Work on a branch named for you.** Use branches rather than forks, so teammates
-   and their agents can see your work. If you lack write access, ask the repository
+3. **Use your project repository.** If your lab or project does not have one yet,
+   create your own for today.
+4. **Work on a branch named for you.** Use branches rather than forks, so
+   collaborators in your group, and their agents, can see your work. If you lack write access, ask the repository
    owner to add you as a collaborator.
 5. **No `.env` in the repository.** If you use one, add it to `.gitignore`. Prefer
    `op read` from the 1Password CLI to storing keys anywhere.
@@ -405,11 +407,12 @@ work begins. Other routes, including free ones, are on the
 If step 2 fails (the session is local), stop and switch before prompting. This is the
 most common mistake with the desktop apps. Cloud sandboxes are billed by usage, so
 confirm your account works before the real work. Branches rather than forks matter
-for a team: an agent can fetch and read a teammate's branch, compare against it, and
-merge, but it cannot see a fork without additional remotes being configured. The
+for a research group: an agent can fetch and read a collaborator's branch and compare
+against it, but it cannot see a fork without additional remotes being configured. The
 read-only prompt in step 6 previews the planning episode. Agents describe *what* and
 *how* well (structure, dependencies, data flow) and cannot recover *why* or *for
-whom*; that is the knowledge a plan and an instruction file must supply.
+whom*; that is the knowledge you supply, in a plan you write and an instruction file
+you maintain.
 
 :::::::::::::::::::::::::::::::::
 

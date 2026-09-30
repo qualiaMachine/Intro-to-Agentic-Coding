@@ -79,8 +79,9 @@ account for this:
 
 ## Reducing token use
 
-- **Watch usage.** Knowing what you are spending is also how you detect an agent that
-  is retrying in a loop.
+- **Watch usage.** Agent spending usually comes from a grant, a shared lab account, or
+  a limited institutional allocation, so know what a session costs. Watching usage is
+  also how you detect an agent that is retrying in a loop.
 - **Match the model to the task.** Not every task requires the most expensive model.
   Use a smaller model by default for mechanical work (renames, formatting, lookups)
   and switch to a larger one when the task requires the reasoning. Providers do not
@@ -92,8 +93,9 @@ account for this:
 - **Use skills.** A skill loads a short pointer instead of a long explanation each
   time. The [caveman](https://github.com/JuliusBrussee/caveman) skill from the
   previous episode reduces output tokens by design.
-- **Run long or independent tasks in a background agent** rather than in a foreground
-  session you are watching.
+- **Run long, well-specified tasks in a background agent** once they have a test or
+  check that defines done, rather than in a foreground session you are watching.
+  Review the result as you would any other diff.
 - **Compare real session cost across models before committing to one.**
   [OpenRouter's session-cost rankings](https://openrouter.ai/rankings#session-cost)
   report what people spend per session across live agentic-coding traffic, which is a
@@ -107,7 +109,8 @@ account for this:
   window.
 - `/model`: switch models mid-session.
 - `/clear`: reset context between unrelated tasks. The cheapest habit to adopt.
-- `/compact`: summarize a long conversation, retaining what matters.
+- `/compact`: summarize a long conversation. Say what must survive (for example
+  `/compact keep the agreed plan and open decisions`) and check the summary.
 - <kbd>Esc</kbd>: interrupt an agent that is heading in the wrong direction.
 
 ### GitHub Copilot
