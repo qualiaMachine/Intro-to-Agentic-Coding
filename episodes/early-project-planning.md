@@ -99,13 +99,18 @@ a plan you would sign.
 
 ## Plan mode: refine the request before any code
 
-Once the analysis design is settled, you still have to turn it into a request the
-agent can carry out, and the first version of that request is never precise enough.
-**Plan mode** is where you refine it. Most tools provide it as a read-only mode: the
-agent reads the repository and answers questions without editing or running anything.
-You describe what you want, the agent describes how it would build it, and you correct
-the description until the structure it proposes matches the result you intend. Only
-then does any code get written.
+**Plan mode** is a setting on the agent, not a way of thinking. Switched on, the agent
+can read the repository, answer questions, and propose an approach, but it cannot
+edit a file or run a command. Claude Code toggles it with <kbd>Shift</kbd>+<kbd>Tab</kbd>;
+Copilot calls it **Ask** or **Plan** in the chat panel's mode selector. The tabs below
+give the details.
+
+Its use is this. Once the analysis design is settled, you still have to turn it into
+a request the agent can carry out, and the first version of that request is never
+precise enough. In plan mode you describe what you want, the agent describes how it
+would build it, and you correct the description until the structure it proposes
+matches the result you intend. Only then do you switch plan mode off and let it
+write code.
 
 This is a different activity from the planning above, and the two are easy to confuse
 because the tools use the same word. The analysis design is yours and is settled
