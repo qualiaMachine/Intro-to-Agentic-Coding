@@ -18,7 +18,7 @@ exercises: 25
 - Plan a research software project yourself, from the research question down, using an agent to research options and critique the plan rather than to originate it.
 - Explain how a plan changes what an agent does with its context and tokens.
 - Supply the context an agent needs to plan: goal, constraints, existing code, standards, prior decisions.
-- Use plan mode to have the agent critique the plan, propose the structure of the code it will write, and surface open questions before any code exists.
+- Use plan mode to refine a request before any code exists: the agent critiques it, proposes the structure of the result, and surfaces open questions for you to answer.
 - Agree team collaboration conventions with an agent's help and commit them as a `CONTRIBUTING.md` that people and agents both read.
 - Produce a `plan.md` with ordered features and a check for each, and commit it before implementing anything.
 - Evaluate AI design suggestions critically: question what you do not understand, and do not build on ideas you cannot defend.
@@ -97,24 +97,24 @@ describes the pattern. A persistent plan file typically contains:
 Planning is iterative. The first plan is a draft to be questioned; the deliverable is
 a plan you would sign.
 
-## Plan mode: the agent plans the implementation
+## Plan mode: refine the request before any code
 
-Once the analysis design is settled, a second kind of planning begins, and this one
-belongs to the agent. Before it writes code, the agent works out how it will build
-what you have designed: which files it will create or change, in what order, what it
-needs to know before it starts, and where it is uncertain. Most tools provide a mode
-for this, usually called **plan mode**, in which the agent reads the repository and
-answers questions without editing or running anything. That also makes it the safest
-first contact with an unfamiliar codebase.
+Once the analysis design is settled, you still have to turn it into a request the
+agent can carry out, and the first version of that request is never precise enough.
+**Plan mode** is where you refine it. Most tools provide it as a read-only mode: the
+agent reads the repository and answers questions without editing or running anything.
+You describe what you want, the agent describes how it would build it, and you correct
+the description until the structure it proposes matches the result you intend. Only
+then does any code get written.
 
 This is a different activity from the planning above, and the two are easy to confuse
-because the tools use the same word. The analysis design is yours. The implementation
-plan is the agent's proposal for carrying it out, and you approve it before any code
-is written.
+because the tools use the same word. The analysis design is yours and is settled
+before plan mode starts. Plan mode is about the prompt: making sure what you are
+asking for is specific enough that the code the agent writes is the code you meant.
 
-Having the agent plan before it implements is worth the extra turn. Structured
-planning before implementation improved coding success by up to 26.7%, reducing
-failed generations and repeated implementation attempts
+The refinement is worth the extra turns. Structured planning before implementation
+improved coding success by up to 26.7%, reducing failed generations and repeated
+implementation attempts
 ([Jiang et al., 2023](https://arxiv.org/abs/2303.06689)). The mechanism is
 straightforward. Without a plan, an agent makes exploratory and redundant tool calls:
 unnecessary repository searches, re-reading the same files, modifying the wrong layer,
@@ -124,23 +124,25 @@ before implementing, sequences dependent changes correctly, checks the acceptanc
 criteria, and stops when the task is complete. With a bad plan, it anchors on
 incorrect assumptions, which costs both accuracy and tokens.
 
-Used well, plan mode does three things before any code exists:
+Used well, a plan-mode exchange sharpens the request in three ways:
 
-- **Feedback on your plan.** The agent reads `plan.md` and the repository together and
-  reports what does not line up: a feature with no check, a step that assumes data in
-  a format the repository does not contain, a dependency that is not installed.
-- **A structure for the code it will write.** It proposes the modules, functions, and
-  tests it intends to produce, so you can correct the shape (where the scoring
-  function lives, what the data loader returns) while it is still cheap to change.
+- **Feedback on the request.** The agent reads your request, `plan.md`, and the
+  repository together and reports what does not line up: a feature with no check, a
+  step that assumes data in a format the repository does not contain, a dependency
+  that is not installed. Each mismatch is something to fix in the request.
+- **A structure for the intended result.** It proposes the modules, functions, and
+  tests it would produce, so you can correct the shape (where the scoring function
+  lives, what the data loader returns) while it is still a description rather than
+  code.
 - **Loose ends surfaced first.** Anything it would otherwise have guessed at during
   implementation becomes a question now: which column is the label, which split is
-  held out, what to do with missing values. Answer these before approving the plan,
-  because an agent that guesses mid-implementation guesses the average case.
+  held out, what to do with missing values. Your answers go into the request, because
+  an agent that guesses mid-implementation guesses the average case.
 
-The output of plan mode is an implementation plan you approve, edit, or reject. It is
-not the analysis design, and it should not change the analysis design without you
-noticing. If the agent's implementation plan quietly substitutes a different model,
-metric, or split, that is a plan to reject.
+The output is a request and an implementation outline you approve, edit, or reject.
+It should not change the analysis design without you noticing. If the proposed
+structure quietly substitutes a different model, metric, or split, correct it before
+approving.
 
 :::::::::::::::: group-tab
 
@@ -350,7 +352,7 @@ safety-critical rules with permissions, hooks, or branch protection.
 - Plan before code. Planning measurably improves accuracy, and a good plan usually reduces token use. Keep planning proportional to the task.
 - A plan is only as good as its context. Provide the research question, what you know about the data, the analysis you would do by hand, compute, existing code, and standards; for long work, keep the plan in a file the agent updates.
 - Agree team conventions first (branches rather than forks, pull-request size, who reviews, what the agent may not modify, where new files go) and commit them as a `CONTRIBUTING.md` that agents also read.
-- Plan mode is distinct from planning the analysis: the agent critiques your plan, proposes the code structure, and raises loose ends for you to settle before it implements. Its output is an implementation plan you approve, edit, or reject, and it should not change the analysis design.
+- Plan mode is distinct from planning the analysis. It is where you refine the request: the agent critiques it, proposes the structure of the intended result, and raises loose ends for you to settle, and you approve the outline before any code is written.
 - Start from a minimum viable pipeline: a slice of data, one model, something you understand end to end.
 - Question AI design suggestions before adopting them, most carefully where your domain knowledge is weakest. If you cannot explain it, you do not yet own it.
 - Write the project context file (`CLAUDE.md`, `AGENTS.md`, `copilot-instructions.md`) at the start of the project. Keep it short, operational, and backed by permissions where it matters.
