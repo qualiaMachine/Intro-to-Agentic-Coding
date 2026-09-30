@@ -249,6 +249,7 @@
 <li><a href="#work-feature-by-feature-not-project-by-project">Work feature by feature, not project by project</a></li>
 <li><a href="#a-bad-prompt-does-not-return-random-results">A bad prompt does not return random results</a></li>
 <li><a href="#guide-the-agent-with-clear-instructions">Guide the agent with clear instructions</a></li>
+<li><a href="#give-your-agent-maintenance-tasks">Give your agent maintenance tasks</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -349,7 +350,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Feature-Based Development and Good Prompting</h1>
-        <p>Last updated on 2026-09-28 |
+        <p>Last updated on 2026-09-30 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/specification.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -450,8 +451,8 @@ for generating code and the resources the agent may use: the project
 context file (<code>CLAUDE.md</code>, <code>AGENTS.md</code>,
 <code>copilot-instructions.md</code>), coding-standards files,
 <code>plan.md</code>. Written once, read in every session. A shared
-context file is an inexpensive way to keep a team’s code
-consistent.</li>
+context file is an inexpensive way to keep code consistent across a lab
+group or collaboration.</li>
 <li>
 <strong>Prompt engineering</strong> phrases the specific request to
 obtain the best result for the task at hand.</li>
@@ -494,9 +495,10 @@ cases you know about.</li>
 <strong>Constraints</strong>: conventions, permitted dependencies,
 things to preserve.</li>
 <li>
-<strong>Verification</strong>: how the agent should check its own
-work. Run the tests; confirm the row count is unchanged; print the class
-balance before and after.</li>
+<strong>Verification</strong>: the check you have decided proves the
+work is correct, and how the agent should run it. Run the tests; confirm
+the row count is unchanged; print the class balance before and
+after.</li>
 </ul><p>The last item leads into the next episode. A prompt that includes its
 own check is worth more than one that does not.</p>
 <div id="exercise-implement-feature-1-from-your-plan-15-minutes" class="callout challenge">
@@ -547,12 +549,12 @@ it decide that you did not specify?</p></li>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
 <p>Start a fresh session (or <code>/clear</code>) so the feature begins
 with a clean context. On the web, the work is returned as a branch;
 locally, confirm that it created one before editing.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
 <p>Use <strong>Agent</strong> mode in a <strong>New Chat</strong>, or
 delegate the prompt to the cloud coding agent and review the draft pull
 request it opens.</p>
@@ -595,8 +597,8 @@ them.</p>
 </div>
 </div>
 </div>
-<p>:## Give your agent maintenance tasks</p>
-<p>If you are new to agentic workflows, as most people are, consider
+</section><section><h2 class="section-heading" id="give-your-agent-maintenance-tasks">Give your agent maintenance tasks<a class="anchor" aria-label="anchor" href="#give-your-agent-maintenance-tasks"></a></h2>
+<hr class="half-width"><p>If you are new to agentic workflows, as most people are, consider
 starting with maintenance tasks, which agents do particularly well. They
 are the routine work that keeps a research repository usable, and each
 should be treated as a feature: small, specified, checkable, one pull
@@ -617,8 +619,8 @@ list what the README says that is no longer true.”</li>
 the code imports.</li>
 <li>
 <strong>Weekly merge preparation.</strong> “Summarize what changed
-on this branch since <code>main</code>, for the teammates who were not
-here.”</li>
+on this branch since <code>main</code>, for collaborators who were not
+at this week’s lab meeting.”</li>
 </ul><div class="section level3">
 <h3 id="documentation-notes-to-your-future-self-and-your-agent">Documentation: notes to your future self and your agent<a class="anchor" aria-label="anchor" href="#documentation-notes-to-your-future-self-and-your-agent"></a></h3>
 <p>Documentation deserves more than a place on that list, for three
@@ -627,10 +629,11 @@ reasons.</p>
 <strong>It is now cheap.</strong> Research code is under-documented
 because writing docstrings and READMEs lost to the next experiment. The
 agent has the source of truth in context, and a paragraph of prose is
-faster to review than an implementation. Ask for docstrings, comments
-that explain why (not what), a README that says how to run the pipeline
-end to end, narrated notebooks, and a short end-of-session note on what
-changed and where to resume.</li>
+faster to review than an implementation. Ask for docstrings, a README
+that says how to run the pipeline end to end, narrated notebooks, and a
+short end-of-session note on what changed and where to resume. Comments
+that explain why a choice was made have to come from you; the agent can
+write them up only from reasons you give it.</li>
 <li>
 <strong>It becomes context.</strong> Everything you document is read
 by the agent in later sessions. Agents recover <em>what</em> and
@@ -741,7 +744,7 @@ any links that you are not going to use.
   "url": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/instructor/specification.html",
   "identifier": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/instructor/specification.html",
   "dateCreated": "2026-08-10",
-  "dateModified": "2026-09-28",
+  "dateModified": "2026-09-30",
   "datePublished": "2026-09-30"
 }
 

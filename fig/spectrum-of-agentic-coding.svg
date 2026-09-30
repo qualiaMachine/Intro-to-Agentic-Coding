@@ -21,7 +21,7 @@
     <text x="140" y="222" text-anchor="middle">for me.”</text>
     <text x="450" y="200" text-anchor="middle">“Implement the method stubs</text>
     <text x="450" y="222" text-anchor="middle">in this file.”</text>
-    <text x="760" y="200" text-anchor="middle">“Build the whole service from scratch;</text>
+    <text x="760" y="200" text-anchor="middle">“Build the whole pipeline from scratch;</text>
     <text x="760" y="222" text-anchor="middle">do all the planning yourself.”</text>
   </g>
 </svg>

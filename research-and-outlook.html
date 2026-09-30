@@ -348,7 +348,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>What the Research Shows, and Where This Leaves Us</h1>
-        <p>Last updated on 2026-09-28 |
+        <p>Last updated on 2026-09-30 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/research-and-outlook.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -394,8 +394,9 @@ and verification it needs.</li>
 <strong>Coding speed is only one bottleneck.</strong> Agents
 multiply commits (+240%) far more than releases (+30%), and pull
 requests wait about five times longer for human review under heavy AI
-use (the verification episode’s figures). Analyses still require expert
-review and verification, and that step does not accelerate.</li>
+use (the verification episode’s figures). Research has the same
+bottleneck: an agent can produce analyses faster than anyone can check
+them, and expert review and verification do not accelerate.</li>
 <li>
 <strong>Perceived and measured speed can diverge.</strong> In a <a href="https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/" class="external-link">2025
 randomized trial</a> (METR), experienced open-source developers believed
@@ -418,11 +419,12 @@ to accept flawed results. Verification skill, not typing speed, is the
 limiting factor.</li>
 </ul><p>The evidence supports the conclusion that these tools amplify
 expertise more than they replace it. The practices in this lesson
-(scoping, specifying, verifying) are the expertise being amplified. The
-question of skill formation remains open: if agents do the routine work,
-where do junior researchers develop the debugging judgment that
-supervising an agent requires? Deliberate practice may need to be
-scheduled where it previously occurred as a by-product.</p>
+(planning, scoping, specifying, verifying, deciding what to merge) are
+the expertise being amplified. The question of skill formation remains
+open: if agents do the routine work, where do junior researchers develop
+the debugging judgment that supervising an agent requires? Deliberate
+practice may need to be scheduled where it previously occurred as a
+by-product.</p>
 <div id="is-programming-dead" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
@@ -448,20 +450,21 @@ prompt can yield different code on different days, and every unstated
 decision is filled in with the average case.</p>
 <p>The craft of agentic coding is therefore making the layer
 deterministic enough. That means specifying and verifying at the level
-this lesson has practiced: a plan with a check for each step, one
-feature per prompt, tests the agent must pass, a review of every diff.
-Too little of this and the output is plausible and wrong. Too much, and
-the time spent writing prompts approaches the time it would have taken
-to write the code. The balance sits between those, and the evidence is
-that at the feature level the productivity gains are substantial.</p>
-<p>Those gains are a function of prior expertise. Deciding what to build
-next, recognizing a plausible-but-wrong result, knowing which check
-matters for this data: these come from the person, not the prompt or the
-model. Agents amplify expertise; they are not a substitute for it, and
-they are not a magic wand. Programming is not dead. The work has shifted
-toward specifying intent, designing verification, and exercising
-judgment, which were always its difficult parts, and good data science
-practice still applies in full.</p>
+this lesson has practiced: a plan you write, with a check for each step,
+one feature per prompt, tests the agent must pass, a review of every
+diff. Too little of this and the output is plausible and wrong. Too
+much, and the time spent writing prompts approaches the time it would
+have taken to write the code. The balance sits between those, and the
+evidence is that at the feature level the productivity gains are
+substantial.</p>
+<p>Those gains are a function of prior expertise. Deciding which
+analysis to run next, recognizing a plausible-but-wrong result, knowing
+which check matters for this data: these come from the person, not the
+prompt or the model. Agents amplify expertise; they are not a substitute
+for it, and they are not a magic wand. Programming is not dead. The work
+has shifted toward specifying intent, designing verification, and
+exercising judgment, which were always its difficult parts, and good
+data science practice still applies in full.</p>
 </section><section><h2 class="section-heading" id="pass-it-on">Pass it on<a class="anchor" aria-label="anchor" href="#pass-it-on"></a></h2>
 <hr class="half-width"><p>When you use AI to teach yourself something, write it up and share
 it. If it took many attempts to obtain a working pattern from an
@@ -479,13 +482,13 @@ Nexus</a> exists for this purpose (guides, notebooks, workshop
 materials, and posts from the community, including the guides this
 lesson draws on). Elsewhere, a lab blog, The Carpentries Incubator, or a
 well-documented public repository serves the same function.</p>
-<div id="three-things-before-your-next-sprint" class="callout challenge">
+<div id="three-things-before-your-next-project" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <span class="callout-header">Challenge</span>
-<div id="three-things-before-your-next-sprint" class="callout-inner">
-<h3 class="callout-title">Three things before your next sprint</h3>
+<div id="three-things-before-your-next-project" class="callout-inner">
+<h3 class="callout-title">Three things before your next project</h3>
 <div class="callout-content">
 <p>Before your next project session, commit to:</p>
 <ol style="list-style-type: decimal"><li>
@@ -493,7 +496,8 @@ well-documented public repository serves the same function.</p>
 secrets manager (nothing in plaintext on disk), a project context file
 (<code>CLAUDE.md</code>, <code>AGENTS.md</code>, or
 <code>copilot-instructions.md</code>) under 100 lines, and a branch-only
-workflow.</li>
+workflow in which you review and merge every change to
+<code>main</code>.</li>
 <li>
 <strong>Write the contract first.</strong> For the next feature you
 delegate, write one test or printed check that encodes what “correct”
@@ -602,7 +606,7 @@ any links that you are not going to use.
   "url": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/research-and-outlook.html",
   "identifier": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/research-and-outlook.html",
   "dateCreated": "2026-08-10",
-  "dateModified": "2026-09-28",
+  "dateModified": "2026-09-30",
   "datePublished": "2026-09-30"
 }
 

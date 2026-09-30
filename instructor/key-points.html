@@ -400,13 +400,15 @@
 <section id="introduction"><h2 class="section-heading"><a href="introduction.html">What Is Agentic Coding?</a></h2>
 <hr class="half-width">
 <ul>
-<li>Agentic coding: AI agents plan, write, test, debug, and revise code
-with limited human intervention. An agent acts; a chatbot advises.</li>
+<li>Agentic coding: AI agents write, test, debug, and revise code with
+limited step-by-step intervention, while a person sets the plan and
+reviews the result. An agent acts; a chatbot advises.</li>
 <li>Agent = LLM + harness + tools + agent loop. The model reasons; the
 harness supplies files, a terminal, tests, permissions, and memory.</li>
 <li>Requests range from a single edit to a whole project. More autonomy
 shifts effort from approving actions to specifying intent in advance and
-reviewing results afterwards.</li>
+reviewing results afterwards. Grant autonomy deliberately, and only as
+far as you can verify the result.</li>
 <li>The leading tools are within a point or two of each other. Use what
 you have access to, and learn the principles.</li>
 </ul></section><section id="safety-and-security"><h2 class="section-heading"><a href="safety-and-security.html">Safety and Security: Limit What the Agent Can Access</a></h2>
@@ -443,7 +445,8 @@ safetensors, download from verified organizations, do not enable
 surgical edits, trigger behaviors). No scanner or benchmark detects
 them; provenance and reviewing model output are the defenses.</li>
 <li>The agent tooling is itself an attack surface. Keep it updated, and
-never point an agent at production or irreplaceable data.</li>
+never point an agent at raw data, shared lab storage, or anything else
+irreplaceable.</li>
 <li>Vet the provider’s data policy: training default, retention,
 jurisdiction, and whether an institutional agreement applies.</li>
 <li>Provider defaults differ by plan tier. Consumer Claude and Copilot
@@ -459,7 +462,8 @@ attacker; all required a missing check.</li>
 <li>The plan is the analysis design, and it is yours: research question,
 data, baseline, outputs, and what would show the approach is wrong. The
 agent assists and critiques; ideas it proposes are adopted only when you
-can defend the reasoning.</li>
+can defend the reasoning. Record it as a <code>plan.md</code> with
+ordered features and a check for each, committed before any code.</li>
 <li>Plan before code. Planning measurably improves accuracy, and a good
 plan usually reduces token use. Keep planning proportional to the
 task.</li>
@@ -473,9 +477,9 @@ files go) and commit them as a <code>CONTRIBUTING.md</code> that agents
 also read.</li>
 <li>Plan mode is distinct from planning the analysis: the agent
 critiques your plan, proposes the code structure, and raises loose ends
-for you to settle before it implements. The deliverable is a
-<code>plan.md</code> with ordered features and a check for each,
-committed before any code.</li>
+for you to settle before it implements. Its output is an implementation
+plan you approve, edit, or reject, and it should not change the analysis
+design.</li>
 <li>Start from a minimum viable pipeline: a slice of data, one model,
 something you understand end to end.</li>
 <li>Question AI design suggestions before adopting them, most carefully
@@ -530,7 +534,8 @@ can be 0.58 on unseen subjects.</li>
 assumptions, propose tests and edge cases, add them, and run them. Then
 commit.</li>
 <li>Make verification automatic: tests in CI and a protected
-<code>main</code>. Autonomy is purchased with verification.</li>
+<code>main</code>. Autonomy is purchased with verification, and you
+decide how much to grant.</li>
 <li>Choose a review posture deliberately: the pull request as the gate
 (the agent commits freely; one full review of the diff) when tests and
 CI support it; per-change review when they do not. Incoming pull
@@ -543,9 +548,9 @@ number it cites.</li>
 <hr class="half-width">
 <ul>
 <li>API: you write the calling code. MCP: the agent discovers the tools
-and decides when to call them. Use MCP when the agent should reach a
-system on its own, and a direct API when you are writing the
-pipeline.</li>
+and decides when to call them, within the access you grant. Use MCP when
+you have decided the agent may reach a system itself, and a direct API
+when you are writing the pipeline.</li>
 <li>An MCP server exposes tools, resources, and prompts over a standard
 protocol. Connecting one is comparable to installing a plugin.</li>
 <li>A skill is a procedure: packaged instructions loaded on demand, with

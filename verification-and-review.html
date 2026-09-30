@@ -355,7 +355,7 @@ applies</a></li>
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Verification and Testing: No Escaping Good Data Science</h1>
-        <p>Last updated on 2026-09-28 |
+        <p>Last updated on 2026-09-30 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/verification-and-review.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -393,8 +393,9 @@ data, compare to a source of truth, ask a colleague, reproduce) to
 agent-generated analyses.</li>
 <li>Review an agent’s diff by looking for decisions you did not make,
 and have the agent list its own assumptions.</li>
-<li>After each feature, have the agent propose and add tests, including
-edge cases, and run them before moving on.</li>
+<li>After each feature, have the agent propose tests, including edge
+cases; choose the ones that protect against a wrong result; and run them
+before moving on.</li>
 <li>Define test-driven development and apply it to research code: write
 the data or result test first, then have the agent implement against
 it.</li>
@@ -413,7 +414,7 @@ well, and write the assertion that catches it.</li>
 </div>
 <section><h2 class="section-heading" id="what-the-research-shows-about-checking">What the research shows about checking<a class="anchor" aria-label="anchor" href="#what-the-research-shows-about-checking"></a></h2>
 <hr class="half-width"><p>Checking agent output is the bottleneck, not producing it:</p>
-<ul><li>Agents multiply code written far more than code shipped: 240% more
+<ul><li>Agents multiply code written far more than code released: 240% more
 commits but only 30% more releases across 500,000 GitHub developers (<a href="https://www.nber.org/papers/w35275" class="external-link">Demirer, Musolff &amp; Yang,
 2026</a>). Not all of the additional code is good code, and the gains
 attenuate at the human review step.</li>
@@ -430,10 +431,14 @@ stylistically consistent with its surroundings), so its failures are
 structural rather than obvious. Reviewers have to reconstruct what the
 code was meant to do instead of scanning for errors. In their phrase,
 the code arriving for review was never review-ready.</p>
-<figure><img src="fig/agent-output-vs-review.png" alt="Bar chart of percent change after adopting coding agents. Commits, Demirer et al.: plus 240 percent. Releases shipped, Demirer et al.: plus 30 percent. Task throughput, Faros AI: plus 33.7 percent. PR wait for review, Faros AI, in red: plus 441.5 percent." class="figure mx-auto d-block"><div class="figcaption">Adopting coding agents multiplies output far
-more than it multiplies shipped work, and the wait for human review
+<figure><img src="fig/agent-output-vs-review.png" alt="Bar chart of percent change after adopting coding agents. Commits, Demirer et al.: plus 240 percent. Releases, Demirer et al.: plus 30 percent. Task throughput, Faros AI: plus 33.7 percent. PR wait for review, Faros AI, in red: plus 441.5 percent." class="figure mx-auto d-block"><div class="figcaption">Adopting coding agents multiplies output far
+more than it multiplies released work, and the wait for human review
 grows most of all.</div>
-</figure><p>The skill this episode teaches is the one in short supply.</p>
+</figure><p>These figures come from software companies, but the same imbalance
+applies to research code: an agent can produce a week of analysis code
+in an afternoon, and someone still has to check every result before it
+goes in a paper. The skill this episode teaches is the one in short
+supply.</p>
 </section><section><h2 class="section-heading" id="the-pull-request-as-the-final-human-check">The pull request as the final human check<a class="anchor" aria-label="anchor" href="#the-pull-request-as-the-final-human-check"></a></h2>
 <hr class="half-width"><p>Every feature comes back as a pull request on a branch. That is the
 git arrangement from the safety episode, and it is where verification
@@ -446,10 +451,10 @@ wrong. The review therefore needs support: tests that run on every push
 and checks that fail loudly. That support is the subject of the rest of
 this episode.</p>
 </section><section><h2 class="section-heading" id="where-the-review-happens-two-postures">Where the review happens: two postures<a class="anchor" aria-label="anchor" href="#where-the-review-happens-two-postures"></a></h2>
-<hr class="half-width"><p>Agents work on branches, never on <code>main</code>, and someone
-(you, a colleague, or CI) reads the code before it is merged. Within
-those rules, two workable postures differ on when the human review
-happens.</p>
+<hr class="half-width"><p>Agents work on branches, never on <code>main</code>, and a person
+(you or a colleague) reads the code before it is merged, with CI running
+the tests on every push. Within those rules, two workable postures
+differ on when the human review happens.</p>
 <p><strong>The pull request is the review gate.</strong> The agent
 commits freely and often to its feature branch as it works. The commit
 log becomes verbose; that is acceptable, because frequent small commits
@@ -563,7 +568,8 @@ automated GitHub Action that will run on each push.</li>
 propose more than you would; keep the ones that protect against a wrong
 result.</p></li>
 <li><p><strong>Have it add them and run <code>pytest</code>.</strong>
-Fix what fails, then commit.</p></li>
+For each failure, decide whether the code or the test is wrong before
+anything is changed, then commit.</p></li>
 <li><p><strong>Make it automatic.</strong> A GitHub Actions workflow can
 run <code>pytest</code> on every push (<a href="https://docs.github.com/en/actions/use-cases-and-examples/building-and-testing/building-and-testing-python" class="external-link">GitHub
 Actions for Python</a>); the prompt’s third step asks the agent to write
@@ -584,13 +590,15 @@ protected branches</a>).</p></li>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
 <p>Plan mode for step 1 (<kbd>Shift</kbd>+<kbd>Tab</kbd> locally; on the
 web, the “do not edit” line has the same effect). For steps 3 and 4
 switch to normal mode. Claude will run <code>pytest</code> itself
-(approve the command) and iterate until it passes.</p>
+(approve the command). When a test fails, read the failure and decide
+whether the code or the test is wrong before letting it change
+either.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
 <p><strong>Ask</strong> mode with <code>@workspace</code> for step 1;
 <strong>Agent</strong> mode for steps 3 and 4. Copilot proposes the
 <code>pytest</code> run in the terminal and waits for approval. The
@@ -639,8 +647,10 @@ the code is judged against it rather than the other way round.</p>
 <p>With an agent, this order has a second benefit. A test the agent must
 make pass is an executable feedback loop: the agent runs it, reads the
 failure, and revises, without you as the only check. The prompt becomes
-“make <code>pytest tests/test_feature2.py</code> pass” instead of a
-paragraph of prose, and the acceptance criterion cannot drift.</p>
+“make <code>pytest tests/test_feature2.py</code> pass without modifying
+the test file” instead of a paragraph of prose. Check the diff for
+changes to the test anyway: an agent pressed to pass will sometimes
+weaken the test instead of fixing the code.</p>
 <p>The alternative for the next feature, then, is: before prompting,
 write one test that encodes what “correct” means for this step, commit
 it, and ask the agent to implement against it. You decide what must be
@@ -670,8 +680,9 @@ the pipeline, not about the phenomenon.</li>
 rerun on a fresh split. If it does not hold, something you are not
 controlling is driving it.</li>
 <li>
-<strong>Plot the results and review them.</strong> Agents can
-sometimes help, but expert eyes are often needed.</li>
+<strong>Plot the results and review them yourself.</strong> An agent
+can describe a figure, but judging whether it makes scientific sense is
+your job.</li>
 </ul><p>None of this has changed. What has changed is speed: a plausible,
 clean-running, well-scoring analysis can now be produced in minutes,
 which means you can be misled in minutes as well. The checking has to
@@ -709,10 +720,14 @@ chance, something leaks.</em>
 </li>
 </ul></section><section><h2 class="section-heading" id="agents-as-data-scientists">Agents as data scientists<a class="anchor" aria-label="anchor" href="#agents-as-data-scientists"></a></h2>
 <hr class="half-width"><p>Verification is not only about finding bugs. The agent is also a fast
-second reader of your results, if it is given something to read.</p>
+second reader of your results, if it is given something to read. It is a
+second reader, not the analyst: what the results mean and what to do
+next remain your call.</p>
 <ul><li>
 <strong>Ask it to reason over results, not only to write
-code.</strong> What stands out, what disagrees, what to try next.</li>
+code.</strong> What stands out, what disagrees, and what could explain
+it. Take its suggestion for what to try next as a proposal to
+scrutinize, not a decision.</li>
 <li>
 <strong>Leave evidence in the repository.</strong> Metrics files,
 metadata, figures, run logs, a <code>results.md</code>. What is not
@@ -819,9 +834,9 @@ inexpensive to write: ask for them with every feature, ask for
 data-validation tests on the actual dataset (expected columns, value
 ranges, unique identifiers, row counts across merges), and ask the agent
 what inputs would break its own function.</p>
-<p>The more trustworthy the checks, the more autonomy can safely be
-granted. Scale the checking to the stakes, and choose the tier
-explicitly before starting:</p>
+<p>The more trustworthy the checks, the more autonomy you can choose to
+grant. Scale the checking to the stakes, and choose the tier explicitly
+before starting:</p>
 <table class="table"><colgroup><col width="16%"><col width="24%"><col width="59%"></colgroup><thead><tr><th>Tier</th>
 <th>Example</th>
 <th>Minimum verification</th>
@@ -865,7 +880,8 @@ can be 0.58 on unseen subjects.</li>
 assumptions, propose tests and edge cases, add them, and run them. Then
 commit.</li>
 <li>Make verification automatic: tests in CI and a protected
-<code>main</code>. Autonomy is purchased with verification.</li>
+<code>main</code>. Autonomy is purchased with verification, and you
+decide how much to grant.</li>
 <li>Choose a review posture deliberately: the pull request as the gate
 (the agent commits freely; one full review of the diff) when tests and
 CI support it; per-change review when they do not. Incoming pull
@@ -941,7 +957,7 @@ any links that you are not going to use.
   "url": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/verification-and-review.html",
   "identifier": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/verification-and-review.html",
   "dateCreated": "2026-08-10",
-  "dateModified": "2026-09-28",
+  "dateModified": "2026-09-30",
   "datePublished": "2026-09-30"
 }
 

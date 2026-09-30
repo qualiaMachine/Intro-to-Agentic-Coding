@@ -574,27 +574,30 @@ edit.</p>
 <div class="callout-content">
 <p>Every member of the team is about to use a coding agent on the same
 repository, which will produce more branches, more commits, and larger
-diffs than a typical project. Decide the rules before the first feature,
-and have the agent draft them.</p>
+diffs than a typical project. Decide the rules that matter before the
+first feature: who reviews, what the agent may never touch, and where
+data, code, and results live. Then have the agent draft the document
+from those decisions.</p>
 <ol style="list-style-type: decimal"><li><p><strong>Decide between branches and forks.</strong> One shared
 repository with branches is the usual choice for a team that trusts each
 other: every teammate’s work is a <code>git fetch</code> away, so an
-agent can read another branch, compare against it, and merge without
-anyone adding remotes.</p></li>
+agent can read another branch and compare against it without anyone
+adding remotes. Merging stays with a person.</p></li>
 <li>
 <p><strong>Ask the agent</strong>, giving it your team size and what
 you are building:</p>
 <blockquote>
-<p>Our team of &lt;n&gt; is working in one GitHub repo on
-&lt;challenge&gt;. Every one of us is using a coding agent, so we will
-be generating more branches, more commits and bigger diffs than a normal
-project.</p>
-<p>Propose contributing conventions that keep <code>main</code> clean
-and reviewable. Cover branch naming, how small a pull request should be,
-who reviews, what an agent may touch without asking, how we avoid two
-agents editing the same file, and what goes in commit messages. Also
-suggest how to organize the repo structure so any new files go in the
-correct spot.</p>
+<p>Our research group of &lt;n&gt; is working in one GitHub repo on
+&lt;project, for example the analysis for a paper&gt;. Every one of us
+is using a coding agent, so we will be generating more branches, more
+commits and bigger diffs than a normal project.</p>
+<p>We have decided: &lt;who reviews each pull request; paths the agent
+may not modify; where raw data, processed data, code, and results
+live&gt;. Turn these into contributing conventions that keep
+<code>main</code> clean and reviewable. Fill in the routine parts
+(branch naming, how small a pull request should be, commit-message
+format, how we avoid two agents editing the same file, where new files
+go) and mark each rule you added so we can accept or remove it.</p>
 <p>Write <code>CONTRIBUTING.md</code>. Commit it to a development branch
 named for me, not to <code>main</code>, and open a pull request for it.
 Short enough that people read it.</p>
@@ -608,8 +611,8 @@ will follow and remove the rest.</p></li>
 merge. This is the first use of the rules you have just written. Most
 agents open a pull request by default; note that when it
 happens.</p></li>
-<li><p>Share the link with whoever advises the team, so they can see
-what was agreed.</p></li>
+<li><p>Share the link with your PI or project lead, so they can see what
+was agreed.</p></li>
 </ol><p>If you are working alone, write the same thing for yourself in three
 to five lines (a branch convention, a pull-request size, what the agent
 may never modify) and put it in your context file.</p>
@@ -633,10 +636,12 @@ every change (the verification episode compares the two); a list of
 paths the agent may not modify without asking (<code>data/raw/</code>,
 the scoring function, <code>main</code>); a rule for avoiding collisions
 (one feature per branch, claimed in the plan); and a commit-message
-format. Agents draft a reasonable first version because conventions are
-the average case. Your contribution is removing what the team will not
-do. The rules are advisory for the agent; back the important ones with
-branch protection.</p>
+format. Agents draft the routine parts well because conventions are the
+average case. The decisions that matter (who reviews, what the agent may
+not touch, where results live) are the group’s; your contribution is
+making those and removing what the group will not do. The rules are
+advisory for the agent; back the important ones with branch
+protection.</p>
 </div>
 </div>
 </div>
@@ -679,19 +684,21 @@ and plan an MVP for it.</p></li>
 your project’s goal (the challenge page, the paper’s research question,
 or the grant aim):</p>
 <blockquote>
-<p>Review our Minimum Viable Pipeline (MVP) plan against the challenge
-page. The MVP should be something we can get running quickly and
-understand end-to-end. It is the baseline we A/B new components against,
-before we invest in solutions that take time to build.</p>
+<p>Review our Minimum Viable Pipeline (MVP) plan against our project
+goal. The MVP should be something we can get running quickly and
+understand end-to-end. It is the baseline we compare new components
+against, before we invest in solutions that take time to build.</p>
 <p><strong>MVP plan</strong> &lt;paste from your shared doc&gt;</p>
-<p><strong>Challenge page</strong> &lt;paste challenge text, scoring,
-data description&gt;</p>
-<p><strong>Compute available</strong> &lt;laptops; hosted models and how
-they’re accessed; cloud credits and when&gt;</p>
-<p>Is this a good MVP? Say why or why not. If it is good, propose a
+<p><strong>Project goal</strong> &lt;paste the research question or
+grant aim, the evaluation metric, and the data description&gt;</p>
+<p><strong>Compute available</strong> &lt;laptops; cluster allocation;
+hosted models and how they’re accessed; cloud credits and when&gt;</p>
+<p>Is this a good MVP? Say why or why not, and list any step that is
+missing, unclear, or assumes something the data description does not
+support. Do not propose a replacement design; if something should
+change, say what and why, and we will decide. Then write our MVP up as a
 <code>plan.md</code> with each step in order and how we will know each
-one works. If it is not, propose a better starting point and do the same
-for that. Do not write any code yet.</p>
+one works. Do not write any code yet.</p>
 </blockquote>
 </li>
 <li><p><strong>Question the plan until you would sign it.</strong>
@@ -719,12 +726,13 @@ together.</p></li>
 <p>Three features, each one thing you can check. For example: (1) load
 and validate the data slice, with row count and class balance printed;
 (2) train one baseline, with a score on a held-out split; (3) write the
-scoring function, matching the challenge metric on a hand-computed
-example. If the agent’s plan contains a feature for which you cannot
-describe a check, it is not yet a feature; split it or remove it. Note
-also what the agent could not know: which data is trustworthy, what
-compute you have, what the kickoff decided. You supplied that context;
-without it the plan would have been for a different project.</p>
+scoring function, matching the metric your field or paper uses on a
+hand-computed example. If <code>plan.md</code> contains a feature for
+which you cannot describe a check, it is not yet a feature; split it or
+remove it. Note also what the agent could not know: which data is
+trustworthy, what compute you have, what your group has already decided.
+You supplied that context; without it the plan would have been for a
+different project.</p>
 </div>
 </div>
 </div>
@@ -793,7 +801,8 @@ rules with permissions, hooks, or branch protection.</p>
 <ul><li>The plan is the analysis design, and it is yours: research question,
 data, baseline, outputs, and what would show the approach is wrong. The
 agent assists and critiques; ideas it proposes are adopted only when you
-can defend the reasoning.</li>
+can defend the reasoning. Record it as a <code>plan.md</code> with
+ordered features and a check for each, committed before any code.</li>
 <li>Plan before code. Planning measurably improves accuracy, and a good
 plan usually reduces token use. Keep planning proportional to the
 task.</li>
@@ -807,9 +816,9 @@ files go) and commit them as a <code>CONTRIBUTING.md</code> that agents
 also read.</li>
 <li>Plan mode is distinct from planning the analysis: the agent
 critiques your plan, proposes the code structure, and raises loose ends
-for you to settle before it implements. The deliverable is a
-<code>plan.md</code> with ordered features and a check for each,
-committed before any code.</li>
+for you to settle before it implements. Its output is an implementation
+plan you approve, edit, or reject, and it should not change the analysis
+design.</li>
 <li>Start from a minimum viable pipeline: a slice of data, one model,
 something you understand end to end.</li>
 <li>Question AI design suggestions before adopting them, most carefully

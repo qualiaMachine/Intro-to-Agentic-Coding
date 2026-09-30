@@ -431,7 +431,9 @@ moment at which a person might have noticed an unfamiliar name.</li>
 <strong>Do not auto-approve package installation.</strong> Keep
 installs on the list of actions that require approval, or add “do not
 add new dependencies without asking” to the project context file,
-remembering that context files are advisory.</li>
+remembering that context files are advisory. Choosing a dependency is a
+design decision you own: the agent can list candidates and their
+trade-offs, and you choose.</li>
 <li>
 <strong>Before installing anything an agent suggests, verify that it
 exists and is official.</strong> Check the registry page, the linked
@@ -521,10 +523,11 @@ embed the backdoor in a model’s computational graph (for example ONNX),
 again with no code execution.</li>
 </ul><p>This matters for agentic coding in particular because a backdoored
 code model does not need to attack your machine; it needs only to write
-subtly vulnerable code that you trust, run, and ship. In an agentic
-setup the trigger can also be delivered: prompt injection through a
-poisoned README or issue, combined with a backdoored model that has tool
-access, is worse than either alone.</p>
+subtly wrong or vulnerable code that you trust, run on your data, and
+publish results from. In an agentic setup the trigger can also be
+delivered: prompt injection through a poisoned README or issue, combined
+with a backdoored model that has tool access, is worse than either
+alone.</p>
 <p>Detecting behavioral backdoors is an open research problem. No
 scanner finds them and benchmarks do not reveal them. The defenses are
 therefore the routine ones: provenance from heavily scrutinized official
@@ -553,9 +556,9 @@ during a “vibe-coding” experiment despite explicit instructions to
 freeze changes, then produced misleading output about what it had done
 (<a href="https://fortune.com/2025/07/23/ai-coding-tool-replit-wiped-database-called-it-a-catastrophic-failure/" class="external-link">Fortune</a>).</li>
 </ul><p>Keep agent tooling updated, install extensions only from official
-marketplaces, and never point an agent at production systems or
-irreplaceable data. Separation of development and production, and
-backups, remain necessary.</p>
+marketplaces, and never point an agent at raw data, shared lab storage,
+or anything else irreplaceable. Work on copies, keep raw data read-only,
+and keep backups.</p>
 </section><section><h2 class="section-heading" id="vet-the-provider-as-you-would-vet-a-data-source">Vet the provider as you would vet a data source<a class="anchor" aria-label="anchor" href="#vet-the-provider-as-you-would-vet-a-data-source"></a></h2>
 <hr class="half-width"><p>Whichever provider you choose (Anthropic, GitHub/Microsoft, Google, a
 startup, a model router), you are sending your code and prompts to them.
@@ -583,7 +586,9 @@ pasted proprietary source code into ChatGPT while debugging; the company
 responded by <a href="https://www.bloomberg.com/news/articles/2023-05-02/samsung-bans-chatgpt-and-other-generative-ai-use-by-staff-after-leak" class="external-link">banning
 generative AI tools internally</a>. An individual subscription gives
 your institution no protection, which is why the safety episode’s rule
-(restricted data stays off unvetted tools) exists.</li>
+(restricted data stays off unvetted tools) exists. The research
+equivalent is pasting unpublished data, or a manuscript or proposal you
+were asked to review, into a personal account.</li>
 </ol><div class="section level3">
 <h3 id="claude-and-copilot-defaults-as-of-september-2026">Claude and Copilot defaults (as of September 2026)<a class="anchor" aria-label="anchor" href="#claude-and-copilot-defaults-as-of-september-2026"></a></h3>
 <p>The two tools this lesson uses most illustrate how much the answers
@@ -655,7 +660,7 @@ contract?</li>
   Typical findings
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Most participants find at least one surprise: a training setting they
 had not seen, a retention clause tied to the feedback button, or the
@@ -686,7 +691,8 @@ safetensors, download from verified organizations, do not enable
 surgical edits, trigger behaviors). No scanner or benchmark detects
 them; provenance and reviewing model output are the defenses.</li>
 <li>The agent tooling is itself an attack surface. Keep it updated, and
-never point an agent at production or irreplaceable data.</li>
+never point an agent at raw data, shared lab storage, or anything else
+irreplaceable.</li>
 <li>Vet the provider’s data policy: training default, retention,
 jurisdiction, and whether an institutional agreement applies.</li>
 <li>Provider defaults differ by plan tier. Consumer Claude and Copilot

@@ -348,7 +348,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Cost, Context, and Energy</h1>
-        <p>Last updated on 2026-09-28 |
+        <p>Last updated on 2026-09-30 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/cost-context-energy.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -469,8 +469,10 @@ accumulated conversation, including file contents and command output.
 The fiftieth message in a session costs far more than the first.</li>
 </ul></section><section><h2 class="section-heading" id="reducing-token-use">Reducing token use<a class="anchor" aria-label="anchor" href="#reducing-token-use"></a></h2>
 <hr class="half-width"><ul><li>
-<strong>Watch usage.</strong> Knowing what you are spending is also
-how you detect an agent that is retrying in a loop.</li>
+<strong>Watch usage.</strong> Agent spending usually comes from a
+grant, a shared lab account, or a limited institutional allocation, so
+know what a session costs. Watching usage is also how you detect an
+agent that is retrying in a loop.</li>
 <li>
 <strong>Match the model to the task.</strong> Not every task
 requires the most expensive model. Use a smaller model by default for
@@ -488,8 +490,10 @@ is what you pay for.</li>
 of a long explanation each time. The <a href="https://github.com/JuliusBrussee/caveman" class="external-link">caveman</a> skill from
 the previous episode reduces output tokens by design.</li>
 <li>
-<strong>Run long or independent tasks in a background agent</strong>
-rather than in a foreground session you are watching.</li>
+<strong>Run long, well-specified tasks in a background
+agent</strong> once they have a test or check that defines done, rather
+than in a foreground session you are watching. Review the result as you
+would any other diff.</li>
 <li>
 <strong>Compare real session cost across models before committing to
 one.</strong> <a href="https://openrouter.ai/rankings#session-cost" class="external-link">OpenRouter’s
@@ -520,8 +524,10 @@ benchmarks.</li>
 <code>/clear</code>: reset context between unrelated tasks. The
 cheapest habit to adopt.</li>
 <li>
-<code>/compact</code>: summarize a long conversation, retaining what
-matters.</li>
+<code>/compact</code>: summarize a long conversation. Say what must
+survive (for example
+<code>/compact keep the agreed plan and open decisions</code>) and check
+the summary.</li>
 <li>
 <kbd>Esc</kbd>: interrupt an agent that is heading in the wrong
 direction.</li>
@@ -692,7 +698,7 @@ any links that you are not going to use.
   "url": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/instructor/cost-context-energy.html",
   "identifier": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/instructor/cost-context-energy.html",
   "dateCreated": "2026-08-10",
-  "dateModified": "2026-09-28",
+  "dateModified": "2026-09-30",
   "datePublished": "2026-09-30"
 }
 
