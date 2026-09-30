@@ -16,7 +16,7 @@ exercises: 25
 ::::::::::::::::::::::::::::::::::::: objectives
 
 - Plan a research software project yourself, using an agent to research options and critique the plan rather than to originate it.
-- Supply the context an agent needs: the research question, the data, the analysis you would do by hand, existing code, and standards.
+- Supply the context an agent needs: the analysis design, existing code, and the group's standards.
 - Use plan mode to refine a request until the structure the agent proposes matches the result you intend.
 - Agree collaboration conventions and commit them as a `CONTRIBUTING.md`; produce a `plan.md` with ordered features and a check for each before implementing anything.
 - Question AI design suggestions, and do not build on ideas you cannot defend.
@@ -30,45 +30,34 @@ design. That design is yours: you will defend it in lab meetings, in peer review
 in the methods section. Before an agent writes any code, you should be able to state:
 
 - **The research question**, and the claim a result would support.
-- **The data**: what you already know about its provenance, quality, and quirks.
+- **The data**: provenance, units, sampling, known artifacts, missingness, and which
+  subsets are trustworthy. Nobody but you and your collaborators knows this.
 - **The methods**: the preprocessing, the model or statistical approach, and the
   validation design (splits, controls, cross-validation), as you would write them in
   a methods section.
 - **The baseline or comparison** that makes a result meaningful.
 - **The outputs**: the figures, tables, or numbers that will go in the paper.
+- **The constraints**: the evaluation metric, the compute available (a laptop, a
+  cluster allocation, cloud credits), and any deadline.
 - **What would show the approach is wrong.**
 
-The agent's role here is research assistant and critic, not author:
-
-- **Research assistant.** Summarize the options for a step; find the library that
-  implements a method; keep the plan file current as work proceeds.
-- **Critic.** Point out a gap in the plan; ask the question you had not considered;
-  notice a step that assumes something the data description does not support.
-- **Source of suggestions, taken under scrutiny.** It will propose ideas of its own.
-  Treat each as a suggestion from a fluent but unaccountable colleague: ask why this
-  rather than the obvious alternative, what the failure modes are, and whether it is
-  standard in your field. Adopt it only when you could explain it without the agent.
-  A method you cannot explain cannot go in a methods section.
+The agent's role here is research assistant and critic, not author. It can summarize
+the options for a step, find the library that implements a method, point out a gap in
+the plan, ask the question you had not considered, and keep the plan file current as
+work proceeds. It will also propose ideas of its own; the callout
+[below](#do-not-build-on-ideas-you-cannot-defend) says how to treat them.
 
 Skipping this step and letting the agent write code before you understand the
-problem is the most common failure in agentic work. Keep the plan proportional to the
-task: a three-line plan for a three-line task.
+problem is the most common failure in agentic work. The size of the plan should match
+the size of the task. A small change to one function needs a sentence, not a
+document.
 
 ## Supply context
 
 An agent asked to "make a plan" with no other input produces the average plan for the
-average project, and research projects are rarely the average case. The plan is only
-as good as the context it is built from. Context worth providing, in rough order of
-how often it is missing:
+average project, and research projects are rarely the average case. Give it the
+design above, and whatever else already exists:
 
-- **The research question and the constraints**: what a result has to show, the
-  scoring rule or evaluation metric, the compute available (a laptop, a cluster
-  allocation, cloud credits), and any deadline.
-- **What you know about the data**: provenance, units, sampling, known artifacts,
-  missingness, and which subsets are trustworthy. Nobody but you and your
-  collaborators knows this.
-- **The analysis you would have done by hand**: the splits, the controls, the
-  baseline, and the statistics your field expects.
 - **The previous `plan.md`**, or its discoveries and blockers.
 - **Skeleton code**: a stub of the function or module you want, so the shape is yours.
 - **A GitHub issue** describing the feature in your words.
@@ -101,17 +90,13 @@ edit a file or run a command. Claude Code toggles it with <kbd>Shift</kbd>+<kbd>
 Copilot calls it **Ask** or **Plan** in the chat panel's mode selector. The tabs below
 give the details.
 
-Its use is this. Once the analysis design is settled, you still have to turn it into
-a request the agent can carry out, and the first version of that request is never
-precise enough. In plan mode you describe what you want, the agent describes how it
-would build it, and you correct the description until the structure it proposes
-matches the result you intend. Only then do you switch plan mode off and let it
-write code.
-
-This is a different activity from the planning above, although the tools use the
-same word. The analysis design is yours and is settled before plan mode starts. Plan
-mode is about the prompt: making sure what you are asking for is specific enough that
-the code the agent writes is the code you meant.
+Its use is different from the planning above, although the tools use the same word.
+The analysis design is settled before plan mode starts. What remains is turning it
+into a request the agent can carry out, and the first version of that request is
+never precise enough. In plan mode you describe what you want, the agent describes
+how it would build it, and you correct the description until the structure it
+proposes matches the result you intend. Only then do you switch plan mode off and let
+it write code.
 
 The refinement is worth the extra turns. Structured planning before implementation
 improved coding success by up to 26.7%, reducing failed generations and repeated
@@ -349,9 +334,8 @@ safety-critical rules with permissions, hooks, or branch protection.
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 
-- The plan is the analysis design, and it is yours: research question, data, baseline, outputs, and what would show the approach is wrong. The agent assists and critiques; ideas it proposes are adopted only when you can defend the reasoning. Record it as a `plan.md` with ordered features and a check for each, committed before any code.
-- Plan before code. Planning measurably improves accuracy, and a good plan usually reduces token use. Keep planning proportional to the task.
-- A plan is only as good as its context. Provide the research question, what you know about the data, the analysis you would do by hand, compute, existing code, and standards; for long work, keep the plan in a file the agent updates.
+- The plan is the analysis design, and it is yours: research question, data, methods, baseline, outputs, constraints, and what would show the approach is wrong. The agent assists and critiques. Record the plan as a `plan.md` with ordered features and a check for each, committed before any code.
+- Give the agent that design plus what already exists: the previous plan, skeleton code, issues, out-of-scope notes, and rules files. For long work, keep the plan in a file the agent updates.
 - Agree team conventions first (branches rather than forks, pull-request size, who reviews, what the agent may not modify, where new files go) and commit them as a `CONTRIBUTING.md` that agents also read.
 - Plan mode is distinct from planning the analysis. It is where you refine the request: the agent critiques it, proposes the structure of the intended result, and raises loose ends for you to settle, and you approve the outline before any code is written.
 - Start from a minimum viable pipeline: a slice of data, one model, something you understand end to end.

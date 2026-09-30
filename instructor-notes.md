@@ -103,9 +103,9 @@ the participant, cut it down to rules people will follow, merge it through a
 teammate-reviewed pull request (the first use of the rules just written), and post
 the link where advisors can see it. Agents open a pull request by default; point that
 out when it happens.
-Then MVP: acknowledge levels of planning — it's iterative, and a three-line plan is
-fine for a three-line task. Have the team MVP plans open (the shared doc from kickoff
-if you have one) and frame the MVP as the baseline you A/B new components against.
+Then MVP: acknowledge levels of planning. It is iterative, and a small task needs
+only a short plan. Have the team MVP plans open (the shared doc from kickoff if you
+have one) and frame the MVP as the baseline you compare new components against.
 The deliverable is a committed `plan.md` — no code until the plan is in; teams that
 finish early interrogate their pre-modeling steps into `prep.md`. Note the planning
 studies measured accuracy, not tokens; the token argument is a mechanism, not a
