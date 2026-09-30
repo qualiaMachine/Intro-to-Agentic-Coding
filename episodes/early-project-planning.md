@@ -31,6 +31,9 @@ in the methods section. Before an agent writes any code, you should be able to s
 
 - **The research question**, and the claim a result would support.
 - **The data**: what you already know about its provenance, quality, and quirks.
+- **The methods**: the preprocessing, the model or statistical approach, and the
+  validation design (splits, controls, cross-validation), as you would write them in
+  a methods section.
 - **The baseline or comparison** that makes a result meaningful.
 - **The outputs**: the figures, tables, or numbers that will go in the paper.
 - **What would show the approach is wrong.**
