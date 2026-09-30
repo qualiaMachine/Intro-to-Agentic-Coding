@@ -160,8 +160,8 @@ step that follows every feature, before the next one begins.
    > 2. Propose tests for this feature to ensure robustness as we develop the full
    >    pipeline, including edge cases: empty input, wrong shape, duplicates, a
    >    sample that lands in both splits, etc. Say which tests matter most and why.
-   > 3. Do not edit anything yet. After I review, implement the tests as an
-   >    automated GitHub Action that will run on each push.
+   > 3. After I review, implement the tests as an automated GitHub Action that
+   >    will run on each push.
    >
    > Do not edit anything yet.
 

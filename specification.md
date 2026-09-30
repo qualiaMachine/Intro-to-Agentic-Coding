@@ -25,8 +25,8 @@ exercises: 20
 
 ## The agent is not a magic wand
 
-Some frustration with agents comes from using them as one: describe the whole
-project, wait, and receive something plausible and wrong. This style of use is
+Some frustration with agents comes from using them as one: ask for the whole project
+in one prompt, wait, and receive something plausible and wrong. This style of use is
 sometimes called vibe coding. The remedy is a person in the loop who knows the
 domain. You decide what to build next; the agent builds that one thing; you check it
 before the next. Your expertise is what makes the arrangement work, not the prompt
