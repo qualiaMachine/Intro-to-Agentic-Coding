@@ -26,33 +26,23 @@ exercises: 25
 
 ## Start with a plan
 
-The most common failure in agentic work is letting the agent write code before either
-party understands the problem. The research on planning is consistent:
+The most common failure in agentic work is letting the agent write code before you
+understand the problem. The plan is yours to write. The agent can help you research
+options, check the plan for gaps, and keep it up to date, but the decisions in it
+(what to build, in what order, and what counts as done) are decisions you should be
+able to defend without the agent. That is what staying in the driver's seat means at
+this stage.
 
-- Structured planning before implementation improved coding success by up to 26.7%,
-  reducing failed generations and repeated implementation attempts
-  ([Jiang et al., 2023](https://arxiv.org/abs/2303.06689)).
-- Removing the blueprint-planning agent from a structured coding pipeline reduced
-  accuracy by 14.8 percentage points
-  ([Mao et al., 2025](https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2025.1660912/full)).
-- Runs on the same coding task varied by up to 30× in total token usage, and higher
-  token consumption did not produce greater accuracy
-  ([Bai et al., 2026](https://arxiv.org/abs/2604.22750)).
-
-These studies measured accuracy rather than token use, but the mechanism is
-straightforward. Without a plan, the agent makes exploratory and redundant tool calls,
-which usually means more tokens for lower accuracy. With a good plan, it makes fewer
-wasted turns and less rework, which usually means fewer tokens and higher accuracy.
-With a bad plan, it anchors on incorrect assumptions, which produces both lower
-accuracy and higher token use.
-
-Without a plan, an agent tends to make unnecessary repository searches, re-read the
-same files, modify the wrong layer, expand beyond the requested scope, make
-contradictory edits, loop on debugging, and report completion prematurely. With a
-plan, it searches purposefully, reads only the relevant files, understands constraints
-before implementing, detects missing information early, sequences dependent changes
-correctly, tracks what is done, verifies the acceptance criteria, and stops when the
-task is complete.
+Planning also changes how the agent works. Structured planning before implementation
+improved coding success by up to 26.7%, reducing failed generations and repeated
+implementation attempts ([Jiang et al., 2023](https://arxiv.org/abs/2303.06689)).
+The mechanism is straightforward. Without a plan, an agent makes exploratory and
+redundant tool calls: unnecessary repository searches, re-reading the same files,
+modifying the wrong layer, expanding beyond the requested scope, looping on debugging,
+and reporting completion prematurely. With a plan, it reads only the relevant files,
+understands constraints before implementing, sequences dependent changes correctly,
+checks the acceptance criteria, and stops when the task is complete. With a bad plan,
+it anchors on incorrect assumptions, which costs both accuracy and tokens.
 
 A plan gives the agent direction. It gives you a review point before implementation.
 It gives both parties a shared definition of done. Planning should be proportional to
