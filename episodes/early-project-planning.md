@@ -18,7 +18,7 @@ exercises: 25
 - Plan a research software project yourself, from the research question down, using an agent to research options and critique the plan rather than to originate it.
 - Explain how a plan changes what an agent does with its context and tokens.
 - Supply the context an agent needs to plan: goal, constraints, existing code, standards, prior decisions.
-- Use an agent in a read-only or plan mode to review and improve a plan before any code exists.
+- Use plan mode to have the agent critique the plan, propose the structure of the code it will write, and surface open questions before any code exists.
 - Agree team collaboration conventions with an agent's help and commit them as a `CONTRIBUTING.md` that people and agents both read.
 - Produce a `plan.md` with ordered features and a check for each, and commit it before implementing anything.
 - Evaluate AI design suggestions critically: question what you do not understand, and do not build on ideas you cannot defend.
@@ -109,11 +109,33 @@ describes the pattern. A persistent plan file typically contains:
 Planning is iterative. The first plan is a draft to be questioned; the deliverable is
 a plan you would sign.
 
-## Plan mode: read without writing
+## Plan mode: the agent plans the implementation
 
-Most tools have a read-only mode for this stage, in which the agent reads files and
-answers questions without making changes. It is the safest first contact with a
-repository and the appropriate mode for reviewing a plan.
+Plan mode is a different activity from the planning above, and the two are easy to
+confuse because the tools use the same word. The analysis design is yours. Plan mode
+is where the agent, given that design, works out how it will build the code: which
+files it will create or change, in what order, what it needs to know before it starts,
+and where it is uncertain. Most tools provide it as a read-only mode in which the
+agent reads the repository and answers questions without editing or running anything,
+which also makes it the safest first contact with an unfamiliar codebase.
+
+Used well, plan mode does three things before any code exists:
+
+- **Feedback on your plan.** The agent reads `plan.md` and the repository together and
+  reports what does not line up: a feature with no check, a step that assumes data in
+  a format the repository does not contain, a dependency that is not installed.
+- **A structure for the code it will write.** It proposes the modules, functions, and
+  tests it intends to produce, so you can correct the shape (where the scoring
+  function lives, what the data loader returns) while it is still cheap to change.
+- **Loose ends surfaced first.** Anything it would otherwise have guessed at during
+  implementation becomes a question now: which column is the label, which split is
+  held out, what to do with missing values. Answer these before approving the plan,
+  because an agent that guesses mid-implementation guesses the average case.
+
+The output of plan mode is an implementation plan you approve, edit, or reject. It is
+not the analysis design, and it should not change the analysis design without you
+noticing. If the agent's implementation plan quietly substitutes a different model,
+metric, or split, that is a plan to reject.
 
 :::::::::::::::: group-tab
 
@@ -314,7 +336,7 @@ safety-critical rules with permissions, hooks, or branch protection.
 - Plan before code. Planning measurably improves accuracy, and a good plan usually reduces token use. Keep planning proportional to the task.
 - A plan is only as good as its context. Provide the research question, what you know about the data, the analysis you would do by hand, compute, existing code, and standards; for long work, keep the plan in a file the agent updates.
 - Agree team conventions first (branches rather than forks, pull-request size, who reviews, what the agent may not modify, where new files go) and commit them as a `CONTRIBUTING.md` that agents also read.
-- Use plan mode (read-only) to review a plan. The deliverable is a `plan.md` with ordered features and a check for each, committed before any code.
+- Plan mode is distinct from planning the analysis: the agent critiques your plan, proposes the code structure, and raises loose ends for you to settle before it implements. The deliverable is a `plan.md` with ordered features and a check for each, committed before any code.
 - Start from a minimum viable pipeline: a slice of data, one model, something you understand end to end.
 - Question AI design suggestions before adopting them, most carefully where your domain knowledge is weakest. If you cannot explain it, you do not yet own it.
 - Write the project context file (`CLAUDE.md`, `AGENTS.md`, `copilot-instructions.md`) at the start of the project. Keep it short, operational, and backed by permissions where it matters.
