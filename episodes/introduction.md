@@ -23,8 +23,9 @@ exercises: 0
 
 ## Definition
 
-**Agentic coding** is a software-development approach in which AI agents plan, write,
-test, debug, and revise code with limited human intervention.
+**Agentic coding** is a software-development approach in which AI agents write, test,
+debug, and revise code with limited step-by-step intervention, while a person sets the
+plan and reviews the result.
 
 ::::::::::::::::::::::::::::::::::::: callout
 
@@ -51,12 +52,13 @@ and running everything by hand. An agent can instead:
 - Run terminal commands.
 - Execute tests and inspect the failures directly.
 - Search documentation.
-- Develop and follow a plan.
+- Draft an implementation plan for you to revise and approve, then follow it.
 - Iterate on its own work until the task is complete or it is blocked.
 
-Typical requests include fixing a bug, adding a feature, refactoring existing code,
-writing and running tests, reviewing a pull request, investigating a failing job, and
-building a small application from a specification. The same capabilities give the
+Typical requests include fixing a bug in an analysis script, adding an option to a
+data pipeline, refactoring a notebook into reusable functions, writing and running
+tests, reviewing a pull request, investigating a failed cluster job, and building a
+small tool from a specification you wrote. The same capabilities give the
 tool access to the user's files, shell, and any credentials left on disk, so an
 unmanaged agent can do real damage. The balance between capability and control is the
 subject of this lesson.
@@ -66,13 +68,14 @@ subject of this lesson.
 The same tool can be used at different levels of autonomy. Three requests, from
 tightly directed to fully delegated:
 
-1. "Write this for loop for me." One function; the user reads every line.
+1. "Make this for loop for me." One function; the user reads every line.
 2. "Implement the method stubs in this file." A bounded task with a clear completion
    criterion; the agent does some planning and the user reviews the diff.
-3. "Build the whole service from scratch; do all the planning yourself." The agent
-   makes many decisions the user never considered, and the user reviews a project.
+3. "Build the whole pipeline from scratch; do all the planning yourself." The agent
+   makes design decisions the user never considered, including ones that affect the
+   results, and the user must review a whole project they did not plan.
 
-![The spectrum of agentic coding, from a single directed edit to a whole delegated project.](fig/spectrum-of-agentic-coding.svg){alt='A horizontal double-headed arrow labelled less autonomy on the left and more autonomy on the right, with three example requests beneath it. Left: "Make this for loop for me." Middle: "Implement the method stubs in this file." Right: "Build the whole service from scratch; do all the planning yourself."'}
+![The spectrum of agentic coding, from a single directed edit to a whole delegated project.](fig/spectrum-of-agentic-coding.svg){alt='A horizontal double-headed arrow labelled less autonomy on the left and more autonomy on the right, with three example requests beneath it. Left: "Make this for loop for me." Middle: "Implement the method stubs in this file." Right: "Build the whole pipeline from scratch; do all the planning yourself."'}
 
 Across the three, **the more autonomy you grant, the more of your judgment must be
 encoded in advance**, in the prompt, in project context files, and in tests, and the
@@ -92,8 +95,8 @@ task:
 - Sensitive work or an unfamiliar codebase: interactive, with guardrails. The
   interruptions are useful.
 - A quick question, brainstorming, or explaining an error: plain chat is sufficient.
-- A well-scoped, clearly described task in a repository with good tests: delegation
-  works, because the specification and the tests carry the intent.
+- A well-scoped task that you have described clearly, in a repository with tests you
+  trust: delegation works, because your specification and your tests carry your intent.
 
 The tasks researchers are most reluctant to delegate are usually the ones whose
 results they would find hard to check, rather than the ones that are hardest to do.
@@ -172,9 +175,9 @@ inference runs: code still goes to the model provider, so the data-policy rules 
 
 :::::::::::::::::::::::::::::::::::: keypoints
 
-- Agentic coding: AI agents plan, write, test, debug, and revise code with limited human intervention. An agent acts; a chatbot advises.
+- Agentic coding: AI agents write, test, debug, and revise code with limited step-by-step intervention, while a person sets the plan and reviews the result. An agent acts; a chatbot advises.
 - Agent = LLM + harness + tools + agent loop. The model reasons; the harness supplies files, a terminal, tests, permissions, and memory.
-- Requests range from a single edit to a whole project. More autonomy shifts effort from approving actions to specifying intent in advance and reviewing results afterwards.
+- Requests range from a single edit to a whole project. More autonomy shifts effort from approving actions to specifying intent in advance and reviewing results afterwards. Grant autonomy deliberately, and only as far as you can verify the result.
 - The leading tools are within a point or two of each other. Use what you have access to, and learn the principles.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::

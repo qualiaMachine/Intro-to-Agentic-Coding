@@ -9,8 +9,9 @@ takes about 3.5 to 4 hours; the instructor notes include a 2-hour cut.
 
 ## Core principles
 
-- **Stay in the driver's seat.** The agent writes the code; you review it and decide
-  what is merged to `main`.
+- **Stay in the driver's seat.** You plan the work and make the decisions; the agent
+  writes code, researches options, and critiques your plan. You review what it
+  produces and decide what is merged to `main`.
 - **Work feature by feature, not project by project.** A feature is one thing you can
   check. A whole-project prompt produces whole-project guesses.
 - **Assume nothing; verify everything.** Rely on tests. Good data science practice

@@ -18,7 +18,7 @@ exercises: 15
 
 - Apply established data science verification practices (know your data, compare to a source of truth, ask a colleague, reproduce) to agent-generated analyses.
 - Review an agent's diff by looking for decisions you did not make, and have the agent list its own assumptions.
-- After each feature, have the agent propose and add tests, including edge cases, and run them before moving on.
+- After each feature, have the agent propose tests, including edge cases; choose the ones that protect against a wrong result; and run them before moving on.
 - Define test-driven development and apply it to research code: write the data or result test first, then have the agent implement against it.
 - Make verification automatic: tests in CI and a protected `main`.
 - Use an agent to reason over saved results and figures, and leave evidence in the repository for it to read.
@@ -31,7 +31,7 @@ exercises: 15
 
 Checking agent output is the bottleneck, not producing it:
 
-- Agents multiply code written far more than code shipped: 240% more commits but only
+- Agents multiply code written far more than code released: 240% more commits but only
   30% more releases across 500,000 GitHub developers
   ([Demirer, Musolff & Yang, 2026](https://www.nber.org/papers/w35275)).
   Not all of the additional code is good code, and the gains attenuate at the human
@@ -50,9 +50,12 @@ failures are structural rather than obvious. Reviewers have to reconstruct what 
 code was meant to do instead of scanning for errors. In their phrase, the code
 arriving for review was never review-ready.
 
-![Adopting coding agents multiplies output far more than it multiplies shipped work, and the wait for human review grows most of all.](fig/agent-output-vs-review.png){alt='Bar chart of percent change after adopting coding agents. Commits, Demirer et al.: plus 240 percent. Releases shipped, Demirer et al.: plus 30 percent. Task throughput, Faros AI: plus 33.7 percent. PR wait for review, Faros AI, in red: plus 441.5 percent.'}
+![Adopting coding agents multiplies output far more than it multiplies released work, and the wait for human review grows most of all.](fig/agent-output-vs-review.png){alt='Bar chart of percent change after adopting coding agents. Commits, Demirer et al.: plus 240 percent. Releases, Demirer et al.: plus 30 percent. Task throughput, Faros AI: plus 33.7 percent. PR wait for review, Faros AI, in red: plus 441.5 percent.'}
 
-The skill this episode teaches is the one in short supply.
+These figures come from software companies, but the same imbalance applies to research
+code: an agent can produce a week of analysis code in an afternoon, and someone still
+has to check every result before it goes in a paper. The skill this episode teaches is
+the one in short supply.
 
 ## The pull request as the final human check
 
@@ -68,8 +71,8 @@ the subject of the rest of this episode.
 
 ## Where the review happens: two postures
 
-Agents work on branches, never on `main`, and someone (you, a colleague, or CI)
-reads the code before it is merged. Within those rules, two workable postures differ
+Agents work on branches, never on `main`, and a person (you or a colleague) reads
+the code before it is merged, with CI running the tests on every push. Within those rules, two workable postures differ
 on when the human review happens.
 
 **The pull request is the review gate.** The agent commits freely and often to its
@@ -164,7 +167,8 @@ step that follows every feature, before the next one begins.
 
 2. **Select the tests that matter.** Let the agent propose more than you would;
    keep the ones that protect against a wrong result.
-3. **Have it add them and run `pytest`.** Fix what fails, then commit.
+3. **Have it add them and run `pytest`.** For each failure, decide whether the code
+   or the test is wrong before anything is changed, then commit.
 4. **Make it automatic.** A GitHub Actions workflow can run `pytest` on every push
    ([GitHub Actions for Python](https://docs.github.com/en/actions/use-cases-and-examples/building-and-testing/building-and-testing-python));
    the prompt's third step asks the agent to write it. Protect `main` so that a
@@ -177,7 +181,8 @@ step that follows every feature, before the next one begins.
 
 Plan mode for step 1 (<kbd>Shift</kbd>+<kbd>Tab</kbd> locally; on the web, the "do
 not edit" line has the same effect). For steps 3 and 4 switch to normal mode. Claude
-will run `pytest` itself (approve the command) and iterate until it passes.
+will run `pytest` itself (approve the command). When a test fails, read the failure
+and decide whether the code or the test is wrong before letting it change either.
 
 ### GitHub Copilot
 
@@ -220,7 +225,9 @@ rather than the other way round.
 With an agent, this order has a second benefit. A test the agent must make pass is an
 executable feedback loop: the agent runs it, reads the failure, and revises, without
 you as the only check. The prompt becomes "make `pytest tests/test_feature2.py`
-pass" instead of a paragraph of prose, and the acceptance criterion cannot drift.
+pass without modifying the test file" instead of a paragraph of prose. Check the diff
+for changes to the test anyway: an agent pressed to pass will sometimes weaken the
+test instead of fixing the code.
 
 The alternative for the next feature, then, is: before prompting, write one test that
 encodes what "correct" means for this step, commit it, and ask the agent to
@@ -246,8 +253,8 @@ before AI tools existed:
   scientific sense, that is a finding about the pipeline, not about the phenomenon.
 - **Reproduce the result.** Rerun it, change the seed, rerun on a fresh split. If it
   does not hold, something you are not controlling is driving it.
-- **Plot the results and review them.** Agents can sometimes help, but expert eyes
-  are often needed.
+- **Plot the results and review them yourself.** An agent can describe a figure, but
+  judging whether it makes scientific sense is your job.
 
 None of this has changed. What has changed is speed: a plausible, clean-running,
 well-scoring analysis can now be produced in minutes, which means you can be misled
@@ -277,10 +284,12 @@ research code. Prompts to start from:
 ## Agents as data scientists
 
 Verification is not only about finding bugs. The agent is also a fast second reader
-of your results, if it is given something to read.
+of your results, if it is given something to read. It is a second reader, not the
+analyst: what the results mean and what to do next remain your call.
 
 - **Ask it to reason over results, not only to write code.** What stands out, what
-  disagrees, what to try next.
+  disagrees, and what could explain it. Take its suggestion for what to try next as a
+  proposal to scrutinize, not a decision.
 - **Leave evidence in the repository.** Metrics files, metadata, figures, run logs, a
   `results.md`. What is not written down does not exist for the agent.
 - **It can also read plots.** A saved figure is context.
@@ -364,7 +373,7 @@ with every feature, ask for data-validation tests on the actual dataset (expecte
 columns, value ranges, unique identifiers, row counts across merges), and ask the
 agent what inputs would break its own function.
 
-The more trustworthy the checks, the more autonomy can safely be granted. Scale the
+The more trustworthy the checks, the more autonomy you can choose to grant. Scale the
 checking to the stakes, and choose the tier explicitly before starting:
 
 | Tier | Example | Minimum verification |
@@ -382,7 +391,7 @@ checking to the stakes, and choose the tier explicitly before starting:
 - For research code, the tests to write first are about the data and the result: data expectations, a hand-checked subset, seed stability, sensible top predictors, no leakage. Each can be a test the agent writes and CI runs.
 - Split by the unit that repeats, and assert it. A clean-running 0.91 can be 0.58 on unseen subjects.
 - After every feature, before the next: have the agent list its assumptions, propose tests and edge cases, add them, and run them. Then commit.
-- Make verification automatic: tests in CI and a protected `main`. Autonomy is purchased with verification.
+- Make verification automatic: tests in CI and a protected `main`. Autonomy is purchased with verification, and you decide how much to grant.
 - Choose a review posture deliberately: the pull request as the gate (the agent commits freely; one full review of the diff) when tests and CI support it; per-change review when they do not. Incoming pull requests on a shared project are untrusted input, and the human makes the merge decision.
 - Leave evidence in the repository and direct the agent to it. It reads figures and metrics, but only those you name, and you check every number it cites.
 

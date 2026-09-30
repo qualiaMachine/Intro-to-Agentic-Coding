@@ -35,10 +35,11 @@ With an API, you write the calling code. With MCP, the agent discovers the avail
 tools and decides when to call them. Anthropic [open-sourced MCP](https://www.anthropic.com/news/model-context-protocol) in November 2024; it is
 now supported by Claude, Copilot, and most other agents.
 
-The rule of thumb: use MCP when the agent should reach a system on its own; use a
-direct API when you are writing the pipeline code yourself. MCP matters for agentic
-coding specifically because the agent, not the user, decides when to consult GitHub, a
-database, or a lab notebook.
+The rule of thumb: use MCP when you have decided the agent may reach a system itself,
+with access you have scoped; use a direct API when you are writing the pipeline code
+yourself. MCP matters for agentic coding because, once a server is connected, the
+agent decides when to consult GitHub, a database, or a lab notebook. Which servers to
+connect, and with what access, remains your decision.
 
 ## What an MCP server is
 
@@ -101,8 +102,8 @@ endpoint, click **Start**, and switch Copilot Chat to **Agent** mode:
 
 Then give a natural-language request that requires the tool, without naming it:
 
-> What are the five most recently opened issues on `<org>/<repo>`, and which look
-> stale?
+> What are the five most recently opened issues on `<org>/<repo>`, and which have
+> had no activity in the last 30 days?
 
 Two things to observe: the agent chose the tool without being told which one, and an
 approval prompt appears when it first calls the server. That prompt is the same
@@ -132,14 +133,14 @@ description, or invoked directly with `/skill-name`.
 
 If an MCP server gives the agent a new tool, a skill gives it a procedure: written
 instructions for one job, loaded without re-explanation in each session. Skills suit
-repeatable workflows: a review checklist, a repository-specific release process, a
-data-format specification, a group's analysis conventions.
+repeatable workflows: a review checklist, the steps to regenerate a paper's figures
+from raw data, a data-format specification, a group's analysis conventions.
 
 A skill cannot make the agent do anything it could not already do by reading files
 and running commands. The description is the important component, because it is what
-the agent matches against. A vague description ("helps with releases") triggers
-unreliably; a specific one ("use when the user asks to cut a release, bump a version,
-or write release notes") triggers when intended.
+the agent matches against. A vague description ("helps with data checks") triggers
+unreliably; a specific one ("use when the user adds a new raw data file or asks to
+validate a file against the lab's format specification") triggers when intended.
 
 Skills also reduce cost. The full skill content is expanded only when relevant,
 rather than occupying context for the whole session as an overlong context file
@@ -243,9 +244,10 @@ Before building your own, check what has already been published:
   sites that have no purpose-built server.
 - **[Matt Pocock's skills](https://github.com/mattpocock/skills)**: workflow
   enforcement, including test-driven development, planning, debugging, and git
-  guardrails.
+  guardrails. Use the planning skills to interview and critique a plan you own.
 - **[gstack](https://github.com/garrytan/gstack)**: Garry Tan's Claude Code setup,
-  with plan review, code review, QA, and shipping workflows as skills.
+  written for product engineering, with plan review, code review, and QA workflows as
+  skills. The review and QA checklists adapt to research code.
 - **[Claude Science](https://www.anthropic.com/news/claude-science-ai-workbench)**:
   Anthropic's workbench for scientists, with analysis specialists and access to
   scientific databases as skills and connectors.
@@ -262,7 +264,7 @@ look first, not a substitute for looking.
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 
-- API: you write the calling code. MCP: the agent discovers the tools and decides when to call them. Use MCP when the agent should reach a system on its own, and a direct API when you are writing the pipeline.
+- API: you write the calling code. MCP: the agent discovers the tools and decides when to call them, within the access you grant. Use MCP when you have decided the agent may reach a system itself, and a direct API when you are writing the pipeline.
 - An MCP server exposes tools, resources, and prompts over a standard protocol. Connecting one is comparable to installing a plugin.
 - A skill is a procedure: packaged instructions loaded on demand, with no server and no network. It saves context because it expands only when relevant.
 - Context file, then skills, then hooks (which always run), then MCP: codify a workflow at the lowest level that enforces what you need.

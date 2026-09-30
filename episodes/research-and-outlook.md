@@ -26,8 +26,9 @@ The evidence base is young, but several findings recur:
 
 - **Coding speed is only one bottleneck.** Agents multiply commits (+240%) far more
   than releases (+30%), and pull requests wait about five times longer for human
-  review under heavy AI use (the verification episode's figures). Analyses still
-  require expert review and verification, and that step does not accelerate.
+  review under heavy AI use (the verification episode's figures). Research has the
+  same bottleneck: an agent can produce analyses faster than anyone can check them,
+  and expert review and verification do not accelerate.
 - **Perceived and measured speed can diverge.** In a [2025 randomized trial](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/) (METR),
   experienced open-source developers believed they were about 20% faster with AI
   tools on their own mature repositories while measuring about 19% slower. The rule
@@ -44,7 +45,8 @@ The evidence base is young, but several findings recur:
   the limiting factor.
 
 The evidence supports the conclusion that these tools amplify expertise more than
-they replace it. The practices in this lesson (scoping, specifying, verifying) are
+they replace it. The practices in this lesson (planning, scoping, specifying,
+verifying, deciding what to merge) are
 the expertise being amplified. The question of skill formation remains open: if
 agents do the routine work, where do junior researchers develop the debugging
 judgment that supervising an agent requires? Deliberate practice may need to be
@@ -71,14 +73,14 @@ can yield different code on different days, and every unstated decision is fille
 with the average case.
 
 The craft of agentic coding is therefore making the layer deterministic enough. That
-means specifying and verifying at the level this lesson has practiced: a plan with a
-check for each step, one feature per prompt, tests the agent must pass, a review of
-every diff. Too little of this and the output is plausible and wrong. Too much, and
+means specifying and verifying at the level this lesson has practiced: a plan you
+write, with a check for each step, one feature per prompt, tests the agent must pass,
+a review of every diff. Too little of this and the output is plausible and wrong. Too much, and
 the time spent writing prompts approaches the time it would have taken to write the
 code. The balance sits between those, and the evidence is that at the feature level
 the productivity gains are substantial.
 
-Those gains are a function of prior expertise. Deciding what to build next,
+Those gains are a function of prior expertise. Deciding which analysis to run next,
 recognizing a plausible-but-wrong result, knowing which check matters for this data:
 these come from the person, not the prompt or the model. Agents amplify expertise;
 they are not a substitute for it, and they are not a magic wand. Programming is not
@@ -106,13 +108,14 @@ Incubator, or a well-documented public repository serves the same function.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Three things before your next sprint
+## Three things before your next project
 
 Before your next project session, commit to:
 
 1. **Set up the guardrails once.** Secrets in a keyring or secrets manager (nothing in
    plaintext on disk), a project context file (`CLAUDE.md`, `AGENTS.md`, or
-   `copilot-instructions.md`) under 100 lines, and a branch-only workflow.
+   `copilot-instructions.md`) under 100 lines, and a branch-only workflow in which
+   you review and merge every change to `main`.
 2. **Write the contract first.** For the next feature you delegate, write one test or
    printed check that encodes what "correct" means for your data, before you prompt.
 3. **Review one full diff as a skeptical referee.** Take one agent-produced change and

@@ -78,8 +78,8 @@ There are two levers, operating at different time scales:
 - **Context engineering** sets the standing guidelines for generating code and the
   resources the agent may use: the project context file (`CLAUDE.md`, `AGENTS.md`,
   `copilot-instructions.md`), coding-standards files, `plan.md`. Written once, read in
-  every session. A shared context file is an inexpensive way to keep a team's code
-  consistent.
+  every session. A shared context file is an inexpensive way to keep code
+  consistent across a lab group or collaboration.
 - **Prompt engineering** phrases the specific request to obtain the best result for
   the task at hand.
 
@@ -122,8 +122,9 @@ A checklist for research-code prompts:
 - **Where**: which files or functions to modify, and which to leave alone.
 - **What**: the behavior you want, including the edge cases you know about.
 - **Constraints**: conventions, permitted dependencies, things to preserve.
-- **Verification**: how the agent should check its own work. Run the tests; confirm
-  the row count is unchanged; print the class balance before and after.
+- **Verification**: the check you have decided proves the work is correct, and how
+  the agent should run it. Run the tests; confirm the row count is unchanged; print
+  the class balance before and after.
 
 The last item leads into the next episode. A prompt that includes its own check is
 worth more than one that does not.
@@ -204,7 +205,7 @@ complete, with choices you did not make and no list of them.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-:## Give your agent maintenance tasks
+## Give your agent maintenance tasks
 
 If you are new to agentic workflows, as most people are, consider starting with
 maintenance tasks, which agents do particularly well. They are the routine work that
@@ -220,7 +221,7 @@ specified, checkable, one pull request, reviewed by you.
 - **Environment files.** Pin `requirements.txt` or `environment.yml` from what the
   code imports.
 - **Weekly merge preparation.** "Summarize what changed on this branch since `main`,
-  for the teammates who were not here."
+  for collaborators who were not at this week's lab meeting."
 
 ### Documentation: notes to your future self and your agent
 
@@ -229,9 +230,10 @@ Documentation deserves more than a place on that list, for three reasons.
 - **It is now cheap.** Research code is under-documented because writing docstrings
   and READMEs lost to the next experiment. The agent has the source of truth in
   context, and a paragraph of prose is faster to review than an implementation.
-  Ask for docstrings, comments that explain why (not what), a README that says how
-  to run the pipeline end to end, narrated notebooks, and a short end-of-session
-  note on what changed and where to resume.
+  Ask for docstrings, a README that says how to run the pipeline end to end,
+  narrated notebooks, and a short end-of-session note on what changed and where to
+  resume. Comments that explain why a choice was made have to come from you; the
+  agent can write them up only from reasons you give it.
 - **It becomes context.** Everything you document is read by the agent in later
   sessions. Agents recover *what* and *how* from code but not *why*, *for whom*, or
   what the data means. A data dictionary is the difference between an agent that

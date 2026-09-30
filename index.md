@@ -18,8 +18,9 @@ one-to-one onto the same concepts.
 
 Three principles run through the lesson:
 
-1. **Stay in the driver's seat.** The agent writes the code. You review it, and you
-   decide what is merged to `main`.
+1. **Stay in the driver's seat.** You plan the work and make the decisions. The agent
+   writes code, researches options, and critiques your plan. You review what it
+   produces, and you decide what is merged to `main`.
 2. **Work feature by feature, not project by project.** A feature is one thing you
    can check. An underspecified prompt does not produce random code; it produces the
    statistically typical code for the average project, and research data is rarely
@@ -57,7 +58,8 @@ are welcome with attribution.
   similar). No local Python installation is needed; the agent's sandbox runs the code.
 - Access to at least one agentic coding tool. The [setup page](learners/setup.md)
   lists options, including free tiers.
-- Ideally, a small project of your own to point the agent at. The exercises work on
-  your repository; a fallback starter is provided where it matters.
+- Ideally, a small research project of your own, such as an analysis script, a data
+  pipeline, or the code behind a paper. The exercises work on your repository; a
+  fallback starter is provided where it matters.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
