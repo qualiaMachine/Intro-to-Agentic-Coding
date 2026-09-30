@@ -3,10 +3,9 @@
 A [Carpentries Workbench][workbench] lesson on working effectively and safely with AI
 coding agents (Claude Code, GitHub Copilot, Cursor, OpenCode, …) as a researcher.
 
-This lesson is the "Agentic Coding: (Developing) Best Practices" workshop developed
-for the [ML Marathon](https://ml-marathon.wisc.edu/) at UW–Madison by Chris Endemann,
-Tracy Reuter, and Tejvir Mann. Taught in full it takes about 3.5 to 4 hours; the
-instructor notes include a 2-hour cut.
+The lesson was written by Chris Endemann, Tracy Reuter, and Tejvir Mann and piloted
+at the [ML Marathon](https://ml-marathon.wisc.edu/) at UW–Madison. Taught in full it
+takes about 3.5 to 4 hours; the instructor notes include a 2-hour cut.
 
 ## Core principles
 
