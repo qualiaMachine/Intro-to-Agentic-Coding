@@ -245,11 +245,9 @@
 
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
-        <ul><li><a href="#plan-the-research-software-yourself">Plan the research software yourself</a></li>
-<li><a href="#supply-context">Supply context</a></li>
-<li><a href="#plan-mode-refine-the-request-before-any-code">Plan mode: refine the request before any code</a></li>
-<li><a href="#start-from-a-minimum-viable-pipeline">Start from a minimum viable pipeline</a></li>
-<li><a href="#before-the-first-feature-write-the-context-file">Before the first feature: write the context file</a></li>
+        <ul><li><a href="#plan-the-research-yourself">Plan the research yourself</a></li>
+<li><a href="#planning-the-collaboration">Planning the collaboration</a></li>
+<li><a href="#planning-the-work-with-the-agent">Planning the work with the agent</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -408,8 +406,8 @@ defend?</li>
 <div class="card-body">
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
-<ul><li>Plan a research software project yourself, using an agent to
-research options and critique the plan rather than to originate it.</li>
+<ul><li>Plan the research yourself, using an agent to research options and
+critique the plan rather than to originate it.</li>
 <li>Supply the context an agent needs: the analysis design, existing
 code, and the group’s standards.</li>
 <li>Use plan mode to refine a request until the structure the agent
@@ -424,8 +422,15 @@ defend.</li>
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="plan-the-research-software-yourself">Plan the research software yourself<a class="anchor" aria-label="anchor" href="#plan-the-research-software-yourself"></a></h2>
-<hr class="half-width"><p>Research software exists to answer a question, so the plan for it is
+<section><h2 class="section-heading" id="plan-the-research-yourself">Plan the research yourself<a class="anchor" aria-label="anchor" href="#plan-the-research-yourself"></a></h2>
+<hr class="half-width"><p>The first kind of planning has nothing to do with agents. It is
+deciding what question the software answers and what its first working
+version will be. The software design, meaning how the code is organized,
+comes later in this episode, and the agent can help with it. The
+research design cannot be delegated.</p>
+<div class="section level3">
+<h3 id="the-analysis-design">The analysis design<a class="anchor" aria-label="anchor" href="#the-analysis-design"></a></h3>
+<p>Research software exists to answer a question, so the plan for it is
 the analysis design. That design is yours: you will defend it in lab
 meetings, in peer review, and in the methods section. Before an agent
 writes any code, you should be able to state:</p>
@@ -461,8 +466,166 @@ treat them.</p>
 understand the problem is the most common failure in agentic work. The
 size of the plan should match the size of the task. A small change to
 one function needs a sentence, not a document.</p>
-</section><section><h2 class="section-heading" id="supply-context">Supply context<a class="anchor" aria-label="anchor" href="#supply-context"></a></h2>
-<hr class="half-width"><p>An agent asked to “make a plan” with no other input produces the
+</div>
+<div class="section level3">
+<h3 id="start-from-a-minimum-viable-pipeline">Start from a minimum viable pipeline<a class="anchor" aria-label="anchor" href="#start-from-a-minimum-viable-pipeline"></a></h3>
+<p>The first version of that design should be small. A <strong>minimum
+viable pipeline (MVP)</strong> is whatever you can get running quickly
+and understand end to end. It is not necessarily the simplest model: a
+pretrained model you understand is preferable to a from-scratch model
+you do not. The aim is to minimize points of friction and failure: a
+slice of the data, one model, your laptop. Each additional step or more
+elaborate setup is another place for the pipeline to break.</p>
+<p>This is ordinary good data science practice, and it predates agents.
+You look at the data before you model it, establish a baseline before
+you try to beat it, and get one end-to-end result you can trust before
+you add anything. The verification episode returns to these habits as
+checks; here they set the order of the first plan.</p>
+<ul><li>
+<strong>Functional, not polished.</strong> Borrowed code is
+acceptable if you can explain what it does. Defer the edge cases.</li>
+<li>
+<strong>Do not defer the understanding.</strong> A pipeline you
+understand reveals the real relationships in the data, the processing
+bugs, and the data problems that a system you do not understand would
+conceal.</li>
+</ul><p>The MVP is the baseline against which new components are compared,
+before investing in solutions that take time to build. With an agent the
+practice matters more, not less: an agent will produce a complete,
+elaborate pipeline on request, and it will run, and you will not know
+whether its number means anything because there is no simpler result to
+compare it with. The MVP is also the first thing you will ask an agent
+to build: small enough to specify fully, with every feature something
+you can check. The last part of this episode is about getting from the
+MVP plan to that request.</p>
+</div>
+</section><section><h2 class="section-heading" id="planning-the-collaboration">Planning the collaboration<a class="anchor" aria-label="anchor" href="#planning-the-collaboration"></a></h2>
+<hr class="half-width"><p>The second kind is agreeing how the group, and the group’s agents,
+will share one repository: the rules people follow, and the rules the
+agent reads.</p>
+<div id="exercise-agree-how-your-team-will-collaborate-10-minutes" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="exercise-agree-how-your-team-will-collaborate-10-minutes" class="callout-inner">
+<h3 class="callout-title">Exercise: Agree how your team will collaborate
+(10 minutes)</h3>
+<div class="callout-content">
+<p>Every member of the team is about to use a coding agent on the same
+repository, which will produce more branches, more commits, and larger
+diffs than a typical project. Decide the rules that matter before the
+first feature: who reviews, what the agent may never touch, and where
+data, code, and results live. Then have the agent draft the document
+from those decisions.</p>
+<ol style="list-style-type: decimal"><li><p><strong>Decide between branches and forks.</strong> One shared
+repository with branches is the usual choice for a team that trusts each
+other: every teammate’s work is a <code>git fetch</code> away, so an
+agent can read another branch and compare against it without anyone
+adding remotes. Merging stays with a person.</p></li>
+<li>
+<p><strong>Ask the agent</strong>, giving it your team size and what
+you are building:</p>
+<blockquote>
+<p>Our research group of &lt;n&gt; is working in one GitHub repo on
+&lt;project, for example the analysis for a paper&gt;. Every one of us
+is using a coding agent, so we will be generating more branches, more
+commits and bigger diffs than a normal project.</p>
+<p>We have decided: &lt;who reviews each pull request; paths the agent
+may not modify; where raw data, processed data, code, and results
+live&gt;. Turn these into contributing conventions that keep
+<code>main</code> clean and reviewable. Fill in the routine parts
+(branch naming, how small a pull request should be, commit-message
+format, how we avoid two agents editing the same file, where new files
+go) and mark each rule you added so we can accept or remove it.</p>
+<p>Write <code>CONTRIBUTING.md</code>. Commit it to a development branch
+named for me, not to <code>main</code>, and open a pull request for it.
+Short enough that people read it.</p>
+</blockquote>
+</li>
+<li><p><strong>Edit what it produces.</strong> Keep the rules the team
+will follow and remove the rest.</p></li>
+<li><p><strong>Merge it through the process it describes.</strong>
+<code>CONTRIBUTING.md</code> goes on your own branch, not directly to
+<code>main</code>. Open a pull request, have a teammate review it, then
+merge. This is the first use of the rules you have just written. Most
+agents open a pull request by default; note that when it
+happens.</p></li>
+<li><p>Share the link with your PI or project lead, so they can see what
+was agreed.</p></li>
+</ol><p>If you are working alone, write the same thing for yourself in three
+to five lines (a branch convention, a pull-request size, what the agent
+may never modify) and put it in your context file.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1">
+  What a usable result contains
+  </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div class="accordion-body">
+<p>It is short. A branch-name pattern
+(<code>&lt;name&gt;/&lt;feature&gt;</code>); a pull-request size people
+will review in full (a few hundred lines at most); one named reviewer
+per pull request, and whether review happens at the pull request or on
+every change (the verification episode compares the two); a list of
+paths the agent may not modify without asking (<code>data/raw/</code>,
+the scoring function, <code>main</code>); a rule for avoiding collisions
+(one feature per branch, claimed in the plan); and a commit-message
+format. Agents draft the routine parts well because conventions are the
+average case. The decisions that matter (who reviews, what the agent may
+not touch, where results live) are the group’s; your contribution is
+making those and removing what the group will not do. The rules are
+advisory for the agent; back the important ones with branch
+protection.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="the-context-file-rules-the-agent-reads-every-session">The context file: rules the agent reads every session<a class="anchor" aria-label="anchor" href="#the-context-file-rules-the-agent-reads-every-session"></a></h3>
+<p><code>CONTRIBUTING.md</code> is written for people. The agent needs
+the same conventions, plus the knowledge that exists only in your head:
+the reasons for decisions, what the data means, what must not be
+touched. Before the first feature, record it in a <strong>project
+context file</strong>, the rules file introduced in the safety episode.
+Claude Code reads <code>CLAUDE.md</code> from the project root at the
+start of every session; Copilot reads
+<code>.github/copilot-instructions.md</code>; nearly every tool also
+reads <code>AGENTS.md</code>. It is a README addressed to the agent:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">MARKDOWN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode markdown" tabindex="0"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="fu">## Project structure</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="ss">- </span>Analysis pipelines live in <span class="in">`src/pipelines/`</span>; each mirrors a notebook in <span class="in">`notebooks/`</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a><span class="ss">- </span>Raw data in <span class="in">`data/raw/`</span> is read-only — NEVER modify it; derived data goes to <span class="in">`data/processed/`</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1" aria-label="code-block-1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1" aria-label="code-block-1-5"></a><span class="fu">## Conventions</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1" aria-label="code-block-1-6"></a><span class="ss">- </span>Run tests with <span class="in">`pytest tests/`</span> after changes; don't commit with failing tests</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1" aria-label="code-block-1-7"></a><span class="ss">- </span>Use type hints; don't add dependencies without asking</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1" aria-label="code-block-1-8"></a></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1" aria-label="code-block-1-9"></a><span class="fu">## Safety</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1" aria-label="code-block-1-10"></a><span class="ss">- </span>Never force-push; never commit directly to main</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1" aria-label="code-block-1-11"></a><span class="ss">- </span>The <span class="in">`results/`</span> directory is generated — edit the code, not the outputs</span></code></pre>
+</div>
+<p>Keep it short and operational (well under 300 lines). It is injected
+into every session, so everything in it competes for the model’s
+attention with the task at hand. If a linter can enforce a rule
+deterministically, use the linter and save the context. As the safety
+episode explained, context files are advisory; back safety-critical
+rules with permissions, hooks, and branch protection.</p>
+</div>
+</section><section><h2 class="section-heading" id="planning-the-work-with-the-agent">Planning the work with the agent<a class="anchor" aria-label="anchor" href="#planning-the-work-with-the-agent"></a></h2>
+<hr class="half-width"><p>Only now does the agent come in. With the design and the conventions
+settled, the remaining planning is turning the MVP plan into a request
+the agent can carry out, and that is where the agent is useful.</p>
+<div class="section level3">
+<h3 id="supply-context">Supply context<a class="anchor" aria-label="anchor" href="#supply-context"></a></h3>
+<p>An agent asked to “make a plan” with no other input produces the
 average plan for the average project, and research projects are rarely
 the average case. Give it the design above, and whatever else already
 exists:</p>
@@ -497,8 +660,10 @@ persistent plan file typically contains:</p>
 <li>Final outcome</li>
 </ul><p>Planning is iterative. The first plan is a draft to be questioned;
 the deliverable is a plan you would sign.</p>
-</section><section><h2 class="section-heading" id="plan-mode-refine-the-request-before-any-code">Plan mode: refine the request before any code<a class="anchor" aria-label="anchor" href="#plan-mode-refine-the-request-before-any-code"></a></h2>
-<hr class="half-width"><p><strong>Plan mode</strong> is a setting on the agent, not a way of
+</div>
+<div class="section level3">
+<h3 id="plan-mode-refine-the-request-before-any-code">Plan mode: refine the request before any code<a class="anchor" aria-label="anchor" href="#plan-mode-refine-the-request-before-any-code"></a></h3>
+<p><strong>Plan mode</strong> is a setting on the agent, not a way of
 thinking. Switched on, the agent can read the repository, answer
 questions, and propose an approach, but it cannot edit a file or run a
 command. Claude Code toggles it with <kbd>Shift</kbd>+<kbd>Tab</kbd>;
@@ -577,109 +742,7 @@ edit.</p>
 </div>
 </div>
 </div>
-<div id="exercise-agree-how-your-team-will-collaborate-10-minutes" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<span class="callout-header">Challenge</span>
-<div id="exercise-agree-how-your-team-will-collaborate-10-minutes" class="callout-inner">
-<h3 class="callout-title">Exercise: Agree how your team will collaborate
-(10 minutes)</h3>
-<div class="callout-content">
-<p>Every member of the team is about to use a coding agent on the same
-repository, which will produce more branches, more commits, and larger
-diffs than a typical project. Decide the rules that matter before the
-first feature: who reviews, what the agent may never touch, and where
-data, code, and results live. Then have the agent draft the document
-from those decisions.</p>
-<ol style="list-style-type: decimal"><li><p><strong>Decide between branches and forks.</strong> One shared
-repository with branches is the usual choice for a team that trusts each
-other: every teammate’s work is a <code>git fetch</code> away, so an
-agent can read another branch and compare against it without anyone
-adding remotes. Merging stays with a person.</p></li>
-<li>
-<p><strong>Ask the agent</strong>, giving it your team size and what
-you are building:</p>
-<blockquote>
-<p>Our research group of &lt;n&gt; is working in one GitHub repo on
-&lt;project, for example the analysis for a paper&gt;. Every one of us
-is using a coding agent, so we will be generating more branches, more
-commits and bigger diffs than a normal project.</p>
-<p>We have decided: &lt;who reviews each pull request; paths the agent
-may not modify; where raw data, processed data, code, and results
-live&gt;. Turn these into contributing conventions that keep
-<code>main</code> clean and reviewable. Fill in the routine parts
-(branch naming, how small a pull request should be, commit-message
-format, how we avoid two agents editing the same file, where new files
-go) and mark each rule you added so we can accept or remove it.</p>
-<p>Write <code>CONTRIBUTING.md</code>. Commit it to a development branch
-named for me, not to <code>main</code>, and open a pull request for it.
-Short enough that people read it.</p>
-</blockquote>
-</li>
-<li><p><strong>Edit what it produces.</strong> Keep the rules the team
-will follow and remove the rest.</p></li>
-<li><p><strong>Merge it through the process it describes.</strong>
-<code>CONTRIBUTING.md</code> goes on your own branch, not directly to
-<code>main</code>. Open a pull request, have a teammate review it, then
-merge. This is the first use of the rules you have just written. Most
-agents open a pull request by default; note that when it
-happens.</p></li>
-<li><p>Share the link with your PI or project lead, so they can see what
-was agreed.</p></li>
-</ol><p>If you are working alone, write the same thing for yourself in three
-to five lines (a branch convention, a pull-request size, what the agent
-may never modify) and put it in your context file.</p>
-</div>
-</div>
-</div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1">
-  What a usable result contains
-  </h4>
-</button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
-<div class="accordion-body">
-<p>It is short. A branch-name pattern
-(<code>&lt;name&gt;/&lt;feature&gt;</code>); a pull-request size people
-will review in full (a few hundred lines at most); one named reviewer
-per pull request, and whether review happens at the pull request or on
-every change (the verification episode compares the two); a list of
-paths the agent may not modify without asking (<code>data/raw/</code>,
-the scoring function, <code>main</code>); a rule for avoiding collisions
-(one feature per branch, claimed in the plan); and a commit-message
-format. Agents draft the routine parts well because conventions are the
-average case. The decisions that matter (who reviews, what the agent may
-not touch, where results live) are the group’s; your contribution is
-making those and removing what the group will not do. The rules are
-advisory for the agent; back the important ones with branch
-protection.</p>
-</div>
-</div>
-</div>
-</div>
-</section><section><h2 class="section-heading" id="start-from-a-minimum-viable-pipeline">Start from a minimum viable pipeline<a class="anchor" aria-label="anchor" href="#start-from-a-minimum-viable-pipeline"></a></h2>
-<hr class="half-width"><p>A <strong>minimum viable pipeline (MVP)</strong> is whatever you can
-get running quickly and understand end to end. It is not necessarily the
-simplest model: a pretrained model you understand is preferable to a
-from-scratch model you do not. The aim is to minimize points of friction
-and failure: a slice of the data, one model, your laptop. Each
-additional step or more elaborate setup is another place for the
-pipeline to break.</p>
-<ul><li>
-<strong>Functional, not polished.</strong> Borrowed code is
-acceptable if you can explain what it does. Defer the edge cases.</li>
-<li>
-<strong>Do not defer the understanding.</strong> A pipeline you
-understand reveals the real relationships in the data, the processing
-bugs, and the data problems that a system you do not understand would
-conceal.</li>
-</ul><p>The MVP is the baseline against which new components are compared,
-before investing in solutions that take time to build. It is also the
-appropriate first plan for an agent: small enough to specify fully, with
-every feature something you can check.</p>
+<p>The exercise below runs your MVP plan through plan mode.</p>
 <div id="exercise-plan-your-mvp-with-an-agent-15-minutes" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -689,10 +752,22 @@ every feature something you can check.</p>
 <h3 class="callout-title">Exercise: Plan your MVP with an agent (15
 minutes)</h3>
 <div class="callout-content">
-<ol style="list-style-type: decimal"><li><p><strong>Open your project’s MVP plan.</strong> If there is none,
-write three lines now: the data slice, one model, and how you score it.
-If you have no project, choose a public dataset or competition you know
-and plan an MVP for it.</p></li>
+<ol style="list-style-type: decimal"><li>
+<p><strong>Write the MVP as an ordered list of features.</strong>
+Each feature is one thing you can check, and the order is the order you
+will build them in. For most projects the list is three or four
+lines:</p>
+<ol style="list-style-type: decimal"><li>Load the data slice and validate it: row count, class balance,
+missing values.</li>
+<li>Train one baseline model on a held-out split and print its
+score.</li>
+<li>Compute the metric the paper or challenge uses, checked against a
+hand-computed example.</li>
+<li>(If needed) the one preprocessing step the baseline cannot do
+without.</li>
+</ol><p>If you have no project, choose a public dataset or competition you
+know and write the list for it.</p>
+</li>
 <li>
 <p><strong>Ask the agent to review it</strong> in plan mode, against
 your project’s goal (the challenge page, the paper’s research question,
@@ -702,7 +777,7 @@ or the grant aim):</p>
 goal. The MVP should be something we can get running quickly and
 understand end-to-end. It is the baseline we compare new components
 against, before we invest in solutions that take time to build.</p>
-<p><strong>MVP plan</strong> &lt;paste from your shared doc&gt;</p>
+<p><strong>MVP plan</strong> &lt;paste your ordered feature list&gt;</p>
 <p><strong>Project goal</strong> &lt;paste the research question or
 grant aim, the evaluation metric, and the data description&gt;</p>
 <p><strong>Compute available</strong> &lt;laptops; cluster allocation;
@@ -711,8 +786,9 @@ hosted models and how they’re accessed; cloud credits and when&gt;</p>
 missing, unclear, or assumes something the data description does not
 support. Do not propose a replacement design; if something should
 change, say what and why, and we will decide. Then write our MVP up as a
-<code>plan.md</code> with each step in order and how we will know each
-one works. Do not write any code yet.</p>
+<code>plan.md</code>: the features in the order we gave, one heading
+each, with the check that shows each one works. Do not write any code
+yet.</p>
 </blockquote>
 </li>
 <li><p><strong>Question the plan until you would sign it.</strong>
@@ -735,18 +811,17 @@ together.</p></li>
   What a good plan.md contains
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
-<p>Three features, each one thing you can check. For example: (1) load
-and validate the data slice, with row count and class balance printed;
-(2) train one baseline, with a score on a held-out split; (3) write the
-scoring function, matching the metric your field or paper uses on a
-hand-computed example. If <code>plan.md</code> contains a feature for
-which you cannot describe a check, it is not yet a feature; split it or
-remove it. Note also what the agent could not know: which data is
-trustworthy, what compute you have, what your group has already decided.
-You supplied that context; without it the plan would have been for a
-different project.</p>
+<p>Your ordered features, each with a check, and nothing the agent added
+without saying so. If <code>plan.md</code> contains a feature for which
+you cannot describe a check, it is not yet a feature; split it or remove
+it. If the agent reordered the list, it should have said why, and the
+reason should be a dependency (the split has to exist before the
+baseline can be scored), not a preference. Note also what the agent
+could not know: which data is trustworthy, what compute you have, what
+your group has already decided. You supplied that context; without it
+the plan would have been for a different project.</p>
 </div>
 </div>
 </div>
@@ -775,36 +850,6 @@ explain it, you do not yet own it.</p>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="before-the-first-feature-write-the-context-file">Before the first feature: write the context file<a class="anchor" aria-label="anchor" href="#before-the-first-feature-write-the-context-file"></a></h2>
-<hr class="half-width"><p>Planning surfaces knowledge that exists only in your head: the
-reasons for decisions, the conventions, what the data means. Before the
-first feature, record it in a <strong>project context file</strong>, the
-rules file introduced in the safety episode. Claude Code reads
-<code>CLAUDE.md</code> from the project root at the start of every
-session; Copilot reads <code>.github/copilot-instructions.md</code>;
-nearly every tool also reads <code>AGENTS.md</code>. It is a README
-addressed to the agent:</p>
-<div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">MARKDOWN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode markdown" tabindex="0"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="fu">## Project structure</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="ss">- </span>Analysis pipelines live in <span class="in">`src/pipelines/`</span>; each mirrors a notebook in <span class="in">`notebooks/`</span></span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a><span class="ss">- </span>Raw data in <span class="in">`data/raw/`</span> is read-only — NEVER modify it; derived data goes to <span class="in">`data/processed/`</span></span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1" aria-label="code-block-1-4"></a></span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1" aria-label="code-block-1-5"></a><span class="fu">## Conventions</span></span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1" aria-label="code-block-1-6"></a><span class="ss">- </span>Run tests with <span class="in">`pytest tests/`</span> after changes; don't commit with failing tests</span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1" aria-label="code-block-1-7"></a><span class="ss">- </span>Use type hints; don't add dependencies without asking</span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1" aria-label="code-block-1-8"></a></span>
-<span id="cb1-9"><a href="#cb1-9" tabindex="-1" aria-label="code-block-1-9"></a><span class="fu">## Safety</span></span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1" aria-label="code-block-1-10"></a><span class="ss">- </span>Never force-push; never commit directly to main</span>
-<span id="cb1-11"><a href="#cb1-11" tabindex="-1" aria-label="code-block-1-11"></a><span class="ss">- </span>The <span class="in">`results/`</span> directory is generated — edit the code, not the outputs</span></code></pre>
-</div>
-<p>Keep it short and operational (well under 300 lines). It is injected
-into every session, so everything in it competes for the model’s
-attention with the task at hand. If a linter can enforce a rule
-deterministically, use the linter and save the context. As the safety
-episode explained, context files are advisory; back safety-critical
-rules with permissions, hooks, and branch protection.</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -820,16 +865,20 @@ committed before any code.</li>
 <li>Give the agent that design plus what already exists: the previous
 plan, skeleton code, issues, out-of-scope notes, and rules files. For
 long work, keep the plan in a file the agent updates.</li>
-<li>Agree team conventions first (branches rather than forks,
-pull-request size, who reviews, what the agent may not modify, where new
-files go) and commit them as a <code>CONTRIBUTING.md</code> that agents
-also read.</li>
+<li>Start from a minimum viable pipeline: a slice of data, one model,
+something you understand end to end. This is ordinary good data science
+practice, and it matters more with an agent, which will otherwise
+produce an elaborate pipeline with nothing to compare it to. The MVP is
+the baseline for everything after it and the first thing you ask an
+agent to build.</li>
 <li>Plan mode is distinct from planning the analysis. It is where you
 refine the request: the agent critiques it, proposes the structure of
 the intended result, and raises loose ends for you to settle, and you
 approve the outline before any code is written.</li>
-<li>Start from a minimum viable pipeline: a slice of data, one model,
-something you understand end to end.</li>
+<li>Agree collaboration conventions before the first feature (branches
+rather than forks, pull-request size, who reviews, what the agent may
+not modify, where new files go) and commit them as a
+<code>CONTRIBUTING.md</code> that agents also read.</li>
 <li>Question AI design suggestions before adopting them, most carefully
 where your domain knowledge is weakest. If you cannot explain it, you do
 not yet own it.</li>
@@ -844,6 +893,7 @@ permissions where it matters.</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
+</div>
 </section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter Bottom"><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="../instructor/trust.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
