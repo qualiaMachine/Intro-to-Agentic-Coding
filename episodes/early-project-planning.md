@@ -23,7 +23,12 @@ exercises: 25
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Plan the research software yourself
+## Planning the project
+
+The first kind of planning has nothing to do with agents. It is deciding what the
+research software is for and what its first working version will be.
+
+### The analysis design
 
 Research software exists to answer a question, so the plan for it is the analysis
 design. That design is yours: you will defend it in lab meetings, in peer review, and
@@ -52,7 +57,7 @@ problem is the most common failure in agentic work. The size of the plan should 
 the size of the task. A small change to one function needs a sentence, not a
 document.
 
-## Start from a minimum viable pipeline
+### Start from a minimum viable pipeline
 
 The first version of that design should be small. A **minimum viable pipeline
 (MVP)** is whatever you can get running quickly and understand end to end. It is not necessarily the simplest model: a pretrained model
@@ -70,9 +75,113 @@ break.
 The MVP is the baseline against which new components are compared, before investing
 in solutions that take time to build. It is also the first thing you will ask an
 agent to build: small enough to specify fully, with every feature something you can
-check. The rest of this episode is about getting from the MVP plan to that request.
+check. The last part of this episode is about getting from the MVP plan to that
+request.
 
-## Supply context
+## Planning the collaboration
+
+The second kind is agreeing how the group, and the group's agents, will share one
+repository: the rules people follow, and the rules the agent reads.
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+## Exercise: Agree how your team will collaborate (10 minutes)
+
+Every member of the team is about to use a coding agent on the same repository, which
+will produce more branches, more commits, and larger diffs than a typical project.
+Decide the rules that matter before the first feature: who reviews, what the agent
+may never touch, and where data, code, and results live. Then have the agent draft the
+document from those decisions.
+
+1. **Decide between branches and forks.** One shared repository with branches is the
+   usual choice for a team that trusts each other: every teammate's work is a
+   `git fetch` away, so an agent can read another branch and compare against it
+   without anyone adding remotes. Merging stays with a person.
+2. **Ask the agent**, giving it your team size and what you are building:
+
+   > Our research group of \<n\> is working in one GitHub repo on \<project, for
+   > example the analysis for a paper\>. Every one of us
+   > is using a coding agent, so we will be generating more branches, more commits
+   > and bigger diffs than a normal project.
+   >
+   > We have decided: \<who reviews each pull request; paths the agent may not
+   > modify; where raw data, processed data, code, and results live\>. Turn these into
+   > contributing conventions that keep `main` clean and reviewable. Fill in the
+   > routine parts (branch naming, how small a pull request should be, commit-message
+   > format, how we avoid two agents editing the same file, where new files go) and
+   > mark each rule you added so we can accept or remove it.
+   >
+   > Write `CONTRIBUTING.md`. Commit it to a development branch named for me, not to
+   > `main`, and open a pull request for it. Short enough that people read it.
+
+3. **Edit what it produces.** Keep the rules the team will follow and remove the
+   rest.
+4. **Merge it through the process it describes.** `CONTRIBUTING.md` goes on your own
+   branch, not directly to `main`. Open a pull request, have a teammate review it,
+   then merge. This is the first use of the rules you have just written. Most agents
+   open a pull request by default; note that when it happens.
+5. Share the link with your PI or project lead, so they can see what was agreed.
+
+If you are working alone, write the same thing for yourself in three to five lines (a
+branch convention, a pull-request size, what the agent may never modify) and put it
+in your context file.
+
+:::::::::::::::::::::::: solution
+
+## What a usable result contains
+
+It is short. A branch-name pattern (`<name>/<feature>`); a pull-request size people
+will review in full (a few hundred lines at most); one named reviewer per pull
+request, and whether review happens at the pull request or on every change (the
+verification episode compares the two); a list of paths the agent may not modify without asking (`data/raw/`, the
+scoring function, `main`); a rule for avoiding collisions (one feature per branch,
+claimed in the plan); and a commit-message format. Agents draft the routine parts well because conventions are the average case. The
+decisions that matter (who reviews, what the agent may not touch, where results live)
+are the group's; your contribution is making those and removing what the group will
+not do. The rules are advisory for the agent; back the important ones
+with branch protection.
+
+:::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+### The context file: rules the agent reads every session
+
+`CONTRIBUTING.md` is written for people. The agent needs the same conventions, plus
+the knowledge that exists only in your head: the reasons for decisions, what the data
+means, what must not be touched. Before the first feature, record it in a
+**project context file**, the rules file introduced in the safety episode. Claude Code
+reads `CLAUDE.md` from the project root at the start of every session; Copilot reads
+`.github/copilot-instructions.md`; nearly every tool also reads `AGENTS.md`. It is a
+README addressed to the agent:
+
+```markdown
+## Project structure
+- Analysis pipelines live in `src/pipelines/`; each mirrors a notebook in `notebooks/`
+- Raw data in `data/raw/` is read-only — NEVER modify it; derived data goes to `data/processed/`
+
+## Conventions
+- Run tests with `pytest tests/` after changes; don't commit with failing tests
+- Use type hints; don't add dependencies without asking
+
+## Safety
+- Never force-push; never commit directly to main
+- The `results/` directory is generated — edit the code, not the outputs
+```
+
+Keep it short and operational (well under 300 lines). It is injected into every
+session, so everything in it competes for the model's attention with the task at
+hand. If a linter can enforce a rule deterministically, use the linter and save the
+context. As the safety episode explained, context files are advisory; back
+safety-critical rules with permissions, hooks, and branch protection.
+
+## Planning the work with the agent
+
+Only now does the agent come in. With the design and the conventions settled, the
+remaining planning is turning the MVP plan into a request the agent can carry out, and
+that is where the agent is useful.
+
+### Supply context
 
 An agent asked to "make a plan" with no other input produces the average plan for the
 average project, and research projects are rarely the average case. Give it the
@@ -102,7 +211,7 @@ describes the pattern. A persistent plan file typically contains:
 Planning is iterative. The first plan is a draft to be questioned; the deliverable is
 a plan you would sign.
 
-## Plan mode: refine the request before any code
+### Plan mode: refine the request before any code
 
 **Plan mode** is a setting on the agent, not a way of thinking. Switched on, the agent
 can read the repository, answer questions, and propose an approach, but it cannot
@@ -173,9 +282,18 @@ The exercise below runs your MVP plan through plan mode.
 
 ## Exercise: Plan your MVP with an agent (15 minutes)
 
-1. **Open your project's MVP plan.** If there is none, write three lines now: the data
-   slice, one model, and how you score it. If you have no project, choose a public
-   dataset or competition you know and plan an MVP for it.
+1. **Write the MVP as an ordered list of features.** Each feature is one thing you
+   can check, and the order is the order you will build them in. For most projects
+   the list is three or four lines:
+
+   1. Load the data slice and validate it: row count, class balance, missing values.
+   2. Train one baseline model on a held-out split and print its score.
+   3. Compute the metric the paper or challenge uses, checked against a hand-computed
+      example.
+   4. (If needed) the one preprocessing step the baseline cannot do without.
+
+   If you have no project, choose a public dataset or competition you know and write
+   the list for it.
 2. **Ask the agent to review it** in plan mode, against your project's goal (the
    challenge page, the paper's research question, or the grant aim):
 
@@ -185,7 +303,7 @@ The exercise below runs your MVP plan through plan mode.
    > solutions that take time to build.
    >
    > **MVP plan**
-   > \<paste from your shared doc\>
+   > \<paste your ordered feature list\>
    >
    > **Project goal**
    > \<paste the research question or grant aim, the evaluation metric, and the data
@@ -198,8 +316,9 @@ The exercise below runs your MVP plan through plan mode.
    > Is this a good MVP? Say why or why not, and list any step that is missing,
    > unclear, or assumes something the data description does not support. Do not
    > propose a replacement design; if something should change, say what and why, and
-   > we will decide. Then write our MVP up as a `plan.md` with each step in order and
-   > how we will know each one works. Do not write any code yet.
+   > we will decide. Then write our MVP up as a `plan.md`: the features in the order
+   > we gave, one heading each, with the check that shows each one works. Do not
+   > write any code yet.
 
 3. **Question the plan until you would sign it.** Challenge anything you cannot
    explain, and ask why a given choice is preferable to the obvious alternative.
@@ -212,77 +331,14 @@ The exercise below runs your MVP plan through plan mode.
 
 ## What a good `plan.md` contains
 
-Three features, each one thing you can check. For example: (1) load and validate the
-data slice, with row count and class balance printed; (2) train one baseline, with a
-score on a held-out split; (3) write the scoring function, matching the metric your
-field or paper uses on a hand-computed example. If `plan.md` contains a feature for which
-you cannot describe a check, it is not yet a feature; split it or remove it. Note also
-what the agent could not know: which data is trustworthy, what compute you have, what
-your group has already decided. You supplied that context; without it the plan would have been
-for a different project.
-
-:::::::::::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::: challenge
-
-## Exercise: Agree how your team will collaborate (10 minutes)
-
-With the MVP plan committed, one agreement remains before the first feature is built.
-Every member of the team is about to use a coding agent on the same repository, which
-will produce more branches, more commits, and larger diffs than a typical project.
-Decide the rules that matter before the first feature: who reviews, what the agent
-may never touch, and where data, code, and results live. Then have the agent draft the
-document from those decisions.
-
-1. **Decide between branches and forks.** One shared repository with branches is the
-   usual choice for a team that trusts each other: every teammate's work is a
-   `git fetch` away, so an agent can read another branch and compare against it
-   without anyone adding remotes. Merging stays with a person.
-2. **Ask the agent**, giving it your team size and what you are building:
-
-   > Our research group of \<n\> is working in one GitHub repo on \<project, for
-   > example the analysis for a paper\>. Every one of us
-   > is using a coding agent, so we will be generating more branches, more commits
-   > and bigger diffs than a normal project.
-   >
-   > We have decided: \<who reviews each pull request; paths the agent may not
-   > modify; where raw data, processed data, code, and results live\>. Turn these into
-   > contributing conventions that keep `main` clean and reviewable. Fill in the
-   > routine parts (branch naming, how small a pull request should be, commit-message
-   > format, how we avoid two agents editing the same file, where new files go) and
-   > mark each rule you added so we can accept or remove it.
-   >
-   > Write `CONTRIBUTING.md`. Commit it to a development branch named for me, not to
-   > `main`, and open a pull request for it. Short enough that people read it.
-
-3. **Edit what it produces.** Keep the rules the team will follow and remove the
-   rest.
-4. **Merge it through the process it describes.** `CONTRIBUTING.md` goes on your own
-   branch, not directly to `main`. Open a pull request, have a teammate review it,
-   then merge. This is the first use of the rules you have just written. Most agents
-   open a pull request by default; note that when it happens.
-5. Share the link with your PI or project lead, so they can see what was agreed.
-
-If you are working alone, write the same thing for yourself in three to five lines (a
-branch convention, a pull-request size, what the agent may never modify) and put it
-in your context file.
-
-:::::::::::::::::::::::: solution
-
-## What a usable result contains
-
-It is short. A branch-name pattern (`<name>/<feature>`); a pull-request size people
-will review in full (a few hundred lines at most); one named reviewer per pull
-request, and whether review happens at the pull request or on every change (the
-verification episode compares the two); a list of paths the agent may not modify without asking (`data/raw/`, the
-scoring function, `main`); a rule for avoiding collisions (one feature per branch,
-claimed in the plan); and a commit-message format. Agents draft the routine parts well because conventions are the average case. The
-decisions that matter (who reviews, what the agent may not touch, where results live)
-are the group's; your contribution is making those and removing what the group will
-not do. The rules are advisory for the agent; back the important ones
-with branch protection.
+Your ordered features, each with a check, and nothing the agent added without saying
+so. If `plan.md` contains a feature for which you cannot describe a check, it is not
+yet a feature; split it or remove it. If the agent reordered the list, it should have
+said why, and the reason should be a dependency (the split has to exist before the
+baseline can be scored), not a preference. Note also what the agent could not know:
+which data is trustworthy, what compute you have, what your group has already decided.
+You supplied that context; without it the plan would have been for a different
+project.
 
 :::::::::::::::::::::::::::::::::
 
@@ -306,35 +362,6 @@ to adopt because the response sounded confident. If you cannot explain it, you d
 yet own it.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
-
-## Before the first feature: write the context file
-
-Planning surfaces knowledge that exists only in your head: the reasons for decisions,
-the conventions, what the data means. Before the first feature, record it in a
-**project context file**, the rules file introduced in the safety episode. Claude Code
-reads `CLAUDE.md` from the project root at the start of every session; Copilot reads
-`.github/copilot-instructions.md`; nearly every tool also reads `AGENTS.md`. It is a
-README addressed to the agent:
-
-```markdown
-## Project structure
-- Analysis pipelines live in `src/pipelines/`; each mirrors a notebook in `notebooks/`
-- Raw data in `data/raw/` is read-only — NEVER modify it; derived data goes to `data/processed/`
-
-## Conventions
-- Run tests with `pytest tests/` after changes; don't commit with failing tests
-- Use type hints; don't add dependencies without asking
-
-## Safety
-- Never force-push; never commit directly to main
-- The `results/` directory is generated — edit the code, not the outputs
-```
-
-Keep it short and operational (well under 300 lines). It is injected into every
-session, so everything in it competes for the model's attention with the task at
-hand. If a linter can enforce a rule deterministically, use the linter and save the
-context. As the safety episode explained, context files are advisory; back
-safety-critical rules with permissions, hooks, and branch protection.
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 
