@@ -642,7 +642,7 @@ the editor.</p>
   Why this works
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>A methodological requirement that was previously implicit is now an
 executable contract. The agent has a feedback loop that fails when it
@@ -776,6 +776,29 @@ plot agree with the numbers? Propose the one experiment you would run
 next and say what result would change our plan. Do not run anything
 yet.</p>
 </blockquote>
+<div id="data-stewardship-applies-to-the-artifacts-too" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="data-stewardship-applies-to-the-artifacts-too" class="callout-inner">
+<h3 class="callout-title">Data stewardship applies to the artifacts
+too</h3>
+<div class="callout-content">
+<p>“Leave evidence in the repository” has a limit. The safety episode’s
+rule that sensitive or restricted data stays away from unvetted AI
+services covers anything derived from that data, not only the raw files.
+A figure with one point per participant, a metrics file broken down by
+site or by a small subgroup, a run log that prints sample IDs or
+free-text fields, and a data dictionary with field values can each
+disclose what the raw data would. Before you commit an artifact for the
+agent to read, ask whether you could put it in a public preprint. If
+not, aggregate it, redact it, or keep it out of the repository, and give
+the agent summary statistics instead. The same applies to what you paste
+into a prompt.</p>
+</div>
+</div>
+</div>
 <div id="exercise-2-optional-what-is-wrong-with-this-5-minutes" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -815,7 +838,7 @@ assertion that would have caught it.</p>
   The bug, and the assertion that catches it
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Every subject appears in both splits. The model learned to identify
 each person, not what they were looking at. On a new subject the score

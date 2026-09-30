@@ -1681,7 +1681,7 @@ contract?</li>
   Typical findings
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Most participants find at least one surprise: a training setting they
 had not seen, a retention clause tied to the feedback button, or the
@@ -1933,14 +1933,14 @@ model, metric, or split, correct it before approving.</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
 <p>Press <kbd>Shift</kbd>+<kbd>Tab</kbd> until the status line shows
 <strong>plan mode</strong>. Claude can then read and answer but not edit
 or run anything. On the web, begin the prompt with “Plan mode, do not
 edit”, or ask for a plan and review it before approving
 implementation.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
 <p>Select <strong>Ask</strong> (or <strong>Plan</strong>) in the chat
 panel’s mode dropdown, and begin the message with
 <code>@workspace</code> so the question covers the whole repository.
@@ -2249,6 +2249,8 @@ projects?</li>
 <li>What happens when I give an agent a vague request?</li>
 <li>What does a good prompt look like for research code?</li>
 <li>Which routine tasks are agents reliably good at?</li>
+<li>What documentation should you ask an agent for, and what can it not
+write?</li>
 </ul>
 </div>
 </div>
@@ -2267,6 +2269,8 @@ engineering (the specific request).</li>
 and what not to modify.</li>
 <li>Implement one feature from your plan and audit the decisions the
 agent made on your behalf.</li>
+<li>Use an agent to document a repository, and check the result the way
+you would check code.</li>
 </ul>
 </div>
 </div>
@@ -2476,7 +2480,7 @@ printed majority-class baseline alongside the test accuracy.</p>
   Typical results
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The request to list unspecified choices is the most informative line
 in the template. Typical answers: a random seed, a default imputation,
@@ -2518,12 +2522,11 @@ the code imports.</li>
 <strong>Weekly merge preparation.</strong> “Summarize what changed
 on this branch since <code>main</code>, for collaborators who were not
 at this week’s lab meeting.”</li>
-</ul>
-<div class="section level3">
-<h3 id="documentation-notes-to-your-future-self-and-your-agent">Documentation: notes to your future self and your agent<a class="anchor" aria-label="anchor" href="#documentation-notes-to-your-future-self-and-your-agent"></a>
-</h3>
-<p>Documentation deserves more than a place on that list, for three
-reasons.</p>
+</ul></section><section><h2 class="section-heading" id="documentation-notes-to-your-future-self-and-your-agent">Documentation: notes to your future self and your agent<a class="anchor" aria-label="anchor" href="#documentation-notes-to-your-future-self-and-your-agent"></a>
+</h2>
+<hr class="half-width">
+<p>Documentation is a maintenance task with three properties the others
+lack.</p>
 <ul>
 <li>
 <strong>It is now cheap.</strong> Research code is under-documented
@@ -2577,6 +2580,10 @@ modify.</li>
 <li>Maintenance tasks (refactors, docstrings, README audits, environment
 pins, merge summaries) are well suited to agents under the same
 small-specified-checkable rules.</li>
+<li>Documentation is cheap to generate, becomes context for later
+sessions, and doubles as a check on the code. The agent cannot write the
+why; that comes from you. Read generated documentation as critically as
+generated code.</li>
 <li>Always ask the agent to list the choices you did not specify.</li>
 </ul>
 </div>
@@ -2586,7 +2593,6 @@ small-specified-checkable rules.</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
-</div>
 </section></section><section id="aio-verification-and-review"><p>Content from <a href="verification-and-review.html">Verification and Testing: No Escaping Good Data Science</a></p>
 <hr>
 <p>Last updated on 2026-09-30 |
@@ -2868,7 +2874,7 @@ the editor.</p>
   Why this works
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>A methodological requirement that was previously implicit is now an
 executable contract. The agent has a feedback loop that fails when it
@@ -3015,6 +3021,29 @@ plot agree with the numbers? Propose the one experiment you would run
 next and say what result would change our plan. Do not run anything
 yet.</p>
 </blockquote>
+<div id="data-stewardship-applies-to-the-artifacts-too" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="data-stewardship-applies-to-the-artifacts-too" class="callout-inner">
+<h3 class="callout-title">Data stewardship applies to the artifacts
+too</h3>
+<div class="callout-content">
+<p>“Leave evidence in the repository” has a limit. The safety episode’s
+rule that sensitive or restricted data stays away from unvetted AI
+services covers anything derived from that data, not only the raw files.
+A figure with one point per participant, a metrics file broken down by
+site or by a small subgroup, a run log that prints sample IDs or
+free-text fields, and a data dictionary with field values can each
+disclose what the raw data would. Before you commit an artifact for the
+agent to read, ask whether you could put it in a public preprint. If
+not, aggregate it, redact it, or keep it out of the repository, and give
+the agent summary statistics instead. The same applies to what you paste
+into a prompt.</p>
+</div>
+</div>
+</div>
 <div id="exercise-2-optional-what-is-wrong-with-this-5-minutes" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -3054,7 +3083,7 @@ assertion that would have caught it.</p>
   The bug, and the assertion that catches it
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Every subject appears in both splits. The model learned to identify
 each person, not what they were looking at. On a new subject the score
@@ -3785,7 +3814,7 @@ benchmarks.</li>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
 <ul>
 <li>
 <code>/cost</code>: what the current session has consumed;
@@ -3805,7 +3834,7 @@ the summary.</li>
 direction.</li>
 </ul>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
 <ul>
 <li>Check credit and premium-request usage on the <a href="https://github.com/settings/copilot" class="external-link">Copilot settings page</a>.
 Model choice changes the rate.</li>
@@ -3875,7 +3904,7 @@ most? Was it a vague prompt that produced a loop?</li>
   Typical findings
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Most workshop sessions come to a few watt-hours, a small percentage
 of a dishwasher cycle. The informative result is usually the third item:
