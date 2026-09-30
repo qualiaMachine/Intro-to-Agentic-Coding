@@ -51,8 +51,9 @@ The agent's role here is research assistant and critic, not author:
   A method you cannot explain cannot go in a methods section.
 
 Skipping this step and letting the agent write code before you understand the
-problem is the most common failure in agentic work. Keep the plan proportional to the
-task: a three-line plan for a three-line task.
+problem is the most common failure in agentic work. The size of the plan should match
+the size of the task. A small change to one function needs a sentence, not a
+document.
 
 ## Supply context
 
