@@ -6,7 +6,7 @@ exercises: 25
 
 :::::::::::::::::::::::::::::::::::::: questions
 
-- Why plan before letting an agent write code, and what does the evidence say?
+- Why should you plan the project yourself before an agent writes any code?
 - What goes into a plan, and where does the agent get the context to make one?
 - What is a minimum viable pipeline, and why start there?
 - How do I plan with an agent without adopting designs I cannot defend?
@@ -15,6 +15,7 @@ exercises: 25
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
+- Plan a software project yourself, using an agent to research options and critique the plan rather than to originate it.
 - Explain how a plan changes what an agent does with its context and tokens.
 - Supply the context an agent needs to plan: goal, constraints, existing code, standards, prior decisions.
 - Use an agent in a read-only or plan mode to review and improve a plan before any code exists.
@@ -24,25 +25,37 @@ exercises: 25
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Start with a plan
+## Plan the project yourself
 
-The most common failure in agentic work is letting the agent write code before you
-understand the problem. The plan is yours to write. The agent can help you research
-options, check the plan for gaps, and keep it up to date, but the decisions in it
-(what to build, in what order, and what counts as done) are decisions you should be
-able to defend without the agent. That is what staying in the driver's seat means at
-this stage.
+Planning a software project is the same work it was before agents: decide what the
+project is for, what it must produce, what it will not do, what order to build things
+in, and how you will know each piece works. That thinking is yours. The ideas should
+mostly come from you, from the research question, and from the people you work with,
+because you are the ones who will have to defend them in a lab meeting, a review, or a
+paper. An agent is useful at this stage as a research assistant and a critic: it can
+summarize the options, point out a gap in the plan, ask a question you had not
+considered, and keep the plan file current as work proceeds.
 
-Planning also changes how the agent works. Structured planning before implementation
-improved coding success by up to 26.7%, reducing failed generations and repeated
-implementation attempts ([Jiang et al., 2023](https://arxiv.org/abs/2303.06689)).
-The mechanism is straightforward. Without a plan, an agent makes exploratory and
-redundant tool calls: unnecessary repository searches, re-reading the same files,
-modifying the wrong layer, expanding beyond the requested scope, looping on debugging,
-and reporting completion prematurely. With a plan, it reads only the relevant files,
-understands constraints before implementing, sequences dependent changes correctly,
-checks the acceptance criteria, and stops when the task is complete. With a bad plan,
-it anchors on incorrect assumptions, which costs both accuracy and tokens.
+Agents will also propose ideas of their own, and some are good. Treat each one as a
+suggestion from a fluent but unaccountable colleague: ask why this rather than the
+obvious alternative, what the failure modes are, and what the simplest workable
+version would be, and adopt it only when the reasoning holds up and you could explain
+it without the agent. The section [below](#do-not-build-on-ideas-you-cannot-defend)
+covers this in more detail. This is what staying in the driver's seat means before any
+code exists.
+
+The most common failure in agentic work is skipping this step and letting the agent
+write code before you understand the problem. Planning first also changes how the
+agent works. Structured planning before implementation improved coding success by up
+to 26.7%, reducing failed generations and repeated implementation attempts
+([Jiang et al., 2023](https://arxiv.org/abs/2303.06689)). The mechanism is
+straightforward. Without a plan, an agent makes exploratory and redundant tool calls:
+unnecessary repository searches, re-reading the same files, modifying the wrong layer,
+expanding beyond the requested scope, looping on debugging, and reporting completion
+prematurely. With a plan, it reads only the relevant files, understands constraints
+before implementing, sequences dependent changes correctly, checks the acceptance
+criteria, and stops when the task is complete. With a bad plan, it anchors on
+incorrect assumptions, which costs both accuracy and tokens.
 
 A plan gives the agent direction. It gives you a review point before implementation.
 It gives both parties a shared definition of done. Planning should be proportional to
