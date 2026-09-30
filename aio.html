@@ -644,7 +644,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-safety-and-security"><p>Content from <a href="safety-and-security.html">Safety and Security: Limit What the Agent Can Access</a></p>
 <hr>
-<p>Last updated on 2026-09-28 |
+<p>Last updated on 2026-09-30 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/safety-and-security.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -678,9 +678,9 @@ AI tools?</li>
 project.</li>
 <li>Explain prompt injection and why anything an agent reads is
 untrusted input.</li>
-<li>Limit an agent along six axes: what it can reach on the network,
-where it runs, which commands it may run, which credentials it can see,
-what it can commit, and whom you trust.</li>
+<li>Bound what an agent can do with six controls: what it can reach on
+the network, where it runs, which commands it may run, which credentials
+it can see, what it can commit, and what you let into the workflow.</li>
 <li>Distinguish instructions, which influence behavior, from
 permissions, which constrain it.</li>
 <li>Keep secrets out of local plaintext files, loading them at runtime
@@ -782,8 +782,8 @@ reduce the risk but do not remove it.</li>
 trifecta”</a> identifies the combination to avoid: access to private
 data, exposure to untrusted content, and a channel to send data out.
 Removing any one of the three defeats the attack. Injection is the
-threat; the six limits below determine how much damage it can do.</p>
-</section><section><h2 class="section-heading" id="six-limits-on-what-the-agent-can-access">Six limits on what the agent can access<a class="anchor" aria-label="anchor" href="#six-limits-on-what-the-agent-can-access"></a>
+threat; the six controls below determine how much damage it can do.</p>
+</section><section><h2 class="section-heading" id="six-controls-on-what-the-agent-can-do">Six controls on what the agent can do<a class="anchor" aria-label="anchor" href="#six-controls-on-what-the-agent-can-do"></a>
 </h2>
 <hr class="half-width">
 <ol style="list-style-type: decimal">
@@ -803,8 +803,9 @@ never the repository.</li>
 <strong>What it can commit.</strong> A feature branch and a pull
 request; you merge.</li>
 <li>
-<strong>Whom you trust.</strong> Providers, their data policies, and
-downloaded repositories and weights.</li>
+<strong>What you let in.</strong> The providers, downloaded
+repositories, and model weights you admit into the workflow. The first
+five are settings; this one is a judgment.</li>
 </ol>
 <p>One distinction applies to all six. An <em>instruction</em> (a rules
 file, a line in a prompt) asks the model to behave in a certain way. A
@@ -849,7 +850,7 @@ final control, applied after all the others.</li>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
 <p>The setting belongs to the <strong>cloud environment</strong>, not to
 your account. At <a href="https://claude.ai/code" class="external-link">claude.ai/code</a> (or
 in the desktop app’s prompt box), open the environment selector, edit
@@ -867,7 +868,7 @@ code-execution sandbox used by Claude chat and Cowork, not Claude Code
 cloud environments. Documentation: <a href="https://code.claude.com/docs/en/cloud-environments#network-access" class="external-link">Configure
 cloud environments</a>.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
 <p>The setting belongs to the <strong>repository</strong>, and you must
 be a repository administrator to see it: <strong>Settings → Code,
 planning, and automation → Copilot → Cloud agent → Internet
@@ -998,7 +999,7 @@ them:</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-2" class="tab-content">
-<div id="nav-tabpanel-2-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-2-ClaudeCode" role="tabpanel">
+<div id="nav-tabpanel-2-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-2-ClaudeCode">
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">JSON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1010,7 +1011,7 @@ them:</p>
 <span id="cb1-6"><a href="#cb1-6" tabindex="-1" aria-label="code-block-1-6"></a><span class="fu">}</span> <span class="fu">}</span></span></code></pre>
 </div>
 </div>
-<div id="nav-tabpanel-2-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-2-GitHubCopilot" role="tabpanel">
+<div id="nav-tabpanel-2-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-2-GitHubCopilot">
 <p>The Copilot CLI has the same idea with its own syntax (<a href="https://docs.github.com/en/copilot/how-tos/copilot-cli/use-copilot-cli/allowing-tools" class="external-link">allowing
 and denying tool use</a>):</p>
 <div class="codewrapper sourceCode" id="cb2">
@@ -1141,9 +1142,9 @@ rather than habitual: require a pull request and a passing check before
 merge. The verification episode sets this up.</p>
 </div>
 <div class="section level3">
-<h3 id="whom-you-trust-providers-models-repositories">6. Whom you trust: providers, models, repositories<a class="anchor" aria-label="anchor" href="#whom-you-trust-providers-models-repositories"></a>
+<h3 id="what-you-let-in-providers-models-repositories">6. What you let in: providers, models, repositories<a class="anchor" aria-label="anchor" href="#what-you-let-in-providers-models-repositories"></a>
 </h3>
-<p>The final limit is not enforced by any setting: which providers,
+<p>The final control is not enforced by any setting: which providers,
 packages, and model weights you admit into the workflow. Vet a
 provider’s data policy (are my data and code used for training, and is
 that the default? how long is it retained, and who can see it? where
@@ -1211,7 +1212,7 @@ get the same review gate, with less interaction.</li>
 <strong>Confirm the session is cloud-hosted before you
 prompt.</strong> It should be pointed at a cloud VM and a GitHub
 repository, not a folder on your laptop. Check the environment’s network
-access setting (limit 1 above) while you are there.</li>
+access setting (control 1 above) while you are there.</li>
 <li>
 <strong>Use your project repository.</strong> If your team does not
 have one yet, create your own for today.</li>
@@ -1270,9 +1271,9 @@ context. Assume anything on disk in plaintext can be read.</li>
 <li>Prompt injection is the threat: anything the agent reads can carry
 instructions. Treat it all as untrusted, keep the web session’s firewall
 on, and review the pull request before merging.</li>
-<li>Six limits determine how much damage injection can do: network
+<li>Six controls determine how much damage injection can do: network
 allowlist, cloud VM, command rules, password-manager credentials, branch
-plus pull request, and whom you trust.</li>
+plus pull request, and what you let into the workflow.</li>
 <li>Instructions influence behavior; permissions constrain it. A rules
 file is text the model weighs, not an ability it lacks.</li>
 <li>The only secret an agent cannot leak is one that is not there. Load
@@ -1290,7 +1291,7 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-trust"><p>Content from <a href="trust.html">Trust: Packages, Models, and Providers</a></p>
 <hr>
-<p>Last updated on 2026-09-28 |
+<p>Last updated on 2026-09-30 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/trust.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -1331,14 +1332,15 @@ use.</li>
 </div>
 </div>
 </div>
-<p>The safety episode ended with the one limit no setting enforces: whom
-you trust. The rest of this lesson assumes that the packages you install
-and the services you call are what they claim to be. That assumption
-deserves the same scrutiny as the data. Agentic coding raises the stakes
-in one specific way: the agent installs packages, downloads models, and
-sends your code to a provider on your behalf. Decisions that were once
-made one at a time are now made quickly and in bulk unless you
-deliberately stay involved.</p>
+<p>The safety episode ended with the one control no setting enforces:
+what you let into the workflow, and whom you trust to supply it. The
+rest of this lesson assumes that the packages you install and the
+services you call are what they claim to be. That assumption deserves
+the same scrutiny as the data. Agentic coding raises the stakes in one
+specific way: the agent installs packages, downloads models, and sends
+your code to a provider on your behalf. Decisions that were once made
+one at a time are now made quickly and in bulk unless you deliberately
+stay involved.</p>
 <section><h2 class="section-heading" id="packages-the-agent-multiplies-your-supply-chain-exposure">Packages: the agent multiplies your supply-chain exposure<a class="anchor" aria-label="anchor" href="#packages-the-agent-multiplies-your-supply-chain-exposure"></a>
 </h2>
 <hr class="half-width">
@@ -1637,7 +1639,7 @@ contract?</li>
   Typical findings
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Most participants find at least one surprise: a training setting they
 had not seen, a retention clause tied to the feedback button, or the
@@ -1690,7 +1692,7 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-early-project-planning"><p>Content from <a href="early-project-planning.html">Planning with Agents</a></p>
 <hr>
-<p>Last updated on 2026-09-28 |
+<p>Last updated on 2026-09-30 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/early-project-planning.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -1704,8 +1706,8 @@ any links that you are not going to use.
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>Why plan before letting an agent write code, and what does the
-evidence say?</li>
+<li>Why should you plan the analysis yourself before an agent writes any
+code?</li>
 <li>What goes into a plan, and where does the agent get the context to
 make one?</li>
 <li>What is a minimum viable pipeline, and why start there?</li>
@@ -1720,12 +1722,16 @@ defend?</li>
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
 <ul>
+<li>Plan a research software project yourself, from the research
+question down, using an agent to research options and critique the plan
+rather than to originate it.</li>
 <li>Explain how a plan changes what an agent does with its context and
 tokens.</li>
 <li>Supply the context an agent needs to plan: goal, constraints,
 existing code, standards, prior decisions.</li>
-<li>Use an agent in a read-only or plan mode to review and improve a
-plan before any code exists.</li>
+<li>Use plan mode to have the agent critique the plan, propose the
+structure of the code it will write, and surface open questions before
+any code exists.</li>
 <li>Agree team collaboration conventions with an agent’s help and commit
 them as a <code>CONTRIBUTING.md</code> that people and agents both
 read.</li>
@@ -1739,38 +1745,49 @@ understand, and do not build on ideas you cannot defend.</li>
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="start-with-a-plan">Start with a plan<a class="anchor" aria-label="anchor" href="#start-with-a-plan"></a>
+<section><h2 class="section-heading" id="plan-the-research-software-yourself">Plan the research software yourself<a class="anchor" aria-label="anchor" href="#plan-the-research-software-yourself"></a>
 </h2>
 <hr class="half-width">
-<p>The most common failure in agentic work is letting the agent write
-code before either party understands the problem. The research on
-planning is consistent:</p>
-<ul>
-<li>Structured planning before implementation improved coding success by
-up to 26.7%, reducing failed generations and repeated implementation
-attempts (<a href="https://arxiv.org/abs/2303.06689" class="external-link">Jiang et al.,
-2023</a>).</li>
-<li>Removing the blueprint-planning agent from a structured coding
-pipeline reduced accuracy by 14.8 percentage points (<a href="https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2025.1660912/full" class="external-link">Mao
-et al., 2025</a>).</li>
-<li>Runs on the same coding task varied by up to 30× in total token
-usage, and higher token consumption did not produce greater accuracy (<a href="https://arxiv.org/abs/2604.22750" class="external-link">Bai et al., 2026</a>).</li>
-</ul>
-<p>These studies measured accuracy rather than token use, but the
-mechanism is straightforward. Without a plan, the agent makes
-exploratory and redundant tool calls, which usually means more tokens
-for lower accuracy. With a good plan, it makes fewer wasted turns and
-less rework, which usually means fewer tokens and higher accuracy. With
-a bad plan, it anchors on incorrect assumptions, which produces both
-lower accuracy and higher token use.</p>
-<p>Without a plan, an agent tends to make unnecessary repository
-searches, re-read the same files, modify the wrong layer, expand beyond
-the requested scope, make contradictory edits, loop on debugging, and
-report completion prematurely. With a plan, it searches purposefully,
-reads only the relevant files, understands constraints before
-implementing, detects missing information early, sequences dependent
-changes correctly, tracks what is done, verifies the acceptance
-criteria, and stops when the task is complete.</p>
+<p>Research software exists to answer a question, and the plan for it is
+the analysis design. Before an agent writes any code, you should be able
+to state the research question, the claim a result would support, the
+data and what you already know about it, the comparison or baseline that
+makes the result meaningful, and the figures, tables, or numbers that
+will end up in the paper. You should also be able to say what would show
+the approach is wrong. None of that is programming, and none of it
+should be delegated. The ideas come from you, from the literature, and
+from the people you work with, because you are the ones who will defend
+them in a lab meeting, in peer review, and in the methods section.</p>
+<p>An agent is useful at this stage in two roles. As a research
+assistant it can summarize the options for a step, find the library that
+implements a method, and keep the plan file current as work proceeds. As
+a critic it can point out a gap in the plan, ask a question you had not
+considered, or notice that a step assumes something the data description
+does not support. In both roles it works from the context you give it,
+and it does not know your field’s standards unless you state them.</p>
+<p>Agents will also propose ideas of their own, and some are good. Treat
+each one as a suggestion from a fluent but unaccountable colleague: ask
+why this rather than the obvious alternative, what the failure modes
+are, whether it is standard practice in your field, and what the
+simplest workable version would be. Adopt it only when the reasoning
+holds up and you could explain it without the agent. A method you cannot
+explain cannot go in a methods section. The section <a href="#do-not-build-on-ideas-you-cannot-defend">below</a> covers this in
+more detail. This is what staying in the driver’s seat means before any
+code exists.</p>
+<p>The most common failure in agentic work is skipping this step and
+letting the agent write code before you understand the problem. Planning
+first also changes how the agent works. Structured planning before
+implementation improved coding success by up to 26.7%, reducing failed
+generations and repeated implementation attempts (<a href="https://arxiv.org/abs/2303.06689" class="external-link">Jiang et al., 2023</a>). The
+mechanism is straightforward. Without a plan, an agent makes exploratory
+and redundant tool calls: unnecessary repository searches, re-reading
+the same files, modifying the wrong layer, expanding beyond the
+requested scope, looping on debugging, and reporting completion
+prematurely. With a plan, it reads only the relevant files, understands
+constraints before implementing, sequences dependent changes correctly,
+checks the acceptance criteria, and stops when the task is complete.
+With a bad plan, it anchors on incorrect assumptions, which costs both
+accuracy and tokens.</p>
 <p>A plan gives the agent direction. It gives you a review point before
 implementation. It gives both parties a shared definition of done.
 Planning should be proportional to the task: a three-line plan for a
@@ -1779,13 +1796,24 @@ three-line task.</p>
 </h2>
 <hr class="half-width">
 <p>An agent asked to “make a plan” with no other input produces the
-average plan for the average project. The plan is only as good as the
-context it is built from. Context worth providing, in rough order of how
-often it is missing:</p>
+average plan for the average project, and research projects are rarely
+the average case. The plan is only as good as the context it is built
+from. Context worth providing, in rough order of how often it is
+missing:</p>
 <ul>
 <li>
-<strong>The goal and constraints</strong>: the research question,
-the challenge page, the scoring rule, the compute available.</li>
+<strong>The research question and the constraints</strong>: what a
+result has to show, the scoring rule or evaluation metric, the compute
+available (a laptop, a cluster allocation, cloud credits), and any
+deadline.</li>
+<li>
+<strong>What you know about the data</strong>: provenance, units,
+sampling, known artifacts, missingness, and which subsets are
+trustworthy. Nobody but you and your collaborators knows this.</li>
+<li>
+<strong>The analysis you would have done by hand</strong>: the
+splits, the controls, the baseline, and the statistics your field
+expects.</li>
 <li>
 <strong>The previous <code>plan.md</code></strong>, or its
 discoveries and blockers.</li>
@@ -1793,11 +1821,11 @@ discoveries and blockers.</li>
 <strong>Skeleton code</strong>: a stub of the function or module you
 want, so the shape is yours.</li>
 <li>
-<strong>A GitHub issue or story</strong> describing the feature in
-your words.</li>
+<strong>A GitHub issue</strong> describing the feature in your
+words.</li>
 <li>
 <strong><code>future-work.md</code></strong>: what is deliberately
-out of scope.</li>
+out of scope for this paper or release.</li>
 <li>
 <strong>Rules and coding-standards files</strong>: the project
 context file described below, plus any style guide your group
@@ -1820,13 +1848,43 @@ persistent plan file typically contains:</p>
 </ul>
 <p>Planning is iterative. The first plan is a draft to be questioned;
 the deliverable is a plan you would sign.</p>
-</section><section><h2 class="section-heading" id="plan-mode-read-without-writing">Plan mode: read without writing<a class="anchor" aria-label="anchor" href="#plan-mode-read-without-writing"></a>
+</section><section><h2 class="section-heading" id="plan-mode-the-agent-plans-the-implementation">Plan mode: the agent plans the implementation<a class="anchor" aria-label="anchor" href="#plan-mode-the-agent-plans-the-implementation"></a>
 </h2>
 <hr class="half-width">
-<p>Most tools have a read-only mode for this stage, in which the agent
-reads files and answers questions without making changes. It is the
-safest first contact with a repository and the appropriate mode for
-reviewing a plan.</p>
+<p>Plan mode is a different activity from the planning above, and the
+two are easy to confuse because the tools use the same word. The
+analysis design is yours. Plan mode is where the agent, given that
+design, works out how it will build the code: which files it will create
+or change, in what order, what it needs to know before it starts, and
+where it is uncertain. Most tools provide it as a read-only mode in
+which the agent reads the repository and answers questions without
+editing or running anything, which also makes it the safest first
+contact with an unfamiliar codebase.</p>
+<p>Used well, plan mode does three things before any code exists:</p>
+<ul>
+<li>
+<strong>Feedback on your plan.</strong> The agent reads
+<code>plan.md</code> and the repository together and reports what does
+not line up: a feature with no check, a step that assumes data in a
+format the repository does not contain, a dependency that is not
+installed.</li>
+<li>
+<strong>A structure for the code it will write.</strong> It proposes
+the modules, functions, and tests it intends to produce, so you can
+correct the shape (where the scoring function lives, what the data
+loader returns) while it is still cheap to change.</li>
+<li>
+<strong>Loose ends surfaced first.</strong> Anything it would
+otherwise have guessed at during implementation becomes a question now:
+which column is the label, which split is held out, what to do with
+missing values. Answer these before approving the plan, because an agent
+that guesses mid-implementation guesses the average case.</li>
+</ul>
+<p>The output of plan mode is an implementation plan you approve, edit,
+or reject. It is not the analysis design, and it should not change the
+analysis design without you noticing. If the agent’s implementation plan
+quietly substitutes a different model, metric, or split, that is a plan
+to reject.</p>
 <div class="tabs">
 <nav><div id="nav-tab-1" class="nav nav-tabs" role="tablist">
 <button class="nav-link active" id="nav-tab-1-ClaudeCode" name="ClaudeCode" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-ClaudeCode" type="button" role="tab" aria-controls="nav-tabpanel-1-ClaudeCode" aria-selected="true">
@@ -2095,17 +2153,24 @@ rules with permissions, hooks, or branch protection.</p>
 <div class="callout-inner">
 <div class="callout-content">
 <ul>
+<li>The plan is the analysis design, and it is yours: research question,
+data, baseline, outputs, and what would show the approach is wrong. The
+agent assists and critiques; ideas it proposes are adopted only when you
+can defend the reasoning.</li>
 <li>Plan before code. Planning measurably improves accuracy, and a good
 plan usually reduces token use. Keep planning proportional to the
 task.</li>
-<li>A plan is only as good as its context. Provide the goal,
-constraints, compute, existing code, standards, and prior decisions; for
-long work, keep the plan in a file the agent updates.</li>
+<li>A plan is only as good as its context. Provide the research
+question, what you know about the data, the analysis you would do by
+hand, compute, existing code, and standards; for long work, keep the
+plan in a file the agent updates.</li>
 <li>Agree team conventions first (branches rather than forks,
 pull-request size, who reviews, what the agent may not modify, where new
 files go) and commit them as a <code>CONTRIBUTING.md</code> that agents
 also read.</li>
-<li>Use plan mode (read-only) to review a plan. The deliverable is a
+<li>Plan mode is distinct from planning the analysis: the agent
+critiques your plan, proposes the code structure, and raises loose ends
+for you to settle before it implements. The deliverable is a
 <code>plan.md</code> with ordered features and a check for each,
 committed before any code.</li>
 <li>Start from a minimum viable pipeline: a slice of data, one model,
@@ -2727,13 +2792,13 @@ protected branches</a>).</p></li>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
 <p>Plan mode for step 1 (<kbd>Shift</kbd>+<kbd>Tab</kbd> locally; on the
 web, the “do not edit” line has the same effect). For steps 3 and 4
 switch to normal mode. Claude will run <code>pytest</code> itself
 (approve the command) and iterate until it passes.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
 <p><strong>Ask</strong> mode with <code>@workspace</code> for step 1;
 <strong>Agent</strong> mode for steps 3 and 4. Copilot proposes the
 <code>pytest</code> run in the terminal and waits for approval. The
@@ -3177,7 +3242,7 @@ a token with read-only scopes (see <a href="index.html#optional-github-token-for
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -3188,7 +3253,7 @@ a token with read-only scopes (see <a href="index.html#optional-github-token-for
 </div>
 <p>Restart the session so the tools load.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilotVSCode" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilotVSCode" role="tabpanel">
+<div id="nav-tabpanel-1-GitHubCopilotVSCode" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilotVSCode">
 <p>Command Palette → <strong>MCP: Open User Configuration</strong>, add
 an entry for the same endpoint, click <strong>Start</strong>, and switch
 Copilot Chat to <strong>Agent</strong> mode:</p>
@@ -3228,7 +3293,7 @@ episode.</p>
   What this shows
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The agent is now calling GitHub’s API rather than answering from
 training data. Ask yourself what wider access it would need to do the
@@ -3292,7 +3357,7 @@ concrete.</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-2" class="tab-content">
-<div id="nav-tabpanel-2-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-2-ClaudeCode" role="tabpanel">
+<div id="nav-tabpanel-2-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-2-ClaudeCode">
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -3311,7 +3376,7 @@ the mode is set rather than coincidental:</p>
 configuration: run the same two commands, then reload the chat
 panel.</p>
 </div>
-<div id="nav-tabpanel-2-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-2-GitHubCopilot" role="tabpanel">
+<div id="nav-tabpanel-2-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-2-GitHubCopilot">
 <p>Caveman provides rule files for Copilot:</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3352,7 +3417,7 @@ and the instructions:</p>
   From the demonstration to real use
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>The caveman skill demonstrates the mechanism. The practical use is
 packaging an instruction you would otherwise repeat. Choose one thing
@@ -3740,7 +3805,7 @@ most? Was it a vague prompt that produced a loop?</li>
   Typical findings
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Most workshop sessions come to a few watt-hours, a small percentage
 of a dishwasher cycle. The informative result is usually the third item:

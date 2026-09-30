@@ -221,7 +221,7 @@
         <ul><li><a href="#institutional-genai-policies">Institutional GenAI policies</a></li>
 <li><a href="#what-an-agent-can-and-cannot-do">What an agent can and cannot do</a></li>
 <li><a href="#the-threat-prompt-injection">The threat: prompt injection</a></li>
-<li><a href="#six-limits-on-what-the-agent-can-access">Six limits on what the agent can access</a></li>
+<li><a href="#six-controls-on-what-the-agent-can-do">Six controls on what the agent can do</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -349,7 +349,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Safety and Security: Limit What the Agent Can Access</h1>
-        <p>Last updated on 2026-09-28 |
+        <p>Last updated on 2026-09-30 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/safety-and-security.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -388,9 +388,9 @@ AI tools?</li>
 project.</li>
 <li>Explain prompt injection and why anything an agent reads is
 untrusted input.</li>
-<li>Limit an agent along six axes: what it can reach on the network,
-where it runs, which commands it may run, which credentials it can see,
-what it can commit, and whom you trust.</li>
+<li>Bound what an agent can do with six controls: what it can reach on
+the network, where it runs, which commands it may run, which credentials
+it can see, what it can commit, and what you let into the workflow.</li>
 <li>Distinguish instructions, which influence behavior, from
 permissions, which constrain it.</li>
 <li>Keep secrets out of local plaintext files, loading them at runtime
@@ -463,8 +463,8 @@ reduce the risk but do not remove it.</li>
 trifecta”</a> identifies the combination to avoid: access to private
 data, exposure to untrusted content, and a channel to send data out.
 Removing any one of the three defeats the attack. Injection is the
-threat; the six limits below determine how much damage it can do.</p>
-</section><section><h2 class="section-heading" id="six-limits-on-what-the-agent-can-access">Six limits on what the agent can access<a class="anchor" aria-label="anchor" href="#six-limits-on-what-the-agent-can-access"></a></h2>
+threat; the six controls below determine how much damage it can do.</p>
+</section><section><h2 class="section-heading" id="six-controls-on-what-the-agent-can-do">Six controls on what the agent can do<a class="anchor" aria-label="anchor" href="#six-controls-on-what-the-agent-can-do"></a></h2>
 <hr class="half-width"><ol style="list-style-type: decimal"><li>
 <strong>What it can reach on the network.</strong> An egress
 allowlist, not the whole internet.</li>
@@ -481,8 +481,9 @@ never the repository.</li>
 <strong>What it can commit.</strong> A feature branch and a pull
 request; you merge.</li>
 <li>
-<strong>Whom you trust.</strong> Providers, their data policies, and
-downloaded repositories and weights.</li>
+<strong>What you let in.</strong> The providers, downloaded
+repositories, and model weights you admit into the workflow. The first
+five are settings; this one is a judgment.</li>
 </ol><p>One distinction applies to all six. An <em>instruction</em> (a rules
 file, a line in a prompt) asks the model to behave in a certain way. A
 <em>permission</em> (a VM boundary, a deny rule, branch protection, a
@@ -523,7 +524,7 @@ final control, applied after all the others.</li>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
 <p>The setting belongs to the <strong>cloud environment</strong>, not to
 your account. At <a href="https://claude.ai/code" class="external-link">claude.ai/code</a> (or
 in the desktop app’s prompt box), open the environment selector, edit
@@ -541,7 +542,7 @@ code-execution sandbox used by Claude chat and Cowork, not Claude Code
 cloud environments. Documentation: <a href="https://code.claude.com/docs/en/cloud-environments#network-access" class="external-link">Configure
 cloud environments</a>.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
 <p>The setting belongs to the <strong>repository</strong>, and you must
 be a repository administrator to see it: <strong>Settings → Code,
 planning, and automation → Copilot → Cloud agent → Internet
@@ -650,7 +651,7 @@ them:</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-2" class="tab-content">
-<div id="nav-tabpanel-2-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-2-ClaudeCode" role="tabpanel">
+<div id="nav-tabpanel-2-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-2-ClaudeCode">
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">JSON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -662,7 +663,7 @@ them:</p>
 <span id="cb1-6"><a href="#cb1-6" tabindex="-1" aria-label="code-block-1-6"></a><span class="fu">}</span> <span class="fu">}</span></span></code></pre>
 </div>
 </div>
-<div id="nav-tabpanel-2-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-2-GitHubCopilot" role="tabpanel">
+<div id="nav-tabpanel-2-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-2-GitHubCopilot">
 <p>The Copilot CLI has the same idea with its own syntax (<a href="https://docs.github.com/en/copilot/how-tos/copilot-cli/use-copilot-cli/allowing-tools" class="external-link">allowing
 and denying tool use</a>):</p>
 <div class="codewrapper sourceCode" id="cb2">
@@ -787,8 +788,8 @@ rather than habitual: require a pull request and a passing check before
 merge. The verification episode sets this up.</p>
 </div>
 <div class="section level3">
-<h3 id="whom-you-trust-providers-models-repositories">6. Whom you trust: providers, models, repositories<a class="anchor" aria-label="anchor" href="#whom-you-trust-providers-models-repositories"></a></h3>
-<p>The final limit is not enforced by any setting: which providers,
+<h3 id="what-you-let-in-providers-models-repositories">6. What you let in: providers, models, repositories<a class="anchor" aria-label="anchor" href="#what-you-let-in-providers-models-repositories"></a></h3>
+<p>The final control is not enforced by any setting: which providers,
 packages, and model weights you admit into the workflow. Vet a
 provider’s data policy (are my data and code used for training, and is
 that the default? how long is it retained, and who can see it? where
@@ -853,7 +854,7 @@ get the same review gate, with less interaction.</li>
 <strong>Confirm the session is cloud-hosted before you
 prompt.</strong> It should be pointed at a cloud VM and a GitHub
 repository, not a folder on your laptop. Check the environment’s network
-access setting (limit 1 above) while you are there.</li>
+access setting (control 1 above) while you are there.</li>
 <li>
 <strong>Use your project repository.</strong> If your team does not
 have one yet, create your own for today.</li>
@@ -910,9 +911,9 @@ context. Assume anything on disk in plaintext can be read.</li>
 <li>Prompt injection is the threat: anything the agent reads can carry
 instructions. Treat it all as untrusted, keep the web session’s firewall
 on, and review the pull request before merging.</li>
-<li>Six limits determine how much damage injection can do: network
+<li>Six controls determine how much damage injection can do: network
 allowlist, cloud VM, command rules, password-manager credentials, branch
-plus pull request, and whom you trust.</li>
+plus pull request, and what you let into the workflow.</li>
 <li>Instructions influence behavior; permissions constrain it. A rules
 file is text the model weighs, not an ability it lacks.</li>
 <li>The only secret an agent cannot leak is one that is not there. Load
@@ -987,7 +988,7 @@ any links that you are not going to use.
   "url": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/instructor/safety-and-security.html",
   "identifier": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/instructor/safety-and-security.html",
   "dateCreated": "2026-08-10",
-  "dateModified": "2026-09-28",
+  "dateModified": "2026-09-30",
   "datePublished": "2026-09-30"
 }
 

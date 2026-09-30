@@ -419,9 +419,9 @@ context. Assume anything on disk in plaintext can be read.</li>
 <li>Prompt injection is the threat: anything the agent reads can carry
 instructions. Treat it all as untrusted, keep the web session’s firewall
 on, and review the pull request before merging.</li>
-<li>Six limits determine how much damage injection can do: network
+<li>Six controls determine how much damage injection can do: network
 allowlist, cloud VM, command rules, password-manager credentials, branch
-plus pull request, and whom you trust.</li>
+plus pull request, and what you let into the workflow.</li>
 <li>Instructions influence behavior; permissions constrain it. A rules
 file is text the model weighs, not an ability it lacks.</li>
 <li>The only secret an agent cannot leak is one that is not there. Load
@@ -456,17 +456,24 @@ attacker; all required a missing check.</li>
 </ul></section><section id="early-project-planning"><h2 class="section-heading"><a href="early-project-planning.html">Planning with Agents</a></h2>
 <hr class="half-width">
 <ul>
+<li>The plan is the analysis design, and it is yours: research question,
+data, baseline, outputs, and what would show the approach is wrong. The
+agent assists and critiques; ideas it proposes are adopted only when you
+can defend the reasoning.</li>
 <li>Plan before code. Planning measurably improves accuracy, and a good
 plan usually reduces token use. Keep planning proportional to the
 task.</li>
-<li>A plan is only as good as its context. Provide the goal,
-constraints, compute, existing code, standards, and prior decisions; for
-long work, keep the plan in a file the agent updates.</li>
+<li>A plan is only as good as its context. Provide the research
+question, what you know about the data, the analysis you would do by
+hand, compute, existing code, and standards; for long work, keep the
+plan in a file the agent updates.</li>
 <li>Agree team conventions first (branches rather than forks,
 pull-request size, who reviews, what the agent may not modify, where new
 files go) and commit them as a <code>CONTRIBUTING.md</code> that agents
 also read.</li>
-<li>Use plan mode (read-only) to review a plan. The deliverable is a
+<li>Plan mode is distinct from planning the analysis: the agent
+critiques your plan, proposes the code structure, and raises loose ends
+for you to settle before it implements. The deliverable is a
 <code>plan.md</code> with ordered features and a check for each,
 committed before any code.</li>
 <li>Start from a minimum viable pipeline: a slice of data, one model,

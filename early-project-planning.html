@@ -236,9 +236,9 @@
 
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
-        <ul><li><a href="#start-with-a-plan">Start with a plan</a></li>
+        <ul><li><a href="#plan-the-research-software-yourself">Plan the research software yourself</a></li>
 <li><a href="#supply-context">Supply context</a></li>
-<li><a href="#plan-mode-read-without-writing">Plan mode: read without writing</a></li>
+<li><a href="#plan-mode-the-agent-plans-the-implementation">Plan mode: the agent plans the implementation</a></li>
 <li><a href="#start-from-a-minimum-viable-pipeline">Start from a minimum viable pipeline</a></li>
 <li><a href="#before-the-first-feature-write-the-context-file">Before the first feature: write the context file</a></li>
         </ul></div><!--/div.accordion-body-->
@@ -350,7 +350,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Planning with Agents</h1>
-        <p>Last updated on 2026-09-28 |
+        <p>Last updated on 2026-09-30 |
 
         <a href="https://github.com/qualiaMachine/Intro-to-Agentic-Coding/edit/main/episodes/early-project-planning.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -369,8 +369,8 @@
 <div class="card-body">
 <div class="inner">
 <h3 class="card-title">Questions</h3>
-<ul><li>Why plan before letting an agent write code, and what does the
-evidence say?</li>
+<ul><li>Why should you plan the analysis yourself before an agent writes any
+code?</li>
 <li>What goes into a plan, and where does the agent get the context to
 make one?</li>
 <li>What is a minimum viable pipeline, and why start there?</li>
@@ -383,12 +383,16 @@ defend?</li>
 <div class="card-body">
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
-<ul><li>Explain how a plan changes what an agent does with its context and
+<ul><li>Plan a research software project yourself, from the research
+question down, using an agent to research options and critique the plan
+rather than to originate it.</li>
+<li>Explain how a plan changes what an agent does with its context and
 tokens.</li>
 <li>Supply the context an agent needs to plan: goal, constraints,
 existing code, standards, prior decisions.</li>
-<li>Use an agent in a read-only or plan mode to review and improve a
-plan before any code exists.</li>
+<li>Use plan mode to have the agent critique the plan, propose the
+structure of the code it will write, and surface open questions before
+any code exists.</li>
 <li>Agree team collaboration conventions with an agent’s help and commit
 them as a <code>CONTRIBUTING.md</code> that people and agents both
 read.</li>
@@ -401,46 +405,70 @@ understand, and do not build on ideas you cannot defend.</li>
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="start-with-a-plan">Start with a plan<a class="anchor" aria-label="anchor" href="#start-with-a-plan"></a></h2>
-<hr class="half-width"><p>The most common failure in agentic work is letting the agent write
-code before either party understands the problem. The research on
-planning is consistent:</p>
-<ul><li>Structured planning before implementation improved coding success by
-up to 26.7%, reducing failed generations and repeated implementation
-attempts (<a href="https://arxiv.org/abs/2303.06689" class="external-link">Jiang et al.,
-2023</a>).</li>
-<li>Removing the blueprint-planning agent from a structured coding
-pipeline reduced accuracy by 14.8 percentage points (<a href="https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2025.1660912/full" class="external-link">Mao
-et al., 2025</a>).</li>
-<li>Runs on the same coding task varied by up to 30× in total token
-usage, and higher token consumption did not produce greater accuracy (<a href="https://arxiv.org/abs/2604.22750" class="external-link">Bai et al., 2026</a>).</li>
-</ul><p>These studies measured accuracy rather than token use, but the
-mechanism is straightforward. Without a plan, the agent makes
-exploratory and redundant tool calls, which usually means more tokens
-for lower accuracy. With a good plan, it makes fewer wasted turns and
-less rework, which usually means fewer tokens and higher accuracy. With
-a bad plan, it anchors on incorrect assumptions, which produces both
-lower accuracy and higher token use.</p>
-<p>Without a plan, an agent tends to make unnecessary repository
-searches, re-read the same files, modify the wrong layer, expand beyond
-the requested scope, make contradictory edits, loop on debugging, and
-report completion prematurely. With a plan, it searches purposefully,
-reads only the relevant files, understands constraints before
-implementing, detects missing information early, sequences dependent
-changes correctly, tracks what is done, verifies the acceptance
-criteria, and stops when the task is complete.</p>
+<section><h2 class="section-heading" id="plan-the-research-software-yourself">Plan the research software yourself<a class="anchor" aria-label="anchor" href="#plan-the-research-software-yourself"></a></h2>
+<hr class="half-width"><p>Research software exists to answer a question, and the plan for it is
+the analysis design. Before an agent writes any code, you should be able
+to state the research question, the claim a result would support, the
+data and what you already know about it, the comparison or baseline that
+makes the result meaningful, and the figures, tables, or numbers that
+will end up in the paper. You should also be able to say what would show
+the approach is wrong. None of that is programming, and none of it
+should be delegated. The ideas come from you, from the literature, and
+from the people you work with, because you are the ones who will defend
+them in a lab meeting, in peer review, and in the methods section.</p>
+<p>An agent is useful at this stage in two roles. As a research
+assistant it can summarize the options for a step, find the library that
+implements a method, and keep the plan file current as work proceeds. As
+a critic it can point out a gap in the plan, ask a question you had not
+considered, or notice that a step assumes something the data description
+does not support. In both roles it works from the context you give it,
+and it does not know your field’s standards unless you state them.</p>
+<p>Agents will also propose ideas of their own, and some are good. Treat
+each one as a suggestion from a fluent but unaccountable colleague: ask
+why this rather than the obvious alternative, what the failure modes
+are, whether it is standard practice in your field, and what the
+simplest workable version would be. Adopt it only when the reasoning
+holds up and you could explain it without the agent. A method you cannot
+explain cannot go in a methods section. The section <a href="#do-not-build-on-ideas-you-cannot-defend">below</a> covers this in
+more detail. This is what staying in the driver’s seat means before any
+code exists.</p>
+<p>The most common failure in agentic work is skipping this step and
+letting the agent write code before you understand the problem. Planning
+first also changes how the agent works. Structured planning before
+implementation improved coding success by up to 26.7%, reducing failed
+generations and repeated implementation attempts (<a href="https://arxiv.org/abs/2303.06689" class="external-link">Jiang et al., 2023</a>). The
+mechanism is straightforward. Without a plan, an agent makes exploratory
+and redundant tool calls: unnecessary repository searches, re-reading
+the same files, modifying the wrong layer, expanding beyond the
+requested scope, looping on debugging, and reporting completion
+prematurely. With a plan, it reads only the relevant files, understands
+constraints before implementing, sequences dependent changes correctly,
+checks the acceptance criteria, and stops when the task is complete.
+With a bad plan, it anchors on incorrect assumptions, which costs both
+accuracy and tokens.</p>
 <p>A plan gives the agent direction. It gives you a review point before
 implementation. It gives both parties a shared definition of done.
 Planning should be proportional to the task: a three-line plan for a
 three-line task.</p>
 </section><section><h2 class="section-heading" id="supply-context">Supply context<a class="anchor" aria-label="anchor" href="#supply-context"></a></h2>
 <hr class="half-width"><p>An agent asked to “make a plan” with no other input produces the
-average plan for the average project. The plan is only as good as the
-context it is built from. Context worth providing, in rough order of how
-often it is missing:</p>
+average plan for the average project, and research projects are rarely
+the average case. The plan is only as good as the context it is built
+from. Context worth providing, in rough order of how often it is
+missing:</p>
 <ul><li>
-<strong>The goal and constraints</strong>: the research question,
-the challenge page, the scoring rule, the compute available.</li>
+<strong>The research question and the constraints</strong>: what a
+result has to show, the scoring rule or evaluation metric, the compute
+available (a laptop, a cluster allocation, cloud credits), and any
+deadline.</li>
+<li>
+<strong>What you know about the data</strong>: provenance, units,
+sampling, known artifacts, missingness, and which subsets are
+trustworthy. Nobody but you and your collaborators knows this.</li>
+<li>
+<strong>The analysis you would have done by hand</strong>: the
+splits, the controls, the baseline, and the statistics your field
+expects.</li>
 <li>
 <strong>The previous <code>plan.md</code></strong>, or its
 discoveries and blockers.</li>
@@ -448,11 +476,11 @@ discoveries and blockers.</li>
 <strong>Skeleton code</strong>: a stub of the function or module you
 want, so the shape is yours.</li>
 <li>
-<strong>A GitHub issue or story</strong> describing the feature in
-your words.</li>
+<strong>A GitHub issue</strong> describing the feature in your
+words.</li>
 <li>
 <strong><code>future-work.md</code></strong>: what is deliberately
-out of scope.</li>
+out of scope for this paper or release.</li>
 <li>
 <strong>Rules and coding-standards files</strong>: the project
 context file described below, plus any style guide your group
@@ -472,11 +500,39 @@ persistent plan file typically contains:</p>
 <li>Final outcome</li>
 </ul><p>Planning is iterative. The first plan is a draft to be questioned;
 the deliverable is a plan you would sign.</p>
-</section><section><h2 class="section-heading" id="plan-mode-read-without-writing">Plan mode: read without writing<a class="anchor" aria-label="anchor" href="#plan-mode-read-without-writing"></a></h2>
-<hr class="half-width"><p>Most tools have a read-only mode for this stage, in which the agent
-reads files and answers questions without making changes. It is the
-safest first contact with a repository and the appropriate mode for
-reviewing a plan.</p>
+</section><section><h2 class="section-heading" id="plan-mode-the-agent-plans-the-implementation">Plan mode: the agent plans the implementation<a class="anchor" aria-label="anchor" href="#plan-mode-the-agent-plans-the-implementation"></a></h2>
+<hr class="half-width"><p>Plan mode is a different activity from the planning above, and the
+two are easy to confuse because the tools use the same word. The
+analysis design is yours. Plan mode is where the agent, given that
+design, works out how it will build the code: which files it will create
+or change, in what order, what it needs to know before it starts, and
+where it is uncertain. Most tools provide it as a read-only mode in
+which the agent reads the repository and answers questions without
+editing or running anything, which also makes it the safest first
+contact with an unfamiliar codebase.</p>
+<p>Used well, plan mode does three things before any code exists:</p>
+<ul><li>
+<strong>Feedback on your plan.</strong> The agent reads
+<code>plan.md</code> and the repository together and reports what does
+not line up: a feature with no check, a step that assumes data in a
+format the repository does not contain, a dependency that is not
+installed.</li>
+<li>
+<strong>A structure for the code it will write.</strong> It proposes
+the modules, functions, and tests it intends to produce, so you can
+correct the shape (where the scoring function lives, what the data
+loader returns) while it is still cheap to change.</li>
+<li>
+<strong>Loose ends surfaced first.</strong> Anything it would
+otherwise have guessed at during implementation becomes a question now:
+which column is the label, which split is held out, what to do with
+missing values. Answer these before approving the plan, because an agent
+that guesses mid-implementation guesses the average case.</li>
+</ul><p>The output of plan mode is an implementation plan you approve, edit,
+or reject. It is not the analysis design, and it should not change the
+analysis design without you noticing. If the agent’s implementation plan
+quietly substitutes a different model, metric, or split, that is a plan
+to reject.</p>
 <div class="tabs">
 <nav><div id="nav-tab-1" class="nav nav-tabs" role="tablist">
 <button class="nav-link active" id="nav-tab-1-ClaudeCode" name="ClaudeCode" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-ClaudeCode" type="button" role="tab" aria-controls="nav-tabpanel-1-ClaudeCode" aria-selected="true">
@@ -734,17 +790,24 @@ rules with permissions, hooks, or branch protection.</p>
 <span class="callout-header">Key Points</span>
 <div class="callout-inner">
 <div class="callout-content">
-<ul><li>Plan before code. Planning measurably improves accuracy, and a good
+<ul><li>The plan is the analysis design, and it is yours: research question,
+data, baseline, outputs, and what would show the approach is wrong. The
+agent assists and critiques; ideas it proposes are adopted only when you
+can defend the reasoning.</li>
+<li>Plan before code. Planning measurably improves accuracy, and a good
 plan usually reduces token use. Keep planning proportional to the
 task.</li>
-<li>A plan is only as good as its context. Provide the goal,
-constraints, compute, existing code, standards, and prior decisions; for
-long work, keep the plan in a file the agent updates.</li>
+<li>A plan is only as good as its context. Provide the research
+question, what you know about the data, the analysis you would do by
+hand, compute, existing code, and standards; for long work, keep the
+plan in a file the agent updates.</li>
 <li>Agree team conventions first (branches rather than forks,
 pull-request size, who reviews, what the agent may not modify, where new
 files go) and commit them as a <code>CONTRIBUTING.md</code> that agents
 also read.</li>
-<li>Use plan mode (read-only) to review a plan. The deliverable is a
+<li>Plan mode is distinct from planning the analysis: the agent
+critiques your plan, proposes the code structure, and raises loose ends
+for you to settle before it implements. The deliverable is a
 <code>plan.md</code> with ordered features and a check for each,
 committed before any code.</li>
 <li>Start from a minimum viable pipeline: a slice of data, one model,
@@ -823,7 +886,7 @@ any links that you are not going to use.
   "url": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/early-project-planning.html",
   "identifier": "https://qualiaMachine.github.io/Intro-to-Agentic-Coding/early-project-planning.html",
   "dateCreated": "2026-08-10",
-  "dateModified": "2026-09-28",
+  "dateModified": "2026-09-30",
   "datePublished": "2026-09-30"
 }
 
