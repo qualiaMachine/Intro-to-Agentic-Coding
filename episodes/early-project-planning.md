@@ -54,21 +54,9 @@ explain cannot go in a methods section. The section
 what staying in the driver's seat means before any code exists.
 
 The most common failure in agentic work is skipping this step and letting the agent
-write code before you understand the problem. Planning first also changes how the
-agent works. Structured planning before implementation improved coding success by up
-to 26.7%, reducing failed generations and repeated implementation attempts
-([Jiang et al., 2023](https://arxiv.org/abs/2303.06689)). The mechanism is
-straightforward. Without a plan, an agent makes exploratory and redundant tool calls:
-unnecessary repository searches, re-reading the same files, modifying the wrong layer,
-expanding beyond the requested scope, looping on debugging, and reporting completion
-prematurely. With a plan, it reads only the relevant files, understands constraints
-before implementing, sequences dependent changes correctly, checks the acceptance
-criteria, and stops when the task is complete. With a bad plan, it anchors on
-incorrect assumptions, which costs both accuracy and tokens.
-
-A plan gives the agent direction. It gives you a review point before implementation.
-It gives both parties a shared definition of done. Planning should be proportional to
-the task: a three-line plan for a three-line task.
+write code before you understand the problem. A plan gives you a review point before
+implementation and gives both you and the agent a shared definition of done. Planning
+should be proportional to the task: a three-line plan for a three-line task.
 
 ## Supply context
 
@@ -111,13 +99,30 @@ a plan you would sign.
 
 ## Plan mode: the agent plans the implementation
 
-Plan mode is a different activity from the planning above, and the two are easy to
-confuse because the tools use the same word. The analysis design is yours. Plan mode
-is where the agent, given that design, works out how it will build the code: which
-files it will create or change, in what order, what it needs to know before it starts,
-and where it is uncertain. Most tools provide it as a read-only mode in which the
-agent reads the repository and answers questions without editing or running anything,
-which also makes it the safest first contact with an unfamiliar codebase.
+Once the analysis design is settled, a second kind of planning begins, and this one
+belongs to the agent. Before it writes code, the agent works out how it will build
+what you have designed: which files it will create or change, in what order, what it
+needs to know before it starts, and where it is uncertain. Most tools provide a mode
+for this, usually called **plan mode**, in which the agent reads the repository and
+answers questions without editing or running anything. That also makes it the safest
+first contact with an unfamiliar codebase.
+
+This is a different activity from the planning above, and the two are easy to confuse
+because the tools use the same word. The analysis design is yours. The implementation
+plan is the agent's proposal for carrying it out, and you approve it before any code
+is written.
+
+Having the agent plan before it implements is worth the extra turn. Structured
+planning before implementation improved coding success by up to 26.7%, reducing
+failed generations and repeated implementation attempts
+([Jiang et al., 2023](https://arxiv.org/abs/2303.06689)). The mechanism is
+straightforward. Without a plan, an agent makes exploratory and redundant tool calls:
+unnecessary repository searches, re-reading the same files, modifying the wrong layer,
+expanding beyond the requested scope, looping on debugging, and reporting completion
+prematurely. With a plan, it reads only the relevant files, understands constraints
+before implementing, sequences dependent changes correctly, checks the acceptance
+criteria, and stops when the task is complete. With a bad plan, it anchors on
+incorrect assumptions, which costs both accuracy and tokens.
 
 Used well, plan mode does three things before any code exists:
 
