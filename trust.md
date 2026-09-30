@@ -21,7 +21,8 @@ exercises: 5
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-The safety episode ended with the one limit no setting enforces: whom you trust. The
+The safety episode ended with the one control no setting enforces: what you let into
+the workflow, and whom you trust to supply it. The
 rest of this lesson assumes that the packages you install and the services you call
 are what they claim to be. That assumption deserves the same scrutiny as the data.
 Agentic coding raises the stakes in one specific way: the agent installs packages,

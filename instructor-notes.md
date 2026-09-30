@@ -29,7 +29,7 @@ prompting), which is a workable division for any team of three.
 | Time | Min | Block | Episode |
 |------|-----|-------|---------|
 | 0:00 | 15 | **What is agentic coding.** Before we start (any access requests to file now); three principles; definition, spectrum, harness, loop; choice of tool | Episode 1 |
-| 0:15 | 35 | **Safety and security.** Policies; what an agent can and cannot do; prompt injection; the six limits (network allowlist demo, 2 min); providers and models (Episode 3 compressed); **Exercise: Get your agent running, safely** (8 min) | Episodes 2–3 |
+| 0:15 | 35 | **Safety and security.** Policies; what an agent can and cannot do; prompt injection; the six controls (network allowlist demo, 2 min); providers and models (Episode 3 compressed); **Exercise: Get your agent running, safely** (8 min) | Episodes 2–3 |
 | 0:50 | 40 | **Planning with agents.** Research on planning; add context; **Exercise: Agree how your team will collaborate** (10 min); MVP; **Exercise: Plan your MVP with an agent** (15 min) | Episode 4 |
 | 1:30 | 10 | Break | — |
 | 1:40 | 35 | **Feature-based development and good prompting.** Not a magic wand; feature by feature; bad/better prompt; a bad prompt does not return random results; **Exercise: Implement feature 1** (15 min) and debrief; maintenance tasks | Episode 5 |
@@ -70,7 +70,7 @@ out the setup page has free routes (Copilot education tier, OpenCode) for anyone
 whose credits didn't work.
 
 **Safety.** Prompt injection first (the Nx incident makes it concrete), then signpost the
-six limits in order — "injection was the threat; these six cap what it can do" — and
+six controls in order — "injection was the threat; these six cap what it can do" — and
 say that an instruction file *asks* while everything else *removes the ability*. The
 PocketOS and Cursor CVE incidents illustrate the "instructions vs. permissions" distinction.
 The network-allowlist demo is two minutes in the browser: edit a Claude Code cloud
