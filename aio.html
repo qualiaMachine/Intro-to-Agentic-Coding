@@ -884,7 +884,7 @@ final control, applied after all the others.</li>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
 <p>The setting belongs to the <strong>cloud environment</strong>, not to
 your account. At <a href="https://claude.ai/code" class="external-link">claude.ai/code</a> (or
 in the desktop app’s prompt box), open the environment selector, edit
@@ -902,7 +902,7 @@ code-execution sandbox used by Claude chat and Cowork, not Claude Code
 cloud environments. Documentation: <a href="https://code.claude.com/docs/en/cloud-environments#network-access" class="external-link">Configure
 cloud environments</a>.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
 <p>The setting belongs to the <strong>repository</strong>, and you must
 be a repository administrator to see it: <strong>Settings → Code,
 planning, and automation → Copilot → Cloud agent → Internet
@@ -1033,7 +1033,7 @@ them:</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-2" class="tab-content">
-<div id="nav-tabpanel-2-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-2-ClaudeCode">
+<div id="nav-tabpanel-2-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-2-ClaudeCode" role="tabpanel">
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">JSON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1045,7 +1045,7 @@ them:</p>
 <span id="cb1-6"><a href="#cb1-6" tabindex="-1" aria-label="code-block-1-6"></a><span class="fu">}</span> <span class="fu">}</span></span></code></pre>
 </div>
 </div>
-<div id="nav-tabpanel-2-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-2-GitHubCopilot">
+<div id="nav-tabpanel-2-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-2-GitHubCopilot" role="tabpanel">
 <p>The Copilot CLI has the same idea with its own syntax (<a href="https://docs.github.com/en/copilot/how-tos/copilot-cli/use-copilot-cli/allowing-tools" class="external-link">allowing
 and denying tool use</a>):</p>
 <div class="codewrapper sourceCode" id="cb2">
@@ -1681,7 +1681,7 @@ contract?</li>
   Typical findings
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Most participants find at least one surprise: a training setting they
 had not seen, a retention clause tied to the feedback button, or the
@@ -1767,8 +1767,8 @@ defend?</li>
 <ul>
 <li>Plan a research software project yourself, using an agent to
 research options and critique the plan rather than to originate it.</li>
-<li>Supply the context an agent needs: the research question, the data,
-the analysis you would do by hand, existing code, and standards.</li>
+<li>Supply the context an agent needs: the analysis design, existing
+code, and the group’s standards.</li>
 <li>Use plan mode to refine a request until the structure the agent
 proposes matches the result you intend.</li>
 <li>Agree collaboration conventions and commit them as a
@@ -1794,61 +1794,43 @@ writes any code, you should be able to state:</p>
 <strong>The research question</strong>, and the claim a result would
 support.</li>
 <li>
-<strong>The data</strong>: what you already know about its
-provenance, quality, and quirks.</li>
+<strong>The data</strong>: provenance, units, sampling, known
+artifacts, missingness, and which subsets are trustworthy. Nobody but
+you and your collaborators knows this.</li>
+<li>
+<strong>The methods</strong>: the preprocessing, the model or
+statistical approach, and the validation design (splits, controls,
+cross-validation), as you would write them in a methods section.</li>
 <li>
 <strong>The baseline or comparison</strong> that makes a result
 meaningful.</li>
 <li>
 <strong>The outputs</strong>: the figures, tables, or numbers that
 will go in the paper.</li>
+<li>
+<strong>The constraints</strong>: the evaluation metric, the compute
+available (a laptop, a cluster allocation, cloud credits), and any
+deadline.</li>
 <li><strong>What would show the approach is wrong.</strong></li>
 </ul>
-<p>The agent’s role here is research assistant and critic, not
-author:</p>
-<ul>
-<li>
-<strong>Research assistant.</strong> Summarize the options for a
-step; find the library that implements a method; keep the plan file
-current as work proceeds.</li>
-<li>
-<strong>Critic.</strong> Point out a gap in the plan; ask the
-question you had not considered; notice a step that assumes something
-the data description does not support.</li>
-<li>
-<strong>Source of suggestions, taken under scrutiny.</strong> It
-will propose ideas of its own. Treat each as a suggestion from a fluent
-but unaccountable colleague: ask why this rather than the obvious
-alternative, what the failure modes are, and whether it is standard in
-your field. Adopt it only when you could explain it without the agent. A
-method you cannot explain cannot go in a methods section.</li>
-</ul>
+<p>The agent’s role here is research assistant and critic, not author.
+It can summarize the options for a step, find the library that
+implements a method, point out a gap in the plan, ask the question you
+had not considered, and keep the plan file current as work proceeds. It
+will also propose ideas of its own; the callout <a href="#do-not-build-on-ideas-you-cannot-defend">below</a> says how to
+treat them.</p>
 <p>Skipping this step and letting the agent write code before you
-understand the problem is the most common failure in agentic work. Keep
-the plan proportional to the task: a three-line plan for a three-line
-task.</p>
+understand the problem is the most common failure in agentic work. The
+size of the plan should match the size of the task. A small change to
+one function needs a sentence, not a document.</p>
 </section><section><h2 class="section-heading" id="supply-context">Supply context<a class="anchor" aria-label="anchor" href="#supply-context"></a>
 </h2>
 <hr class="half-width">
 <p>An agent asked to “make a plan” with no other input produces the
 average plan for the average project, and research projects are rarely
-the average case. The plan is only as good as the context it is built
-from. Context worth providing, in rough order of how often it is
-missing:</p>
+the average case. Give it the design above, and whatever else already
+exists:</p>
 <ul>
-<li>
-<strong>The research question and the constraints</strong>: what a
-result has to show, the scoring rule or evaluation metric, the compute
-available (a laptop, a cluster allocation, cloud credits), and any
-deadline.</li>
-<li>
-<strong>What you know about the data</strong>: provenance, units,
-sampling, known artifacts, missingness, and which subsets are
-trustworthy. Nobody but you and your collaborators knows this.</li>
-<li>
-<strong>The analysis you would have done by hand</strong>: the
-splits, the controls, the baseline, and the statistics your field
-expects.</li>
 <li>
 <strong>The previous <code>plan.md</code></strong>, or its
 discoveries and blockers.</li>
@@ -1892,17 +1874,14 @@ questions, and propose an approach, but it cannot edit a file or run a
 command. Claude Code toggles it with <kbd>Shift</kbd>+<kbd>Tab</kbd>;
 Copilot calls it <strong>Ask</strong> or <strong>Plan</strong> in the
 chat panel’s mode selector. The tabs below give the details.</p>
-<p>Its use is this. Once the analysis design is settled, you still have
-to turn it into a request the agent can carry out, and the first version
-of that request is never precise enough. In plan mode you describe what
-you want, the agent describes how it would build it, and you correct the
-description until the structure it proposes matches the result you
-intend. Only then do you switch plan mode off and let it write code.</p>
-<p>This is a different activity from the planning above, although the
-tools use the same word. The analysis design is yours and is settled
-before plan mode starts. Plan mode is about the prompt: making sure what
-you are asking for is specific enough that the code the agent writes is
-the code you meant.</p>
+<p>Its use is different from the planning above, although the tools use
+the same word. The analysis design is settled before plan mode starts.
+What remains is turning it into a request the agent can carry out, and
+the first version of that request is never precise enough. In plan mode
+you describe what you want, the agent describes how it would build it,
+and you correct the description until the structure it proposes matches
+the result you intend. Only then do you switch plan mode off and let it
+write code.</p>
 <p>The refinement is worth the extra turns. Structured planning before
 implementation improved coding success by up to 26.7%, reducing failed
 generations and repeated implementation attempts (<a href="https://arxiv.org/abs/2303.06689" class="external-link">Jiang et al., 2023</a>). The
@@ -2217,17 +2196,13 @@ rules with permissions, hooks, or branch protection.</p>
 <div class="callout-content">
 <ul>
 <li>The plan is the analysis design, and it is yours: research question,
-data, baseline, outputs, and what would show the approach is wrong. The
-agent assists and critiques; ideas it proposes are adopted only when you
-can defend the reasoning. Record it as a <code>plan.md</code> with
-ordered features and a check for each, committed before any code.</li>
-<li>Plan before code. Planning measurably improves accuracy, and a good
-plan usually reduces token use. Keep planning proportional to the
-task.</li>
-<li>A plan is only as good as its context. Provide the research
-question, what you know about the data, the analysis you would do by
-hand, compute, existing code, and standards; for long work, keep the
-plan in a file the agent updates.</li>
+data, methods, baseline, outputs, constraints, and what would show the
+approach is wrong. The agent assists and critiques. Record the plan as a
+<code>plan.md</code> with ordered features and a check for each,
+committed before any code.</li>
+<li>Give the agent that design plus what already exists: the previous
+plan, skeleton code, issues, out-of-scope notes, and rules files. For
+long work, keep the plan in a file the agent updates.</li>
 <li>Agree team conventions first (branches rather than forks,
 pull-request size, who reviews, what the agent may not modify, where new
 files go) and commit them as a <code>CONTRIBUTING.md</code> that agents
@@ -2501,7 +2476,7 @@ printed majority-class baseline alongside the test accuracy.</p>
   Typical results
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The request to list unspecified choices is the most informative line
 in the template. Typical answers: a random seed, a default imputation,
@@ -2866,7 +2841,7 @@ protected branches</a>).</p></li>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
 <p>Plan mode for step 1 (<kbd>Shift</kbd>+<kbd>Tab</kbd> locally; on the
 web, the “do not edit” line has the same effect). For steps 3 and 4
 switch to normal mode. Claude will run <code>pytest</code> itself
@@ -2874,7 +2849,7 @@ switch to normal mode. Claude will run <code>pytest</code> itself
 whether the code or the test is wrong before letting it change
 either.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
 <p><strong>Ask</strong> mode with <code>@workspace</code> for step 1;
 <strong>Agent</strong> mode for steps 3 and 4. Copilot proposes the
 <code>pytest</code> run in the terminal and waits for approval. The
@@ -3900,7 +3875,7 @@ most? Was it a vague prompt that produced a loop?</li>
   Typical findings
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Most workshop sessions come to a few watt-hours, a small percentage
 of a dishwasher cycle. The informative result is usually the third item:

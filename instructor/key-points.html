@@ -487,17 +487,13 @@ attacker; all required a missing check.</li>
 <hr class="half-width">
 <ul>
 <li>The plan is the analysis design, and it is yours: research question,
-data, baseline, outputs, and what would show the approach is wrong. The
-agent assists and critiques; ideas it proposes are adopted only when you
-can defend the reasoning. Record it as a <code>plan.md</code> with
-ordered features and a check for each, committed before any code.</li>
-<li>Plan before code. Planning measurably improves accuracy, and a good
-plan usually reduces token use. Keep planning proportional to the
-task.</li>
-<li>A plan is only as good as its context. Provide the research
-question, what you know about the data, the analysis you would do by
-hand, compute, existing code, and standards; for long work, keep the
-plan in a file the agent updates.</li>
+data, methods, baseline, outputs, constraints, and what would show the
+approach is wrong. The agent assists and critiques. Record the plan as a
+<code>plan.md</code> with ordered features and a check for each,
+committed before any code.</li>
+<li>Give the agent that design plus what already exists: the previous
+plan, skeleton code, issues, out-of-scope notes, and rules files. For
+long work, keep the plan in a file the agent updates.</li>
 <li>Agree team conventions first (branches rather than forks,
 pull-request size, who reviews, what the agent may not modify, where new
 files go) and commit them as a <code>CONTRIBUTING.md</code> that agents
