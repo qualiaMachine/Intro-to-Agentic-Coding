@@ -40,7 +40,10 @@
   <div class="container-fluid top-nav-container">
     <div class="col-md-8">
       <div class="large-logo">
-        <img id="incubator-logo" alt="Introduction to Agentic Coding" src="assets/images/incubator-logo.svg"><span class="badge text-bg-warning">
+        <a href="index.html">
+        <img id="incubator-logo" alt="Introduction to Agentic Coding" src="assets/images/incubator-logo.svg"></a>
+
+        <span class="badge text-bg-warning">
           <abbr title="This lesson is in the alpha phase, which means that it has been taught once and lesson authors are iterating on feedback.">
             <a href="https://docs.carpentries.org/resources/curriculum/lesson-life-cycle.html" class="external-link alert-link">
               <i aria-hidden="true" class="icon" data-feather="alert-triangle" style="border-radius: 5px"></i>
@@ -96,8 +99,9 @@
       <span class="menu-title">Menu</span>
     </button>
     <div class="nav-logo">
-      <img class="small-logo" alt="Introduction to Agentic Coding" src="assets/images/incubator-logo-sm.svg">
-</div>
+      <a href="index.html">
+      <img class="small-logo" alt="Introduction to Agentic Coding" src="assets/images/incubator-logo-sm.svg"></a>
+    </div>
     <div class="lesson-title-md">
       Introduction to Agentic Coding
     </div>
@@ -142,7 +146,7 @@
       </fieldset>
     </form>
     -->
-    <a id="search-button" class="btn btn-primary" href="aio.html" role="button" aria-label="Search the All In One page">Search the All In One page</a>
+    <a id="search-button-nav" class="btn btn-primary" href="aio.html" role="button" aria-label="Search the All In One page">Search the All In One page</a>
   </div>
 <!--/div.container-fluid -->
 </nav><div class="container">
@@ -154,6 +158,9 @@
           <i class="search-icon" data-feather="x" role="img"></i>
         </button>
         <div class="sidebar-inner">
+          <div class="row mobile-row" id="theme-row-mobile">
+            <a id="search-button-sidebar" class="btn btn-primary" href="aio.html" role="button" aria-label="Search the All In One page">Search the All In One page</a>
+          </div>
           <div class="row mobile-row" id="theme-row-mobile">
             <menu class="col theme-selector" id="theme-selector-sidebar">
 <li class="nav-item dropdown theme-button-list" id="theme-button-list-sidebar">
@@ -202,6 +209,7 @@
 <!--/div.accordion-item-->
                 </div>
 <!--/div.accordion-flush-->
+
               </div>
 <!--div.sidenav-view-selector -->
             </div>
@@ -346,6 +354,34 @@
             </div>
 
             <hr class="half-width">
+<div class="accordion accordion-flush" id="accordion-links-toggle">
+                <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-heading-links-toggle">
+                  <button class="accordion-button collapsed" id="links" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-links-toggle" aria-expanded="false" aria-controls="flush-collapse-links-toggle">
+                    LINKS
+                  </button>
+                </h2>
+                <div id="flush-collapse-links-toggle" class="accordion-collapse show collapse" data-bs-parent="#accordion-links-toggle">
+                    <div class="accordion-body">
+                        <ul>
+<li>
+                            <a href="key-points.html">Key Points</a>
+                            </li>
+                            <li>
+                            <a href="reference.html#glossary">Glossary</a>
+                            </li>
+                            <li>
+                            <a href="profiles.html">Learner Profiles</a>
+                            </li>
+                        </ul>
+</div>
+                </div>
+                </div>
+<!--/div.accordion-item-->
+            </div>
+<!--/div.accordion-flush-->
+
+            <hr class="half-width">
 <div class="accordion accordion-flush lesson-resources" id="accordion-resources-toggle">
               <div class="accordion-item">
                 <h2 class="accordion-header" id="flush-heading-resources-toggle">
@@ -356,16 +392,7 @@
                 <div id="flush-collapse-resources-toggle" class="accordion-collapse collapse" data-bs-parent="#accordion-resources-toggle">
                   <div class="accordion-body">
                     <ul>
-<li>
-                        <a href="key-points.html">Key Points</a>
-                      </li>
-                      <li>
-                        <a href="reference.html#glossary">Glossary</a>
-                      </li>
-                      <li>
-                        <a href="profiles.html">Learner Profiles</a>
-                      </li>
-                      <li><a href="reference.html">Reference</a></li>
+<li><a href="reference.html">Reference</a></li>
                     </ul>
 </div>
                 </div>
@@ -857,7 +884,7 @@ final control, applied after all the others.</li>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-1-ClaudeCode" role="tabpanel">
+<div id="nav-tabpanel-1-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClaudeCode">
 <p>The setting belongs to the <strong>cloud environment</strong>, not to
 your account. At <a href="https://claude.ai/code" class="external-link">claude.ai/code</a> (or
 in the desktop app’s prompt box), open the environment selector, edit
@@ -875,7 +902,7 @@ code-execution sandbox used by Claude chat and Cowork, not Claude Code
 cloud environments. Documentation: <a href="https://code.claude.com/docs/en/cloud-environments#network-access" class="external-link">Configure
 cloud environments</a>.</p>
 </div>
-<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-1-GitHubCopilot" role="tabpanel">
+<div id="nav-tabpanel-1-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-GitHubCopilot">
 <p>The setting belongs to the <strong>repository</strong>, and you must
 be a repository administrator to see it: <strong>Settings → Code,
 planning, and automation → Copilot → Cloud agent → Internet
@@ -1006,7 +1033,7 @@ them:</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-2" class="tab-content">
-<div id="nav-tabpanel-2-ClaudeCode" class="tab-pane show active" aria-labelledby="nav-tab-2-ClaudeCode" role="tabpanel">
+<div id="nav-tabpanel-2-ClaudeCode" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-2-ClaudeCode">
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">JSON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1018,7 +1045,7 @@ them:</p>
 <span id="cb1-6"><a href="#cb1-6" tabindex="-1" aria-label="code-block-1-6"></a><span class="fu">}</span> <span class="fu">}</span></span></code></pre>
 </div>
 </div>
-<div id="nav-tabpanel-2-GitHubCopilot" class="tab-pane" aria-labelledby="nav-tab-2-GitHubCopilot" role="tabpanel">
+<div id="nav-tabpanel-2-GitHubCopilot" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-2-GitHubCopilot">
 <p>The Copilot CLI has the same idea with its own syntax (<a href="https://docs.github.com/en/copilot/how-tos/copilot-cli/use-copilot-cli/allowing-tools" class="external-link">allowing
 and denying tool use</a>):</p>
 <div class="codewrapper sourceCode" id="cb2">
@@ -1249,7 +1276,7 @@ and what it does not know that you do.</li>
   What to check
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>If step 2 fails (the session is local), stop and switch before
 prompting. This is the most common mistake with the desktop apps. Cloud
@@ -1654,7 +1681,7 @@ contract?</li>
   Typical findings
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Most participants find at least one surprise: a training setting they
 had not seen, a retention clause tied to the feedback button, or the
@@ -1738,23 +1765,17 @@ defend?</li>
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
 <ul>
-<li>Plan a research software project yourself, from the research
-question down, using an agent to research options and critique the plan
-rather than to originate it.</li>
-<li>Explain how a plan changes what an agent does with its context and
-tokens.</li>
-<li>Supply the context an agent needs to plan: goal, constraints,
-existing code, standards, prior decisions.</li>
-<li>Use plan mode to have the agent critique the plan, propose the
-structure of the code it will write, and surface open questions before
-any code exists.</li>
-<li>Agree team collaboration conventions with an agent’s help and commit
-them as a <code>CONTRIBUTING.md</code> that people and agents both
-read.</li>
-<li>Produce a <code>plan.md</code> with ordered features and a check for
-each, and commit it before implementing anything.</li>
-<li>Evaluate AI design suggestions critically: question what you do not
-understand, and do not build on ideas you cannot defend.</li>
+<li>Plan a research software project yourself, using an agent to
+research options and critique the plan rather than to originate it.</li>
+<li>Supply the context an agent needs: the research question, the data,
+the analysis you would do by hand, existing code, and standards.</li>
+<li>Use plan mode to refine a request until the structure the agent
+proposes matches the result you intend.</li>
+<li>Agree collaboration conventions and commit them as a
+<code>CONTRIBUTING.md</code>; produce a <code>plan.md</code> with
+ordered features and a check for each before implementing anything.</li>
+<li>Question AI design suggestions, and do not build on ideas you cannot
+defend.</li>
 </ul>
 </div>
 </div>
@@ -1764,50 +1785,48 @@ understand, and do not build on ideas you cannot defend.</li>
 <section><h2 class="section-heading" id="plan-the-research-software-yourself">Plan the research software yourself<a class="anchor" aria-label="anchor" href="#plan-the-research-software-yourself"></a>
 </h2>
 <hr class="half-width">
-<p>Research software exists to answer a question, and the plan for it is
-the analysis design. Before an agent writes any code, you should be able
-to state the research question, the claim a result would support, the
-data and what you already know about it, the comparison or baseline that
-makes the result meaningful, and the figures, tables, or numbers that
-will end up in the paper. You should also be able to say what would show
-the approach is wrong. None of that is programming, and none of it
-should be delegated. The ideas come from you, from the literature, and
-from the people you work with, because you are the ones who will defend
-them in a lab meeting, in peer review, and in the methods section.</p>
-<p>An agent is useful at this stage in two roles. As a research
-assistant it can summarize the options for a step, find the library that
-implements a method, and keep the plan file current as work proceeds. As
-a critic it can point out a gap in the plan, ask a question you had not
-considered, or notice that a step assumes something the data description
-does not support. In both roles it works from the context you give it,
-and it does not know your field’s standards unless you state them.</p>
-<p>Agents will also propose ideas of their own, and some are good. Treat
-each one as a suggestion from a fluent but unaccountable colleague: ask
-why this rather than the obvious alternative, what the failure modes
-are, whether it is standard practice in your field, and what the
-simplest workable version would be. Adopt it only when the reasoning
-holds up and you could explain it without the agent. A method you cannot
-explain cannot go in a methods section. The section <a href="#do-not-build-on-ideas-you-cannot-defend">below</a> covers this in
-more detail. This is what staying in the driver’s seat means before any
-code exists.</p>
-<p>The most common failure in agentic work is skipping this step and
-letting the agent write code before you understand the problem. Planning
-first also changes how the agent works. Structured planning before
-implementation improved coding success by up to 26.7%, reducing failed
-generations and repeated implementation attempts (<a href="https://arxiv.org/abs/2303.06689" class="external-link">Jiang et al., 2023</a>). The
-mechanism is straightforward. Without a plan, an agent makes exploratory
-and redundant tool calls: unnecessary repository searches, re-reading
-the same files, modifying the wrong layer, expanding beyond the
-requested scope, looping on debugging, and reporting completion
-prematurely. With a plan, it reads only the relevant files, understands
-constraints before implementing, sequences dependent changes correctly,
-checks the acceptance criteria, and stops when the task is complete.
-With a bad plan, it anchors on incorrect assumptions, which costs both
-accuracy and tokens.</p>
-<p>A plan gives the agent direction. It gives you a review point before
-implementation. It gives both parties a shared definition of done.
-Planning should be proportional to the task: a three-line plan for a
-three-line task.</p>
+<p>Research software exists to answer a question, so the plan for it is
+the analysis design. That design is yours: you will defend it in lab
+meetings, in peer review, and in the methods section. Before an agent
+writes any code, you should be able to state:</p>
+<ul>
+<li>
+<strong>The research question</strong>, and the claim a result would
+support.</li>
+<li>
+<strong>The data</strong>: what you already know about its
+provenance, quality, and quirks.</li>
+<li>
+<strong>The baseline or comparison</strong> that makes a result
+meaningful.</li>
+<li>
+<strong>The outputs</strong>: the figures, tables, or numbers that
+will go in the paper.</li>
+<li><strong>What would show the approach is wrong.</strong></li>
+</ul>
+<p>The agent’s role here is research assistant and critic, not
+author:</p>
+<ul>
+<li>
+<strong>Research assistant.</strong> Summarize the options for a
+step; find the library that implements a method; keep the plan file
+current as work proceeds.</li>
+<li>
+<strong>Critic.</strong> Point out a gap in the plan; ask the
+question you had not considered; notice a step that assumes something
+the data description does not support.</li>
+<li>
+<strong>Source of suggestions, taken under scrutiny.</strong> It
+will propose ideas of its own. Treat each as a suggestion from a fluent
+but unaccountable colleague: ask why this rather than the obvious
+alternative, what the failure modes are, and whether it is standard in
+your field. Adopt it only when you could explain it without the agent. A
+method you cannot explain cannot go in a methods section.</li>
+</ul>
+<p>Skipping this step and letting the agent write code before you
+understand the problem is the most common failure in agentic work. Keep
+the plan proportional to the task: a three-line plan for a three-line
+task.</p>
 </section><section><h2 class="section-heading" id="supply-context">Supply context<a class="anchor" aria-label="anchor" href="#supply-context"></a>
 </h2>
 <hr class="half-width">
@@ -1864,43 +1883,63 @@ persistent plan file typically contains:</p>
 </ul>
 <p>Planning is iterative. The first plan is a draft to be questioned;
 the deliverable is a plan you would sign.</p>
-</section><section><h2 class="section-heading" id="plan-mode-the-agent-plans-the-implementation">Plan mode: the agent plans the implementation<a class="anchor" aria-label="anchor" href="#plan-mode-the-agent-plans-the-implementation"></a>
+</section><section><h2 class="section-heading" id="plan-mode-refine-the-request-before-any-code">Plan mode: refine the request before any code<a class="anchor" aria-label="anchor" href="#plan-mode-refine-the-request-before-any-code"></a>
 </h2>
 <hr class="half-width">
-<p>Plan mode is a different activity from the planning above, and the
-two are easy to confuse because the tools use the same word. The
-analysis design is yours. Plan mode is where the agent, given that
-design, works out how it will build the code: which files it will create
-or change, in what order, what it needs to know before it starts, and
-where it is uncertain. Most tools provide it as a read-only mode in
-which the agent reads the repository and answers questions without
-editing or running anything, which also makes it the safest first
-contact with an unfamiliar codebase.</p>
-<p>Used well, plan mode does three things before any code exists:</p>
+<p><strong>Plan mode</strong> is a setting on the agent, not a way of
+thinking. Switched on, the agent can read the repository, answer
+questions, and propose an approach, but it cannot edit a file or run a
+command. Claude Code toggles it with <kbd>Shift</kbd>+<kbd>Tab</kbd>;
+Copilot calls it <strong>Ask</strong> or <strong>Plan</strong> in the
+chat panel’s mode selector. The tabs below give the details.</p>
+<p>Its use is this. Once the analysis design is settled, you still have
+to turn it into a request the agent can carry out, and the first version
+of that request is never precise enough. In plan mode you describe what
+you want, the agent describes how it would build it, and you correct the
+description until the structure it proposes matches the result you
+intend. Only then do you switch plan mode off and let it write code.</p>
+<p>This is a different activity from the planning above, although the
+tools use the same word. The analysis design is yours and is settled
+before plan mode starts. Plan mode is about the prompt: making sure what
+you are asking for is specific enough that the code the agent writes is
+the code you meant.</p>
+<p>The refinement is worth the extra turns. Structured planning before
+implementation improved coding success by up to 26.7%, reducing failed
+generations and repeated implementation attempts (<a href="https://arxiv.org/abs/2303.06689" class="external-link">Jiang et al., 2023</a>). The
+mechanism is straightforward. Without a plan, an agent makes exploratory
+and redundant tool calls: unnecessary repository searches, re-reading
+the same files, modifying the wrong layer, expanding beyond the
+requested scope, looping on debugging, and reporting completion
+prematurely. With a plan, it reads only the relevant files, understands
+constraints before implementing, sequences dependent changes correctly,
+checks the acceptance criteria, and stops when the task is complete.
+With a bad plan, it anchors on incorrect assumptions, which costs both
+accuracy and tokens.</p>
+<p>Used well, a plan-mode exchange sharpens the request in three
+ways:</p>
 <ul>
 <li>
-<strong>Feedback on your plan.</strong> The agent reads
-<code>plan.md</code> and the repository together and reports what does
-not line up: a feature with no check, a step that assumes data in a
-format the repository does not contain, a dependency that is not
-installed.</li>
+<strong>Feedback on the request.</strong> The agent reads your
+request, <code>plan.md</code>, and the repository together and reports
+what does not line up: a feature with no check, a step that assumes data
+in a format the repository does not contain, a dependency that is not
+installed. Each mismatch is something to fix in the request.</li>
 <li>
-<strong>A structure for the code it will write.</strong> It proposes
-the modules, functions, and tests it intends to produce, so you can
-correct the shape (where the scoring function lives, what the data
-loader returns) while it is still cheap to change.</li>
+<strong>A structure for the intended result.</strong> It proposes
+the modules, functions, and tests it would produce, so you can correct
+the shape (where the scoring function lives, what the data loader
+returns) while it is still a description rather than code.</li>
 <li>
 <strong>Loose ends surfaced first.</strong> Anything it would
 otherwise have guessed at during implementation becomes a question now:
 which column is the label, which split is held out, what to do with
-missing values. Answer these before approving the plan, because an agent
-that guesses mid-implementation guesses the average case.</li>
+missing values. Your answers go into the request, because an agent that
+guesses mid-implementation guesses the average case.</li>
 </ul>
-<p>The output of plan mode is an implementation plan you approve, edit,
-or reject. It is not the analysis design, and it should not change the
-analysis design without you noticing. If the agent’s implementation plan
-quietly substitutes a different model, metric, or split, that is a plan
-to reject.</p>
+<p>The output is a request and an implementation outline you approve,
+edit, or reject. It should not change the analysis design without you
+noticing. If the proposed structure quietly substitutes a different
+model, metric, or split, correct it before approving.</p>
 <div class="tabs">
 <nav><div id="nav-tab-1" class="nav nav-tabs" role="tablist">
 <button class="nav-link active" id="nav-tab-1-ClaudeCode" name="ClaudeCode" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-ClaudeCode" type="button" role="tab" aria-controls="nav-tabpanel-1-ClaudeCode" aria-selected="true">
@@ -1996,7 +2035,7 @@ may never modify) and put it in your context file.</p>
   What a usable result contains
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>It is short. A branch-name pattern
 (<code>&lt;name&gt;/&lt;feature&gt;</code>); a pull-request size people
@@ -2097,7 +2136,7 @@ together.</p></li>
   What a good plan.md contains
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Three features, each one thing you can check. For example: (1) load
 and validate the data slice, with row count and class balance printed;
@@ -2193,11 +2232,10 @@ plan in a file the agent updates.</li>
 pull-request size, who reviews, what the agent may not modify, where new
 files go) and commit them as a <code>CONTRIBUTING.md</code> that agents
 also read.</li>
-<li>Plan mode is distinct from planning the analysis: the agent
-critiques your plan, proposes the code structure, and raises loose ends
-for you to settle before it implements. Its output is an implementation
-plan you approve, edit, or reject, and it should not change the analysis
-design.</li>
+<li>Plan mode is distinct from planning the analysis. It is where you
+refine the request: the agent critiques it, proposes the structure of
+the intended result, and raises loose ends for you to settle, and you
+approve the outline before any code is written.</li>
 <li>Start from a minimum viable pipeline: a slice of data, one model,
 something you understand end to end.</li>
 <li>Question AI design suggestions before adopting them, most carefully
@@ -2263,12 +2301,13 @@ agent made on your behalf.</li>
 <section><h2 class="section-heading" id="the-agent-is-not-a-magic-wand">The agent is not a magic wand<a class="anchor" aria-label="anchor" href="#the-agent-is-not-a-magic-wand"></a>
 </h2>
 <hr class="half-width">
-<p>Some frustration with agents comes from using them as one: describe
-the whole project, wait, and receive something plausible and wrong. This
-style of use is sometimes called vibe coding. The remedy is a person in
-the loop who knows the domain. You decide what to build next; the agent
-builds that one thing; you check it before the next. Your expertise is
-what makes the arrangement work, not the prompt and not the model.</p>
+<p>Some frustration with agents comes from using them as one: ask for
+the whole project in one prompt, wait, and receive something plausible
+and wrong. This style of use is sometimes called vibe coding. The remedy
+is a person in the loop who knows the domain. You decide what to build
+next; the agent builds that one thing; you check it before the next.
+Your expertise is what makes the arrangement work, not the prompt and
+not the model.</p>
 </section><section><h2 class="section-heading" id="work-feature-by-feature-not-project-by-project">Work feature by feature, not project by project<a class="anchor" aria-label="anchor" href="#work-feature-by-feature-not-project-by-project"></a>
 </h2>
 <hr class="half-width">
@@ -2794,8 +2833,8 @@ risky ones.</li>
 the full pipeline, including edge cases: empty input, wrong shape,
 duplicates, a sample that lands in both splits, etc. Say which tests
 matter most and why.</li>
-<li>Do not edit anything yet. After I review, implement the tests as an
-automated GitHub Action that will run on each push.</li>
+<li>After I review, implement the tests as an automated GitHub Action
+that will run on each push.</li>
 </ol>
 <p>Do not edit anything yet.</p>
 </blockquote>
@@ -2854,7 +2893,7 @@ the editor.</p>
   Why this works
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>A methodological requirement that was previously implicit is now an
 executable contract. The agent has a feedback loop that fails when it
@@ -3040,7 +3079,7 @@ assertion that would have caught it.</p>
   The bug, and the assertion that catches it
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Every subject appears in both splits. The model learned to identify
 each person, not what they were looking at. On a new subject the score
@@ -3340,7 +3379,7 @@ episode.</p>
   What this shows
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The agent is now calling GitHub’s API rather than answering from
 training data. Ask yourself what wider access it would need to do the
@@ -3465,7 +3504,7 @@ and the instructions:</p>
   From the demonstration to real use
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>The caveman skill demonstrates the mechanism. The practical use is
 packaging an instruction you would otherwise repeat. Choose one thing
@@ -4140,7 +4179,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.21.0)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/" class="external-link">varnish (1.1.2)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.21.1)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/" class="external-link">varnish (1.1.3)</a></p>
 		</div>
 		</footer>
 </div> <!-- / div.container -->
