@@ -26,19 +26,26 @@ exercises: 25
 ## Plan the research software yourself
 
 Research software exists to answer a question, so the plan for it is the analysis
-design: the research question, what you know about the data, the baseline that makes
-a result meaningful, the figures and numbers that will go in the paper, and what
-would show the approach is wrong. None of that is programming, and none of it should
-be delegated. You will defend these choices in lab meetings, in peer review, and in
-the methods section, so they have to be yours.
+design. That design is yours: you will defend it in lab meetings, in peer review, and
+in the methods section. Before an agent writes any code, you should be able to state:
 
-The agent's role at this stage is research assistant and critic: summarize the
-options for a step, find the library that implements a method, point out a gap in the
-plan, ask the question you had not considered. It will also propose ideas of its own.
-Treat each as a suggestion from a fluent but unaccountable colleague. Ask why this
-rather than the obvious alternative, what the failure modes are, and whether it is
-standard in your field, and adopt it only when you could explain it without the
-agent. A method you cannot explain cannot go in a methods section.
+- **The research question**, and the claim a result would support.
+- **The data**: what you already know about its provenance, quality, and quirks.
+- **The baseline or comparison** that makes a result meaningful.
+- **The outputs**: the figures, tables, or numbers that will go in the paper.
+- **What would show the approach is wrong.**
+
+The agent's role here is research assistant and critic, not author:
+
+- **Research assistant.** Summarize the options for a step; find the library that
+  implements a method; keep the plan file current as work proceeds.
+- **Critic.** Point out a gap in the plan; ask the question you had not considered;
+  notice a step that assumes something the data description does not support.
+- **Source of suggestions, taken under scrutiny.** It will propose ideas of its own.
+  Treat each as a suggestion from a fluent but unaccountable colleague: ask why this
+  rather than the obvious alternative, what the failure modes are, and whether it is
+  standard in your field. Adopt it only when you could explain it without the agent.
+  A method you cannot explain cannot go in a methods section.
 
 Skipping this step and letting the agent write code before you understand the
 problem is the most common failure in agentic work. Keep the plan proportional to the
