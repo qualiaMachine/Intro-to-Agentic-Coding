@@ -15,7 +15,7 @@ exercises: 25
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Plan a research software project yourself, using an agent to research options and critique the plan rather than to originate it.
+- Plan the research yourself, using an agent to research options and critique the plan rather than to originate it.
 - Supply the context an agent needs: the analysis design, existing code, and the group's standards.
 - Use plan mode to refine a request until the structure the agent proposes matches the result you intend.
 - Agree collaboration conventions and commit them as a `CONTRIBUTING.md`; produce a `plan.md` with ordered features and a check for each before implementing anything.
@@ -23,10 +23,12 @@ exercises: 25
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Planning the project
+## Plan the research yourself
 
-The first kind of planning has nothing to do with agents. It is deciding what the
-research software is for and what its first working version will be.
+The first kind of planning has nothing to do with agents. It is deciding what
+question the software answers and what its first working version will be. The
+software design, meaning how the code is organized, comes later in this episode, and
+the agent can help with it. The research design cannot be delegated.
 
 ### The analysis design
 
