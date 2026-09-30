@@ -303,6 +303,22 @@ analyst: what the results mean and what to do next remain your call.
 > agree with the numbers? Propose the one experiment you would run next and say what
 > result would change our plan. Do not run anything yet.
 
+::::::::::::::::::::::::::::::::::::: callout
+
+## Data stewardship applies to the artifacts too
+
+"Leave evidence in the repository" has a limit. The safety episode's rule that
+sensitive or restricted data stays away from unvetted AI services covers anything
+derived from that data, not only the raw files. A figure with one point per
+participant, a metrics file broken down by site or by a small subgroup, a run log
+that prints sample IDs or free-text fields, and a data dictionary with field values
+can each disclose what the raw data would. Before you commit an artifact for the
+agent to read, ask whether you could put it in a public preprint. If not, aggregate
+it, redact it, or keep it out of the repository, and give the agent summary
+statistics instead. The same applies to what you paste into a prompt.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 :::::::::::::::::::::::::::::::::::: challenge
 
 ## Exercise 2 (optional): What is wrong with this? (5 minutes)
