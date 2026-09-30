@@ -281,44 +281,6 @@ research code. Prompts to start from:
   splits, and no duplicate rows either. Then shuffle the labels and retrain. If the
   score does not collapse to chance, something leaks.*
 
-## Agents as data scientists
-
-Verification is not only about finding bugs. The agent is also a fast second reader
-of your results, if it is given something to read. It is a second reader, not the
-analyst: what the results mean and what to do next remain your call.
-
-- **Ask it to reason over results, not only to write code.** What stands out, what
-  disagrees, and what could explain it. Take its suggestion for what to try next as a
-  proposal to scrutinize, not a decision.
-- **Leave evidence in the repository.** Metrics files, metadata, figures, run logs, a
-  `results.md`. What is not written down does not exist for the agent.
-- **It can also read plots.** A saved figure is context.
-- **Direct it to the evidence each time.** It does not remember the previous session
-  and will not open a file you did not name.
-- **It does not replace your own reading.** Check every number it cites against the
-  file. It sees a portion of the project, never all of it.
-
-> Read `results/feature1_metrics.json`, `figures/cv_by_fold.png` and `plan.md`.
-> What stands out? Which fold or class is driving the average, and does the plot
-> agree with the numbers? Propose the one experiment you would run next and say what
-> result would change our plan. Do not run anything yet.
-
-::::::::::::::::::::::::::::::::::::: callout
-
-## Data stewardship applies to the artifacts too
-
-"Leave evidence in the repository" has a limit. The safety episode's rule that
-sensitive or restricted data stays away from unvetted AI services covers anything
-derived from that data, not only the raw files. A figure with one point per
-participant, a metrics file broken down by site or by a small subgroup, a run log
-that prints sample IDs or free-text fields, and a data dictionary with field values
-can each disclose what the raw data would. Before you commit an artifact for the
-agent to read, ask whether you could put it in a public preprint. If not, aggregate
-it, redact it, or keep it out of the repository, and give the agent summary
-statistics instead. The same applies to what you paste into a prompt.
-
-::::::::::::::::::::::::::::::::::::::::::::::::
-
 :::::::::::::::::::::::::::::::::::: challenge
 
 ## Exercise 2 (optional): What is wrong with this? (5 minutes)
@@ -374,6 +336,44 @@ clean run and a high score. If your review consists of "does it run, is the scor
 good", you and the agent have the same blind spot.
 
 :::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Agents as data scientists
+
+Verification is not only about finding bugs. The agent is also a fast second reader
+of your results, if it is given something to read. It is a second reader, not the
+analyst: what the results mean and what to do next remain your call.
+
+- **Ask it to reason over results, not only to write code.** What stands out, what
+  disagrees, and what could explain it. Take its suggestion for what to try next as a
+  proposal to scrutinize, not a decision.
+- **Leave evidence in the repository.** Metrics files, metadata, figures, run logs, a
+  `results.md`. What is not written down does not exist for the agent.
+- **It can also read plots.** A saved figure is context.
+- **Direct it to the evidence each time.** It does not remember the previous session
+  and will not open a file you did not name.
+- **It does not replace your own reading.** Check every number it cites against the
+  file. It sees a portion of the project, never all of it.
+
+> Read `results/feature1_metrics.json`, `figures/cv_by_fold.png` and `plan.md`.
+> What stands out? Which fold or class is driving the average, and does the plot
+> agree with the numbers? Propose the one experiment you would run next and say what
+> result would change our plan. Do not run anything yet.
+
+::::::::::::::::::::::::::::::::::::: callout
+
+## Data stewardship applies to the artifacts too
+
+"Leave evidence in the repository" has a limit. The safety episode's rule that
+sensitive or restricted data stays away from unvetted AI services covers anything
+derived from that data, not only the raw files. A figure with one point per
+participant, a metrics file broken down by site or by a small subgroup, a run log
+that prints sample IDs or free-text fields, and a data dictionary with field values
+can each disclose what the raw data would. Before you commit an artifact for the
+agent to read, ask whether you could put it in a public preprint. If not, aggregate
+it, redact it, or keep it out of the repository, and give the agent summary
+statistics instead. The same applies to what you paste into a prompt.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
