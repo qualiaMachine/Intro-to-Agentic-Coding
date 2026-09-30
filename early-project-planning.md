@@ -52,6 +52,26 @@ problem is the most common failure in agentic work. The size of the plan should 
 the size of the task. A small change to one function needs a sentence, not a
 document.
 
+## Start from a minimum viable pipeline
+
+The first version of that design should be small. A **minimum viable pipeline
+(MVP)** is whatever you can get running quickly and understand end to end. It is not necessarily the simplest model: a pretrained model
+you understand is preferable to a from-scratch model you do not. The aim is to
+minimize points of friction and failure: a slice of the data, one model, your laptop.
+Each additional step or more elaborate setup is another place for the pipeline to
+break.
+
+- **Functional, not polished.** Borrowed code is acceptable if you can explain what it
+  does. Defer the edge cases.
+- **Do not defer the understanding.** A pipeline you understand reveals the real
+  relationships in the data, the processing bugs, and the data problems that a
+  system you do not understand would conceal.
+
+The MVP is the baseline against which new components are compared, before investing
+in solutions that take time to build. It is also the first thing you will ask an
+agent to build: small enough to specify fully, with every feature something you can
+check. The rest of this episode is about getting from the MVP plan to that request.
+
 ## Supply context
 
 An agent asked to "make a plan" with no other input produces the average plan for the
@@ -147,10 +167,69 @@ only when you are ready for it to edit.
 
 ::::::::::::::::::::::::
 
+The exercise below runs your MVP plan through plan mode.
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+## Exercise: Plan your MVP with an agent (15 minutes)
+
+1. **Open your project's MVP plan.** If there is none, write three lines now: the data
+   slice, one model, and how you score it. If you have no project, choose a public
+   dataset or competition you know and plan an MVP for it.
+2. **Ask the agent to review it** in plan mode, against your project's goal (the
+   challenge page, the paper's research question, or the grant aim):
+
+   > Review our Minimum Viable Pipeline (MVP) plan against our project goal. The
+   > MVP should be something we can get running quickly and understand end-to-end.
+   > It is the baseline we compare new components against, before we invest in
+   > solutions that take time to build.
+   >
+   > **MVP plan**
+   > \<paste from your shared doc\>
+   >
+   > **Project goal**
+   > \<paste the research question or grant aim, the evaluation metric, and the data
+   > description\>
+   >
+   > **Compute available**
+   > \<laptops; cluster allocation; hosted models and how they're accessed; cloud
+   > credits and when\>
+   >
+   > Is this a good MVP? Say why or why not, and list any step that is missing,
+   > unclear, or assumes something the data description does not support. Do not
+   > propose a replacement design; if something should change, say what and why, and
+   > we will decide. Then write our MVP up as a `plan.md` with each step in order and
+   > how we will know each one works. Do not write any code yet.
+
+3. **Question the plan until you would sign it.** Challenge anything you cannot
+   explain, and ask why a given choice is preferable to the obvious alternative.
+4. **Commit `plan.md` to your repository.** No code until the plan is committed.
+5. **If you finish early**, apply the same review to your pre-modeling steps
+   (loading, cleaning, splitting, feature construction) and save the result as
+   `prep.md`. Then ask the agent to review `plan.md` and `prep.md` together.
+
+:::::::::::::::::::::::: solution
+
+## What a good `plan.md` contains
+
+Three features, each one thing you can check. For example: (1) load and validate the
+data slice, with row count and class balance printed; (2) train one baseline, with a
+score on a held-out split; (3) write the scoring function, matching the metric your
+field or paper uses on a hand-computed example. If `plan.md` contains a feature for which
+you cannot describe a check, it is not yet a feature; split it or remove it. Note also
+what the agent could not know: which data is trustworthy, what compute you have, what
+your group has already decided. You supplied that context; without it the plan would have been
+for a different project.
+
+:::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 ::::::::::::::::::::::::::::::::::::: challenge
 
 ## Exercise: Agree how your team will collaborate (10 minutes)
 
+With the MVP plan committed, one agreement remains before the first feature is built.
 Every member of the team is about to use a coding agent on the same repository, which
 will produce more branches, more commits, and larger diffs than a typical project.
 Decide the rules that matter before the first feature: who reviews, what the agent
@@ -209,81 +288,6 @@ with branch protection.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Start from a minimum viable pipeline
-
-A **minimum viable pipeline (MVP)** is whatever you can get running quickly and
-understand end to end. It is not necessarily the simplest model: a pretrained model
-you understand is preferable to a from-scratch model you do not. The aim is to
-minimize points of friction and failure: a slice of the data, one model, your laptop.
-Each additional step or more elaborate setup is another place for the pipeline to
-break.
-
-- **Functional, not polished.** Borrowed code is acceptable if you can explain what it
-  does. Defer the edge cases.
-- **Do not defer the understanding.** A pipeline you understand reveals the real
-  relationships in the data, the processing bugs, and the data problems that a
-  system you do not understand would conceal.
-
-The MVP is the baseline against which new components are compared, before investing
-in solutions that take time to build. It is also the appropriate first plan for an
-agent: small enough to specify fully, with every feature something you can check.
-
-::::::::::::::::::::::::::::::::::::: challenge
-
-## Exercise: Plan your MVP with an agent (15 minutes)
-
-1. **Open your project's MVP plan.** If there is none, write three lines now: the data
-   slice, one model, and how you score it. If you have no project, choose a public
-   dataset or competition you know and plan an MVP for it.
-2. **Ask the agent to review it** in plan mode, against your project's goal (the
-   challenge page, the paper's research question, or the grant aim):
-
-   > Review our Minimum Viable Pipeline (MVP) plan against our project goal. The
-   > MVP should be something we can get running quickly and understand end-to-end.
-   > It is the baseline we compare new components against, before we invest in
-   > solutions that take time to build.
-   >
-   > **MVP plan**
-   > \<paste from your shared doc\>
-   >
-   > **Project goal**
-   > \<paste the research question or grant aim, the evaluation metric, and the data
-   > description\>
-   >
-   > **Compute available**
-   > \<laptops; cluster allocation; hosted models and how they're accessed; cloud
-   > credits and when\>
-   >
-   > Is this a good MVP? Say why or why not, and list any step that is missing,
-   > unclear, or assumes something the data description does not support. Do not
-   > propose a replacement design; if something should change, say what and why, and
-   > we will decide. Then write our MVP up as a `plan.md` with each step in order and
-   > how we will know each one works. Do not write any code yet.
-
-3. **Question the plan until you would sign it.** Challenge anything you cannot
-   explain, and ask why a given choice is preferable to the obvious alternative.
-4. **Commit `plan.md` to your repository.** No code until the plan is committed.
-5. **If you finish early**, apply the same review to your pre-modeling steps
-   (loading, cleaning, splitting, feature construction) and save the result as
-   `prep.md`. Then ask the agent to review `plan.md` and `prep.md` together.
-
-:::::::::::::::::::::::: solution
-
-## What a good `plan.md` contains
-
-Three features, each one thing you can check. For example: (1) load and validate the
-data slice, with row count and class balance printed; (2) train one baseline, with a
-score on a held-out split; (3) write the scoring function, matching the metric your
-field or paper uses on a hand-computed example. If `plan.md` contains a feature for which
-you cannot describe a check, it is not yet a feature; split it or remove it. Note also
-what the agent could not know: which data is trustworthy, what compute you have, what
-your group has already decided. You supplied that context; without it the plan would have been
-for a different project.
-
-:::::::::::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::::::::::::::
-
 ::::::::::::::::::::::::::::::::::::: callout
 
 ## Do not build on ideas you cannot defend
@@ -336,9 +340,9 @@ safety-critical rules with permissions, hooks, and branch protection.
 
 - The plan is the analysis design, and it is yours: research question, data, methods, baseline, outputs, constraints, and what would show the approach is wrong. The agent assists and critiques. Record the plan as a `plan.md` with ordered features and a check for each, committed before any code.
 - Give the agent that design plus what already exists: the previous plan, skeleton code, issues, out-of-scope notes, and rules files. For long work, keep the plan in a file the agent updates.
-- Agree team conventions first (branches rather than forks, pull-request size, who reviews, what the agent may not modify, where new files go) and commit them as a `CONTRIBUTING.md` that agents also read.
+- Start from a minimum viable pipeline: a slice of data, one model, something you understand end to end. It is the baseline for everything after it and the first thing you ask an agent to build.
 - Plan mode is distinct from planning the analysis. It is where you refine the request: the agent critiques it, proposes the structure of the intended result, and raises loose ends for you to settle, and you approve the outline before any code is written.
-- Start from a minimum viable pipeline: a slice of data, one model, something you understand end to end.
+- Agree collaboration conventions before the first feature (branches rather than forks, pull-request size, who reviews, what the agent may not modify, where new files go) and commit them as a `CONTRIBUTING.md` that agents also read.
 - Question AI design suggestions before adopting them, most carefully where your domain knowledge is weakest. If you cannot explain it, you do not yet own it.
 - Write the project context file (`CLAUDE.md`, `AGENTS.md`, `copilot-instructions.md`) at the start of the project. Keep it short, operational, and backed by permissions where it matters.
 
